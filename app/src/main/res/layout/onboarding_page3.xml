@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="8dp"
+            android:alpha="0.8"
+            app:srcCompat="@drawable/ic_twotone_security_24dp"
+            app:tint="?attr/colorOnSurface" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:text="@string/onboarding_adb_title"
+            android:textAppearance="?attr/textAppearanceHeadline5" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/onboarding_adb_caption"
+                android:textAppearance="?attr/textAppearanceBody2" />
+
+            <!-- Shizuku -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="@string/onboarding_adb_shizuku_title"
+                android:textAppearance="?attr/textAppearanceHeadline6" />
+
+            <LinearLayout
+                android:id="@+id/onboarding_adb_shizuku_install_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/onboarding_adb_shizuku_install_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/onboarding_adb_step_1"
+                    android:textAppearance="?attr/textAppearanceLabelMedium" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/onboarding_adb_shizuku_install_instruction"
+                    android:textAppearance="?attr/textAppearanceLabelLarge" />
+
+                <Button
+                    android:id="@+id/onboarding_adb_shizuku_install_button"
+                    android:minWidth="210dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_marginVertical="8dp"
+                    android:layout_gravity="end"
+                    android:text="@string/onboarding_adb_shizuku_install_button" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/onboarding_adb_shizuku_open_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/onboarding_adb_shizuku_open_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/onboarding_adb_step_2"
+                    android:textAppearance="?attr/textAppearanceLabelMedium" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/onboarding_adb_shizuku_open_instruction"
+                    android:textAppearance="?attr/textAppearanceLabelLarge" />
+
+                <Button
+                    android:id="@+id/onboarding_adb_shizuku_open_button"
+                    android:minWidth="210dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_marginVertical="8dp"
+                    android:layout_gravity="end"
+                    android:text="@string/onboarding_adb_shizuku_open_button" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/onboarding_adb_shizuku_grant_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/onboarding_adb_shizuku_grant_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/onboarding_adb_step_3"
+                    android:textAppearance="?attr/textAppearanceLabelMedium" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/onboarding_adb_shizuku_grant_instruction"
+                    android:textAppearance="?attr/textAppearanceLabelLarge" />
+
+                <Button
+                    android:id="@+id/onboarding_adb_shizuku_grant_button"
+                    android:minWidth="210dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_marginVertical="8dp"
+                    android:layout_gravity="end"
+                    android:text="@string/onboarding_adb_shizuku_grant_button" />
+            </LinearLayout>
+
+            <!-- Manual -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="4dp"
+                android:text="@string/onboarding_adb_manual_title"
+                android:textAppearance="?attr/textAppearanceHeadline6" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/onboarding_adb_manual_instruction"
+                android:textAppearance="?attr/textAppearanceLabelLarge" />
+
+            <Button
+                android:id="@+id/onboarding_adb_manual_button"
+                android:minWidth="210dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:layout_gravity="end"
+                android:text="@string/onboarding_adb_manual_button"
+                style="?attr/materialButtonOutlinedStyle" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

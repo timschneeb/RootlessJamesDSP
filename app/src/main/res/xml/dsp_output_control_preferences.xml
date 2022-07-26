@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+  <Preference
+      android:title="@string/output_control_header"
+      android:enabled="false"
+      app:iconSpaceReserved="false" />
+  <me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
+      android:key="@string/key_limiter_threshold"
+      android:title="@string/output_limiter_threshold"
+      android:defaultValue="-0.1"
+      app:minValue="-60"
+      app:maxValue="-0.1"
+      app:unit="dB"
+      app:allowDividerAbove="false"
+      app:updatesContinuously="true"
+      app:showSeekBarValue="true"
+      app:iconSpaceReserved="false" />
+  <me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
+      android:key="@string/key_limiter_release"
+      android:title="@string/output_limiter_release"
+      android:defaultValue="60"
+      app:minValue="1.5"
+      app:maxValue="500"
+      app:unit="ms"
+      app:allowDividerAbove="false"
+      app:updatesContinuously="true"
+      app:showSeekBarValue="true"
+      app:iconSpaceReserved="false" />
+  <me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
+      android:key="@string/key_output_postgain"
+      android:title="@string/output_control_postgain"
+      android:defaultValue="0"
+      app:minValue="-15"
+      app:maxValue="15"
+      app:unit="dB"
+      app:allowDividerAbove="false"
+      app:updatesContinuously="true"
+      app:showSeekBarValue="true"
+      app:iconSpaceReserved="false" />
+</PreferenceScreen>

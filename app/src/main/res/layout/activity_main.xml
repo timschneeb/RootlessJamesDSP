@@ -15,19 +15,31 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize" />
+            android:layout_height="?attr/actionBarSize"
+            app:titleCentered="true" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/content_main" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_gravity="bottom"
+        app:fabAlignmentMode="center"
+        app:fabAnchorMode="cradle"
+        app:menuAlignmentMode="auto"
+        android:maxHeight="?attr/actionBarSize"
+        android:fitsSystemWindows="true"/>
+
+    <me.timschneeberger.rootlessjamesdsp.view.FloatingToggleButton
+        android:id="@+id/power_toggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginBottom="16dp"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        app:layout_anchor="@id/bar"
+        app:srcCompat="@drawable/ic_twotone_power_settings_24dp"
+        android:hapticFeedbackEnabled="true"
+        android:contentDescription="@string/power_button_alt" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

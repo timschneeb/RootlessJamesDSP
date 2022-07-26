@@ -4,13 +4,14 @@ import android.content.Context
 import android.database.ContentObserver
 import android.media.AudioManager
 import android.os.Handler
-import android.util.Log
+import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
+import timber.log.Timber
 
 
-class VolumeContentObserver(c: Context, handler: Handler? = null) : ContentObserver(handler) {
-    var previousVolume: Int
-    var context: Context
-    var volChangeListener: ((Int) -> Unit)? = null
+class VolumeContentObserver(val context: Context, handler: Handler? = null) : ContentObserver(handler) {
+    private var previousVolume: Int
+    private var volChangeListener: ((Int) -> Unit)? = null
+    private var audio: AudioManager
 
     fun setOnVolumeChangeListener(l: (Int) -> Unit) {
         volChangeListener = l
@@ -18,23 +19,21 @@ class VolumeContentObserver(c: Context, handler: Handler? = null) : ContentObser
 
     override fun onChange(selfChange: Boolean) {
         super.onChange(selfChange)
-        val audio = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
         val currentVolume = audio.getStreamVolume(AudioManager.STREAM_MUSIC)
         val delta = previousVolume - currentVolume
         if (delta > 0) {
-            Log.d("SettingsContentObserver", "Volume decreased $currentVolume")
+            Timber.tag("SettingsContentObserver").d("Volume decreased $currentVolume")
             previousVolume = currentVolume
             volChangeListener?.invoke(currentVolume)
         } else if (delta < 0) {
-            Log.d("SettingsContentObserver", "Volume increased $currentVolume")
+            Timber.tag("SettingsContentObserver").d("Volume increased $currentVolume")
             previousVolume = currentVolume
             volChangeListener?.invoke(currentVolume)
         }
     }
 
     init {
-        context = c
-        val audio = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        audio = SystemServices.get(context, AudioManager::class.java)
         previousVolume = audio.getStreamVolume(AudioManager.STREAM_MUSIC)
         volChangeListener?.invoke(previousVolume)
     }

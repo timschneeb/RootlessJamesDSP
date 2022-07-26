@@ -1,112 +1,277 @@
 package me.timschneeberger.rootlessjamesdsp
 
 import android.Manifest
-import android.content.Intent
+import android.content.*
 import android.content.pm.PackageManager
-import android.media.audiofx.DynamicsProcessing
 import android.media.projection.MediaProjectionManager
 import android.os.Bundle
-import android.provider.Settings
-import android.util.Log
+import android.os.IBinder
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.WindowCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
-import me.timschneeberger.rootlessjamesdsp.ContextExtensions.isAccessibilityServiceRunning
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import me.timschneeberger.rootlessjamesdsp.databinding.ActivityMainBinding
+import me.timschneeberger.rootlessjamesdsp.databinding.ContentMainBinding
+import me.timschneeberger.rootlessjamesdsp.fragment.DspFragment
+import me.timschneeberger.rootlessjamesdsp.model.ProcessorMessage
+import me.timschneeberger.rootlessjamesdsp.native.JamesDspWrapper
+import me.timschneeberger.rootlessjamesdsp.onboarding.OnboardingActivity
+import me.timschneeberger.rootlessjamesdsp.service.AudioProcessorService
+import me.timschneeberger.rootlessjamesdsp.utils.ApplicationUtils
+import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocalReceiver
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
+import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
+import me.timschneeberger.rootlessjamesdsp.view.FloatingToggleButton
+import timber.log.Timber
 
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private lateinit var bindingContent: ContentMainBinding
 
+    private lateinit var mediaProjectionManager: MediaProjectionManager
+    private lateinit var capturePermissionLauncher: ActivityResultLauncher<Intent>
+    private lateinit var prefs: SharedPreferences
 
-    private val REQUEST_CODE_PERMISSION_AUDIO = 1
-    private val REQUEST_CODE_START_CAPTURE = 2
+    private var processorService: AudioProcessorService? = null
+    private var processorServiceBound: Boolean = false
+
+    private val processorServiceConnection = object : ServiceConnection {
+        override fun onServiceConnected(className: ComponentName, service: IBinder) {
+            // We've bound to LocalService, cast the IBinder and get LocalService instance
+            val binder = service as AudioProcessorService.LocalBinder
+            processorService = binder.service
+            processorServiceBound = true
+
+            binding.powerToggle.isToggled = true
+        }
+
+        override fun onServiceDisconnected(arg0: ComponentName) {
+            processorService = null
+            processorServiceBound = false
+        }
+    }
+
+    private var serviceStoppedReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            binding.powerToggle.isToggled = false
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
 
         val check = ApplicationUtils.check(this)
-        if(check != 0)
-        {
-            Toast.makeText(this,
-                "Cannot launch application. Please re-download the latest version from the official GitHub project site. ($check)", Toast.LENGTH_LONG).show()
-            Log.e("onCreate", "Launch error $check")
-            this.finish()
+        if(check != 0) {
+            Toast.makeText(
+                this,
+                "($check) Cannot launch application. Please re-download the latest version from the official GitHub project site.",
+                Toast.LENGTH_LONG
+            ).show()
+            Timber.tag(TAG).wtf(UnsupportedOperationException("Launch error $check; ${ApplicationUtils.describe(this)}"))
+            this.finishAndRemoveTask()
             return
         }
 
-        /*if(!this.isAccessibilityServiceRunning())
-        {
-            Toast.makeText(this,
-                "Please enable the JamesDSP accessibility service in your system settings first.", Toast.LENGTH_LONG).show()
-            val intent = Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intent)
-        }*/
+        mediaProjectionManager = SystemServices.get(this, MediaProjectionManager::class.java)
+
+        prefs = getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
+        val crashlytics = prefs.getBoolean(getString(R.string.key_share_crash_reports), true)
+        Timber.tag(TAG).d("Crashlytics enabled? $crashlytics")
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(crashlytics)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
+        bindingContent = ContentMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
 
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
-
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAnchorView(R.id.fab)
-                .setAction("Action", null).show()
+         // Wait for NavHostFragment to inflate
+        bindingContent.dspFragmentContainer.post {
+            val navController = findNavController(R.id.dsp_fragment_container)
+            appBarConfiguration = AppBarConfiguration(navController.graph)
+            setupActionBarWithNavController(navController, appBarConfiguration)
         }
 
-        if (checkSelfPermission(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-            val permissions = arrayOf<String>(Manifest.permission.RECORD_AUDIO)
-            requestPermissions(permissions, REQUEST_CODE_PERMISSION_AUDIO)
+        // Load dsp settings fragment
+        val fragmentManager = supportFragmentManager
+        fragmentManager.beginTransaction()
+            .replace(R.id.dsp_fragment_container, DspFragment.newInstance())
+            .commit()
+
+        // Check permissions and launch onboarding if required
+        if(checkSelfPermission(Manifest.permission.DUMP) == PackageManager.PERMISSION_DENIED ||
+            checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_DENIED) {
+            val firstBoot = getSharedPreferences(Constants.PREF_VAR, Context.MODE_PRIVATE)
+                                .getBoolean(getString(R.string.key_firstboot), true)
+            Timber.tag(TAG).i("Launching onboarding (first boot: $firstBoot)")
+
+            val onboarding = Intent(this, OnboardingActivity::class.java)
+            onboarding.putExtra(OnboardingActivity.EXTRA_FIX_PERMS, !firstBoot)
+            startActivity(onboarding)
+            this.finish()
         }
 
-        val mediaProjectionManager =
-            getSystemService(MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
-        val intent = mediaProjectionManager.createScreenCaptureIntent()
-        startActivityForResult(intent, REQUEST_CODE_START_CAPTURE)
+        binding.bar.inflateMenu(R.menu.menu_main_bottom)
+        binding.bar.setOnMenuItemClickListener { arg0 ->
+            if (arg0.itemId == R.id.action_settings) {
+                startActivity(Intent(this, SettingsActivity::class.java))
+                true
+            }
+            else
+                false
+        }
+
+        registerLocalReceiver(serviceStoppedReceiver, IntentFilter(Constants.ACTION_SERVICE_STOPPED))
+        registerLocalReceiver(processorMessageReceiver, IntentFilter(AudioProcessorService.ACTION_PROCESSOR_MESSAGE))
+
+        binding.powerToggle.toggleOnClick = false
+        binding.powerToggle.setOnToggleClickListener(object : FloatingToggleButton.OnToggleClickListener{
+            override fun onClick() {
+                if(binding.powerToggle.isToggled) {
+                    // Currently on, let's turn it off
+                    AudioProcessorService.stop(this@MainActivity)
+                    binding.powerToggle.isToggled = false
+                }
+                else {
+                    // Currently off, let's turn it on
+                    requestCapturePermission()
+                }
+            }
+        })
+
+        capturePermissionLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            if (result.resultCode == RESULT_OK) {
+                binding.powerToggle.isToggled = true
+                AudioProcessorService.start(this, result.data)
+            } else {
+                binding.powerToggle.isToggled = false
+            }
+        }
+
+        val mActionBar = actionBar
+        mActionBar?.setDisplayHomeAsUpEnabled(true)
+        mActionBar?.setHomeButtonEnabled(true)
+        mActionBar?.setDisplayShowTitleEnabled(true)
+
+        sendLocalBroadcast(Intent(Constants.ACTION_UPDATE_PREFERENCES))
+
+        if(intent.getBooleanExtra(EXTRA_FORCE_SHOW_CAPTURE_PROMPT, false)){
+            requestCapturePermission()
+        }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_CODE_START_CAPTURE && resultCode == RESULT_OK) {
-            AudioProcessorService.start(this, data)
+    override fun onStart() {
+        super.onStart()
+        bindProcessorService()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        unbindProcessorService()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(processorService != null)
+        {
+            binding.powerToggle.isToggled = true
         }
-        finish()
+    }
+
+    private fun bindProcessorService() {
+        Intent(this, AudioProcessorService::class.java).also { intent ->
+            val ret = bindService(intent, processorServiceConnection, 0)
+            // Service not active
+            if(!ret)
+                requestCapturePermission()
+        }
+    }
+
+    private fun unbindProcessorService() {
+        unbindService(processorServiceConnection)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_settings -> {
+                startActivity(Intent(this, SettingsActivity::class.java))
+                true
+            }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
+        val navController = findNavController(R.id.dsp_fragment_container)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
+    }
+
+    fun requestCapturePermission() {
+        capturePermissionLauncher.launch(mediaProjectionManager.createScreenCaptureIntent())
+    }
+
+    private var processorMessageReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+
+        override fun onReceive(context: Context, intent: Intent) {
+            when (ProcessorMessage.Type.fromInt(intent.getIntExtra(ProcessorMessage.TYPE, 0))) {
+                ProcessorMessage.Type.VdcParseError -> {
+                    makeSnackbar(getString(R.string.message_vdc_corrupt)).show()
+                }
+                ProcessorMessage.Type.LiveprogOutput -> {}
+                ProcessorMessage.Type.LiveprogExec -> {}
+                ProcessorMessage.Type.LiveprogResult -> {
+                    val ret = intent.getIntExtra(ProcessorMessage.Param.LiveprogResultCode.name, 1)
+                    if(ret <= 0)
+                    {
+                        val msg = JamesDspWrapper.eelErrorCodeToString(ret)
+                        val msgDetail = intent.getStringExtra(ProcessorMessage.Param.LiveprogErrorMessage.name)
+                        val snackbar = makeSnackbar(getString(R.string.message_liveprog_compile_fail) + " $msg")
+                        if(msgDetail?.isNotBlank() == true){
+                            snackbar.setAction(getString(R.string.details)) {
+                                val alert = MaterialAlertDialogBuilder(this@MainActivity)
+                                alert.setMessage(msgDetail)
+                                alert.setTitle(msg)
+                                alert.setNegativeButton(android.R.string.ok, null)
+                                alert.create().show()
+                            }
+                        }
+                        snackbar.show()
+                    }
+                }
+                ProcessorMessage.Type.Unknown -> {}
+            }
+        }
+    }
+
+    private fun makeSnackbar(text: String, duration: Int = Snackbar.LENGTH_SHORT): Snackbar {
+        return Snackbar.make(findViewById(android.R.id.content), text, duration)
+    }
+
+    companion object {
+        const val TAG = "MainActivity"
+        const val EXTRA_FORCE_SHOW_CAPTURE_PROMPT = "ForceShowCapturePrompt"
     }
 }

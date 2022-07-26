@@ -2,9 +2,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="me.timschneeberger.rootlessjamesdsp.MainActivity">
-    <item
+    <!--<item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:iconTint="?attr/actionMenuTextColor"
+        android:icon="@drawable/ic_twotone_settings_24dp"
+        app:showAsAction="always" />-->
 </menu>

@@ -1,52 +1,189 @@
 <resources>
     <string name="app_name">RootlessJamesDSP</string>
+
+    <!-- Main menu bar -->
+    <string name="action_settings">Settings</string>
+
+    <!-- Notification channels -->
+    <string name="notification_channel_session_loss_alert">Session loss alert</string>
+    <string name="notification_channel_permission_prompt">Permission prompt request</string>
+
+    <!-- Service notifications -->
+    <string name="action_retry">Retry</string>
     <string name="action_stop">Stop</string>
     <string name="notification_waiting">Waiting for user action…</string>
     <string name="notification_processing">Audio processing enabled</string>
-    <string name="title_activity_main">MainActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
-    <string name="lorem_ipsum">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
-        volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
-        dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
-        litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend
-        diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a,
-        ornare ex. Sed rhoncus est ut libero porta lobortis. Fusce in dictum tellus.\n\n
-        Suspendisse interdum ornare ante. Aliquam nec cursus lorem. Morbi id magna felis. Vivamus
-        egestas, est a condimentum egestas, turpis nisl iaculis ipsum, in dictum tellus dolor sed
-        neque. Morbi tellus erat, dapibus ut sem a, iaculis tincidunt dui. Interdum et malesuada
-        fames ac ante ipsum primis in faucibus. Curabitur et eros porttitor, ultricies urna vitae,
-        molestie nibh. Phasellus at commodo eros, non aliquet metus. Sed maximus nisl nec dolor
-        bibendum, vel congue leo egestas.\n\n
-        Sed interdum tortor nibh, in sagittis risus mollis quis. Curabitur mi odio, condimentum sit
-        amet auctor at, mollis non turpis. Nullam pretium libero vestibulum, finibus orci vel,
-        molestie quam. Fusce blandit tincidunt nulla, quis sollicitudin libero facilisis et. Integer
-        interdum nunc ligula, et fermentum metus hendrerit id. Vestibulum lectus felis, dictum at
-        lacinia sit amet, tristique id quam. Cras eu consequat dui. Suspendisse sodales nunc ligula,
-        in lobortis sem porta sed. Integer id ultrices magna, in luctus elit. Sed a pellentesque
-        est.\n\n
-        Aenean nunc velit, lacinia sed dolor sed, ultrices viverra nulla. Etiam a venenatis nibh.
-        Morbi laoreet, tortor sed facilisis varius, nibh orci rhoncus nulla, id elementum leo dui
-        non lorem. Nam mollis ipsum quis auctor varius. Quisque elementum eu libero sed commodo. In
-        eros nisl, imperdiet vel imperdiet et, scelerisque a mauris. Pellentesque varius ex nunc,
-        quis imperdiet eros placerat ac. Duis finibus orci et est auctor tincidunt. Sed non viverra
-        ipsum. Nunc quis augue egestas, cursus lorem at, molestie sem. Morbi a consectetur ipsum, a
-        placerat diam. Etiam vulputate dignissim convallis. Integer faucibus mauris sit amet finibus
-        convallis.\n\n
-        Phasellus in aliquet mi. Pellentesque habitant morbi tristique senectus et netus et
-        malesuada fames ac turpis egestas. In volutpat arcu ut felis sagittis, in finibus massa
-        gravida. Pellentesque id tellus orci. Integer dictum, lorem sed efficitur ullamcorper,
-        libero justo consectetur ipsum, in mollis nisl ex sed nisl. Donec maximus ullamcorper
-        sodales. Praesent bibendum rhoncus tellus nec feugiat. In a ornare nulla. Donec rhoncus
-        libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
-        vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
+    <!-- Permission request notifications -->
+    <string name="notification_request_permission_title">User action required to launch JamesDSP</string>
+    <string name="notification_request_permission">Tap to grant capture permission and enable JamesDSP\'s audio processing</string>
+
+    <!-- Session control loss notifications -->
+    <string name="session_control_loss_toast">JamesDSP stopped due to audio session control loss. Please disable other audio effect apps.</string>
+    <string name="session_control_loss_toast_short">Audio session lost</string>
+    <string name="session_control_loss_notification_title">Audio processing stopped. Another app is interfering with JamesDSP.</string>
+    <string name="session_control_loss_notification">Please disable all other apps that provide global audio effects before re-enabling JamesDSP.</string>
+
+    <!-- General purpose -->
+    <string name="install">Install</string>
+    <string name="update">Update</string>
+    <string name="details">Details</string>
+    <string name="warning">Warning</string>
+
+    <!-- Main screen -->
+    <string name="power_button_alt">Toggle audio processing</string>
+
+    <string name="compressor_enable">Dynamic range squasher</string>
+    <string name="compressor_max_attack">Maximum attack</string>
+    <string name="compressor_max_release">Maximum release</string>
+    <string name="compressor_adapt_speed">Aggressiveness</string>
+
+    <string name="eq_enable">Interpolating FIR equalizer</string>
+    <string name="eq_filter_type">Filter type</string>
+    <string name="eq_interpolator">Interpolator</string>
+
+    <string name="geq_enable">Arbitrary response equalizer</string>
+    <string name="geq_nodes">Magnitude response</string>
+
+    <string name="bass_enable">Dynamic bass boost</string>
+    <string name="bass_max_gain">Maximum gain</string>
+
+    <string name="reverb_enable">Virtual room effect</string>
+    <string name="reverb_room_type">Room type</string>
+
+    <string name="convolver_enable">Convolver</string>
+    <string name="convolver_impulse">Impulse response</string>
+    <string name="convolver_convolution_mode">Impulse response optimization</string>
+    <string name="convolver_advanced_editing">Advanced waveform editing</string>
+
+    <string name="ddc_enable">ViPER-DDC</string>
+    <string name="ddc_file">DDC file</string>
+
+    <string name="liveprog_enable">Live programmable DSP</string>
+    <string name="liveprog_file">Liveprog script</string>
+
+    <string name="tube_enable">Analog modelling</string>
+    <string name="tube_drive">Preamp (Harmonics)</string>
+
+    <string name="output_control_header">Output control</string>
+    <string name="output_limiter_threshold">Limiter threshold</string>
+    <string name="output_limiter_release">Limiter release</string>
+    <string name="output_control_postgain">Post gain</string>
+
+    <string name="stereowide_enable">Soundstage wideness</string>
+    <string name="stereowide_level">Wideness</string>
+    <string name="stereowide_level_none">None</string>
+    <string name="stereowide_level_very_wide">Very wide</string>
+    <string name="stereowide_level_wide">Wide</string>
+    <string name="stereowide_level_very_narrow">Very narrow</string>
+    <string name="stereowide_level_narrow">Narrow</string>
+
+    <string name="crossfeed_enable">Crossfeed</string>
+    <string name="crossfeed_preset">Preset</string>
+
+    <!-- Onboarding -->
+    <string name="title_activity_onboarding">Onboarding</string>
+    <string name="onboarding_back">Back</string>
+    <string name="onboarding_next">Next</string>
+    <string name="onboarding_finish">Finish</string>
+    <string name="onboarding_greeting">Welcome to RootlessJamesDSP!</string>
+    <string name="onboarding_caption">This assistant will help you setting up JamesDSP on your device</string>
+    <string name="onboarding_press_next">Press \'Next\' to start the setup process.</string>
+    <string name="onboarding_press_finish">Press \'Finish\' to finalize the setup process.</string>
+    <string name="onboarding_warning">Currently, this application is unfinished and unstable. Please note that it may not work on some devices as expected, since it uses Android APIs not designed for use by third-parties. A detailed list of limitations will be shown later on during the setup process.</string>
+    <string name="onboarding_fix_permissions_title">User action required</string>
+    <string name="onboarding_fix_permissions">ne or more permissions were revoked by you or the system.\nIn order to ensure that this app behaves correctly, you need to grant these permissions again.\n\nPlease re-do the setup wizard to re-grant these permissions.</string>
+
+    <string name="onboarding_limitations_title">Limitations</string>
+    <string name="onboarding_limitations"><![CDATA[<p>This app is currently incomplete and under development. It may crash or behave unexpectedly.</p>
+<p><b><u>Make sure to fully disable other audio effect apps.</u></b> They are guaranteed to break this application when they attach their own DynamicsProcessing audio effect to a session.</p>
+<p><b>DRM-protected content and apps blocking internal audio capture (e.g., Spotify) stay muted</b> and won\'t output any sound while this app is active. An alternative audio recording method using ADB privileges that is not affected by this restriction may be added at a later time.</p>
+<p>After an app opens a new media session to playback audio, <b>you may hear duplicated audio for a very short period</b> (about &lt; 0.5 sec).</p>
+<p>Changes made to Android\'s audio system by your OEM/device manufacturer may break this app. This app has been actively tested on these devices:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;• Samsung S20+ (Android 12)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;• Emulator with stock AOSP (Android 10-13)</p>]]>
     </string>
-    <string name="action_settings">Settings</string>
-    <string name="accessibility_service_label">JamesDSP Playback Service</string>
-    <string name="accessibility_service_description">Re-route internal audio through the JamesDSP engine</string>
+
+    <string name="onboarding_adb_title">ADB permissions</string>
+    <string name="onboarding_adb_caption">This app requires special ADB permissions for dumping information about your device\'s audio policy. Please follow the instructions below.</string>
+    <string name="onboarding_adb_shizuku_title">Instructions</string>
+    <string name="onboarding_adb_shizuku_install_button">Install Shizuku</string>
+    <string name="onboarding_adb_shizuku_install_instruction">Install \'Shizuku\' from Google Play.</string>
+    <string name="onboarding_adb_shizuku_open_instruction">Launch \'Shizuku\' and look for \'<b>Start via Wireless Debugging</b>\'. Tap the \'Pairing\' button and follow the in-app instructions. After pairing Shizuku, start the Shizuku server by pressing the \'Start\' button in their app.<p/>If you run into problems while setting up Shizuku, please refer to their setup tutorial linked in their app.</string>
+    <string name="onboarding_adb_shizuku_open_button">Launch Shizuku</string>
+    <string name="onboarding_adb_shizuku_grant_instruction">Tap the button and grant this app access to Shizuku.</string>
+    <string name="onboarding_adb_shizuku_grant_button">Grant access</string>
+    <string name="onboarding_adb_shizuku_not_installed">Shizuku is not yet installed. Please download and install it from Google Play first.</string>
+    <string name="onboarding_adb_shizuku_not_installed_title">Shizuku is not yet installed</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead">Please start the Shizuku server before requesting the permission. Go back to instruction step 2.</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead_title">Shizuku server not running</string>
+    <string name="onboarding_adb_shizuku_grant_fail_version">This application requires Shizuku version 11 or later. Please update Shizuku to the latest version.</string>
+    <string name="onboarding_adb_shizuku_grant_fail_version_title">Unsupported Shizuku version</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied_title">Permission denied</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied">Please grant this application access to Shizuku. You may need to open Shizuku\'s permission manager and grant the permission manually, if you denied it and the popup does not show anymore.</string>
+    <string name="onboarding_adb_shizuku_no_dump_perm_title">Shizuku failed to grant ADB permissions</string>
+    <string name="onboarding_adb_shizuku_no_dump_perm">Please wait a few seconds and try again. If it still does not work, try the alternative method.</string>
+    <string name="onboarding_adb_dump_not_granted_title">Permission not yet granted</string>
+    <string name="onboarding_adb_dump_not_granted">Please follow the instructions first and try again. Currently, the special ADB access is not yet set-up properly.\nIf you encounter a problem while getting Shizuku to work, try the alternative method instead.</string>
+
+    <string name="onboarding_adb_manual_title">Alternative setup method</string>
+    <string name="onboarding_adb_manual_instruction">If you are an experienced user and you know how to use the ADB shell, you can also set-up this app manually.</string>
+    <string name="onboarding_adb_manual_button">View alternative method</string>
+    <string name="onboarding_adb_manual_detail_instruction">Step 1: Install ADB on your computer or open webadb.com in your computers\' browser.\n\nStep 2: Connect your device via USB to your computer.\n\nStep 3: Open the command prompt and execute the command: \'adb shell\' to enter the ADB shell.\nIf you use webadb, navigate to the \'Interactive shell\' section instead.\n\nStep 4: Execute the command \'pm grant me.timschneeberger.rootlessjamesdsp android.permission.DUMP\' in the ADB shell.\n\nStep 5: Close this dialog and tap \'Next\' to continue.</string>
+
+    <string name="onboarding_perm_title">Other permissions</string>
+    <string name="onboarding_perm_caption">Additional permissions are required to use this application. Please review them and tap \'Next\' to grant them.</string>
+    <string name="onboarding_perm_microphone_title">Microphone access</string>
+    <string name="onboarding_perm_microphone_caption">Required to record internal audio. The hardware microphone is not activated.</string>
+    <string name="onboarding_perm_cast_title">Cast/recording permission</string>
+    <string name="onboarding_perm_cast_caption">You need to explicitly grant this app permission to record content every time it launches.</string>
+    <string name="onboarding_perm_missing_title">Runtime permissions not granted</string>
+    <string name="onboarding_perm_missing">Please grant all requested runtime permissions to continue.\nIf you repeatedly denied the permissions, you need to grant them manually in the system settings.</string>
+
+    <string name="onboarding_finish_header">JamesDSP is set-up!</string>
+    <string name="onboarding_finish_caption">In case you encounter any issues, please visit the \'Settings > Troubleshooting\' options.</string>
+
+    <!-- Settings -->
+    <string name="title_activity_settings">Settings</string>
+    <string name="session_detection_header">Audio session detection</string>
+    <string name="session_continuous_polling">Force continuous polling</string>
+    <string name="session_continuous_polling_off">Only listen for session events from the system</string>
+    <string name="session_continuous_polling_on">Continuously enumerate audio sessions</string>
+    <string name="session_continuous_polling_rate">Polling interval (ms)</string>
+    <string name="session_detection_method">Session detection method</string>
+    <string name="session_loss_ignore">Ignore session control loss</string>
+    <string name="session_loss_ignore_off">Disabled, handle normally (recommended)</string>
+    <string name="session_loss_ignore_on">Don\'t take any action (may cause duplicated audio)</string>
+    <string name="session_loss_ignore_warning">Enabling this setting can cause duplicated audio when another audio effects app takes control of an audio session.\nPlease keep this setting disabled unless you encounter false-positive session loss events.</string>
+    <string name="autostart_prompt_at_boot">Prompt for capture permission after boot</string>
+    <string name="autostart_prompt_at_boot_off">Don\'t show notification after boot</string>
+    <string name="autostart_prompt_at_boot_on">Show notification after boot</string>
+    <string name="troubleshooting">Troubleshooting</string>
+    <string name="troubleshooting_dump">Export audio session dump…</string>
+    <string name="troubleshooting_dump_summary">Collect and save troubleshooting data</string>
+    <string name="troubleshooting_dump_share_title">Share audio session dump..</string>
+    <string name="troubleshooting_dontkillmyapp">App doesn\'t stay in background</string>
+    <string name="troubleshooting_dontkillmyapp_summary">View \'Don\'t kill my app\' documentation for your device</string>
+    <string name="troubleshooting_notification_access">Allow notification access for better session detection</string>
+    <string name="troubleshooting_notification_access_summary">Enables more reliable audio session detection</string>
+    <string name="privacy">Privacy</string>
+    <string name="privacy_share_crash_reports">Share application crash reports</string>
+    <string name="privacy_share_crash_reports_on">Send crash reports to the developer</string>
+    <string name="privacy_share_crash_reports_off">Don\'t send crash reports to the developer</string>
+
+    <!-- File library preference -->
+    <string name="filelibrary_hint_tap_and_hold">Tap and hold any item for more options</string>
+    <string name="filelibrary_context_share">Share...</string>
+    <string name="filelibrary_context_delete">Delete</string>
+    <string name="filelibrary_unsupported_format_title">Unsupported file type</string>
+    <string name="filelibrary_unsupported_format">The selected file has not have the correct file extension.</string>
+    <string name="filelibrary_access_fail">Failed to access directory</string>
+
+    <!-- JamesDSP engine messages -->
+    <string name="message_vdc_corrupt">Selected VDC file is corrupt. Please choose another one.</string>
+    <string name="message_liveprog_compile_fail">Liveprog execution failed. Selected script is damaged.</string>
+    <string name="onboarding_adb_step_1">Step 1</string>
+    <string name="onboarding_adb_step_2">Step 2</string>
+    <string name="onboarding_adb_step_3">Step 3</string>
+
 </resources>

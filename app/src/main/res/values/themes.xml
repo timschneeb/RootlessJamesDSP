@@ -3,7 +3,19 @@
     <style name="Base.Theme.RootlessJamesDSP" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="materialSwitchStyle">@style/Widget.Material3.CompoundButton.MaterialSwitch</item>
+        <item name="alertDialogTheme">@style/AppTheme.AlertDialogTheme</item>
+        <item name="materialCardViewStyle">@style/Theme.RootlessJamesDSP.CardView</item>
+        <item name="cardCornerRadius">@dimen/corner_radius</item>
     </style>
 
     <style name="Theme.RootlessJamesDSP" parent="Base.Theme.RootlessJamesDSP" />
+
+    <style name="AppTheme.AlertDialogTheme" parent="@style/ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="dialogCornerRadius">28dp</item>
+        <item name="colorBackgroundFloating">@color/alert_dialog_background</item>
+    </style>
+
+    <style name="Theme.RootlessJamesDSP.CardView" parent="Widget.Material3.CardView.Elevated" />
+
 </resources>

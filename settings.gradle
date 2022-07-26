@@ -10,8 +10,12 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url "https://jitpack.io" }
     }
-
 }
+
 rootProject.name = "RootlessJamesDSP"
 include ':app'
+include ':hidden-api-stubs'
+include ':hidden-api-impl'
+include ':hidden-refine-api'

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <me.timschneeberger.rootlessjamesdsp.preference.SwitchPreferenceGroup
+        android:key="@string/key_ddc_enable"
+        android:disableDependentsState="false"
+        android:title="@string/ddc_enable"
+        app:iconSpaceReserved="false">
+        <me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
+            android:title="@string/ddc_file"
+            android:key="@string/key_ddc_file"
+            android:defaultValue=""
+            android:dialogTitle="@string/ddc_file"
+            app:type="DDC"
+            app:iconSpaceReserved="false"/>
+    </me.timschneeberger.rootlessjamesdsp.preference.SwitchPreferenceGroup>
+</PreferenceScreen>

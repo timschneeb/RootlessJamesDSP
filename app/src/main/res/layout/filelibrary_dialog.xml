@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--suppress AndroidUnresolvableTag -->
+<androidx.appcompat.widget.AlertDialogLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parentPanel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="start|top"
+    android:orientation="vertical">
+    <include layout="@layout/abc_alert_dialog_title_material"/>
+    <TextView android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/filelibrary_hint_tap_and_hold"
+        android:paddingBottom="8dp"
+        android:paddingHorizontal="@dimen/abc_dialog_padding_material"
+        android:paddingTop="0dp"/>
+    <FrameLayout
+        android:id="@+id/contentPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:minHeight="48dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical">
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <android.widget.Space
+                    android:id="@+id/textSpacerNoTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/abc_dialog_padding_top_material"
+                    android:visibility="gone"/>
+                <TextView
+                    android:id="@android:id/message"
+                    style="@style/TextAppearance.AppCompat.Subhead"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="?attr/dialogPreferredPadding"
+                    android:paddingRight="?attr/dialogPreferredPadding"/>
+                <android.widget.Space
+                    android:id="@+id/textSpacerNoButtons"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/abc_dialog_padding_top_material"
+                    android:visibility="gone"/>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/scrollIndicatorDown"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="bottom"
+            android:background="#1f000000"
+            app:backgroundTint="?android:attr/colorForeground"
+            android:visibility="gone"/>
+    </FrameLayout>
+    <include layout="@layout/abc_alert_dialog_button_bar_material"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</androidx.appcompat.widget.AlertDialogLayout>

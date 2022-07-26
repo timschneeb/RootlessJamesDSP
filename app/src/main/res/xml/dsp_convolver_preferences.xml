@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <me.timschneeberger.rootlessjamesdsp.preference.SwitchPreferenceGroup
+        android:key="@string/key_convolver_enable"
+        android:disableDependentsState="false"
+        android:title="@string/convolver_enable"
+        app:iconSpaceReserved="false">
+        <me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
+            android:title="@string/convolver_impulse"
+            android:key="@string/key_convolver_file"
+            android:defaultValue=""
+            android:dialogTitle="@string/convolver_impulse"
+            app:useSimpleSummaryProvider="false"
+            app:type="Convolver"
+            app:iconSpaceReserved="false"/>
+        <ListPreference
+            android:defaultValue="0"
+            android:dialogTitle="@string/convolver_convolution_mode"
+            android:entries="@array/convolution_mode"
+            android:entryValues="@array/convolution_mode_values"
+            android:title="@string/convolver_convolution_mode"
+            android:key="@string/key_convolver_mode"
+            app:useSimpleSummaryProvider="true"
+            app:iconSpaceReserved="false"/>
+        <EditTextPreference
+            android:key="@string/key_convolver_adv_imp"
+            android:defaultValue="-80;-100;0;0;0;0"
+            android:dialogTitle="@string/convolver_advanced_editing"
+            android:title="@string/convolver_advanced_editing"
+            android:inputType="textMultiLine"
+            app:useSimpleSummaryProvider="true"
+            app:iconSpaceReserved="false"/>
+    </me.timschneeberger.rootlessjamesdsp.preference.SwitchPreferenceGroup>
+</PreferenceScreen>

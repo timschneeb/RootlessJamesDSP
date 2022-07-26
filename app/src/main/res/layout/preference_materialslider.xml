@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="start"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:baselineAligned="false"
+    android:minHeight="?android:attr/listPreferredItemHeightSmall"
+    android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+    android:paddingEnd="?android:attr/listPreferredItemPaddingEnd">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp">
+        <TextView android:textAppearance="?android:attr/textAppearanceListItem"
+            android:ellipsize="marquee"
+            android:id="@android:id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:singleLine="true"/>
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-5dp">
+            <com.google.android.material.slider.Slider
+                android:id="@+id/seekbar"
+                android:paddingVertical="8dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:labelBehavior="floating"/>
+            <TextView android:textAppearance="?android:attr/textAppearanceListItem"
+                android:ellipsize="marquee"
+                android:gravity="end"
+                android:id="@+id/seekbar_value"
+                android:scrollbars="none"
+                android:fadingEdge="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="80dp"
+                android:singleLine="true"
+                android:paddingStart="8dp"
+                android:paddingEnd="0dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

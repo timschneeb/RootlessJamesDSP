@@ -2,4 +2,69 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="alert_dialog_background">@android:color/white</color>
+
+    <color name="off_white">#ffdedede</color>
+    <color name="grid_lines">#4fffffff</color>
+    <color name="cb">#88bbffff</color>
+    <color name="freq_hl">#2000ddff</color>
+    <color name="freq_hl2">#4033b5e5</color>
+    <color name="eq_red">#80ff0000</color>
+    <color name="eq_yellow">#80f0ff00</color>
+    <color name="eq_holo_bright">#8000ddff</color>
+    <color name="eq_holo_blue">#8033b5e5</color>
+    <color name="eq_holo_dark">#800099cc</color>
+
+    <color name="eq_reddark">#80ffffff</color>
+    <color name="eq_yellowdark">#80ffff00</color>
+    <color name="eq_holo_brightdark">#80ff0000</color>
+    <color name="eq_holo_bluedark">#80ff00ff</color>
+    <color name="eq_holo_darkdark">#80000080</color>
+
+    <color name="eq_redlight">#80ffffff</color>
+    <color name="eq_yellowlight">#80cccccc</color>
+    <color name="eq_holo_brightlight">#80999999</color>
+    <color name="eq_holo_bluelight">#80666666</color>
+    <color name="eq_holo_darklight">#80444444</color>
+
+    <color name="eq_redred">#80ef0000</color>
+    <color name="eq_yellowred">#80ef8000</color>
+    <color name="eq_holo_brightred">#80f7c785</color>
+    <color name="eq_holo_bluered">#802e8d32</color>
+    <color name="eq_holo_darkred">#802e4d32</color>
+
+    <color name="eq_redidea">#80ea322a</color>
+    <color name="eq_yellowidea">#80ff847c</color>
+    <color name="eq_holo_brightidea">#80fecea8</color>
+    <color name="eq_holo_blueidea">#8099b898</color>
+    <color name="eq_holo_darkidea">#802a363b</color>
+
+    <color name="cb_shader">#ffccffff</color>
+    <color name="cb_shader_alpha">#44ccffff</color>
+    <color name="action_bar_color">#ff0d0d0d</color>
+
+    <!-- Material -->
+    <color name="primary">#009688</color>
+    <color name="primaryred">#ef0000</color>
+    <color name="backgroundred">#2e7d32</color>
+    <color name="primary_dark">#00796b</color>
+    <color name="primaryred_dark">#9f0000</color>
+    <color name="accent">#009688</color>
+    <color name="accentred">#99ef0000</color>
+
+    <color name="primaryidea">#f67280</color>
+    <color name="backgroundidea">#355c7d</color>
+    <color name="primaryidea_dark">#c06c84</color>
+    <color name="accentidea">#99f8b195</color>
+
+    <color name="navigation_drawerdark">#80ffffff</color>
+    <color name="navigation_drawerlight">#80666666</color>
+    <color name="navigation_drawerdefault">#8003a9f4</color>
+    <color name="navigation_drawerred">#80f4ff81</color>
+    <color name="navigation_draweridea">#806c5b7b</color>
+    <color name="light_blue_400">#FF29B6F6</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="gray_400">#FFBDBDBD</color>
+    <color name="gray_600">#FF757575</color>
 </resources>

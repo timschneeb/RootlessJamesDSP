@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Internal -->
+    <string name="key_firstboot">first_boot</string>
+
+    <!-- Settings -->
+    <string name="key_share_crash_reports">share_crash_reports</string>
+    <string name="key_dump">share_crash_report</string>
+    <string name="key_troubleshooting_dontkillmyapp">troubleshooting_dontkillmyapp</string>
+    <string name="key_troubleshooting_dump">troubleshooting_dump</string>
+    <string name="key_troubleshooting_notification_access">troubleshooting_notification_access</string>
+    <string name="key_session_detection_method">session_detection_method</string>
+    <string name="key_session_continuous_polling_rate">session_continuous_polling_rate</string>
+    <string name="key_session_continuous_polling">session_continuous_polling</string>
+    <string name="key_session_loss_ignore">session_loss_ignore</string>
+    <string name="key_autostart_prompt_at_boot">autostart_prompt_at_boot</string>
+
+    <!-- DSP -->
+    <string name="key_compression_enable">compression_enable</string>
+    <string name="key_compression_max_atk">compression_max_atk</string>
+    <string name="key_compression_max_rel">compression_max_rel</string>
+    <string name="key_compression_adapt_speed">compression_adapt_speed</string>
+
+    <string name="key_bass_enable">bass_enable</string>
+    <string name="key_bass_max_gain">bass_max_gain</string>
+
+    <string name="key_eq_enable">eq_enable</string>
+    <string name="key_eq_bands">eq_bands</string>
+    <string name="key_eq_filter_type">eq_filter_type</string>
+    <string name="key_eq_interpolation">eq_interpolation</string>
+
+    <string name="key_geq_enable">geq_enable</string>
+    <string name="key_geq_nodes">geq_nodes</string>
+
+    <string name="key_reverb_enable">reverb_enable</string>
+    <string name="key_reverb_preset">reverb_preset</string>
+
+    <string name="key_stereowide_enable">stereowide_enable</string>
+    <string name="key_stereowide_mode">stereowide_mode</string>
+
+    <string name="key_crossfeed_enable">bs2b_crossfeed_enable</string>
+    <string name="key_crossfeed_mode">bs2b_crossfeed_mode</string>
+
+    <string name="key_convolver_enable">convolver_enable</string>
+    <string name="key_convolver_file">convolver_file</string>
+    <string name="key_convolver_mode">convolver_mode</string>
+    <string name="key_convolver_adv_imp">convolver_adv_imp</string>
+
+    <string name="key_tube_enable">tube_enable</string>
+    <string name="key_tube_drive">tube_drive</string>
+
+    <string name="key_ddc_enable">ddc_enable</string>
+    <string name="key_ddc_file">ddc_file</string>
+
+    <string name="key_liveprog_enable">liveprog_enable</string>
+    <string name="key_liveprog_file">liveprog_file</string>
+
+    <string name="key_limiter_threshold">limiter_threshold</string>
+    <string name="key_limiter_release">limiter_release</string>
+    <string name="key_output_postgain">output_postgain</string>
+</resources>

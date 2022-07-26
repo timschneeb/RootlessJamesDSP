@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <me.timschneeberger.rootlessjamesdsp.preference.SwitchPreferenceGroup
+        android:key="@string/key_crossfeed_enable"
+        android:disableDependentsState="false"
+        android:title="@string/crossfeed_enable"
+        app:iconSpaceReserved="false">
+        <ListPreference
+            android:title="@string/crossfeed_preset"
+            android:key="@string/key_crossfeed_mode"
+            android:defaultValue="5"
+            android:entries="@array/bs2b_modes"
+            android:entryValues="@array/bs2b_values"
+            app:useSimpleSummaryProvider="true"
+            app:iconSpaceReserved="false"/>
+    </me.timschneeberger.rootlessjamesdsp.preference.SwitchPreferenceGroup>
+</PreferenceScreen>
