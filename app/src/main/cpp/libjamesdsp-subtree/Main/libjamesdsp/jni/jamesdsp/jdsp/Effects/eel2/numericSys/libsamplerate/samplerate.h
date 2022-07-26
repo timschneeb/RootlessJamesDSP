@@ -1,0 +1,121 @@
+#ifndef SAMPLERATE_H
+#define SAMPLERATE_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif	/* __cplusplus */
+
+/* Opaque data type SRC_STATE. */
+typedef struct SRC_STATE_tag SRC_STATE ;
+
+/* SRC_DATA is used to pass data to src_simple() and src_process(). */
+typedef struct
+{
+	const float	*data_in ;
+	float	*data_out ;
+	long	input_frames, output_frames, input_frames_used, output_frames_gen;
+	int		end_of_input ;
+	double	src_ratio ;
+} SRC_DATA ;
+
+/*
+** User supplied callback function type for use with src_callback_new()
+** and src_callback_read(). First parameter is the same pointer that was
+** passed into src_callback_new(). Second parameter is pointer to a
+** pointer. The user supplied callback function must modify *data to
+** point to the start of the user supplied float array. The user supplied
+** function must return the number of frames that **data points to.
+*/
+typedef long (*src_callback_t) (void *cb_data, float **data) ;
+
+/*
+**	Standard initialisation function : return an anonymous pointer to the
+**	internal state of the converter. Choose a converter from the enums below.
+**	Error returned in *error.
+*/
+SRC_STATE* src_new (int converter_type, int channels, int *error) ;
+
+/*
+** Clone a handle : return an anonymous pointer to a new converter
+** containing the same internal state as orig. Error returned in *error.
+*/
+SRC_STATE* src_clone (SRC_STATE* orig, int *error) ;
+
+/*
+**	Initilisation for callback based API : return an anonymous pointer to the
+**	internal state of the converter. Choose a converter from the enums below.
+**	The cb_data pointer can point to any data or be set to NULL. Whatever the
+**	value, when processing, user supplied function "func" gets called with
+**	cb_data as first parameter.
+*/
+SRC_STATE* src_callback_new (src_callback_t func, int converter_type, int channels, int *error, void* cb_data) ;
+
+/*
+**	Cleanup all internal allocations.
+**	Always returns NULL.
+*/
+SRC_STATE* src_delete (SRC_STATE *state) ;
+
+/*
+**	Standard processing function.
+**	Returns non zero on error.
+*/
+int src_process (SRC_STATE *state, SRC_DATA *data) ;
+
+/*
+**	Callback based processing function. Read up to frames worth of data from
+**	the converter int *data and return frames read or -1 on error.
+*/
+long src_callback_read (SRC_STATE *state, double src_ratio, long frames, float *data) ;
+
+/*
+**	Simple interface for performing a single conversion from input buffer to
+**	output buffer at a fixed conversion ratio.
+**	Simple interface does not require initialisation as it can only operate on
+**	a single buffer worth of audio.
+*/
+int src_simple (SRC_DATA *data, int converter_type, int channels) ;
+
+/*
+**	Set a new SRC ratio. This allows step responses
+**	in the conversion ratio.
+**	Returns non zero on error.
+*/
+int src_set_ratio (SRC_STATE *state, double new_ratio) ;
+
+/*
+**	Get the current channel count.
+**	Returns negative on error, positive channel count otherwise
+*/
+int src_get_channels (SRC_STATE *state) ;
+
+/*
+**	Reset the internal SRC state.
+**	Does not modify the quality settings.
+**	Does not free any memory allocations.
+**	Returns non zero on error.
+*/
+int src_reset (SRC_STATE *state) ;
+
+/*
+** Return TRUE if ratio is a valid conversion ratio, FALSE
+** otherwise.
+*/
+int src_is_valid_ratio (double ratio) ;
+
+/*
+**	Return an error number.
+*/
+int src_error (SRC_STATE *state) ;
+
+/*
+**	Convert the error number into a string.
+*/
+const char* src_strerror (int error) ;
+
+
+#ifdef __cplusplus
+}		/* extern "C" */
+#endif	/* __cplusplus */
+
+#endif	/* SAMPLERATE_H */
