@@ -1,19 +1,26 @@
 package me.timschneeberger.rootlessjamesdsp.service
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.*
 import android.content.*
 import android.content.pm.PackageManager
 import android.content.pm.ServiceInfo
 import android.graphics.drawable.Icon
 import android.media.*
+import android.media.AudioRecord
+import android.media.AudioTrack
 import android.media.projection.MediaProjection
 import android.media.projection.MediaProjectionManager
 import android.os.*
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import me.timschneeberger.rootlessjamesdsp.*
+import me.timschneeberger.rootlessjamesdsp.AudioSessionManager
 import me.timschneeberger.rootlessjamesdsp.MainActivity
+import me.timschneeberger.rootlessjamesdsp.MutedSessionManager
+import me.timschneeberger.rootlessjamesdsp.R
+import me.timschneeberger.rootlessjamesdsp.VolumeContentObserver
+import me.timschneeberger.rootlessjamesdsp.model.AudioEncoding
 import me.timschneeberger.rootlessjamesdsp.model.MutedSessionEntry
 import me.timschneeberger.rootlessjamesdsp.model.ProcessorMessage
 import me.timschneeberger.rootlessjamesdsp.native.JamesDspEngine
@@ -60,7 +67,7 @@ class AudioProcessorService : Service() {
 
     private val mBinder: IBinder = LocalBinder()
 
-    var isDisposing = false
+    var isProcessorDisposing = false
         private set
 
     inner class LocalBinder : Binder() {
@@ -114,7 +121,9 @@ class AudioProcessorService : Service() {
         engine = JamesDspEngine(this, engineCallbacks)
         engine.syncWithPreferences()
 
-        registerLocalReceiver(mPreferenceUpdateReceiver, IntentFilter(ACTION_UPDATE_PREFERENCES))
+        val filter = IntentFilter()
+        filter.addAction(ACTION_UPDATE_PREFERENCES)
+        registerLocalReceiver(broadcastReceiver, filter)
 
         sharedPreferences.registerOnSharedPreferenceChangeListener(preferencesListener)
         loadFromPreferences(getString(R.string.key_powersave_suspend))
@@ -159,6 +168,9 @@ class AudioProcessorService : Service() {
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
+
+        // TODO recreated service has its intent object null -> mediaProjectionData not persistent
+
         if(intent.action == null) {
             Timber.tag(TAG).w("onStartCommand: intent.action is null")
         }
@@ -190,9 +202,11 @@ class AudioProcessorService : Service() {
         return START_STICKY
     }
 
-    private val mPreferenceUpdateReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+    private val broadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            engine.syncWithPreferences()
+            when (intent.action) {
+                ACTION_UPDATE_PREFERENCES -> engine.syncWithPreferences()
+            }
         }
     }
 
@@ -217,6 +231,7 @@ class AudioProcessorService : Service() {
         } ?: 256
     }
 
+    @SuppressLint("BinaryOperationInTimber")
     private fun startRecording() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             Timber.tag(TAG).e("Record audio permission missing. Can't record")
@@ -224,44 +239,41 @@ class AudioProcessorService : Service() {
             return
         }
 
-        // TODO
-        val preferredBufferSize = determineBufferSize()
+        val encoding = AudioEncoding.fromInt(
+            sharedPreferences.getString(getString(R.string.key_audioformat_encoding), "1")
+            ?.toIntOrNull() ?: 1
+        )
+        val bufferSize = sharedPreferences.getFloat(getString(R.string.key_audioformat_buffersize), 2048f).toInt()
+        val bufferSizeBytes = if(encoding == AudioEncoding.PcmFloat)
+            bufferSize * Float.SIZE_BYTES
+        else
+            bufferSize * Short.SIZE_BYTES
+
+        val encodingFormat = if(encoding == AudioEncoding.PcmShort)
+            AudioFormat.ENCODING_PCM_16BIT
+        else
+            AudioFormat.ENCODING_PCM_FLOAT
+
         val sampleRate = determineSamplingRate()
 
-        var actualBufferSize = preferredBufferSize
-        val recordMinBuffer = AudioRecord.getMinBufferSize(
-            sampleRate,
-            AudioFormat.CHANNEL_OUT_STEREO,
-            AudioFormat.ENCODING_PCM_16BIT
-        )
-        val trackMinBuffer = AudioTrack.getMinBufferSize(
-            sampleRate,
-            AudioFormat.CHANNEL_OUT_STEREO,
-            AudioFormat.ENCODING_PCM_16BIT
-        )
-
-        // TODO get rid of this
-        if(actualBufferSize < recordMinBuffer)
-            actualBufferSize = recordMinBuffer
-        if(actualBufferSize < trackMinBuffer)
-            actualBufferSize = trackMinBuffer
-
-        Timber.e("HAL buffer size: $preferredBufferSize; recordMinBuf: $recordMinBuffer; trackMinBuf: $trackMinBuffer --> $actualBufferSize") //TODO ch sev
+        Timber.tag(TAG).i("Sample rate: $sampleRate; Encoding: ${encoding.name}; " +
+                "Buffer size: $bufferSize; Buffer size (bytes): $bufferSizeBytes ; " +
+                "HAL buffer size (bytes): ${determineBufferSize()}")
 
         val recordBuilder = AudioRecord.Builder()
         val recordFormatBuilder = AudioFormat.Builder()
-        recordFormatBuilder.setEncoding(AudioFormat.ENCODING_PCM_16BIT)
+        recordFormatBuilder.setEncoding(encodingFormat)
         recordFormatBuilder.setSampleRate(sampleRate)
         recordFormatBuilder.setChannelMask(AudioFormat.CHANNEL_IN_STEREO)
         recordBuilder.setAudioFormat(recordFormatBuilder.build())
-        recordBuilder.setBufferSizeInBytes(actualBufferSize)
+        recordBuilder.setBufferSizeInBytes(bufferSizeBytes)
         recordBuilder.setAudioPlaybackCaptureConfig(createAudioPlaybackCaptureConfig(mediaProjection))
         val recorder = recordBuilder.build()
 
         val track = AudioTrack.Builder().setAudioFormat(
             AudioFormat.Builder()
                 .setChannelMask(AudioFormat.CHANNEL_OUT_STEREO)
-                .setEncoding(AudioFormat.ENCODING_PCM_16BIT)
+                .setEncoding(encodingFormat)
                 .setSampleRate(sampleRate)
                 .build()
             )
@@ -272,10 +284,9 @@ class AudioProcessorService : Service() {
                 .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
                 .setFlags(0)
                 .build())
-            .setBufferSizeInBytes(actualBufferSize)
+            .setBufferSizeInBytes(bufferSizeBytes)
             .build()
 
-        track.setAuxEffectSendLevel(0.0f)
         track.play()
 
         // TODO Move all audio-related code to C++
@@ -283,32 +294,42 @@ class AudioProcessorService : Service() {
             try {
                 handler.sendEmptyMessage(MSG_PROCESSOR_READY)
                 recorder.startRecording()
-                val buf = ShortArray(actualBufferSize)
-                while (!isDisposing) {
+                val floatBuffer = FloatArray(bufferSize)
+                val shortBuffer = ShortArray(bufferSize)
+                while (!isProcessorDisposing) {
                     if(isProcessorIdle && suspendOnIdle)
                     {
                         recorder.stop()
                         track.stop()
-                        Thread.sleep(50)
+                        try {
+                            Thread.sleep(50)
+                        }
+                        catch(e: InterruptedException) {
+                            Timber.tag(TAG).w(e)
+                        }
                         continue
                     }
 
                     if(recorder.state == AudioRecord.RECORDSTATE_STOPPED) {
                         recorder.startRecording()
                     }
-
-                    recorder.read(buf, 0, buf.size)
-
-                    val output = engine.processInt16(buf)
-                    if(track.playState != AudioTrack.PLAYSTATE_PLAYING)
-                    {
+                    if(track.playState != AudioTrack.PLAYSTATE_PLAYING) {
                         track.play()
                     }
-                    track.write(output, 0, output.size)
 
+                    if(encoding == AudioEncoding.PcmShort) {
+                        recorder.read(shortBuffer, 0, shortBuffer.size, AudioRecord.READ_BLOCKING)
+                        val output = engine.processInt16(shortBuffer)
+                        track.write(output, 0, output.size, AudioTrack.WRITE_BLOCKING)
+                    }
+                    else {
+                        recorder.read(floatBuffer, 0, floatBuffer.size, AudioRecord.READ_BLOCKING)
+                        val output = engine.processFloat(floatBuffer)
+                        track.write(output, 0, output.size, AudioTrack.WRITE_BLOCKING)
+                    }
                 }
             } catch (e: IOException) {
-                Timber.e(e)
+                Timber.tag(TAG).e(e)
                 // ignore
             } finally {
                 recorder.stop()
@@ -370,7 +391,7 @@ class AudioProcessorService : Service() {
         contentResolver.unregisterContentObserver(volumeContentObserver)
 
         if (recorderThread != null) {
-            isDisposing = true
+            isProcessorDisposing = true
             recorderThread!!.interrupt()
             recorderThread!!.join(500)
 
@@ -379,7 +400,7 @@ class AudioProcessorService : Service() {
 
         this.engine.close()
 
-        unregisterLocalReceiver(mPreferenceUpdateReceiver)
+        unregisterLocalReceiver(broadcastReceiver)
     }
 
     private fun sendProcessorMessage(type: ProcessorMessage.Type, params: Map<ProcessorMessage.Param, Serializable>? = null){

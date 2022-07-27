@@ -26,7 +26,7 @@ object Constants {
 
     const val ACTION_UPDATE_PREFERENCES = ".action.preferences.UPDATED"
     const val ACTION_SESSION_CHANGED = ".action.session.CHANGED"
-    const val ACTION_SERVICE_STOPPED = ".action.service.AudioProcessorService.STOPPED"
+    const val ACTION_SERVICE_STOPPED = ".action.service.STOPPED"
 
     const val CHANNEL_ID_SERVICE = "JamesDSP"
     const val CHANNEL_ID_SESSION_LOSS = "Session loss alert"

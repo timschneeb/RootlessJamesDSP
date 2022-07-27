@@ -29,6 +29,7 @@ class MaterialSeekbarPreference : Preference {
 
     var mUnit: String = ""
     var mPrecision: Int = 2
+    var mLabelMinWidth: Int = 0
 
     // Whether the SeekBar should respond to the left/right keys
     var mAdjustable/* synthetic access */ = false
@@ -111,12 +112,13 @@ class MaterialSeekbarPreference : Preference {
         mMin = a.getFloat(R.styleable.MaterialSeekbarPreference_minValue, 0f)
         setMax(a.getFloat(R.styleable.MaterialSeekbarPreference_maxValue, 100f))
         setSeekBarIncrement(a.getFloat(R.styleable.MaterialSeekbarPreference_seekBarIncrement, 0f))
-        mShowSeekBarValue = a.getBoolean(R.styleable.MaterialSeekbarPreference_showSeekBarValue, false);
+        mShowSeekBarValue = a.getBoolean(R.styleable.MaterialSeekbarPreference_showSeekBarValue, false)
         mUpdatesContinuously = a.getBoolean(
             R.styleable.MaterialSeekbarPreference_updatesContinuously,
             false
         )
 
+        mLabelMinWidth = a.getDimensionPixelSize(R.styleable.MaterialSeekbarPreference_labelMinWidth, 0)
         mUnit = a.getString(R.styleable.MaterialSeekbarPreference_unit) ?: ""
         mPrecision = a.getInt(R.styleable.MaterialSeekbarPreference_precision, 2)
 
@@ -141,6 +143,10 @@ class MaterialSeekbarPreference : Preference {
         holder.itemView.setOnKeyListener(mSeekBarKeyListener)
         mSeekBar = holder.findViewById(R.id.seekbar) as Slider
         mSeekBarValueTextView = holder.findViewById(R.id.seekbar_value) as TextView
+        if(mLabelMinWidth > 0) {
+            mSeekBarValueTextView!!.minWidth = mLabelMinWidth
+        }
+
         if (mShowSeekBarValue) {
             mSeekBarValueTextView!!.visibility = View.VISIBLE
         } else {
@@ -151,6 +157,7 @@ class MaterialSeekbarPreference : Preference {
             Timber.tag(TAG).e("SeekBar view is null in onBindViewHolder.")
             return
         }
+
         mSeekBar!!.clearOnChangeListeners()
         mSeekBar!!.clearOnSliderTouchListeners()
         mSeekBar!!.addOnChangeListener(mSeekBarChangeListener)

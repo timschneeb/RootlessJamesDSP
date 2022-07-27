@@ -11,6 +11,7 @@
         <attr name="maxValue" format="float" />
         <attr name="unit" format="string" />
         <attr name="precision" format="integer" />
+        <attr name="labelMinWidth" format="dimension" />
     </declare-styleable>
     <declare-styleable name="EqualizerPreference">
         <attr name="android:entries" />

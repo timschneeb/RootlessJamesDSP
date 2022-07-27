@@ -41,6 +41,32 @@
     </PreferenceCategory>
 
 
+    <PreferenceCategory app:title="@string/audio_format_header"
+        app:iconSpaceReserved="false">
+        <ListPreference
+            app:key="@string/key_audioformat_encoding"
+            app:title="@string/audio_format_encoding"
+            app:entries="@array/audio_encodings"
+            app:entryValues="@array/audio_encodings_values"
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="1"
+            app:iconSpaceReserved="false" />
+        <me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
+            android:key="@string/key_audioformat_buffersize"
+            android:title="@string/audio_format_buffer_size"
+            android:defaultValue="2048"
+            app:seekBarIncrement="128"
+            app:precision="0"
+            app:unit="@string/audio_format_buffer_size_unit"
+            app:labelMinWidth="120dp"
+            app:minValue="128"
+            app:maxValue="4096"
+            app:allowDividerAbove="false"
+            app:updatesContinuously="false"
+            app:showSeekBarValue="true"
+            app:iconSpaceReserved="false"/>
+    </PreferenceCategory>
+
     <PreferenceCategory app:title="Auto-start"
         app:iconSpaceReserved="false">
         <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
