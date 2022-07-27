@@ -175,9 +175,9 @@ class OnboardingFragment : Fragment() {
 
         bundle?.let { goToPage(it.getInt("currentPage")) }
 
-        Shizuku.addBinderReceivedListenerSticky(binderReceivedListener);
-        Shizuku.addBinderDeadListener(binderDeadListener);
-        Shizuku.addRequestPermissionResultListener(requestPermissionResultListener);
+        Shizuku.addBinderReceivedListenerSticky(binderReceivedListener)
+        Shizuku.addBinderDeadListener(binderDeadListener)
+        Shizuku.addRequestPermissionResultListener(requestPermissionResultListener)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -197,9 +197,9 @@ class OnboardingFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
 
-        Shizuku.removeBinderReceivedListener(binderReceivedListener);
-        Shizuku.removeBinderDeadListener(binderDeadListener);
-        Shizuku.removeRequestPermissionResultListener(requestPermissionResultListener);
+        Shizuku.removeBinderReceivedListener(binderReceivedListener)
+        Shizuku.removeBinderDeadListener(binderDeadListener)
+        Shizuku.removeRequestPermissionResultListener(requestPermissionResultListener)
     }
 
     fun onBackPressed(): Boolean {
@@ -351,7 +351,7 @@ class OnboardingFragment : Fragment() {
         // Permission already granted?
         if(requireContext().checkSelfPermission(DUMP_PERM) == PERMISSION_GRANTED) {
             Timber.tag(TAG).d("DUMP permission granted")
-            return true;
+            return true
         }
 
         // If not, use Shizuku to grant it if connected
@@ -369,7 +369,7 @@ class OnboardingFragment : Fragment() {
             // Re-check permission
             return if (requireContext().checkSelfPermission(DUMP_PERM) == PERMISSION_GRANTED) {
                 Timber.tag(TAG).d("DUMP permission via Shizuku granted")
-                true;
+                true
             } else {
                 Timber.tag(TAG).e("$DUMP_PERM not granted")
                 requireContext().showAlert(R.string.onboarding_adb_shizuku_no_dump_perm_title,
@@ -436,10 +436,11 @@ class OnboardingFragment : Fragment() {
 
     companion object
     {
+        fun newInstance() = OnboardingFragment()
+
         const val TAG = "OnboardingFragment"
         const val DUMP_PERM = "android.permission.DUMP"
         const val SHIZUKU_PKG = "moe.shizuku.privileged.api"
-        fun newInstance() = OnboardingFragment()
 
         const val REQUEST_CODE_SHIZUKU_GRANT = 1
 

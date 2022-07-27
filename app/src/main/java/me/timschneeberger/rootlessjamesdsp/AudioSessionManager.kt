@@ -39,7 +39,7 @@ class AudioSessionManager(val context: Context)
     private val pollingMutex = Mutex()
     private val pollingScope = CoroutineScope(Dispatchers.Main)
     private var continuousPollingJob: Job? = null
-    val sessionDatabase: MutedSessionManager = MutedSessionManager(context)
+    var sessionDatabase: MutedSessionManager = MutedSessionManager(context)
 
     private var activeSessionsChangedListener: MediaSessionManager.OnActiveSessionsChangedListener
     private var audioPlaybackCallback: AudioManager.AudioPlaybackCallback
@@ -105,7 +105,7 @@ class AudioSessionManager(val context: Context)
         DumpManager.get(context).registerOnDumpMethodChangeListener(dumpMethodChangeListener)
 
         audioManager.registerAudioPlaybackCallback(audioPlaybackCallback, Handler(Looper.getMainLooper()))
-        context.registerLocalReceiver(sessionChangedReceiver, IntentFilter(Constants.ACTION_SESSION_CHANGED));
+        context.registerLocalReceiver(sessionChangedReceiver, IntentFilter(Constants.ACTION_SESSION_CHANGED))
         updateSessionListenerState()
 
         loadFromPreferences(context.getString(R.string.key_session_continuous_polling))
@@ -181,7 +181,7 @@ class AudioSessionManager(val context: Context)
     {
         if(pollingMutex.isLocked && !blocking)
         {
-            return;
+            return
         }
 
         pollingMutex.withLock {

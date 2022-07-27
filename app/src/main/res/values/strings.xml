@@ -105,6 +105,9 @@
     </string>
 
     <string name="onboarding_adb_title">ADB permissions</string>
+    <string name="onboarding_adb_step_1">Step 1</string>
+    <string name="onboarding_adb_step_2">Step 2</string>
+    <string name="onboarding_adb_step_3">Step 3</string>
     <string name="onboarding_adb_caption">This app requires special ADB permissions for dumping information about your device\'s audio policy. Please follow the instructions below.</string>
     <string name="onboarding_adb_shizuku_title">Instructions</string>
     <string name="onboarding_adb_shizuku_install_button">Install Shizuku</string>
@@ -158,6 +161,9 @@
     <string name="autostart_prompt_at_boot">Prompt for capture permission after boot</string>
     <string name="autostart_prompt_at_boot_off">Don\'t show notification after boot</string>
     <string name="autostart_prompt_at_boot_on">Show notification after boot</string>
+    <string name="powersave_suspend">Suspend audio pipeline while idle</string>
+    <string name="powersave_suspend_off">Keep processing even when no content is playing</string>
+    <string name="powersave_suspend_on">Pause audio pipeline to save power</string>
     <string name="troubleshooting">Troubleshooting</string>
     <string name="troubleshooting_dump">Export audio session dump…</string>
     <string name="troubleshooting_dump_summary">Collect and save troubleshooting data</string>
@@ -173,7 +179,7 @@
 
     <!-- File library preference -->
     <string name="filelibrary_hint_tap_and_hold">Tap and hold any item for more options</string>
-    <string name="filelibrary_context_share">Share...</string>
+    <string name="filelibrary_context_share">Share…</string>
     <string name="filelibrary_context_delete">Delete</string>
     <string name="filelibrary_unsupported_format_title">Unsupported file type</string>
     <string name="filelibrary_unsupported_format">The selected file has not have the correct file extension.</string>
@@ -182,8 +188,4 @@
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">Selected VDC file is corrupt. Please choose another one.</string>
     <string name="message_liveprog_compile_fail">Liveprog execution failed. Selected script is damaged.</string>
-    <string name="onboarding_adb_step_1">Step 1</string>
-    <string name="onboarding_adb_step_2">Step 2</string>
-    <string name="onboarding_adb_step_3">Step 3</string>
-
 </resources>

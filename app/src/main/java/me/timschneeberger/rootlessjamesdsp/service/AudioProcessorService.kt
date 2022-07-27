@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import me.timschneeberger.rootlessjamesdsp.*
 import me.timschneeberger.rootlessjamesdsp.MainActivity
+import me.timschneeberger.rootlessjamesdsp.model.MutedSessionEntry
 import me.timschneeberger.rootlessjamesdsp.model.ProcessorMessage
 import me.timschneeberger.rootlessjamesdsp.native.JamesDspEngine
 import me.timschneeberger.rootlessjamesdsp.native.JamesDspWrapper
@@ -38,13 +39,24 @@ class AudioProcessorService : Service() {
     private var mediaProjectionManager: MediaProjectionManager? = null
     private var mediaProjection: MediaProjection? = null
     private var recorderThread: Thread? = null
+
     private lateinit var volumeContentObserver: VolumeContentObserver
     private lateinit var engine: JamesDspEngine
     private lateinit var audioSessionManager: AudioSessionManager
+    private lateinit var notificationManager: NotificationManager
+    private lateinit var audioManager: AudioManager
+
     private val engineCallbacks = EngineCallbacks()
     private var mediaProjectionStartIntent: Intent? = null
-
     private var isStreamMuted = false
+    private var isProcessorIdle = false
+    private var suspendOnIdle = false
+
+    private lateinit var sharedPreferences: SharedPreferences
+    private val preferencesListener: SharedPreferences.OnSharedPreferenceChangeListener = SharedPreferences.OnSharedPreferenceChangeListener {
+            _, key ->
+        loadFromPreferences(key)
+    }
 
     private val mBinder: IBinder = LocalBinder()
 
@@ -63,11 +75,15 @@ class AudioProcessorService : Service() {
     override fun onCreate() {
         super.onCreate()
 
+        sharedPreferences = getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
+
+        audioManager = SystemServices.get(this, AudioManager::class.java)
         notificationManager = SystemServices.get(this, NotificationManager::class.java)
+
         audioSessionManager = AudioSessionManager(this)
         audioSessionManager.sessionDatabase.setOnSessionLossListener(object: MutedSessionManager.OnSessionLossListener {
             override fun onSessionLost(sid: Int) {
-                val ignore = getSharedPreferences(Constants.PREF_APP, MODE_PRIVATE).getBoolean(getString(R.string.key_session_loss_ignore), false)
+                val ignore = sharedPreferences.getBoolean(getString(R.string.key_session_loss_ignore), false)
                 if(!ignore) {
                     notificationManager.cancel(NOTIFICATION_ID_SERVICE)
                     notifySessionLoss()
@@ -81,10 +97,27 @@ class AudioProcessorService : Service() {
             }
         })
 
+        audioSessionManager.sessionDatabase.registerOnSessionChangeListener(onSessionChangeListener)
+
+        // TODO use this & add unregister call
+        audioManager.registerAudioRecordingCallback(object: AudioManager.AudioRecordingCallback() {
+            override fun onRecordingConfigChanged(configs: MutableList<AudioRecordingConfiguration>?) {
+                super.onRecordingConfigChanged(configs)
+                configs?.forEach { it ->
+                    Timber.i("================ onRecordingConfigChanged: csid=${it.clientAudioSessionId}; src=${it.audioSource}")
+                    Timber.i("onRecordingConfigChanged: Is client silenced? ${it.isClientSilenced}")
+                }
+            }
+        }, Handler(Looper.getMainLooper()))
+
+
         engine = JamesDspEngine(this, engineCallbacks)
         engine.syncWithPreferences()
 
-        registerLocalReceiver(mPreferenceUpdateReceiver, IntentFilter(ACTION_UPDATE_PREFERENCES));
+        registerLocalReceiver(mPreferenceUpdateReceiver, IntentFilter(ACTION_UPDATE_PREFERENCES))
+
+        sharedPreferences.registerOnSharedPreferenceChangeListener(preferencesListener)
+        loadFromPreferences(getString(R.string.key_powersave_suspend))
 
         volumeContentObserver = VolumeContentObserver(this)
         volumeContentObserver.setOnVolumeChangeListener {
@@ -116,6 +149,15 @@ class AudioProcessorService : Service() {
         )
     }
 
+    private fun loadFromPreferences(key: String){
+        when (key) {
+            getString(R.string.key_powersave_suspend) -> {
+                suspendOnIdle = sharedPreferences.getBoolean(key, true)
+                Timber.tag(TAG).d("Suspend on idle set to $suspendOnIdle")
+            }
+        }
+    }
+
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
         if(intent.action == null) {
             Timber.tag(TAG).w("onStartCommand: intent.action is null")
@@ -131,7 +173,7 @@ class AudioProcessorService : Service() {
 
         notificationManager.cancel(NOTIFICATION_ID_SESSION_LOSS)
 
-        this.contentResolver.registerContentObserver(android.provider.Settings.System.CONTENT_URI, true, volumeContentObserver);
+        contentResolver.registerContentObserver(android.provider.Settings.System.CONTENT_URI, true, volumeContentObserver)
 
         mediaProjectionStartIntent = intent.getParcelableExtra(EXTRA_MEDIA_PROJECTION_DATA)
 
@@ -148,71 +190,31 @@ class AudioProcessorService : Service() {
         return START_STICKY
     }
 
-     private fun createNotification(established: Boolean): Notification {
-        val intent = Intent(applicationContext, MainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-        val contentIntent =
-            PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
-
-        val notificationBuilder = Notification.Builder(this, CHANNEL_ID_SERVICE)
-        notificationBuilder.setContentTitle(getString(R.string.app_name))
-        val textRes: Int =
-            if (established) R.string.notification_processing else R.string.notification_waiting
-        notificationBuilder.setContentText(getText(textRes))
-        notificationBuilder.setSmallIcon(R.drawable.ic_tune_vertical_variant_24dp)
-        notificationBuilder.addAction(createStopAction())
-        notificationBuilder.setContentIntent(contentIntent)
-        return notificationBuilder.build()
-    }
-
-    private fun notifySessionLoss() {
-        val intent = Intent(this, MainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-        val contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
-
-        val notificationBuilder = Notification.Builder(this, CHANNEL_ID_SESSION_LOSS)
-        notificationBuilder.setContentTitle(getString(R.string.session_control_loss_notification_title))
-        notificationBuilder.setContentText(getString(R.string.session_control_loss_notification))
-        notificationBuilder.setSmallIcon(R.drawable.ic_baseline_warning_24dp)
-        notificationBuilder.addAction(createRetryAction())
-        notificationBuilder.setAutoCancel(true)
-        notificationBuilder.setContentIntent(contentIntent)
-
-        notificationManager.notify(NOTIFICATION_ID_SESSION_LOSS, notificationBuilder.build())
-    }
-    private fun createStopAction(): Notification.Action {
-        val stopIntent = createStopIntent(this)
-        val stopPendingIntent = PendingIntent.getService(
-            this,
-            0,
-            stopIntent,
-            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
-        )
-        val stopIcon = Icon.createWithResource(this, R.drawable.ic_close_24dp)
-        val stopString = getString(R.string.action_stop)
-        val actionBuilder = Notification.Action.Builder(stopIcon, stopString, stopPendingIntent)
-        return actionBuilder.build()
-    }
-
-    private fun createRetryAction(): Notification.Action? {
-        mediaProjectionStartIntent ?: return null
-        val retryIntent = createStartIntent(this, mediaProjectionStartIntent!!)
-        val retryPendingIntent = PendingIntent.getService(
-            this,
-            0,
-            retryIntent,
-            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
-        )
-        val retryIcon = Icon.createWithResource(this, R.drawable.ic_baseline_refresh_24dp)
-        val retryString = getString(R.string.action_retry)
-        val actionBuilder = Notification.Action.Builder(retryIcon, retryString, retryPendingIntent)
-        return actionBuilder.build()
-    }
-
     private val mPreferenceUpdateReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             engine.syncWithPreferences()
         }
+    }
+
+    private val onSessionChangeListener = object : MutedSessionManager.OnSessionChangeListener {
+        override fun onSessionChanged(sessionList: HashMap<Int, MutedSessionEntry>) {
+            isProcessorIdle = sessionList.size == 0
+            Timber.tag(TAG).d("onSessionChanged: isProcessorIdle=$isProcessorIdle")
+        }
+    }
+
+    private fun determineSamplingRate(): Int {
+        val sampleRateStr: String? = audioManager.getProperty(AudioManager.PROPERTY_OUTPUT_SAMPLE_RATE)
+        return sampleRateStr?.let { str ->
+            Integer.parseInt(str).takeUnless { it == 0 }
+        } ?: 48000
+    }
+
+    private fun determineBufferSize(): Int {
+        val framesPerBuffer: String? = audioManager.getProperty(AudioManager.PROPERTY_OUTPUT_FRAMES_PER_BUFFER)
+        return framesPerBuffer?.let { str ->
+            Integer.parseInt(str).takeUnless { it == 0 }
+        } ?: 256
     }
 
     private fun startRecording() {
@@ -222,29 +224,36 @@ class AudioProcessorService : Service() {
             return
         }
 
-        // TODO add
-        val preferredBufferSize = 1024
-
+        // TODO
+        val preferredBufferSize = determineBufferSize()
+        val sampleRate = determineSamplingRate()
 
         var actualBufferSize = preferredBufferSize
-        var recordMinBuffer = AudioRecord.getMinBufferSize(
-            SAMPLE_RATE,
+        val recordMinBuffer = AudioRecord.getMinBufferSize(
+            sampleRate,
             AudioFormat.CHANNEL_OUT_STEREO,
             AudioFormat.ENCODING_PCM_16BIT
         )
         val trackMinBuffer = AudioTrack.getMinBufferSize(
-            SAMPLE_RATE,
+            sampleRate,
             AudioFormat.CHANNEL_OUT_STEREO,
             AudioFormat.ENCODING_PCM_16BIT
         )
+
+        // TODO get rid of this
         if(actualBufferSize < recordMinBuffer)
             actualBufferSize = recordMinBuffer
         if(actualBufferSize < trackMinBuffer)
             actualBufferSize = trackMinBuffer
 
+        Timber.e("HAL buffer size: $preferredBufferSize; recordMinBuf: $recordMinBuffer; trackMinBuf: $trackMinBuffer --> $actualBufferSize") //TODO ch sev
 
         val recordBuilder = AudioRecord.Builder()
-        recordBuilder.setAudioFormat(createAudioFormat())
+        val recordFormatBuilder = AudioFormat.Builder()
+        recordFormatBuilder.setEncoding(AudioFormat.ENCODING_PCM_16BIT)
+        recordFormatBuilder.setSampleRate(sampleRate)
+        recordFormatBuilder.setChannelMask(AudioFormat.CHANNEL_IN_STEREO)
+        recordBuilder.setAudioFormat(recordFormatBuilder.build())
         recordBuilder.setBufferSizeInBytes(actualBufferSize)
         recordBuilder.setAudioPlaybackCaptureConfig(createAudioPlaybackCaptureConfig(mediaProjection))
         val recorder = recordBuilder.build()
@@ -253,7 +262,7 @@ class AudioProcessorService : Service() {
             AudioFormat.Builder()
                 .setChannelMask(AudioFormat.CHANNEL_OUT_STEREO)
                 .setEncoding(AudioFormat.ENCODING_PCM_16BIT)
-                .setSampleRate(SAMPLE_RATE)
+                .setSampleRate(sampleRate)
                 .build()
             )
             .setTransferMode(AudioTrack.MODE_STREAM)
@@ -274,26 +283,29 @@ class AudioProcessorService : Service() {
             try {
                 handler.sendEmptyMessage(MSG_PROCESSOR_READY)
                 recorder.startRecording()
-                val BUFFER_MS = 15 // do not buffer more than BUFFER_MS milliseconds
-                val buf =
-                    ShortArray(/*SAMPLE_RATE * CHANNELS * BUFFER_MS / 1000*/ 1024)
+                val buf = ShortArray(actualBufferSize)
                 while (!isDisposing) {
+                    if(isProcessorIdle && suspendOnIdle)
+                    {
+                        recorder.stop()
+                        track.stop()
+                        Thread.sleep(50)
+                        continue
+                    }
+
+                    if(recorder.state == AudioRecord.RECORDSTATE_STOPPED) {
+                        recorder.startRecording()
+                    }
 
                     recorder.read(buf, 0, buf.size)
 
-                    if(isStreamMuted)
+                    val output = engine.processInt16(buf)
+                    if(track.playState != AudioTrack.PLAYSTATE_PLAYING)
                     {
-                        track.stop()
+                        track.play()
                     }
-                    else
-                    {
-                        val output = engine.processInt16(buf)
-                        if(track.playState != AudioTrack.PLAYSTATE_PLAYING)
-                        {
-                            track.play()
-                        }
-                        track.write(output, 0, output.size)
-                    }
+                    track.write(output, 0, output.size)
+
                 }
             } catch (e: IOException) {
                 Timber.e(e)
@@ -352,8 +364,10 @@ class AudioProcessorService : Service() {
 
         sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_STOPPED))
 
-        this.audioSessionManager.destroy()
-        this.contentResolver.unregisterContentObserver(volumeContentObserver)
+        audioSessionManager.sessionDatabase.unregisterOnSessionChangeListener(onSessionChangeListener)
+        audioSessionManager.destroy()
+
+        contentResolver.unregisterContentObserver(volumeContentObserver)
 
         if (recorderThread != null) {
             isDisposing = true
@@ -377,8 +391,6 @@ class AudioProcessorService : Service() {
         sendLocalBroadcast(intent)
     }
 
-    private lateinit var notificationManager: NotificationManager
-
     private class StartupHandler(private val service: AudioProcessorService) :
         Handler(Looper.myLooper()!!) {
         override fun handleMessage(message: Message) {
@@ -393,6 +405,67 @@ class AudioProcessorService : Service() {
         }
     }
 
+    private fun createNotification(established: Boolean): Notification {
+        val intent = Intent(applicationContext, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        val contentIntent =
+            PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+
+        val builder = Notification.Builder(this, CHANNEL_ID_SERVICE)
+        builder.setContentTitle(getString(R.string.app_name))
+        val textRes: Int =
+            if (established) R.string.notification_processing else R.string.notification_waiting
+        builder.setContentText(getText(textRes))
+        builder.setSmallIcon(R.drawable.ic_tune_vertical_variant_24dp)
+        builder.addAction(createStopAction())
+        builder.setContentIntent(contentIntent)
+        return builder.build()
+    }
+
+    private fun notifySessionLoss() {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        val contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+
+        val builder = Notification.Builder(this, CHANNEL_ID_SESSION_LOSS)
+        builder.setContentTitle(getString(R.string.session_control_loss_notification_title))
+        builder.setContentText(getString(R.string.session_control_loss_notification))
+        builder.setSmallIcon(R.drawable.ic_baseline_warning_24dp)
+        builder.addAction(createRetryAction())
+        builder.setAutoCancel(true)
+        builder.setContentIntent(contentIntent)
+
+        notificationManager.notify(NOTIFICATION_ID_SESSION_LOSS, builder.build())
+    }
+    private fun createStopAction(): Notification.Action {
+        val stopIntent = createStopIntent(this)
+        val stopPendingIntent = PendingIntent.getService(
+            this,
+            0,
+            stopIntent,
+            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
+        )
+        val stopIcon = Icon.createWithResource(this, R.drawable.ic_close_24dp)
+        val stopString = getString(R.string.action_stop)
+        val actionBuilder = Notification.Action.Builder(stopIcon, stopString, stopPendingIntent)
+        return actionBuilder.build()
+    }
+
+    private fun createRetryAction(): Notification.Action? {
+        mediaProjectionStartIntent ?: return null
+        val retryIntent = createStartIntent(this, mediaProjectionStartIntent!!)
+        val retryPendingIntent = PendingIntent.getService(
+            this,
+            0,
+            retryIntent,
+            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
+        )
+        val retryIcon = Icon.createWithResource(this, R.drawable.ic_baseline_refresh_24dp)
+        val retryString = getString(R.string.action_retry)
+        val actionBuilder = Notification.Action.Builder(retryIcon, retryString, retryPendingIntent)
+        return actionBuilder.build()
+    }
+
     companion object {
         const val ACTION_PROCESSOR_MESSAGE = "me.timschneeberger.rootlessjamesdsp.PROCESSOR_MESSAGE"
 
@@ -402,7 +475,6 @@ class AudioProcessorService : Service() {
         private const val ACTION_STOP = "me.timschneeberger.rootlessjamesdsp.STOP"
         private const val EXTRA_MEDIA_PROJECTION_DATA = "mediaProjectionData"
         private const val MSG_PROCESSOR_READY = 1
-        private const val SAMPLE_RATE = 48000
 
         fun start(context: Context, data: Intent?) {
             val intent = Intent(context, AudioProcessorService::class.java)
@@ -436,14 +508,6 @@ class AudioProcessorService : Service() {
             confBuilder.addMatchingUsage(AudioAttributes.USAGE_GAME)
             confBuilder.addMatchingUsage(AudioAttributes.USAGE_UNKNOWN)
             return confBuilder.build()
-        }
-
-        private fun createAudioFormat(): AudioFormat {
-            val builder = AudioFormat.Builder()
-            builder.setEncoding(AudioFormat.ENCODING_PCM_16BIT)
-            builder.setSampleRate(SAMPLE_RATE)
-            builder.setChannelMask(AudioFormat.CHANNEL_IN_STEREO)
-            return builder.build()
         }
     }
 }

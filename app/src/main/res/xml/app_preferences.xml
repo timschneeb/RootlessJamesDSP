@@ -52,6 +52,17 @@
             app:iconSpaceReserved="false" />
     </PreferenceCategory>
 
+    <PreferenceCategory app:title="Power-saving"
+        app:iconSpaceReserved="false">
+        <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
+            app:key="@string/key_powersave_suspend"
+            app:title="@string/powersave_suspend"
+            app:defaultValue="true"
+            app:summaryOff="@string/powersave_suspend_off"
+            app:summaryOn="@string/powersave_suspend_on"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
     <PreferenceCategory app:title="@string/troubleshooting"
         app:iconSpaceReserved="false">
         <Preference

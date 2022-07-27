@@ -1,11 +1,16 @@
 package me.timschneeberger.rootlessjamesdsp.native
 
 import android.content.Context
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.native.struct.EelVariable
 import timber.log.Timber
-import java.io.Closeable
 import java.io.File
 import java.io.FileReader
 import java.lang.NumberFormatException
@@ -16,10 +21,14 @@ class JamesDspEngine(val context: Context, val callbacks: JamesDspWrapper.JamesD
     var bypass: Boolean = false
     var sampleRate: Float = 48000.0f
         private set
-    private val cache = mutableMapOf<String, Any>()
+
+    private val syncScope = CoroutineScope(Dispatchers.Main)
+    private val syncMutex = Mutex()
+    private val cache = PreferenceCache(context)
 
     override fun close() {
-        Timber.tag(TAG).d("Engine freed. Handle $handle can't be used anymore")
+        Timber.tag(TAG).d("Closing engine. Handle $handle can't be used anymore")
+        syncScope.cancel()
         JamesDspWrapper.free(handle)
         handle = 0
     }
@@ -80,124 +89,97 @@ class JamesDspEngine(val context: Context, val callbacks: JamesDspWrapper.JamesD
         this.sampleRate = sampleRate
     }
 
-
-    private fun syncCache(key: String, newValue: Any): Boolean
-    {
-        return if(cache.containsKey(key) && cache[key] == newValue) {
-            false
-        } else {
-            cache[key] = newValue;
-            true
+    fun syncWithPreferences() {
+        syncScope.launch {
+            syncWithPreferencesAsync()
         }
     }
 
-    fun syncWithPreferences() {
+    private suspend fun syncWithPreferencesAsync() {
         Timber.tag(TAG).d("Synchronizing with preferences...")
 
-        val output = context.getSharedPreferences(Constants.PREF_OUTPUT, Context.MODE_PRIVATE)
-        val compressor = context.getSharedPreferences(Constants.PREF_COMPRESSOR, Context.MODE_PRIVATE)
-        val bass = context.getSharedPreferences(Constants.PREF_BASS, Context.MODE_PRIVATE)
-        val eq = context.getSharedPreferences(Constants.PREF_EQ, Context.MODE_PRIVATE)
-        val geq = context.getSharedPreferences(Constants.PREF_GEQ, Context.MODE_PRIVATE)
-        val ddc = context.getSharedPreferences(Constants.PREF_DDC, Context.MODE_PRIVATE)
-        val convolver = context.getSharedPreferences(Constants.PREF_CONVOLVER, Context.MODE_PRIVATE)
-        val liveprog = context.getSharedPreferences(Constants.PREF_LIVEPROG, Context.MODE_PRIVATE)
-        val tube = context.getSharedPreferences(Constants.PREF_TUBE, Context.MODE_PRIVATE)
-        val stereo = context.getSharedPreferences(Constants.PREF_STEREOWIDE, Context.MODE_PRIVATE)
-        val crossfeed = context.getSharedPreferences(Constants.PREF_CROSSFEED, Context.MODE_PRIVATE)
-        val reverb = context.getSharedPreferences(Constants.PREF_REVERB, Context.MODE_PRIVATE)
+        syncMutex.withLock {
 
-        val compressorEnabled = compressor.getBoolean(context.getString(R.string.key_compression_enable), false)
-        val bassBoostEnabled = bass.getBoolean(context.getString(R.string.key_bass_enable), false)
-        val equalizerEnabled = eq.getBoolean(context.getString(R.string.key_eq_enable), false)
-        val graphicEqEnabled = geq.getBoolean(context.getString(R.string.key_geq_enable), false)
-        val reverbEnabled = reverb.getBoolean(context.getString(R.string.key_reverb_enable), false)
-        val stereoWideEnabled = stereo.getBoolean(context.getString(R.string.key_stereowide_enable), false)
-        val crossfeedEnabled = crossfeed.getBoolean(context.getString(R.string.key_crossfeed_enable), false)
-        val convolverEnabled = convolver.getBoolean(context.getString(R.string.key_convolver_enable), false)
-        val analogModelEnabled = tube.getBoolean(context.getString(R.string.key_tube_enable), false)
-        val ddcEnabled = ddc.getBoolean(context.getString(R.string.key_ddc_enable), false)
-        val liveProgEnabled = liveprog.getBoolean(context.getString(R.string.key_liveprog_enable), false)
+            cache.select(Constants.PREF_OUTPUT)
+            val outputPostGain = cache.get(R.string.key_output_postgain, 0f)
+            val limiterThreshold = cache.get(R.string.key_limiter_threshold, -0.1f)
+            val limiterRelease = cache.get(R.string.key_limiter_release, 60f)
 
-        //  try {
-        val limThreshold = output.getFloat(context.getString(R.string.key_limiter_threshold), -0.1f)
-        val limRelease = output.getFloat(context.getString(R.string.key_limiter_release), 60f)
-        val postGain = output.getFloat(context.getString(R.string.key_output_postgain), 0f)
+            cache.select(Constants.PREF_COMPRESSOR)
+            val compEnabled = cache.get(R.string.key_compression_enable, false)
+            val compMaxAtk = cache.get(R.string.key_compression_max_atk, 30f)
+            val compMaxRel = cache.get(R.string.key_compression_max_rel, 200f)
+            val compAdaptSpeed = cache.get(R.string.key_compression_adapt_speed, 800f)
 
-        if (syncCache(context.getString(R.string.key_limiter_threshold), limThreshold) ||
-            syncCache(context.getString(R.string.key_limiter_release), limRelease) ||
-            syncCache(context.getString(R.string.key_output_postgain), postGain)
-        ) {
-            setLimiter(limThreshold, limRelease)
-            setPostGain(postGain)
+            cache.select(Constants.PREF_BASS)
+            val bassEnabled = cache.get(R.string.key_bass_enable, false)
+            val bassMaxGain = cache.get(R.string.key_bass_max_gain, 5f)
+
+            cache.select(Constants.PREF_EQ)
+            val eqEnabled = cache.get(R.string.key_eq_enable, false)
+            val eqFilterType = cache.get(R.string.key_eq_filter_type, "0").toInt()
+            val eqInterpolationMode = cache.get(R.string.key_eq_interpolation, "0").toInt()
+            val eqBands = cache.get(R.string.key_eq_bands, Constants.DEFAULT_EQ)
+
+            cache.select(Constants.PREF_GEQ)
+            val geqEnabled = cache.get(R.string.key_geq_enable, false)
+            val geqBands = cache.get(R.string.key_geq_nodes, Constants.DEFAULT_GEQ)
+
+            cache.select(Constants.PREF_REVERB)
+            val reverbEnabled = cache.get(R.string.key_reverb_enable, false)
+            val reverbPreset = cache.get(R.string.key_reverb_preset, "0").toInt()
+
+            cache.select(Constants.PREF_STEREOWIDE)
+            val swEnabled = cache.get(R.string.key_stereowide_enable, false)
+            val swMode = cache.get(R.string.key_stereowide_mode, 60f)
+
+            cache.select(Constants.PREF_CROSSFEED)
+            val crossfeedEnabled = cache.get(R.string.key_crossfeed_enable, false)
+            val crossfeedMode = cache.get(R.string.key_crossfeed_mode, "0").toInt()
+
+            cache.select(Constants.PREF_TUBE)
+            val tubeEnabled = cache.get(R.string.key_tube_enable, false)
+            val tubeDrive = cache.get(R.string.key_tube_drive, 2f)
+
+            cache.select(Constants.PREF_DDC)
+            val ddcEnabled = cache.get(R.string.key_ddc_enable, false)
+            val ddcFile = cache.get(R.string.key_ddc_file, "")
+
+            cache.select(Constants.PREF_LIVEPROG)
+            val liveProgEnabled = cache.get(R.string.key_liveprog_enable, false)
+            val liveprogFile = cache.get(R.string.key_liveprog_file, "")
+
+            cache.select(Constants.PREF_CONVOLVER)
+            val convolverEnabled = cache.get(R.string.key_convolver_enable, false)
+            val convolverFile = cache.get(R.string.key_convolver_file, "")
+            val convolverAdvImp = cache.get(R.string.key_convolver_adv_imp, Constants.DEFAULT_CONVOLVER_ADVIMP)
+            val convolverMode = cache.get(R.string.key_convolver_mode, "0").toInt()
+
+            cache.changedNamespaces.forEach {
+                Timber.tag(TAG).i("Committing new changes in namespace '$it'")
+
+                when (it) {
+                    Constants.PREF_OUTPUT -> {
+                        setLimiter(limiterThreshold, limiterRelease)
+                        setPostGain(outputPostGain)
+                    }
+                    Constants.PREF_COMPRESSOR -> setCompressor(compEnabled, compMaxAtk, compMaxRel, compAdaptSpeed)
+                    Constants.PREF_BASS -> setBassBoost(bassEnabled, bassMaxGain)
+                    Constants.PREF_EQ -> setFirEqualizer(eqEnabled, eqFilterType, eqInterpolationMode, eqBands)
+                    Constants.PREF_GEQ -> setGraphicEq(geqEnabled, geqBands)
+                    Constants.PREF_REVERB -> setReverb(reverbEnabled, reverbPreset)
+                    Constants.PREF_STEREOWIDE -> setStereoEnhancement(swEnabled, swMode)
+                    Constants.PREF_CROSSFEED -> setCrossfeed(crossfeedEnabled, crossfeedMode)
+                    Constants.PREF_TUBE -> setVacuumTube(tubeEnabled, tubeDrive)
+                    Constants.PREF_DDC -> setVdc(ddcEnabled, ddcFile)
+                    Constants.PREF_LIVEPROG -> setLiveprog(liveProgEnabled, liveprogFile)
+                    Constants.PREF_CONVOLVER -> setConvolver(convolverEnabled, convolverFile, convolverMode, convolverAdvImp)
+                }
+            }
+
+            cache.markChangesAsCommitted()
+            Timber.tag(TAG).i("Preferences synchronized")
         }
-
-        val maxAttack = compressor.getFloat(context.getString(R.string.key_compression_max_atk), 30f)
-        val maxRelease = compressor.getFloat(context.getString(R.string.key_compression_max_rel), 200f)
-        val adaptSpeed = compressor.getFloat(context.getString(R.string.key_compression_adapt_speed), 800f)
-        setCompressor(compressorEnabled, maxAttack, maxRelease, adaptSpeed)
-
-        val maxBassGain = bass.getFloat(context.getString(R.string.key_bass_max_gain), 5f)
-        setBassBoost(bassBoostEnabled, maxBassGain);
-
-        val eqBands = eq.getString(context.getString(R.string.key_eq_bands), Constants.DEFAULT_EQ)
-        val eqFilterType = eq.getString(context.getString(R.string.key_eq_filter_type), "0")!!.toInt()
-        val eqInterpolationMode = eq.getString(context.getString(R.string.key_eq_interpolation), "0")!!.toInt()
-        setFirEqualizer(
-            equalizerEnabled,
-            eqFilterType,
-            eqInterpolationMode,
-            eqBands ?: Constants.DEFAULT_EQ
-        );
-
-        val graphicEqBands =
-            geq.getString(context.getString(R.string.key_geq_nodes), Constants.DEFAULT_GEQ) ?: Constants.DEFAULT_GEQ
-        if (syncCache(context.getString(R.string.key_geq_enable), graphicEqEnabled) ||
-            syncCache(context.getString(R.string.key_geq_nodes), graphicEqBands)
-        ) {
-            setGraphicEq(graphicEqEnabled, graphicEqBands)
-        }
-
-        val reverbPreset = reverb.getString(context.getString(R.string.key_reverb_preset), "0")!!.toInt()
-        setReverb(reverbEnabled, reverbPreset)
-
-        val stereoWideMode = stereo.getFloat(context.getString(R.string.key_stereowide_mode), 60f)
-        setStereoEnhancement(stereoWideEnabled, stereoWideMode)
-
-        val crossfeedMode = crossfeed.getString(context.getString(R.string.key_crossfeed_mode), "0")!!.toInt()
-        setCrossfeed(crossfeedEnabled, crossfeedMode)
-
-        val tubeDrive = tube.getFloat(context.getString(R.string.key_tube_drive), 2f)
-        setVacuumTube(analogModelEnabled, tubeDrive)
-
-        val ddcFile = ddc.getString(context.getString(R.string.key_ddc_file), "") ?: ""
-        if (syncCache(context.getString(R.string.key_ddc_enable), ddcEnabled) ||
-            syncCache(context.getString(R.string.key_ddc_file), ddcFile)
-        ) {
-            setVdc(ddcEnabled, ddcFile)
-        }
-
-        val liveprogFile = liveprog.getString(context.getString(R.string.key_liveprog_file), "") ?: ""
-        if (syncCache(context.getString(R.string.key_liveprog_enable), liveProgEnabled) ||
-            syncCache(context.getString(R.string.key_liveprog_file), liveprogFile)
-        ) {
-            setLiveprog(liveProgEnabled, liveprogFile)
-        }
-
-        val convolverFile = convolver.getString(context.getString(R.string.key_convolver_file), "") ?: ""
-        val convolverMode = convolver.getString(context.getString(R.string.key_convolver_mode), "0")!!.toInt()
-        val convolverAdvImp =
-            convolver.getString(context.getString(R.string.key_convolver_adv_imp), Constants.DEFAULT_CONVOLVER_ADVIMP)
-                ?: Constants.DEFAULT_CONVOLVER_ADVIMP
-        if (syncCache(context.getString(R.string.key_convolver_enable), convolverEnabled) ||
-            syncCache(context.getString(R.string.key_convolver_file), convolverFile) ||
-            syncCache(context.getString(R.string.key_convolver_mode), convolverMode) ||
-            syncCache(context.getString(R.string.key_convolver_adv_imp), convolverAdvImp)
-        ) {
-            setConvolver(convolverEnabled, convolverFile, convolverMode, convolverAdvImp)
-        }
-        // }
-        //catch(ex: Exception){}
     }
 
     // Effect config
@@ -215,16 +197,14 @@ class JamesDspEngine(val context: Context, val callbacks: JamesDspWrapper.JamesD
     {
         val doubleArray = DoubleArray(30)
         val array = bands.split(";")
-        var i = 0;
-        for(str in array)
+        for((i, str) in array.withIndex())
         {
             val number = str.toDoubleOrNull()
             if(number == null) {
                 Timber.tag(TAG).e("setFirEqualizer: malformed EQ string")
                 return
             }
-            doubleArray[i] = number;
-            i++
+            doubleArray[i] = number
         }
 
         JamesDspWrapper.setFirEqualizer(handle, enable, filterType, interpolationMode, doubleArray)
@@ -235,7 +215,7 @@ class JamesDspEngine(val context: Context, val callbacks: JamesDspWrapper.JamesD
         if(!File(vdcPath).exists()) {
             Timber.tag(TAG).w("setVdc: file does not exist")
             JamesDspWrapper.setVdc(handle, false, "")
-            return;
+            return
         }
 
         val reader = FileReader(vdcPath)
@@ -258,7 +238,7 @@ class JamesDspEngine(val context: Context, val callbacks: JamesDspWrapper.JamesD
         if(!File(impulseResponsePath).exists()) {
             Timber.tag(TAG).w("setConvolver: file does not exist")
             JamesDspWrapper.setConvolver(handle, false, FloatArray(0), 0, 0)
-            return;
+            return
         }
 
         val advConv = waveEditStr.split(";")
@@ -340,11 +320,11 @@ class JamesDspEngine(val context: Context, val callbacks: JamesDspWrapper.JamesD
         if(!File(path).exists()) {
             Timber.tag(TAG).w("setLiveprog: file does not exist")
             JamesDspWrapper.setLiveprog(handle, false, "", "")
-            return;
+            return
         }
 
         val reader = FileReader(path)
-        val name = File(path).name;
+        val name = File(path).name
         JamesDspWrapper.setLiveprog(handle, enable, name, reader.readText())
         reader.close()
     }
