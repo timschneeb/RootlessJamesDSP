@@ -139,7 +139,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         registerLocalReceiver(serviceStoppedReceiver, IntentFilter(Constants.ACTION_SERVICE_STOPPED))
-        registerLocalReceiver(processorMessageReceiver, IntentFilter(AudioProcessorService.ACTION_PROCESSOR_MESSAGE))
+        registerLocalReceiver(processorMessageReceiver, IntentFilter(Constants.ACTION_PROCESSOR_MESSAGE))
 
         binding.powerToggle.toggleOnClick = false
         binding.powerToggle.setOnToggleClickListener(object : FloatingToggleButton.OnToggleClickListener{
