@@ -58,7 +58,7 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
 
         updateResetMenuItem()
 
-        requireContext().sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_REBOOT_LIVEPROG))
+        requireContext().sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_RELOAD_LIVEPROG))
     }
 
     private fun createPreferences(): PreferenceScreen {
@@ -112,7 +112,7 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
         preferenceScreen = createPreferences()
         isCreated = true
 
-        requireContext().sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_REBOOT_LIVEPROG))
+        requireContext().sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_RELOAD_LIVEPROG))
     }
 
     companion object {

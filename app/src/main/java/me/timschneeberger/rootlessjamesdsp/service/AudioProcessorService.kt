@@ -26,7 +26,9 @@ import me.timschneeberger.rootlessjamesdsp.model.ProcessorMessage
 import me.timschneeberger.rootlessjamesdsp.native.JamesDspEngine
 import me.timschneeberger.rootlessjamesdsp.native.JamesDspWrapper
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
-import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_REBOOT_LIVEPROG
+import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_HARD_REBOOT_CORE
+import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_RELOAD_LIVEPROG
+import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_SOFT_REBOOT_CORE
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_UPDATE_PREFERENCES
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.CHANNEL_ID_SERVICE
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.CHANNEL_ID_SESSION_LOSS
@@ -40,6 +42,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import timber.log.Timber
 import java.io.IOException
 import java.io.Serializable
+import java.lang.Exception
 
 
 class AudioProcessorService : Service() {
@@ -59,7 +62,15 @@ class AudioProcessorService : Service() {
     private var isStreamMuted = false
     private var isProcessorIdle = false
     private var suspendOnIdle = false
-    private var recordAudioSessionId: Int? = null
+
+    var isProcessorDisposing = false
+        private set
+    var isServiceDisposing = false
+        private set
+    private var recreateRecorderRequested = false
+
+    private var sessionLossRetryCount = 0
+    private val sessionLossMaxRetries = 1
 
     private lateinit var sharedPreferences: SharedPreferences
     private val preferencesListener: SharedPreferences.OnSharedPreferenceChangeListener = SharedPreferences.OnSharedPreferenceChangeListener {
@@ -78,9 +89,6 @@ class AudioProcessorService : Service() {
     }
 
     private val mBinder: IBinder = LocalBinder()
-
-    var isProcessorDisposing = false
-        private set
 
     inner class LocalBinder : Binder() {
         val service: AudioProcessorService
@@ -102,6 +110,17 @@ class AudioProcessorService : Service() {
         audioSessionManager = AudioSessionManager(this)
         audioSessionManager.sessionDatabase.setOnSessionLossListener(object: MutedSessionManager.OnSessionLossListener {
             override fun onSessionLost(sid: Int) {
+                if(sessionLossRetryCount < sessionLossMaxRetries) {
+                    sessionLossRetryCount++
+                    Timber.tag(TAG).d("Session lost. Retry count: $sessionLossRetryCount/$sessionLossMaxRetries")
+                    audioSessionManager.pollOnce(false)
+                    restartRecordingThread()
+                    return
+                }
+                else {
+                    Timber.tag(TAG).d("Giving up on saving session. User interaction required.")
+                }
+
                 val ignore = sharedPreferences.getBoolean(getString(R.string.key_session_loss_ignore), false)
                 if(!ignore) {
                     notificationManager.cancel(NOTIFICATION_ID_SERVICE)
@@ -123,7 +142,9 @@ class AudioProcessorService : Service() {
 
         val filter = IntentFilter()
         filter.addAction(ACTION_UPDATE_PREFERENCES)
-        filter.addAction(ACTION_SERVICE_REBOOT_LIVEPROG)
+        filter.addAction(ACTION_SERVICE_RELOAD_LIVEPROG)
+        filter.addAction(ACTION_SERVICE_HARD_REBOOT_CORE)
+        filter.addAction(ACTION_SERVICE_SOFT_REBOOT_CORE)
         registerLocalReceiver(broadcastReceiver, filter)
 
         sharedPreferences.registerOnSharedPreferenceChangeListener(preferencesListener)
@@ -209,7 +230,9 @@ class AudioProcessorService : Service() {
         override fun onReceive(context: Context, intent: Intent) {
             when (intent.action) {
                 ACTION_UPDATE_PREFERENCES -> engine.syncWithPreferences()
-                ACTION_SERVICE_REBOOT_LIVEPROG -> engine.syncWithPreferences(arrayOf(Constants.PREF_LIVEPROG))
+                ACTION_SERVICE_RELOAD_LIVEPROG -> engine.syncWithPreferences(arrayOf(Constants.PREF_LIVEPROG))
+                ACTION_SERVICE_HARD_REBOOT_CORE -> restartRecordingThread()
+                ACTION_SERVICE_SOFT_REBOOT_CORE -> requestAudioRecordRecreation()
             }
         }
     }
@@ -223,16 +246,38 @@ class AudioProcessorService : Service() {
 
     private fun determineSamplingRate(): Int {
         val sampleRateStr: String? = audioManager.getProperty(AudioManager.PROPERTY_OUTPUT_SAMPLE_RATE)
-        return sampleRateStr?.let { str ->
-            Integer.parseInt(str).takeUnless { it == 0 }
-        } ?: 48000
+        return sampleRateStr?.let { str -> Integer.parseInt(str).takeUnless { it == 0 } } ?: 48000
     }
 
     private fun determineBufferSize(): Int {
         val framesPerBuffer: String? = audioManager.getProperty(AudioManager.PROPERTY_OUTPUT_FRAMES_PER_BUFFER)
-        return framesPerBuffer?.let { str ->
-            Integer.parseInt(str).takeUnless { it == 0 }
-        } ?: 256
+        return framesPerBuffer?.let { str -> Integer.parseInt(str).takeUnless { it == 0 } } ?: 256
+    }
+
+    fun requestAudioRecordRecreation() {
+        if(isProcessorDisposing || isServiceDisposing) {
+            Timber.tag(TAG).e("recreateAudioRecorder: service or processor already disposing")
+            return
+        }
+
+        recreateRecorderRequested = true
+    }
+
+    fun restartRecordingThread() {
+        if(isProcessorDisposing || isServiceDisposing) {
+            Timber.tag(TAG).e("restartRecording: service or processor already disposing")
+            return
+        }
+
+        if (recorderThread != null) {
+            isProcessorDisposing = true
+            recorderThread!!.interrupt()
+            recorderThread!!.join(500)
+            recorderThread = null
+        }
+        isProcessorDisposing = false
+        recreateRecorderRequested = false
+        startRecording()
     }
 
     @SuppressLint("BinaryOperationInTimber")
@@ -245,7 +290,7 @@ class AudioProcessorService : Service() {
 
         val encoding = AudioEncoding.fromInt(
             sharedPreferences.getString(getString(R.string.key_audioformat_encoding), "1")
-            ?.toIntOrNull() ?: 1
+                ?.toIntOrNull() ?: 1
         )
         val bufferSize = sharedPreferences.getFloat(getString(R.string.key_audioformat_buffersize), 2048f).toInt()
         val bufferSizeBytes = if(encoding == AudioEncoding.PcmFloat)
@@ -264,16 +309,18 @@ class AudioProcessorService : Service() {
                 "Buffer size: $bufferSize; Buffer size (bytes): $bufferSizeBytes ; " +
                 "HAL buffer size (bytes): ${determineBufferSize()}")
 
-        val recordBuilder = AudioRecord.Builder()
-        val recordFormatBuilder = AudioFormat.Builder()
-        recordFormatBuilder.setEncoding(encodingFormat)
-        recordFormatBuilder.setSampleRate(sampleRate)
-        recordFormatBuilder.setChannelMask(AudioFormat.CHANNEL_IN_STEREO)
-        recordBuilder.setAudioFormat(recordFormatBuilder.build())
-        recordBuilder.setBufferSizeInBytes(bufferSizeBytes)
-        recordBuilder.setAudioPlaybackCaptureConfig(createAudioPlaybackCaptureConfig(mediaProjection))
-        val recorder = recordBuilder.build()
-        recordAudioSessionId = recorder.audioSessionId
+        fun buildRecord(): AudioRecord {
+            val recordBuilder = AudioRecord.Builder()
+            val recordFormatBuilder = AudioFormat.Builder()
+            recordFormatBuilder.setEncoding(encodingFormat)
+            recordFormatBuilder.setSampleRate(sampleRate)
+            recordFormatBuilder.setChannelMask(AudioFormat.CHANNEL_IN_STEREO)
+            recordBuilder.setAudioFormat(recordFormatBuilder.build())
+            recordBuilder.setBufferSizeInBytes(bufferSizeBytes)
+            recordBuilder.setAudioPlaybackCaptureConfig(createAudioPlaybackCaptureConfig(mediaProjection!!))
+            return recordBuilder.build()
+        }
+        var recorder = buildRecord()
 
         val track = AudioTrack.Builder().setAudioFormat(
             AudioFormat.Builder()
@@ -281,7 +328,7 @@ class AudioProcessorService : Service() {
                 .setEncoding(encodingFormat)
                 .setSampleRate(sampleRate)
                 .build()
-            )
+        )
             .setTransferMode(AudioTrack.MODE_STREAM)
             .setAudioAttributes(AudioAttributes.Builder()
                 .setAllowedCapturePolicy(AudioAttributes.ALLOW_CAPTURE_BY_NONE)
@@ -298,10 +345,20 @@ class AudioProcessorService : Service() {
         recorderThread = Thread {
             try {
                 handler.sendEmptyMessage(MSG_PROCESSOR_READY)
-                recorder.startRecording()
+
                 val floatBuffer = FloatArray(bufferSize)
                 val shortBuffer = ShortArray(bufferSize)
                 while (!isProcessorDisposing) {
+                    if(recreateRecorderRequested) {
+                        recreateRecorderRequested = false
+                        Timber.d("Recreating recorder without stopping thread...")
+                        recorder.stop()
+                        track.stop()
+                        recorder.release()
+                        recorder = buildRecord()
+                        Timber.d("Recorder recreated")
+                    }
+
                     if(isProcessorIdle && suspendOnIdle)
                     {
                         recorder.stop()
@@ -311,6 +368,7 @@ class AudioProcessorService : Service() {
                         }
                         catch(e: InterruptedException) {
                             Timber.tag(TAG).w(e)
+                            break
                         }
                         continue
                     }
@@ -336,13 +394,15 @@ class AudioProcessorService : Service() {
             } catch (e: IOException) {
                 Timber.tag(TAG).e(e)
                 // ignore
+            } catch (e: Exception) {
+                Timber.tag(TAG).e("Exception in recorderThread raised")
+                Timber.tag(TAG).e(e)
+                stopSelf()
             } finally {
-                recordAudioSessionId = null
                 recorder.stop()
                 track.stop()
                 recorder.release()
                 track.release()
-                stopSelf()
             }
         }
         recorderThread!!.start()
@@ -387,6 +447,9 @@ class AudioProcessorService : Service() {
 
     override fun onDestroy() {
         super.onDestroy()
+
+        isServiceDisposing = true
+
         stopForeground(true)
 
         sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_STOPPED))
@@ -533,10 +596,8 @@ class AudioProcessorService : Service() {
             return intent
         }
 
-        private fun createAudioPlaybackCaptureConfig(mediaProjection: MediaProjection?): AudioPlaybackCaptureConfiguration {
-            val confBuilder = AudioPlaybackCaptureConfiguration.Builder(
-                mediaProjection!!
-            )
+        private fun createAudioPlaybackCaptureConfig(mediaProjection: MediaProjection): AudioPlaybackCaptureConfiguration {
+            val confBuilder = AudioPlaybackCaptureConfiguration.Builder(mediaProjection)
             confBuilder.addMatchingUsage(AudioAttributes.USAGE_MEDIA)
             confBuilder.addMatchingUsage(AudioAttributes.USAGE_GAME)
             confBuilder.addMatchingUsage(AudioAttributes.USAGE_UNKNOWN)

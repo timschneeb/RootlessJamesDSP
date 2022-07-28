@@ -24,18 +24,18 @@
         <item>Default</item>
         <item>Small hall 1</item>
         <item>Small hall 2</item>
-        <item>Medium hall 1</item>
-        <item>Medium hall 2</item>
-        <item>Large hall 1</item>
-        <item>Large hall 2</item>
+        <!--<item>Medium hall 1</item>-->
+        <item>Medium hall</item>
+        <item>Large hall</item>
+        <!--<item>Large hall 2</item>-->
         <item>Small room 1</item>
         <item>Small room 2</item>
-        <item>Medium room 1</item>
-        <item>Medium room 2</item>
-        <item>Large room 1</item>
-        <item>Large room 2</item>
-        <item>Medium ER 1</item>
-        <item>Medium ER 2</item>
+        <item>Medium room</item>
+        <!--<item>Medium room 2</item>-->
+        <item>Large room</item>
+        <!--<item>Large room 2</item>-->
+        <!--<item>Medium ER 1</item>-->
+        <!--<item>Medium ER 2</item>-->
         <item>Plate high</item>
         <item>Plate low</item>
         <item>Long reverb 1</item>
@@ -46,18 +46,18 @@
         <item>0</item>
         <item>1</item>
         <item>2</item>
-        <item>3</item>
+        <!--<item>3</item>-->
         <item>4</item>
         <item>5</item>
-        <item>6</item>
+        <!--<item>6</item>-->
         <item>7</item>
         <item>8</item>
         <item>9</item>
-        <item>10</item>
+        <!--<item>10</item>-->
         <item>11</item>
-        <item>12</item>
-        <item>13</item>
-        <item>14</item>
+        <!--<item>12</item>-->
+        <!--<item>13</item>-->
+        <!--<item>14</item>-->
         <item>15</item>
         <item>16</item>
         <item>17</item>
@@ -82,22 +82,6 @@
     <string-array name="equalizer_dialog_spinterpolation_values" translatable="false">
         <item>0</item>
         <item>1</item>
-    </string-array>
-
-    <string-array name="stereowide_modes">
-        <item>Very narrow</item>
-        <item>Narrow</item>
-        <item>Unchange</item>
-        <item>Wide</item>
-        <item>Very wide</item>
-    </string-array>
-
-    <string-array name="stereowide_values" translatable="false">
-        <item>30</item>
-        <item>40</item>
-        <item>50</item>
-        <item>60</item>
-        <item>75</item>
     </string-array>
 
     <string-array name="bs2b_modes">

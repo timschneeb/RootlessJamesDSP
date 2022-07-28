@@ -27,7 +27,9 @@ object Constants {
     const val ACTION_UPDATE_PREFERENCES = ".action.preferences.UPDATED"
     const val ACTION_SESSION_CHANGED = ".action.session.CHANGED"
     const val ACTION_SERVICE_STOPPED = ".action.service.STOPPED"
-    const val ACTION_SERVICE_REBOOT_LIVEPROG = ".action.service.REBOOT_LIVEPROG"
+    const val ACTION_SERVICE_RELOAD_LIVEPROG = ".action.service.RELOAD_LIVEPROG"
+    const val ACTION_SERVICE_HARD_REBOOT_CORE = ".action.service.HARD_REBOOT_CORE"
+    const val ACTION_SERVICE_SOFT_REBOOT_CORE = ".action.service.SOFT_REBOOT_CORE"
 
     const val CHANNEL_ID_SERVICE = "JamesDSP"
     const val CHANNEL_ID_SESSION_LOSS = "Session loss alert"

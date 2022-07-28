@@ -216,17 +216,6 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_settings -> {
-                startActivity(Intent(this, SettingsActivity::class.java))
-                true
-            }
-
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.dsp_fragment_container)
         return navController.navigateUp(appBarConfiguration)

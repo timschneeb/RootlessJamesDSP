@@ -190,7 +190,7 @@ class AudioSessionManager(val context: Context)
         }
     }
 
-    private fun pollOnce(blocking: Boolean)
+    fun pollOnce(blocking: Boolean)
     {
         pollingScope.launch {
             pollSessionDump(blocking)

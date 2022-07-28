@@ -25,7 +25,7 @@
     <string name="session_control_loss_notification">Please disable all other apps that provide global audio effects before re-enabling JamesDSP.</string>
 
     <!-- Capture permission revoked notifications -->
-    <string name="capture_permission_revoked_toast">JamesDSP stopped. Capture permission has been revoked.</string>
+    <string name="capture_permission_revoked_toast">JamesDSP has been stopped because the audio capture permission has been revoked.</string>
 
     <!-- General purpose -->
     <string name="install">Install</string>
@@ -117,7 +117,8 @@
     <string name="onboarding_adb_step_1">Step 1</string>
     <string name="onboarding_adb_step_2">Step 2</string>
     <string name="onboarding_adb_step_3">Step 3</string>
-    <string name="onboarding_adb_android10_warning">Android 10 is not fully supported. DRM-protected content or apps blocking audio capture will stay muted while this app is active.</string>
+    <!--<string name="onboarding_adb_android10_warning">Android 10 is not fully supported. DRM-protected content or apps blocking audio capture will stay muted while this app is active.</string>-->
+    <string name="onboarding_adb_android10_warning">Android 10 is not fully supported. Android 11 and above are recommended.</string>
     <string name="onboarding_adb_android10_header">Instructions for Android 10</string>
     <string name="onboarding_adb_caption">This app requires special ADB permissions for dumping information about your device\'s audio policy. Please follow the instructions below.</string>
     <string name="onboarding_adb_shizuku_title">Instructions</string>

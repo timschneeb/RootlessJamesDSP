@@ -3,8 +3,6 @@ package me.timschneeberger.rootlessjamesdsp.activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
-import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
@@ -12,7 +10,6 @@ import androidx.preference.EditTextPreference
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dev.doubledot.doki.ui.DokiActivity
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
@@ -25,6 +22,7 @@ import me.timschneeberger.rootlessjamesdsp.service.NotificationListenerService
 import me.timschneeberger.rootlessjamesdsp.utils.ApplicationUtils
 import me.timschneeberger.rootlessjamesdsp.utils.AssetManagerExtensions.installPrivateAssets
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
 import java.io.File
 import java.io.FileOutputStream
@@ -61,11 +59,11 @@ class SettingsActivity : AppCompatActivity() {
                 if((newValue as Float) < 1024){
                     Toast.makeText(requireContext(), getString(R.string.audio_format_buffer_size_warning_low_value), Toast.LENGTH_SHORT).show()
                 }
-                showServiceRestartHint()
+                requireContext().sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_HARD_REBOOT_CORE))
                 true
             }
             findPreference<ListPreference>(getString(R.string.key_audioformat_encoding))?.setOnPreferenceChangeListener { _, _ ->
-                showServiceRestartHint()
+                requireContext().sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_HARD_REBOOT_CORE))
                 true
             }
             findPreference<Preference>(getString(R.string.key_share_crash_reports))?.setOnPreferenceChangeListener { _, newValue ->
@@ -112,16 +110,6 @@ class SettingsActivity : AppCompatActivity() {
                 val intent = ApplicationUtils.getIntentForNotificationAccess(requireContext().packageName, NotificationListenerService::class.java)
                 requireActivity().startActivity(intent)
                 true
-            }
-        }
-
-        private fun showServiceRestartHint() {
-            val rootView = activity?.findViewById<View>(android.R.id.content)
-            if (rootView != null) {
-                val snackbar = Snackbar.make(rootView, "A service restart is required to apply these changes. Disable and re-enable JamesDSP to start using your new configuration.", Snackbar.LENGTH_SHORT)
-                val snackTextView = snackbar.view.findViewById<View>(com.google.android.material.R.id.snackbar_text) as TextView
-                snackTextView.maxLines = 3
-                snackbar.show()
             }
         }
     }
