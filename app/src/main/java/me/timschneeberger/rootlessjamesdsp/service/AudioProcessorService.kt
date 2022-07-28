@@ -438,7 +438,11 @@ class AudioProcessorService : Service() {
         val builder = Notification.Builder(this, CHANNEL_ID_SERVICE)
         builder.setContentTitle(getString(R.string.app_name))
         val textRes: Int =
-            if (established) R.string.notification_processing else R.string.notification_waiting
+            if (established) {
+                R.string.notification_processing
+            }
+            else
+                R.string.notification_waiting
         builder.setContentText(getText(textRes))
         builder.setSmallIcon(R.drawable.ic_tune_vertical_variant_24dp)
         builder.addAction(createStopAction())

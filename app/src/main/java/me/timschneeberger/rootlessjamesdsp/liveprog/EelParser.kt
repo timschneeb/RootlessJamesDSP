@@ -30,7 +30,6 @@ class EelParser {
         }
         catch (ex: FileNotFoundException) {
             Timber.e("File not found '$path'")
-            Timber.e(ex)
             this.path = null
             return false
         }

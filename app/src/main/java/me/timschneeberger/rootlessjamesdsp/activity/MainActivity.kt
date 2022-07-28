@@ -170,7 +170,8 @@ class MainActivity : AppCompatActivity() {
 
         sendLocalBroadcast(Intent(Constants.ACTION_UPDATE_PREFERENCES))
 
-        if(intent.getBooleanExtra(EXTRA_FORCE_SHOW_CAPTURE_PROMPT, false)){
+        if(intent.getBooleanExtra(EXTRA_FORCE_SHOW_CAPTURE_PROMPT, false) &&
+                savedInstanceState != null) {
             requestCapturePermission()
         }
     }

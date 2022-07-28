@@ -19,6 +19,7 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager.PERMISSION_DENIED
 import android.content.pm.PackageManager.PERMISSION_GRANTED
+import android.os.Build
 import android.os.Bundle
 import android.text.Html
 import android.view.LayoutInflater
@@ -29,6 +30,7 @@ import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.transition.TransitionManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -275,7 +277,7 @@ class OnboardingFragment : Fragment() {
         }
 
         if(number == PAGE_ADB_SETUP) {
-            updateShizukuInstructions()
+            updateAdbInstructions()
         }
 
         val prev = pageMap[currentPage]
@@ -394,7 +396,7 @@ class OnboardingFragment : Fragment() {
         }
     }
 
-    private fun updateShizukuInstructions() {
+    private fun updateAdbInstructions() {
         val pageBinding = binding.onboardingPage3Include
 
         val installed = requireContext().isPackageInstalled(SHIZUKU_PKG)
@@ -414,6 +416,14 @@ class OnboardingFragment : Fragment() {
         else {
             pageBinding.onboardingAdbShizukuOpenHeader.text = getString(R.string.onboarding_adb_step_2)
             pageBinding.onboardingAdbShizukuGrantHeader.text = getString(R.string.onboarding_adb_step_3)
+        }
+
+        if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
+            pageBinding.onboardingAdbShizukuLayout.isVisible = false
+            pageBinding.onboardingAdbManualHeader.text = getString(R.string.onboarding_adb_android10_header)
+            pageBinding.onboardingAdbManualContent.text = getString(R.string.onboarding_adb_manual_detail_instruction)
+            pageBinding.onboardingAdbManualButton.isVisible = false
+            pageBinding.onboardingAdbAndroid10Warning.isVisible = true
         }
     }
 

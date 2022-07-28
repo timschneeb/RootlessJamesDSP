@@ -97,12 +97,12 @@
     <string name="onboarding_press_finish">Press \'Finish\' to finalize the setup process.</string>
     <string name="onboarding_warning">Currently, this application is unfinished and unstable. Please note that it may not work on some devices as expected, since it uses Android APIs not designed for use by third-parties. A detailed list of limitations will be shown later on during the setup process.</string>
     <string name="onboarding_fix_permissions_title">User action required</string>
-    <string name="onboarding_fix_permissions">ne or more permissions were revoked by you or the system.\nIn order to ensure that this app behaves correctly, you need to grant these permissions again.\n\nPlease re-do the setup wizard to re-grant these permissions.</string>
+    <string name="onboarding_fix_permissions">One or more permissions were revoked by you or the system.\nIn order to ensure that this app behaves correctly, you need to grant these permissions again.\n\nPlease redo the setup wizard to re-grant these permissions.</string>
 
     <string name="onboarding_limitations_title">Limitations</string>
     <string name="onboarding_limitations"><![CDATA[<p>This app is currently incomplete and under development. It may crash or behave unexpectedly.</p>
 <p><b><u>Make sure to fully disable other audio effect apps.</u></b> They are guaranteed to break this application when they attach their own DynamicsProcessing audio effect to a session.</p>
-<p><b>DRM-protected content and apps blocking internal audio capture (e.g., Spotify) stay muted</b> and won\'t output any sound while this app is active. An alternative audio recording method using ADB privileges that is not affected by this restriction may be added at a later time.</p>
+<p><b>DRM-protected content and apps blocking internal audio capture (e.g., Spotify, Google Chrome) stay muted</b> and won\'t output any sound while this app is active. An alternative audio recording method using ADB privileges that is not affected by this restriction may be added at a later time.</p>
 <p>After an app opens a new media session to playback audio, <b>you may hear duplicated audio for a very short period</b> (about &lt; 0.5 sec).</p>
 <p>Changes made to Android\'s audio system by your OEM/device manufacturer may break this app. This app has been actively tested on these devices:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;• Samsung S20+ (Android 12)<br/>
@@ -132,7 +132,7 @@
     <string name="onboarding_adb_shizuku_no_dump_perm_title">Shizuku failed to grant ADB permissions</string>
     <string name="onboarding_adb_shizuku_no_dump_perm">Please wait a few seconds and try again. If it still does not work, try the alternative method.</string>
     <string name="onboarding_adb_dump_not_granted_title">Permission not yet granted</string>
-    <string name="onboarding_adb_dump_not_granted">Please follow the instructions first and try again. Currently, the special ADB access is not yet set-up properly.\nIf you encounter a problem while getting Shizuku to work, try the alternative method instead.</string>
+    <string name="onboarding_adb_dump_not_granted">Please follow the instructions first and try again. The ADB access is not yet set-up properly.</string>
 
     <string name="onboarding_adb_manual_title">Alternative setup method</string>
     <string name="onboarding_adb_manual_instruction">If you are an experienced user and you know how to use the ADB shell, you can also set-up this app manually.</string>
@@ -203,4 +203,6 @@
     <!-- Customizable liveprog script parameters -->
     <string name="title_activity_liveprog_params">Customizable script parameters</string>
     <string name="action_restore_defaults">Restore defaults</string>
+    <string name="onboarding_adb_android10_warning">Android 10 is not fully supported. DRM-protected content or apps blocking audio capture will stay muted while this app is active.</string>
+    <string name="onboarding_adb_android10_header">Instructions for Android 10</string>
 </resources>

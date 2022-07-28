@@ -36,6 +36,34 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/onboarding_adb_android10_warning"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="?attr/colorErrorContainer">
+                <LinearLayout
+                    android:layout_margin="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="16dp"
+                        android:layout_gravity="center_vertical"
+                        android:alpha="0.8"
+                        app:srcCompat="@drawable/ic_twotone_warning_24dp"
+                        app:tint="?attr/colorOnSurface" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/onboarding_adb_android10_warning"
+                        android:textAppearance="?attr/textAppearanceLabelLarge" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -44,100 +72,107 @@
                 android:textAppearance="?attr/textAppearanceBody2" />
 
             <!-- Shizuku -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:text="@string/onboarding_adb_shizuku_title"
-                android:textAppearance="?attr/textAppearanceHeadline6" />
-
             <LinearLayout
-                android:id="@+id/onboarding_adb_shizuku_install_layout"
+                android:id="@+id/onboarding_adb_shizuku_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
-                    android:id="@+id/onboarding_adb_shizuku_install_header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
-                    android:text="@string/onboarding_adb_step_1"
-                    android:textAppearance="?attr/textAppearanceLabelMedium" />
-                <TextView
+                    android:text="@string/onboarding_adb_shizuku_title"
+                    android:textAppearance="?attr/textAppearanceHeadline6" />
+
+                <LinearLayout
+                    android:id="@+id/onboarding_adb_shizuku_install_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/onboarding_adb_shizuku_install_instruction"
-                    android:textAppearance="?attr/textAppearanceLabelLarge" />
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/onboarding_adb_shizuku_install_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:text="@string/onboarding_adb_step_1"
+                        android:textAppearance="?attr/textAppearanceLabelMedium" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/onboarding_adb_shizuku_install_instruction"
+                        android:textAppearance="?attr/textAppearanceLabelLarge" />
 
-                <Button
-                    android:id="@+id/onboarding_adb_shizuku_install_button"
-                    android:minWidth="210dp"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:layout_marginVertical="8dp"
-                    android:layout_gravity="end"
-                    android:text="@string/onboarding_adb_shizuku_install_button" />
-            </LinearLayout>
+                    <Button
+                        android:id="@+id/onboarding_adb_shizuku_install_button"
+                        android:minWidth="210dp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_marginVertical="8dp"
+                        android:layout_gravity="end"
+                        android:text="@string/onboarding_adb_shizuku_install_button" />
+                </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/onboarding_adb_shizuku_open_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/onboarding_adb_shizuku_open_header"
+                <LinearLayout
+                    android:id="@+id/onboarding_adb_shizuku_open_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/onboarding_adb_step_2"
-                    android:textAppearance="?attr/textAppearanceLabelMedium" />
-                <TextView
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/onboarding_adb_shizuku_open_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:text="@string/onboarding_adb_step_2"
+                        android:textAppearance="?attr/textAppearanceLabelMedium" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/onboarding_adb_shizuku_open_instruction"
+                        android:textAppearance="?attr/textAppearanceLabelLarge" />
+
+                    <Button
+                        android:id="@+id/onboarding_adb_shizuku_open_button"
+                        android:minWidth="210dp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_marginVertical="8dp"
+                        android:layout_gravity="end"
+                        android:text="@string/onboarding_adb_shizuku_open_button" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/onboarding_adb_shizuku_grant_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/onboarding_adb_shizuku_open_instruction"
-                    android:textAppearance="?attr/textAppearanceLabelLarge" />
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/onboarding_adb_shizuku_grant_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:text="@string/onboarding_adb_step_3"
+                        android:textAppearance="?attr/textAppearanceLabelMedium" />
 
-                <Button
-                    android:id="@+id/onboarding_adb_shizuku_open_button"
-                    android:minWidth="210dp"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:layout_marginVertical="8dp"
-                    android:layout_gravity="end"
-                    android:text="@string/onboarding_adb_shizuku_open_button" />
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/onboarding_adb_shizuku_grant_instruction"
+                        android:textAppearance="?attr/textAppearanceLabelLarge" />
 
-            <LinearLayout
-                android:id="@+id/onboarding_adb_shizuku_grant_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/onboarding_adb_shizuku_grant_header"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/onboarding_adb_step_3"
-                    android:textAppearance="?attr/textAppearanceLabelMedium" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/onboarding_adb_shizuku_grant_instruction"
-                    android:textAppearance="?attr/textAppearanceLabelLarge" />
-
-                <Button
-                    android:id="@+id/onboarding_adb_shizuku_grant_button"
-                    android:minWidth="210dp"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:layout_marginVertical="8dp"
-                    android:layout_gravity="end"
-                    android:text="@string/onboarding_adb_shizuku_grant_button" />
+                    <Button
+                        android:id="@+id/onboarding_adb_shizuku_grant_button"
+                        android:minWidth="210dp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_marginVertical="8dp"
+                        android:layout_gravity="end"
+                        android:text="@string/onboarding_adb_shizuku_grant_button" />
+                </LinearLayout>
             </LinearLayout>
 
             <!-- Manual -->
             <TextView
+                android:id="@+id/onboarding_adb_manual_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -146,6 +181,7 @@
                 android:textAppearance="?attr/textAppearanceHeadline6" />
 
             <TextView
+                android:id="@+id/onboarding_adb_manual_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/onboarding_adb_manual_instruction"
@@ -157,6 +193,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_marginVertical="8dp"
+                android:layout_marginBottom="8dp"
                 android:layout_gravity="end"
                 android:text="@string/onboarding_adb_manual_button"
                 style="?attr/materialButtonOutlinedStyle" />
