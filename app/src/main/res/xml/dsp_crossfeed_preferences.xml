@@ -10,8 +10,8 @@
             android:title="@string/crossfeed_preset"
             android:key="@string/key_crossfeed_mode"
             android:defaultValue="5"
-            android:entries="@array/bs2b_modes"
-            android:entryValues="@array/bs2b_values"
+            android:entries="@array/crossfeed_modes"
+            android:entryValues="@array/crossfeed_modes_values"
             app:useSimpleSummaryProvider="true"
             app:iconSpaceReserved="false"/>
     </me.timschneeberger.rootlessjamesdsp.preference.SwitchPreferenceGroup>

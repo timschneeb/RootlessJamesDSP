@@ -46,8 +46,8 @@
         <ListPreference
             app:key="@string/key_audioformat_encoding"
             app:title="@string/audio_format_encoding"
-            app:entries="@array/audio_encodings"
-            app:entryValues="@array/audio_encodings_values"
+            app:entries="@array/audio_format_encodings"
+            app:entryValues="@array/audio_format_encodings_values"
             app:useSimpleSummaryProvider="true"
             app:defaultValue="1"
             app:iconSpaceReserved="false" />

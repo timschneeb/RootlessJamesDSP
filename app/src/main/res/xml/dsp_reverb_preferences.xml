@@ -9,8 +9,8 @@
         <ListPreference
             android:defaultValue="15"
             android:dialogTitle="@string/reverb_room_type"
-            android:entries="@array/headphone_preset"
-            android:entryValues="@array/headphone_preset_values"
+            android:entries="@array/reverb_presets"
+            android:entryValues="@array/reverb_presets_values"
             android:title="@string/reverb_room_type"
             android:key="@string/key_reverb_preset"
             app:useSimpleSummaryProvider="true"

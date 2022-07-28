@@ -9,8 +9,8 @@
         <ListPreference
             android:defaultValue="0"
             android:dialogTitle="@string/eq_filter_type"
-            android:entries="@array/equalizer_filtertype"
-            android:entryValues="@array/equalizer_filtertype_values"
+            android:entries="@array/eq_filter_types"
+            android:entryValues="@array/eq_filter_types_values"
             android:title="@string/eq_filter_type"
             android:key="@string/key_eq_filter_type"
             app:useSimpleSummaryProvider="true"
@@ -18,8 +18,8 @@
         <ListPreference
             android:defaultValue="0"
             android:dialogTitle="@string/eq_interpolator"
-            android:entries="@array/equalizer_dialog_spinterpolation"
-            android:entryValues="@array/equalizer_dialog_spinterpolation_values"
+            android:entries="@array/eq_interpolators"
+            android:entryValues="@array/eq_interpolators_values"
             android:title="@string/eq_interpolator"
             android:key="@string/key_eq_interpolation"
             app:useSimpleSummaryProvider="true"

@@ -46,6 +46,28 @@
     <string name="eq_enable">Interpolating FIR equalizer</string>
     <string name="eq_filter_type">Filter type</string>
     <string name="eq_interpolator">Interpolator</string>
+    <string name="eq_filter_type_minimum">Minimum phase</string>
+    <string name="eq_filter_type_linear">Linear phase</string>
+    <string name="eq_interpolator_chip">Piecewise Cubic Hermite Interpolating Polynomial</string>
+    <string name="eq_interpolator_mha">Modified Hiroshi Akima spline</string>
+    <string name="eq_preset_acoustic">Acoustic</string>
+    <string name="eq_preset_bass">Bass</string>
+    <string name="eq_preset_beats">Beats</string>
+    <string name="eq_preset_classic">Classic</string>
+    <string name="eq_preset_clear">Clear</string>
+    <string name="eq_preset_deep">Deep</string>
+    <string name="eq_preset_dubstep">Dubstep</string>
+    <string name="eq_preset_electronic">Electronic</string>
+    <string name="eq_preset_flat">Flat</string>
+    <string name="eq_preset_hardstyle">Hardstyle</string>
+    <string name="eq_preset_hiphop">Hip-Hop</string>
+    <string name="eq_preset_jazz">Jazz</string>
+    <string name="eq_preset_metal">Metal</string>
+    <string name="eq_preset_movie">Movie</string>
+    <string name="eq_preset_pop">Pop</string>
+    <string name="eq_preset_rb">R&amp;B</string>
+    <string name="eq_preset_rock">Rock</string>
+    <string name="eq_preset_vocal">Vocal Booster</string>
 
     <string name="geq_enable">Arbitrary response equalizer</string>
     <string name="geq_nodes">Magnitude response</string>
@@ -55,11 +77,27 @@
 
     <string name="reverb_enable">Virtual room effect</string>
     <string name="reverb_room_type">Room type</string>
+    <string name="reverb_preset_default">Default</string>
+    <string name="reverb_preset_small_hall1">Small hall 1</string>
+    <string name="reverb_preset_small_hall2">Small hall 2</string>
+    <string name="reverb_preset_medium_hall2">Medium hall</string>
+    <string name="reverb_preset_large_hall1">Large hall</string>
+    <string name="reverb_preset_small_room1">Small room 1</string>
+    <string name="reverb_preset_small_room2">Small room 2</string>
+    <string name="reverb_preset_medium_room1">Medium room</string>
+    <string name="reverb_preset_large_room1">Large room</string>
+    <string name="reverb_preset_plate_high">Plate high</string>
+    <string name="reverb_preset_plate_low">Plate low</string>
+    <string name="reverb_preset_long_reverb1">Long reverb 1</string>
+    <string name="reverb_preset_long_reverb2">Long reverb 2</string>
 
     <string name="convolver_enable">Convolver</string>
     <string name="convolver_impulse">Impulse response</string>
-    <string name="convolver_convolution_mode">Impulse response optimization</string>
     <string name="convolver_advanced_editing">Advanced waveform editing</string>
+    <string name="convolver_convolution_mode">Impulse response optimization</string>
+    <string name="convolver_convolution_mode_original">Original</string>
+    <string name="convolver_convolution_mode_shrink">Shrink</string>
+    <string name="convolver_convolution_mode_minimum_phase_shrink">Minimum phase transform and shrink</string>
 
     <string name="ddc_enable">ViPER-DDC</string>
     <string name="ddc_file">DDC file</string>
@@ -89,6 +127,12 @@
 
     <string name="crossfeed_enable">Crossfeed</string>
     <string name="crossfeed_preset">Preset</string>
+    <string name="crossfeed_preset_bs2b_weak">BS2B Weak</string>
+    <string name="crossfeed_preset_bs2b_strong">BS2B Strong</string>
+    <string name="crossfeed_preset_out_of_head">Out of head</string>
+    <string name="crossfeed_preset_surround1">Surround 1</string>
+    <string name="crossfeed_preset_surround2">Surround 2</string>
+    <string name="crossfeed_preset_realistic_surround">Joe0Bloggs Realistic surround</string>
 
     <!-- Onboarding -->
     <string name="title_activity_onboarding">Onboarding</string>
@@ -166,12 +210,16 @@
     <string name="session_continuous_polling_on">Continuously enumerate audio sessions</string>
     <string name="session_continuous_polling_rate">Polling interval (ms)</string>
     <string name="session_detection_method">Session detection method</string>
+    <string name="session_detection_method_audiopolicyservice">AudioPolicyService dump</string>
+    <string name="session_detection_method_audioservice">AudioService dump</string>
     <string name="session_loss_ignore">Ignore session control loss</string>
     <string name="session_loss_ignore_off">Disabled, handle normally (recommended)</string>
     <string name="session_loss_ignore_on">Don\'t take any action (may cause duplicated audio)</string>
     <string name="session_loss_ignore_warning">Enabling this setting can cause duplicated audio when another audio effects app takes control of an audio session.\nPlease keep this setting disabled unless you encounter false-positive session loss events.</string>
     <string name="audio_format_header">Audio format</string>
     <string name="audio_format_encoding">Audio encoding</string>
+    <string name="audio_format_encoding_int16">16-bit integer PCM</string>
+    <string name="audio_format_encoding_float">32-bit float PCM</string>
     <string name="audio_format_buffer_size">Buffer size</string>
     <string name="audio_format_buffer_size_unit">&#xa0;samples</string>
     <string name="audio_format_buffer_size_warning_low_value">Warning: Low buffer sizes may cause audio issues such as clipping!</string>

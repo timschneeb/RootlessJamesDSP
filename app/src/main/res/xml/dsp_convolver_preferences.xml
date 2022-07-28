@@ -17,8 +17,8 @@
         <ListPreference
             android:defaultValue="0"
             android:dialogTitle="@string/convolver_convolution_mode"
-            android:entries="@array/convolution_mode"
-            android:entryValues="@array/convolution_mode_values"
+            android:entries="@array/convolver_convolution_mode"
+            android:entryValues="@array/convolver_convolution_mode_values"
             android:title="@string/convolver_convolution_mode"
             android:key="@string/key_convolver_mode"
             app:useSimpleSummaryProvider="true"

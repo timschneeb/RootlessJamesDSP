@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string-array name="session_detection_methods">
-        <item>AudioPolicyService dump</item>
-        <item>AudioService dump</item>
+    <string-array name="session_detection_methods" translatable="false">
+        <item>@string/session_detection_method_audiopolicyservice</item>
+        <item>@string/session_detection_method_audioservice</item>
     </string-array>
 
     <string-array name="session_detection_methods_values" translatable="false">
@@ -10,39 +10,39 @@
         <item>1</item>
     </string-array>
 
-    <string-array name="audio_encodings">
-        <item>16-bit integer PCM</item>
-        <item>32-bit float PCM</item>
+    <string-array name="audio_format_encodings" translatable="false">
+        <item>@string/audio_format_encoding_int16</item>
+        <item>@string/audio_format_encoding_float</item>
     </string-array>
 
-    <string-array name="audio_encodings_values" translatable="false">
+    <string-array name="audio_format_encodings_values" translatable="false">
         <item>0</item>
         <item>1</item>
     </string-array>
 
-    <string-array name="headphone_preset">
-        <item>Default</item>
-        <item>Small hall 1</item>
-        <item>Small hall 2</item>
+    <string-array name="reverb_presets" translatable="false">
+        <item>@string/reverb_preset_default</item>
+        <item>@string/reverb_preset_small_hall1</item>
+        <item>@string/reverb_preset_small_hall2</item>
         <!--<item>Medium hall 1</item>-->
-        <item>Medium hall</item>
-        <item>Large hall</item>
+        <item>@string/reverb_preset_medium_hall2</item>
+        <item>@string/reverb_preset_large_hall1</item>
         <!--<item>Large hall 2</item>-->
-        <item>Small room 1</item>
-        <item>Small room 2</item>
-        <item>Medium room</item>
+        <item>@string/reverb_preset_small_room1</item>
+        <item>@string/reverb_preset_small_room2</item>
+        <item>@string/reverb_preset_medium_room1</item>
         <!--<item>Medium room 2</item>-->
-        <item>Large room</item>
+        <item>@string/reverb_preset_large_room1</item>
         <!--<item>Large room 2</item>-->
         <!--<item>Medium ER 1</item>-->
         <!--<item>Medium ER 2</item>-->
-        <item>Plate high</item>
-        <item>Plate low</item>
-        <item>Long reverb 1</item>
-        <item>Long reverb 2</item>
+        <item>@string/reverb_preset_plate_high</item>
+        <item>@string/reverb_preset_plate_low</item>
+        <item>@string/reverb_preset_long_reverb1</item>
+        <item>@string/reverb_preset_long_reverb2</item>
     </string-array>
 
-    <string-array name="headphone_preset_values" translatable="false">
+    <string-array name="reverb_presets_values" translatable="false">
         <item>0</item>
         <item>1</item>
         <item>2</item>
@@ -64,36 +64,36 @@
         <item>18</item>
     </string-array>
 
-    <string-array name="equalizer_filtertype">
-        <item>Minimum phase</item>
-        <item>Linear phase</item>
+    <string-array name="eq_filter_types" translatable="false">
+        <item>@string/eq_filter_type_minimum</item>
+        <item>@string/eq_filter_type_linear</item>
     </string-array>
 
-    <string-array name="equalizer_filtertype_values" translatable="false">
+    <string-array name="eq_filter_types_values" translatable="false">
         <item>0</item>
         <item>1</item>
     </string-array>
 
-    <string-array name="equalizer_dialog_spinterpolation">
-        <item>Piecewise Cubic Hermite Interpolating Polynomial</item>
-        <item>Modified Hiroshi Akima spline</item>
+    <string-array name="eq_interpolators" translatable="false">
+        <item>@string/eq_interpolator_chip</item>
+        <item>@string/eq_interpolator_mha</item>
     </string-array>
 
-    <string-array name="equalizer_dialog_spinterpolation_values" translatable="false">
+    <string-array name="eq_interpolators_values" translatable="false">
         <item>0</item>
         <item>1</item>
     </string-array>
 
-    <string-array name="bs2b_modes">
-        <item>BS2B Weak</item>
-        <item>BS2B Strong</item>
-        <item>Out of head</item>
-        <item>Surround 1</item>
-        <item>Surround 2</item>
-        <item>Joe0Bloggs Realistic surround</item>
+    <string-array name="crossfeed_modes" translatable="false">
+        <item>@string/crossfeed_preset_bs2b_weak</item>
+        <item>@string/crossfeed_preset_bs2b_strong</item>
+        <item>@string/crossfeed_preset_out_of_head</item>
+        <item>@string/crossfeed_preset_surround1</item>
+        <item>@string/crossfeed_preset_surround2</item>
+        <item>@string/crossfeed_preset_realistic_surround</item>
     </string-array>
 
-    <string-array name="bs2b_values" translatable="false">
+    <string-array name="crossfeed_modes_values" translatable="false">
         <item>0</item>
         <item>1</item>
         <item>2</item>
@@ -102,37 +102,37 @@
         <item>5</item>
     </string-array>
 
-    <string-array name="convolution_mode">
-        <item>Original</item>
-        <item>Shrink</item>
-        <item>Minimum phase transform and shrink</item>
+    <string-array name="convolver_convolution_mode" translatable="false">
+        <item>@string/convolver_convolution_mode_original</item>
+        <item>@string/convolver_convolution_mode_shrink</item>
+        <item>@string/convolver_convolution_mode_minimum_phase_shrink</item>
     </string-array>
 
-    <string-array name="convolution_mode_values" translatable="false">
+    <string-array name="convolver_convolution_mode_values" translatable="false">
         <item>0</item>
         <item>1</item>
         <item>2</item>
     </string-array>
 
-    <string-array name="equalizer_preset_modes">
-        <item>Acoustic</item>
-        <item>Bass</item>
-        <item>Beats</item>
-        <item>Classic</item>
-        <item>Clear</item>
-        <item>Deep</item>
-        <item>Dubstep</item>
-        <item>Electronic</item>
-        <item>Flat</item>
-        <item>Hardstyle</item>
-        <item>Hip-Hop</item>
-        <item>Jazz</item>
-        <item>Metal</item>
-        <item>Movie</item>
-        <item>Pop</item>
-        <item>R&amp;B</item>
-        <item>Rock</item>
-        <item>Vocal Booster</item>
+    <string-array name="equalizer_preset_modes" translatable="false">
+        <item>@string/eq_preset_acoustic</item>
+        <item>@string/eq_preset_bass</item>
+        <item>@string/eq_preset_beats</item>
+        <item>@string/eq_preset_classic</item>
+        <item>@string/eq_preset_clear</item>
+        <item>@string/eq_preset_deep</item>
+        <item>@string/eq_preset_dubstep</item>
+        <item>@string/eq_preset_electronic</item>
+        <item>@string/eq_preset_flat</item>
+        <item>@string/eq_preset_hardstyle</item>
+        <item>@string/eq_preset_hiphop</item>
+        <item>@string/eq_preset_jazz</item>
+        <item>@string/eq_preset_metal</item>
+        <item>@string/eq_preset_movie</item>
+        <item>@string/eq_preset_pop</item>
+        <item>@string/eq_preset_rb</item>
+        <item>@string/eq_preset_rock</item>
+        <item>@string/eq_preset_vocal</item>
     </string-array>
 
     <string-array name="equalizer_preset_values">
@@ -155,5 +155,4 @@
         <item>0.0;0.0;0.0;3.0;3.0;-10.0;-4.0;-1.0;0.8;3.0;3.0;3.0;3.0;3.0;3.0</item>
         <item>-1.5;-2.0;-3.0;-3.0;-0.5;1.5;3.5;3.5;3.5;3.0;2.0;1.5;0.0;0.0;-1.5</item>
     </string-array>
-
 </resources>
