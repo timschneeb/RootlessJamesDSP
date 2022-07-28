@@ -13,10 +13,11 @@
             android:dialogTitle="@string/liveprog_file"
             app:type="Liveprog"
             app:iconSpaceReserved="false"/>
-        <!--<Preference
-            android:title="Additional script parameters"
-            android:defaultValue=""
+        <Preference
+            android:title="@string/liveprog_additional_params"
+            android:key="@string/key_liveprog_params"
+            android:summary="@string/liveprog_additional_params_not_supported"
             android:enabled="false"
-            app:iconSpaceReserved="false"/>-->
+            app:iconSpaceReserved="false"/>
     </me.timschneeberger.rootlessjamesdsp.preference.SwitchPreferenceGroup>
 </PreferenceScreen>

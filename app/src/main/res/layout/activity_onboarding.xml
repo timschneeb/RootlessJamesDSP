@@ -6,7 +6,7 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         android:orientation="vertical"
-        tools:context=".onboarding.OnboardingActivity">
+        tools:context=".activity.OnboardingActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/onboarding_fragment_container"

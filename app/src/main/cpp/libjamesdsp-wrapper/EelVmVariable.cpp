@@ -2,17 +2,17 @@
 // Created by tim on 01.07.22.
 //
 
-#include "EelVariable.h"
+#include "EelVmVariable.h"
 
-#define TAG "EelVariable_JNI"
+#define TAG "EelVmVariable_JNI"
 #include <Log.h>
 
-EelVariable::EelVariable(JNIEnv *env, const char *name, const char *value, bool isString) : IJavaObject(env) {
+EelVmVariable::EelVmVariable(JNIEnv *env, const char *name, const char *value, bool isString) : IJavaObject(env) {
 
-    auto arrayClass = _env->FindClass("me/timschneeberger/rootlessjamesdsp/native/struct/EelVariable");
+    auto arrayClass = _env->FindClass("me/timschneeberger/rootlessjamesdsp/native/interop/EelVmVariable");
     if (arrayClass == nullptr)
     {
-        LOGE("JArrayList::ctor: EelVariable class not found");
+        LOGE("JArrayList::ctor: EelVmVariable class not found");
         return;
     }
 
@@ -20,7 +20,7 @@ EelVariable::EelVariable(JNIEnv *env, const char *name, const char *value, bool 
                                              "(Ljava/lang/String;Ljava/lang/String;Z)V");
     if (methodInit == nullptr)
     {
-        LOGE("JArrayList::ctor: EelVariable<init>(Ljava/lang/String;Ljava/lang/String;Z)V method not found");
+        LOGE("JArrayList::ctor: EelVmVariable<init>(Ljava/lang/String;Ljava/lang/String;Z)V method not found");
         return;
     }
 
@@ -30,18 +30,18 @@ EelVariable::EelVariable(JNIEnv *env, const char *name, const char *value, bool 
 
     if (innerObject == nullptr)
     {
-        LOGE("JArrayList::ctor: Failed to allocate EelVariable object");
+        LOGE("JArrayList::ctor: Failed to allocate EelVmVariable object");
         return;
     }
 
     _isValid = true;
 }
 
-jobject EelVariable::getJavaReference() {
+jobject EelVmVariable::getJavaReference() {
     return innerObject;
 }
 
-bool EelVariable::isValid() const {
+bool EelVmVariable::isValid() const {
     return _isValid;
 }
 

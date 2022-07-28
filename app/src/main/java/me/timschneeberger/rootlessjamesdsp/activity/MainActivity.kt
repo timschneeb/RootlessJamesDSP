@@ -1,4 +1,4 @@
-package me.timschneeberger.rootlessjamesdsp
+package me.timschneeberger.rootlessjamesdsp.activity
 
 import android.Manifest
 import android.content.*
@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.os.IBinder
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -20,12 +19,12 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.ActivityMainBinding
 import me.timschneeberger.rootlessjamesdsp.databinding.ContentMainBinding
 import me.timschneeberger.rootlessjamesdsp.fragment.DspFragment
 import me.timschneeberger.rootlessjamesdsp.model.ProcessorMessage
 import me.timschneeberger.rootlessjamesdsp.native.JamesDspWrapper
-import me.timschneeberger.rootlessjamesdsp.onboarding.OnboardingActivity
 import me.timschneeberger.rootlessjamesdsp.service.AudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.utils.ApplicationUtils
 import me.timschneeberger.rootlessjamesdsp.utils.Constants

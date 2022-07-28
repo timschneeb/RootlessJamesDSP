@@ -1,20 +1,11 @@
-package me.timschneeberger.rootlessjamesdsp
+package me.timschneeberger.rootlessjamesdsp.session
 
-import android.app.Notification
-import android.app.PendingIntent
 import android.content.Context
-import android.content.Intent
-import android.media.MediaDrm
 import android.media.audiofx.DynamicsProcessing
 import android.os.Process.myUid
-import me.timschneeberger.rootlessjamesdsp.dump.DumpManager
-import me.timschneeberger.rootlessjamesdsp.dump.data.AudioPolicyServiceDump
-import me.timschneeberger.rootlessjamesdsp.dump.data.ISessionInfoDump
-import me.timschneeberger.rootlessjamesdsp.dump.utils.DumpUtils
+import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
 import me.timschneeberger.rootlessjamesdsp.model.AudioSessionEntry
 import me.timschneeberger.rootlessjamesdsp.model.MutedSessionEntry
-import me.timschneeberger.rootlessjamesdsp.model.SessionUpdateMode
-import me.timschneeberger.rootlessjamesdsp.service.AudioProcessorService
 import timber.log.Timber
 import java.lang.Exception
 

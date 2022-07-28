@@ -1,14 +1,14 @@
-package me.timschneeberger.rootlessjamesdsp.dump
+package me.timschneeberger.rootlessjamesdsp.session.dump
 
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
-import me.timschneeberger.rootlessjamesdsp.AudioSessionManager
+import me.timschneeberger.rootlessjamesdsp.session.AudioSessionManager
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getVersionCode
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getVersionName
 import me.timschneeberger.rootlessjamesdsp.R
-import me.timschneeberger.rootlessjamesdsp.dump.data.AudioPolicyServiceDump
-import me.timschneeberger.rootlessjamesdsp.dump.data.ISessionInfoDump
+import me.timschneeberger.rootlessjamesdsp.session.dump.data.AudioPolicyServiceDump
+import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.SingletonHolder
 import timber.log.Timber
@@ -82,7 +82,8 @@ class DumpManager private constructor(val context: Context) {
     private fun loadFromPreferences(key: String){
         when (key) {
             context.getString(R.string.key_session_detection_method) -> {
-                val method = Method.fromInt(sharedPreferences.getString(key, "0")?.toIntOrNull() ?: 0)
+                val method =
+                    Method.fromInt(sharedPreferences.getString(key, "0")?.toIntOrNull() ?: 0)
                 activeDumpMethod = method
                 Timber.tag(AudioSessionManager.TAG).d("Session detection method set to ${method.name}")
             }

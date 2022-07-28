@@ -5,8 +5,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.media.audiofx.AudioEffect
-import android.util.Log
-import me.timschneeberger.rootlessjamesdsp.MainActivity
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import timber.log.Timber
 

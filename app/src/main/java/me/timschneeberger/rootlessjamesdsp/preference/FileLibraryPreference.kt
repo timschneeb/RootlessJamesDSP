@@ -31,7 +31,8 @@ class FileLibraryPreference(context: Context, attrs: AttributeSet) :
 
         summaryProvider = SummaryProvider<ListPreference> {
             if(it.value == null || it.value.isBlank())
-                if(isLiveprog()) "No script selected" else "No file selected"
+                if(isLiveprog()) context.getString(R.string.liveprog_no_script_selected) else context.getString(
+                                    R.string.filelibrary_no_file_selected)
             else
                 it.entry
         }

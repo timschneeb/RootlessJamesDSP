@@ -1,13 +1,11 @@
-package me.timschneeberger.rootlessjamesdsp.onboarding
+package me.timschneeberger.rootlessjamesdsp.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
-import androidx.navigation.NavController
-import androidx.navigation.fragment.findNavController
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.ActivityOnboardingBinding
+import me.timschneeberger.rootlessjamesdsp.fragment.OnboardingFragment
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
 
 

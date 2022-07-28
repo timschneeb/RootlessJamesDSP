@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package me.timschneeberger.rootlessjamesdsp.onboarding
+package me.timschneeberger.rootlessjamesdsp.fragment
 
 import android.Manifest
 import android.content.Intent
@@ -33,10 +33,9 @@ import androidx.fragment.app.Fragment
 import androidx.transition.TransitionManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.transition.MaterialSharedAxis
-import me.timschneeberger.rootlessjamesdsp.MainActivity
 import me.timschneeberger.rootlessjamesdsp.R
+import me.timschneeberger.rootlessjamesdsp.activity.MainActivity
 import me.timschneeberger.rootlessjamesdsp.databinding.OnboardingFragmentBinding
-import me.timschneeberger.rootlessjamesdsp.databinding.OnboardingPage3Binding
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.isPackageInstalled
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.launchApp
@@ -246,7 +245,7 @@ class OnboardingFragment : Fragment() {
         override fun onRequestPermissionResult(requestCode: Int, grantResult: Int) {
             if (grantResult == PERMISSION_GRANTED) {
                 when (requestCode) {
-                    Companion.REQUEST_CODE_SHIZUKU_GRANT -> {
+                    REQUEST_CODE_SHIZUKU_GRANT -> {
                         changePage(true)
                     }
                 }

@@ -1,4 +1,4 @@
-package me.timschneeberger.rootlessjamesdsp
+package me.timschneeberger.rootlessjamesdsp.session
 
 import android.annotation.SuppressLint
 import android.content.*
@@ -14,7 +14,8 @@ import dev.rikka.tools.refine.Refine
 import kotlinx.coroutines.*
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
-import me.timschneeberger.rootlessjamesdsp.dump.DumpManager
+import me.timschneeberger.rootlessjamesdsp.R
+import me.timschneeberger.rootlessjamesdsp.session.dump.DumpManager
 import me.timschneeberger.rootlessjamesdsp.model.SessionUpdateMode
 import me.timschneeberger.rootlessjamesdsp.service.NotificationListenerService
 import me.timschneeberger.rootlessjamesdsp.utils.Constants

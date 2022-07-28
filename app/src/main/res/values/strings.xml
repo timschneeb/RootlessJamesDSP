@@ -29,6 +29,7 @@
     <string name="update">Update</string>
     <string name="details">Details</string>
     <string name="warning">Warning</string>
+    <string name="close">Close</string>
 
     <!-- Main screen -->
     <string name="power_button_alt">Toggle audio processing</string>
@@ -61,6 +62,10 @@
 
     <string name="liveprog_enable">Live programmable DSP</string>
     <string name="liveprog_file">Liveprog script</string>
+    <string name="liveprog_additional_params">Additional script parameters</string>
+    <string name="liveprog_additional_params_not_supported">Selected script has no customizable parameters</string>
+    <string name="liveprog_not_found">Script not found</string>
+    <string name="liveprog_no_script_selected">No script selected</string>
 
     <string name="tube_enable">Analog modelling</string>
     <string name="tube_drive">Preamp (Harmonics)</string>
@@ -189,8 +194,13 @@
     <string name="filelibrary_unsupported_format_title">Unsupported file type</string>
     <string name="filelibrary_unsupported_format">The selected file has not have the correct file extension.</string>
     <string name="filelibrary_access_fail">Failed to access directory</string>
+    <string name="filelibrary_no_file_selected">No file selected</string>
 
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">Selected VDC file is corrupt. Please choose another one.</string>
     <string name="message_liveprog_compile_fail">Liveprog execution failed. Selected script is damaged.</string>
+
+    <!-- Customizable liveprog script parameters -->
+    <string name="title_activity_liveprog_params">Customizable script parameters</string>
+    <string name="action_restore_defaults">Restore defaults</string>
 </resources>

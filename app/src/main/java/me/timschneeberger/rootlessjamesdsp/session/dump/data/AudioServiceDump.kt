@@ -1,4 +1,4 @@
-package me.timschneeberger.rootlessjamesdsp.dump.data
+package me.timschneeberger.rootlessjamesdsp.session.dump.data
 
 import me.timschneeberger.rootlessjamesdsp.model.AudioSessionEntry
 

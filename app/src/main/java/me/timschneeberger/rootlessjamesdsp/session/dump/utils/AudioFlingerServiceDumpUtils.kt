@@ -1,7 +1,6 @@
-package me.timschneeberger.rootlessjamesdsp.dump.utils
+package me.timschneeberger.rootlessjamesdsp.session.dump.utils
 
 import android.content.Context
-import me.timschneeberger.rootlessjamesdsp.dump.AudioPolicyServiceDumper
 import timber.log.Timber
 
 /**

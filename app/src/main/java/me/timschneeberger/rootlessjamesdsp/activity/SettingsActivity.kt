@@ -1,4 +1,4 @@
-package me.timschneeberger.rootlessjamesdsp
+package me.timschneeberger.rootlessjamesdsp.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,8 +15,10 @@ import androidx.preference.PreferenceFragmentCompat
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dev.doubledot.doki.ui.DokiActivity
+import me.timschneeberger.rootlessjamesdsp.BuildConfig
+import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.ActivitySettingsBinding
-import me.timschneeberger.rootlessjamesdsp.dump.DumpManager
+import me.timschneeberger.rootlessjamesdsp.session.dump.DumpManager
 import me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
 import me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
 import me.timschneeberger.rootlessjamesdsp.service.NotificationListenerService
@@ -72,7 +74,10 @@ class SettingsActivity : AppCompatActivity() {
             findPreference<MaterialSwitchPreference>(getString(R.string.key_session_loss_ignore))?.setOnPreferenceChangeListener { _, newValue ->
                 if((newValue as? Boolean) == true)
                 {
-                    requireContext().showAlert(R.string.warning, R.string.session_loss_ignore_warning)
+                    requireContext().showAlert(
+                        R.string.warning,
+                        R.string.session_loss_ignore_warning
+                    )
                 }
                 true
             }

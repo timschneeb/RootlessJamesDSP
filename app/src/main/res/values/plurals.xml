@@ -4,4 +4,8 @@
         <item quantity="one">%d node</item>
         <item quantity="other">%d nodes</item>
     </plurals>
+    <plurals name="custom_parameters">
+        <item quantity="one">%d customizable parameter</item>
+        <item quantity="other">%d customizable parameters</item>
+    </plurals>
 </resources>

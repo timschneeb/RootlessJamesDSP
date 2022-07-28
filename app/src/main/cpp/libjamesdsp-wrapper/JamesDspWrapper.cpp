@@ -8,7 +8,7 @@
 
 #include "JamesDspWrapper.h"
 #include "JArrayList.h"
-#include "EelVariable.h"
+#include "EelVmVariable.h"
 
 extern "C" {
 #include "../EELStdOutExtension.h"
@@ -460,9 +460,15 @@ Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_setLiveprog(JNIE
     auto* dsp = cast(wrapper->dsp);
     LiveProgDisable(dsp);
 
+    const char *nativeString = env->GetStringUTFChars(liveprogContent, nullptr);
+    if(strlen(nativeString) < 1) {
+        LOGD("JamesDspWrapper::setLiveprog: empty file")
+        env->ReleaseStringUTFChars(liveprogContent, nativeString);
+        return;
+    }
+
     env->CallVoidMethod(wrapper->callbackInterface, wrapper->callbackOnLiveprogExec, id);
 
-    const char *nativeString = env->GetStringUTFChars(liveprogContent, nullptr);
     int ret = LiveProgStringParser(dsp, (char*)nativeString); // Ignore constness, libjamesdsp does not modify it
     env->ReleaseStringUTFChars(liveprogContent, nativeString);
 
@@ -513,7 +519,7 @@ Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_enumerateEelVari
                 else
                     value = std::to_string(ctx->varTable_Values[i][j]).c_str();
 
-                auto var = EelVariable(env, name, value, isString);
+                auto var = EelVmVariable(env, name, value, isString);
                 array.add(var.getJavaReference());
             }
         }

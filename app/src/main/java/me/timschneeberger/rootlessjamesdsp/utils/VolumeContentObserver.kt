@@ -1,10 +1,9 @@
-package me.timschneeberger.rootlessjamesdsp
+package me.timschneeberger.rootlessjamesdsp.utils
 
 import android.content.Context
 import android.database.ContentObserver
 import android.media.AudioManager
 import android.os.Handler
-import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import timber.log.Timber
 
 

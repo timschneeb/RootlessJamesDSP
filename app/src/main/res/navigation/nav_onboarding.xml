@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/onboardingFragment"
-        android:name="me.timschneeberger.rootlessjamesdsp.onboarding.OnboardingFragment"
+        android:name="me.timschneeberger.rootlessjamesdsp.fragment.OnboardingFragment"
         android:label="OnboardingFragment" />
 </navigation>

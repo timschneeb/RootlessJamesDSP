@@ -4,19 +4,19 @@
         <attr name="seekBarIncrement" />
         <attr name="showSeekBarValue" />
         <attr name="updatesContinuously" />
-
         <attr name="seekBarStyle" format="reference" />
-
         <attr name="minValue" format="float" />
         <attr name="maxValue" format="float" />
         <attr name="unit" format="string" />
         <attr name="precision" format="integer" />
         <attr name="labelMinWidth" format="dimension" />
     </declare-styleable>
+
     <declare-styleable name="EqualizerPreference">
         <attr name="android:entries" />
         <attr name="android:entryValues" />
     </declare-styleable>
+
     <declare-styleable name="FileLibraryPreference">
         <attr name="type" format="string" />
     </declare-styleable>

@@ -39,7 +39,7 @@
 
         <!-- Activities -->
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.RootlessJamesDSP">
             <intent-filter>
@@ -56,13 +56,19 @@
         </activity>
 
         <activity
-            android:name=".SettingsActivity"
+            android:name=".activity.SettingsActivity"
             android:exported="false"
             android:label="@string/title_activity_settings"
             android:theme="@style/Theme.RootlessJamesDSP" />
 
         <activity
-            android:name=".onboarding.OnboardingActivity"
+            android:name=".activity.LiveprogParamsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_liveprog_params"
+            android:theme="@style/Theme.RootlessJamesDSP" />
+
+        <activity
+            android:name=".activity.OnboardingActivity"
             android:exported="false"
             android:label="@string/title_activity_onboarding"
             android:theme="@style/Theme.RootlessJamesDSP" />
@@ -120,7 +126,7 @@
             android:permission="android.permission.INTERACT_ACROSS_USERS_FULL" />
 
         <provider
-            android:name="me.timschneeberger.rootlessjamesdsp.dump.DebugDumpFileProvider"
+            android:name="me.timschneeberger.rootlessjamesdsp.session.dump.DebugDumpFileProvider"
             android:authorities="${applicationId}.dump_provider"
             android:exported="false"
             android:grantUriPermissions="true">

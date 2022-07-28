@@ -15,17 +15,18 @@ import android.media.projection.MediaProjectionManager
 import android.os.*
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import me.timschneeberger.rootlessjamesdsp.AudioSessionManager
-import me.timschneeberger.rootlessjamesdsp.MainActivity
-import me.timschneeberger.rootlessjamesdsp.MutedSessionManager
+import me.timschneeberger.rootlessjamesdsp.session.AudioSessionManager
+import me.timschneeberger.rootlessjamesdsp.session.MutedSessionManager
 import me.timschneeberger.rootlessjamesdsp.R
-import me.timschneeberger.rootlessjamesdsp.VolumeContentObserver
+import me.timschneeberger.rootlessjamesdsp.activity.MainActivity
+import me.timschneeberger.rootlessjamesdsp.utils.VolumeContentObserver
 import me.timschneeberger.rootlessjamesdsp.model.AudioEncoding
 import me.timschneeberger.rootlessjamesdsp.model.MutedSessionEntry
 import me.timschneeberger.rootlessjamesdsp.model.ProcessorMessage
 import me.timschneeberger.rootlessjamesdsp.native.JamesDspEngine
 import me.timschneeberger.rootlessjamesdsp.native.JamesDspWrapper
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_REBOOT_LIVEPROG
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_UPDATE_PREFERENCES
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.CHANNEL_ID_SERVICE
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.CHANNEL_ID_SESSION_LOSS
@@ -123,6 +124,7 @@ class AudioProcessorService : Service() {
 
         val filter = IntentFilter()
         filter.addAction(ACTION_UPDATE_PREFERENCES)
+        filter.addAction(ACTION_SERVICE_REBOOT_LIVEPROG)
         registerLocalReceiver(broadcastReceiver, filter)
 
         sharedPreferences.registerOnSharedPreferenceChangeListener(preferencesListener)
@@ -206,6 +208,7 @@ class AudioProcessorService : Service() {
         override fun onReceive(context: Context, intent: Intent) {
             when (intent.action) {
                 ACTION_UPDATE_PREFERENCES -> engine.syncWithPreferences()
+                ACTION_SERVICE_REBOOT_LIVEPROG -> engine.syncWithPreferences(arrayOf(Constants.PREF_LIVEPROG))
             }
         }
     }

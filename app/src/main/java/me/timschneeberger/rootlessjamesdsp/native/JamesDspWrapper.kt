@@ -1,6 +1,6 @@
 package me.timschneeberger.rootlessjamesdsp.native
 
-import me.timschneeberger.rootlessjamesdsp.native.struct.EelVariable
+import me.timschneeberger.rootlessjamesdsp.native.interop.EelVmVariable
 import java.util.ArrayList
 
 typealias JamesDspHandle = Long
@@ -35,7 +35,7 @@ object JamesDspWrapper {
     external fun setLiveprog(self: JamesDspHandle, enable: Boolean, id: String, liveprogContent: String)
 
     // EEL VM utilities
-    external fun enumerateEelVariables(self: JamesDspHandle): ArrayList<EelVariable>
+    external fun enumerateEelVariables(self: JamesDspHandle): ArrayList<EelVmVariable>
     external fun manipulateEelVariable(self: JamesDspHandle, name: String, value: Float): Boolean
     external fun freezeLiveprogExecution(self: JamesDspHandle, freeze: Boolean)
     external fun eelErrorCodeToString(errorCode: Int): String

@@ -9,7 +9,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
-import me.timschneeberger.rootlessjamesdsp.native.struct.EelVariable
+import me.timschneeberger.rootlessjamesdsp.native.interop.EelVmVariable
 import timber.log.Timber
 import java.io.File
 import java.io.FileReader
@@ -89,14 +89,14 @@ class JamesDspEngine(val context: Context, val callbacks: JamesDspWrapper.JamesD
         this.sampleRate = sampleRate
     }
 
-    fun syncWithPreferences() {
+    fun syncWithPreferences(forceUpdateNamespaces: Array<String>? = null) {
         syncScope.launch {
-            syncWithPreferencesAsync()
+            syncWithPreferencesAsync(forceUpdateNamespaces)
         }
     }
 
-    private suspend fun syncWithPreferencesAsync() {
-        Timber.tag(TAG).d("Synchronizing with preferences...")
+    private suspend fun syncWithPreferencesAsync(forceUpdateNamespaces: Array<String>? = null) {
+        Timber.tag(TAG).d("Synchronizing with preferences... (forced: %s)", forceUpdateNamespaces?.joinToString(";") { it })
 
         syncMutex.withLock {
 
@@ -155,7 +155,8 @@ class JamesDspEngine(val context: Context, val callbacks: JamesDspWrapper.JamesD
             val convolverAdvImp = cache.get(R.string.key_convolver_adv_imp, Constants.DEFAULT_CONVOLVER_ADVIMP)
             val convolverMode = cache.get(R.string.key_convolver_mode, "0").toInt()
 
-            cache.changedNamespaces.forEach {
+            val targets = cache.changedNamespaces.toTypedArray() + (forceUpdateNamespaces ?: arrayOf())
+            targets.forEach {
                 Timber.tag(TAG).i("Committing new changes in namespace '$it'")
 
                 when (it) {
@@ -330,7 +331,7 @@ class JamesDspEngine(val context: Context, val callbacks: JamesDspWrapper.JamesD
     }
 
     // EEL VM utilities
-    fun enumerateEelVariables(): ArrayList<EelVariable>
+    fun enumerateEelVariables(): ArrayList<EelVmVariable>
     {
         return JamesDspWrapper.enumerateEelVariables(handle)
     }

@@ -1,4 +1,4 @@
-package me.timschneeberger.rootlessjamesdsp.dump
+package me.timschneeberger.rootlessjamesdsp.session.dump
 
 import androidx.core.content.FileProvider
 

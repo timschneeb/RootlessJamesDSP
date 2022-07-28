@@ -1,9 +1,8 @@
-package me.timschneeberger.rootlessjamesdsp.dump.utils
+package me.timschneeberger.rootlessjamesdsp.session.dump.utils
 
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.ParcelFileDescriptor
-import android.util.Log
 import rikka.shizuku.SystemServiceHelper
 import timber.log.Timber
 import java.io.FileInputStream
