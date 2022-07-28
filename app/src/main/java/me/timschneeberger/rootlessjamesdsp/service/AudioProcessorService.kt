@@ -6,7 +6,6 @@ import android.app.*
 import android.content.*
 import android.content.pm.PackageManager
 import android.content.pm.ServiceInfo
-import android.graphics.drawable.Icon
 import android.media.*
 import android.media.AudioRecord
 import android.media.AudioTrack
@@ -18,14 +17,14 @@ import androidx.core.app.ActivityCompat
 import me.timschneeberger.rootlessjamesdsp.session.AudioSessionManager
 import me.timschneeberger.rootlessjamesdsp.session.MutedSessionManager
 import me.timschneeberger.rootlessjamesdsp.R
-import me.timschneeberger.rootlessjamesdsp.activity.MainActivity
-import me.timschneeberger.rootlessjamesdsp.utils.VolumeContentObserver
+import me.timschneeberger.rootlessjamesdsp.ServiceNotificationHelper
 import me.timschneeberger.rootlessjamesdsp.model.AudioEncoding
 import me.timschneeberger.rootlessjamesdsp.model.MutedSessionEntry
 import me.timschneeberger.rootlessjamesdsp.model.ProcessorMessage
 import me.timschneeberger.rootlessjamesdsp.native.JamesDspEngine
 import me.timschneeberger.rootlessjamesdsp.native.JamesDspWrapper
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_PROCESSOR_MESSAGE
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_HARD_REBOOT_CORE
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_RELOAD_LIVEPROG
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_SOFT_REBOOT_CORE
@@ -46,49 +45,41 @@ import java.lang.Exception
 
 
 class AudioProcessorService : Service() {
-    private val handler: Handler = StartupHandler(this)
-    private var mediaProjectionManager: MediaProjectionManager? = null
-    private var mediaProjection: MediaProjection? = null
-    private var recorderThread: Thread? = null
-
-    private lateinit var volumeContentObserver: VolumeContentObserver
-    private lateinit var engine: JamesDspEngine
-    private lateinit var audioSessionManager: AudioSessionManager
+    // System services
+    private lateinit var mediaProjectionManager: MediaProjectionManager
     private lateinit var notificationManager: NotificationManager
     private lateinit var audioManager: AudioManager
 
-    private val engineCallbacks = EngineCallbacks()
+    // Media projection token
+    private var mediaProjection: MediaProjection? = null
     private var mediaProjectionStartIntent: Intent? = null
-    private var isStreamMuted = false
+
+    // Processing
+    private var recreateRecorderRequested = false
+    private var recorderThread: Thread? = null
+    private val engineCallbacks = EngineCallbacks()
+    private val handler: Handler = StartupHandler(this)
+    private lateinit var engine: JamesDspEngine
+    private val isRunning: Boolean
+        get() = recorderThread != null
+
+    // Session management
+    private lateinit var audioSessionManager: AudioSessionManager
+    private var sessionLossRetryCount = 0
+
+    // Idle detection
     private var isProcessorIdle = false
     private var suspendOnIdle = false
 
-    var isProcessorDisposing = false
-        private set
-    var isServiceDisposing = false
-        private set
-    private var recreateRecorderRequested = false
+    // Termination flags
+    private var isProcessorDisposing = false
+    private var isServiceDisposing = false
 
-    private var sessionLossRetryCount = 0
-    private val sessionLossMaxRetries = 1
-
+    // Shared preferences
     private lateinit var sharedPreferences: SharedPreferences
-    private val preferencesListener: SharedPreferences.OnSharedPreferenceChangeListener = SharedPreferences.OnSharedPreferenceChangeListener {
-            _, key ->
-        loadFromPreferences(key)
-    }
 
-    private val projectionCallback = object: MediaProjection.Callback() {
-        override fun onStop() {
-            Toast.makeText(this@AudioProcessorService,
-                getString(R.string.capture_permission_revoked_toast), Toast.LENGTH_LONG).show()
-            notificationManager.cancel(NOTIFICATION_ID_SERVICE)
-            Timber.tag(TAG).w("Capture permission revoked. Stopping service.")
-            stopSelf()
-        }
-    }
-
-    private val mBinder: IBinder = LocalBinder()
+    // Remote binder access
+    private val binder: IBinder = LocalBinder()
 
     inner class LocalBinder : Binder() {
         val service: AudioProcessorService
@@ -96,50 +87,27 @@ class AudioProcessorService : Service() {
     }
 
     override fun onBind(intent: Intent): IBinder {
-        return mBinder
+        return binder
     }
 
     override fun onCreate() {
         super.onCreate()
 
-        sharedPreferences = getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
-
+        // Get reference to system services
         audioManager = SystemServices.get(this, AudioManager::class.java)
+        mediaProjectionManager = SystemServices.get(this, MediaProjectionManager::class.java)
         notificationManager = SystemServices.get(this, NotificationManager::class.java)
 
+        // Setup session manager
         audioSessionManager = AudioSessionManager(this)
-        audioSessionManager.sessionDatabase.setOnSessionLossListener(object: MutedSessionManager.OnSessionLossListener {
-            override fun onSessionLost(sid: Int) {
-                if(sessionLossRetryCount < sessionLossMaxRetries) {
-                    sessionLossRetryCount++
-                    Timber.tag(TAG).d("Session lost. Retry count: $sessionLossRetryCount/$sessionLossMaxRetries")
-                    audioSessionManager.pollOnce(false)
-                    restartRecordingThread()
-                    return
-                }
-                else {
-                    Timber.tag(TAG).d("Giving up on saving session. User interaction required.")
-                }
-
-                val ignore = sharedPreferences.getBoolean(getString(R.string.key_session_loss_ignore), false)
-                if(!ignore) {
-                    notificationManager.cancel(NOTIFICATION_ID_SERVICE)
-                    notifySessionLoss()
-                    Toast.makeText(this@AudioProcessorService, getString(R.string.session_control_loss_toast), Toast.LENGTH_SHORT).show()
-                    Timber.tag(TAG).w("Terminating service due to session loss")
-                    stopSelf()
-                }
-                else {
-                    Toast.makeText(this@AudioProcessorService, getString(R.string.session_control_loss_toast_short), Toast.LENGTH_SHORT).show()
-                }
-            }
-        })
-
+        audioSessionManager.sessionDatabase.setOnSessionLossListener(onSessionLossListener)
         audioSessionManager.sessionDatabase.registerOnSessionChangeListener(onSessionChangeListener)
 
+        // Setup core engine
         engine = JamesDspEngine(this, engineCallbacks)
         engine.syncWithPreferences()
 
+        // Setup general-purpose broadcast receiver
         val filter = IntentFilter()
         filter.addAction(ACTION_UPDATE_PREFERENCES)
         filter.addAction(ACTION_SERVICE_RELOAD_LIVEPROG)
@@ -147,32 +115,29 @@ class AudioProcessorService : Service() {
         filter.addAction(ACTION_SERVICE_SOFT_REBOOT_CORE)
         registerLocalReceiver(broadcastReceiver, filter)
 
+        // Setup shared preferences
+        sharedPreferences = getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
         sharedPreferences.registerOnSharedPreferenceChangeListener(preferencesListener)
         loadFromPreferences(getString(R.string.key_powersave_suspend))
 
-        volumeContentObserver = VolumeContentObserver(this)
-        volumeContentObserver.setOnVolumeChangeListener {
-            isStreamMuted = it <= 0
-            Timber.tag(TAG).d("Mute stream internally: $isStreamMuted")
-        }
-
-        val notification = createNotification(false)
+        // Register notification channels
         val channel = NotificationChannel(
             CHANNEL_ID_SERVICE,
             getString(R.string.app_name),
             NotificationManager.IMPORTANCE_NONE
         )
-        notificationManager.createNotificationChannel(channel)
-
         val channelSessionLoss = NotificationChannel(
             CHANNEL_ID_SESSION_LOSS,
             getString(R.string.notification_channel_session_loss_alert),
             NotificationManager.IMPORTANCE_HIGH
         )
-        notificationManager.createNotificationChannel(channelSessionLoss)
 
+        notificationManager.createNotificationChannel(channel)
+        notificationManager.createNotificationChannel(channelSessionLoss)
         notificationManager.cancel(NOTIFICATION_ID_PERMISSION_PROMPT)
 
+        // Launch foreground service
+        val notification = ServiceNotificationHelper.createServiceNotification(this, false)
         startForeground(
             NOTIFICATION_ID_SERVICE,
             notification,
@@ -180,40 +145,34 @@ class AudioProcessorService : Service() {
         )
     }
 
-    private fun loadFromPreferences(key: String){
-        when (key) {
-            getString(R.string.key_powersave_suspend) -> {
-                suspendOnIdle = sharedPreferences.getBoolean(key, true)
-                Timber.tag(TAG).d("Suspend on idle set to $suspendOnIdle")
-            }
-        }
-    }
-
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
 
-        // TODO recreated service has its intent object null -> mediaProjectionData not persistent
-
-        if(intent.action == null) {
-            Timber.tag(TAG).w("onStartCommand: intent.action is null")
-        }
-        else if (intent.action == ACTION_STOP) {
-            stopSelf()
-            return START_NOT_STICKY
+        // Handle intent action
+        when (intent.action) {
+            null -> {
+                // TODO recreated service has its intent object null -> mediaProjectionData not persistent
+                Timber.tag(TAG).w("onStartCommand: intent.action is null")
+            }
+            ACTION_START -> {
+                Timber.tag(TAG).d("Starting service")
+            }
+            ACTION_STOP -> {
+                Timber.tag(TAG).d("Stopping service")
+                stopSelf()
+                return START_NOT_STICKY
+            }
         }
 
         if (isRunning) {
             return START_NOT_STICKY
         }
 
+        // Cancel outdated notifications
         notificationManager.cancel(NOTIFICATION_ID_SESSION_LOSS)
 
-        contentResolver.registerContentObserver(android.provider.Settings.System.CONTENT_URI, true, volumeContentObserver)
-
+        // Setup media projection
         mediaProjectionStartIntent = intent.getParcelableExtra(EXTRA_MEDIA_PROJECTION_DATA)
-
-        mediaProjectionManager = SystemServices.get(this, MediaProjectionManager::class.java)
         mediaProjection = mediaProjectionManager!!.getMediaProjection(Activity.RESULT_OK, mediaProjectionStartIntent!!)
-
         mediaProjection?.registerCallback(projectionCallback, Handler(Looper.getMainLooper()))
 
         if (mediaProjection != null) {
@@ -226,17 +185,92 @@ class AudioProcessorService : Service() {
         return START_STICKY
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+
+        isServiceDisposing = true
+
+        // Stop foreground service
+        stopForeground(true)
+
+        // Notify app about service termination
+        sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_STOPPED))
+
+        // Unregister receivers and release resources
+        unregisterLocalReceiver(broadcastReceiver)
+        mediaProjection?.unregisterCallback(projectionCallback)
+        audioSessionManager.sessionDatabase.unregisterOnSessionChangeListener(onSessionChangeListener)
+        audioSessionManager.destroy()
+
+        // Stop recording and release resources
+        stopRecording()
+        engine.close()
+    }
+
+    // Preferences listener
+    private val preferencesListener = SharedPreferences.OnSharedPreferenceChangeListener {
+            _, key ->
+        loadFromPreferences(key)
+    }
+
+    // Projection termination callback
+    private val projectionCallback = object: MediaProjection.Callback() {
+        override fun onStop() {
+            Timber.tag(TAG).w("Capture permission revoked. Stopping service.")
+
+            Toast.makeText(this@AudioProcessorService,
+                getString(R.string.capture_permission_revoked_toast), Toast.LENGTH_LONG).show()
+            notificationManager.cancel(NOTIFICATION_ID_SERVICE)
+            stopSelf()
+        }
+    }
+
+    // General purpose broadcast receiver
     private val broadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             when (intent.action) {
                 ACTION_UPDATE_PREFERENCES -> engine.syncWithPreferences()
                 ACTION_SERVICE_RELOAD_LIVEPROG -> engine.syncWithPreferences(arrayOf(Constants.PREF_LIVEPROG))
-                ACTION_SERVICE_HARD_REBOOT_CORE -> restartRecordingThread()
+                ACTION_SERVICE_HARD_REBOOT_CORE -> restartRecording()
                 ACTION_SERVICE_SOFT_REBOOT_CORE -> requestAudioRecordRecreation()
             }
         }
     }
 
+    // Session loss listener
+    private val onSessionLossListener = object: MutedSessionManager.OnSessionLossListener {
+        override fun onSessionLost(sid: Int) {
+            // Check if retry count exceeded
+            if(sessionLossRetryCount < SESSION_LOSS_MAX_RETRIES) {
+                // Retry
+                sessionLossRetryCount++
+                Timber.tag(TAG).d("Session lost. Retry count: $sessionLossRetryCount/$SESSION_LOSS_MAX_RETRIES")
+                audioSessionManager.pollOnce(false)
+                restartRecording()
+                return
+            }
+            else {
+                Timber.tag(TAG).d("Giving up on saving session. User interaction required.")
+            }
+
+            // Push notification if enabled
+            val ignore = sharedPreferences.getBoolean(getString(R.string.key_session_loss_ignore), false)
+            if(!ignore) {
+                // Request users attention
+                notificationManager.cancel(NOTIFICATION_ID_SERVICE)
+                ServiceNotificationHelper.pushSessionLossNotification(this@AudioProcessorService, mediaProjectionStartIntent)
+                Toast.makeText(this@AudioProcessorService, getString(R.string.session_control_loss_toast), Toast.LENGTH_SHORT).show()
+                Timber.tag(TAG).w("Terminating service due to session loss")
+                stopSelf()
+            }
+            else {
+                // Hint at failure
+                Toast.makeText(this@AudioProcessorService, getString(R.string.session_control_loss_toast_short), Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    // Session change listener
     private val onSessionChangeListener = object : MutedSessionManager.OnSessionChangeListener {
         override fun onSessionChanged(sessionList: HashMap<Int, MutedSessionEntry>) {
             isProcessorIdle = sessionList.size == 0
@@ -244,16 +278,16 @@ class AudioProcessorService : Service() {
         }
     }
 
-    private fun determineSamplingRate(): Int {
-        val sampleRateStr: String? = audioManager.getProperty(AudioManager.PROPERTY_OUTPUT_SAMPLE_RATE)
-        return sampleRateStr?.let { str -> Integer.parseInt(str).takeUnless { it == 0 } } ?: 48000
+    private fun loadFromPreferences(key: String){
+        when (key) {
+            getString(R.string.key_powersave_suspend) -> {
+                suspendOnIdle = sharedPreferences.getBoolean(key, true)
+                Timber.tag(TAG).d("Suspend on idle set to $suspendOnIdle")
+            }
+        }
     }
 
-    private fun determineBufferSize(): Int {
-        val framesPerBuffer: String? = audioManager.getProperty(AudioManager.PROPERTY_OUTPUT_FRAMES_PER_BUFFER)
-        return framesPerBuffer?.let { str -> Integer.parseInt(str).takeUnless { it == 0 } } ?: 256
-    }
-
+    // Request recreation of the AudioRecord object to update AudioPlaybackRecordingConfiguration
     fun requestAudioRecordRecreation() {
         if(isProcessorDisposing || isServiceDisposing) {
             Timber.tag(TAG).e("recreateAudioRecorder: service or processor already disposing")
@@ -263,31 +297,17 @@ class AudioProcessorService : Service() {
         recreateRecorderRequested = true
     }
 
-    fun restartRecordingThread() {
-        if(isProcessorDisposing || isServiceDisposing) {
-            Timber.tag(TAG).e("restartRecording: service or processor already disposing")
-            return
-        }
-
-        if (recorderThread != null) {
-            isProcessorDisposing = true
-            recorderThread!!.interrupt()
-            recorderThread!!.join(500)
-            recorderThread = null
-        }
-        isProcessorDisposing = false
-        recreateRecorderRequested = false
-        startRecording()
-    }
-
+    // Start recording thread
     @SuppressLint("BinaryOperationInTimber")
     private fun startRecording() {
+        // Sanity check
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             Timber.tag(TAG).e("Record audio permission missing. Can't record")
             stopSelf()
             return
         }
 
+        // Load preferences
         val encoding = AudioEncoding.fromInt(
             sharedPreferences.getString(getString(R.string.key_audioformat_encoding), "1")
                 ?.toIntOrNull() ?: 1
@@ -310,18 +330,19 @@ class AudioProcessorService : Service() {
                 "HAL buffer size (bytes): ${determineBufferSize()}")
 
         fun buildRecord(): AudioRecord {
-            val recordBuilder = AudioRecord.Builder()
-            val recordFormatBuilder = AudioFormat.Builder()
-            recordFormatBuilder.setEncoding(encodingFormat)
-            recordFormatBuilder.setSampleRate(sampleRate)
-            recordFormatBuilder.setChannelMask(AudioFormat.CHANNEL_IN_STEREO)
-            recordBuilder.setAudioFormat(recordFormatBuilder.build())
-            recordBuilder.setBufferSizeInBytes(bufferSizeBytes)
-            recordBuilder.setAudioPlaybackCaptureConfig(createAudioPlaybackCaptureConfig(mediaProjection!!))
-            return recordBuilder.build()
+            val format = AudioFormat.Builder()
+                .setEncoding(encodingFormat)
+                .setSampleRate(sampleRate)
+                .setChannelMask(AudioFormat.CHANNEL_IN_STEREO)
+                .build()
+            return AudioRecord.Builder()
+                .setAudioFormat(format)
+                .setBufferSizeInBytes(bufferSizeBytes)
+                .setAudioPlaybackCaptureConfig(createAudioPlaybackCaptureConfig(mediaProjection!!))
+                .build()
         }
-        var recorder = buildRecord()
 
+        var recorder = buildRecord()
         val track = AudioTrack.Builder().setAudioFormat(
             AudioFormat.Builder()
                 .setChannelMask(AudioFormat.CHANNEL_OUT_STEREO)
@@ -408,6 +429,40 @@ class AudioProcessorService : Service() {
         recorderThread!!.start()
     }
 
+    // Terminate recording thread
+    fun stopRecording() {
+        if (recorderThread != null) {
+            isProcessorDisposing = true
+            recorderThread!!.interrupt()
+            recorderThread!!.join(500)
+            recorderThread = null
+        }
+    }
+
+    // Hard restart recording thread
+    fun restartRecording() {
+        if(isProcessorDisposing || isServiceDisposing) {
+            Timber.tag(TAG).e("restartRecording: service or processor already disposing")
+            return
+        }
+
+        stopRecording()
+        isProcessorDisposing = false
+        recreateRecorderRequested = false
+        startRecording()
+    }
+
+    // Broadcast processor message
+    private fun sendProcessorMessage(type: ProcessorMessage.Type, params: Map<ProcessorMessage.Param, Serializable>? = null){
+        val intent = Intent(ACTION_PROCESSOR_MESSAGE)
+        intent.putExtra(ProcessorMessage.TYPE, type.value)
+        params?.forEach { (k, v) ->
+            intent.putExtra(k.name, v)
+        }
+        sendLocalBroadcast(intent)
+    }
+
+    // Engine callback connector
     private inner class EngineCallbacks : JamesDspWrapper.JamesDspCallbacks
     {
         override fun onLiveprogOutput(message: String) {
@@ -442,47 +497,7 @@ class AudioProcessorService : Service() {
         }
     }
 
-    private val isRunning: Boolean
-        get() = recorderThread != null
-
-    override fun onDestroy() {
-        super.onDestroy()
-
-        isServiceDisposing = true
-
-        stopForeground(true)
-
-        sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_STOPPED))
-
-        mediaProjection?.unregisterCallback(projectionCallback)
-
-        audioSessionManager.sessionDatabase.unregisterOnSessionChangeListener(onSessionChangeListener)
-        audioSessionManager.destroy()
-
-        contentResolver.unregisterContentObserver(volumeContentObserver)
-
-        if (recorderThread != null) {
-            isProcessorDisposing = true
-            recorderThread!!.interrupt()
-            recorderThread!!.join(500)
-
-            recorderThread = null
-        }
-
-        this.engine.close()
-
-        unregisterLocalReceiver(broadcastReceiver)
-    }
-
-    private fun sendProcessorMessage(type: ProcessorMessage.Type, params: Map<ProcessorMessage.Param, Serializable>? = null){
-        val intent = Intent(ACTION_PROCESSOR_MESSAGE)
-        intent.putExtra(ProcessorMessage.TYPE, type.value)
-        params?.forEach { (k, v) ->
-            intent.putExtra(k.name, v)
-        }
-        sendLocalBroadcast(intent)
-    }
-
+    // Startup message handler
     private class StartupHandler(private val service: AudioProcessorService) :
         Handler(Looper.myLooper()!!) {
         override fun handleMessage(message: Message) {
@@ -491,117 +506,47 @@ class AudioProcessorService : Service() {
                 return
             }
             if (message.what == MSG_PROCESSOR_READY) {
-                val notification = service.createNotification(true)
-                service.notificationManager.notify(NOTIFICATION_ID_SERVICE, notification)
+                ServiceNotificationHelper.pushServiceNotification(service, true)
             }
         }
     }
 
-    private fun createNotification(established: Boolean): Notification {
-        val intent = Intent(applicationContext, MainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-        val contentIntent =
-            PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
-
-        val builder = Notification.Builder(this, CHANNEL_ID_SERVICE)
-        builder.setContentTitle(getString(R.string.app_name))
-        val textRes: Int =
-            if (established) {
-                R.string.notification_processing
-            }
-            else
-                R.string.notification_waiting
-        builder.setContentText(getText(textRes))
-        builder.setSmallIcon(R.drawable.ic_tune_vertical_variant_24dp)
-        builder.addAction(createStopAction())
-        builder.setContentIntent(contentIntent)
-        return builder.build()
+    private fun createAudioPlaybackCaptureConfig(mediaProjection: MediaProjection): AudioPlaybackCaptureConfiguration {
+        return AudioPlaybackCaptureConfiguration.Builder(mediaProjection)
+            .addMatchingUsage(AudioAttributes.USAGE_MEDIA)
+            .addMatchingUsage(AudioAttributes.USAGE_GAME)
+            .addMatchingUsage(AudioAttributes.USAGE_UNKNOWN)
+            .build()
     }
 
-    private fun notifySessionLoss() {
-        val intent = Intent(this, MainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-        val contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
-
-        val builder = Notification.Builder(this, CHANNEL_ID_SESSION_LOSS)
-        builder.setContentTitle(getString(R.string.session_control_loss_notification_title))
-        builder.setContentText(getString(R.string.session_control_loss_notification))
-        builder.setSmallIcon(R.drawable.ic_baseline_warning_24dp)
-        builder.addAction(createRetryAction())
-        builder.setAutoCancel(true)
-        builder.setContentIntent(contentIntent)
-
-        notificationManager.notify(NOTIFICATION_ID_SESSION_LOSS, builder.build())
-    }
-    private fun createStopAction(): Notification.Action {
-        val stopIntent = createStopIntent(this)
-        val stopPendingIntent = PendingIntent.getService(
-            this,
-            0,
-            stopIntent,
-            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
-        )
-        val stopIcon = Icon.createWithResource(this, R.drawable.ic_close_24dp)
-        val stopString = getString(R.string.action_stop)
-        val actionBuilder = Notification.Action.Builder(stopIcon, stopString, stopPendingIntent)
-        return actionBuilder.build()
+    // Determine HAL sampling rate
+    private fun determineSamplingRate(): Int {
+        val sampleRateStr: String? = audioManager.getProperty(AudioManager.PROPERTY_OUTPUT_SAMPLE_RATE)
+        return sampleRateStr?.let { str -> Integer.parseInt(str).takeUnless { it == 0 } } ?: 48000
     }
 
-    private fun createRetryAction(): Notification.Action? {
-        mediaProjectionStartIntent ?: return null
-        val retryIntent = createStartIntent(this, mediaProjectionStartIntent!!)
-        val retryPendingIntent = PendingIntent.getService(
-            this,
-            0,
-            retryIntent,
-            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
-        )
-        val retryIcon = Icon.createWithResource(this, R.drawable.ic_baseline_refresh_24dp)
-        val retryString = getString(R.string.action_retry)
-        val actionBuilder = Notification.Action.Builder(retryIcon, retryString, retryPendingIntent)
-        return actionBuilder.build()
+    // Determine HAL buffer size
+    private fun determineBufferSize(): Int {
+        val framesPerBuffer: String? = audioManager.getProperty(AudioManager.PROPERTY_OUTPUT_FRAMES_PER_BUFFER)
+        return framesPerBuffer?.let { str -> Integer.parseInt(str).takeUnless { it == 0 } } ?: 256
     }
 
     companion object {
-        const val ACTION_PROCESSOR_MESSAGE = "me.timschneeberger.rootlessjamesdsp.PROCESSOR_MESSAGE"
+        const val TAG = "AudioProcessorService"
+        const val SESSION_LOSS_MAX_RETRIES = 1
 
-        private const val TAG = "AudioProcessorService"
+        const val ACTION_START = ".service.START"
+        const val ACTION_STOP = ".service.STOP"
+        const val EXTRA_MEDIA_PROJECTION_DATA = "mediaProjectionData"
 
-        private const val ACTION_START = "me.timschneeberger.rootlessjamesdsp.START"
-        private const val ACTION_STOP = "me.timschneeberger.rootlessjamesdsp.STOP"
-        private const val EXTRA_MEDIA_PROJECTION_DATA = "mediaProjectionData"
         private const val MSG_PROCESSOR_READY = 1
 
         fun start(context: Context, data: Intent?) {
-            val intent = Intent(context, AudioProcessorService::class.java)
-            intent.action = ACTION_START
-            intent.putExtra(EXTRA_MEDIA_PROJECTION_DATA, data)
-            context.startForegroundService(intent)
+            context.startForegroundService(ServiceNotificationHelper.createStartIntent(context, data))
         }
 
         fun stop(context: Context) {
-            context.startForegroundService(createStopIntent(context))
-        }
-
-        fun createStopIntent(ctx: Context): Intent {
-            val intent = Intent(ctx, AudioProcessorService::class.java)
-            intent.action = ACTION_STOP
-            return intent
-        }
-
-        fun createStartIntent(ctx: Context, mediaProjectionData: Intent): Intent {
-            val intent = Intent(ctx, AudioProcessorService::class.java)
-            intent.action = ACTION_START
-            intent.putExtra(EXTRA_MEDIA_PROJECTION_DATA, mediaProjectionData)
-            return intent
-        }
-
-        private fun createAudioPlaybackCaptureConfig(mediaProjection: MediaProjection): AudioPlaybackCaptureConfiguration {
-            val confBuilder = AudioPlaybackCaptureConfiguration.Builder(mediaProjection)
-            confBuilder.addMatchingUsage(AudioAttributes.USAGE_MEDIA)
-            confBuilder.addMatchingUsage(AudioAttributes.USAGE_GAME)
-            confBuilder.addMatchingUsage(AudioAttributes.USAGE_UNKNOWN)
-            return confBuilder.build()
+            context.startForegroundService(ServiceNotificationHelper.createStopIntent(context))
         }
     }
 }

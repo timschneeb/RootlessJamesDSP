@@ -30,6 +30,8 @@ object Constants {
     const val ACTION_SERVICE_RELOAD_LIVEPROG = ".action.service.RELOAD_LIVEPROG"
     const val ACTION_SERVICE_HARD_REBOOT_CORE = ".action.service.HARD_REBOOT_CORE"
     const val ACTION_SERVICE_SOFT_REBOOT_CORE = ".action.service.SOFT_REBOOT_CORE"
+    const val ACTION_PROCESSOR_MESSAGE = ".action.service.PROCESSOR_MESSAGE"
+
 
     const val CHANNEL_ID_SERVICE = "JamesDSP"
     const val CHANNEL_ID_SESSION_LOSS = "Session loss alert"
