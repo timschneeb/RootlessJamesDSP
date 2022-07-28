@@ -1,0 +1,46 @@
+desc: STFT Filter
+bandEdge1:100<0,24000,1>Band edge 1 (Hz) 
+bandEdge2:480<0,24000,1>Band edge 2 (Hz) 
+
+@init
+fftsize = 1024;
+bufpos = idx = 0;
+stftIndexLeft = 0;
+stftIndexRight = 40;
+memreq = stftCheckMemoryRequirement(stftIndexLeft, fftsize, 4, 1.5);
+memreq = stftCheckMemoryRequirement(stftIndexRight, fftsize, 4, 1.5);
+stftStructLeft = 50;
+stftStructRight = stftStructLeft + memreq;
+requiredSamples = stftInit(stftIndexLeft, stftStructLeft);
+requiredSamples = stftInit(stftIndexRight, stftStructRight);
+inBufLeft = stftStructRight + memreq + 2; // Pointer to memory
+outBufLeft = inBufLeft + fftsize + 2; // Pointer to memory plus safe zone
+inBufRight = outBufLeft + fftsize + 2; // ...
+outBufRight = inBufRight + fftsize + 2; // ...
+bandEdge1=100;
+bandEdge2=480;
+adj=2 ^ (-80/6);
+
+@sample
+inBufLeft[bufpos] = spl0;
+spl0 = outBufLeft[bufpos];
+inBufRight[bufpos] = spl1;
+spl1 = outBufRight[bufpos];
+bufpos += 1;
+bufpos >= requiredSamples ?
+(
+  error1 = stftForward(inBufLeft, stftIndexLeft, stftStructLeft, 1);
+  error2 = stftForward(inBufRight, stftIndexRight, stftStructRight, 1);
+  idx=inBufLeft+bandEdge1;
+  loop(bandEdge2-bandEdge1, idx[0]*=adj; idx+=1);
+  idx=inBufRight+bandEdge1;
+  loop(bandEdge2-bandEdge1, idx[0]*=adj; idx+=1);
+  error = stftBackward(inBufLeft, stftIndexLeft, stftStructLeft, 1);
+  error = stftBackward(inBufRight, stftIndexRight, stftStructRight, 1);
+  idx = 0;
+  loop(requiredSamples,
+  outBufLeft[idx] = inBufLeft[idx];
+  outBufRight[idx] = inBufRight[idx];
+  idx+=1);
+  bufpos = 0;
+);

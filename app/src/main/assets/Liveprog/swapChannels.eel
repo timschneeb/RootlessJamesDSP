@@ -1,0 +1,20 @@
+desc: Swap channels
+
+leftGain:0<-30,10>Left post-gain (dB)
+rightGain:0<-30,10>Right post-gain (dB)
+
+@init 
+leftGain = 0.00;
+rightGain = 0.00;
+
+function db2Lin(dB)(
+    DB_2_LOG = 0.11512925464970228420089957273422;
+    exp(dB * DB_2_LOG);
+);
+
+@sample
+tmp0 = spl0;
+tmp1 = spl1;
+
+spl0 = tmp1 * db2Lin(leftGain);
+spl1 = tmp0 * db2Lin(rightGain);

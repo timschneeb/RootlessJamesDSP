@@ -1,0 +1,65 @@
+desc: Delay effects (waveguide)
+author: @thepbone
+//reimplemented from: https://www.musicdsp.org/en/latest/Effects/98-class-for-waveguide-delay-effects.html
+
+//delay:1000<0,1024>Delay
+//fb:0.6<0,0.99>Feedback
+
+@init
+delay = 1000;
+fb = 0.6;
+
+counter = 0;
+max_delay = 1024;
+buffer[max_delay] = 0;
+
+function process(in feedback delay)(
+	// calculate delay offset
+	back = counter - delay;
+
+	// clip lookback buffer-bound
+	back < 0.0 ? (
+			back = max_delay + back;
+	);
+
+	// compute interpolation left-floor
+	index0 = floor(back);
+
+	// compute interpolation right-floor
+	index_1 = index0 - 1;
+	index1 = index0 + 1;
+	index2 = index0 + 2;
+
+	// clip interp. buffer-bound
+	index_1 < 0 ? (index_1 = max_delay - 1;);
+	index1 >= max_delay ? (index1=0;);
+	index2 >= max_delay ? (index2=0;);
+
+	// get neighbour samples
+	y_1= buffer[index_1];
+	y0 = buffer[index0];
+	y1 = buffer[index1];
+	y2 = buffer[index2];
+
+	// compute interpolation x
+	x = back - index0;
+
+	//calculate
+	c0 = y0;
+	c1 = 0.5*(y1-y_1);
+	c2 = y_1 - 2.5*y0 + 2.0*y1 - 0.5*y2;
+	c3 = 0.5*(y2-y_1) + 1.5*(y0-y1);
+	output = ((c3*x+c2)*x+c1)*x+c0;
+
+	// add to delay buffer
+	buffer[counter] = in + output * feedback;
+
+	counter += 1;
+	counter >= max_delay ? (counter = 0;);
+
+	output;
+);
+
+@sample
+spl0 = process(spl0,fb,delay);
+spl1 = process(spl1,fb,delay);

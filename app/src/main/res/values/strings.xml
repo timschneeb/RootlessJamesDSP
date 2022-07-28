@@ -24,11 +24,15 @@
     <string name="session_control_loss_notification_title">Audio processing stopped. Another app is interfering with JamesDSP.</string>
     <string name="session_control_loss_notification">Please disable all other apps that provide global audio effects before re-enabling JamesDSP.</string>
 
+    <!-- Capture permission revoked notifications -->
+    <string name="capture_permission_revoked_toast">JamesDSP stopped. Capture permission has been revoked.</string>
+
     <!-- General purpose -->
     <string name="install">Install</string>
     <string name="update">Update</string>
     <string name="details">Details</string>
     <string name="warning">Warning</string>
+    <string name="success">Success</string>
     <string name="close">Close</string>
 
     <!-- Main screen -->
@@ -113,6 +117,8 @@
     <string name="onboarding_adb_step_1">Step 1</string>
     <string name="onboarding_adb_step_2">Step 2</string>
     <string name="onboarding_adb_step_3">Step 3</string>
+    <string name="onboarding_adb_android10_warning">Android 10 is not fully supported. DRM-protected content or apps blocking audio capture will stay muted while this app is active.</string>
+    <string name="onboarding_adb_android10_header">Instructions for Android 10</string>
     <string name="onboarding_adb_caption">This app requires special ADB permissions for dumping information about your device\'s audio policy. Please follow the instructions below.</string>
     <string name="onboarding_adb_shizuku_title">Instructions</string>
     <string name="onboarding_adb_shizuku_install_button">Install Shizuku</string>
@@ -182,6 +188,9 @@
     <string name="troubleshooting_dontkillmyapp_summary">View \'Don\'t kill my app\' documentation for your device</string>
     <string name="troubleshooting_notification_access">Allow notification access for better session detection</string>
     <string name="troubleshooting_notification_access_summary">Enables more reliable audio session detection</string>
+    <string name="troubleshooting_repair_assets">Restore bundled IRS, DDC and scripts</string>
+    <string name="troubleshooting_repair_assets_summary">Unpack preloaded assets if you lost them</string>
+    <string name="troubleshooting_repair_assets_success">Bundled assets have been restored</string>
     <string name="privacy">Privacy</string>
     <string name="privacy_share_crash_reports">Share application crash reports</string>
     <string name="privacy_share_crash_reports_on">Send crash reports to the developer</string>
@@ -203,6 +212,4 @@
     <!-- Customizable liveprog script parameters -->
     <string name="title_activity_liveprog_params">Customizable script parameters</string>
     <string name="action_restore_defaults">Restore defaults</string>
-    <string name="onboarding_adb_android10_warning">Android 10 is not fully supported. DRM-protected content or apps blocking audio capture will stay muted while this app is active.</string>
-    <string name="onboarding_adb_android10_header">Instructions for Android 10</string>
 </resources>

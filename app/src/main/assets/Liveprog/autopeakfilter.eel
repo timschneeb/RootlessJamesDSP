@@ -1,0 +1,139 @@
+desc: FFT peak-following filter
+//fftsize:{64,128,256,512,1024,2048,4096}FFT Size
+//lowestFc:60<0,24000,10>Minimum Center Freq (Hz)
+//highestFc:8000<0,24000,10>Maximum Center Freq (Hz)
+//filtWidthOct:2<0,8,0.01>Filter Width (oct)
+//pkGaindB:0<-120,24,1>Peak Gain (dB)
+//nonPkGaindB:-120<-120,24,1>Non-Peak Gain (dB)
+//atkMS:120<0,1000,1>Filter Position Attack Time (ms)
+//highSlope:1.29<0.5,1.5,0.01>High End Slope
+
+@init 
+curfilterpos=-1;
+fftsize=2048;
+lowestFc = 60;
+highestFc = 8000;
+filtWidthOct = 2.00;
+pkGaindB = 0;
+nonPkGaindB = -120;
+atkMS = 120;
+highSlope = 1.29;
+    bpos=0; 
+    curblock=0;
+    lastblock=65536;
+    window=120000;
+    hist=240000;
+    invfsize = 1/fftsize;
+    halfLen = fftsize*0.5;
+    tmp=0;
+    tsc = $PI / halfLen;
+    loop(halfLen,
+      window[tmp]=0.42-0.50*cos(tmp*tsc)+0.08*cos(2*tmp*tsc);
+      tmp+=1;
+    );
+  lowband = halfLen*lowestFc*2.0/srate;
+  lowband = min(max(lowband,0),halfLen)|0;
+  hiband = halfLen*highestFc*2.0/srate;
+  hiband = min(max(hiband,0),halfLen)|0;
+  lowband > hiband ? ( t = hiband; hiband = lowband; lowband = t; );
+  peakgain = 2 ^ (pkGaindB/6) * invfsize;
+  nonpeakgain = 2 ^ (nonPkGaindB/6) * invfsize;
+  attack= atkMS < 1 ? 0 : exp(-halfLen/(atkMS*0.001*srate));
+  minpeakval = pow(2, -90/6.0);
+  hislope = highSlope/halfLen;
+
+@sample
+bpos >= fftsize ? (
+
+  t=curblock;
+  curblock=lastblock;
+  lastblock=t;
+
+  fft(curblock,fftsize);
+  fft_permute(curblock,fftsize);
+  peakpos=curfilterpos;
+  peakval=minpeakval;
+  i=lowband*2;
+  gain=0;
+  loop(max(hiband-lowband,1), 
+    a=curblock[i];
+    b=curblock[i+1];
+    cv=(a*a+b*b)*gain*gain;
+    gain+=hislope;
+    cv > peakval ? ( peakpos=i; peakval=cv; );
+    i+=2;
+  );
+
+  peakpos *= 0.5;
+  curfilterpos = (curfilterpos < 0 ? peakpos : curfilterpos*attack + peakpos*(1-attack));
+
+  curfilterpos >= 0 ? 
+  (
+    filtersize_l=curfilterpos*filtWidthOct*0.25;
+    filtersize_r=curfilterpos*filtWidthOct*0.5;
+  ) : filtersize_l=filtersize_r=0;
+ 
+  ifiltersize_l=1/filtersize_l; 
+  ifiltersize_r=1/filtersize_r; 
+  i=0;
+  pp=0;
+  ifilterpos=(curfilterpos+0.5)|0;
+  loop(halfLen, 
+    i2=fftsize*2-i-2;
+    adjust=nonpeakgain;
+    curfilterpos >= 0 ? (
+      filtersize_l<=1 ? (
+        pp==ifilterpos ? adjust=peakgain;
+      ) : (
+        dist=pp-curfilterpos;
+        dist < 0 ? (
+          dist=-dist;
+          dist <= filtersize_l ? (
+            sc = dist*ifiltersize_l; 
+            sc*=sc;
+            adjust = peakgain*(1-sc) + nonpeakgain*sc;
+          );
+        ) : (
+          dist <= filtersize_r ? (
+            sc = dist*ifiltersize_r;
+            sc*=sc;
+            adjust = peakgain*(1-sc) + nonpeakgain*sc;
+          );
+        );
+      );
+
+    );
+     
+
+
+
+    curblock[i]*=adjust; 
+    curblock[i+1]*=adjust;
+    curblock[i2]*=adjust; 
+    curblock[i2+1]*=adjust;
+    i+=2; 
+    pp+=1;
+  );
+  fft_ipermute(curblock,fftsize);
+  ifft(curblock,fftsize);
+  bpos=0;
+);
+
+// make sample
+w=window[bpos*0.5];
+iw=1-w;
+
+os0=spl0;
+os1=spl1;
+
+spl0=(curblock[bpos]*w + lastblock[fftsize+bpos]*iw);
+spl1=(curblock[bpos+1]*w + lastblock[fftsize+bpos+1]*iw);
+
+lastblock[bpos]=hist[bpos];
+lastblock[bpos+1]=hist[bpos+1];
+lastblock[fftsize+bpos]=os0;
+lastblock[fftsize+bpos+1]=os1;
+
+hist[bpos]=os0;
+hist[bpos+1]=os1;
+bpos+=2;

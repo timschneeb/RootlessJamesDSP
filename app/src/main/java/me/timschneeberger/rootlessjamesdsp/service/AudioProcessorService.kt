@@ -59,11 +59,22 @@ class AudioProcessorService : Service() {
     private var isStreamMuted = false
     private var isProcessorIdle = false
     private var suspendOnIdle = false
+    private var recordAudioSessionId: Int? = null
 
     private lateinit var sharedPreferences: SharedPreferences
     private val preferencesListener: SharedPreferences.OnSharedPreferenceChangeListener = SharedPreferences.OnSharedPreferenceChangeListener {
             _, key ->
         loadFromPreferences(key)
+    }
+
+    private val projectionCallback = object: MediaProjection.Callback() {
+        override fun onStop() {
+            Toast.makeText(this@AudioProcessorService,
+                getString(R.string.capture_permission_revoked_toast), Toast.LENGTH_LONG).show()
+            notificationManager.cancel(NOTIFICATION_ID_SERVICE)
+            Timber.tag(TAG).w("Capture permission revoked. Stopping service.")
+            stopSelf()
+        }
     }
 
     private val mBinder: IBinder = LocalBinder()
@@ -106,18 +117,6 @@ class AudioProcessorService : Service() {
         })
 
         audioSessionManager.sessionDatabase.registerOnSessionChangeListener(onSessionChangeListener)
-
-        // TODO use this & add unregister call
-        audioManager.registerAudioRecordingCallback(object: AudioManager.AudioRecordingCallback() {
-            override fun onRecordingConfigChanged(configs: MutableList<AudioRecordingConfiguration>?) {
-                super.onRecordingConfigChanged(configs)
-                configs?.forEach { it ->
-                    Timber.i("================ onRecordingConfigChanged: csid=${it.clientAudioSessionId}; src=${it.audioSource}")
-                    Timber.i("onRecordingConfigChanged: Is client silenced? ${it.isClientSilenced}")
-                }
-            }
-        }, Handler(Looper.getMainLooper()))
-
 
         engine = JamesDspEngine(this, engineCallbacks)
         engine.syncWithPreferences()
@@ -193,6 +192,8 @@ class AudioProcessorService : Service() {
 
         mediaProjectionManager = SystemServices.get(this, MediaProjectionManager::class.java)
         mediaProjection = mediaProjectionManager!!.getMediaProjection(Activity.RESULT_OK, mediaProjectionStartIntent!!)
+
+        mediaProjection?.registerCallback(projectionCallback, Handler(Looper.getMainLooper()))
 
         if (mediaProjection != null) {
             startRecording()
@@ -272,6 +273,7 @@ class AudioProcessorService : Service() {
         recordBuilder.setBufferSizeInBytes(bufferSizeBytes)
         recordBuilder.setAudioPlaybackCaptureConfig(createAudioPlaybackCaptureConfig(mediaProjection))
         val recorder = recordBuilder.build()
+        recordAudioSessionId = recorder.audioSessionId
 
         val track = AudioTrack.Builder().setAudioFormat(
             AudioFormat.Builder()
@@ -335,6 +337,7 @@ class AudioProcessorService : Service() {
                 Timber.tag(TAG).e(e)
                 // ignore
             } finally {
+                recordAudioSessionId = null
                 recorder.stop()
                 track.stop()
                 recorder.release()
@@ -387,6 +390,8 @@ class AudioProcessorService : Service() {
         stopForeground(true)
 
         sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_STOPPED))
+
+        mediaProjection?.unregisterCallback(projectionCallback)
 
         audioSessionManager.sessionDatabase.unregisterOnSessionChangeListener(onSessionChangeListener)
         audioSessionManager.destroy()

@@ -1,0 +1,59 @@
+desc: Depth surround
+author: @thepbone
+// reimplementation
+
+strength:800<0,1200>Strength
+
+@init
+strength = 800.00;
+
+function DepthSurround_Init() (
+    req = fractionalDelayLineInit(this.delay0, 256);
+    ptr1 = ptr1 + req;
+    req = fractionalDelayLineInit(this.delay1, 256);
+    
+    fractionalDelayLineSetDelay(this.delay0, 20);
+    fractionalDelayLineSetDelay(this.delay1, 140);
+);
+
+function DepthSurround_SetStrength(strength) (
+    this.strength = strength;
+    this.over500 = strength >= 500;
+    this.enabled = strength != 0;
+    _gain = pow(10.f,((strength / 1000.f) * 10.f - 15.f) / 20.f);
+    abs(_gain) > 1.f ? (
+        _gain = 1.f;
+    );
+    this.gain = _gain;
+);
+
+function DepthSurround_ProcessSamples(left right) (
+    _gain = this.gain;
+    this.over500 ? (
+        _gain = -this.gain;
+    );
+                  
+    this.prev0 = this.gain * fractionalDelayLineProcess(this.delay0, left + this.prev1);
+    this.prev1 = _gain * fractionalDelayLineProcess(this.delay1, right + this.prev0);
+
+    this.outL = this.prev0 + sampleLeft;
+    this.outR = this.prev1 + sampleRight;
+);
+
+function DepthSurround_GetProcessedL() (
+    this.outL;
+);
+
+function DepthSurround_GetProcessedR() (
+    this.outR;
+);
+
+depth.DepthSurround_Init();
+depth.DepthSurround_SetStrength(strength);
+
+@sample
+depth.DepthSurround_ProcessSamples(spl0, spl1);
+spl0 = depth.DepthSurround_GetProcessedL();
+spl1 = depth.DepthSurround_GetProcessedR();
+
+

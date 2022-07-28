@@ -1,0 +1,25 @@
+desc: 3-Band splitting
+freqSplit1:400<1,24000,1>Split 1 at frequency (Hz)
+freqSplit2:10000<1,24000,1>Split 2 at frequency (Hz)
+bandPart1:-6<-30,15,1>Low frequencies gain (dB)
+bandPart2:0<-30,15,1>Mid frequencies gain (dB)
+bandPart3:-13<-30,15,1>High frequencies gain (dB)
+
+@init
+freqSplit1 = 400;
+freqSplit2 = 10000;
+bandPart1 = -6;
+bandPart2 = 0;
+bandPart3 = -13;
+
+DB_2_LOG = 0.11512925464970228420089957273422;
+iirBPS1 = 0;
+reqSize = IIRBandSplitterInit(iirBPS1, srate, freqSplit1, freqSplit2);
+iirBPS2 = iirBPS1 + reqSize;
+reqSize = IIRBandSplitterInit(iirBPS2, srate, freqSplit1, freqSplit2);
+
+@sample
+IIRBandSplitterProcess(iirBPS1, spl0, low1, mid1, high1);
+IIRBandSplitterProcess(iirBPS2, spl1, low2, mid2, high2);
+spl0 = low1 * exp(bandPart1 * DB_2_LOG) + mid1 * exp(bandPart2 * DB_2_LOG) + high1 * exp(bandPart3 * DB_2_LOG);
+spl1 = low2 * exp(bandPart1 * DB_2_LOG) + mid2 * exp(bandPart2 * DB_2_LOG) + high2 * exp(bandPart3 * DB_2_LOG);

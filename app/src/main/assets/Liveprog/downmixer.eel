@@ -1,0 +1,7 @@
+desc: Stereo to mono downmixer
+
+@init
+;
+
+@sample
+spl0 = spl1 = spl0 / 2 + spl1 / 2;

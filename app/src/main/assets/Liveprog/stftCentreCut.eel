@@ -1,0 +1,55 @@
+desc: STFT CentreCut
+
+@init
+fftsize = 4096;
+bufpos = idx = 0;
+stftIndexLeft = 0;
+stftIndexRight = 20;
+memreq = stftCheckMemoryRequirement(stftIndexLeft, fftsize, 4, 1.8);
+memreq = stftCheckMemoryRequirement(stftIndexRight, fftsize, 4, 1.8);
+stftStructLeft = 40;
+stftStructRight = stftStructLeft + memreq;
+requiredSamples = stftInit(stftIndexLeft, stftStructLeft);
+requiredSamples = stftInit(stftIndexRight, stftStructRight);
+inBufLeft = stftStructRight + memreq + 2; // Pointer to memory
+outBufLeft = inBufLeft + fftsize + 2; // Pointer to memory plus safe zone
+inBufRight = outBufLeft + fftsize + 2; // ...
+outBufRight = inBufRight + fftsize + 2; // ...
+
+@sample
+inBufLeft[bufpos] = spl0;
+spl0 = outBufLeft[bufpos];
+inBufRight[bufpos] = spl1;
+spl1 = outBufRight[bufpos];
+bufpos += 1;
+bufpos >= requiredSamples ?
+(
+  cplexLen1 = stftForward(inBufLeft, stftIndexLeft, stftStructLeft, 1);
+  cplexLen2 = stftForward(inBufRight, stftIndexRight, stftStructRight, 1);
+  idx=0;
+
+  loop(cplexLen1 / 2, 
+  sumR = inBufLeft[idx] + inBufRight[idx];
+  sumI = inBufLeft[idx + 1] + inBufRight[idx + 1];
+  diffR = inBufLeft[idx] - inBufRight[idx];
+  diffI = inBufLeft[idx + 1] - inBufRight[idx + 1];
+  sumSq = sumR*sumR + sumI*sumI;
+  diffSq = diffR*diffR + diffI*diffI;
+  alpha = 0.0;
+  sumSq > $EPS ? (alpha = 0.5 - sqrt(diffSq / sumSq) * 0.5;);
+   cR = sumR * alpha;
+   cI = sumI * alpha;
+   inBufLeft[idx] = inBufLeft[idx] - cR;
+   inBufLeft[idx + 1] = inBufLeft[idx + 1] - cI;
+   inBufRight[idx] = inBufRight[idx] - cR;
+   inBufRight[idx + 1] = inBufRight[idx + 1] - cI;
+  idx+=2);
+  error = stftBackward(inBufLeft, stftIndexLeft, stftStructLeft, 1);
+  error = stftBackward(inBufRight, stftIndexRight, stftStructRight, 1);
+  idx = 0;
+  loop(requiredSamples,
+  outBufLeft[idx] = inBufLeft[idx];
+  outBufRight[idx] = inBufRight[idx];
+  idx+=1);
+  bufpos = 0;
+);

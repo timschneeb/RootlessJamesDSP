@@ -1,0 +1,19 @@
+desc: Fractional delay line
+leftDelay:15.1<0,1024,0.1>Fractional delay L (samples) 
+rightDelay:4.2<0,1024,0.1>Fractional delay R (samples) 
+
+@init
+leftDelay = 15.1;
+rightDelay = 4.2;
+
+ptr1 = 0;
+req = fractionalDelayLineInit(ptr1, 1024);
+ptr2 = ptr1 + req;
+req = fractionalDelayLineInit(ptr2, 1024);
+
+fractionalDelayLineSetDelay(ptr1, leftDelay);
+fractionalDelayLineSetDelay(ptr2, rightDelay);
+
+@sample
+spl0 = fractionalDelayLineProcess(ptr1, spl0);
+spl1 = fractionalDelayLineProcess(ptr2, spl1);

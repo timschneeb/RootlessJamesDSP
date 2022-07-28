@@ -1,0 +1,18 @@
+// This effect Copyright (C) 2004 and later Cockos Incorporated
+// License: GPL - http://www.gnu.org/licenses/gpl.html
+// based on the algorithm in Steve Harris's plug-in package: http://plugin.org.uk/
+
+desc:DC filter
+//tags: filter repair
+//author: Cockos
+
+@init
+itm1=itm2=otm1=otm2=0;
+
+@sample
+otm1=0.999*otm1 + spl0 - itm1;
+itm1=spl0;
+spl0=otm1;
+otm2=0.999*otm2 + spl1 - itm2;
+itm2=spl1;
+spl1=otm2;

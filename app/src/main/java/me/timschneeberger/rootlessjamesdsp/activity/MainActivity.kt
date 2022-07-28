@@ -27,6 +27,7 @@ import me.timschneeberger.rootlessjamesdsp.model.ProcessorMessage
 import me.timschneeberger.rootlessjamesdsp.native.JamesDspWrapper
 import me.timschneeberger.rootlessjamesdsp.service.AudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.utils.ApplicationUtils
+import me.timschneeberger.rootlessjamesdsp.utils.AssetManagerExtensions.installPrivateAssets
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
@@ -85,6 +86,11 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
+        val firstBoot = getSharedPreferences(Constants.PREF_VAR, Context.MODE_PRIVATE)
+            .getBoolean(getString(R.string.key_firstboot), true)
+        if(firstBoot)
+            assets.installPrivateAssets(this)
+
         mediaProjectionManager = SystemServices.get(this, MediaProjectionManager::class.java)
 
         prefs = getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
@@ -114,8 +120,6 @@ class MainActivity : AppCompatActivity() {
         // Check permissions and launch onboarding if required
         if(checkSelfPermission(Manifest.permission.DUMP) == PackageManager.PERMISSION_DENIED ||
             checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_DENIED) {
-            val firstBoot = getSharedPreferences(Constants.PREF_VAR, Context.MODE_PRIVATE)
-                                .getBoolean(getString(R.string.key_firstboot), true)
             Timber.tag(TAG).i("Launching onboarding (first boot: $firstBoot)")
 
             val onboarding = Intent(this, OnboardingActivity::class.java)

@@ -100,7 +100,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/onboarding_adb_shizuku_install_instruction"
-                        android:textAppearance="?attr/textAppearanceLabelLarge" />
+                        android:textAppearance="?attr/textAppearanceBody2" />
 
                     <Button
                         android:id="@+id/onboarding_adb_shizuku_install_button"
@@ -128,7 +128,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/onboarding_adb_shizuku_open_instruction"
-                        android:textAppearance="?attr/textAppearanceLabelLarge" />
+                        android:textAppearance="?attr/textAppearanceBody2" />
 
                     <Button
                         android:id="@+id/onboarding_adb_shizuku_open_button"
@@ -157,7 +157,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/onboarding_adb_shizuku_grant_instruction"
-                        android:textAppearance="?attr/textAppearanceLabelLarge" />
+                        android:textAppearance="?attr/textAppearanceBody2" />
 
                     <Button
                         android:id="@+id/onboarding_adb_shizuku_grant_button"
@@ -185,7 +185,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/onboarding_adb_manual_instruction"
-                android:textAppearance="?attr/textAppearanceLabelLarge" />
+                android:textAppearance="?attr/textAppearanceBody2" />
 
             <Button
                 android:id="@+id/onboarding_adb_manual_button"

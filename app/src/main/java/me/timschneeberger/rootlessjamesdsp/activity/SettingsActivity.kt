@@ -23,6 +23,7 @@ import me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
 import me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
 import me.timschneeberger.rootlessjamesdsp.service.NotificationListenerService
 import me.timschneeberger.rootlessjamesdsp.utils.ApplicationUtils
+import me.timschneeberger.rootlessjamesdsp.utils.AssetManagerExtensions.installPrivateAssets
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
 import java.io.File
@@ -100,6 +101,11 @@ class SettingsActivity : AppCompatActivity() {
             }
             findPreference<Preference>(getString(R.string.key_troubleshooting_dontkillmyapp))?.setOnPreferenceClickListener {
                 DokiActivity.start(requireContext())
+                true
+            }
+            findPreference<Preference>(getString(R.string.key_troubleshooting_repair_assets))?.setOnPreferenceClickListener {
+                requireContext().assets.installPrivateAssets(requireContext())
+                requireContext().showAlert(R.string.success, R.string.troubleshooting_repair_assets_success)
                 true
             }
             findPreference<Preference>(getString(R.string.key_troubleshooting_notification_access))?.setOnPreferenceClickListener {

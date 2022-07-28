@@ -9,6 +9,7 @@
     <string name="key_troubleshooting_dontkillmyapp">troubleshooting_dontkillmyapp</string>
     <string name="key_troubleshooting_dump">troubleshooting_dump</string>
     <string name="key_troubleshooting_notification_access">troubleshooting_notification_access</string>
+    <string name="key_troubleshooting_repair_assets">troubleshooting_repair_assets</string>
     <string name="key_session_detection_method">session_detection_method</string>
     <string name="key_session_continuous_polling_rate">session_continuous_polling_rate</string>
     <string name="key_session_continuous_polling">session_continuous_polling</string>

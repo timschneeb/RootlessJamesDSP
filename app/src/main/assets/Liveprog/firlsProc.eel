@@ -1,0 +1,41 @@
+desc: Least square FIR design (firls) and processing (Direct form)
+
+@init
+N = 53;
+F = 0;
+gridLen = importFLTFromStr("0,0.01,0.02,0.03,0.04,0.05,0.06,0.07,0.08,0.09,0.1,0.11,0.12,0.13,0.14,0.15,0.16,0.17,0.18,0.19,0.2,0.38,0.4,0.55,0.562,0.585,0.6,0.78,0.79,0.8,0.81,0.82,0.83,0.84,0.85,0.86,0.87,0.88,0.89,0.9,0.91,0.92,0.93,0.94,0.95,0.96,0.97,0.98,0.99,1", F);
+M = F + gridLen;
+gridLen = importFLTFromStr("0.5,0.613497624934887,0.702254248593737,0.746922085148784,0.737764129073788,0.676776695296637,0.577254248593737,0.460891383739942,0.353053686926882,0.277248368952908,0.25,0.277248368952908,0.353053686926881,0.460891383739942,0.577254248593737,0.676776695296637,0.737764129073788,0.746922085148784,0.702254248593737,0.613497624934887,0.5,2.3,1,1,-0.2,-0.2,1,1,0.9938,0.92,0.8498,0.7832,0.7202,0.6608,0.605,0.5528,0.5042,0.4592,0.4178,0.38,0.3458,0.3152,0.2882,0.2648,0.245,0.2288,0.2162,0.2072,0.2018,0.2", M);
+W = -1;
+h = M + gridLen;
+filtertype = 0; // 0 == Regular filter, 1 == Hilbert transformer, 2 == Differentiator
+printf("Grid length: %d\n", gridLen);
+impulseResponseLength = firls(N, F, M, W, gridLen, filtertype, h);
+impulseResponseLength < 0 ?
+(
+printf("Grid length must be a even number\n");
+)
+:
+(
+idx = 0;
+loop(impulseResponseLength, printf("%1.18f,", h[idx]); idx += 1;);
+);
+printf("\nRoots of polynomial:\n");
+imagEmp = h + impulseResponseLength;
+zeroRe = imagEmp + impulseResponseLength;
+zeroIm = zeroRe + impulseResponseLength;
+degree = roots(h, imagEmp, impulseResponseLength, zeroRe, zeroIm);
+// Sort polynomial
+sortedRe = zeroIm + impulseResponseLength;
+sortedIm = sortedRe + impulseResponseLength;
+cplxpair(zeroRe, zeroIm, impulseResponseLength, sortedRe, sortedIm);
+idx = 0;
+loop(impulseResponseLength, printf("%1.18f %1.18fi\n", sortedRe[idx], sortedIm[idx]); idx += 1;);
+ptr1 = sortedIm + impulseResponseLength;
+req = FIRInit(ptr1, impulseResponseLength);
+ptr2 = ptr1 + req;
+req = FIRInit(ptr2, impulseResponseLength);
+
+@sample
+spl0 = FIRProcess(ptr1, spl0, h);
+spl1 = FIRProcess(ptr2, spl1, h);

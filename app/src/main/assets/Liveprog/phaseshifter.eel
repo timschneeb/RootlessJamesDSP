@@ -1,0 +1,84 @@
+desc: 6-stage phase shifter
+author: @thepbone
+//reimplemented from: https://www.musicdsp.org/en/latest/Effects/78-phaser-code.html
+
+//minFreq:440<10,24000>Minimum frequency (Hz)
+//maxFreq:1600<10,24000>Maximum frequency (Hz)
+//phaserRate:0.5<0,10>Rate (cps)
+//phaserDepth:1<0,1>Depth
+//phaserFb:0.7<0,0.99>Feedback
+
+@init
+minFreq = 440;
+maxFreq = 1600;
+phaserRate = 0.5;
+phaserDepth = 1;
+phaserFb = 0.7;
+
+function AllPassDelay_setDelay(delay)(
+     this.a1 = (1 - delay)/(1 + delay);
+);
+function AllPassDelay_process(sample)(
+     y = sample * -this.a1  + this.zm1;
+     this.zm1 = y * this.a1 + sample;
+     y;
+);
+function Phaser_init()(
+     this.fb = 0.7;  
+     this.lfoPhase = 0;  
+     this.depth = 1;
+     this.zm1 = 0;
+     this.lfoInc = this.dmin = this.dmax = 0;
+);
+function Phaser_setRange(min max)(
+     this.dmin = min / (srate/2);
+     this.dmax = max / (srate/2);
+);
+function Phaser_setRate(rate)(
+     this.lfoInc = 2 * $pi * (rate/srate);
+);
+function Phaser_setFeedback(fb)(
+     this.fb = fb;
+);
+function Phaser_setDepth(depth)(
+     this.depth = depth;
+);
+function Phaser_process(sample)(
+     d  = this.dmin + (this.dmax-this.dmin) * ((sin( this.lfoPhase ) + 1)/2);
+    
+     this.lfoPhase += this.lfoInc;
+     this.lfoPhase >= $pi * 2 ? (
+           this.lfoPhase -= $pi * 2;
+     );
+
+     alp1.AllPassDelay_setDelay(d);
+     alp2.AllPassDelay_setDelay(d);
+     alp3.AllPassDelay_setDelay(d);
+     alp4.AllPassDelay_setDelay(d);
+     alp5.AllPassDelay_setDelay(d);
+     alp6.AllPassDelay_setDelay(d);
+
+     y = alp1.AllPassDelay_process(alp2.AllPassDelay_process(
+           alp3.AllPassDelay_process(alp4.AllPassDelay_process(
+           alp5.AllPassDelay_process(alp6.AllPassDelay_process(sample + this.zm1 * this.fb))))));
+    
+     zm1 = y;
+     sample + y * this.depth;
+);
+
+//--- Init
+phaserL.Phaser_init();
+phaserL.Phaser_setRange(minFreq, maxFreq);
+phaserL.Phaser_setRate(phaserRate);
+phaserL.Phaser_setFeedback(phaserFeedback);
+phaserL.Phaser_setDepth(phaserDepth);
+
+phaserR.Phaser_init();
+phaserR.Phaser_setRange(minFreq, maxFreq);
+phaserR.Phaser_setRate(phaserRate);
+phaserR.Phaser_setFeedback(phaserFeedback);
+phaserR.Phaser_setDepth(phaserDepth);
+
+@sample
+spl0 = phaserL.Phaser_process(spl0);
+spl1 = phaserR.Phaser_process(spl1);

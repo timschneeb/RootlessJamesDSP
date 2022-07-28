@@ -1,0 +1,11 @@
+desc: Gain control
+dB:-8<-30,15,1>Volume gain (dB)
+
+@init
+dB = -8;
+DB_2_LOG = 0.11512925464970228420089957273422;
+gainLin = exp(dB * DB_2_LOG);
+
+@sample
+spl0 = spl0 * gainLin;
+spl1 = spl1 * gainLin;

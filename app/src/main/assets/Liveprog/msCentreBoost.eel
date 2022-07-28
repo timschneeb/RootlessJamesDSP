@@ -1,0 +1,29 @@
+desc: MS centre boost
+
+midBoostDB:3<-15,15>Mid boost (dB)
+sideBoostDB:0<-15,15>Side boost (dB)
+
+
+@init
+midBoostDB = 3.00;
+sideBoostDB = 0.00;
+
+function db2mag(db)
+(
+  pow(10, db / 20);
+);
+function mag2db(mag)
+(
+  20 * log10(mag);
+);
+
+midBoost=db2mag(midBoostDB);
+sideBoost=db2mag(sideBoostDB);
+
+@sample
+mid= (spl0 + spl1) * 0.5;
+side= (spl0 - spl1) * 0.5;
+mid = mid * midBoost;
+side = side * sideBoost;
+spl0 = mid - side;
+spl1 = mid + side;
