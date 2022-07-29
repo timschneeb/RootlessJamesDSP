@@ -21,8 +21,10 @@ import me.timschneeberger.rootlessjamesdsp.ServiceNotificationHelper
 import me.timschneeberger.rootlessjamesdsp.model.AudioEncoding
 import me.timschneeberger.rootlessjamesdsp.model.MutedSessionEntry
 import me.timschneeberger.rootlessjamesdsp.model.ProcessorMessage
+import me.timschneeberger.rootlessjamesdsp.model.RestrictedSessionEntry
 import me.timschneeberger.rootlessjamesdsp.native.JamesDspEngine
 import me.timschneeberger.rootlessjamesdsp.native.JamesDspWrapper
+import me.timschneeberger.rootlessjamesdsp.session.RestrictedSessionManager
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_PROCESSOR_MESSAGE
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_HARD_REBOOT_CORE
@@ -102,6 +104,7 @@ class AudioProcessorService : Service() {
         audioSessionManager = AudioSessionManager(this)
         audioSessionManager.sessionDatabase.setOnSessionLossListener(onSessionLossListener)
         audioSessionManager.sessionDatabase.registerOnSessionChangeListener(onSessionChangeListener)
+        audioSessionManager.sessionPolicyDatabase.registerOnRestrictedSessionChangeListener(onSessionPolicyChangeListener)
 
         // Setup core engine
         engine = JamesDspEngine(this, engineCallbacks)
@@ -199,6 +202,8 @@ class AudioProcessorService : Service() {
         // Unregister receivers and release resources
         unregisterLocalReceiver(broadcastReceiver)
         mediaProjection?.unregisterCallback(projectionCallback)
+
+        audioSessionManager.sessionPolicyDatabase.unregisterOnRestrictedSessionChangeListener(onSessionPolicyChangeListener)
         audioSessionManager.sessionDatabase.unregisterOnSessionChangeListener(onSessionChangeListener)
         audioSessionManager.destroy()
 
@@ -278,6 +283,21 @@ class AudioProcessorService : Service() {
         }
     }
 
+    // Session policy change listener
+    private val onSessionPolicyChangeListener = object : RestrictedSessionManager.OnRestrictedSessionChangeListener {
+        override fun onRestrictedSessionChanged(sessionList: HashMap<String, RestrictedSessionEntry>, isMinorUpdate: Boolean) {
+            // TODO add disable setting
+
+            if(!isMinorUpdate) {
+                Timber.tag(TAG).d("onRestrictedSessionChanged: major update detected; requesting soft-reboot")
+                requestAudioRecordRecreation()
+            }
+            else {
+                Timber.tag(TAG).d("onRestrictedSessionChanged: minor update detected")
+            }
+        }
+    }
+
     private fun loadFromPreferences(key: String){
         when (key) {
             getString(R.string.key_powersave_suspend) -> {
@@ -294,6 +314,9 @@ class AudioProcessorService : Service() {
             return
         }
 
+        // TODO
+        audioSessionManager.sessionDatabase.setExcludedUids(audioSessionManager.sessionPolicyDatabase.getRestrictedUids())
+        audioSessionManager.pollOnce(false)
         recreateRecorderRequested = true
     }
 
@@ -453,7 +476,7 @@ class AudioProcessorService : Service() {
     }
 
     // Broadcast processor message
-    private fun sendProcessorMessage(type: ProcessorMessage.Type, params: Map<ProcessorMessage.Param, Serializable>? = null){
+    private fun broadcastProcessorMessage(type: ProcessorMessage.Type, params: Map<ProcessorMessage.Param, Serializable>? = null){
         val intent = Intent(ACTION_PROCESSOR_MESSAGE)
         intent.putExtra(ProcessorMessage.TYPE, type.value)
         params?.forEach { (k, v) ->
@@ -466,13 +489,13 @@ class AudioProcessorService : Service() {
     private inner class EngineCallbacks : JamesDspWrapper.JamesDspCallbacks
     {
         override fun onLiveprogOutput(message: String) {
-            sendProcessorMessage(ProcessorMessage.Type.LiveprogOutput, mapOf(
+            broadcastProcessorMessage(ProcessorMessage.Type.LiveprogOutput, mapOf(
                 ProcessorMessage.Param.LiveprogStdout to message
             ))
         }
 
         override fun onLiveprogExec(id: String) {
-            sendProcessorMessage(ProcessorMessage.Type.LiveprogExec, mapOf(
+            broadcastProcessorMessage(ProcessorMessage.Type.LiveprogExec, mapOf(
                 ProcessorMessage.Param.LiveprogFileId to id
             ))
             Timber.tag(TAG).v("onLiveprogExec: $id")
@@ -483,7 +506,7 @@ class AudioProcessorService : Service() {
             id: String,
             errorMessage: String?
         ) {
-            sendProcessorMessage(ProcessorMessage.Type.LiveprogResult, mapOf(
+            broadcastProcessorMessage(ProcessorMessage.Type.LiveprogResult, mapOf(
                 ProcessorMessage.Param.LiveprogResultCode to resultCode,
                 ProcessorMessage.Param.LiveprogFileId to id,
                 ProcessorMessage.Param.LiveprogErrorMessage to (errorMessage ?: "")
@@ -492,7 +515,7 @@ class AudioProcessorService : Service() {
         }
 
         override fun onVdcParseError() {
-            sendProcessorMessage(ProcessorMessage.Type.VdcParseError)
+            broadcastProcessorMessage(ProcessorMessage.Type.VdcParseError)
             Timber.tag(TAG).v("onVdcParseError")
         }
     }
@@ -512,11 +535,16 @@ class AudioProcessorService : Service() {
     }
 
     private fun createAudioPlaybackCaptureConfig(mediaProjection: MediaProjection): AudioPlaybackCaptureConfiguration {
-        return AudioPlaybackCaptureConfiguration.Builder(mediaProjection)
+        val builder =  AudioPlaybackCaptureConfiguration.Builder(mediaProjection)
             .addMatchingUsage(AudioAttributes.USAGE_MEDIA)
             .addMatchingUsage(AudioAttributes.USAGE_GAME)
             .addMatchingUsage(AudioAttributes.USAGE_UNKNOWN)
-            .build()
+
+        val excludedUids = audioSessionManager.sessionPolicyDatabase.getRestrictedUids()
+        excludedUids.forEach { builder.excludeUid(it) }
+        Timber.d("createAudioPlaybackCaptureConfig: Excluded UIDs: %s", excludedUids.joinToString("; ") { it.toString() })
+
+        return builder.build()
     }
 
     // Determine HAL sampling rate

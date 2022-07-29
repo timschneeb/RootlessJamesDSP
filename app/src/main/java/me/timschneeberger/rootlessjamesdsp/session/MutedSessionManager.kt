@@ -16,6 +16,7 @@ class MutedSessionManager(private val context: Context) {
     private val sessionList = hashMapOf<Int,MutedSessionEntry>()
     private val changeCallbacks = mutableListOf<OnSessionChangeListener>()
     private var sessionLossListener: OnSessionLossListener? = null
+    private var excludedUids = arrayOf<Int>()
 
     fun destroy()
     {
@@ -42,7 +43,7 @@ class MutedSessionManager(private val context: Context) {
             !dump.sessions.contains(it.key)
         }
         val addedSessions = dump.sessions.filter {
-            !sessionList.contains(it.key)
+            !sessionList.contains(it.key) && !excludedUids.contains(it.value.uid)
         }
 
         addedSessions.forEach next@ {
@@ -50,16 +51,16 @@ class MutedSessionManager(private val context: Context) {
             val data = it.value
             val name = context.packageManager.getNameForUid(it.value.uid)
             if (data.uid == myUid() || name == context.packageName) {
-                Timber.tag(TAG).d("Skipped session $sid of uid $data ($name)")
+                Timber.tag(TAG).d("Skipped session $sid ($data)")
                 return@next
             }
             if (sid == 0) {
-                Timber.tag(TAG).w("Session 0 skipped (owner uid $data; $name)");
+                Timber.tag(TAG).w("Session 0 skipped ($data)");
                 return@next
             }
 
             if (!AudioSessionEntry.isUsageRecordable(it.value.usage)) {
-                Timber.tag(TAG).d("Skipped session $sid of uid $data ($name) due to usage '${it.value.usage}'")
+                Timber.tag(TAG).d("Skipped session $sid due to usage ($data)")
                 return@next
             }
 
@@ -68,7 +69,7 @@ class MutedSessionManager(private val context: Context) {
 
         removedSessions.forEach {
             Timber.tag(TAG)
-                .d("Removed session: session ${it.key}; uid: ${it.value.audioSession.uid}; package: ${it.value.audioSession.packageName}")
+                .d("Removed session: session ${it.key}; data: ${it.value.audioSession}")
             it.value.dynamicsProcessing?.release()
             sessionList.remove(it.key)
         }
@@ -80,7 +81,12 @@ class MutedSessionManager(private val context: Context) {
     }
 
     private fun addSession(sid: Int, data: AudioSessionEntry){
-        Timber.tag(TAG).d("Added session: session $sid; uid: ${data.uid}; package: ${data.packageName}")
+        if(excludedUids.contains(data.uid)) {
+            Timber.tag(TAG).d("Rejected session $sid from excluded uid ${data.uid} ($data)")
+            return
+        }
+
+        Timber.tag(TAG).d("Added session: sid=$sid; $data")
 
         try {
             val muteEffect = DynamicsProcessing(sid)
@@ -120,9 +126,21 @@ class MutedSessionManager(private val context: Context) {
                 .e("Failed to attach DynamicsProcessing to session $sid (data: $data; message: ${ex.message})")
             if(data.usage.uppercase().contains("MEDIA") || data.usage.uppercase().contains("GAME") || data.usage.uppercase().contains("UNKNOWN"))
             {
-                // todo inappropriate callback
                 sessionLossListener?.onSessionLost(sid)
             }
+        }
+    }
+
+    fun setExcludedUids(uids: Array<Int>) {
+        excludedUids = uids
+
+        val excludedSessions = sessionList.filter { excludedUids.contains(it.value.audioSession.uid) }
+        excludedSessions.forEach { (_, session) ->
+            session.dynamicsProcessing?.enabled = false
+            session.dynamicsProcessing?.release()
+        }
+        excludedSessions.map { it.key }.forEach { sid ->
+            sessionList.remove(sid)
         }
     }
 

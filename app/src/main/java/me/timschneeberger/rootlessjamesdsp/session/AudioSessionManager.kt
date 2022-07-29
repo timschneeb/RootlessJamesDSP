@@ -18,6 +18,7 @@ import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.session.dump.DumpManager
 import me.timschneeberger.rootlessjamesdsp.model.SessionUpdateMode
 import me.timschneeberger.rootlessjamesdsp.service.NotificationListenerService
+import me.timschneeberger.rootlessjamesdsp.session.dump.data.IRestrictedSessionInfoDump
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.unregisterLocalReceiver
@@ -25,56 +26,41 @@ import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import timber.log.Timber
 
 
-class AudioSessionManager(val context: Context)
+class AudioSessionManager(val context: Context) : DumpManager.OnDumpMethodChangeListener,
+    BroadcastReceiver(), MediaSessionManager.OnActiveSessionsChangedListener
 {
+    // System services
     private val audioManager = SystemServices.get(context, AudioManager::class.java)
     private val sessionManager = SystemServices.get(context, MediaSessionManager::class.java)
 
-    var sessionUpdateMode: SessionUpdateMode = SessionUpdateMode.Listener
+    // Session polling settings
+    private var sessionUpdateMode: SessionUpdateMode = SessionUpdateMode.Listener
         set(value) {
             field = value
             updatePollingMode()
         }
-    var pollingTimeout = 3000L
+    private var pollingTimeout = 3000L
 
+    // Polling job
     private val pollingMutex = Mutex()
     private val pollingScope = CoroutineScope(Dispatchers.Main)
     private var continuousPollingJob: Job? = null
-    var sessionDatabase: MutedSessionManager = MutedSessionManager(context)
 
-    private var activeSessionsChangedListener: MediaSessionManager.OnActiveSessionsChangedListener
-    private var audioPlaybackCallback: AudioManager.AudioPlaybackCallback
-    private var sessionChangedReceiver: BroadcastReceiver
+    // Callbacks
+    private val audioPlaybackCallback: AudioManager.AudioPlaybackCallback
 
+    // Preferences
+    private val preferencesListener: SharedPreferences.OnSharedPreferenceChangeListener
     private val sharedPreferences: SharedPreferences =
         context.getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
-    private val preferencesListener: SharedPreferences.OnSharedPreferenceChangeListener
 
-    private val dumpMethodChangeListener = object : DumpManager.OnDumpMethodChangeListener {
-        override fun onDumpMethodChange(method: DumpManager.Method) {
-            sessionDatabase.clearSessions()
-            pollOnce(true)
-        }
-    }
+    // Session database
+    val sessionDatabase: MutedSessionManager = MutedSessionManager(context)
+    // Session policy database
+    val sessionPolicyDatabase: RestrictedSessionManager = RestrictedSessionManager(context)
 
     init {
-
-        sessionChangedReceiver = object : BroadcastReceiver() {
-            // Too unreliable, most players don't implement this
-            override fun onReceive(context: Context, intent: Intent) {
-                val sessionId =
-                    intent.getIntExtra(AudioEffect.EXTRA_AUDIO_SESSION, AudioEffect.ERROR)
-                if (sessionId < 0) {
-                    return
-                }
-
-                Timber.tag(TAG).d(
-                    "Audio effect control session broadcast: $sessionId (${intent.getStringExtra(AudioEffect.EXTRA_PACKAGE_NAME)})"
-                )
-                pollOnce(false)
-            }
-        }
-
+        // Notify on playback changes
         audioPlaybackCallback = object : AudioManager.AudioPlaybackCallback() {
             override fun onPlaybackConfigChanged(configs: MutableList<AudioPlaybackConfiguration>?) {
                 super.onPlaybackConfigChanged(configs)
@@ -84,31 +70,17 @@ class AudioSessionManager(val context: Context)
             }
         }
 
-        activeSessionsChangedListener = object : MediaSessionManager.OnActiveSessionsChangedListener {
-            @SuppressLint("BinaryOperationInTimber")
-            override fun onActiveSessionsChanged(controllers: MutableList<MediaController>?) {
-                controllers ?: return
-                controllers.forEach {
-                    Timber.tag(TAG).d("active session changed: package ${it.packageName}; " +
-                            "uid ${Refine.unsafeCast<MediaSessionHidden.TokenHidden>(it.sessionToken).uid}; " +
-                            "usage ${it.playbackInfo?.audioAttributes?.usage}")
-                }
+        // Register callbacks
+        DumpManager.get(context).registerOnDumpMethodChangeListener(this)
+        audioManager.registerAudioPlaybackCallback(audioPlaybackCallback, Handler(Looper.getMainLooper()))
+        context.registerLocalReceiver(this, IntentFilter(Constants.ACTION_SESSION_CHANGED))
+        installNotificationListenerService()
 
-                pollOnce(false)
-            }
-        }
-
+        // Setup preferences
         preferencesListener = SharedPreferences.OnSharedPreferenceChangeListener {
-                    _, key ->
+                _, key ->
             loadFromPreferences(key)
         }
-
-        DumpManager.get(context).registerOnDumpMethodChangeListener(dumpMethodChangeListener)
-
-        audioManager.registerAudioPlaybackCallback(audioPlaybackCallback, Handler(Looper.getMainLooper()))
-        context.registerLocalReceiver(sessionChangedReceiver, IntentFilter(Constants.ACTION_SESSION_CHANGED))
-        updateSessionListenerState()
-
         loadFromPreferences(context.getString(R.string.key_session_continuous_polling))
         loadFromPreferences(context.getString(R.string.key_session_continuous_polling_rate))
         sharedPreferences.registerOnSharedPreferenceChangeListener(preferencesListener)
@@ -116,15 +88,16 @@ class AudioSessionManager(val context: Context)
 
     fun destroy()
     {
-        DumpManager.get(context).unregisterOnDumpMethodChangeListener(dumpMethodChangeListener)
+        DumpManager.get(context).unregisterOnDumpMethodChangeListener(this)
 
         audioManager.unregisterAudioPlaybackCallback(audioPlaybackCallback)
-        sessionManager.removeOnActiveSessionsChangedListener(activeSessionsChangedListener)
-        context.unregisterLocalReceiver(sessionChangedReceiver)
+        sessionManager.removeOnActiveSessionsChangedListener(this)
+        context.unregisterLocalReceiver(this)
 
         sharedPreferences.unregisterOnSharedPreferenceChangeListener(preferencesListener)
 
         sessionDatabase.destroy()
+        sessionPolicyDatabase.destroy()
     }
 
     private fun loadFromPreferences(key: String){
@@ -146,17 +119,17 @@ class AudioSessionManager(val context: Context)
         }
     }
 
-    private fun updateSessionListenerState() {
+    private fun installNotificationListenerService() {
         val hasPermission = NotificationManagerCompat.getEnabledListenerPackages(context)
             .contains(context.packageName)
         Timber.tag(TAG).d("Notification listener permission granted? $hasPermission")
         if (hasPermission) {
             sessionManager.addOnActiveSessionsChangedListener(
-                activeSessionsChangedListener,
+                this,
                 ComponentName(context, NotificationListenerService::class.java)
             )
         } else {
-            sessionManager.removeOnActiveSessionsChangedListener(activeSessionsChangedListener)
+            sessionManager.removeOnActiveSessionsChangedListener(this)
         }
     }
 
@@ -186,7 +159,15 @@ class AudioSessionManager(val context: Context)
         }
 
         pollingMutex.withLock {
-            DumpManager.get(context).dumpSessions()?.let { sessionDatabase.update(it) }
+            val sessions = DumpManager.get(context).dumpSessions()
+            if(sessions is IRestrictedSessionInfoDump) {
+                sessionPolicyDatabase.update(sessions)
+            }
+            else {
+                DumpManager.get(context).dumpCaptureAllowlistLog()?.let { sessionPolicyDatabase.update(it) }
+            }
+
+            sessions?.let { sessionDatabase.update(it) }
         }
     }
 
@@ -195,6 +176,36 @@ class AudioSessionManager(val context: Context)
         pollingScope.launch {
             pollSessionDump(blocking)
         }
+    }
+
+    override fun onDumpMethodChange(method: DumpManager.Method) {
+        sessionDatabase.clearSessions()
+        sessionPolicyDatabase.clearSessions()
+        pollOnce(true)
+    }
+
+    override fun onReceive(context: Context?, intent: Intent?) {
+        if(intent?.action == Constants.ACTION_SESSION_CHANGED) {
+            // Too unreliable, most players don't implement this
+            val sessionId = intent.getIntExtra(AudioEffect.EXTRA_AUDIO_SESSION, AudioEffect.ERROR)
+            if (sessionId < 0)
+                return
+
+            Timber.tag(TAG).d("Audio effect control session broadcast: $sessionId (${intent.getStringExtra(AudioEffect.EXTRA_PACKAGE_NAME)})")
+            pollOnce(false)
+        }
+    }
+
+    @SuppressLint("BinaryOperationInTimber")
+    override fun onActiveSessionsChanged(controllers: MutableList<MediaController>?) {
+        controllers ?: return
+        controllers.forEach {
+            Timber.tag(TAG).d("active session changed: package ${it.packageName}; " +
+                    "uid ${Refine.unsafeCast<MediaSessionHidden.TokenHidden>(it.sessionToken).uid}; " +
+                    "usage ${it.playbackInfo?.audioAttributes?.usage}")
+        }
+
+        pollOnce(false)
     }
 
     companion object
