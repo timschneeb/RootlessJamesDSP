@@ -150,8 +150,9 @@
     <string name="onboarding_limitations_title">Limitations</string>
     <string name="onboarding_limitations"><![CDATA[<p>This app is currently incomplete and under development. It may crash or behave unexpectedly.</p>
 <p><b><u>Make sure to fully disable other audio effect apps.</u></b> They are guaranteed to break this application when they attach their own DynamicsProcessing audio effect to a session.</p>
-<p><b>DRM-protected content and apps blocking internal audio capture (e.g., Spotify, Google Chrome) stay muted</b> and won\'t output any sound while this app is active. An alternative audio recording method using ADB privileges that is not affected by this restriction may be added at a later time.</p>
-<p>After an app opens a new media session to playback audio, <b>you may hear duplicated audio for a very short period</b> (about &lt; 0.5 sec).</p>
+<p><b>DRM-protected content and apps blocking internal audio capture (e.g., Spotify, Google Chrome) stay unprocessed or even muted</b>. Unless disabled, this app will try to detect and exclude these apps from being processed by JamesDSP. This prevents them getting muted due to a restrictive capture policy.<br/>
+An alternative audio recording method using ADB privileges that is not affected by this restriction may be added at a later time.</p>
+<p>After an app opens a new media session to playback audio, <b>you may hear duplicated or cut-off audio for a very short period</b> (about &lt; 300ms).</p>
 <p>Changes made to Android\'s audio system by your OEM/device manufacturer may break this app. This app has been actively tested on these devices:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;• Samsung S20+ (Android 12)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;• Emulator with stock AOSP (Android 10-13)</p>]]>
@@ -204,6 +205,9 @@
 
     <!-- Settings -->
     <string name="title_activity_settings">Settings</string>
+    <string name="session_exclude_restricted">Fix muted DRM-protected audio content</string>
+    <string name="session_exclude_restricted_off">Apps blocking audio capture stay muted (default Android behavior)</string>
+    <string name="session_exclude_restricted_on">Apps blocking audio capture are excluded and remain unprocessed (experimental)</string>
     <string name="session_detection_header">Audio session detection</string>
     <string name="session_continuous_polling">Force continuous polling</string>
     <string name="session_continuous_polling_off">Only listen for session events from the system</string>

@@ -3,7 +3,6 @@
 
     <PreferenceCategory app:title="@string/session_detection_header"
         app:iconSpaceReserved="false">
-
         <ListPreference
             app:key="@string/key_session_detection_method"
             app:title="@string/session_detection_method"
@@ -38,8 +37,15 @@
             app:summaryOff="@string/session_loss_ignore_off"
             app:summaryOn="@string/session_loss_ignore_on"
             app:iconSpaceReserved="false" />
-    </PreferenceCategory>
 
+        <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
+            app:key="@string/key_session_exclude_restricted"
+            app:title="@string/session_exclude_restricted"
+            app:defaultValue="true"
+            app:summaryOff="@string/session_exclude_restricted_off"
+            app:summaryOn="@string/session_exclude_restricted_on"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/audio_format_header"
         app:iconSpaceReserved="false">

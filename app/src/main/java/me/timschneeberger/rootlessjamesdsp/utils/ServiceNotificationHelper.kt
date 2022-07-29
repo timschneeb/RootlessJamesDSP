@@ -1,4 +1,4 @@
-package me.timschneeberger.rootlessjamesdsp
+package me.timschneeberger.rootlessjamesdsp.utils
 
 import android.app.Notification
 import android.app.NotificationManager
@@ -6,10 +6,9 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Icon
+import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.activity.MainActivity
 import me.timschneeberger.rootlessjamesdsp.service.AudioProcessorService
-import me.timschneeberger.rootlessjamesdsp.utils.Constants
-import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 
 object ServiceNotificationHelper {
     fun pushServiceNotification(context: Context, established: Boolean) {

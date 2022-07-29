@@ -57,7 +57,7 @@ class AudioSessionManager(val context: Context) : DumpManager.OnDumpMethodChange
     // Session database
     val sessionDatabase: MutedSessionManager = MutedSessionManager(context)
     // Session policy database
-    val sessionPolicyDatabase: RestrictedSessionManager = RestrictedSessionManager(context)
+    val sessionPolicyDatabase: SessionRecordingPolicyManager = SessionRecordingPolicyManager(context)
 
     init {
         // Notify on playback changes

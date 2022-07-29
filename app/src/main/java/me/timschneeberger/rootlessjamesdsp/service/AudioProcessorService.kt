@@ -17,14 +17,14 @@ import androidx.core.app.ActivityCompat
 import me.timschneeberger.rootlessjamesdsp.session.AudioSessionManager
 import me.timschneeberger.rootlessjamesdsp.session.MutedSessionManager
 import me.timschneeberger.rootlessjamesdsp.R
-import me.timschneeberger.rootlessjamesdsp.ServiceNotificationHelper
+import me.timschneeberger.rootlessjamesdsp.utils.ServiceNotificationHelper
 import me.timschneeberger.rootlessjamesdsp.model.AudioEncoding
 import me.timschneeberger.rootlessjamesdsp.model.MutedSessionEntry
 import me.timschneeberger.rootlessjamesdsp.model.ProcessorMessage
-import me.timschneeberger.rootlessjamesdsp.model.RestrictedSessionEntry
+import me.timschneeberger.rootlessjamesdsp.model.SessionRecordingPolicyEntry
 import me.timschneeberger.rootlessjamesdsp.native.JamesDspEngine
 import me.timschneeberger.rootlessjamesdsp.native.JamesDspWrapper
-import me.timschneeberger.rootlessjamesdsp.session.RestrictedSessionManager
+import me.timschneeberger.rootlessjamesdsp.session.SessionRecordingPolicyManager
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_PROCESSOR_MESSAGE
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_HARD_REBOOT_CORE
@@ -44,6 +44,7 @@ import timber.log.Timber
 import java.io.IOException
 import java.io.Serializable
 import java.lang.Exception
+import java.lang.RuntimeException
 
 
 class AudioProcessorService : Service() {
@@ -72,6 +73,9 @@ class AudioProcessorService : Service() {
     // Idle detection
     private var isProcessorIdle = false
     private var suspendOnIdle = false
+
+    // Exclude restricted apps flag
+    private var excludeRestrictedSessions = false
 
     // Termination flags
     private var isProcessorDisposing = false
@@ -122,6 +126,7 @@ class AudioProcessorService : Service() {
         sharedPreferences = getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
         sharedPreferences.registerOnSharedPreferenceChangeListener(preferencesListener)
         loadFromPreferences(getString(R.string.key_powersave_suspend))
+        loadFromPreferences(getString(R.string.key_session_exclude_restricted))
 
         // Register notification channels
         val channel = NotificationChannel(
@@ -138,6 +143,9 @@ class AudioProcessorService : Service() {
         notificationManager.createNotificationChannel(channel)
         notificationManager.createNotificationChannel(channelSessionLoss)
         notificationManager.cancel(NOTIFICATION_ID_PERMISSION_PROMPT)
+
+        // No need to recreate in this stage
+        recreateRecorderRequested = false
 
         // Launch foreground service
         val notification = ServiceNotificationHelper.createServiceNotification(this, false)
@@ -175,7 +183,7 @@ class AudioProcessorService : Service() {
 
         // Setup media projection
         mediaProjectionStartIntent = intent.getParcelableExtra(EXTRA_MEDIA_PROJECTION_DATA)
-        mediaProjection = mediaProjectionManager!!.getMediaProjection(Activity.RESULT_OK, mediaProjectionStartIntent!!)
+        mediaProjection = mediaProjectionManager.getMediaProjection(Activity.RESULT_OK, mediaProjectionStartIntent!!)
         mediaProjection?.registerCallback(projectionCallback, Handler(Looper.getMainLooper()))
 
         if (mediaProjection != null) {
@@ -284,8 +292,8 @@ class AudioProcessorService : Service() {
     }
 
     // Session policy change listener
-    private val onSessionPolicyChangeListener = object : RestrictedSessionManager.OnRestrictedSessionChangeListener {
-        override fun onRestrictedSessionChanged(sessionList: HashMap<String, RestrictedSessionEntry>, isMinorUpdate: Boolean) {
+    private val onSessionPolicyChangeListener = object : SessionRecordingPolicyManager.OnSessionRecordingPolicyChangeListener {
+        override fun onSessionRecordingPolicyChanged(sessionList: HashMap<String, SessionRecordingPolicyEntry>, isMinorUpdate: Boolean) {
             // TODO add disable setting
 
             if(!isMinorUpdate) {
@@ -304,6 +312,12 @@ class AudioProcessorService : Service() {
                 suspendOnIdle = sharedPreferences.getBoolean(key, true)
                 Timber.tag(TAG).d("Suspend on idle set to $suspendOnIdle")
             }
+            getString(R.string.key_session_exclude_restricted) -> {
+                excludeRestrictedSessions = sharedPreferences.getBoolean(key, true)
+                Timber.tag(TAG).d("Exclude restricted set to $excludeRestrictedSessions")
+
+                requestAudioRecordRecreation()
+            }
         }
     }
 
@@ -314,9 +328,6 @@ class AudioProcessorService : Service() {
             return
         }
 
-        // TODO
-        audioSessionManager.sessionDatabase.setExcludedUids(audioSessionManager.sessionPolicyDatabase.getRestrictedUids())
-        audioSessionManager.pollOnce(false)
         recreateRecorderRequested = true
     }
 
@@ -336,54 +347,23 @@ class AudioProcessorService : Service() {
                 ?.toIntOrNull() ?: 1
         )
         val bufferSize = sharedPreferences.getFloat(getString(R.string.key_audioformat_buffersize), 2048f).toInt()
-        val bufferSizeBytes = if(encoding == AudioEncoding.PcmFloat)
-            bufferSize * Float.SIZE_BYTES
-        else
-            bufferSize * Short.SIZE_BYTES
-
-        val encodingFormat = if(encoding == AudioEncoding.PcmShort)
-            AudioFormat.ENCODING_PCM_16BIT
-        else
-            AudioFormat.ENCODING_PCM_FLOAT
-
+        val bufferSizeBytes = when (encoding) {
+            AudioEncoding.PcmFloat -> bufferSize * Float.SIZE_BYTES
+            else -> bufferSize * Short.SIZE_BYTES
+        }
+        val encodingFormat = when (encoding) {
+            AudioEncoding.PcmShort -> AudioFormat.ENCODING_PCM_16BIT
+            else -> AudioFormat.ENCODING_PCM_FLOAT
+        }
         val sampleRate = determineSamplingRate()
 
         Timber.tag(TAG).i("Sample rate: $sampleRate; Encoding: ${encoding.name}; " +
                 "Buffer size: $bufferSize; Buffer size (bytes): $bufferSizeBytes ; " +
                 "HAL buffer size (bytes): ${determineBufferSize()}")
 
-        fun buildRecord(): AudioRecord {
-            val format = AudioFormat.Builder()
-                .setEncoding(encodingFormat)
-                .setSampleRate(sampleRate)
-                .setChannelMask(AudioFormat.CHANNEL_IN_STEREO)
-                .build()
-            return AudioRecord.Builder()
-                .setAudioFormat(format)
-                .setBufferSizeInBytes(bufferSizeBytes)
-                .setAudioPlaybackCaptureConfig(createAudioPlaybackCaptureConfig(mediaProjection!!))
-                .build()
-        }
-
-        var recorder = buildRecord()
-        val track = AudioTrack.Builder().setAudioFormat(
-            AudioFormat.Builder()
-                .setChannelMask(AudioFormat.CHANNEL_OUT_STEREO)
-                .setEncoding(encodingFormat)
-                .setSampleRate(sampleRate)
-                .build()
-        )
-            .setTransferMode(AudioTrack.MODE_STREAM)
-            .setAudioAttributes(AudioAttributes.Builder()
-                .setAllowedCapturePolicy(AudioAttributes.ALLOW_CAPTURE_BY_NONE)
-                .setUsage(AudioAttributes.USAGE_UNKNOWN)
-                .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
-                .setFlags(0)
-                .build())
-            .setBufferSizeInBytes(bufferSizeBytes)
-            .build()
-
-        track.play()
+        // Create recorder and track
+        var recorder = buildAudioRecord(encodingFormat, sampleRate, bufferSizeBytes)
+        val track = buildAudioTrack(encodingFormat, sampleRate, bufferSizeBytes)
 
         // TODO Move all audio-related code to C++
         recorderThread = Thread {
@@ -396,13 +376,18 @@ class AudioProcessorService : Service() {
                     if(recreateRecorderRequested) {
                         recreateRecorderRequested = false
                         Timber.d("Recreating recorder without stopping thread...")
+
+                        // Suspend track, release recorder
                         recorder.stop()
                         track.stop()
                         recorder.release()
-                        recorder = buildRecord()
+
+                        // Recreate recorder with new AudioPlaybackRecordingConfiguration
+                        recorder = buildAudioRecord(encodingFormat, sampleRate, bufferSizeBytes)
                         Timber.d("Recorder recreated")
                     }
 
+                    // Suspend core while idle
                     if(isProcessorIdle && suspendOnIdle)
                     {
                         recorder.stop()
@@ -417,13 +402,16 @@ class AudioProcessorService : Service() {
                         continue
                     }
 
+                    // Resume recorder if suspended
                     if(recorder.state == AudioRecord.RECORDSTATE_STOPPED) {
                         recorder.startRecording()
                     }
+                    // Resume track if suspended
                     if(track.playState != AudioTrack.PLAYSTATE_PLAYING) {
                         track.play()
                     }
 
+                    // Choose encoding and process data
                     if(encoding == AudioEncoding.PcmShort) {
                         recorder.read(shortBuffer, 0, shortBuffer.size, AudioRecord.READ_BLOCKING)
                         val output = engine.processInt16(shortBuffer)
@@ -443,6 +431,7 @@ class AudioProcessorService : Service() {
                 Timber.tag(TAG).e(e)
                 stopSelf()
             } finally {
+                // Clean up recorder and track
                 recorder.stop()
                 track.stop()
                 recorder.release()
@@ -474,6 +463,63 @@ class AudioProcessorService : Service() {
         recreateRecorderRequested = false
         startRecording()
     }
+
+    private fun buildAudioTrack(encoding: Int, sampleRate: Int, bufferSizeBytes: Int): AudioTrack {
+        return AudioTrack.Builder().setAudioFormat(
+            AudioFormat.Builder()
+                .setChannelMask(AudioFormat.CHANNEL_OUT_STEREO)
+                .setEncoding(encoding)
+                .setSampleRate(sampleRate)
+                .build())
+            .setTransferMode(AudioTrack.MODE_STREAM)
+            .setAudioAttributes(AudioAttributes.Builder()
+                .setAllowedCapturePolicy(AudioAttributes.ALLOW_CAPTURE_BY_NONE)
+                .setUsage(AudioAttributes.USAGE_UNKNOWN)
+                .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
+                .setFlags(0)
+                .build())
+            .setBufferSizeInBytes(bufferSizeBytes)
+            .build()
+    }
+
+    private fun buildAudioRecord(encoding: Int, sampleRate: Int, bufferSizeBytes: Int): AudioRecord {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            Timber.tag(TAG).e("buildAudioRecord: RECORD_AUDIO not granted")
+            throw RuntimeException("RECORD_AUDIO not granted")
+        }
+
+        val format = AudioFormat.Builder()
+            .setEncoding(encoding)
+            .setSampleRate(sampleRate)
+            .setChannelMask(AudioFormat.CHANNEL_IN_STEREO)
+            .build()
+
+        val configBuilder =  AudioPlaybackCaptureConfiguration.Builder(mediaProjection!!)
+            .addMatchingUsage(AudioAttributes.USAGE_MEDIA)
+            .addMatchingUsage(AudioAttributes.USAGE_GAME)
+            .addMatchingUsage(AudioAttributes.USAGE_UNKNOWN)
+
+        if(excludeRestrictedSessions) {
+            val excluded = audioSessionManager.sessionPolicyDatabase.getRestrictedUids()
+            audioSessionManager.sessionDatabase.setExcludedUids(excluded)
+            audioSessionManager.pollOnce(false)
+
+            excluded.forEach { configBuilder.excludeUid(it) }
+            Timber.d("buildAudioRecord: Excluded UIDs: %s",
+                excluded.joinToString("; ") { it.toString() })
+        }
+        else {
+            audioSessionManager.sessionDatabase.setExcludedUids(arrayOf())
+            audioSessionManager.pollOnce(false)
+        }
+
+        return AudioRecord.Builder()
+            .setAudioFormat(format)
+            .setBufferSizeInBytes(bufferSizeBytes)
+            .setAudioPlaybackCaptureConfig(configBuilder.build())
+            .build()
+    }
+
 
     // Broadcast processor message
     private fun broadcastProcessorMessage(type: ProcessorMessage.Type, params: Map<ProcessorMessage.Param, Serializable>? = null){
@@ -532,19 +578,6 @@ class AudioProcessorService : Service() {
                 ServiceNotificationHelper.pushServiceNotification(service, true)
             }
         }
-    }
-
-    private fun createAudioPlaybackCaptureConfig(mediaProjection: MediaProjection): AudioPlaybackCaptureConfiguration {
-        val builder =  AudioPlaybackCaptureConfiguration.Builder(mediaProjection)
-            .addMatchingUsage(AudioAttributes.USAGE_MEDIA)
-            .addMatchingUsage(AudioAttributes.USAGE_GAME)
-            .addMatchingUsage(AudioAttributes.USAGE_UNKNOWN)
-
-        val excludedUids = audioSessionManager.sessionPolicyDatabase.getRestrictedUids()
-        excludedUids.forEach { builder.excludeUid(it) }
-        Timber.d("createAudioPlaybackCaptureConfig: Excluded UIDs: %s", excludedUids.joinToString("; ") { it.toString() })
-
-        return builder.build()
     }
 
     // Determine HAL sampling rate

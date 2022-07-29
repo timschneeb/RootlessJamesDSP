@@ -2,16 +2,16 @@ package me.timschneeberger.rootlessjamesdsp.session
 
 import android.content.Context
 import android.content.pm.PackageManager
-import me.timschneeberger.rootlessjamesdsp.model.RestrictedSessionEntry
+import me.timschneeberger.rootlessjamesdsp.model.SessionRecordingPolicyEntry
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.IRestrictedSessionInfoDump
 import timber.log.Timber
 
 
-class RestrictedSessionManager(private val context: Context) {
+class SessionRecordingPolicyManager(private val context: Context) {
 
     private var isDisposing = false
-    private val sessionPolicyList = hashMapOf<String,RestrictedSessionEntry>()
-    private val changeCallbacks = mutableListOf<OnRestrictedSessionChangeListener>()
+    private val sessionPolicyList = hashMapOf<String,SessionRecordingPolicyEntry>()
+    private val changeCallbacks = mutableListOf<OnSessionRecordingPolicyChangeListener>()
 
     fun destroy()
     {
@@ -20,14 +20,14 @@ class RestrictedSessionManager(private val context: Context) {
     }
 
     fun clearSessions(){
-        Timber.d("cleared session policy list")
+        Timber.d("Cleared session policy list")
         sessionPolicyList.clear()
     }
 
     fun update(dump: IRestrictedSessionInfoDump)
     {
         if(isDisposing) {
-            Timber.d("update: RestrictedSessionManager is disposing; ignoring dump")
+            Timber.d("update: SessionRecordingPolicyManager is disposing; ignoring dump")
             return
         }
 
@@ -65,7 +65,7 @@ class RestrictedSessionManager(private val context: Context) {
 
         if(addedPolicies.isNotEmpty() || removedPolicies.isNotEmpty() || updatedPolicies.isNotEmpty())
         {
-            changeCallbacks.forEach { it.onRestrictedSessionChanged(sessionPolicyList, isMinorUpdate) }
+            changeCallbacks.forEach { it.onSessionRecordingPolicyChanged(sessionPolicyList, isMinorUpdate) }
         }
     }
 
@@ -81,7 +81,7 @@ class RestrictedSessionManager(private val context: Context) {
             Timber.e("addSessionPolicy: Package not found: $packageName")
             -1
         }
-        val data = RestrictedSessionEntry(uid, packageName, isRestricted)
+        val data = SessionRecordingPolicyEntry(uid, packageName, isRestricted)
         if(sessionPolicyList.containsKey(data.packageName))
             Timber.tag(TAG).d("Updated session policy: $data")
         else if(data.isRestricted) // Only log new restricted sessions
@@ -96,21 +96,19 @@ class RestrictedSessionManager(private val context: Context) {
             .toTypedArray()
     }
 
-    fun registerOnRestrictedSessionChangeListener(changeListener: OnRestrictedSessionChangeListener) {
+    fun registerOnRestrictedSessionChangeListener(changeListener: OnSessionRecordingPolicyChangeListener) {
         changeCallbacks.add(changeListener)
-        // TODO clients should get the initial state by themselves
-        //changeListener.onRestrictedSessionChanged(sessionList, )
     }
 
-    fun unregisterOnRestrictedSessionChangeListener(changeListener: OnRestrictedSessionChangeListener) {
+    fun unregisterOnRestrictedSessionChangeListener(changeListener: OnSessionRecordingPolicyChangeListener) {
         changeCallbacks.remove(changeListener)
     }
 
-    interface OnRestrictedSessionChangeListener {
-        fun onRestrictedSessionChanged(sessionList: HashMap<String, RestrictedSessionEntry>, isMinorUpdate: Boolean)
+    interface OnSessionRecordingPolicyChangeListener {
+        fun onSessionRecordingPolicyChanged(sessionList: HashMap<String, SessionRecordingPolicyEntry>, isMinorUpdate: Boolean)
     }
 
     companion object {
-        const val TAG = "RestrictedSessionManager"
+        const val TAG = "SessionRecordingPolicyManager"
     }
 }
