@@ -153,7 +153,7 @@ class EelParser {
         if(!isFileLoaded)
             return false
 
-        val index = properties.indexOfFirst { prop.key == it.key}
+        val index = properties.indexOfFirst { prop.key == it.key }
         if(index >= 0) {
             properties[index] = prop
         }

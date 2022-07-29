@@ -158,11 +158,12 @@ class AudioProcessorService : Service() {
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
 
+        Timber.tag(TAG).d("onStartCommand")
+
         // Handle intent action
         when (intent.action) {
             null -> {
-                // TODO recreated service has its intent object null -> mediaProjectionData not persistent
-                Timber.tag(TAG).w("onStartCommand: intent.action is null")
+                Timber.tag(TAG).wtf("onStartCommand: intent.action is null")
             }
             ACTION_START -> {
                 Timber.tag(TAG).d("Starting service")
@@ -193,7 +194,7 @@ class AudioProcessorService : Service() {
             stopSelf()
         }
 
-        return START_STICKY
+        return START_REDELIVER_INTENT
     }
 
     override fun onDestroy() {
