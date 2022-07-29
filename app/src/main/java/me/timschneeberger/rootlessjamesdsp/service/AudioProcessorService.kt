@@ -148,7 +148,7 @@ class AudioProcessorService : Service() {
         recreateRecorderRequested = false
 
         // Launch foreground service
-        val notification = ServiceNotificationHelper.createServiceNotification(this, false)
+        val notification = ServiceNotificationHelper.createServiceNotification(this, null)
         startForeground(
             NOTIFICATION_ID_SERVICE,
             notification,
@@ -288,6 +288,11 @@ class AudioProcessorService : Service() {
         override fun onSessionChanged(sessionList: HashMap<Int, MutedSessionEntry>) {
             isProcessorIdle = sessionList.size == 0
             Timber.tag(TAG).d("onSessionChanged: isProcessorIdle=$isProcessorIdle")
+
+            ServiceNotificationHelper.pushServiceNotification(
+                this@AudioProcessorService,
+                sessionList.map { it.value.audioSession }.toTypedArray()
+            )
         }
     }
 
@@ -575,7 +580,7 @@ class AudioProcessorService : Service() {
                 return
             }
             if (message.what == MSG_PROCESSOR_READY) {
-                ServiceNotificationHelper.pushServiceNotification(service, true)
+                ServiceNotificationHelper.pushServiceNotification(service, arrayOf())
             }
         }
     }

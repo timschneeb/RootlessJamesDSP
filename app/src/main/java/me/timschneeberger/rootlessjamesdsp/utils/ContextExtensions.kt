@@ -1,6 +1,7 @@
 package me.timschneeberger.rootlessjamesdsp.utils
 
 import android.content.*
+import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
@@ -11,6 +12,7 @@ import com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmMa
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppName
 import timber.log.Timber
 import java.io.File
 
@@ -97,6 +99,25 @@ object ContextExtensions {
         alert.setTitle(getString(title))
         alert.setNegativeButton(android.R.string.ok, null)
         alert.create().show()
+    }
+
+    fun Context.getAppName(packageName: String): CharSequence? {
+        return try {
+            packageManager.getApplicationInfo(packageName, 0)
+        } catch (e: PackageManager.NameNotFoundException) {
+            null
+        }?.let {
+            packageManager.getApplicationLabel(it)
+        }
+    }
+
+    fun Context.getAppNameFromUid(uid: Int): String? {
+        packageManager.getPackagesForUid(uid)?.forEach { pkg ->
+            getAppName(pkg)?.let  {
+                return it.toString()
+            }
+        }
+        return null
     }
 
     const val TAG = "ContextExtensions"

@@ -8,22 +8,30 @@ import android.content.Intent
 import android.graphics.drawable.Icon
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.activity.MainActivity
+import me.timschneeberger.rootlessjamesdsp.model.AudioSessionEntry
 import me.timschneeberger.rootlessjamesdsp.service.AudioProcessorService
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppName
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppNameFromUid
+
 
 object ServiceNotificationHelper {
-    fun pushServiceNotification(context: Context, established: Boolean) {
-        val notification = createServiceNotification(context, established)
+    fun pushServiceNotification(context: Context, sessions: Array<AudioSessionEntry>?) {
+        val notification = createServiceNotification(context, sessions)
         SystemServices.get(context, NotificationManager::class.java)
             .notify(Constants.NOTIFICATION_ID_SERVICE, notification)
     }
 
-    fun createServiceNotification(context: Context, established: Boolean): Notification {
-        val textRes: Int =
-            if (established) {
-                R.string.notification_processing
+    fun createServiceNotification(context: Context, sessions: Array<AudioSessionEntry>?): Notification {
+        val apps = sessions?.distinct()?.joinToString(", ") {
+            context.getAppNameFromUid(it.uid) ?: it.packageName
+        }
+
+        val text: String =
+            when {
+                sessions?.isNotEmpty() == true -> context.getString(R.string.notification_processing, apps)
+                sessions?.isEmpty() == true -> context.getString(R.string.notification_idle)
+                else -> context.getString(R.string.notification_waiting)
             }
-            else
-                R.string.notification_waiting
 
         val intent = Intent(context, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -31,7 +39,7 @@ object ServiceNotificationHelper {
         val contentIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
         return Notification.Builder(context, Constants.CHANNEL_ID_SERVICE)
             .setContentTitle(context.getString(R.string.app_name))
-            .setContentText(context.getString(textRes))
+            .setContentText(text)
             .setSmallIcon(R.drawable.ic_tune_vertical_variant_24dp)
             .addAction(createStopAction(context))
             .setContentIntent(contentIntent)

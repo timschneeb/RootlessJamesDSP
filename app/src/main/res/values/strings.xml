@@ -12,7 +12,8 @@
     <string name="action_retry">Retry</string>
     <string name="action_stop">Stop</string>
     <string name="notification_waiting">Waiting for user action…</string>
-    <string name="notification_processing">Audio processing enabled</string>
+    <string name="notification_processing">Active apps: %1$s</string>
+    <string name="notification_idle">Audio processing idle</string>
 
     <!-- Permission request notifications -->
     <string name="notification_request_permission_title">User action is required to launch JamesDSP</string>
