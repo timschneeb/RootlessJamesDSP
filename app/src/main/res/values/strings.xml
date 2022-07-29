@@ -15,7 +15,7 @@
     <string name="notification_processing">Audio processing enabled</string>
 
     <!-- Permission request notifications -->
-    <string name="notification_request_permission_title">User action required to launch JamesDSP</string>
+    <string name="notification_request_permission_title">User action is required to launch JamesDSP</string>
     <string name="notification_request_permission">Tap to grant capture permission and enable JamesDSP\'s audio processing</string>
 
     <!-- Session control loss notifications -->
@@ -25,7 +25,7 @@
     <string name="session_control_loss_notification">Please disable all other apps that provide global audio effects before re-enabling JamesDSP.</string>
 
     <!-- Capture permission revoked notifications -->
-    <string name="capture_permission_revoked_toast">JamesDSP has been stopped because the audio capture permission has been revoked.</string>
+    <string name="capture_permission_revoked_toast">JamesDSP has been stopped because the audio capture permission was revoked.</string>
 
     <!-- General purpose -->
     <string name="install">Install</string>
@@ -140,17 +140,17 @@
     <string name="onboarding_next">Next</string>
     <string name="onboarding_finish">Finish</string>
     <string name="onboarding_greeting">Welcome to RootlessJamesDSP!</string>
-    <string name="onboarding_caption">This assistant will help you setting up JamesDSP on your device</string>
+    <string name="onboarding_caption">This assistant will help you set up JamesDSP on your device</string>
     <string name="onboarding_press_next">Press \'Next\' to start the setup process.</string>
     <string name="onboarding_press_finish">Press \'Finish\' to finalize the setup process.</string>
-    <string name="onboarding_warning">Currently, this application is unfinished and unstable. Please note that it may not work on some devices as expected, since it uses Android APIs not designed for use by third-parties. A detailed list of limitations will be shown later on during the setup process.</string>
+    <string name="onboarding_warning">Currently, this application is unfinished and unstable. Please note that it may not work on some devices as expected since it uses Android APIs not designed for use by third parties.</string>
     <string name="onboarding_fix_permissions_title">User action required</string>
     <string name="onboarding_fix_permissions">One or more permissions were revoked by you or the system.\nIn order to ensure that this app behaves correctly, you need to grant these permissions again.\n\nPlease redo the setup wizard to re-grant these permissions.</string>
 
     <string name="onboarding_limitations_title">Limitations</string>
     <string name="onboarding_limitations"><![CDATA[<p>This app is currently incomplete and under development. It may crash or behave unexpectedly.</p>
 <p><b><u>Make sure to fully disable other audio effect apps.</u></b> They are guaranteed to break this application when they attach their own DynamicsProcessing audio effect to a session.</p>
-<p><b>DRM-protected content and apps blocking internal audio capture (e.g., Spotify, Google Chrome) stay unprocessed or even muted</b>. Unless disabled, this app will try to detect and exclude these apps from being processed by JamesDSP. This prevents them getting muted due to a restrictive capture policy.<br/>
+<p><b>DRM-protected content and apps blocking internal audio capture (e.g., Spotify, Google Chrome) stay unprocessed or even muted</b>. Unless disabled, this app will try to detect and exclude these apps from being processed by JamesDSP. This prevents them from getting muted due to a restrictive capture policy enforced by themselves.<br/>
 An alternative audio recording method using ADB privileges that is not affected by this restriction may be added at a later time.</p>
 <p>After an app opens a new media session to playback audio, <b>you may hear duplicated or cut-off audio for a very short period</b> (about &lt; 300ms).</p>
 <p>Changes made to Android\'s audio system by your OEM/device manufacturer may break this app. This app has been actively tested on these devices:<br/>
@@ -165,31 +165,31 @@ An alternative audio recording method using ADB privileges that is not affected 
     <!--<string name="onboarding_adb_android10_warning">Android 10 is not fully supported. DRM-protected content or apps blocking audio capture will stay muted while this app is active.</string>-->
     <string name="onboarding_adb_android10_warning">Android 10 is not fully supported. Android 11 and above are recommended.</string>
     <string name="onboarding_adb_android10_header">Instructions for Android 10</string>
-    <string name="onboarding_adb_caption">This app requires special ADB permissions for dumping information about your device\'s audio policy. Please follow the instructions below.</string>
+    <string name="onboarding_adb_caption">This app requires special ADB permissions for dumping your device\'s audio policy information. Please follow the instructions below.</string>
     <string name="onboarding_adb_shizuku_title">Instructions</string>
     <string name="onboarding_adb_shizuku_install_button">Install Shizuku</string>
     <string name="onboarding_adb_shizuku_install_instruction">Install \'Shizuku\' from Google Play.</string>
-    <string name="onboarding_adb_shizuku_open_instruction">Launch \'Shizuku\' and look for \'<b>Start via Wireless Debugging</b>\'. Tap the \'Pairing\' button and follow the in-app instructions. After pairing Shizuku, start the Shizuku server by pressing the \'Start\' button in their app.<p/>If you run into problems while setting up Shizuku, please refer to their setup tutorial linked in their app.</string>
+    <string name="onboarding_adb_shizuku_open_instruction">Launch \'Shizuku\' and look for \'<b>Start via Wireless Debugging</b>\'. Tap the \'Pairing\' button and follow the in-app instructions. After pairing Shizuku with your device, start the Shizuku server by pressing the \'Start\' button in their app.<p/>If you run into problems while setting up Shizuku, please refer to their setup tutorial linked in their app.</string>
     <string name="onboarding_adb_shizuku_open_button">Launch Shizuku</string>
     <string name="onboarding_adb_shizuku_grant_instruction">Tap the button and grant this app access to Shizuku.</string>
     <string name="onboarding_adb_shizuku_grant_button">Grant access</string>
     <string name="onboarding_adb_shizuku_not_installed">Shizuku is not yet installed. Please download and install it from Google Play first.</string>
     <string name="onboarding_adb_shizuku_not_installed_title">Shizuku is not yet installed</string>
-    <string name="onboarding_adb_shizuku_grant_fail_server_dead">Please start the Shizuku server before requesting the permission. Go back to instruction step 2.</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead">Please start the Shizuku server before requesting permission. Go back to instruction step 2.</string>
     <string name="onboarding_adb_shizuku_grant_fail_server_dead_title">Shizuku server not running</string>
     <string name="onboarding_adb_shizuku_grant_fail_version">This application requires Shizuku version 11 or later. Please update Shizuku to the latest version.</string>
     <string name="onboarding_adb_shizuku_grant_fail_version_title">Unsupported Shizuku version</string>
     <string name="onboarding_adb_shizuku_grant_fail_denied_title">Permission denied</string>
-    <string name="onboarding_adb_shizuku_grant_fail_denied">Please grant this application access to Shizuku. You may need to open Shizuku\'s permission manager and grant the permission manually, if you denied it and the popup does not show anymore.</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied">Please grant this application access to Shizuku. You may need to open Shizuku\'s permission manager and grant the permission manually if you previously denied it and the popup no longer shows.</string>
     <string name="onboarding_adb_shizuku_no_dump_perm_title">Shizuku failed to grant ADB permissions</string>
     <string name="onboarding_adb_shizuku_no_dump_perm">Please wait a few seconds and try again. If it still does not work, try the alternative method.</string>
     <string name="onboarding_adb_dump_not_granted_title">Permission not yet granted</string>
     <string name="onboarding_adb_dump_not_granted">Please follow the instructions first and try again. The ADB access is not yet set-up properly.</string>
 
     <string name="onboarding_adb_manual_title">Alternative setup method</string>
-    <string name="onboarding_adb_manual_instruction">If you are an experienced user and you know how to use the ADB shell, you can also set-up this app manually.</string>
+    <string name="onboarding_adb_manual_instruction">You can also set up this app manually if you are an experienced user and know how to use the ADB shell.</string>
     <string name="onboarding_adb_manual_button">View alternative method</string>
-    <string name="onboarding_adb_manual_detail_instruction">Step 1: Install ADB on your computer or open webadb.com in your computers\' browser.\n\nStep 2: Connect your device via USB to your computer.\n\nStep 3: Open the command prompt and execute the command: \'adb shell\' to enter the ADB shell.\nIf you use webadb, navigate to the \'Interactive shell\' section instead.\n\nStep 4: Execute the command \'pm grant me.timschneeberger.rootlessjamesdsp android.permission.DUMP\' in the ADB shell.\n\nStep 5: Close this dialog and tap \'Next\' to continue.</string>
+    <string name="onboarding_adb_manual_detail_instruction">Step 1: Install ADB on your computer or open webadb.com in your computer\'s browser.\n\nStep 2: Connect your device via USB to your computer.\n\nStep 3: Open the command prompt and execute the command: \'adb shell\' to enter the ADB shell.\nIf you use webadb, navigate to the \'Interactive shell\' section instead.\n\nStep 4: Execute the command \'pm grant me.timschneeberger.rootlessjamesdsp android.permission.DUMP\' in the ADB shell.\n\nStep 5: Close this dialog and tap \'Next\' to continue.</string>
 
     <string name="onboarding_perm_title">Other permissions</string>
     <string name="onboarding_perm_caption">Additional permissions are required to use this application. Please review them and tap \'Next\' to grant them.</string>
@@ -199,9 +199,8 @@ An alternative audio recording method using ADB privileges that is not affected 
     <string name="onboarding_perm_cast_caption">You need to explicitly grant this app permission to record content every time it launches.</string>
     <string name="onboarding_perm_missing_title">Runtime permissions not granted</string>
     <string name="onboarding_perm_missing">Please grant all requested runtime permissions to continue.\nIf you repeatedly denied the permissions, you need to grant them manually in the system settings.</string>
-
     <string name="onboarding_finish_header">JamesDSP is set-up!</string>
-    <string name="onboarding_finish_caption">In case you encounter any issues, please visit the \'Settings > Troubleshooting\' options.</string>
+    <string name="onboarding_finish_caption">If you encounter any issues, please visit the settings for troubleshooting options.</string>
 
     <!-- Settings -->
     <string name="title_activity_settings">Settings</string>
@@ -241,7 +240,7 @@ An alternative audio recording method using ADB privileges that is not affected 
     <string name="troubleshooting_dontkillmyapp_summary">View \'Don\'t kill my app\' documentation for your device</string>
     <string name="troubleshooting_notification_access">Allow notification access for better session detection</string>
     <string name="troubleshooting_notification_access_summary">Enables more reliable audio session detection</string>
-    <string name="troubleshooting_repair_assets">Restore bundled IRS, DDC and scripts</string>
+    <string name="troubleshooting_repair_assets">Restore bundled IRS, DDC, and scripts</string>
     <string name="troubleshooting_repair_assets_summary">Unpack preloaded assets if you lost them</string>
     <string name="troubleshooting_repair_assets_success">Bundled assets have been restored</string>
     <string name="privacy">Privacy</string>
