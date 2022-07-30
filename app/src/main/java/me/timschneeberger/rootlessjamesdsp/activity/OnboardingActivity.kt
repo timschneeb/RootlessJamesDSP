@@ -40,7 +40,7 @@ class OnboardingActivity : AppCompatActivity(){
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        supportFragmentManager.putFragment(outState, "onboarding", fragment);
+        supportFragmentManager.putFragment(outState, "onboarding", fragment)
     }
 
     private fun navigateUp(): Boolean

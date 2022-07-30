@@ -24,7 +24,7 @@ class BootCompletedReceiver : BroadcastReceiver() {
                     context.getString(R.string.notification_channel_permission_prompt),
                     NotificationManager.IMPORTANCE_DEFAULT
                 )
-                notificationManager.createNotificationChannel(channel);
+                notificationManager.createNotificationChannel(channel)
             }
 
             val notify = context.getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)

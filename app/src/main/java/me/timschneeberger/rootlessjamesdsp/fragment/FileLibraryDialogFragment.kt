@@ -108,7 +108,7 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
                 {
                     requireContext().showAlert(R.string.filelibrary_unsupported_format_title,
                         R.string.filelibrary_unsupported_format)
-                    return;
+                    return
                 }
                 this.dismiss()
 

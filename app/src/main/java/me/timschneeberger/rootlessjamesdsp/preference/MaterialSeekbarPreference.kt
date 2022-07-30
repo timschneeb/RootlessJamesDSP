@@ -178,10 +178,6 @@ class MaterialSeekbarPreference : Preference {
         mSeekBar!!.isEnabled = isEnabled
     }
 
-    override fun onDetached() {
-        super.onDetached()
-    }
-
     override fun onSetInitialValue(_defaultValue: Any?) {
         var defaultValue = _defaultValue
         if (defaultValue == null) {

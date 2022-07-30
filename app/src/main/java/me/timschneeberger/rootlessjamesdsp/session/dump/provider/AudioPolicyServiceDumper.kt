@@ -62,7 +62,7 @@ class AudioPolicyServiceDumper : ISessionInfoProvider {
         captureAllowedRegex.findAll(dump).forEach regexLoop@{ it2 ->
             val pkgName = it2.groups[2]?.value ?: return@regexLoop
             val allowed = it2.groups[1]?.value?.trim()?.lowercase(Locale.ROOT) == "true"
-            captureAllowLog[pkgName] = allowed;
+            captureAllowLog[pkgName] = allowed
             if (!allowed) {
                 Timber.tag(TAG).v("Playback capture restricted by $pkgName")
             }

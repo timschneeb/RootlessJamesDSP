@@ -55,7 +55,7 @@ class MutedSessionManager(private val context: Context) {
                 return@next
             }
             if (sid == 0) {
-                Timber.tag(TAG).w("Session 0 skipped ($data)");
+                Timber.tag(TAG).w("Session 0 skipped ($data)")
                 return@next
             }
 

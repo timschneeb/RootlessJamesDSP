@@ -18,7 +18,7 @@ object ApplicationUtils {
     fun check(ctx: Context): Int {
         if(decode(PKGNAME_REF) != ctx.packageName) return 1
         if(decode(APPNAME_REF) != ctx.getText(R.string.app_name)) return 2
-        return 0;
+        return 0
     }
 
     private fun decode(input: String): String {
