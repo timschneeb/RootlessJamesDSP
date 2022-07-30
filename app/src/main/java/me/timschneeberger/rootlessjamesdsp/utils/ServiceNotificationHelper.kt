@@ -10,7 +10,6 @@ import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.activity.MainActivity
 import me.timschneeberger.rootlessjamesdsp.model.AudioSessionEntry
 import me.timschneeberger.rootlessjamesdsp.service.AudioProcessorService
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppName
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppNameFromUid
 
 
@@ -43,6 +42,7 @@ object ServiceNotificationHelper {
             .setSmallIcon(R.drawable.ic_tune_vertical_variant_24dp)
             .addAction(createStopAction(context))
             .setContentIntent(contentIntent)
+            .setOngoing(true)
             .build()
     }
 
