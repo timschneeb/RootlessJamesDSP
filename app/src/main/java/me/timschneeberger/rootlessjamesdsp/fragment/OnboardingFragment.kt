@@ -364,7 +364,7 @@ class OnboardingFragment : Fragment() {
             Timber.tag(TAG)
                 .d("Granting $DUMP_PERM via Shizuku (uid ${Shizuku.getUid()}) for $pkg")
 
-
+            // Grant DUMP as system
             ShizukuSystemServerApi.PermissionManager_grantRuntimePermission(pkg, DUMP_PERM, UserHandle.USER_SYSTEM)
 
             // Re-check permission
@@ -377,8 +377,7 @@ class OnboardingFragment : Fragment() {
                     R.string.onboarding_adb_shizuku_no_dump_perm)
 
                 // Fallback just in case
-                val proc =
-                    Shizuku.newProcess(arrayOf<String>("pm", "grant", pkg, DUMP_PERM), null, null)
+                val proc = Shizuku.newProcess(arrayOf<String>("pm", "grant", pkg, DUMP_PERM), null, null)
                 proc.waitFor()
                 false
             }
