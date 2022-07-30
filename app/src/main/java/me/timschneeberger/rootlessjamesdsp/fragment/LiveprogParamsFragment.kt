@@ -17,6 +17,7 @@ import me.timschneeberger.rootlessjamesdsp.liveprog.EelParser
 import me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
+import me.timschneeberger.rootlessjamesdsp.view.RoundedRipplePreferenceGroupAdapter
 import timber.log.Timber
 
 class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastore.OnPreferenceChanged{
@@ -40,6 +41,10 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
         preferenceScreen = createPreferences()
 
         isCreated = true
+    }
+
+    override fun onCreateAdapter(preferenceScreen: PreferenceScreen): RecyclerView.Adapter<*> {
+        return RoundedRipplePreferenceGroupAdapter(preferenceScreen)
     }
 
     @Suppress("UNCHECKED_CAST")

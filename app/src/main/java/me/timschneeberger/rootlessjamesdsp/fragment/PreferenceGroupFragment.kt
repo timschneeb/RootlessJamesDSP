@@ -1,5 +1,6 @@
 package me.timschneeberger.rootlessjamesdsp.fragment
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -7,10 +8,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.XmlRes
-import androidx.preference.EditTextPreference
-import androidx.preference.Preference
+import androidx.core.content.ContextCompat
+import androidx.preference.*
 import androidx.preference.Preference.SummaryProvider
-import androidx.preference.PreferenceFragmentCompat
 import androidx.recyclerview.widget.RecyclerView
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.activity.LiveprogParamsActivity
@@ -20,6 +20,7 @@ import me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
 import me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
+import me.timschneeberger.rootlessjamesdsp.view.RoundedRipplePreferenceGroupAdapter
 
 
 class PreferenceGroupFragment : PreferenceFragmentCompat() {
@@ -80,10 +81,10 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
                         "No script selected"
                     else
                         eelParser.description
-                        /*if(eelParser.hasDescription)
-                            eelParser.description + " ("+ eelParser.fileName +")"
-                        else
-                            eelParser.description*/
+                    /*if(eelParser.hasDescription)
+                        eelParser.description + " ("+ eelParser.fileName +")"
+                    else
+                        eelParser.description*/
                 }
 
                 if(liveprogFile != null) {
@@ -117,6 +118,10 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
         recyclerView.itemAnimator = null // Fix to prevent RecyclerView crash if group is toggled rapidly
         recyclerView.isNestedScrollingEnabled = false
         return recyclerView
+    }
+
+    override fun onCreateAdapter(preferenceScreen: PreferenceScreen): RecyclerView.Adapter<*> {
+        return RoundedRipplePreferenceGroupAdapter(preferenceScreen)
     }
 
     override fun onDestroy() {
