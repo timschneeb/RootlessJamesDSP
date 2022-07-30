@@ -44,6 +44,7 @@ import timber.log.Timber
 import java.io.IOException
 import java.io.Serializable
 import java.lang.Exception
+import java.lang.IllegalStateException
 import java.lang.RuntimeException
 
 
@@ -184,7 +185,20 @@ class AudioProcessorService : Service() {
 
         // Setup media projection
         mediaProjectionStartIntent = intent.getParcelableExtra(EXTRA_MEDIA_PROJECTION_DATA)
-        mediaProjection = mediaProjectionManager.getMediaProjection(Activity.RESULT_OK, mediaProjectionStartIntent!!)
+
+        mediaProjection = try {
+            mediaProjectionManager.getMediaProjection(
+                Activity.RESULT_OK,
+                mediaProjectionStartIntent!!
+            )
+        }
+        catch (ex: Exception) {
+            Timber.tag(TAG).e("Failed to acquire media projection")
+            sendLocalBroadcast(Intent(Constants.ACTION_DISCARD_AUTHORIZATION))
+            Timber.tag(TAG).e(ex)
+            null
+        }
+
         mediaProjection?.registerCallback(projectionCallback, Handler(Looper.getMainLooper()))
 
         if (mediaProjection != null) {
@@ -230,7 +244,20 @@ class AudioProcessorService : Service() {
     // Projection termination callback
     private val projectionCallback = object: MediaProjection.Callback() {
         override fun onStop() {
+            if(isServiceDisposing) {
+                // Planned shutdown
+                return
+            }
+
+            if(getSharedPreferences(Constants.PREF_VAR, Context.MODE_PRIVATE)
+                    .getBoolean(getString(R.string.key_is_activity_active), false)) {
+                // Activity in foreground, toast too disruptive
+                return
+            }
+
             Timber.tag(TAG).w("Capture permission revoked. Stopping service.")
+
+            sendLocalBroadcast(Intent(Constants.ACTION_DISCARD_AUTHORIZATION))
 
             Toast.makeText(this@AudioProcessorService,
                 getString(R.string.capture_permission_revoked_toast), Toast.LENGTH_LONG).show()
@@ -446,8 +473,13 @@ class AudioProcessorService : Service() {
                 stopSelf()
             } finally {
                 // Clean up recorder and track
-                recorder.stop()
-                track.stop()
+                if(recorder.state != AudioRecord.STATE_UNINITIALIZED) {
+                    recorder.stop()
+                }
+                if(track.state != AudioTrack.STATE_UNINITIALIZED) {
+                    track.stop()
+                }
+
                 recorder.release()
                 track.release()
             }

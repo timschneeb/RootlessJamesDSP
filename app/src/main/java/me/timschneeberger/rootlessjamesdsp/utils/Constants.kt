@@ -32,6 +32,7 @@ object Constants {
     const val ACTION_SERVICE_HARD_REBOOT_CORE = ".action.service.HARD_REBOOT_CORE"
     const val ACTION_SERVICE_SOFT_REBOOT_CORE = ".action.service.SOFT_REBOOT_CORE"
     const val ACTION_PROCESSOR_MESSAGE = ".action.service.PROCESSOR_MESSAGE"
+    const val ACTION_DISCARD_AUTHORIZATION = ".action.service.DISCARD_AUTHORIZATION"
 
     // Notifications
     const val CHANNEL_ID_SERVICE = "JamesDSP"

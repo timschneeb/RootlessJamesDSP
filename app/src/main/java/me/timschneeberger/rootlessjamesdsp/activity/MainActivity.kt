@@ -7,7 +7,6 @@ import android.media.projection.MediaProjectionManager
 import android.os.Bundle
 import android.os.IBinder
 import android.view.Menu
-import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -16,6 +15,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.preference.PreferenceManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.crashlytics.FirebaseCrashlytics
@@ -45,9 +45,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mediaProjectionManager: MediaProjectionManager
     private lateinit var capturePermissionLauncher: ActivityResultLauncher<Intent>
     private lateinit var prefs: SharedPreferences
+    private lateinit var prefsVar: SharedPreferences
 
     private var processorService: AudioProcessorService? = null
     private var processorServiceBound: Boolean = false
+
+    private var mediaProjectionStartIntent: Intent? = null
 
     private val processorServiceConnection = object : ServiceConnection {
         override fun onServiceConnected(className: ComponentName, service: IBinder) {
@@ -65,9 +68,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private var serviceStoppedReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+    private var broadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            binding.powerToggle.isToggled = false
+            when (intent.action) {
+                Constants.ACTION_DISCARD_AUTHORIZATION -> {
+                    Timber.tag(TAG).i("mediaProjectionStartIntent discarded")
+                    mediaProjectionStartIntent = null
+                }
+                Constants.ACTION_SERVICE_STOPPED -> {
+                    binding.powerToggle.isToggled = false
+                }
+            }
         }
     }
 
@@ -86,13 +97,14 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        val firstBoot = getSharedPreferences(Constants.PREF_VAR, Context.MODE_PRIVATE)
-            .getBoolean(getString(R.string.key_firstboot), true)
+        prefsVar = getSharedPreferences(Constants.PREF_VAR, Context.MODE_PRIVATE)
+        prefs = getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
+
+        val firstBoot = prefsVar.getBoolean(getString(R.string.key_firstboot), true)
         assets.installPrivateAssets(this, force = firstBoot)
 
         mediaProjectionManager = SystemServices.get(this, MediaProjectionManager::class.java)
 
-        prefs = getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
         val crashlytics = prefs.getBoolean(getString(R.string.key_share_crash_reports), true)
         Timber.tag(TAG).d("Crashlytics enabled? $crashlytics")
         FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(crashlytics)
@@ -137,7 +149,9 @@ class MainActivity : AppCompatActivity() {
                 false
         }
 
-        registerLocalReceiver(serviceStoppedReceiver, IntentFilter(Constants.ACTION_SERVICE_STOPPED))
+        val filter = IntentFilter(Constants.ACTION_SERVICE_STOPPED)
+        filter.addAction(Constants.ACTION_DISCARD_AUTHORIZATION)
+        registerLocalReceiver(broadcastReceiver, filter)
         registerLocalReceiver(processorMessageReceiver, IntentFilter(Constants.ACTION_PROCESSOR_MESSAGE))
 
         binding.powerToggle.toggleOnClick = false
@@ -159,6 +173,7 @@ class MainActivity : AppCompatActivity() {
             ActivityResultContracts.StartActivityForResult()
         ) { result ->
             if (result.resultCode == RESULT_OK) {
+                mediaProjectionStartIntent = result.data
                 binding.powerToggle.isToggled = true
                 AudioProcessorService.start(this, result.data)
             } else {
@@ -173,8 +188,7 @@ class MainActivity : AppCompatActivity() {
 
         sendLocalBroadcast(Intent(Constants.ACTION_UPDATE_PREFERENCES))
 
-        if(intent.getBooleanExtra(EXTRA_FORCE_SHOW_CAPTURE_PROMPT, false) &&
-                savedInstanceState != null) {
+        if(intent.getBooleanExtra(EXTRA_FORCE_SHOW_CAPTURE_PROMPT, false)) {
             requestCapturePermission()
         }
     }
@@ -189,8 +203,25 @@ class MainActivity : AppCompatActivity() {
         unbindProcessorService()
     }
 
+    override fun onPause() {
+        super.onPause()
+        prefsVar
+            .edit()
+            .putBoolean(getString(R.string.key_is_activity_active), false)
+            .apply()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        prefsVar.edit().putBoolean(getString(R.string.key_is_activity_active), false)
+            .apply()
+    }
+
     override fun onResume() {
         super.onResume()
+        prefsVar.edit()
+            .putBoolean(getString(R.string.key_is_activity_active), true)
+            .apply()
         binding.powerToggle.isToggled = processorService != null
     }
 
@@ -219,6 +250,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun requestCapturePermission() {
+        if(mediaProjectionStartIntent != null) {
+            binding.powerToggle.isToggled = true
+            AudioProcessorService.start(this, mediaProjectionStartIntent)
+            return
+        }
         capturePermissionLauncher.launch(mediaProjectionManager.createScreenCaptureIntent())
     }
 

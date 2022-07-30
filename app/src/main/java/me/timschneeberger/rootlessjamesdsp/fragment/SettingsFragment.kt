@@ -34,7 +34,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
             editText.inputType = InputType.TYPE_CLASS_NUMBER
         }
         findPreference<MaterialSeekbarPreference>(getString(R.string.key_audioformat_buffersize))?.setOnPreferenceChangeListener { _, newValue ->
-            if((newValue as Float) < 1024){
+            if((newValue as Float) <= 1024){
                 Toast.makeText(requireContext(), getString(R.string.audio_format_buffer_size_warning_low_value), Toast.LENGTH_SHORT).show()
             }
             requireContext().sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_HARD_REBOOT_CORE))

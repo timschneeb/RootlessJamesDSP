@@ -2,6 +2,7 @@
 <resources>
     <!-- Internal -->
     <string name="key_firstboot" translatable="false">first_boot</string>
+    <string name="key_is_activity_active" translatable="false">is_activity_active</string>
 
     <!-- Settings -->
     <string name="key_share_crash_reports" translatable="false">share_crash_reports</string>
