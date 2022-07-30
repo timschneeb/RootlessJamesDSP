@@ -8,7 +8,7 @@ import kotlin.math.floor
 class EelParser {
     var isFileLoaded: Boolean
         get() = path != null
-        private set(value) {}
+        private set (_) {}
     var path: String? = null
         private set
     var fileName: String? = null

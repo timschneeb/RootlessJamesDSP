@@ -107,7 +107,7 @@ class MutedSessionManager(private val context: Context) {
                     }
                 }
             }
-            muteEffect.setControlStatusListener { effect, controlGranted ->
+            muteEffect.setControlStatusListener { _, controlGranted ->
                 if(!controlGranted)
                 {
                     sessionLossListener?.onSessionLost(sid)

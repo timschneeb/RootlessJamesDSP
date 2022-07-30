@@ -202,10 +202,10 @@ class MaterialSeekbarPreference : Preference {
     /**
      * Sets the lower bound on the [SeekBar].
      *
-     * @param min The lower bound to set
+     * @param _min The lower bound to set
      */
-    fun setMin(min: Float) {
-        var min = min
+    fun setMin(_min: Float) {
+        var min = _min
         if (min > mMax) {
             min = mMax
         }
@@ -252,10 +252,10 @@ class MaterialSeekbarPreference : Preference {
     /**
      * Sets the upper bound on the [SeekBar].
      *
-     * @param max The upper bound to set
+     * @param _max The upper bound to set
      */
-    fun setMax(max: Float) {
-        var max = max
+    fun setMax(_max: Float) {
+        var max = _max
         if (max < mMin) {
             max = mMin
         }

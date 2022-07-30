@@ -121,8 +121,7 @@ class EqualizerSurface(context: Context?, attrs: AttributeSet?) : View(context, 
         freqResponse.rewind()
         freqResponseBg.rewind()
 
-        val ret =
-            JdspImpResToolbox.ComputeEqResponse(15, FreqScale, mLevels, 1, nPts, displayFreq, response)
+        JdspImpResToolbox.ComputeEqResponse(15, FreqScale, mLevels, 1, nPts, displayFreq, response)
 
         var x: Float
         var y: Float
