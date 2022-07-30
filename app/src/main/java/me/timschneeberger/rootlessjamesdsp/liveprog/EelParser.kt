@@ -3,6 +3,8 @@ package me.timschneeberger.rootlessjamesdsp.liveprog
 import timber.log.Timber
 import java.io.File
 import java.io.FileNotFoundException
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.math.floor
 
 class EelParser {
@@ -166,7 +168,7 @@ class EelParser {
             val value: String = if(prop.handleAsInt()) {
                 prop.value.toInt().toString()
             } else {
-                "%.2f".format(prop.value)
+                "%.2f".format(Locale.ROOT, prop.value)
             }
             Timber.d("Manipulating property: $prop (processedValue=$value)")
             val result = EelNumberRangeProperty.replaceVariable(prop.key, value, contents ?: "")

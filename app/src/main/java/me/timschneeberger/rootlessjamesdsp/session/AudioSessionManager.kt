@@ -123,13 +123,18 @@ class AudioSessionManager(val context: Context) : DumpManager.OnDumpMethodChange
         val hasPermission = NotificationManagerCompat.getEnabledListenerPackages(context)
             .contains(context.packageName)
         Timber.tag(TAG).d("Notification listener permission granted? $hasPermission")
-        if (hasPermission) {
-            sessionManager.addOnActiveSessionsChangedListener(
-                this,
-                ComponentName(context, NotificationListenerService::class.java)
-            )
-        } else {
-            sessionManager.removeOnActiveSessionsChangedListener(this)
+        try {
+            if (hasPermission) {
+                sessionManager.addOnActiveSessionsChangedListener(
+                    this,
+                    ComponentName(context, NotificationListenerService::class.java)
+                )
+            } else {
+                sessionManager.removeOnActiveSessionsChangedListener(this)
+            }
+        }
+        catch (ex: SecurityException) {
+            Timber.tag(TAG).e("installNotificationListenerService: SecurityException; missing permission")
         }
     }
 
