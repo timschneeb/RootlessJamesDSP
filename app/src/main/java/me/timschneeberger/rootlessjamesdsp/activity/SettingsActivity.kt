@@ -102,7 +102,7 @@ class SettingsActivity : AppCompatActivity() {
                 true
             }
             findPreference<Preference>(getString(R.string.key_troubleshooting_repair_assets))?.setOnPreferenceClickListener {
-                requireContext().assets.installPrivateAssets(requireContext())
+                requireContext().assets.installPrivateAssets(requireContext(), force = true)
                 requireContext().showAlert(R.string.success, R.string.troubleshooting_repair_assets_success)
                 true
             }

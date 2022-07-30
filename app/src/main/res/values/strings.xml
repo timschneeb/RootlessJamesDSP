@@ -251,11 +251,14 @@ An alternative audio recording method using ADB privileges that is not affected 
     <!-- File library preference -->
     <string name="filelibrary_hint_tap_and_hold">Tap and hold any item for more options</string>
     <string name="filelibrary_context_share">Share…</string>
+    <string name="filelibrary_context_duplicate">Duplicate</string>
     <string name="filelibrary_context_delete">Delete</string>
     <string name="filelibrary_unsupported_format_title">Unsupported file type</string>
     <string name="filelibrary_unsupported_format">The selected file has not have the correct file extension.</string>
     <string name="filelibrary_access_fail">Failed to access directory</string>
     <string name="filelibrary_no_file_selected">No file selected</string>
+    <string name="filelibrary_new_file_name">New file name</string>
+    <string name="filelibrary_file_exists">File exists already</string>
 
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">Selected VDC file is corrupt. Please choose another one.</string>

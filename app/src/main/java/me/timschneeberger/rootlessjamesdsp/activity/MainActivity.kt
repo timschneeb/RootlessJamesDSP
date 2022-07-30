@@ -88,8 +88,7 @@ class MainActivity : AppCompatActivity() {
 
         val firstBoot = getSharedPreferences(Constants.PREF_VAR, Context.MODE_PRIVATE)
             .getBoolean(getString(R.string.key_firstboot), true)
-        if(firstBoot)
-            assets.installPrivateAssets(this)
+        assets.installPrivateAssets(this, force = firstBoot)
 
         mediaProjectionManager = SystemServices.get(this, MediaProjectionManager::class.java)
 

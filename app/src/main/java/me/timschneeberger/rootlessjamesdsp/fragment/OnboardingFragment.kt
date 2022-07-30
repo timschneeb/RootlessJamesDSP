@@ -377,6 +377,7 @@ class OnboardingFragment : Fragment() {
                     R.string.onboarding_adb_shizuku_no_dump_perm)
 
                 // Fallback just in case
+                @Suppress("DEPRECATION")
                 val proc = Shizuku.newProcess(arrayOf<String>("pm", "grant", pkg, DUMP_PERM), null, null)
                 proc.waitFor()
                 false

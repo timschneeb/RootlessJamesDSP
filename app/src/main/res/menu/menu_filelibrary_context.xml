@@ -6,6 +6,9 @@
         android:id="@+id/share_selection"
         android:title="@string/filelibrary_context_share" />
     <item
+        android:id="@+id/duplicate_selection"
+        android:title="@string/filelibrary_context_duplicate" />
+    <item
         android:id="@+id/delete_selection"
         android:title="@string/filelibrary_context_delete" />
 </menu>

@@ -1,0 +1,43 @@
+desc: Polyphase filterbank (Equalization example)
+
+@init
+N = 8;
+m = 3;
+pfb1 = 0;
+memSize = InitPolyphaseFilterbank(srate, N, m, pfb1, pfb2);
+PolyphaseFilterbankChangeWarpingFactor(pfb1, srate, 0.99);
+phaseCorrFilt = pfb2 + memSize;
+corrFiltLen = PolyphaseFilterbankGetPhaseCorrector(pfb1, 0.5, phaseCorrFilt);
+Sk = phaseCorrFilt + corrFiltLen;
+PolyphaseFilterbankGetDecimationFactor(pfb1, Sk);
+i = 0;
+loop(corrFiltLen, 
+//printf("%1.7f,", phaseCorrFilt[i]);
+i += 1);
+printf("PFB memSize = %d\ncorrFiltLen = %d\n", memSize, corrFiltLen);
+subbandOutputLeft = Sk + N;
+subbandOutputRight = subbandOutputLeft + N;
+decimationCnt = subbandOutputRight + N;
+eqGain = decimationCnt + N;
+eqGain[0] = 1;
+eqGain[1] = 0;
+eqGain[2] = 1;
+eqGain[3] = 0;
+eqGain[4] = 1;
+eqGain[5] = 0;
+eqGain[6] = 1;
+
+@sample
+
+PolyphaseFilterbankAnalysisStereo(pfb1, pfb2, subbandOutputLeft, subbandOutputRight, decimationCnt, spl0, spl1);
+
+i = 0;
+loop(N, 
+decimationCnt[i] == Sk[i] ? (
+subbandOutputLeft[i] = subbandOutputLeft[i] * eqGain[i];
+subbandOutputRight[i] = subbandOutputRight[i] * eqGain[i];
+);
+i += 1);
+PolyphaseFilterbankSynthesisStereo(pfb1, pfb2, subbandOutputLeft, subbandOutputRight, y1, y2);
+spl0 = y1;
+spl1 = y2;

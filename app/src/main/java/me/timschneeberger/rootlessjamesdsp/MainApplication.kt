@@ -1,11 +1,8 @@
 package me.timschneeberger.rootlessjamesdsp
 
-import android.annotation.SuppressLint
 import android.app.Application
 import android.os.Build
 import android.util.Log
-import androidx.annotation.RequiresApi
-import androidx.core.os.BuildCompat
 import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.ktx.Firebase
 import org.lsposed.hiddenapibypass.HiddenApiBypass
@@ -17,7 +14,6 @@ class MainApplication : Application() {
     init {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.P)
         {
-            // TODO is this still necessary?
             HiddenApiBypass.setHiddenApiExemptions("")
         }
     }

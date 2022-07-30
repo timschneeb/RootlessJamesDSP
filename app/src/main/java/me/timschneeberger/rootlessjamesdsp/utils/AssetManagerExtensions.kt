@@ -7,32 +7,36 @@ import java.io.File
 import java.io.FileOutputStream
 
 object AssetManagerExtensions {
-    fun AssetManager.installPrivateAssets(context: Context) {
-        Timber.d("Installing private assets")
-        this.copyAssetDir("Convolver", context.getExternalFilesDir(null)!!.absolutePath)
-        this.copyAssetDir("DDC", context.getExternalFilesDir(null)!!.absolutePath)
-        this.copyAssetDir("Liveprog", context.getExternalFilesDir(null)!!.absolutePath)
+    fun AssetManager.installPrivateAssets(context: Context, force: Boolean) {
+        Timber.d("Installing private assets; force=$force")
+        this.copyAssetDir("Convolver", context.getExternalFilesDir(null)!!.absolutePath, force)
+        this.copyAssetDir("DDC", context.getExternalFilesDir(null)!!.absolutePath, force)
+        this.copyAssetDir("Liveprog", context.getExternalFilesDir(null)!!.absolutePath, force)
     }
 
-    private fun AssetManager.copyAssetDir(assetPath: String, destDirPath: String) {
-        this.walkAssetDir(assetPath) {
-            this.copyAssetFile(it, "$destDirPath/$it")
+    private fun AssetManager.copyAssetDir(assetPath: String, destDirPath: String, force: Boolean) {
+        this.walkAssetDir(assetPath, force) {
+            this.copyAssetFile(it, "$destDirPath/$it", force)
         }
     }
 
-    private fun AssetManager.walkAssetDir(assetPath: String, callback: ((String) -> Unit)) {
+    private fun AssetManager.walkAssetDir(assetPath: String, force: Boolean, callback: ((String) -> Unit)) {
         val children = this.list(assetPath) ?: return
         if (children.isEmpty()) {
             callback(assetPath)
         } else {
             for (child in children) {
-                this.walkAssetDir("$assetPath/$child", callback)
+                this.walkAssetDir("$assetPath/$child", force, callback)
             }
         }
     }
 
-    private fun AssetManager.copyAssetFile(assetPath: String, destPath: String): File {
+    private fun AssetManager.copyAssetFile(assetPath: String, destPath: String, force: Boolean): File? {
         val destFile = File(destPath)
+        if(destFile.exists() && !force) {
+            return null
+        }
+
         File(destFile.parent!!).mkdirs()
         destFile.createNewFile()
 
