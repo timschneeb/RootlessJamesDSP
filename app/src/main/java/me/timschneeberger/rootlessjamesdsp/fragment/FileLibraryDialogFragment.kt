@@ -18,6 +18,7 @@ import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.DialogTextinputBinding
 import me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showInputAlert
 import me.timschneeberger.rootlessjamesdsp.utils.StorageUtils
 import timber.log.Timber
 import java.io.File
@@ -51,26 +52,27 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
                         reopenDialog()
                     }
                     R.id.duplicate_selection -> {
-                        val content = DialogTextinputBinding.inflate(layoutInflater)
-                        content.textInputLayout.hint = getString(R.string.filelibrary_new_file_name)
-                        content.text1.text = Editable.Factory.getInstance().newEditable(selectedFile.nameWithoutExtension)
-
-                        AlertDialog.Builder(requireContext())
-                            .setTitle(R.string.filelibrary_context_duplicate)
-                            .setView(content.root)
-                            .setPositiveButton(android.R.string.ok) { inputDialog, _ ->
-                                val input = (inputDialog as AlertDialog).requireViewById<TextView>(android.R.id.text1)
-                                val newFile = File(selectedFile.parentFile!!.absolutePath + File.separator + input.text + "." + selectedFile.extension)
-                                if(newFile.exists()) {
-                                    Toast.makeText(context, getString(R.string.filelibrary_file_exists), Toast.LENGTH_LONG).show()
-                                    return@setPositiveButton
+                        requireContext().showInputAlert(
+                            layoutInflater,
+                            R.string.filelibrary_context_duplicate,
+                            R.string.filelibrary_new_file_name,
+                            selectedFile.nameWithoutExtension
+                        ) {
+                            if (it != null) {
+                                val newFile =
+                                    File(selectedFile.parentFile!!.absolutePath + File.separator + it + "." + selectedFile.extension)
+                                if (newFile.exists()) {
+                                    Toast.makeText(
+                                        context,
+                                        getString(R.string.filelibrary_file_exists),
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                    return@showInputAlert
                                 }
                                 selectedFile.copyTo(newFile)
                                 reopenDialog()
                             }
-                            .setNegativeButton(android.R.string.cancel, null)
-                            .create()
-                            .show()
+                        }
                     }
                     R.id.share_selection -> {
                         val uri = FileProvider.getUriForFile(
@@ -101,7 +103,7 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
 
     override fun onPrepareDialogBuilder(builder: AlertDialog.Builder) {
         super.onPrepareDialogBuilder(builder)
-        builder.setView(R.layout.filelibrary_dialog)
+        builder.setView(R.layout.dialog_filelibrary)
         builder.setNeutralButton("Import") { _, _ -> }
     }
 

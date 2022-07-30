@@ -5,13 +5,20 @@ import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
+import android.text.Editable
+import android.view.LayoutInflater
+import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.FileProvider
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
+import me.timschneeberger.rootlessjamesdsp.databinding.DialogTextinputBinding
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppName
 import timber.log.Timber
 import java.io.File
@@ -99,6 +106,25 @@ object ContextExtensions {
         alert.setTitle(getString(title))
         alert.setNegativeButton(android.R.string.ok, null)
         alert.create().show()
+    }
+
+    fun Context.showInputAlert(layoutInflater: LayoutInflater, @StringRes title: Int, @StringRes hint: Int, value: String, callback: ((String?) -> Unit)) {
+        val content = DialogTextinputBinding.inflate(layoutInflater)
+        content.textInputLayout.hint = getString(hint)
+        content.text1.text = Editable.Factory.getInstance().newEditable(value)
+
+        AlertDialog.Builder(this)
+            .setTitle(getString(title))
+            .setView(content.root)
+            .setPositiveButton(android.R.string.ok) { inputDialog, _ ->
+                val input = (inputDialog as AlertDialog).requireViewById<TextView>(android.R.id.text1)
+                callback.invoke(input.text.toString())
+            }
+            .setNegativeButton(android.R.string.cancel) { _, _ ->
+                callback.invoke(null)
+            }
+            .create()
+            .show()
     }
 
     fun Context.getAppName(packageName: String): CharSequence? {
