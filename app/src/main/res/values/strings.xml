@@ -39,7 +39,7 @@
     <!-- Main screen -->
     <string name="power_button_alt">Toggle audio processing</string>
 
-    <string name="compressor_enable">Dynamic range squasher</string>
+    <string name="compressor_enable">Auto dynamic range compressor</string>
     <string name="compressor_max_attack">Maximum attack</string>
     <string name="compressor_max_release">Maximum release</string>
     <string name="compressor_adapt_speed">Aggressiveness</string>
@@ -111,7 +111,7 @@
     <string name="liveprog_no_script_selected">No script selected</string>
 
     <string name="tube_enable">Analog modelling</string>
-    <string name="tube_drive">Preamp (Harmonics)</string>
+    <string name="tube_drive">Preamp</string>
 
     <string name="output_control_header">Output control</string>
     <string name="output_limiter_threshold">Limiter threshold</string>
