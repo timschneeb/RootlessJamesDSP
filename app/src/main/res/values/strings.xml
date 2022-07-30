@@ -213,7 +213,7 @@ An alternative audio recording method using ADB privileges that is not affected 
     <string name="session_continuous_polling_off">Only listen for session events from the system</string>
     <string name="session_continuous_polling_on">Continuously enumerate audio sessions</string>
     <string name="session_continuous_polling_rate">Polling interval (ms)</string>
-    <string name="session_detection_method">Session detection method</string>
+    <string name="session_detection_method">Preferred session detection method</string>
     <string name="session_detection_method_audiopolicyservice">AudioPolicyService dump</string>
     <string name="session_detection_method_audioservice">AudioService dump</string>
     <string name="session_loss_ignore">Ignore session control loss</string>

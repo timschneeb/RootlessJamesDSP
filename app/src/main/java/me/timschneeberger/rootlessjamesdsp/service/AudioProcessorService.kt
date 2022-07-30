@@ -300,7 +300,10 @@ class AudioProcessorService : Service() {
     // Session policy change listener
     private val onSessionPolicyChangeListener = object : SessionRecordingPolicyManager.OnSessionRecordingPolicyChangeListener {
         override fun onSessionRecordingPolicyChanged(sessionList: HashMap<String, SessionRecordingPolicyEntry>, isMinorUpdate: Boolean) {
-            // TODO add disable setting
+            if(!this@AudioProcessorService.excludeRestrictedSessions) {
+                Timber.tag(TAG).d("onRestrictedSessionChanged: blocked; excludeRestrictedSessions disabled")
+                return
+            }
 
             if(!isMinorUpdate) {
                 Timber.tag(TAG).d("onRestrictedSessionChanged: major update detected; requesting soft-reboot")

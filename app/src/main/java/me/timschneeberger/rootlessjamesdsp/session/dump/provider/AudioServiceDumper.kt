@@ -1,4 +1,4 @@
-package me.timschneeberger.rootlessjamesdsp.session.dump
+package me.timschneeberger.rootlessjamesdsp.session.dump.provider
 
 import android.content.Context
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.AudioServiceDump
@@ -6,7 +6,6 @@ import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.utils.AudioFlingerServiceDumpUtils
 import me.timschneeberger.rootlessjamesdsp.session.dump.utils.DumpUtils
 import me.timschneeberger.rootlessjamesdsp.model.AudioSessionEntry
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppNameFromUid
 import timber.log.Timber
 import java.lang.Exception
 

@@ -10,6 +10,8 @@ import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.AudioPolicyServiceDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionPolicyInfoDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
+import me.timschneeberger.rootlessjamesdsp.session.dump.provider.AudioPolicyServiceDumper
+import me.timschneeberger.rootlessjamesdsp.session.dump.provider.AudioServiceDumper
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.SingletonHolder
 import timber.log.Timber
@@ -18,7 +20,6 @@ class DumpManager private constructor(val context: Context) {
     enum class Method (val value: Int) {
         AudioPolicyService(0),
         AudioService(1);
-        //MediaSessionService(2); // TODO
 
         companion object {
             fun fromInt(value: Int) = values().first { it.value == value }
