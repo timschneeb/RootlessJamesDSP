@@ -374,6 +374,11 @@ class AudioProcessorService : Service() {
         var recorder = buildAudioRecord(encodingFormat, sampleRate, bufferSizeBytes)
         val track = buildAudioTrack(encodingFormat, sampleRate, bufferSizeBytes)
 
+        if(engine.sampleRate.toInt() != sampleRate) {
+            Timber.tag(TAG).d("Sampling rate changed to ${sampleRate}Hz")
+            engine.setSamplingRate(sampleRate.toFloat())
+        }
+
         // TODO Move all audio-related code to C++
         recorderThread = Thread {
             try {

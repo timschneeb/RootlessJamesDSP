@@ -34,7 +34,6 @@
     <string name="details">Details</string>
     <string name="warning">Warning</string>
     <string name="success">Success</string>
-    <string name="close">Close</string>
 
     <!-- Main screen -->
     <string name="power_button_alt">Toggle audio processing</string>

@@ -1,8 +1,3 @@
 <resources>
     <dimen name="corner_radius">12dp</dimen>
-
-    <dimen name="fab_margin">16dp</dimen>
-
-    <dimen name="bar_width">7dp</dimen>
-    <dimen name="text_margin">16dp</dimen>
 </resources>

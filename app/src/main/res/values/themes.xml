@@ -17,5 +17,4 @@
     </style>
 
     <style name="Theme.RootlessJamesDSP.CardView" parent="Widget.Material3.CardView.Elevated" />
-
 </resources>
