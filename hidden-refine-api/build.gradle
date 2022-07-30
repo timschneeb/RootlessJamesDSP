@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
 }
+apply plugin: 'kotlin-android'
 
 android {
     compileSdk 32
@@ -36,4 +37,7 @@ dependencies {
     def refine_version = '3.1.1'
     annotationProcessor "dev.rikka.tools.refine:annotation-processor:$refine_version"
     compileOnly "dev.rikka.tools.refine:annotation:$refine_version"
+
+    implementation "androidx.core:core-ktx:1.8.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

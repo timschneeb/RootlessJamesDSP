@@ -11,7 +11,7 @@ public class ShizukuSystemServerApi {
     private static final Singleton<IPermissionManager> PERMISSION_MANAGER = new Singleton<IPermissionManager>() {
         @Override
         protected IPermissionManager create() {
-            IBinder service = SystemServiceHelper.getSystemService("permission");
+            IBinder service = SystemServiceHelper.getSystemService("permissionmgr");
             ShizukuBinderWrapper wrapper = new ShizukuBinderWrapper(service);
             return IPermissionManager.Stub.asInterface(wrapper);
         }

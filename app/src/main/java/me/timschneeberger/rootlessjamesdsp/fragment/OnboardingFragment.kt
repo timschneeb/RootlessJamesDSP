@@ -35,6 +35,8 @@ import androidx.fragment.app.Fragment
 import androidx.transition.TransitionManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.transition.MaterialSharedAxis
+import me.timschneeberger.hiddenapi_impl.ShizukuSystemServerApi
+import me.timschneeberger.hiddenapi_impl.UserHandle
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.activity.MainActivity
 import me.timschneeberger.rootlessjamesdsp.databinding.OnboardingFragmentBinding
@@ -362,11 +364,8 @@ class OnboardingFragment : Fragment() {
             Timber.tag(TAG)
                 .d("Granting $DUMP_PERM via Shizuku (uid ${Shizuku.getUid()}) for $pkg")
 
-            // ShizukuSystemServerApi.PermissionManager_grantRuntimePermission(pkg, DUMP_PERM, Shizuku.getUid())
-            // TODO Fix this. Binder-based access to Hidden API does not work as expected. Use UserService running as shell instead?
-            val proc =
-                Shizuku.newProcess(arrayOf<String>("pm", "grant", pkg, DUMP_PERM), null, null)
-            proc.waitFor()
+
+            ShizukuSystemServerApi.PermissionManager_grantRuntimePermission(pkg, DUMP_PERM, UserHandle.USER_SYSTEM)
 
             // Re-check permission
             return if (requireContext().checkSelfPermission(DUMP_PERM) == PERMISSION_GRANTED) {
@@ -376,6 +375,11 @@ class OnboardingFragment : Fragment() {
                 Timber.tag(TAG).e("$DUMP_PERM not granted")
                 requireContext().showAlert(R.string.onboarding_adb_shizuku_no_dump_perm_title,
                     R.string.onboarding_adb_shizuku_no_dump_perm)
+
+                // Fallback just in case
+                val proc =
+                    Shizuku.newProcess(arrayOf<String>("pm", "grant", pkg, DUMP_PERM), null, null)
+                proc.waitFor()
                 false
             }
         }
