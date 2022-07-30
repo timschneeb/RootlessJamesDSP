@@ -3,7 +3,7 @@ package me.timschneeberger.rootlessjamesdsp.session
 import android.content.Context
 import android.content.pm.PackageManager
 import me.timschneeberger.rootlessjamesdsp.model.SessionRecordingPolicyEntry
-import me.timschneeberger.rootlessjamesdsp.session.dump.data.IRestrictedSessionInfoDump
+import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionPolicyInfoDump
 import timber.log.Timber
 
 
@@ -24,7 +24,7 @@ class SessionRecordingPolicyManager(private val context: Context) {
         sessionPolicyList.clear()
     }
 
-    fun update(dump: IRestrictedSessionInfoDump)
+    fun update(dump: ISessionPolicyInfoDump)
     {
         if(isDisposing) {
             Timber.d("update: SessionRecordingPolicyManager is disposing; ignoring dump")

@@ -8,7 +8,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getVersionCod
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getVersionName
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.AudioPolicyServiceDump
-import me.timschneeberger.rootlessjamesdsp.session.dump.data.IRestrictedSessionInfoDump
+import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionPolicyInfoDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.SingletonHolder
@@ -75,7 +75,7 @@ class DumpManager private constructor(val context: Context) {
         return null
     }
 
-    fun dumpCaptureAllowlistLog(): IRestrictedSessionInfoDump? {
+    fun dumpCaptureAllowlistLog(): ISessionPolicyInfoDump? {
         // Only AudioPolicyService contains this data
         return (availableDumpMethods[Method.AudioPolicyService]?.dump(context) as? AudioPolicyServiceDump)
     }

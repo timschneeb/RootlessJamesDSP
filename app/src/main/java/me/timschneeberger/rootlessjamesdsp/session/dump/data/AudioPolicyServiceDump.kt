@@ -4,7 +4,7 @@ import me.timschneeberger.rootlessjamesdsp.model.AudioSessionEntry
 
 data class AudioPolicyServiceDump(override val sessions: HashMap<Int /* sid */, AudioSessionEntry>,
                                   override val capturePermissionLog: HashMap<String /* package */, Boolean /* captureAllowed */>) :
-    ISessionInfoDump, IRestrictedSessionInfoDump
+    ISessionInfoDump, ISessionPolicyInfoDump
 {
     override fun toString(): String {
         val sb = StringBuilder("\n---> Session stack\n")

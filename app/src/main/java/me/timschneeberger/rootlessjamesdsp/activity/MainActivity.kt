@@ -192,10 +192,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if(processorService != null)
-        {
-            binding.powerToggle.isToggled = true
-        }
+        binding.powerToggle.isToggled = processorService != null
     }
 
     private fun bindProcessorService() {

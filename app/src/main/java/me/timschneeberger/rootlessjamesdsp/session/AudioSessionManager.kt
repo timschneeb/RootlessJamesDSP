@@ -18,7 +18,7 @@ import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.session.dump.DumpManager
 import me.timschneeberger.rootlessjamesdsp.model.SessionUpdateMode
 import me.timschneeberger.rootlessjamesdsp.service.NotificationListenerService
-import me.timschneeberger.rootlessjamesdsp.session.dump.data.IRestrictedSessionInfoDump
+import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionPolicyInfoDump
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.unregisterLocalReceiver
@@ -160,7 +160,7 @@ class AudioSessionManager(val context: Context) : DumpManager.OnDumpMethodChange
 
         pollingMutex.withLock {
             val sessions = DumpManager.get(context).dumpSessions()
-            if(sessions is IRestrictedSessionInfoDump) {
+            if(sessions is ISessionPolicyInfoDump) {
                 sessionPolicyDatabase.update(sessions)
             }
             else {

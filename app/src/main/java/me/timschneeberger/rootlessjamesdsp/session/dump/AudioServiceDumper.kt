@@ -6,6 +6,7 @@ import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.utils.AudioFlingerServiceDumpUtils
 import me.timschneeberger.rootlessjamesdsp.session.dump.utils.DumpUtils
 import me.timschneeberger.rootlessjamesdsp.model.AudioSessionEntry
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppNameFromUid
 import timber.log.Timber
 import java.lang.Exception
 
@@ -84,8 +85,8 @@ class AudioServiceDumper : ISessionInfoProvider {
                 if(sid == null && sidPidLookupMap.contains(pid))
                 {
                     // Fallback to SID/PID table from AudioFlinger
-                    Timber.tag(TAG).d("Falling back to SID lookup via AudioFlinger (p/uid=$pid/$uid; usage=$usage; content=$content)")
                     sid = sidPidLookupMap[pid]
+                    Timber.tag(TAG).d("Falling back to SID lookup via AudioFlinger (p/uid=$pid/$uid; usage=$usage; content=$content) => sid=$sid")
                 }
 
                 if(sid == null)
@@ -93,8 +94,8 @@ class AudioServiceDumper : ISessionInfoProvider {
                     Timber.tag(TAG).e("Failed to determine session id for p/uid: $pid/$uid (usage=$usage; content=$content)")
                     return@next
                 }
-                val pkg = context.packageManager.getNameForUid(uid)
-                    ?: context.packageManager.getPackagesForUid(uid)?.firstOrNull()
+                val pkg = context.packageManager.getPackagesForUid(uid)?.firstOrNull()
+                    ?: context.packageManager.getNameForUid(uid)
                     ?: uid.toString()
                 sessions[sid] = AudioSessionEntry(uid, pkg, usage, content)
             } catch (ex: NumberFormatException) {

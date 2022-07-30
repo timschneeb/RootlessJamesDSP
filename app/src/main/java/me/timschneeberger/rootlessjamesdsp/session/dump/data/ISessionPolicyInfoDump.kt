@@ -1,7 +1,5 @@
 package me.timschneeberger.rootlessjamesdsp.session.dump.data
 
-interface IRestrictedSessionInfoDump {
+interface ISessionPolicyInfoDump : IDump {
     val capturePermissionLog: HashMap<String /* package */, Boolean /* captureAllowed */>
-
-    override fun toString(): String
 }
