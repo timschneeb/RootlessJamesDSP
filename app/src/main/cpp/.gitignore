@@ -1,9 +1,0 @@
-# Ignore everything in libjamesdsp-subtree
-libjamesdsp-subtree/*
-# Except relevant JNI stuff in there
-!libjamesdsp-subtree/Main
-
-# Same principle for the Main subdir; ignore everything...
-libjamesdsp-subtree/Main/*
-# Except...
-!libjamesdsp-subtree/Main/libjamesdsp

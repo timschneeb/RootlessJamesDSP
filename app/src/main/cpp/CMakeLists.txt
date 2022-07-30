@@ -17,8 +17,8 @@ include(libjdspimptoolbox/CMakeLists.txt)
 include(libjamesdsp-wrapper/CMakeLists.txt)
 
 file(GLOB_RECURSE LIBJAMESDSP_SOURCE_FILES CONFIGURE_DEPENDS
-        ${CMAKE_CURRENT_LIST_DIR}/libjamesdsp-subtree/Main/libjamesdsp/jni/jamesdsp/jdsp/*.c
-        ${CMAKE_CURRENT_LIST_DIR}/libjamesdsp-subtree/Main/libjamesdsp/jni/jamesdsp/jdsp/*.h)
+        ${CMAKE_CURRENT_LIST_DIR}/libjamesdsp/Main/libjamesdsp/jni/jamesdsp/jdsp/*.c
+        ${CMAKE_CURRENT_LIST_DIR}/libjamesdsp/Main/libjamesdsp/jni/jamesdsp/jdsp/*.h)
 
 add_library( # Sets the name of the library.
         jamesdsp
@@ -33,7 +33,7 @@ add_library( # Sets the name of the library.
 
 target_compile_options(jamesdsp PRIVATE -O2)
 target_compile_options(jamesdsp PRIVATE -std=gnu11)
-target_include_directories(jamesdsp PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/libjamesdsp-subtree/Main/libjamesdsp/jni/jamesdsp/jdsp/)
+target_include_directories(jamesdsp PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/libjamesdsp/Main/libjamesdsp/jni/jamesdsp/jdsp/)
 
 find_library( # Sets the name of the path variable.
         log-lib
