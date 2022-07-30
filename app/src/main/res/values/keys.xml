@@ -18,8 +18,6 @@
     <string name="key_powersave_suspend" translatable="false">powersave_suspend</string>
     <string name="key_audioformat_encoding" translatable="false">audioformat_encoding</string>
     <string name="key_audioformat_buffersize" translatable="false">audioformat_buffersize</string>
-    <string name="key_credits_app" translatable="false">credits_app</string>
-    <string name="key_credits_dsp" translatable="false">credits_dsp</string>
 
     <!-- DSP -->
     <string name="key_compression_enable" translatable="false">compression_enable</string>

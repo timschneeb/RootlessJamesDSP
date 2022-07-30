@@ -247,9 +247,9 @@ An alternative audio recording method using ADB privileges that is not affected 
     <string name="privacy_share_crash_reports">Share application crash reports</string>
     <string name="privacy_share_crash_reports_on">Send crash reports to the developer</string>
     <string name="privacy_share_crash_reports_off">Don\'t send crash reports to the developer</string>
-    <string name="credits">Privacy</string>
-    <string name="credits_app">Rootless implementation and UI created by</string>
-    <string name="credits_dsp">JamesDSP audio processing library created by</string>
+    <string name="credits">Credits</string>
+    <string name="credits_app">App &amp; implementation developed by</string>
+    <string name="credits_dsp">JamesDSP library developed by</string>
 
     <!-- File library preference -->
     <string name="filelibrary_hint_tap_and_hold">Tap and hold any item for more options</string>
