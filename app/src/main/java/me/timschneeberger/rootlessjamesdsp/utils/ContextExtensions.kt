@@ -127,6 +127,10 @@ object ContextExtensions {
             .show()
     }
 
+    fun Context.openUri(uri: String) {
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(uri)))
+    }
+
     fun Context.getAppName(packageName: String): CharSequence? {
         return try {
             packageManager.getApplicationInfo(packageName, 0)

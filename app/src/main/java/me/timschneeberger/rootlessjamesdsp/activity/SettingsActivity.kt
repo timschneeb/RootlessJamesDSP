@@ -1,6 +1,7 @@
 package me.timschneeberger.rootlessjamesdsp.activity
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.InputType
 import android.widget.Toast
@@ -15,13 +16,14 @@ import dev.doubledot.doki.ui.DokiActivity
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.ActivitySettingsBinding
-import me.timschneeberger.rootlessjamesdsp.session.dump.DumpManager
 import me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
 import me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
 import me.timschneeberger.rootlessjamesdsp.service.NotificationListenerService
+import me.timschneeberger.rootlessjamesdsp.session.dump.DumpManager
 import me.timschneeberger.rootlessjamesdsp.utils.ApplicationUtils
 import me.timschneeberger.rootlessjamesdsp.utils.AssetManagerExtensions.installPrivateAssets
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.openUri
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
 import java.io.File
@@ -109,6 +111,14 @@ class SettingsActivity : AppCompatActivity() {
             findPreference<Preference>(getString(R.string.key_troubleshooting_notification_access))?.setOnPreferenceClickListener {
                 val intent = ApplicationUtils.getIntentForNotificationAccess(requireContext().packageName, NotificationListenerService::class.java)
                 requireActivity().startActivity(intent)
+                true
+            }
+            findPreference<Preference>(getString(R.string.credits_app))?.setOnPreferenceClickListener {
+                requireContext().openUri("https://github.com/thepbone")
+                true
+            }
+            findPreference<Preference>(getString(R.string.credits_dsp))?.setOnPreferenceClickListener {
+                requireContext().openUri("https://github.com/james34602")
                 true
             }
         }

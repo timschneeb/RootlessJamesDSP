@@ -131,4 +131,18 @@
             app:iconSpaceReserved="false" />
     </PreferenceCategory>
 
+    <PreferenceCategory
+        app:title="@string/credits"
+        app:iconSpaceReserved="false">
+        <Preference
+            android:key="@string/key_credits_app"
+            android:title="@string/credits_app"
+            android:summary="Tim Schneeberger (@thepbone)"
+            app:iconSpaceReserved="false" />
+        <Preference
+            android:key="@string/key_credits_dsp"
+            android:title="@string/credits_dsp"
+            android:summary="James Fung (@james34602)"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
 </PreferenceScreen>
