@@ -4,7 +4,7 @@ import android.content.Context
 import timber.log.Timber
 
 /**
- * Used to retrieve complementary data for AudioServiceDumper and MediaSessionServiceDumper
+ * Used to retrieve complementary data for AudioServiceDumpProvider
  */
 object AudioFlingerServiceDumpUtils {
     class Dataset(val sid: Int, val pid: Int, val uid: Int?)

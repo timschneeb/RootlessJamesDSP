@@ -8,7 +8,7 @@ import me.timschneeberger.rootlessjamesdsp.model.AudioSessionEntry
 import timber.log.Timber
 import java.util.*
 
-class AudioPolicyServiceDumper : ISessionInfoProvider {
+class AudioPolicyServiceDumpProvider : ISessionDumpProvider {
 
     override fun dump(context: Context): ISessionInfoDump? {
         val dump = DumpUtils.dumpAll(context, TARGET_SERVICE)
@@ -85,7 +85,7 @@ class AudioPolicyServiceDumper : ISessionInfoProvider {
 
     companion object
     {
-        const val TAG = "AudioPolicyServiceDumper"
+        const val TAG = "AudioPolicyServiceDumpProvider"
         const val TARGET_SERVICE = "media.audio_policy"
     }
 }

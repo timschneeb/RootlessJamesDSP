@@ -10,8 +10,8 @@ import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.AudioPolicyServiceDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionPolicyInfoDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
-import me.timschneeberger.rootlessjamesdsp.session.dump.provider.AudioPolicyServiceDumper
-import me.timschneeberger.rootlessjamesdsp.session.dump.provider.AudioServiceDumper
+import me.timschneeberger.rootlessjamesdsp.session.dump.provider.AudioPolicyServiceDumpProvider
+import me.timschneeberger.rootlessjamesdsp.session.dump.provider.AudioServiceDumpProvider
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.SingletonHolder
 import timber.log.Timber
@@ -32,8 +32,8 @@ class DumpManager private constructor(val context: Context) {
 
     private val dumpChangeCallbacks = mutableListOf<OnDumpMethodChangeListener>()
     private val availableDumpMethods = mapOf(
-        Method.AudioPolicyService to AudioPolicyServiceDumper(),
-        Method.AudioService to AudioServiceDumper()
+        Method.AudioPolicyService to AudioPolicyServiceDumpProvider(),
+        Method.AudioService to AudioServiceDumpProvider()
     )
 
     var activeDumpMethod: Method = Method.AudioPolicyService

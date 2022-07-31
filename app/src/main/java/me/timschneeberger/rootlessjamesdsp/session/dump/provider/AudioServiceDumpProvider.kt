@@ -9,7 +9,7 @@ import me.timschneeberger.rootlessjamesdsp.model.AudioSessionEntry
 import timber.log.Timber
 import java.lang.Exception
 
-class AudioServiceDumper : ISessionInfoProvider {
+class AudioServiceDumpProvider : ISessionDumpProvider {
 
     override fun dump(context: Context): ISessionInfoDump? {
         val dump = DumpUtils.dumpAll(context, TARGET_SERVICE)
@@ -121,7 +121,7 @@ class AudioServiceDumper : ISessionInfoProvider {
     }
 
     companion object {
-        const val TAG = "AudioServiceDumper"
+        const val TAG = "AudioServiceDumpProvider"
         const val TARGET_SERVICE = "audio"
     }
 }
