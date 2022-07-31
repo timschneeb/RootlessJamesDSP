@@ -18,4 +18,4 @@ rootProject.name = "RootlessJamesDSP"
 include ':app'
 include ':hidden-api-stubs'
 include ':hidden-api-impl'
-include ':hidden-refine-api'
+include ':hidden-api-refined'

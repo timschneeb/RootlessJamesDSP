@@ -13,8 +13,8 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/hidden-api-impl" />
+            <option value="$PROJECT_DIR$/hidden-api-refined" />
             <option value="$PROJECT_DIR$/hidden-api-stubs" />
-            <option value="$PROJECT_DIR$/hidden-refine-api" />
           </set>
         </option>
       </GradleProjectSettings>
