@@ -16,7 +16,7 @@ class SessionReceiver : BroadcastReceiver() {
             return
         }
 
-        Timber.tag(TAG).e(
+        Timber.tag(TAG).i(
             "Action: ${intent.action}; " +
                     "session: ${intent.getIntExtra(AudioEffect.EXTRA_AUDIO_SESSION, AudioEffect.ERROR)}; " +
                     "package ${intent.getStringExtra(AudioEffect.EXTRA_PACKAGE_NAME)}")

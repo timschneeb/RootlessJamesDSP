@@ -92,6 +92,7 @@ class SessionRecordingPolicyManager(private val context: Context) {
     fun getRestrictedUids(): Array<Int> {
         return sessionPolicyList
             .filter { it.value.isRestricted }
+            .filter { it.value.uid > 0 }
             .map { it.value.uid }
             .toTypedArray()
     }
