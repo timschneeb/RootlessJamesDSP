@@ -327,7 +327,7 @@ class OnboardingFragment : Fragment() {
 
     private fun requestNextPage(nextPage: Int, forward: Boolean): Int
     {
-        val shouldSkip = when (nextPage) {
+        var shouldSkip = when (nextPage) {
             PAGE_ADB_SETUP -> requireContext().checkSelfPermission(DUMP_PERM) == PERMISSION_GRANTED
             PAGE_RUNTIME_PERMISSIONS -> requireContext().checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PERMISSION_GRANTED
             PAGE_SELF_CHECK -> true /* FIXME skip dummy page */

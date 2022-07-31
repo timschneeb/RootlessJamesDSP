@@ -281,32 +281,28 @@ class AudioProcessorService : Service() {
     // Session loss listener
     private val onSessionLossListener = object: MutedSessionManager.OnSessionLossListener {
         override fun onSessionLost(sid: Int) {
-            // Check if retry count exceeded
-            if(sessionLossRetryCount < SESSION_LOSS_MAX_RETRIES) {
-                // Retry
-                sessionLossRetryCount++
-                Timber.tag(TAG).d("Session lost. Retry count: $sessionLossRetryCount/$SESSION_LOSS_MAX_RETRIES")
-                audioSessionManager.pollOnce(false)
-                restartRecording()
-                return
-            }
-            else {
-                Timber.tag(TAG).d("Giving up on saving session. User interaction required.")
-            }
-
             // Push notification if enabled
             val ignore = sharedPreferences.getBoolean(getString(R.string.key_session_loss_ignore), false)
             if(!ignore) {
+                // Check if retry count exceeded
+                if(sessionLossRetryCount < SESSION_LOSS_MAX_RETRIES) {
+                    // Retry
+                    sessionLossRetryCount++
+                    Timber.tag(TAG).d("Session lost. Retry count: $sessionLossRetryCount/$SESSION_LOSS_MAX_RETRIES")
+                    audioSessionManager.pollOnce(false)
+                    restartRecording()
+                    return
+                }
+                else {
+                    Timber.tag(TAG).d("Giving up on saving session. User interaction required.")
+                }
+
                 // Request users attention
                 notificationManager.cancel(NOTIFICATION_ID_SERVICE)
                 ServiceNotificationHelper.pushSessionLossNotification(this@AudioProcessorService, mediaProjectionStartIntent)
                 Toast.makeText(this@AudioProcessorService, getString(R.string.session_control_loss_toast), Toast.LENGTH_SHORT).show()
                 Timber.tag(TAG).w("Terminating service due to session loss")
                 stopSelf()
-            }
-            else {
-                // Hint at failure
-                Toast.makeText(this@AudioProcessorService, getString(R.string.session_control_loss_toast_short), Toast.LENGTH_SHORT).show()
             }
         }
     }

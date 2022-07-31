@@ -14,7 +14,7 @@ class MainApplication : Application() {
     init {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.P)
         {
-            HiddenApiBypass.setHiddenApiExemptions("")
+            HiddenApiBypass.addHiddenApiExemptions("L")
         }
     }
 

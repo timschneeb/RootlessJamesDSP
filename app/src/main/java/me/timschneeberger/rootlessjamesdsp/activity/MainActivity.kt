@@ -15,7 +15,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.preference.PreferenceManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.crashlytics.FirebaseCrashlytics
@@ -169,6 +168,15 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        binding.powerToggle.setOnLongClickListener {
+            // Force request capture permission on long click
+            mediaProjectionStartIntent = null
+            binding.powerToggle.isToggled = false
+            AudioProcessorService.stop(this@MainActivity)
+            requestCapturePermission()
+            true
+        }
+
         capturePermissionLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) { result ->
@@ -232,6 +240,7 @@ class MainActivity : AppCompatActivity() {
             if(!ret)
                 requestCapturePermission()
         }
+
     }
 
     private fun unbindProcessorService() {

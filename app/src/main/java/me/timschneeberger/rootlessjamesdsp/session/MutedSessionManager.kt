@@ -89,7 +89,7 @@ class MutedSessionManager(private val context: Context) {
         Timber.tag(TAG).d("Added session: sid=$sid; $data")
 
         try {
-            val muteEffect = DynamicsProcessing(sid)
+            val muteEffect = DynamicsProcessing(Int.MAX_VALUE, sid, null)
             muteEffect.setInputGainAllChannelsTo(-200f)
             muteEffect.enabled = true
             muteEffect.setEnableStatusListener { effect, enabled ->
@@ -104,13 +104,28 @@ class MutedSessionManager(private val context: Context) {
                     {
                         Timber.tag(TAG).w("Failed to re-enable processor")
                         Timber.tag(TAG).w(ex)
+                        sessionLossListener?.onSessionLost(sid)
                     }
                 }
             }
-            muteEffect.setControlStatusListener { _, controlGranted ->
+            muteEffect.setControlStatusListener { effect, controlGranted ->
                 if(!controlGranted)
                 {
                     sessionLossListener?.onSessionLost(sid)
+                }
+                else {
+                    try {
+                        (effect as DynamicsProcessing).setInputGainAllChannelsTo(-200f)
+                        effect.enabled = true
+                        Timber.tag(TAG)
+                            .d("Dynamics processor re-muted (session $sid)")
+                    }
+                    catch(ex: Exception)
+                    {
+                        Timber.tag(TAG).w("Failed to re-mute session")
+                        Timber.tag(TAG).w(ex)
+                        sessionLossListener?.onSessionLost(sid)
+                    }
                 }
                 Timber.tag(TAG)
                     .d(
@@ -126,6 +141,7 @@ class MutedSessionManager(private val context: Context) {
                 .e("Failed to attach DynamicsProcessing to session $sid (data: $data; message: ${ex.message})")
             if(data.usage.uppercase().contains("MEDIA") || data.usage.uppercase().contains("GAME") || data.usage.uppercase().contains("UNKNOWN"))
             {
+                // TODO callback not appropriate -> attach fail != session loss
                 sessionLossListener?.onSessionLost(sid)
             }
         }
