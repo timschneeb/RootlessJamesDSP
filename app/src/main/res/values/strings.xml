@@ -205,7 +205,7 @@
     <string name="title_activity_settings">Settings</string>
     <string name="session_exclude_restricted">Exclude unsupported apps</string>
     <string name="session_exclude_restricted_off">Apps blocking audio capture stay muted (default Android behavior)</string>
-    <string name="session_exclude_restricted_on">Apps blocking audio capture are excluded and remain unprocessed</string>
+    <string name="session_exclude_restricted_on">Apps blocking audio capture are excluded and remain unprocessed (recommended)</string>
     <string name="session_detection_header">Audio session detection</string>
     <string name="session_continuous_polling">Force continuous polling</string>
     <string name="session_continuous_polling_off">Only listen for session events from the system</string>
