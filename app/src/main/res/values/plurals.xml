@@ -8,4 +8,8 @@
         <item quantity="one">%d customizable parameter</item>
         <item quantity="other">%d customizable parameters</item>
     </plurals>
+    <plurals name="unsupported_apps">
+        <item quantity="one">%d unsupported app have been automatically excluded. Tap for details.</item>
+        <item quantity="other">%d unsupported apps have been automatically excluded. Tap for details.</item>
+    </plurals>
 </resources>

@@ -14,6 +14,10 @@ import android.media.projection.MediaProjectionManager
 import android.os.*
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.Observer
+import androidx.lifecycle.asLiveData
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
 import me.timschneeberger.rootlessjamesdsp.session.AudioSessionManager
 import me.timschneeberger.rootlessjamesdsp.session.MutedSessionManager
 import me.timschneeberger.rootlessjamesdsp.R
@@ -22,9 +26,13 @@ import me.timschneeberger.rootlessjamesdsp.model.AudioEncoding
 import me.timschneeberger.rootlessjamesdsp.model.MutedSessionEntry
 import me.timschneeberger.rootlessjamesdsp.model.ProcessorMessage
 import me.timschneeberger.rootlessjamesdsp.model.SessionRecordingPolicyEntry
-import me.timschneeberger.rootlessjamesdsp.native.JamesDspEngine
-import me.timschneeberger.rootlessjamesdsp.native.JamesDspWrapper
+import me.timschneeberger.rootlessjamesdsp.interop.JamesDspEngine
+import me.timschneeberger.rootlessjamesdsp.interop.JamesDspWrapper
+import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistDatabase
+import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistRepository
+import me.timschneeberger.rootlessjamesdsp.model.room.BlockedApp
 import me.timschneeberger.rootlessjamesdsp.session.SessionRecordingPolicyManager
+import me.timschneeberger.rootlessjamesdsp.utils.Utils.concatenate
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_PROCESSOR_MESSAGE
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_HARD_REBOOT_CORE
@@ -44,7 +52,6 @@ import timber.log.Timber
 import java.io.IOException
 import java.io.Serializable
 import java.lang.Exception
-import java.lang.IllegalStateException
 import java.lang.RuntimeException
 
 
@@ -84,6 +91,17 @@ class AudioProcessorService : Service() {
 
     // Shared preferences
     private lateinit var sharedPreferences: SharedPreferences
+
+    // Room databases
+    private val applicationScope = CoroutineScope(SupervisorJob())
+    private val blockedAppDatabase by lazy { AppBlocklistDatabase.getDatabase(this, applicationScope) }
+    private val blockedAppRepository by lazy { AppBlocklistRepository(blockedAppDatabase.appBlocklistDao()) }
+    private val blockedApps by lazy { blockedAppRepository.blocklist.asLiveData() }
+    private val blockedAppObserver = Observer<List<BlockedApp>?> {
+        Timber.d("blockedAppObserver: Database changed; ignored=${!isRunning}")
+        if(isRunning)
+            recreateRecorderRequested = true
+    }
 
     // Remote binder access
     private val binder: IBinder = LocalBinder()
@@ -128,6 +146,9 @@ class AudioProcessorService : Service() {
         sharedPreferences.registerOnSharedPreferenceChangeListener(preferencesListener)
         loadFromPreferences(getString(R.string.key_powersave_suspend))
         loadFromPreferences(getString(R.string.key_session_exclude_restricted))
+
+        // Setup database observer
+        blockedApps.observeForever(blockedAppObserver)
 
         // Register notification channels
         val channel = NotificationChannel(
@@ -221,6 +242,9 @@ class AudioProcessorService : Service() {
 
         // Notify app about service termination
         sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_STOPPED))
+
+        // Unregister database observer
+        blockedApps.removeObserver(blockedAppObserver)
 
         // Unregister receivers and release resources
         unregisterLocalReceiver(broadcastReceiver)
@@ -536,24 +560,27 @@ class AudioProcessorService : Service() {
             .setChannelMask(AudioFormat.CHANNEL_IN_STEREO)
             .build()
 
-        val configBuilder =  AudioPlaybackCaptureConfiguration.Builder(mediaProjection!!)
+        val configBuilder = AudioPlaybackCaptureConfiguration.Builder(mediaProjection!!)
             .addMatchingUsage(AudioAttributes.USAGE_MEDIA)
             .addMatchingUsage(AudioAttributes.USAGE_GAME)
             .addMatchingUsage(AudioAttributes.USAGE_UNKNOWN)
 
-        if(excludeRestrictedSessions) {
-            val excluded = audioSessionManager.sessionPolicyDatabase.getRestrictedUids()
-            audioSessionManager.sessionDatabase.setExcludedUids(excluded)
-            audioSessionManager.pollOnce(false)
-
-            excluded.forEach { configBuilder.excludeUid(it) }
-            Timber.d("buildAudioRecord: Excluded UIDs: %s",
-                excluded.joinToString("; ") { it.toString() })
-        }
+        var excluded = if(excludeRestrictedSessions)
+            audioSessionManager.sessionPolicyDatabase.getRestrictedUids().toList()
         else {
-            audioSessionManager.sessionDatabase.setExcludedUids(arrayOf())
             audioSessionManager.pollOnce(false)
+            emptyList()
         }
+
+        blockedApps.value?.map { it.uid }?.let {
+            excluded = concatenate(excluded, it)
+        }
+
+        excluded.forEach { configBuilder.excludeUid(it) }
+        audioSessionManager.sessionDatabase.setExcludedUids(excluded.toTypedArray())
+        audioSessionManager.pollOnce(false)
+
+        Timber.d("buildAudioRecord: Excluded UIDs: ${excluded.joinToString("; ")}")
 
         return AudioRecord.Builder()
             .setAudioFormat(format)

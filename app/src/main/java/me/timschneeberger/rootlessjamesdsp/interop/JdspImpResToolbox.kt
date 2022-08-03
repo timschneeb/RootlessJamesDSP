@@ -1,6 +1,4 @@
-package me.timschneeberger.rootlessjamesdsp.native
-
-import timber.log.Timber
+package me.timschneeberger.rootlessjamesdsp.interop
 
 object JdspImpResToolbox {
     external fun ReadImpulseResponseToFloat(

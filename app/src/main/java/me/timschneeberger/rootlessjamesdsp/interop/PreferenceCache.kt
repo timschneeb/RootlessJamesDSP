@@ -1,4 +1,4 @@
-package me.timschneeberger.rootlessjamesdsp.native
+package me.timschneeberger.rootlessjamesdsp.interop
 
 import android.content.Context
 import androidx.annotation.StringRes

@@ -1,6 +1,5 @@
 package me.timschneeberger.rootlessjamesdsp.fragment
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -8,7 +7,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.XmlRes
-import androidx.core.content.ContextCompat
 import androidx.preference.*
 import androidx.preference.Preference.SummaryProvider
 import androidx.recyclerview.widget.RecyclerView
@@ -20,7 +18,7 @@ import me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
 import me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
-import me.timschneeberger.rootlessjamesdsp.view.RoundedRipplePreferenceGroupAdapter
+import me.timschneeberger.rootlessjamesdsp.adapter.RoundedRipplePreferenceGroupAdapter
 
 
 class PreferenceGroupFragment : PreferenceFragmentCompat() {

@@ -63,6 +63,12 @@
             android:theme="@style/Theme.RootlessJamesDSP" />
 
         <activity
+            android:name=".activity.BlocklistActivity"
+            android:exported="false"
+            android:label="@string/title_activity_blocklist"
+            android:theme="@style/Theme.RootlessJamesDSP" />
+
+        <activity
             android:name=".activity.LiveprogParamsActivity"
             android:exported="false"
             android:label="@string/title_activity_liveprog_params"

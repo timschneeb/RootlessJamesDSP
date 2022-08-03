@@ -9,7 +9,7 @@ import android.util.TypedValue
 import android.view.View
 import androidx.core.content.withStyledAttributes
 import androidx.core.os.bundleOf
-import me.timschneeberger.rootlessjamesdsp.native.JdspImpResToolbox
+import me.timschneeberger.rootlessjamesdsp.interop.JdspImpResToolbox
 import me.timschneeberger.rootlessjamesdsp.utils.NumberUtils
 import java.util.*
 import kotlin.math.*

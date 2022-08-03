@@ -1,27 +1,19 @@
 package me.timschneeberger.rootlessjamesdsp.utils
 
 import android.content.*
-import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
+import android.graphics.drawable.Drawable
 import android.net.Uri
-import android.os.Build
 import android.text.Editable
 import android.view.LayoutInflater
 import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.FileProvider
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.DialogTextinputBinding
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppName
 import timber.log.Timber
-import java.io.File
 
 
 object ContextExtensions {
@@ -101,12 +93,32 @@ object ContextExtensions {
     }
 
     fun Context.showAlert(@StringRes title: Int, @StringRes message: Int) {
-        val alert = MaterialAlertDialogBuilder(this)
-        alert.setMessage(getString(message))
-        alert.setTitle(getString(title))
-        alert.setNegativeButton(android.R.string.ok, null)
-        alert.create().show()
+        showAlert(getString(title), getString(message))
     }
+
+    fun Context.showAlert(title: CharSequence, message: CharSequence) {
+        MaterialAlertDialogBuilder(this)
+            .setMessage(message)
+            .setTitle(title)
+            .setNegativeButton(android.R.string.ok, null)
+            .create()
+            .show()
+    }
+
+    fun Context.showYesNoAlert(@StringRes title: Int, @StringRes message: Int, callback: ((Boolean) -> Unit)) {
+        MaterialAlertDialogBuilder(this)
+            .setMessage(getString(message))
+            .setTitle(getString(title))
+            .setNegativeButton(getString(R.string.no)) { _, _ ->
+                callback.invoke(false)
+            }
+            .setPositiveButton(getString(R.string.yes)) { _, _ ->
+                callback.invoke(true)
+            }
+            .create()
+            .show()
+    }
+
 
     fun Context.showInputAlert(layoutInflater: LayoutInflater, @StringRes title: Int, @StringRes hint: Int, value: String, callback: ((String?) -> Unit)) {
         val content = DialogTextinputBinding.inflate(layoutInflater)
@@ -144,6 +156,27 @@ object ContextExtensions {
             }
         }
         return null
+    }
+
+    fun Context.getAppNameFromUidSafe(uid: Int): String {
+        val pkgs = packageManager.getPackagesForUid(uid)
+        pkgs?.forEach { pkg ->
+            getAppName(pkg)?.let {
+                return it.toString()
+            }
+        }
+        pkgs?.firstOrNull()?.let {
+            return it.toString()
+        }
+        return "UID $uid"
+    }
+
+    fun Context.getAppIcon(packageName: String): Drawable? {
+        return try {
+            packageManager.getApplicationIcon(packageName)
+        } catch (e: PackageManager.NameNotFoundException) {
+            null
+        }
     }
 
     const val TAG = "ContextExtensions"

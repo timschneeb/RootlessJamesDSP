@@ -33,6 +33,8 @@
     <string name="details">Details</string>
     <string name="warning">Warning</string>
     <string name="success">Success</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
     <!-- Main screen -->
     <string name="power_button_alt">Toggle audio processing</string>
@@ -267,4 +269,20 @@
     <!-- Customizable liveprog script parameters -->
     <string name="title_activity_liveprog_params">Customizable script parameters</string>
     <string name="action_restore_defaults">Restore defaults</string>
+
+    <!-- Blocklist -->
+    <string name="title_activity_blocklist">Excluded apps</string>
+    <string name="action_blocked_apps">Excluded apps</string>
+    <string name="blocklist_add_exclusion_alt">Add application to exclude</string>
+
+    <!-- App list -->
+    <string name="app_list_loading">Loading apps…</string>
+    <string name="app_list_search">Search</string>
+    <string name="app_list_icon_alt">App icon</string>
+    <string name="blocklist_delete_title">Remove selected app?</string>
+    <string name="blocklist_delete">Do you want to remove this app from the exclusion list?</string>
+    <string name="blocklist_no_exclusions">No excluded apps</string>
+    <string name="blocklist_unsupported_apps">Unsupported apps</string>
+    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>This app does not support processing apps that block third parties from recording their audio output. To prevent these apps from being muted due to their capture restrictions while JamesDSP is active, they are automatically excluded from audio processing and are not re-routed.</p><p><u>Affected apps:</u><br/>%s</p>]]></string>
+
 </resources>

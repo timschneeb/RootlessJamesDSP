@@ -1,4 +1,4 @@
-package me.timschneeberger.rootlessjamesdsp.view
+package me.timschneeberger.rootlessjamesdsp.adapter
 
 import android.annotation.SuppressLint
 import androidx.core.content.ContextCompat

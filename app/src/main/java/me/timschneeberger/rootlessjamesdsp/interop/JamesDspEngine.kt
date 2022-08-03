@@ -1,4 +1,4 @@
-package me.timschneeberger.rootlessjamesdsp.native
+package me.timschneeberger.rootlessjamesdsp.interop
 
 import android.content.Context
 import kotlinx.coroutines.CoroutineScope
@@ -9,7 +9,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
-import me.timschneeberger.rootlessjamesdsp.native.interop.EelVmVariable
+import me.timschneeberger.rootlessjamesdsp.interop.structure.EelVmVariable
 import timber.log.Timber
 import java.io.File
 import java.io.FileReader

@@ -57,7 +57,7 @@ inline void* GetStringForIndex(eel_string_context_state *st, float val, int32_t 
 }
 
 extern "C" JNIEXPORT jlong JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_alloc(JNIEnv *env, jobject obj, jobject callback)
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_alloc(JNIEnv *env, jobject obj, jobject callback)
 {
     auto* self = new JamesDspWrapper();
     self->callbackInterface = env->NewGlobalRef(callback);
@@ -120,7 +120,7 @@ Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_alloc(JNIEnv *en
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_free(JNIEnv *env, jobject obj, jlong self)
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_free(JNIEnv *env, jobject obj, jlong self)
 {
     setStdOutHandler(nullptr, nullptr);
 
@@ -137,7 +137,7 @@ Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_free(JNIEnv *env
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_setSamplingRate(JNIEnv *env,
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setSamplingRate(JNIEnv *env,
                                                                                 jobject obj,
                                                                                 jlong self,
                                                                                 jfloat sample_rate,
@@ -147,7 +147,7 @@ Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_setSamplingRate(
 }
 
 extern "C" JNIEXPORT jboolean JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_isHandleValid(JNIEnv *env, jobject obj, jlong self)
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_isHandleValid(JNIEnv *env, jobject obj, jlong self)
 {
     if(THIS == nullptr || cast(THIS->dsp) == nullptr)
     {
@@ -158,7 +158,7 @@ Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_isHandleValid(JN
 
 extern "C"
 JNIEXPORT jshortArray JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_processInt16(JNIEnv *env, jobject obj, jlong self, jshortArray inputObj)
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_processInt16(JNIEnv *env, jobject obj, jlong self, jshortArray inputObj)
 {
     auto* dsp = cast(THIS->dsp);
 
@@ -175,7 +175,7 @@ Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_processInt16(JNI
 
 extern "C"
 JNIEXPORT jintArray JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_processInt32(JNIEnv *env, jobject obj,
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_processInt32(JNIEnv *env, jobject obj,
                                                                         jlong self, jintArray inputObj)
 {
     auto* dsp = cast(THIS->dsp);
@@ -192,7 +192,7 @@ Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_processInt32(JNI
 
 extern "C"
 JNIEXPORT jfloatArray JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_processFloat(JNIEnv *env, jobject obj,
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_processFloat(JNIEnv *env, jobject obj,
                                                                              jlong self, jfloatArray inputObj)
 {
     auto* dsp = cast(THIS->dsp);
@@ -211,19 +211,19 @@ Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_processFloat(JNI
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_setLimiter(JNIEnv *env, jobject obj, jlong self, jfloat threshold, jfloat release)
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setLimiter(JNIEnv *env, jobject obj, jlong self, jfloat threshold, jfloat release)
 {
     JLimiterSetCoefficients(cast(THIS->dsp), threshold, release);
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_setPostGain(JNIEnv *env, jobject obj, jlong self, jfloat gain)
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setPostGain(JNIEnv *env, jobject obj, jlong self, jfloat gain)
 {
     JamesDSPSetPostGain(cast(THIS->dsp), gain);
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_setFirEqualizer(JNIEnv *env, jobject obj, jlong self,
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setFirEqualizer(JNIEnv *env, jobject obj, jlong self,
                                                                                 jboolean enable, jint filterType, jint interpolationMode,
                                                                                 jdoubleArray bands)
 {
@@ -256,7 +256,7 @@ Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_setFirEqualizer(
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_setVdc(JNIEnv *env, jobject obj, jlong self,
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setVdc(JNIEnv *env, jobject obj, jlong self,
                                                                        jboolean enable, jstring vdcContents)
 {
     auto* wrapper = THIS;
@@ -285,7 +285,7 @@ Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_setVdc(JNIEnv *e
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_setCompressor(JNIEnv *env, jobject obj, jlong self,
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setCompressor(JNIEnv *env, jobject obj, jlong self,
                                                                               jboolean enable, jfloat maxAttack, jfloat maxRelease, float adaptSpeed)
 {
     auto* dsp = cast(THIS->dsp);
@@ -301,7 +301,7 @@ Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_setCompressor(JN
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_setReverb(JNIEnv *env, jobject obj, jlong self,
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setReverb(JNIEnv *env, jobject obj, jlong self,
                                                                           jboolean enable, jint preset)
 {
     auto* dsp = cast(THIS->dsp);
@@ -317,7 +317,7 @@ Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_setReverb(JNIEnv
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_setConvolver(JNIEnv *env, jobject obj, jlong self,
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setConvolver(JNIEnv *env, jobject obj, jlong self,
                                                                              jboolean enable, jfloatArray impulseResponse,
                                                                              jint irChannels, jint irFrames)
 {
@@ -358,7 +358,7 @@ Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_setConvolver(JNI
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_setGraphicEq(JNIEnv *env, jobject obj, jlong self,
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setGraphicEq(JNIEnv *env, jobject obj, jlong self,
                                                                              jboolean enable, jstring graphicEq)
 {
     auto* dsp = cast(THIS->dsp);
@@ -381,7 +381,7 @@ Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_setGraphicEq(JNI
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_setCrossfeed(JNIEnv *env, jobject obj, jlong self,
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setCrossfeed(JNIEnv *env, jobject obj, jlong self,
                                                                              jboolean enable, jint mode, jint customFcut, jint customFeed)
 {
     auto* dsp = cast(THIS->dsp);
@@ -403,7 +403,7 @@ Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_setCrossfeed(JNI
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_setBassBoost(JNIEnv *env, jobject obj, jlong self,
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setBassBoost(JNIEnv *env, jobject obj, jlong self,
                                                                              jboolean enable, jfloat maxGain)
 {
     auto* wrapper = THIS;
@@ -420,7 +420,7 @@ Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_setBassBoost(JNI
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_setStereoEnhancement(JNIEnv *env, jobject obj, jlong self,
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setStereoEnhancement(JNIEnv *env, jobject obj, jlong self,
                                                                                      jboolean enable, jfloat level)
 {
     auto* dsp = cast(THIS->dsp);
@@ -433,7 +433,7 @@ Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_setStereoEnhance
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_setVacuumTube(JNIEnv *env, jobject obj, jlong self,
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setVacuumTube(JNIEnv *env, jobject obj, jlong self,
                                                                               jboolean enable, jfloat level)
 {
     auto* dsp = cast(THIS->dsp);
@@ -449,7 +449,7 @@ Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_setVacuumTube(JN
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_setLiveprog(JNIEnv *env, jobject obj, jlong self,
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setLiveprog(JNIEnv *env, jobject obj, jlong self,
                                                                             jboolean enable, jstring id, jstring liveprogContent)
 {
     auto* wrapper = THIS;
@@ -497,7 +497,7 @@ Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_setLiveprog(JNIE
 
 
 extern "C" JNIEXPORT jobject JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_enumerateEelVariables(JNIEnv *env, jobject obj, jlong self)
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_enumerateEelVariables(JNIEnv *env, jobject obj, jlong self)
 {
     auto array = JArrayList(env);
 
@@ -529,7 +529,7 @@ Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_enumerateEelVari
 }
 
 extern "C" JNIEXPORT jboolean JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_manipulateEelVariable(JNIEnv *env, jobject obj, jlong self,
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_manipulateEelVariable(JNIEnv *env, jobject obj, jlong self,
                                                                                       jstring name, jfloat value)
 {
     auto* dsp = cast(THIS->dsp);
@@ -568,7 +568,7 @@ Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_manipulateEelVar
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_freezeLiveprogExecution(JNIEnv *env, jobject obj, jlong self,
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_freezeLiveprogExecution(JNIEnv *env, jobject obj, jlong self,
                                                                                         jboolean freeze)
 {
     cast(THIS->dsp)->eel.active = !freeze;
@@ -576,7 +576,7 @@ Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_freezeLiveprogEx
 }
 
 extern "C" JNIEXPORT jstring JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_native_JamesDspWrapper_eelErrorCodeToString(JNIEnv *env,
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_eelErrorCodeToString(JNIEnv *env,
                                                                                      jobject obj,
                                                                                      jint error_code)
 {

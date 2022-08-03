@@ -482,7 +482,7 @@ float* loadAudioFile(const char *filename, double targetFs, unsigned int *channe
 	}
 	return pSampleData;
 }
-JNIEXPORT jfloatArray JNICALL Java_me_timschneeberger_rootlessjamesdsp_native_JdspImpResToolbox_ReadImpulseResponseToFloat
+JNIEXPORT jfloatArray JNICALL Java_me_timschneeberger_rootlessjamesdsp_interop_JdspImpResToolbox_ReadImpulseResponseToFloat
 (JNIEnv *env, jobject obj, jstring path, jint targetSampleRate, jintArray jImpInfo, jint convMode, jintArray jadvParam)
 {
 	const char *mIRFileName = (*env)->GetStringUTFChars(env, path, 0);
@@ -608,7 +608,7 @@ JNIEXPORT jfloatArray JNICALL Java_me_timschneeberger_rootlessjamesdsp_native_Jd
 	free(pFrameBuffer);
 	return outbuf;
 }
-JNIEXPORT jstring JNICALL Java_me_timschneeberger_rootlessjamesdsp_native_JdspImpResToolbox_OfflineAudioResample
+JNIEXPORT jstring JNICALL Java_me_timschneeberger_rootlessjamesdsp_interop_JdspImpResToolbox_OfflineAudioResample
 (JNIEnv *env, jobject obj, jstring path, jstring filename, jint targetSampleRate)
 {
 	const char *jnipath = (*env)->GetStringUTFChars(env, path, 0);
@@ -653,7 +653,7 @@ JNIEXPORT jstring JNICALL Java_me_timschneeberger_rootlessjamesdsp_native_JdspIm
 }
 double freq[NUMPTS + 2];
 double gain[NUMPTS + 2];
-JNIEXPORT jint JNICALL Java_me_timschneeberger_rootlessjamesdsp_native_JdspImpResToolbox_ComputeEqResponse
+JNIEXPORT jint JNICALL Java_me_timschneeberger_rootlessjamesdsp_interop_JdspImpResToolbox_ComputeEqResponse
 (JNIEnv *env, jobject obj, jint n, jdoubleArray jfreq, jdoubleArray jgain, jint interpolationMode, jint queryPts, jdoubleArray dispFreq, jfloatArray response)
 {
 	jdouble *javaFreqPtr = (jdouble*) (*env)->GetDoubleArrayElements(env, jfreq, 0);

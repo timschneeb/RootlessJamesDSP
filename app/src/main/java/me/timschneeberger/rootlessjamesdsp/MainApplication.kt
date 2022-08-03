@@ -5,6 +5,10 @@ import android.os.Build
 import android.util.Log
 import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
+import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistDatabase
+import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistRepository
 import org.lsposed.hiddenapibypass.HiddenApiBypass
 import timber.log.Timber
 
@@ -17,6 +21,10 @@ class MainApplication : Application() {
             HiddenApiBypass.addHiddenApiExemptions("L")
         }
     }
+
+    val applicationScope = CoroutineScope(SupervisorJob())
+    val blockedAppDatabase by lazy { AppBlocklistDatabase.getDatabase(this, applicationScope) }
+    val blockedAppRepository by lazy { AppBlocklistRepository(blockedAppDatabase.appBlocklistDao()) }
 
     override fun onCreate() {
         super.onCreate()

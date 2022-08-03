@@ -9,7 +9,7 @@
 
 EelVmVariable::EelVmVariable(JNIEnv *env, const char *name, const char *value, bool isString) : IJavaObject(env) {
 
-    auto arrayClass = _env->FindClass("me/timschneeberger/rootlessjamesdsp/native/interop/EelVmVariable");
+    auto arrayClass = _env->FindClass("me/timschneeberger/rootlessjamesdsp/interop/structure/EelVmVariable");
     if (arrayClass == nullptr)
     {
         LOGE("JArrayList::ctor: EelVmVariable class not found");

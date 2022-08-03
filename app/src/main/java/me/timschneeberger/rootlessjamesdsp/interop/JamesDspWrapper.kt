@@ -1,6 +1,6 @@
-package me.timschneeberger.rootlessjamesdsp.native
+package me.timschneeberger.rootlessjamesdsp.interop
 
-import me.timschneeberger.rootlessjamesdsp.native.interop.EelVmVariable
+import me.timschneeberger.rootlessjamesdsp.interop.structure.EelVmVariable
 import java.util.ArrayList
 
 typealias JamesDspHandle = Long

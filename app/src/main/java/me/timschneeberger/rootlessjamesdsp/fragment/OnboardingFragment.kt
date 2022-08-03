@@ -45,6 +45,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.isPackageInst
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.launchApp
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.openPlayStoreApp
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
+import me.timschneeberger.rootlessjamesdsp.utils.Utils.loadHtml
 import rikka.shizuku.Shizuku
 import timber.log.Timber
 
@@ -119,12 +120,7 @@ class OnboardingFragment : Fragment() {
 
         // Limitation page
         val limitations = view.findViewById<TextView>(R.id.onboarding_limitations)
-
-        limitations.text = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            Html.fromHtml(getString(R.string.onboarding_limitations), Html.FROM_HTML_MODE_LEGACY)
-        } else {
-            Html.fromHtml(getString(R.string.onboarding_limitations))
-        }
+        limitations.text = loadHtml(getString(R.string.onboarding_limitations))
 
         // ADB permission page
         val adbPage = view.findViewById<View>(R.id.onboarding_page3)

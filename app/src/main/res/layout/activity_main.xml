@@ -31,7 +31,17 @@
         app:fabAnchorMode="cradle"
         app:menuAlignmentMode="auto"
         android:maxHeight="?attr/actionBarSize"
-        android:fitsSystemWindows="true"/>
+        android:contentInsetStart="0.0dip"
+        android:contentInsetLeft="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        android:fitsSystemWindows="true">
+
+        <androidx.appcompat.widget.ActionMenuView
+            android:id="@+id/left_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="?actionBarSize" />
+    </com.google.android.material.bottomappbar.BottomAppBar>
 
     <me.timschneeberger.rootlessjamesdsp.view.FloatingToggleButton
         android:id="@+id/power_toggle"

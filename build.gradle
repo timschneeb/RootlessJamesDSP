@@ -1,10 +1,11 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext.kotlin_version = '1.7.10'
-    ext.kotlin_version = '1.7.20-Beta'
+    ext.ksp_version = '1.7.10-1.0.6'
     repositories {
         google()
         mavenCentral()  // Google's Maven repository
+        gradlePluginPortal()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.3'

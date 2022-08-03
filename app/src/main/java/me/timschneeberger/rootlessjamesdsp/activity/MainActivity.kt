@@ -23,7 +23,7 @@ import me.timschneeberger.rootlessjamesdsp.databinding.ActivityMainBinding
 import me.timschneeberger.rootlessjamesdsp.databinding.ContentMainBinding
 import me.timschneeberger.rootlessjamesdsp.fragment.DspFragment
 import me.timschneeberger.rootlessjamesdsp.model.ProcessorMessage
-import me.timschneeberger.rootlessjamesdsp.native.JamesDspWrapper
+import me.timschneeberger.rootlessjamesdsp.interop.JamesDspWrapper
 import me.timschneeberger.rootlessjamesdsp.service.AudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.utils.ApplicationUtils
 import me.timschneeberger.rootlessjamesdsp.utils.AssetManagerExtensions.installPrivateAssets
@@ -138,8 +138,8 @@ class MainActivity : AppCompatActivity() {
             this.finish()
         }
 
-        binding.bar.inflateMenu(R.menu.menu_main_bottom)
-        binding.bar.setOnMenuItemClickListener { arg0 ->
+        menuInflater.inflate(R.menu.menu_main_bottom_left, binding.leftMenu.menu)
+        binding.leftMenu.setOnMenuItemClickListener { arg0 ->
             if (arg0.itemId == R.id.action_settings) {
                 startActivity(Intent(this, SettingsActivity::class.java))
                 true
@@ -147,6 +147,17 @@ class MainActivity : AppCompatActivity() {
             else
                 false
         }
+
+        binding.bar.inflateMenu(R.menu.menu_main_bottom)
+        binding.bar.setOnMenuItemClickListener { arg0 ->
+            if (arg0.itemId == R.id.action_blocklist) {
+                startActivity(Intent(this, BlocklistActivity::class.java))
+                true
+            }
+            else
+                false
+        }
+
 
         val filter = IntentFilter(Constants.ACTION_SERVICE_STOPPED)
         filter.addAction(Constants.ACTION_DISCARD_AUTHORIZATION)
