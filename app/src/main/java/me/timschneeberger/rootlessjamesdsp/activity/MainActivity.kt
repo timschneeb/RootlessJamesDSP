@@ -116,9 +116,9 @@ class MainActivity : AppCompatActivity() {
 
          // Wait for NavHostFragment to inflate
         bindingContent.dspFragmentContainer.post {
-            val navController = findNavController(R.id.dsp_fragment_container)
-            appBarConfiguration = AppBarConfiguration(navController.graph)
-            setupActionBarWithNavController(navController, appBarConfiguration)
+            //val navController = findNavController(R.id.dsp_fragment_container)
+            //appBarConfiguration = AppBarConfiguration(navController.graph)
+            //setupActionBarWithNavController(navController, appBarConfiguration)
         }
 
         // Load dsp settings fragment
