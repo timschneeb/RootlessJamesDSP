@@ -152,7 +152,7 @@
     <string name="onboarding_limitations"><![CDATA[<p>This app is currently incomplete and under development. It may crash or behave unexpectedly.</p>
 <p><b><u>Make sure to fully disable other audio effect apps.</u></b> They are guaranteed to break this application when they attach their own DynamicsProcessing audio effect to a session.</p>
 <p><b><u>Apps that make use of hardware-accelerated audio playback are not supported.</u></b> If you notice duplicated audio, it may be caused by hardware-accelerated playback. Please add the affected app to the excluded apps list to prevent JamesDSP from re-routing it. Also, consider checking if your music player supports disabling HW-acceleration.<br/></p>
-<p><b>DRM-protected content and apps blocking internal audio capture (e.g., Spotify, Google Chrome) stay unprocessed or even muted</b>. Unless disabled, this app will try to detect and exclude these apps from being processed by JamesDSP. This prevents them from getting muted due to a restrictive capture policy enforced by themselves.<br/></p>
+<p><b><u>Apps blocking internal audio capture remain unprocessed or even muted</u> (e.g., Spotify, Google Chrome)</b>. Unless disabled, this app will try to detect and exclude these apps from being processed by JamesDSP. This prevents them from getting muted due to a restrictive capture policy enforced by themselves.<br/></p>
 <p>After an app opens a new media session to playback audio, <b>you may hear duplicated or cut-off audio for a very short period</b> (about &lt; 300ms).</p>
 <p>Changes made to Android\'s audio system by your OEM/device manufacturer may break this app. This app has been actively tested on these devices:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;• Samsung S20+ (Android 12)<br/>
