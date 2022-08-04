@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.media.projection.MediaProjectionManager
 import android.os.Bundle
 import android.os.IBinder
+import android.view.HapticFeedbackConstants
 import android.view.Menu
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -167,13 +168,16 @@ class MainActivity : AppCompatActivity() {
         binding.powerToggle.toggleOnClick = false
         binding.powerToggle.setOnToggleClickListener(object : FloatingToggleButton.OnToggleClickListener{
             override fun onClick() {
+
                 if(binding.powerToggle.isToggled) {
                     // Currently on, let's turn it off
                     AudioProcessorService.stop(this@MainActivity)
                     binding.powerToggle.isToggled = false
+                    binding.powerToggle.performHapticFeedback(HapticFeedbackConstants.REJECT)
                 }
                 else {
                     // Currently off, let's turn it on
+                    binding.powerToggle.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
                     requestCapturePermission()
                 }
             }
