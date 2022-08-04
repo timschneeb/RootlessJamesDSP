@@ -32,7 +32,6 @@ import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistDatabase
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistRepository
 import me.timschneeberger.rootlessjamesdsp.model.room.BlockedApp
 import me.timschneeberger.rootlessjamesdsp.session.SessionRecordingPolicyManager
-import me.timschneeberger.rootlessjamesdsp.utils.Utils.concatenate
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_PROCESSOR_MESSAGE
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_HARD_REBOOT_CORE
@@ -48,6 +47,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocal
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.unregisterLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
+import me.timschneeberger.rootlessjamesdsp.utils.concatenate
 import timber.log.Timber
 import java.io.IOException
 import java.io.Serializable

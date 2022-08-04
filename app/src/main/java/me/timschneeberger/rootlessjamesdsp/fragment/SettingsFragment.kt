@@ -20,6 +20,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.AssetManagerExtensions.installP
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
+import me.timschneeberger.rootlessjamesdsp.utils.loadHtml
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStreamWriter
@@ -87,6 +88,13 @@ class SettingsFragment : PreferenceFragmentCompat() {
         findPreference<Preference>(getString(R.string.key_troubleshooting_notification_access))?.setOnPreferenceClickListener {
             val intent = ApplicationUtils.getIntentForNotificationAccess(requireContext().packageName, NotificationListenerService::class.java)
             requireActivity().startActivity(intent)
+            true
+        }
+        findPreference<Preference>(getString(R.string.key_troubleshooting_view_limitations))?.setOnPreferenceClickListener {
+            requireContext().showAlert(
+                getString(R.string.onboarding_limitations_title),
+                loadHtml(getString(R.string.onboarding_limitations))
+            )
             true
         }
     }

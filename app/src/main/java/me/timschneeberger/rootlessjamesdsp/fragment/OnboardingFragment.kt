@@ -45,7 +45,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.isPackageInst
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.launchApp
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.openPlayStoreApp
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
-import me.timschneeberger.rootlessjamesdsp.utils.Utils.loadHtml
+import me.timschneeberger.rootlessjamesdsp.utils.loadHtml
 import rikka.shizuku.Shizuku
 import timber.log.Timber
 

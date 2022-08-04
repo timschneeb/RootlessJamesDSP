@@ -103,6 +103,11 @@
             android:summary="@string/troubleshooting_dontkillmyapp_summary"
             app:iconSpaceReserved="false" />
         <Preference
+            android:key="@string/key_troubleshooting_view_limitations"
+            android:title="@string/troubleshooting_view_limitations"
+            android:summary="@string/troubleshooting_view_limitations_summary"
+            app:iconSpaceReserved="false" />
+        <Preference
             android:key="@string/key_troubleshooting_notification_access"
             android:title="@string/troubleshooting_notification_access"
             android:summary="@string/troubleshooting_notification_access_summary"

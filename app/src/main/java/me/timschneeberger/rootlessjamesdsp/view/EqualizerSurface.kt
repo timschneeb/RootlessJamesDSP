@@ -10,7 +10,7 @@ import android.view.View
 import androidx.core.content.withStyledAttributes
 import androidx.core.os.bundleOf
 import me.timschneeberger.rootlessjamesdsp.interop.JdspImpResToolbox
-import me.timschneeberger.rootlessjamesdsp.utils.NumberUtils
+import me.timschneeberger.rootlessjamesdsp.utils.prettyNumberFormat
 import java.util.*
 import kotlin.math.*
 
@@ -142,7 +142,7 @@ class EqualizerSurface(context: Context?, attrs: AttributeSet?) : View(context, 
             {
                 canvas.drawCircle(x, y, 16f, mControlBarKnob)
             }
-            canvas.drawText(NumberUtils.prettyFormat(FreqScale[i]), x, mHeight - 16, mControlBarText)
+            canvas.drawText(prettyNumberFormat(FreqScale[i]), x, mHeight - 16, mControlBarText)
             val gainText = String.format(Locale.ROOT, "%.1f", mLevels[i])
             canvas.drawText(gainText, x, mControlBarText.textSize + 8, mControlBarText)
         }

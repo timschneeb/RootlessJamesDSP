@@ -20,14 +20,12 @@ import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistViewModelFacto
 import me.timschneeberger.rootlessjamesdsp.model.room.BlockedApp
 import me.timschneeberger.rootlessjamesdsp.session.SessionRecordingPolicyManager
 import me.timschneeberger.rootlessjamesdsp.session.dump.DumpManager
-import me.timschneeberger.rootlessjamesdsp.session.dump.provider.AudioPolicyServiceDumpProvider
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppIcon
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppNameFromUid
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppNameFromUidSafe
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showYesNoAlert
-import me.timschneeberger.rootlessjamesdsp.utils.Utils.loadHtml
+import me.timschneeberger.rootlessjamesdsp.utils.loadHtml
 import kotlin.coroutines.CoroutineContext
 
 class BlocklistFragment : Fragment() {

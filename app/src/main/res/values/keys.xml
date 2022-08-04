@@ -10,6 +10,7 @@
     <string name="key_troubleshooting_dump" translatable="false">troubleshooting_dump</string>
     <string name="key_troubleshooting_notification_access" translatable="false">troubleshooting_notification_access</string>
     <string name="key_troubleshooting_repair_assets" translatable="false">troubleshooting_repair_assets</string>
+    <string name="key_troubleshooting_view_limitations" translatable="false">troubleshooting_view_limitations</string>
     <string name="key_session_exclude_restricted">session_exclude_restricted</string>
     <string name="key_session_detection_method" translatable="false">session_detection_method</string>
     <string name="key_session_continuous_polling_rate" translatable="false">session_continuous_polling_rate</string>
