@@ -171,11 +171,20 @@ class AudioProcessorService : Service() {
 
         // Launch foreground service
         val notification = ServiceNotificationHelper.createServiceNotification(this, null)
-        startForeground(
-            NOTIFICATION_ID_SERVICE,
-            notification,
-            ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION
-        )
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            startForeground(
+                NOTIFICATION_ID_SERVICE,
+                notification,
+                ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION
+            )
+        } else {
+            throw NotImplementedError() // TODO
+            startForeground(
+                NOTIFICATION_ID_SERVICE,
+                notification
+            )
+        }
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {

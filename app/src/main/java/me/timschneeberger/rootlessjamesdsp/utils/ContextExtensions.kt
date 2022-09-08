@@ -4,6 +4,7 @@ import android.content.*
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.os.Process
 import android.text.Editable
 import android.view.LayoutInflater
 import android.widget.TextView
@@ -139,6 +140,18 @@ object ContextExtensions {
             .show()
     }
 
+    fun resolveReservedUid(uid: Int): String? {
+        return when (uid) {
+            Process.ROOT_UID -> "root"
+            Process.SHELL_UID -> "com.android.shell"
+            /*Process.MEDIA_UID*/ 1013 ->  "media";
+            /*Process.AUDIOSERVER_UID*/ 1041 -> "audioserver"
+            /*Process.CAMERASERVER_UID*/ 1047 -> "cameraserver"
+            Process.SYSTEM_UID -> "android"
+            else -> null
+        }
+    }
+
     fun Context.getAppName(packageName: String): CharSequence? {
         return try {
             packageManager.getApplicationInfo(packageName, 0)
@@ -150,6 +163,11 @@ object ContextExtensions {
     }
 
     fun Context.getAppNameFromUid(uid: Int): String? {
+        val reserved = resolveReservedUid(uid)
+        reserved?.let {
+            return getAppName(it).toString()
+        }
+
         packageManager.getPackagesForUid(uid)?.forEach { pkg ->
             getAppName(pkg)?.let  {
                 return it.toString()
@@ -159,6 +177,11 @@ object ContextExtensions {
     }
 
     fun Context.getAppNameFromUidSafe(uid: Int): String {
+        val reserved = resolveReservedUid(uid)
+        reserved?.let {
+            return getAppName(it).toString()
+        }
+
         val pkgs = packageManager.getPackagesForUid(uid)
         pkgs?.forEach { pkg ->
             getAppName(pkg)?.let {
@@ -166,7 +189,7 @@ object ContextExtensions {
             }
         }
         pkgs?.firstOrNull()?.let {
-            return it.toString()
+            return it
         }
         return "UID $uid"
     }
