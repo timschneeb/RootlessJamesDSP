@@ -133,7 +133,7 @@ class BlocklistFragment : Fragment() {
 
                 sessionRecordingPolicyManager
                     .getRestrictedUids()
-                    .map { requireContext().getAppNameFromUidSafe(it) }
+                    .map { """${requireContext().getAppNameFromUidSafe(it)} (UID $it)""" }
                     .toTypedArray()
             }
 

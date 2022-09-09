@@ -1,0 +1,96 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory app:title="@string/troubleshooting_docs"
+        app:iconSpaceReserved="false">
+        <Preference
+            android:key="@string/key_troubleshooting_dontkillmyapp"
+            android:title="@string/troubleshooting_dontkillmyapp"
+            android:summary="@string/troubleshooting_dontkillmyapp_summary"
+            app:iconSpaceReserved="false" />
+        <Preference
+            android:key="@string/key_troubleshooting_view_limitations"
+            android:title="@string/troubleshooting_view_limitations"
+            android:summary="@string/troubleshooting_view_limitations_summary"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/troubleshooting_actions"
+        app:iconSpaceReserved="false">
+        <Preference
+            android:key="@string/key_troubleshooting_notification_access"
+            android:title="@string/troubleshooting_notification_access"
+            android:summary="@string/troubleshooting_notification_access_summary"
+            app:iconSpaceReserved="false" />
+        <Preference
+            android:key="@string/key_troubleshooting_repair_assets"
+            android:title="@string/troubleshooting_repair_assets"
+            android:summary="@string/troubleshooting_repair_assets_summary"
+            app:iconSpaceReserved="false" />
+        <Preference
+            android:key="@string/key_troubleshooting_dump"
+            android:title="@string/troubleshooting_dump"
+            android:summary="@string/troubleshooting_dump_summary"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+
+    <PreferenceCategory app:title="@string/powersave"
+        app:iconSpaceReserved="false">
+        <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
+            app:key="@string/key_powersave_suspend"
+            app:title="@string/powersave_suspend"
+            app:defaultValue="true"
+            app:summaryOff="@string/powersave_suspend_off"
+            app:summaryOn="@string/powersave_suspend_on"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+
+    <PreferenceCategory app:title="@string/session_detection_header"
+        app:iconSpaceReserved="false">
+        <ListPreference
+            app:key="@string/key_session_detection_method"
+            app:title="@string/session_detection_method"
+            app:entries="@array/session_detection_methods"
+            app:entryValues="@array/session_detection_methods_values"
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="0"
+            app:iconSpaceReserved="false" />
+
+        <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
+            app:key="@string/key_session_continuous_polling"
+            app:title="@string/session_continuous_polling"
+            app:defaultValue="false"
+            app:summaryOff="@string/session_continuous_polling_off"
+            app:summaryOn="@string/session_continuous_polling_on"
+            app:iconSpaceReserved="false" />
+
+        <EditTextPreference
+            app:key="@string/key_session_continuous_polling_rate"
+            app:dependency="session_continuous_polling"
+            app:title="@string/session_continuous_polling_rate"
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="3000"
+            android:inputType="numberSigned|numberDecimal"
+            android:digits="0123456789-."
+            app:iconSpaceReserved="false" />
+
+        <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
+            app:key="@string/key_session_loss_ignore"
+            app:title="@string/session_loss_ignore"
+            app:defaultValue="false"
+            app:summaryOff="@string/session_loss_ignore_off"
+            app:summaryOn="@string/session_loss_ignore_on"
+            app:iconSpaceReserved="false" />
+
+        <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
+            app:key="@string/key_session_exclude_restricted"
+            app:title="@string/session_exclude_restricted"
+            app:defaultValue="true"
+            app:summaryOff="@string/session_exclude_restricted_off"
+            app:summaryOn="@string/session_exclude_restricted_on"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
