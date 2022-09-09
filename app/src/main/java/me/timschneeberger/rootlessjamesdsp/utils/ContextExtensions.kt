@@ -66,7 +66,6 @@ object ContextExtensions {
             packageManager.getPackageInfo(packageName, 0).versionName
         } catch (e: PackageManager.NameNotFoundException) {
             Timber.tag(TAG).e("getVersionName: Package not found")
-            Timber.tag(TAG).e(e)
             null
         }
     }
@@ -76,7 +75,6 @@ object ContextExtensions {
             packageManager.getPackageInfo(packageName, 0).longVersionCode
         } catch (e: PackageManager.NameNotFoundException) {
             Timber.tag(TAG).e("getVersionCode: Package not found")
-            Timber.tag(TAG).e(e)
             null
         }
     }

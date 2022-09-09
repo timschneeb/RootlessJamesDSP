@@ -466,7 +466,6 @@ class AudioProcessorService : Service() {
                             Thread.sleep(50)
                         }
                         catch(e: InterruptedException) {
-                            Timber.tag(TAG).w(e)
                             break
                         }
                         continue
@@ -494,7 +493,7 @@ class AudioProcessorService : Service() {
                     }
                 }
             } catch (e: IOException) {
-                Timber.tag(TAG).e(e)
+                Timber.tag(TAG).w(e)
                 // ignore
             } catch (e: Exception) {
                 Timber.tag(TAG).e("Exception in recorderThread raised")

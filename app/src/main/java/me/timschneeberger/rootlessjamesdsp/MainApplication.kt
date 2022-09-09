@@ -34,7 +34,7 @@ class MainApplication : Application() {
     }
 
     /** A tree which logs important information for crash reporting.  */
-    private class CrashReportingTree : Tree() {
+    private class CrashReportingTree : DebugTree() {
         private fun priorityAsString(priority: Int): String {
             return when(priority){
                 Log.VERBOSE -> "V"
