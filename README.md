@@ -14,7 +14,9 @@ This app has several limitations that may be deal-breaking to some people; pleas
 Apps confirmed working:
 * YouTube
 * YouTube Music
+* Amazon Music
 * Deezer
+* Poweramp
 * Substreamer
 * Twitch
 * ...
@@ -22,6 +24,7 @@ Apps confirmed working:
 Unsupported apps include:
 * Spotify
 * Google Chrome
+* SoundCloud
 * ...
 
 Tested on:
