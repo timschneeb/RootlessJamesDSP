@@ -61,7 +61,7 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
             }
             R.xml.dsp_liveprog_preferences -> {
                 val liveprogParams = findPreference<Preference>(getString(R.string.key_liveprog_params))
-                var liveprogFile = findPreference<FileLibraryPreference>(getString(R.string.key_liveprog_file))
+                val liveprogFile = findPreference<FileLibraryPreference>(getString(R.string.key_liveprog_file))
 
                 fun updateLiveprog(newValue: String) {
                     eelParser.load(newValue)

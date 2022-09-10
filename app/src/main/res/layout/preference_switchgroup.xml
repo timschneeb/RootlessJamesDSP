@@ -11,7 +11,7 @@
     android:paddingRight="?android:attr/listPreferredItemPaddingRight"
     android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
     android:background="?android:attr/selectableItemBackground"
-    android:foreground="@drawable/ripple_cardheader"
+    android:foreground="@drawable/ripple_rounded"
     android:clipToPadding="false"
     android:baselineAligned="false">
 

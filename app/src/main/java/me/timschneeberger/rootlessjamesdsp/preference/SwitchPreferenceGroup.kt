@@ -31,7 +31,6 @@ class SwitchPreferenceGroup(context: Context, attrs: AttributeSet) : PreferenceG
     private var state = false
 
     init {
-        androidx.preference.R.layout.preference_material
         layoutResource = R.layout.preference_switchgroup
         widgetLayoutResource = R.layout.preference_materialswitch
     }
