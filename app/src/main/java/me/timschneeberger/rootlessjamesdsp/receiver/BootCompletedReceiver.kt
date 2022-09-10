@@ -22,8 +22,10 @@ class BootCompletedReceiver : BroadcastReceiver() {
                 val channel = NotificationChannel(
                     Constants.CHANNEL_ID_PERMISSION_PROMPT,
                     context.getString(R.string.notification_channel_permission_prompt),
-                    NotificationManager.IMPORTANCE_DEFAULT
+                    NotificationManager.IMPORTANCE_LOW
                 )
+                channel.enableVibration(false)
+                channel.enableLights(false)
                 notificationManager.createNotificationChannel(channel)
             }
 
