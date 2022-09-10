@@ -17,6 +17,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import me.timschneeberger.rootlessjamesdsp.R
@@ -111,11 +112,12 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         bindingContent = ContentMainBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
-
         setSupportActionBar(binding.toolbar)
+        binding.appBarLayout.statusBarForeground = MaterialShapeDrawable.createWithElevationOverlay(this)
 
-         // Wait for NavHostFragment to inflate
+        // Wait for NavHostFragment to inflate
         bindingContent.dspFragmentContainer.post {
             //val navController = findNavController(R.id.dsp_fragment_container)
             //appBarConfiguration = AppBarConfiguration(navController.graph)

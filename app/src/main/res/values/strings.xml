@@ -193,8 +193,10 @@
 
     <string name="onboarding_perm_title">Other permissions</string>
     <string name="onboarding_perm_caption">Additional permissions are required to use this application. Please review them and tap \'Next\' to grant them.</string>
-    <string name="onboarding_perm_microphone_title">Microphone access</string>
+    <string name="onboarding_perm_microphone_title">Audio recording permission</string>
     <string name="onboarding_perm_microphone_caption">Required to record internal audio. The hardware microphone is not activated.</string>
+    <string name="onboarding_perm_notification_title">Notification permission</string>
+    <string name="onboarding_perm_notification_caption">Required to receive important status updates and information about JamesDSP\'s processing state.</string>
     <string name="onboarding_perm_cast_title">Cast/recording permission</string>
     <string name="onboarding_perm_cast_caption">You need to explicitly grant this app permission to record content every time it launches.</string>
     <string name="onboarding_perm_missing_title">Runtime permissions not granted</string>

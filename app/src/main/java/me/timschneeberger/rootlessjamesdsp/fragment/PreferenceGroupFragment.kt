@@ -127,6 +127,7 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
         preferenceManager.sharedPreferences?.unregisterOnSharedPreferenceChangeListener(listener)
     }
 
+    @Suppress("DEPRECATION")
     override fun onDisplayPreferenceDialog(preference: Preference) {
         when (preference) {
             is EqualizerPreference -> {

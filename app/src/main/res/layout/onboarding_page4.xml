@@ -75,7 +75,8 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!--<LinearLayout
+            <LinearLayout
+                android:id="@+id/onboarding_page4_notification"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -86,7 +87,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="12dp"
                     android:alpha="0.8"
-                    app:srcCompat="@drawable/ic_twotone_sd_storage_24dp"
+                    app:srcCompat="@drawable/ic_twotone_notifications_24dp"
                     app:tint="?attr/colorOnSurface" />
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -97,16 +98,16 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center_vertical"
                         android:layout_marginBottom="2dp"
-                        android:text="@string/onboarding_perm_storage_title"
+                        android:text="@string/onboarding_perm_notification_title"
                         android:textAppearance="?attr/textAppearanceBody1"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_gravity="center_vertical"
-                        android:text="@string/onboarding_perm_storage_caption"
+                        android:text="@string/onboarding_perm_notification_caption"
                         android:textAppearance="?attr/textAppearanceLabelMedium" />
                 </LinearLayout>
-            </LinearLayout>-->
+            </LinearLayout>
 
 
             <LinearLayout

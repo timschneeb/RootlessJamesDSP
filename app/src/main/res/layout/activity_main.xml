@@ -8,8 +8,11 @@
     tools:context=".activity.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:liftOnScrollTargetViewId="@id/dsp_scrollview"
+        app:liftOnScroll="true"
         android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.MaterialToolbar

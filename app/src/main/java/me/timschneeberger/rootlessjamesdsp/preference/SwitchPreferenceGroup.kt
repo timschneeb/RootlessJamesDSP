@@ -3,6 +3,8 @@ package me.timschneeberger.rootlessjamesdsp.preference
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.TypedArray
+import android.graphics.drawable.LayerDrawable
+import android.graphics.drawable.RippleDrawable
 import android.graphics.drawable.TransitionDrawable
 import android.util.AttributeSet
 import android.util.TypedValue
@@ -15,6 +17,7 @@ import androidx.preference.PreferenceViewHolder
 import androidx.preference.children
 import com.google.android.material.materialswitch.MaterialSwitch
 import me.timschneeberger.rootlessjamesdsp.R
+import timber.log.Timber
 
 
 @SuppressLint("PrivateResource")
@@ -28,6 +31,8 @@ class SwitchPreferenceGroup(context: Context, attrs: AttributeSet) : PreferenceG
     private var state = false
 
     init {
+        androidx.preference.R.layout.preference_material
+        layoutResource = R.layout.preference_switchgroup
         widgetLayoutResource = R.layout.preference_materialswitch
     }
 

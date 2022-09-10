@@ -1,18 +1,3 @@
-/*
- * Copyright 2020 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package me.timschneeberger.rootlessjamesdsp.fragment
 
 import android.Manifest
@@ -21,7 +6,6 @@ import android.content.pm.PackageManager.PERMISSION_DENIED
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.os.Build
 import android.os.Bundle
-import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -66,7 +50,7 @@ class OnboardingFragment : Fragment() {
 
     private lateinit var backButton: Button
     private lateinit var nextButton: Button
-    private lateinit var runtimePermissionLauncher: ActivityResultLauncher<String>
+    private lateinit var runtimePermissionLauncher: ActivityResultLauncher<Array<String>>
 
     private var shizukuAlive = false
 
@@ -86,9 +70,9 @@ class OnboardingFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         runtimePermissionLauncher = registerForActivityResult(
-            ActivityResultContracts.RequestPermission()
+            ActivityResultContracts.RequestMultiplePermissions()
         ) { isGranted ->
-            if (isGranted) {
+            if (isGranted.all { it.value }) {
                 // This callback is async, call goToPage directly from here
                 if(currentPage == PAGE_RUNTIME_PERMISSIONS)
                 {
@@ -277,6 +261,12 @@ class OnboardingFragment : Fragment() {
         if(number == PAGE_ADB_SETUP) {
             updateAdbInstructions()
         }
+        else if(number == PAGE_RUNTIME_PERMISSIONS) {
+            val pageBinding = binding.onboardingPage4
+            if(Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+                pageBinding.requireViewById<View>(R.id.onboarding_page4_notification).visibility = View.GONE
+            }
+        }
 
         val prev = pageMap[currentPage]
         val next = pageMap[number]
@@ -325,7 +315,11 @@ class OnboardingFragment : Fragment() {
     {
         var shouldSkip = when (nextPage) {
             PAGE_ADB_SETUP -> requireContext().checkSelfPermission(DUMP_PERM) == PERMISSION_GRANTED
-            PAGE_RUNTIME_PERMISSIONS -> requireContext().checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PERMISSION_GRANTED
+            PAGE_RUNTIME_PERMISSIONS -> {
+                val notificationGranted = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) true
+                else requireContext().checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) == PERMISSION_GRANTED
+                notificationGranted && requireContext().checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PERMISSION_GRANTED
+            }
             PAGE_SELF_CHECK -> true /* FIXME skip dummy page */
             else -> false
         }
@@ -387,12 +381,21 @@ class OnboardingFragment : Fragment() {
 
     private fun ensureRuntimePermissions(): Boolean
     {
-        return if (requireContext().checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PERMISSION_DENIED) {
-            runtimePermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
+        val requestedPermissions = arrayListOf<String>()
+        if(requireContext().checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PERMISSION_DENIED) {
+            requestedPermissions.add(Manifest.permission.RECORD_AUDIO)
+        }
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+            requireContext().checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) == PERMISSION_DENIED) {
+            requestedPermissions.add(Manifest.permission.POST_NOTIFICATIONS)
+        }
+
+        return if(requestedPermissions.isNotEmpty()) {
+            runtimePermissionLauncher.launch(requestedPermissions.toTypedArray())
             false
         }
-        else
-        {
+        else {
             true
         }
     }
