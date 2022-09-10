@@ -5,6 +5,7 @@
     <string name="action_settings">Settings</string>
 
     <!-- Notification channels -->
+    <string name="notification_channel_service">Service notification</string>
     <string name="notification_channel_session_loss_alert">Session loss alert</string>
     <string name="notification_channel_permission_prompt">Permission prompt request</string>
 

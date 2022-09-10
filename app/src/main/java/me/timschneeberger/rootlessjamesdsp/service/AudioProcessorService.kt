@@ -153,7 +153,7 @@ class AudioProcessorService : Service() {
         // Register notification channels
         val channel = NotificationChannel(
             CHANNEL_ID_SERVICE,
-            getString(R.string.app_name),
+            getString(R.string.notification_channel_service),
             NotificationManager.IMPORTANCE_NONE
         )
         val channelSessionLoss = NotificationChannel(
