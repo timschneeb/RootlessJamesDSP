@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Process
 import android.text.Editable
+import android.util.Base64
 import android.view.LayoutInflater
 import android.widget.TextView
 import androidx.annotation.StringRes
@@ -60,6 +61,19 @@ object ContextExtensions {
         }
     }
 
+    // Very simple & naive app cloner checks; please don't use multiple instances at once
+    private const val PKGNAME_REF = "bWUudGltc2NobmVlYmVyZ2VyLnJvb3RsZXNzamFtZXNkc3A="
+    private const val APPNAME_REF = "Um9vdGxlc3NKYW1lc0RTUA=="
+    fun Context.check(): Int {
+        if(decode(PKGNAME_REF) != packageName) return 1
+        if(decode(APPNAME_REF) != getText(R.string.app_name)) return 2
+        if(decode(APPNAME_REF) != getAppName()) return 3
+        return 0
+    }
+
+    private fun decode(input: String): String {
+        return String(Base64.decode(input, 0), Charsets.UTF_8)
+    }
 
     fun Context.getVersionName(): String? {
         return try {

@@ -31,6 +31,7 @@ import me.timschneeberger.rootlessjamesdsp.service.AudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.utils.ApplicationUtils
 import me.timschneeberger.rootlessjamesdsp.utils.AssetManagerExtensions.installPrivateAssets
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.check
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
@@ -103,7 +104,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         bindingContent = ContentMainBinding.inflate(layoutInflater)
 
-        val check = ApplicationUtils.check(this)
+        val check = applicationContext.check()
         if(check != 0) {
             Toast.makeText(
                 this,
