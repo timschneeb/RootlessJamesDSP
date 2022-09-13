@@ -20,6 +20,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.google.firebase.crashlytics.ktx.crashlytics
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.ActivityMainBinding
 import me.timschneeberger.rootlessjamesdsp.databinding.ContentMainBinding
@@ -35,6 +36,8 @@ import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroa
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import me.timschneeberger.rootlessjamesdsp.view.FloatingToggleButton
 import timber.log.Timber
+import java.util.*
+import kotlin.concurrent.schedule
 
 
 class MainActivity : AppCompatActivity() {
@@ -86,6 +89,20 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        prefsVar = getSharedPreferences(Constants.PREF_VAR, Context.MODE_PRIVATE)
+        prefs = getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
+
+        val crashlytics = prefs.getBoolean(getString(R.string.key_share_crash_reports), true)
+        Timber.tag(TAG).d("Crashlytics enabled? $crashlytics")
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(crashlytics)
+
+        val firstBoot = prefsVar.getBoolean(getString(R.string.key_firstboot), true)
+        assets.installPrivateAssets(this, force = firstBoot)
+
+        mediaProjectionManager = SystemServices.get(this, MediaProjectionManager::class.java)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        bindingContent = ContentMainBinding.inflate(layoutInflater)
+
         val check = ApplicationUtils.check(this)
         if(check != 0) {
             Toast.makeText(
@@ -94,24 +111,9 @@ class MainActivity : AppCompatActivity() {
                 Toast.LENGTH_LONG
             ).show()
             Timber.tag(TAG).wtf(UnsupportedOperationException("Launch error $check; ${ApplicationUtils.describe(this)}"))
-            this.finishAndRemoveTask()
+            quitGracefully()
             return
         }
-
-        prefsVar = getSharedPreferences(Constants.PREF_VAR, Context.MODE_PRIVATE)
-        prefs = getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
-
-        val firstBoot = prefsVar.getBoolean(getString(R.string.key_firstboot), true)
-        assets.installPrivateAssets(this, force = firstBoot)
-
-        mediaProjectionManager = SystemServices.get(this, MediaProjectionManager::class.java)
-
-        val crashlytics = prefs.getBoolean(getString(R.string.key_share_crash_reports), true)
-        Timber.tag(TAG).d("Crashlytics enabled? $crashlytics")
-        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(crashlytics)
-
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        bindingContent = ContentMainBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
@@ -270,9 +272,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.dsp_fragment_container)
-        return navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
+        //val navController = findNavController(R.id.dsp_fragment_container)
+        return /*navController.navigateUp(appBarConfiguration)
+                ||*/ super.onSupportNavigateUp()
     }
 
     fun requestCapturePermission() {
@@ -319,6 +321,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun makeSnackbar(text: String, duration: Int = Snackbar.LENGTH_SHORT): Snackbar {
         return Snackbar.make(findViewById(android.R.id.content), text, duration)
+    }
+
+    private fun quitGracefully() {
+        FirebaseCrashlytics.getInstance().sendUnsentReports()
+        Timer().schedule(2000){
+            this@MainActivity.finishAndRemoveTask()
+        }
     }
 
     companion object {

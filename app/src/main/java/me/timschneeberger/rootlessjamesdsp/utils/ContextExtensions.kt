@@ -150,6 +150,8 @@ object ContextExtensions {
         }
     }
 
+    fun Context.getAppName(): String = applicationInfo.loadLabel(packageManager).toString()
+
     fun Context.getAppName(packageName: String): CharSequence? {
         return try {
             packageManager.getApplicationInfo(packageName, 0)

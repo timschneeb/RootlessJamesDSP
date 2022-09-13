@@ -9,15 +9,18 @@ import android.provider.Settings
 import android.util.Base64
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.service.NotificationListenerService
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppName
 
-// Very simple & naive app cloner checks
+
 object ApplicationUtils {
     private const val PKGNAME_REF = "bWUudGltc2NobmVlYmVyZ2VyLnJvb3RsZXNzamFtZXNkc3A="
     private const val APPNAME_REF = "Um9vdGxlc3NKYW1lc0RTUA=="
 
+    // Very simple & naive app cloner checks; please don't use multiple instances at once
     fun check(ctx: Context): Int {
         if(decode(PKGNAME_REF) != ctx.packageName) return 1
         if(decode(APPNAME_REF) != ctx.getText(R.string.app_name)) return 2
+        if(decode(APPNAME_REF) != ctx.getAppName()) return 3
         return 0
     }
 
@@ -26,7 +29,7 @@ object ApplicationUtils {
     }
 
     fun describe(ctx: Context): String {
-        return "package=${ctx.packageName}; string=${ctx.getString(R.string.app_name)}"
+        return "package=${ctx.packageName}; app_name=${ctx.getString(R.string.app_name)}; label=${ctx.getAppName()}"
     }
 
     fun getIntentForNotificationAccess(packageName: String, notificationAccessServiceClass: Class<out NotificationListenerService>): Intent =
