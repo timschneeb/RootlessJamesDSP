@@ -42,7 +42,6 @@ class SettingsActivity : AppCompatActivity(),
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        Timber.e("TITLE SAVED TO STATE = " + supportActionBar?.title)
         outState.putString(PERSIST_TITLE, supportActionBar?.title.toString())
         super.onSaveInstanceState(outState)
     }
@@ -66,7 +65,6 @@ class SettingsActivity : AppCompatActivity(),
             ""
         else
             pref.title
-        Timber.e("TITLE SET TO = " + supportActionBar?.title)
 
         // Replace the existing Fragment with the new Fragment
         supportFragmentManager.beginTransaction()
