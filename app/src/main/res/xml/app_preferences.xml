@@ -13,47 +13,18 @@
         app:icon="@drawable/ic_twotone_troubleshoot_24dp"
         app:fragment="me.timschneeberger.rootlessjamesdsp.fragment.SettingsTroubleshootingFragment" />
 
-    <PreferenceCategory app:title="Auto-start"
-        app:iconSpaceReserved="false">
-        <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
-            app:key="@string/key_autostart_prompt_at_boot"
-            app:title="@string/autostart_prompt_at_boot"
-            app:defaultValue="true"
-            app:summaryOff="@string/autostart_prompt_at_boot_off"
-            app:summaryOn="@string/autostart_prompt_at_boot_on"
-            app:iconSpaceReserved="false" />
-    </PreferenceCategory>
+    <Preference
+        app:title="@string/misc_settings"
+        app:summary="@string/misc_settings_summary"
+        app:icon="@drawable/ic_twotone_more_horiz_24"
+        app:fragment="me.timschneeberger.rootlessjamesdsp.fragment.SettingsMiscFragment"
+        app:allowDividerBelow="true" />
 
-    <PreferenceCategory
-        app:title="@string/privacy"
-        app:iconSpaceReserved="false">
-        <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
-            android:key="@string/key_share_crash_reports"
-            android:defaultValue="true"
-            android:title="@string/privacy_share_crash_reports"
-            android:summaryOn="@string/privacy_share_crash_reports_on"
-            android:summaryOff="@string/privacy_share_crash_reports_off"
-            app:iconSpaceReserved="false" />
-    </PreferenceCategory>
+    <Preference
+        app:title="@string/about_settings"
+        app:summary="@string/about_settings_summary"
+        app:icon="@drawable/ic_twotone_help_24dp"
+        app:fragment="me.timschneeberger.rootlessjamesdsp.fragment.SettingsAboutFragment"
+        app:allowDividerAbove="true" />
 
-    <PreferenceCategory
-        app:title="@string/credits"
-        app:iconSpaceReserved="false">
-        <Preference
-            android:title="@string/credits_app"
-            android:summary="Tim Schneeberger (@thepbone)"
-            app:iconSpaceReserved="false">
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="https://github.com/thepbone" />
-        </Preference>
-        <Preference
-            android:title="@string/credits_dsp"
-            android:summary="James Fung (@james34602)"
-            app:iconSpaceReserved="false">
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="https://github.com/james34602" />
-        </Preference>
-    </PreferenceCategory>
 </PreferenceScreen>

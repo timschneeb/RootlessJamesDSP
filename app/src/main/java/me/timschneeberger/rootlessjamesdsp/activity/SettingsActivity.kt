@@ -7,6 +7,7 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.ActivitySettingsBinding
+import me.timschneeberger.rootlessjamesdsp.fragment.SettingsAboutFragment
 import me.timschneeberger.rootlessjamesdsp.fragment.SettingsFragment
 import timber.log.Timber
 
@@ -25,16 +26,25 @@ class SettingsActivity : AppCompatActivity(),
                 .beginTransaction()
                 .replace(R.id.settings, SettingsFragment.newInstance())
                 .commit()
-            supportFragmentManager.addOnBackStackChangedListener {
-                Timber.e(supportFragmentManager.backStackEntryCount.toString())
-                if (supportFragmentManager.backStackEntryCount == 0) {
-                    supportActionBar?.title = getString(R.string.title_activity_settings)
-                }
+        }
+        else {
+            supportActionBar?.title = savedInstanceState.getString(PERSIST_TITLE)
+        }
+
+        supportFragmentManager.addOnBackStackChangedListener {
+            if (supportFragmentManager.backStackEntryCount == 0) {
+                supportActionBar?.title = getString(R.string.title_activity_settings)
             }
         }
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.settingsToolbar.setNavigationOnClickListener { onBackPressed() }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        Timber.e("TITLE SAVED TO STATE = " + supportActionBar?.title)
+        outState.putString(PERSIST_TITLE, supportActionBar?.title.toString())
+        super.onSaveInstanceState(outState)
     }
 
     override fun onPreferenceStartFragment(caller: PreferenceFragmentCompat, pref: Preference): Boolean {
@@ -50,7 +60,13 @@ class SettingsActivity : AppCompatActivity(),
         fragment.arguments = args
         @Suppress("DEPRECATION")
         fragment.setTargetFragment(caller, 0)
-        supportActionBar?.title = pref.title
+
+        // Set the action bar title; the about page doesn't need one
+        supportActionBar?.title = if(fragment is SettingsAboutFragment)
+            ""
+        else
+            pref.title
+        Timber.e("TITLE SET TO = " + supportActionBar?.title)
 
         // Replace the existing Fragment with the new Fragment
         supportFragmentManager.beginTransaction()
@@ -64,6 +80,10 @@ class SettingsActivity : AppCompatActivity(),
             .addToBackStack(null)
             .commit()
         return true
+    }
+
+    companion object {
+        private const val PERSIST_TITLE = "title"
     }
 }
 

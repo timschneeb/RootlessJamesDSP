@@ -254,6 +254,10 @@
     <string name="troubleshooting_repair_assets">Restore bundled IRS, DDC, and scripts</string>
     <string name="troubleshooting_repair_assets_summary">Unpack preloaded assets if you lost them</string>
     <string name="troubleshooting_repair_assets_success">Bundled assets have been restored</string>
+    <string name="misc_settings">Miscellaneous</string>
+    <string name="misc_settings_summary">Auto-start prompt, crash reports</string>
+    <string name="about_settings">About</string>
+    <string name="about_settings_summary">Credits, support, updates</string>
     <string name="privacy">Privacy</string>
     <string name="privacy_share_crash_reports">Share application crash reports</string>
     <string name="privacy_share_crash_reports_on">Send crash reports to the developer</string>
@@ -261,6 +265,9 @@
     <string name="credits">Credits</string>
     <string name="credits_app">App &amp; rootless implementation developed by</string>
     <string name="credits_dsp">JamesDSP core algorithm library developed by</string>
+    <string name="credits_project_page">View GitHub project website</string>
+    <string name="credits_project_page_summary">Report issues, keep yourself updated, and download updates</string>
+    <string name="credits_version">Application version</string>
 
     <!-- File library preference -->
     <string name="filelibrary_hint_tap_and_hold">Tap and hold any item for more options</string>

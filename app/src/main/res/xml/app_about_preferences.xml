@@ -1,0 +1,44 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <me.timschneeberger.rootlessjamesdsp.preference.AppIconPreference
+        app:selectable="false"
+        app:iconSpaceReserved="false"
+        app:allowDividerBelow="true" />
+
+    <Preference
+        android:title="@string/credits_version"
+        android:summary="x.x.x"
+        android:key="@string/key_credits_version"
+        app:allowDividerAbove="true"
+        app:iconSpaceReserved="false" />
+    <Preference
+        android:title="@string/credits_project_page"
+        android:summary="@string/credits_project_page_summary"
+        app:iconSpaceReserved="false">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/thepbone/RootlessJamesDSP" />
+    </Preference>
+
+    <PreferenceCategory
+    app:title="@string/credits"
+    app:iconSpaceReserved="false">
+    <Preference
+        android:title="@string/credits_app"
+        android:summary="Tim Schneeberger (@thepbone)"
+        app:iconSpaceReserved="false">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/thepbone" />
+    </Preference>
+    <Preference
+        android:title="@string/credits_dsp"
+        android:summary="James Fung (@james34602)"
+        app:iconSpaceReserved="false">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://github.com/james34602" />
+    </Preference>
+</PreferenceCategory>
+</PreferenceScreen>

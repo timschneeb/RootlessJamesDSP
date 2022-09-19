@@ -21,6 +21,9 @@
     <string name="key_audioformat_encoding" translatable="false">audioformat_encoding</string>
     <string name="key_audioformat_buffersize" translatable="false">audioformat_buffersize</string>
 
+    <!-- Settings (static) -->
+    <string name="key_credits_version" translatable="false">credits_version</string>
+
     <!-- DSP -->
     <string name="key_compression_enable" translatable="false">compression_enable</string>
     <string name="key_compression_max_atk" translatable="false">compression_max_atk</string>
