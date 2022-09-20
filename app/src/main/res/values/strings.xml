@@ -268,6 +268,7 @@
     <string name="credits_project_page">View GitHub project website</string>
     <string name="credits_project_page_summary">Report issues, keep yourself updated, and download updates</string>
     <string name="credits_version">Application version</string>
+    <string name="credits_build_info">Build number</string>
 
     <!-- File library preference -->
     <string name="filelibrary_hint_tap_and_hold">Tap and hold any item for more options</string>

@@ -3,6 +3,7 @@ package me.timschneeberger.rootlessjamesdsp.session.dump
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
+import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.session.AudioSessionManager
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getVersionCode
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getVersionName
@@ -95,6 +96,8 @@ class DumpManager private constructor(val context: Context) {
     fun collectDebugDumps(): String {
         var exceptionRaised = false
         val sb = StringBuilder("Application version: ${context.getVersionName()} (${context.getVersionCode()})\n")
+        sb.append("Package: ${context.packageName}")
+        sb.append("Commit: ${BuildConfig.COMMIT_SHA}; commits since release: ${BuildConfig.COMMIT_COUNT}; debug build: ${BuildConfig.DEBUG}\n")
         sb.append("Device model: ${Build.MANUFACTURER}; ${Build.PRODUCT}; ${Build.MODEL}; ${Build.DEVICE}\n")
         sb.append("Device fingerprint: ${Build.FINGERPRINT}\n")
         sb.append("Android version: ${Build.VERSION.SDK_INT} (${Build.VERSION.RELEASE}; ${Build.VERSION.CODENAME})\n")

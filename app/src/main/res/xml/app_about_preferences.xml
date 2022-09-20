@@ -12,6 +12,13 @@
         android:key="@string/key_credits_version"
         app:allowDividerAbove="true"
         app:iconSpaceReserved="false" />
+
+    <Preference
+        android:title="@string/credits_build_info"
+        android:summary="Unknown"
+        android:key="@string/key_credits_build_info"
+        app:iconSpaceReserved="false" />
+
     <Preference
         android:title="@string/credits_project_page"
         android:summary="@string/credits_project_page_summary"

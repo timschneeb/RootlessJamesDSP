@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mediaProjectionManager: MediaProjectionManager
     private lateinit var capturePermissionLauncher: ActivityResultLauncher<Intent>
-    private lateinit var prefs: SharedPreferences
     private lateinit var prefsVar: SharedPreferences
 
     private var processorService: AudioProcessorService? = null
@@ -91,11 +90,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         prefsVar = getSharedPreferences(Constants.PREF_VAR, Context.MODE_PRIVATE)
-        prefs = getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
-
-        val crashlytics = prefs.getBoolean(getString(R.string.key_share_crash_reports), true)
-        Timber.tag(TAG).d("Crashlytics enabled? $crashlytics")
-        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(crashlytics)
 
         val firstBoot = prefsVar.getBoolean(getString(R.string.key_firstboot), true)
         assets.installPrivateAssets(this, force = firstBoot)

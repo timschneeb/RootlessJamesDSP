@@ -9,6 +9,6 @@ class ItemViewModel<T> : ViewModel() {
     val selectedItem: LiveData<T> get() = mutableSelectedItem
 
     fun selectItem(item: T) {
-        mutableSelectedItem.value = item
+        mutableSelectedItem.value = item!!
     }
 }

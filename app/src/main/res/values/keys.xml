@@ -23,6 +23,7 @@
 
     <!-- Settings (static) -->
     <string name="key_credits_version" translatable="false">credits_version</string>
+    <string name="key_credits_build_info" translatable="false">credits_build_info</string>
 
     <!-- DSP -->
     <string name="key_compression_enable" translatable="false">compression_enable</string>
