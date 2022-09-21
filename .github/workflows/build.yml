@@ -68,26 +68,45 @@ jobs:
           echo "VERSION_TAG=0.0.1" >> $GITHUB_ENV
 
       - name: Sign APKs
-        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'ThePBone/RootlessJamesDSP'
         uses: r0adkll/sign-android-release@v1
         with:
-          releaseDirectory: app/build/outputs/apk/standard/${{ env.BUILD_TYPE }}
+          releaseDirectory: app/build/outputs/apk/${{ env.BUILD_TYPE }}
           signingKeyBase64: ${{ secrets.SIGNING_KEYSTORE }}
           alias: ${{ secrets.KEY_ALIAS }}
           keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
 
       - name: Rename build artifacts
-        if: startsWith(github.ref, 'refs/tags/')
         run: |
           set -e
-          rename -nv -- '-unsigned-signed' '' app/build/outputs/apk/${{ env.BUILD_TYPE }}/*.apk
+          rename -v -- '-unsigned-signed' '' app/build/outputs/apk/${{ env.BUILD_TYPE }}/*.apk
+          rm *unsigned.apk
 
-      - name: Upload build artifacts
+      - name: Upload build artifact (universal)
         uses: actions/upload-artifact@v2.2.2
         with:
-          path: app/build/outputs/apk/${{ env.BUILD_TYPE }}/*.apk
+          path: app/build/outputs/apk/${{ env.BUILD_TYPE }}/*universal-*.apk
 
+      - name: Upload build artifact (x86)
+        uses: actions/upload-artifact@v2.2.2
+        with:
+          path: app/build/outputs/apk/${{ env.BUILD_TYPE }}/*x86-*.apk
+          
+      - name: Upload build artifact (x86_64)
+        uses: actions/upload-artifact@v2.2.2
+        with:
+          path: app/build/outputs/apk/${{ env.BUILD_TYPE }}/*x86_64-*.apk
+          
+      - name: Upload build artifact (armeabi-v7a)
+        uses: actions/upload-artifact@v2.2.2
+        with:
+          path: app/build/outputs/apk/${{ env.BUILD_TYPE }}/*armeabi-v7a-*.apk
+               
+      - name: Upload build artifact (arm64-v8a)
+        uses: actions/upload-artifact@v2.2.2
+        with:
+          path: app/build/outputs/apk/${{ env.BUILD_TYPE }}/*arm64-v8a-*.apk
+          
       - name: Create Release
         # TODO 
         # if: startsWith(github.ref, 'refs/tags/') && github.repository == 'ThePBone/RootlessJamesDSP'
