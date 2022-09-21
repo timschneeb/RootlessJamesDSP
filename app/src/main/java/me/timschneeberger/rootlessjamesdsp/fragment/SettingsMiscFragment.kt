@@ -21,7 +21,7 @@ class SettingsMiscFragment : PreferenceFragmentCompat() {
             FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(newValue as Boolean)
             true
         }
-        findPreference<Preference>(getString(R.string.key_debug_database))?.isVisible = BuildConfig.DEBUG
+        findPreference<Preference>(getString(R.string.key_debug_database))?.parent?.isVisible = BuildConfig.DEBUG
     }
 
     override fun onCreateView(
