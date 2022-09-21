@@ -35,13 +35,13 @@ jobs:
           arguments: assembleRelease
 
       - name: Build preview app
-        if: !startsWith(github.ref, 'refs/tags/')
+        if: "!startsWith(github.ref, 'refs/tags/')"
         uses: gradle/gradle-command-action@v2
         with:
           arguments: assemblePreview
           
       - name: Declare preview build type
-        if: !startsWith(github.ref, 'refs/tags/')
+        if: "!startsWith(github.ref, 'refs/tags/')"
         run: |
           set -x
           echo "BUILD_TYPE=preview" >> $GITHUB_ENV
@@ -59,7 +59,7 @@ jobs:
           echo "VERSION_TAG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
 
       - name: Get tag name 
-        if: !startsWith(github.ref, 'refs/tags/')
+        if: "!startsWith(github.ref, 'refs/tags/')"
         run: |
           set -x
           # TODO REMOVE temporary placeholder
@@ -79,7 +79,7 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         run: |
           set -e
-         rename -nv -- '-unsigned-signed' '' app/build/outputs/apk/${{ env.BUILD_TYPE }}/*.apk
+          rename -nv -- '-unsigned-signed' '' app/build/outputs/apk/${{ env.BUILD_TYPE }}/*.apk
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2.2.2
