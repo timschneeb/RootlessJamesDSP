@@ -16,6 +16,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Install packages
+        run: |
+          sudo apt update
+          sudo apt install rename
+    
       - name: Clone repo
         uses: actions/checkout@v3
         with:
