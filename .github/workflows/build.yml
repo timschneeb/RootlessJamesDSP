@@ -128,7 +128,7 @@ jobs:
         with:
           tag_name: ${{ env.VERSION_TAG }}
           name: RootlessJamesDSP ${{ env.VERSION_TAG }}
-          body: ${{ steps.changelog.outputs.changelog }} &#x20;
+          body: "${{ steps.changelog.outputs.changelog }} &#x20;"
           files: |
              app/build/outputs/apk/${{ env.BUILD_TYPE }}/*.apk
           draft: true
