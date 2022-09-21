@@ -31,3 +31,6 @@ Tested on:
 * Samsung Galaxy S20+ (Android 12; OneUI 4.0)
 * Stock AOSP emulator (Android 10-13)
 
+## Downloads
+APK files are available for download here: https://github.com/ThePBone/RootlessJamesDSP/releases
+
