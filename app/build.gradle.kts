@@ -50,12 +50,12 @@ android {
             manifestPlaceholders["crashlyticsCollectionEnabled"] = "true"
             configure<CrashlyticsExtension> {
                 nativeSymbolUploadEnabled = true
-                mappingFileUploadEnabled = false
+                mappingFileUploadEnabled = true
             }
 
             proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
-            //isMinifyEnabled = true // TODO
-            //isShrinkResources = true
+            isMinifyEnabled = true
+            isShrinkResources = true
         }
         create("preview") {
             initWith(getByName("release"))
@@ -68,10 +68,12 @@ android {
     }
 
     sourceSets {
+        // Use different app icon for non-release builds
         getByName("debug").res.srcDirs("src/debug/res")
         getByName("preview").res.srcDirs("src/preview/res")
     }
 
+    // Export multiple CPU architecture split apks
     splits {
         abi {
             isEnable = true
@@ -111,53 +113,63 @@ android {
     }
 }
 
+// Hooks to upload native symbols to crashlytics automatically
 afterEvaluate {
-    // I haven't found a way to port this to Gradle KTS yet
-    withGroovyBuilder {
-        "assembleRelease" {
-            "finalizedBy"("uploadCrashlyticsSymbolFileRelease")
-        }
-        "assemblePreview" {
-            "finalizedBy"("uploadCrashlyticsSymbolFileRelease")
-        }
-    }
+    getTasksByName("assembleRelease", false).first().finalizedBy("uploadCrashlyticsSymbolFileRelease")
+    getTasksByName("assemblePreview", false).first().finalizedBy("uploadCrashlyticsSymbolFileRelease")
 }
 
 dependencies {
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
-
+    // Kotlin extensions
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.10")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
+
+    // AndroidX
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.5.1")
-    implementation("com.google.android.material:material:1.8.0-alpha01")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.navigation:navigation-fragment-ktx:2.5.2")
+    implementation("androidx.navigation:navigation-fragment:2.5.2")
     implementation("androidx.navigation:navigation-ui-ktx:2.5.2")
     implementation("androidx.preference:preference-ktx:1.2.0")
+    implementation("androidx.preference:preference:1.2.0")
+    implementation("com.google.android.material:material:1.8.0-alpha01")
+
+    // Firebase
     implementation(platform("com.google.firebase:firebase-bom:30.4.1"))
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-crashlytics-ktx")
     implementation("com.google.firebase:firebase-crashlytics-ndk")
-    implementation("androidx.preference:preference:1.2.0")
-    implementation("androidx.navigation:navigation-fragment:2.5.2")
 
+    // Logging
     implementation("com.jakewharton.timber:timber:5.0.1")
+
+    // dontkillmyapp.com integration
     implementation("dev.doubledot.doki:library:0.0.1@aar")
 
+    // Room databases
     val roomVersion = "2.4.3"
     implementation("androidx.room:room-runtime:$roomVersion")
     ksp("androidx.room:room-compiler:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
 
+    // Shizuku
     implementation("dev.rikka.shizuku:api:${AndroidConfig.shizukuVersion}")
     implementation("dev.rikka.shizuku:provider:${AndroidConfig.shizukuVersion}")
+
+    // Hidden APIs
     implementation("dev.rikka.tools.refine:runtime:${AndroidConfig.rikkaRefineVersion}")
     implementation("org.lsposed.hiddenapibypass:hiddenapibypass:4.3")
     compileOnly(project(":hidden-api-refined"))
     implementation(project(":hidden-api-impl"))
+
+    // Memory leak detection library
+    debugImplementation("com.squareup.leakcanary:leakcanary-android:2.9.1")
+
+    // Unit tests
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.3")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
 }

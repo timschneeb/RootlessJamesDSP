@@ -47,6 +47,9 @@ class MainApplication : Application() {
         Timber.d("Crashlytics enabled? $crashlytics")
         FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(crashlytics)
 
+        FirebaseCrashlytics.getInstance().setCustomKey("buildType", BuildConfig.BUILD_TYPE)
+        FirebaseCrashlytics.getInstance().setCustomKey("buildCommit", BuildConfig.COMMIT_SHA)
+
         super.onCreate()
     }
 

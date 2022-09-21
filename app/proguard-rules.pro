@@ -20,8 +20,9 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
+-dontobfuscate
 
-#-keep class me.timschneeberger.rootlessjamesdsp.interop.JamesDspWrapper { *; }
-#-keep class me.timschneeberger.rootlessjamesdsp.interop.JdspImpResToolbox { *; }
-#-keep class me.timschneeberger.rootlessjamesdsp.interop.structure.** { *; }
-#-keep class me.timschneeberger.rootlessjamesdsp.fragment.** { *; }
+-keep class me.timschneeberger.rootlessjamesdsp.interop.JamesDspWrapper { *; }
+-keep class me.timschneeberger.rootlessjamesdsp.interop.JdspImpResToolbox { *; }
+-keep class me.timschneeberger.rootlessjamesdsp.interop.structure.** { *; }
+-keep class me.timschneeberger.rootlessjamesdsp.fragment.** { *; }
