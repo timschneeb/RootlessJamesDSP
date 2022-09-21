@@ -22,7 +22,19 @@
 
 -dontobfuscate
 
--keep class me.timschneeberger.rootlessjamesdsp.interop.JamesDspWrapper { *; }
--keep class me.timschneeberger.rootlessjamesdsp.interop.JdspImpResToolbox { *; }
--keep class me.timschneeberger.rootlessjamesdsp.interop.structure.** { *; }
--keep class me.timschneeberger.rootlessjamesdsp.fragment.** { *; }
+-keep class dev.doubledot.doki.** { *; }
+
+-keep,allowoptimization class me.timschneeberger.rootlessjamesdsp.interop.** { *; }
+-keep,allowoptimization class me.timschneeberger.rootlessjamesdsp.fragment.** { *; }
+
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
+
+-keepclasseswithmembernames class * {
+    public <init>(android.content.Context, android.util.AttributeSet);
+}
+
+-keepclasseswithmembernames class * {
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+}

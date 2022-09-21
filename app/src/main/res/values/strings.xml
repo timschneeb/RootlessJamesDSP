@@ -245,8 +245,6 @@
     <string name="troubleshooting_dump">Export audio session dump…</string>
     <string name="troubleshooting_dump_summary">Collect and save troubleshooting data</string>
     <string name="troubleshooting_dump_share_title">Share audio session dump..</string>
-    <string name="troubleshooting_dontkillmyapp">App doesn\'t stay in background</string>
-    <string name="troubleshooting_dontkillmyapp_summary">View \'Don\'t kill my app\' documentation for your device</string>
     <string name="troubleshooting_view_limitations">View technical limitations</string>
     <string name="troubleshooting_view_limitations_summary">Show details about the limitations of this app</string>
     <string name="troubleshooting_notification_access">Allow notification access for better session detection</string>

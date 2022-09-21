@@ -25,6 +25,10 @@ class EelParser {
         private set
 
     fun load(path: String): Boolean {
+        if(path.isBlank()) {
+            return false
+        }
+
         this.path = path
         try {
             contents = File(path).readText()

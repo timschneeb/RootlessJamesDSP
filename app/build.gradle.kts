@@ -146,9 +146,6 @@ dependencies {
     // Logging
     implementation("com.jakewharton.timber:timber:5.0.1")
 
-    // dontkillmyapp.com integration
-    implementation("dev.doubledot.doki:library:0.0.1@aar")
-
     // Room databases
     val roomVersion = "2.4.3"
     implementation("androidx.room:room-runtime:$roomVersion")
