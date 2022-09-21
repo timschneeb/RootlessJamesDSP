@@ -1,0 +1,103 @@
+name: Build signed app
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - v*
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build app
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@v3
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v1
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: 11
+          distribution: adopt
+
+      - name: Build release app
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: gradle/gradle-command-action@v2
+        with:
+          arguments: assembleRelease
+
+      - name: Build preview app
+        if: !startsWith(github.ref, 'refs/tags/')
+        uses: gradle/gradle-command-action@v2
+        with:
+          arguments: assemblePreview
+          
+      - name: Declare preview build type
+        if: !startsWith(github.ref, 'refs/tags/')
+        run: |
+          set -x
+          echo "BUILD_TYPE=preview" >> $GITHUB_ENV
+          
+      - name: Declare release build type
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          set -x
+          echo "BUILD_TYPE=release" >> $GITHUB_ENV
+          
+      - name: Get tag name
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          set -x
+          echo "VERSION_TAG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
+
+      - name: Get tag name 
+        if: !startsWith(github.ref, 'refs/tags/')
+        run: |
+          set -x
+          # TODO REMOVE temporary placeholder
+          echo "VERSION_TAG=0.0.1" >> $GITHUB_ENV
+
+      - name: Sign APKs
+        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'ThePBone/RootlessJamesDSP'
+        uses: r0adkll/sign-android-release@v1
+        with:
+          releaseDirectory: app/build/outputs/apk/standard/${{ env.BUILD_TYPE }}
+          signingKeyBase64: ${{ secrets.SIGNING_KEYSTORE }}
+          alias: ${{ secrets.KEY_ALIAS }}
+          keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+
+      - name: Rename build artifacts
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          set -e
+         rename -nv -- '-unsigned-signed' '' app/build/outputs/apk/${{ env.BUILD_TYPE }}/*.apk
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v2.2.2
+        with:
+          path: app/build/outputs/apk/${{ env.BUILD_TYPE }}/*.apk
+
+      - name: Create Release
+        # TODO 
+        # if: startsWith(github.ref, 'refs/tags/') && github.repository == 'ThePBone/RootlessJamesDSP'
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ env.VERSION_TAG }}
+          name: RootlessJamesDSP ${{ env.VERSION_TAG }}
+          body: |
+            Changelog not yet published
+          files: |
+             app/build/outputs/apk/${{ env.BUILD_TYPE }}/*.apk
+          draft: true
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
