@@ -19,7 +19,7 @@ jobs:
       - name: Install packages
         run: |
           sudo apt update
-          sudo apt install rename
+          sudo apt install util-linux
     
       - name: Clone repo
         uses: actions/checkout@v3
