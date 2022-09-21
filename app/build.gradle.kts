@@ -50,12 +50,12 @@ android {
             manifestPlaceholders["crashlyticsCollectionEnabled"] = "true"
             configure<CrashlyticsExtension> {
                 nativeSymbolUploadEnabled = true
-                mappingFileUploadEnabled = true
+                mappingFileUploadEnabled = false
             }
 
-            proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
-            isMinifyEnabled = true
-            isShrinkResources = true
+            //proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
+            isMinifyEnabled = false
+            isShrinkResources = false
         }
         create("preview") {
             initWith(getByName("release"))

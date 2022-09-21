@@ -24,6 +24,8 @@
 
 -keep class dev.doubledot.doki.** { *; }
 
+-keep class me.timschneeberger.hiddenapi_impl.** { *; }
+
 -keep,allowoptimization class me.timschneeberger.rootlessjamesdsp.interop.** { *; }
 -keep,allowoptimization class me.timschneeberger.rootlessjamesdsp.fragment.** { *; }
 
