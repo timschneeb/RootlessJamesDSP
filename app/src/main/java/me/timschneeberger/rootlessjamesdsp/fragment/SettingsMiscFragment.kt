@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.preference.*
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 
@@ -20,12 +21,13 @@ class SettingsMiscFragment : PreferenceFragmentCompat() {
             FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(newValue as Boolean)
             true
         }
+        findPreference<Preference>(getString(R.string.key_debug_database))?.isVisible = BuildConfig.DEBUG
     }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         val view = super.onCreateView(inflater, container, savedInstanceState)
         val a = TypedValue()
