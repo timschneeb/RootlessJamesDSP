@@ -16,8 +16,15 @@ class SettingsAboutFragment : PreferenceFragmentCompat() {
 
         findPreference<Preference>(getString(R.string.key_credits_version))?.summary = BuildConfig.VERSION_NAME
         val build = findPreference<Preference>(getString(R.string.key_credits_build_info))
-        build?.isVisible = BuildConfig.DEBUG
-        build?.summary = "Commit ${BuildConfig.COMMIT_SHA} (built at ${BuildConfig.BUILD_TIME})"
+        build?.isVisible = BuildConfig.DEBUG || BuildConfig.PREVIEW
+        val type = if(BuildConfig.PREVIEW)
+            "Preview"
+        else if(BuildConfig.DEBUG)
+            "Debug"
+        else
+            "Release"
+
+        build?.summary = "${type} build @${BuildConfig.COMMIT_SHA} (compiled at ${BuildConfig.BUILD_TIME})"
     }
 
     override fun onCreateView(

@@ -43,7 +43,7 @@ class MainApplication : Application() {
                 .apply()
         }
 
-        val crashlytics = prefs.getBoolean(getString(R.string.key_share_crash_reports), true) && !BuildConfig.DEBUG
+        val crashlytics = prefs.getBoolean(getString(R.string.key_share_crash_reports), true) && (!BuildConfig.DEBUG || BuildConfig.PREVIEW)
         Timber.d("Crashlytics enabled? $crashlytics")
         FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(crashlytics)
 

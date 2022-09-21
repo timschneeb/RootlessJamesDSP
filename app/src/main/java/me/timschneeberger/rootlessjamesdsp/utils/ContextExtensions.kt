@@ -13,6 +13,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.DialogTextinputBinding
 import timber.log.Timber
@@ -62,12 +63,14 @@ object ContextExtensions {
     }
 
     // Very simple & naive app cloner checks; please don't use multiple instances at once
-    private const val PKGNAME_REF = "bWUudGltc2NobmVlYmVyZ2VyLnJvb3RsZXNzamFtZXNkc3A="
+    private val PKGNAME_REFS = setOf("bWUudGltc2NobmVlYmVyZ2VyLnJvb3RsZXNzamFtZXNkc3A=",
+                                     "bWUudGltc2NobmVlYmVyZ2VyLnJvb3RsZXNzamFtZXNkc3AuZGVidWc=")
     private const val APPNAME_REF = "Um9vdGxlc3NKYW1lc0RTUA=="
     fun Context.check(): Int {
-        if(decode(PKGNAME_REF) != packageName) return 1
+        if(PKGNAME_REFS.none { decode(it) == packageName }) return 1
         if(decode(APPNAME_REF) != getText(R.string.app_name)) return 2
         if(decode(APPNAME_REF) != getAppName()) return 3
+        if(!BuildConfig.DEBUG && packageName.contains("debug")) return 4
         return 0
     }
 

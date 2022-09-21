@@ -13,19 +13,21 @@ plugins {
 android {
     val SUPPORTED_ABIS = setOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
     compileSdk = AndroidConfig.compileSdk
+    project.setProperty("archivesBaseName", "RootlessJamesDSP-v${AndroidConfig.versionName}")
 
     defaultConfig {
         applicationId = "me.timschneeberger.rootlessjamesdsp"
         minSdk = AndroidConfig.minSdk
         targetSdk = AndroidConfig.targetSdk
-        versionCode = 1
-        versionName = "0.1.0"
+        versionCode = AndroidConfig.versionCode
+        versionName = AndroidConfig.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "COMMIT_COUNT", "\"${getCommitCount()}\"")
         buildConfigField("String", "COMMIT_SHA", "\"${getGitSha()}\"")
         buildConfigField("String", "BUILD_TIME", "\"${getBuildTime()}\"")
+        buildConfigField("boolean", "PREVIEW", "false")
 
         externalNativeBuild {
             cmake {
@@ -38,33 +40,37 @@ android {
         }
     }
 
-    signingConfigs {
-        create("release") {
-            keyAlias = "rootlessjamesdsp"
-        }
-    }
-
     buildTypes {
         getByName("debug") {
             applicationIdSuffix = ".debug"
-            versionNameSuffix = "+${getCommitCount()}"
+            versionNameSuffix = "-${getCommitCount()}"
             manifestPlaceholders["crashlyticsCollectionEnabled"] = "false"
         }
         getByName("release") {
             manifestPlaceholders["crashlyticsCollectionEnabled"] = "true"
             configure<CrashlyticsExtension> {
                 nativeSymbolUploadEnabled = true
-                mappingFileUploadEnabled = true
+                mappingFileUploadEnabled = false
             }
 
             proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
-            isShrinkResources = true
-            isMinifyEnabled = true
-            signingConfig = signingConfigs.getByName("release")
+            //isMinifyEnabled = true // TODO
+            //isShrinkResources = true
+        }
+        create("preview") {
+            initWith(getByName("release"))
+            buildConfigField("boolean", "PREVIEW", "true")
+
+            val debugType = getByName("debug")
+            versionNameSuffix = debugType.versionNameSuffix
+            matchingFallbacks.add("release")
         }
     }
 
-    project.setProperty("archivesBaseName", "RootlessJamesDSP-v${defaultConfig.versionName}")
+    sourceSets {
+        getByName("debug").res.srcDirs("src/debug/res")
+        getByName("preview").res.srcDirs("src/preview/res")
+    }
 
     splits {
         abi {
@@ -109,6 +115,9 @@ afterEvaluate {
     // I haven't found a way to port this to Gradle KTS yet
     withGroovyBuilder {
         "assembleRelease" {
+            "finalizedBy"("uploadCrashlyticsSymbolFileRelease")
+        }
+        "assemblePreview" {
             "finalizedBy"("uploadCrashlyticsSymbolFileRelease")
         }
     }
