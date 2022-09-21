@@ -84,7 +84,7 @@ jobs:
       - name: Rename build artifacts
         run: |
           set -e
-          rename -v -- '-unsigned-signed' '' app/build/outputs/apk/${{ env.BUILD_TYPE }}/*.apk
+          rename -v 's/-unsigned-signed//g' app/build/outputs/apk/${{ env.BUILD_TYPE }}/*.apk
           rm *unsigned.apk
 
       - name: Upload build artifact (universal)
