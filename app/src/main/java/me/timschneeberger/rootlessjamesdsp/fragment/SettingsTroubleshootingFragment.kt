@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.FileProvider
 import androidx.preference.*
-import dev.doubledot.doki.ui.DokiActivity
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
@@ -45,10 +44,6 @@ class SettingsTroubleshootingFragment : PreferenceFragmentCompat() {
             shareIntent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
             shareIntent.type = "text/plain"
             startActivity(Intent.createChooser(shareIntent, getString(R.string.troubleshooting_dump_share_title)))
-            true
-        }
-        findPreference<Preference>(getString(R.string.key_troubleshooting_dontkillmyapp))?.setOnPreferenceClickListener {
-            DokiActivity.start(requireContext())
             true
         }
         findPreference<Preference>(getString(R.string.key_troubleshooting_repair_assets))?.setOnPreferenceClickListener {
