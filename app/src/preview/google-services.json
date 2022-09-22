@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "863489373095",
+    "project_id": "rootlessjamesdsp-preview",
+    "storage_bucket": "rootlessjamesdsp-preview.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:863489373095:android:b838eeaa29d098d03cbc82",
+        "android_client_info": {
+          "package_name": "me.timschneeberger.rootlessjamesdsp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "863489373095-58c7fbb234h4b94jitk8uj6489ssjh1k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAf-stCJZ2PZViMDGyEil1F8nWUN8fUVzc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "863489373095-58c7fbb234h4b94jitk8uj6489ssjh1k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
