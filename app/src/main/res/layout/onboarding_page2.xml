@@ -6,6 +6,8 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- TODO extract strings  -->
+
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
@@ -76,6 +78,13 @@
                 android:layout_height="wrap_content"
                 app:titleText="Audio session detection delay"
                 app:bodyText="After an app has opened a new media session to playback audio, you may hear duplicated or cut-off audio for a very short period (about &lt;250ms)."
+                app:cardMargin="8dp" />
+
+            <me.timschneeberger.rootlessjamesdsp.view.Card
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:titleText="Increased latency"
+                app:bodyText="This app adds a noticable amount of delay to the audio stream. You can add movie/video apps to the exclusion list to prevent AV-desync by not processing them."
                 app:cardMargin="8dp" />
 
             <me.timschneeberger.rootlessjamesdsp.view.Card
