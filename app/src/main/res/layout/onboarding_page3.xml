@@ -9,22 +9,23 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="8dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
             android:alpha="0.8"
-            app:srcCompat="@drawable/ic_twotone_security_24dp"
+            app:srcCompat="@drawable/ic_twotone_auto_fix_high_24"
             app:tint="?attr/colorOnSurface" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:text="@string/onboarding_adb_title"
-            android:textAppearance="?attr/textAppearanceHeadline5" />
+            android:layout_gravity="center"
+            android:text="@string/onboarding_methods_title"
+            android:textAppearance="?attr/textAppearanceHeadline4" />
+
     </LinearLayout>
 
     <ScrollView
@@ -35,171 +36,62 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/onboarding_adb_android10_warning"
-                android:visibility="gone"
+                style="?attr/materialCardViewStyle"
+                android:id="@+id/methods_shizuku_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="?attr/colorErrorContainer">
+                android:layout_margin="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:contentPadding="16dp">
                 <LinearLayout
-                    android:layout_margin="16dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginEnd="16dp"
-                        android:layout_gravity="center_vertical"
-                        android:alpha="0.8"
-                        app:srcCompat="@drawable/ic_twotone_warning_24dp"
-                        app:tint="?attr/colorOnSurface" />
+                    android:orientation="vertical">
                     <TextView
+                        android:id="@+id/methods_shizuku_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/onboarding_adb_android10_warning"
-                        android:textAppearance="?attr/textAppearanceLabelLarge" />
+                        android:layout_marginBottom="8dp"
+                        android:text="@string/onboarding_methods_shizuku_title"
+                        android:textAppearance="?attr/textAppearanceTitleLarge" />
+                    <TextView
+                        android:id="@+id/methods_shizuku_body"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/onboarding_methods_shizuku"
+                        android:textAppearance="?attr/textAppearanceBody1" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <TextView
+            <com.google.android.material.card.MaterialCardView
+                style="?attr/materialCardViewStyle"
+                android:id="@+id/methods_adb_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="@string/onboarding_adb_caption"
-                android:textAppearance="?attr/textAppearanceBody2" />
-
-            <!-- Shizuku -->
-            <LinearLayout
-                android:id="@+id/onboarding_adb_shizuku_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="@string/onboarding_adb_shizuku_title"
-                    android:textAppearance="?attr/textAppearanceHeadline6" />
-
+                android:layout_margin="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:contentPadding="16dp">
                 <LinearLayout
-                    android:id="@+id/onboarding_adb_shizuku_install_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
-                        android:id="@+id/onboarding_adb_shizuku_install_header"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="4dp"
-                        android:text="@string/onboarding_adb_step_1"
-                        android:textAppearance="?attr/textAppearanceLabelMedium" />
+                        android:layout_marginBottom="8dp"
+                        android:text="@string/onboarding_methods_adb_title"
+                        android:textAppearance="?attr/textAppearanceTitleLarge" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/onboarding_adb_shizuku_install_instruction"
-                        android:textAppearance="?attr/textAppearanceBody2" />
-
-                    <Button
-                        android:id="@+id/onboarding_adb_shizuku_install_button"
-                        android:minWidth="210dp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:layout_marginVertical="8dp"
-                        android:layout_gravity="end"
-                        android:text="@string/onboarding_adb_shizuku_install_button" />
+                        android:text="@string/onboarding_methods_adb"
+                        android:textAppearance="?attr/textAppearanceBody1" />
                 </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/onboarding_adb_shizuku_open_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/onboarding_adb_shizuku_open_header"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="4dp"
-                        android:text="@string/onboarding_adb_step_2"
-                        android:textAppearance="?attr/textAppearanceLabelMedium" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/onboarding_adb_shizuku_open_instruction"
-                        android:textAppearance="?attr/textAppearanceBody2" />
-
-                    <Button
-                        android:id="@+id/onboarding_adb_shizuku_open_button"
-                        android:minWidth="210dp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:layout_marginVertical="8dp"
-                        android:layout_gravity="end"
-                        android:text="@string/onboarding_adb_shizuku_open_button" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/onboarding_adb_shizuku_grant_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/onboarding_adb_shizuku_grant_header"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="4dp"
-                        android:text="@string/onboarding_adb_step_3"
-                        android:textAppearance="?attr/textAppearanceLabelMedium" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/onboarding_adb_shizuku_grant_instruction"
-                        android:textAppearance="?attr/textAppearanceBody2" />
-
-                    <Button
-                        android:id="@+id/onboarding_adb_shizuku_grant_button"
-                        android:minWidth="210dp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:layout_marginVertical="8dp"
-                        android:layout_gravity="end"
-                        android:text="@string/onboarding_adb_shizuku_grant_button" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <!-- Manual -->
-            <TextView
-                android:id="@+id/onboarding_adb_manual_header"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="4dp"
-                android:text="@string/onboarding_adb_manual_title"
-                android:textAppearance="?attr/textAppearanceHeadline6" />
-
-            <TextView
-                android:id="@+id/onboarding_adb_manual_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/onboarding_adb_manual_instruction"
-                android:textAppearance="?attr/textAppearanceBody2" />
-
-            <Button
-                android:id="@+id/onboarding_adb_manual_button"
-                android:minWidth="210dp"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_marginVertical="8dp"
-                android:layout_marginBottom="8dp"
-                android:layout_gravity="end"
-                android:text="@string/onboarding_adb_manual_button"
-                style="?attr/materialButtonOutlinedStyle" />
-
+            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
-
     </ScrollView>
 
 </LinearLayout>

@@ -26,7 +26,6 @@ import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppNameFro
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showYesNoAlert
 import me.timschneeberger.rootlessjamesdsp.utils.loadHtml
-import kotlin.coroutines.CoroutineContext
 
 class BlocklistFragment : Fragment() {
 

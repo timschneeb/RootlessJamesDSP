@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Process
 import android.text.Editable
 import android.util.Base64
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.widget.TextView
 import androidx.annotation.StringRes
@@ -20,6 +21,12 @@ import timber.log.Timber
 
 
 object ContextExtensions {
+    fun Context.dpToPx(value: Int): Int {
+        return TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            value.toFloat(), resources.displayMetrics).toInt()
+    }
+
     fun Context.openPlayStoreApp(pkgName:String?){
         if(!pkgName.isNullOrEmpty()) {
             try {

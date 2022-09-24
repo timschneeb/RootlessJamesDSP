@@ -4,10 +4,10 @@
     <PreferenceCategory app:title="@string/troubleshooting_docs"
         app:iconSpaceReserved="false">
         <Preference
-            android:key="@string/key_troubleshooting_view_limitations"
             android:title="@string/troubleshooting_view_limitations"
             android:summary="@string/troubleshooting_view_limitations_summary"
-            app:iconSpaceReserved="false" />
+            app:iconSpaceReserved="false"
+            app:fragment="me.timschneeberger.rootlessjamesdsp.fragment.LimitationsFragment" />
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/troubleshooting_actions"

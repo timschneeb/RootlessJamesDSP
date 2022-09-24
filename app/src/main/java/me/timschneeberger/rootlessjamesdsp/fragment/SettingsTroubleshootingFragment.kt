@@ -56,14 +56,6 @@ class SettingsTroubleshootingFragment : PreferenceFragmentCompat() {
             requireActivity().startActivity(intent)
             true
         }
-        findPreference<Preference>(getString(R.string.key_troubleshooting_view_limitations))?.setOnPreferenceClickListener {
-            requireContext().showAlert(
-                getString(R.string.onboarding_limitations_title),
-                loadHtml(getString(R.string.onboarding_limitations))
-            )
-            true
-        }
-
         findPreference<MaterialSwitchPreference>(getString(R.string.key_session_loss_ignore))?.setOnPreferenceChangeListener { _, newValue ->
             if((newValue as? Boolean) == true)
             {

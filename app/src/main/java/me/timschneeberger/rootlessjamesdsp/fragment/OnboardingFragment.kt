@@ -1,6 +1,7 @@
 package me.timschneeberger.rootlessjamesdsp.fragment
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager.PERMISSION_DENIED
 import android.content.pm.PackageManager.PERMISSION_GRANTED
@@ -10,7 +11,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -29,7 +29,6 @@ import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.isPackageInst
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.launchApp
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.openPlayStoreApp
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
-import me.timschneeberger.rootlessjamesdsp.utils.loadHtml
 import rikka.shizuku.Shizuku
 import timber.log.Timber
 
@@ -40,11 +39,20 @@ class OnboardingFragment : Fragment() {
     private val pageMap = mapOf(
         PAGE_WELCOME                to R.id.onboarding_page1,
         PAGE_LIMITATIONS            to R.id.onboarding_page2,
-        PAGE_ADB_SETUP              to R.id.onboarding_page3,
-        PAGE_RUNTIME_PERMISSIONS    to R.id.onboarding_page4,
-        PAGE_SELF_CHECK             to R.id.onboarding_page5,
-        PAGE_READY                  to R.id.onboarding_page6,
+        PAGE_METHOD_SELECT          to R.id.onboarding_page3,
+        PAGE_ADB_SETUP              to R.id.onboarding_page4,
+        PAGE_RUNTIME_PERMISSIONS    to R.id.onboarding_page5,
+        PAGE_SELF_CHECK             to R.id.onboarding_page6,
+        PAGE_READY                  to R.id.onboarding_page7,
     )
+
+    private enum class SetupMethods {
+        None,
+        Shizuku,
+        Adb,
+    }
+
+    private var selectedSetupMethod = SetupMethods.None
 
     private var currentPage = PAGE_WELCOME
 
@@ -57,10 +65,12 @@ class OnboardingFragment : Fragment() {
     private val binderReceivedListener = Shizuku.OnBinderReceivedListener {
         Timber.tag(TAG).d("Shizuku binder received")
         shizukuAlive = true
+        updateSetupInstructions()
     }
     private val binderDeadListener =  Shizuku.OnBinderDeadListener {
         Timber.tag(TAG).d("Shizuku binder died")
         shizukuAlive = false
+        updateSetupInstructions()
     }
     private val requestPermissionResultListener = OnRequestPermissionResult()
 
@@ -102,35 +112,46 @@ class OnboardingFragment : Fragment() {
         backButton.setOnClickListener { changePage(false) }
         nextButton.setOnClickListener { changePage(true) }
 
-        // Limitation page
-        val limitations = view.findViewById<TextView>(R.id.onboarding_limitations)
-        limitations.text = loadHtml(getString(R.string.onboarding_limitations))
+        // Method selection page
+        val methodPage = binding.methodSelect
+        methodPage.methodsShizukuCard.setOnClickListener {
+            selectedSetupMethod = SetupMethods.Shizuku
+            changePage(true)
+        }
+        methodPage.methodsAdbCard.setOnClickListener {
+            selectedSetupMethod = SetupMethods.Adb
+            changePage(true)
+        }
 
         // ADB permission page
-        val adbPage = view.findViewById<View>(R.id.onboarding_page3)
-        adbPage.findViewById<Button>(R.id.onboarding_adb_shizuku_install_button).setOnClickListener {
-            // Open Shizuku play store page
-            viewShizukuInMarket()
+        val adbPage = binding.adbSetup
+        adbPage.step1.setOnButtonClickListener {
+            if (selectedSetupMethod == SetupMethods.Adb) {
+                startActivity(Intent("android.settings.APPLICATION_DEVELOPMENT_SETTINGS"))
+            } else {
+                // Open Shizuku play store page
+                viewShizukuInMarket()
+            }
         }
-        adbPage.findViewById<Button>(R.id.onboarding_adb_shizuku_open_button).setOnClickListener {
+        adbPage.step2.setOnButtonClickListener {
             // Launch Shizuku
             if(!requireContext().launchApp(SHIZUKU_PKG))
             {
                 requestShizukuInstallation()
             }
         }
-        adbPage.findViewById<Button>(R.id.onboarding_adb_shizuku_grant_button).setOnClickListener {
+        adbPage.step3.setOnButtonClickListener {
             if(!requireContext().isPackageInstalled(SHIZUKU_PKG))
             {
                 requestShizukuInstallation()
-                return@setOnClickListener
+                return@setOnButtonClickListener
             }
 
             if(!shizukuAlive)
             {
                 requireContext().showAlert(R.string.onboarding_adb_shizuku_grant_fail_server_dead_title,
                     R.string.onboarding_adb_shizuku_grant_fail_server_dead)
-                return@setOnClickListener
+                return@setOnButtonClickListener
             }
 
             if(Shizuku.isPreV11())
@@ -141,7 +162,7 @@ class OnboardingFragment : Fragment() {
                 alert.setPositiveButton(getString(R.string.update)) { _, _ -> viewShizukuInMarket() }
                 alert.setNegativeButton(android.R.string.ok, null)
                 alert.create().show()
-                return@setOnClickListener
+                return@setOnButtonClickListener
             }
 
             if(checkPermission(REQUEST_CODE_SHIZUKU_GRANT))
@@ -149,11 +170,6 @@ class OnboardingFragment : Fragment() {
                 // Permission already granted
                 changePage(true)
             }
-        }
-
-        adbPage.findViewById<Button>(R.id.onboarding_adb_manual_button).setOnClickListener {
-            requireContext().showAlert(R.string.onboarding_adb_manual_title,
-                R.string.onboarding_adb_manual_detail_instruction)
         }
 
         bundle?.let { goToPage(it.getInt("currentPage")) }
@@ -258,15 +274,22 @@ class OnboardingFragment : Fragment() {
             return
         }
 
-        if(number == PAGE_ADB_SETUP) {
-            updateAdbInstructions()
+        // Prepare pages
+        if(number == PAGE_METHOD_SELECT) {
+            updateSetupMethods()
+        }
+        else if(number == PAGE_ADB_SETUP) {
+            updateSetupInstructions()
         }
         else if(number == PAGE_RUNTIME_PERMISSIONS) {
-            val pageBinding = binding.onboardingPage4
+            val pageBinding = binding.onboardingPage5
             if(Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-                pageBinding.requireViewById<View>(R.id.onboarding_page4_notification).visibility = View.GONE
+                pageBinding.requireViewById<View>(R.id.onboarding_notification_permission).visibility = View.GONE
             }
         }
+
+        // Hide next button because user should continue by choosing a setup method
+        nextButton.isVisible = number != PAGE_METHOD_SELECT
 
         val prev = pageMap[currentPage]
         val next = pageMap[number]
@@ -296,7 +319,6 @@ class OnboardingFragment : Fragment() {
     }
 
     private fun changePage(forward: Boolean, ignoreConditions: Boolean = false) {
-
         val nextIndex = if (forward) requestNextPage(currentPage + 1, forward) else requestNextPage(currentPage - 1, forward)
         if(nextIndex < 1) {
             Timber.tag(TAG).w("Page index out of range ($nextIndex)")
@@ -313,7 +335,8 @@ class OnboardingFragment : Fragment() {
 
     private fun requestNextPage(nextPage: Int, forward: Boolean): Int
     {
-        var shouldSkip = when (nextPage) {
+        val shouldSkip = when (nextPage) {
+            PAGE_METHOD_SELECT -> requireContext().checkSelfPermission(DUMP_PERM) == PERMISSION_GRANTED
             PAGE_ADB_SETUP -> requireContext().checkSelfPermission(DUMP_PERM) == PERMISSION_GRANTED
             PAGE_RUNTIME_PERMISSIONS -> {
                 val notificationGranted = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) true
@@ -400,34 +423,70 @@ class OnboardingFragment : Fragment() {
         }
     }
 
-    private fun updateAdbInstructions() {
-        val pageBinding = binding.onboardingPage3Include
-
-        val installed = requireContext().isPackageInstalled(SHIZUKU_PKG)
-
-        pageBinding.onboardingAdbShizukuInstallLayout.visibility = if(installed) View.GONE else View.VISIBLE
-        pageBinding.onboardingAdbShizukuOpenLayout.visibility = if(installed && shizukuAlive) View.GONE else View.VISIBLE
-
-        // Only one instruction, hide 'step X' header
-        pageBinding.onboardingAdbShizukuGrantHeader.visibility = if(installed && shizukuAlive) View.GONE else View.VISIBLE
-
-        // Install instruction hidden
-        if(installed && !shizukuAlive) {
-            pageBinding.onboardingAdbShizukuOpenHeader.text = getString(R.string.onboarding_adb_step_1)
-            pageBinding.onboardingAdbShizukuGrantHeader.text = getString(R.string.onboarding_adb_step_2)
-        }
-        // All instructions shown
-        else {
-            pageBinding.onboardingAdbShizukuOpenHeader.text = getString(R.string.onboarding_adb_step_2)
-            pageBinding.onboardingAdbShizukuGrantHeader.text = getString(R.string.onboarding_adb_step_3)
-        }
+    @SuppressLint("SetTextI18n")
+    private fun updateSetupMethods() {
+        val page = binding.methodSelect
 
         if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
-            pageBinding.onboardingAdbShizukuLayout.isVisible = false
-            pageBinding.onboardingAdbManualHeader.text = getString(R.string.onboarding_adb_android10_header)
-            pageBinding.onboardingAdbManualContent.text = getString(R.string.onboarding_adb_manual_detail_instruction)
-            pageBinding.onboardingAdbManualButton.isVisible = false
-            pageBinding.onboardingAdbAndroid10Warning.isVisible = true
+            page.methodsShizukuCard.isEnabled = false
+            page.methodsShizukuCard.isClickable = false
+            page.methodsShizukuCard.isFocusable = false
+            page.methodsShizukuBody.isEnabled = false
+            page.methodsShizukuTitle.isEnabled = false
+            page.methodsShizukuTitle.text = "${getString(R.string.onboarding_methods_shizuku_title)} (${getString(R.string.onboarding_methods_unsupported_append)})"
+        }
+    }
+
+    private fun updateSetupInstructions() {
+        val page = binding.adbSetup
+
+        page.step4.isVisible = selectedSetupMethod == SetupMethods.Adb
+        page.step5.isVisible = selectedSetupMethod == SetupMethods.Adb
+
+        if(selectedSetupMethod == SetupMethods.Shizuku) {
+            val installed = requireContext().isPackageInstalled(SHIZUKU_PKG)
+            page.step1.buttonEnabled = !installed
+            if(installed) {
+                page.step1.buttonText = getString(R.string.onboarding_adb_shizuku_install_button_done)
+                page.step1.iconSrc = R.drawable.ic_twotone_check_circle_24dp
+            }
+            else {
+                page.step1.buttonText = getString(R.string.onboarding_adb_shizuku_install_button)
+                page.step1.iconSrc = R.drawable.ic_numeric_1_circle_outline
+            }
+
+            page.step2.buttonEnabled = !(shizukuAlive && installed)
+            if(shizukuAlive && installed) {
+                page.step2.buttonText = getString(R.string.onboarding_adb_shizuku_open_button_done)
+                page.step2.iconSrc = R.drawable.ic_twotone_check_circle_24dp
+            }
+            else {
+                page.step2.buttonText = getString(R.string.onboarding_adb_shizuku_open_button)
+                page.step2.iconSrc = R.drawable.ic_numeric_2_circle_outline
+            }
+
+            page.step3.buttonText = getString(R.string.onboarding_adb_shizuku_grant_button)
+
+            page.step1.bodyText = getString(R.string.onboarding_adb_shizuku_install_instruction)
+            page.step2.bodyText = getString(R.string.onboarding_adb_shizuku_open_instruction)
+            page.step3.bodyText = getString(R.string.onboarding_adb_shizuku_grant_instruction)
+
+            page.title.text = getString(R.string.onboarding_adb_shizuku_title)
+        }
+        else {
+            page.step1.iconSrc = R.drawable.ic_numeric_1_circle_outline
+            page.step2.iconSrc = R.drawable.ic_numeric_2_circle_outline
+
+            page.step1.buttonText = getString(R.string.onboarding_adb_manual_step1_button)
+            page.step2.buttonText = null
+            page.step3.buttonText = null
+            page.step1.bodyText = getString(R.string.onboarding_adb_manual_step1)
+            page.step2.bodyText = getString(R.string.onboarding_adb_manual_step2)
+            page.step3.bodyText = getString(R.string.onboarding_adb_manual_step3)
+            page.step4.bodyText = getString(R.string.onboarding_adb_manual_step4, requireContext().packageName)
+            page.step5.bodyText = getString(R.string.onboarding_adb_manual_step5)
+
+            page.title.text = getString(R.string.onboarding_adb_adb_title)
         }
     }
 
@@ -459,9 +518,10 @@ class OnboardingFragment : Fragment() {
 
         const val PAGE_WELCOME = 1
         const val PAGE_LIMITATIONS = 2
-        const val PAGE_ADB_SETUP = 3
-        const val PAGE_RUNTIME_PERMISSIONS = 4
-        const val PAGE_SELF_CHECK = 5
-        const val PAGE_READY = 6
+        const val PAGE_METHOD_SELECT = 3
+        const val PAGE_ADB_SETUP = 4
+        const val PAGE_RUNTIME_PERMISSIONS = 5
+        const val PAGE_SELF_CHECK = 6
+        const val PAGE_READY = 7
     }
 }

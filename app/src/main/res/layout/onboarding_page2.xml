@@ -7,14 +7,16 @@
     android:padding="16dp">
 
     <LinearLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical">
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="8dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
             android:alpha="0.8"
             app:srcCompat="@drawable/ic_twotone_warning_24dp"
             app:tint="?attr/colorOnSurface" />
@@ -22,23 +24,66 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="center"
             android:text="@string/onboarding_limitations_title"
-            android:textAppearance="?attr/textAppearanceHeadline5" />
+            android:textAppearance="?attr/textAppearanceHeadline4" />
 
     </LinearLayout>
 
     <ScrollView
-        android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/onboarding_limitations"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/onboarding_limitations"
-            android:textAppearance="?attr/textAppearanceBody2" />
-    </ScrollView>
+            android:layout_height="wrap_content">
 
+            <me.timschneeberger.rootlessjamesdsp.view.Card
+                android:id="@+id/notice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:bodyText="@string/onboarding_limitations_unstable"
+                app:cardBackground="?attr/colorErrorContainer"
+                app:cardMargin="8dp"
+                app:iconCentered="true"
+                app:iconSrc="@drawable/ic_twotone_error_24dp"
+                app:iconTint="?attr/colorOnErrorContainer" />
+
+            <me.timschneeberger.rootlessjamesdsp.view.Card
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:titleText="Disable other audio effect apps"
+                app:bodyText="Audio effect apps using Android's built-in Dynamic Processing effect interfere with this app."
+                app:cardMargin="8dp" />
+
+            <me.timschneeberger.rootlessjamesdsp.view.Card
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:titleText="Unsupported media apps"
+                app:bodyText="Apps blocking internal audio capture remain unprocessed (e.g., Spotify, Google Chrome)."
+                app:cardMargin="8dp" />
+
+            <me.timschneeberger.rootlessjamesdsp.view.Card
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:titleText="HW-accelerated audio playback issues"
+                app:bodyText="HW-accelerated audio playback (fast tracks) may sometimes cause duplicated audio or kill JamesDSP in some circumstances. Please add the affected music player to the excluded apps list to prevent JamesDSP from re-routing it."
+                app:cardMargin="8dp" />
+
+            <me.timschneeberger.rootlessjamesdsp.view.Card
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:titleText="Audio session detection delay"
+                app:bodyText="After an app has opened a new media session to playback audio, you may hear duplicated or cut-off audio for a very short period (about &lt;250ms)."
+                app:cardMargin="8dp" />
+
+            <me.timschneeberger.rootlessjamesdsp.view.Card
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:titleText="Tested devices"
+                app:bodyText="Changes made to Android\'s audio subsystem by your device manufacturer can easily break this app because it uses a few undocumented APIs.\nIt has been tested on these devices:\n\u25CF Samsung S20+ (Android 12)\n\u25CF AOSP emulator (Android 10-13)"
+                app:cardMargin="8dp" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

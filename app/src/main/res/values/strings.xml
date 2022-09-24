@@ -142,36 +142,30 @@
     <string name="onboarding_next">Next</string>
     <string name="onboarding_finish">Finish</string>
     <string name="onboarding_greeting">Welcome to RootlessJamesDSP!</string>
-    <string name="onboarding_caption">This assistant will help you set up JamesDSP on your device</string>
-    <string name="onboarding_press_next">Press \'Next\' to start the setup process.</string>
-    <string name="onboarding_press_finish">Press \'Finish\' to finalize the setup process.</string>
+    <string name="onboarding_caption">This assistant will help you to set-up this app.</string>
     <string name="onboarding_warning">Currently, this application is unfinished and unstable. Please note that it may not work on some devices as expected since it uses Android APIs not designed for use by third parties.</string>
     <string name="onboarding_fix_permissions_title">User action required</string>
     <string name="onboarding_fix_permissions">One or more permissions were revoked by you or the system.\nIn order to ensure that this app behaves correctly, you need to grant these permissions again.\n\nPlease redo the setup wizard to re-grant these permissions.</string>
 
     <string name="onboarding_limitations_title">Limitations</string>
-    <string name="onboarding_limitations"><![CDATA[<p>This app is currently incomplete and under development. It may crash or behave unexpectedly.</p>
-<p><b><u>Make sure to fully disable other audio effect apps.</u></b> They are guaranteed to break this application when they attach their own DynamicsProcessing audio effect to a session.</p>
-<p><b><u>Apps that make use of hardware-accelerated audio playback are not supported.</u></b> If you notice duplicated audio, it may be caused by hardware-accelerated playback. Please add the affected app to the excluded apps list to prevent JamesDSP from re-routing it. Also, consider checking if your music player supports disabling HW-acceleration.<br/></p>
-<p><b><u>Apps blocking internal audio capture remain unprocessed or even muted</u> (e.g., Spotify, Google Chrome)</b>. Unless disabled, this app will try to detect and exclude these apps from being processed by JamesDSP. This prevents them from being muted due to their restrictive capture policy.<br/></p>
-<p>After an app opens a new media session to playback audio, <b>you may hear duplicated or cut-off audio for a very short period</b> (about &lt; 300ms).</p>
-<p>Changes made to Android\'s audio system by your OEM/device manufacturer may break this app. This app has been actively tested on these devices:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;• Samsung S20+ (Android 12)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;• Emulator with stock AOSP (Android 10-13)</p>]]>
-    </string>
+    <string name="onboarding_limitations_unstable">Important! Please read the notes carefully before continuing.</string>
 
-    <string name="onboarding_adb_title">ADB permissions</string>
-    <string name="onboarding_adb_step_1">Step 1</string>
-    <string name="onboarding_adb_step_2">Step 2</string>
-    <string name="onboarding_adb_step_3">Step 3</string>
-    <string name="onboarding_adb_android10_warning">Android 10 support is unstable. Android 11 and above are recommended.</string>
-    <string name="onboarding_adb_android10_header">Instructions for Android 10</string>
-    <string name="onboarding_adb_caption">This app requires special ADB permissions for dumping your device\'s audio policy information. Please follow the instructions below.</string>
-    <string name="onboarding_adb_shizuku_title">Instructions</string>
+    <string name="onboarding_methods_title">Choose setup method</string>
+    <string name="onboarding_methods_shizuku_title">Shizuku</string>
+    <string name="onboarding_methods_unsupported_append">incompatible</string>
+    <string name="onboarding_methods_adb_title">ADB</string>
+    <string name="onboarding_methods_shizuku">\u25CF Recommended\n\u25CF No external computer required\n\u25CF Android 11+ only</string>
+    <string name="onboarding_methods_adb">\u25CF For advanced users\n\u25CF Computer and USB cable required\n\u25CF Android 10+ supported</string>
+
+    <string name="onboarding_adb_shizuku_title">Shizuku setup</string>
+    <string name="onboarding_adb_adb_title">ADB setup</string>
+    <string name="onboarding_adb_caption">This app requires special permissions for dumping your device\'s audio policy. Please follow the instructions below.</string>
     <string name="onboarding_adb_shizuku_install_button">Install Shizuku</string>
+    <string name="onboarding_adb_shizuku_install_button_done">Already installed</string>
     <string name="onboarding_adb_shizuku_install_instruction">Install \'Shizuku\' from Google Play.</string>
-    <string name="onboarding_adb_shizuku_open_instruction">Launch \'Shizuku\' and look for \'<b>Start via Wireless Debugging</b>\'. Tap the \'Pairing\' button and follow the in-app instructions. After pairing Shizuku with your device, start the Shizuku server by pressing the \'Start\' button in their app.<p/>If you run into problems while setting up Shizuku, please refer to their setup tutorial linked in their app.</string>
+    <string name="onboarding_adb_shizuku_open_instruction">Launch \'Shizuku\' and look for \'<b>Start via Wireless Debugging</b>\'. Tap the \'Pairing\' button and follow the in-app instructions. After pairing Shizuku with your device, start the Shizuku server by pressing the \'Start\' button in their app. If you run into problems while setting up Shizuku, please refer to their setup tutorial linked in their app.</string>
     <string name="onboarding_adb_shizuku_open_button">Launch Shizuku</string>
+    <string name="onboarding_adb_shizuku_open_button_done">Already active</string>
     <string name="onboarding_adb_shizuku_grant_instruction">Tap the button and grant this app access to Shizuku.</string>
     <string name="onboarding_adb_shizuku_grant_button">Grant access</string>
     <string name="onboarding_adb_shizuku_not_installed">Shizuku is not yet installed. Please download and install it from Google Play first.</string>
@@ -186,11 +180,12 @@
     <string name="onboarding_adb_shizuku_no_dump_perm">Please wait a few seconds and try again. If it still does not work, try the alternative method.</string>
     <string name="onboarding_adb_dump_not_granted_title">Permission not yet granted</string>
     <string name="onboarding_adb_dump_not_granted">Please follow the instructions first and try again. The ADB access is not yet set-up properly.</string>
-
-    <string name="onboarding_adb_manual_title">Alternative setup method</string>
-    <string name="onboarding_adb_manual_instruction">You can also set up this app manually if you are an experienced user and know how to use the ADB shell.</string>
-    <string name="onboarding_adb_manual_button">View alternative method</string>
-    <string name="onboarding_adb_manual_detail_instruction">Step 1: Install ADB on your computer or open webadb.com in your computer\'s browser.\n\nStep 2: Connect your device via USB to your computer.\n\nStep 3: Open the command prompt and execute the command: \'adb shell\' to enter the ADB shell.\nIf you use webadb, navigate to the \'Interactive shell\' section instead.\n\nStep 4: Execute the command \'pm grant me.timschneeberger.rootlessjamesdsp android.permission.DUMP\' in the ADB shell.\n\nStep 5: Close this dialog and tap \'Next\' to continue.</string>
+    <string name="onboarding_adb_manual_step1">Go to Android\'s hidden development settings and enable USB debugging. You need to unlock these settings by tapping the build number in the system settings several times.</string>
+    <string name="onboarding_adb_manual_step2">Open https://app.webadb.com in your computer\'s browser (works best in Chrome) and connect your device using USB to the computer.</string>
+    <string name="onboarding_adb_manual_step3">Add and connect the USB device in WebADB.</string>
+    <string name="onboarding_adb_manual_step4">Navigate to \'Interactive Shell\' and execute the following command in the shell: \'pm grant %s android.permission.DUMP\'</string>
+    <string name="onboarding_adb_manual_step5">Tap \'Next\' in this app to continue.</string>
+    <string name="onboarding_adb_manual_step1_button">Open development settings</string>
 
     <string name="onboarding_perm_title">Other permissions</string>
     <string name="onboarding_perm_caption">Additional permissions are required to use this application. Please review them and tap \'Next\' to grant them.</string>
@@ -199,11 +194,11 @@
     <string name="onboarding_perm_notification_title">Notification permission</string>
     <string name="onboarding_perm_notification_caption">Required to receive important status updates and information about JamesDSP\'s processing state.</string>
     <string name="onboarding_perm_cast_title">Cast/recording permission</string>
-    <string name="onboarding_perm_cast_caption">You need to explicitly grant this app permission to record content every time it launches.</string>
+    <string name="onboarding_perm_cast_caption">You need to explicitly grant this app permission to record audio content every time it launches.</string>
     <string name="onboarding_perm_missing_title">Runtime permissions not granted</string>
     <string name="onboarding_perm_missing">Please grant all requested runtime permissions to continue.\nIf you repeatedly denied the permissions, you need to grant them manually in the system settings.</string>
     <string name="onboarding_finish_header">JamesDSP is set-up!</string>
-    <string name="onboarding_finish_caption">If you encounter any issues, please visit the settings for troubleshooting options.</string>
+    <string name="onboarding_finish_caption">If you encounter any issues, please visit the troubleshooting options.</string>
 
     <!-- Settings -->
     <string name="title_activity_settings">Settings</string>
@@ -245,7 +240,7 @@
     <string name="troubleshooting_dump">Export audio session dump…</string>
     <string name="troubleshooting_dump_summary">Collect and save troubleshooting data</string>
     <string name="troubleshooting_dump_share_title">Share audio session dump..</string>
-    <string name="troubleshooting_view_limitations">View technical limitations</string>
+    <string name="troubleshooting_view_limitations">Technical limitations</string>
     <string name="troubleshooting_view_limitations_summary">Show details about the limitations of this app</string>
     <string name="troubleshooting_notification_access">Allow notification access for better session detection</string>
     <string name="troubleshooting_notification_access_summary">Enables more reliable audio session detection</string>
@@ -302,5 +297,4 @@
     <string name="app_list_loading">Loading apps…</string>
     <string name="app_list_search">Search</string>
     <string name="app_list_icon_alt">App icon</string>
-
 </resources>

@@ -1,6 +1,5 @@
 package me.timschneeberger.rootlessjamesdsp.utils
 
-import android.graphics.drawable.Drawable
 import android.text.Html
 import android.text.Spanned
 import android.util.TypedValue

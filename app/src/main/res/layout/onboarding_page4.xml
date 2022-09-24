@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -9,139 +10,91 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical">
+
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="8dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
             android:alpha="0.8"
             app:srcCompat="@drawable/ic_twotone_security_24dp"
             app:tint="?attr/colorOnSurface" />
 
         <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:text="@string/onboarding_perm_title"
-            android:textAppearance="?attr/textAppearanceHeadline5" />
+            android:layout_gravity="center"
+            android:text="@string/onboarding_adb_shizuku_title"
+            android:textAppearance="?attr/textAppearanceHeadline4" />
     </LinearLayout>
 
     <ScrollView
-        android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="16dp"
-                android:text="@string/onboarding_perm_caption"
-                android:textAppearance="?attr/textAppearanceBody2" />
+                android:text="@string/onboarding_adb_caption"
+                android:textAppearance="?attr/textAppearanceBody1" />
 
-            <LinearLayout
+            <me.timschneeberger.rootlessjamesdsp.view.Card
+                android:id="@+id/step1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="16dp">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="12dp"
-                    android:alpha="0.8"
-                    app:srcCompat="@drawable/ic_twotone_mic_24dp"
-                    app:tint="?attr/colorOnSurface" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginBottom="2dp"
-                        android:text="@string/onboarding_perm_microphone_title"
-                        android:textAppearance="?attr/textAppearanceBody1" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center_vertical"
-                        android:text="@string/onboarding_perm_microphone_caption"
-                        android:textAppearance="?attr/textAppearanceLabelMedium" />
-                </LinearLayout>
-            </LinearLayout>
+                app:bodyText="@string/onboarding_adb_shizuku_install_instruction"
+                app:buttonText="@string/onboarding_adb_shizuku_install_button"
+                app:cardMargin="8dp"
+                app:iconSrc="@drawable/ic_numeric_1_circle_outline"
+                app:iconTint="?attr/colorOnSurface" />
 
-            <LinearLayout
-                android:id="@+id/onboarding_page4_notification"
+            <me.timschneeberger.rootlessjamesdsp.view.Card
+                android:id="@+id/step2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="16dp">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="12dp"
-                    android:alpha="0.8"
-                    app:srcCompat="@drawable/ic_twotone_notifications_24dp"
-                    app:tint="?attr/colorOnSurface" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginBottom="2dp"
-                        android:text="@string/onboarding_perm_notification_title"
-                        android:textAppearance="?attr/textAppearanceBody1"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center_vertical"
-                        android:text="@string/onboarding_perm_notification_caption"
-                        android:textAppearance="?attr/textAppearanceLabelMedium" />
-                </LinearLayout>
-            </LinearLayout>
+                app:bodyText="@string/onboarding_adb_shizuku_open_instruction"
+                app:buttonText="@string/onboarding_adb_shizuku_open_button"
+                app:cardMargin="8dp"
+                app:iconSrc="@drawable/ic_numeric_2_circle_outline"
+                app:iconTint="?attr/colorOnSurface" />
 
-
-            <LinearLayout
+            <me.timschneeberger.rootlessjamesdsp.view.Card
+                android:id="@+id/step3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="4dp">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="12dp"
-                    android:alpha="0.8"
-                    app:srcCompat="@drawable/ic_twotone_cast_24dp"
-                    app:tint="?attr/colorOnSurface" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginBottom="2dp"
-                        android:text="@string/onboarding_perm_cast_title"
-                        android:textAppearance="?attr/textAppearanceBody1"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center_vertical"
-                        android:text="@string/onboarding_perm_cast_caption"
-                        android:textAppearance="?attr/textAppearanceLabelMedium" />
-                </LinearLayout>
-            </LinearLayout>
+                app:bodyText="@string/onboarding_adb_shizuku_grant_instruction"
+                app:buttonText="@string/onboarding_adb_shizuku_grant_button"
+                app:cardMargin="8dp"
+                app:iconSrc="@drawable/ic_numeric_3_circle_outline"
+                app:iconTint="?attr/colorOnSurface" />
+
+            <me.timschneeberger.rootlessjamesdsp.view.Card
+                android:id="@+id/step4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:cardMargin="8dp"
+                app:iconSrc="@drawable/ic_numeric_4_circle_outline"
+                app:iconTint="?attr/colorOnSurface" />
+
+            <me.timschneeberger.rootlessjamesdsp.view.Card
+                android:id="@+id/step5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:cardMargin="8dp"
+                app:iconSrc="@drawable/ic_numeric_5_circle_outline"
+                app:iconTint="?attr/colorOnSurface" />
 
         </LinearLayout>
 

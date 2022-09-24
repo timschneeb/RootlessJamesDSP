@@ -14,6 +14,7 @@ import timber.log.Timber
 
 class SettingsActivity : AppCompatActivity(),
     PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivitySettingsBinding.inflate(layoutInflater)
@@ -35,6 +36,9 @@ class SettingsActivity : AppCompatActivity(),
             if (supportFragmentManager.backStackEntryCount == 0) {
                 supportActionBar?.title = getString(R.string.title_activity_settings)
             }
+            else {
+                supportActionBar?.title = supportFragmentManager.getBackStackEntryAt(supportFragmentManager.backStackEntryCount - 1).name
+            }
         }
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -46,7 +50,7 @@ class SettingsActivity : AppCompatActivity(),
         super.onSaveInstanceState(outState)
     }
 
-    override fun onPreferenceStartFragment(caller: PreferenceFragmentCompat, pref: Preference): Boolean {
+     override fun onPreferenceStartFragment(caller: PreferenceFragmentCompat, pref: Preference): Boolean {
         // Instantiate the new Fragment
         val args = pref.extras
         val fragment = pref.fragment?.let {
@@ -61,10 +65,10 @@ class SettingsActivity : AppCompatActivity(),
         fragment.setTargetFragment(caller, 0)
 
         // Set the action bar title; the about page doesn't need one
-        supportActionBar?.title = if(fragment is SettingsAboutFragment)
+        val title = if(fragment is SettingsAboutFragment)
             ""
         else
-            pref.title
+            pref.title.toString()
 
         // Replace the existing Fragment with the new Fragment
         supportFragmentManager.beginTransaction()
@@ -75,7 +79,7 @@ class SettingsActivity : AppCompatActivity(),
                 R.anim.slide_out
             )
             .replace(R.id.settings, fragment)
-            .addToBackStack(null)
+            .addToBackStack(title)
             .commit()
         return true
     }

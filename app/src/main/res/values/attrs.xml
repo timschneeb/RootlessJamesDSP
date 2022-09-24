@@ -20,4 +20,16 @@
     <declare-styleable name="FileLibraryPreference">
         <attr name="type" format="string" />
     </declare-styleable>
+
+    <declare-styleable name="Card">
+        <attr name="titleText" format="string" />
+        <attr name="bodyText" format="string" />
+        <attr name="buttonText" format="string" />
+        <attr name="buttonEnabled" format="boolean" />
+        <attr name="iconSrc" format="reference" />
+        <attr name="iconTint" format="color" />
+        <attr name="iconCentered" format="boolean" />
+        <attr name="cardBackground" format="color" />
+        <attr name="cardMargin" format="dimension" />
+    </declare-styleable>
 </resources>

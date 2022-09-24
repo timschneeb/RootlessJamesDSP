@@ -9,150 +9,73 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="8dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
             android:alpha="0.8"
-            app:srcCompat="@drawable/ic_twotone_safety_check_24dp"
+            app:srcCompat="@drawable/ic_twotone_security_24dp"
             app:tint="?attr/colorOnSurface" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:text="Compatibility checks"
-            android:textAppearance="?attr/textAppearanceHeadline5" />
+            android:layout_gravity="center"
+            android:text="@string/onboarding_perm_title"
+            android:textAppearance="?attr/textAppearanceHeadline4" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/onboarding_perm_caption"
+            android:textAppearance="?attr/textAppearanceBody1" />
+
     </LinearLayout>
 
     <ScrollView
-        android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <TextView
+
+            <me.timschneeberger.rootlessjamesdsp.view.Card
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:text="This app parses system dumps that are hard to parse reliably. Their structure may differ between Android versions which could prevent this app from working as expected."
-                android:textAppearance="?attr/textAppearanceBody2" />
+                app:titleText="@string/onboarding_perm_microphone_title"
+                app:bodyText="@string/onboarding_perm_microphone_caption"
+                app:iconCentered="true"
+                app:iconSrc="@drawable/ic_twotone_mic_24dp"
+                app:iconTint="?attr/colorOnSurface"
+                app:cardMargin="8dp" />
 
-            <LinearLayout
+            <me.timschneeberger.rootlessjamesdsp.view.Card
+                android:id="@+id/onboarding_notification_permission"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="16dp">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="12dp"
-                    android:alpha="0.8"
-                    app:srcCompat="@drawable/ic_twotone_check_circle_24dp"
-                    app:tint="@android:color/holo_green_dark" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginBottom="2dp"
-                        android:text="AudioService compatible"
-                        android:textAppearance="?attr/textAppearanceBody1" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center_vertical"
-                        android:text="Appears to work correctly. Preferred and default method"
-                        android:textAppearance="?attr/textAppearanceLabelMedium" />
-                </LinearLayout>
-            </LinearLayout>
+                app:titleText="@string/onboarding_perm_notification_title"
+                app:bodyText="@string/onboarding_perm_notification_caption"
+                app:iconCentered="true"
+                app:iconSrc="@drawable/ic_twotone_notifications_24dp"
+                app:iconTint="?attr/colorOnSurface"
+                app:cardMargin="8dp" />
 
-            <LinearLayout
+            <me.timschneeberger.rootlessjamesdsp.view.Card
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="16dp">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="12dp"
-                    android:alpha="0.8"
-                    app:srcCompat="@drawable/ic_twotone_cancel_24dp"
-                    app:tint="@android:color/holo_red_dark"  />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginBottom="2dp"
-                        android:text="AudioPolicyService not compatible"
-                        android:textAppearance="?attr/textAppearanceBody1"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center_vertical"
-                        android:text="Not implemented"
-                        android:textAppearance="?attr/textAppearanceLabelMedium" />
-                </LinearLayout>
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="16dp">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="12dp"
-                    android:alpha="0.8"
-                    app:srcCompat="@drawable/ic_twotone_cancel_24dp"
-                    app:tint="@android:color/holo_red_dark" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginBottom="2dp"
-                        android:text="AudioFlingerService not compatible"
-                        android:textAppearance="?attr/textAppearanceBody1"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center_vertical"
-                        android:text="Not implemented"
-                        android:textAppearance="?attr/textAppearanceLabelMedium" />
-                </LinearLayout>
-            </LinearLayout>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="6dp"
-                android:text="Your device may not be fully compatible."
-                android:textAppearance="?attr/textAppearanceTitleMedium" />
-
+                app:titleText="@string/onboarding_perm_cast_title"
+                app:bodyText="@string/onboarding_perm_cast_caption"
+                app:iconCentered="true"
+                app:iconSrc="@drawable/ic_twotone_cast_24dp"
+                app:iconTint="?attr/colorOnSurface"
+                app:cardMargin="8dp" />
 
         </LinearLayout>
-
     </ScrollView>
 
 </LinearLayout>

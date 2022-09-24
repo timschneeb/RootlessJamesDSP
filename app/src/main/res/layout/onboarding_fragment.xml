@@ -43,7 +43,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
         <include layout="@layout/onboarding_page3"
-            android:id="@+id/onboarding_page3_include"/>
+            android:id="@+id/method_select" />
     </FrameLayout>
 
     <FrameLayout
@@ -56,7 +56,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-        <include layout="@layout/onboarding_page4" />
+        <include layout="@layout/onboarding_page4"
+            android:id="@+id/adb_setup"/>
     </FrameLayout>
 
     <FrameLayout
@@ -69,7 +70,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-        <include layout="@layout/onboarding_page5" />
+        <include layout="@layout/onboarding_page5"
+            android:id="@+id/other_perms" />
     </FrameLayout>
 
     <FrameLayout
@@ -83,6 +85,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
         <include layout="@layout/onboarding_page6" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/onboarding_page7"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toTopOf="@id/controls_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <include layout="@layout/onboarding_page7" />
     </FrameLayout>
 
     <FrameLayout
