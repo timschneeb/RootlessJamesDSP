@@ -46,6 +46,12 @@ object DumpUtils {
             Timber.tag(TAG).e(ex)
             return null
         }
+        catch (ex: Exception)
+        {
+            Timber.tag(TAG).wtf(ex)
+            return null
+        }
+
     }
 
     const val TAG = "DumpUtils"
