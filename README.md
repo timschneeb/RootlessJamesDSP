@@ -8,7 +8,7 @@ This app has several limitations that may be deal-breaking to some people; pleas
 * Apps blocking internal audio capture remain unprocessed (e.g., Spotify, Google Chrome)
 * Apps using some types of HW-accelerated playback currently cause the audio processing service to stop itself (e.g., some Unity games)
 * Cannot coexist with (some) other audio effect apps (e.g., Wavelet and other apps that make use of the `DynamicsProcessing` Android API)
-* Noticeably increased audio latency 
+* Increased audio latency 
 
 
 Apps confirmed working:
