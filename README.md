@@ -35,7 +35,7 @@ Tested on:
 ## Spotify support patch
 You can only use Spotify with this application if you patch the Spotify app.
 The setup is very easy:
-1. Download and install the [ReVanced manager APK](https://github.com/revanced/revanced-manager/releases/tag/v0.0.28) 
+1. Download and install the [ReVanced manager APK](https://github.com/revanced/revanced-manager/releases) 
 2. Install the unpatched Spotify app
 3. Open ReVanced Manager, select Spotify and enable the `disable-capture-restriction` patch.
 4. Start the patching process and install the patched APK once it is done.
