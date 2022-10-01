@@ -43,7 +43,7 @@ object DumpUtils {
         catch (ex: IOException)
         {
             Timber.tag(TAG).e("IOException during dump")
-            Timber.tag(TAG).e(ex)
+            Timber.tag(TAG).d(ex)
             return null
         }
         catch (ex: Exception)
