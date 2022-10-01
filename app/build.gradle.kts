@@ -145,6 +145,7 @@ dependencies {
 
     // Logging
     implementation("com.jakewharton.timber:timber:5.0.1")
+    implementation("com.github.bastienpaulfr:Treessence:1.0.0")
 
     // Room databases
     val roomVersion = "2.4.3"

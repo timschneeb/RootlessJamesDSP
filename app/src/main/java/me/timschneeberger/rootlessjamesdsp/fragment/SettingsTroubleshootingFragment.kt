@@ -18,9 +18,9 @@ import me.timschneeberger.rootlessjamesdsp.utils.ApplicationUtils
 import me.timschneeberger.rootlessjamesdsp.utils.AssetManagerExtensions.installPrivateAssets
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
-import me.timschneeberger.rootlessjamesdsp.utils.loadHtml
 import java.io.File
 import java.io.FileOutputStream
+import java.io.InputStream
 import java.io.OutputStreamWriter
 
 class SettingsTroubleshootingFragment : PreferenceFragmentCompat() {
@@ -31,14 +31,39 @@ class SettingsTroubleshootingFragment : PreferenceFragmentCompat() {
 
         findPreference<Preference>(getString(R.string.key_troubleshooting_dump))?.setOnPreferenceClickListener {
             val debug = DumpManager.get(requireContext()).collectDebugDumps()
-            val path = requireContext().filesDir.absolutePath + "/dump.txt"
+            val path = File(requireContext().filesDir, "dump.txt")
             val output = FileOutputStream(path)
             val writer = OutputStreamWriter(output)
+            val log = File(requireContext().cacheDir, "application.log")
+
             writer.write(debug)
+            writer.write("==================> Application log\n")
+            writer.flush()
+
+            if (log.exists()) {
+                try {
+                    log.inputStream().use { input ->
+                        val buffer = ByteArray(8192)
+                        var read: Int
+                        while (input.read(buffer, 0, 8192)
+                                .also { read = it } >= 0
+                        ) {
+                            output.write(buffer, 0, read)
+                            output.flush()
+                        }
+                    }
+                }
+                catch (ex: Exception) {
+                    writer.write("NOTE: Failed to append log file.\n$ex\n")
+                }
+            }
+            else {
+                writer.write("NOTE: Log file does not exist\n")
+            }
             writer.close()
             output.close()
 
-            val uri = FileProvider.getUriForFile(requireContext(), BuildConfig.APPLICATION_ID + ".dump_provider", File(path))
+            val uri = FileProvider.getUriForFile(requireContext(), BuildConfig.APPLICATION_ID + ".dump_provider", path)
             val shareIntent = Intent(Intent.ACTION_SEND)
             shareIntent.putExtra(Intent.EXTRA_STREAM, uri)
             shareIntent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
@@ -74,7 +99,7 @@ class SettingsTroubleshootingFragment : PreferenceFragmentCompat() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         val view = super.onCreateView(inflater, container, savedInstanceState)
         val a = TypedValue()

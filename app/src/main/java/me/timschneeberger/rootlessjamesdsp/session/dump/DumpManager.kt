@@ -4,18 +4,19 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
-import me.timschneeberger.rootlessjamesdsp.session.AudioSessionManager
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getVersionCode
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getVersionName
 import me.timschneeberger.rootlessjamesdsp.R
+import me.timschneeberger.rootlessjamesdsp.session.AudioSessionManager
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.AudioPolicyServiceDump
-import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionPolicyInfoDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
+import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionPolicyInfoDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.provider.AudioPolicyServiceDumpProvider
 import me.timschneeberger.rootlessjamesdsp.session.dump.provider.AudioServiceDumpProvider
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getVersionCode
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getVersionName
 import me.timschneeberger.rootlessjamesdsp.utils.SingletonHolder
 import timber.log.Timber
+import java.io.File
 
 class DumpManager private constructor(val context: Context) {
     enum class Method (val value: Int) {
@@ -120,7 +121,7 @@ class DumpManager private constructor(val context: Context) {
 
         if(exceptionRaised)
         {
-            sb.append("NOTE: One or more exceptions has been raised while collecting debug dumps")
+            sb.append("NOTE: One or more exceptions has been raised while collecting debug dumps\n")
         }
 
         return sb.toString()

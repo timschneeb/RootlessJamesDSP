@@ -7,16 +7,18 @@ import android.util.Log
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.ktx.app
+import fr.bipi.tressence.file.FileLoggerTree
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
-import me.timschneeberger.rootlessjamesdsp.activity.MainActivity
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistDatabase
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistRepository
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import org.lsposed.hiddenapibypass.HiddenApiBypass
 import timber.log.Timber
-
 import timber.log.Timber.*
+import java.io.File
+
 
 class MainApplication : Application() {
     init {
@@ -33,6 +35,21 @@ class MainApplication : Application() {
     override fun onCreate() {
         Timber.plant(DebugTree())
         Timber.plant(CrashReportingTree())
+        Timber.plant(FileLoggerTree.Builder()
+            .withFileName("application.log")
+            .withDirName(this.cacheDir.absolutePath)
+            .withMinPriority(Log.VERBOSE)
+            .withSizeLimit(2 * 1000000)
+            .withFileLimit(1)
+            .appendToFile(false)
+            .build())
+        Timber.i("====> Application starting up")
+
+        // Clean up
+        val dumpFile = File(filesDir, "dump.txt")
+        if(dumpFile.exists()) {
+            dumpFile.delete()
+        }
 
         val prefs = getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
         // Soft-disable crashlytics in debug mode by default on each launch
