@@ -116,6 +116,7 @@ android {
 // Hooks to upload native symbols to crashlytics automatically
 afterEvaluate {
     getTasksByName("assembleRelease", false).first().finalizedBy("uploadCrashlyticsSymbolFileRelease")
+    getTasksByName("bundleRelease", false).first().finalizedBy("uploadCrashlyticsSymbolFileRelease")
     getTasksByName("assemblePreview", false).first().finalizedBy("uploadCrashlyticsSymbolFileRelease")
 }
 

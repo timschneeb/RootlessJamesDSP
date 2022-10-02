@@ -20,7 +20,6 @@ import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
 import java.io.File
 import java.io.FileOutputStream
-import java.io.InputStream
 import java.io.OutputStreamWriter
 
 class SettingsTroubleshootingFragment : PreferenceFragmentCompat() {

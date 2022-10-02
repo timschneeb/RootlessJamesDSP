@@ -20,19 +20,19 @@ object JamesDspWrapper {
     external fun setSamplingRate(self: JamesDspHandle, sampleRate: Float, forceRefresh: Boolean)
 
     // Effect config
-    external fun setLimiter(self: JamesDspHandle, threshold: Float, release: Float)
-    external fun setPostGain(self: JamesDspHandle, postGain: Float)
-    external fun setFirEqualizer(self: JamesDspHandle, enable: Boolean, filterType: Int, interpolationMode: Int, bands: DoubleArray)
-    external fun setVdc(self: JamesDspHandle, enable: Boolean, vdcContents: String)
-    external fun setCompressor(self: JamesDspHandle, enable: Boolean, maxAttack: Float, maxRelease: Float, adaptSpeed: Float)
-    external fun setReverb(self: JamesDspHandle, enable: Boolean, preset: Int)
-    external fun setConvolver(self: JamesDspHandle, enable: Boolean, impulseResponse: FloatArray, irChannels: Int, irFrames: Int)
-    external fun setGraphicEq(self: JamesDspHandle, enable: Boolean, graphicEq: String)
-    external fun setCrossfeed(self: JamesDspHandle, enable: Boolean, mode: Int, customFcut: Int, customFeed: Int)
-    external fun setBassBoost(self: JamesDspHandle, enable: Boolean, maxGain: Float)
-    external fun setStereoEnhancement(self: JamesDspHandle, enable: Boolean, level: Float)
-    external fun setVacuumTube(self: JamesDspHandle, enable: Boolean, level: Float)
-    external fun setLiveprog(self: JamesDspHandle, enable: Boolean, id: String, liveprogContent: String)
+    external fun setLimiter(self: JamesDspHandle, threshold: Float, release: Float): Boolean
+    external fun setPostGain(self: JamesDspHandle, postGain: Float): Boolean
+    external fun setFirEqualizer(self: JamesDspHandle, enable: Boolean, filterType: Int, interpolationMode: Int, bands: DoubleArray): Boolean
+    external fun setVdc(self: JamesDspHandle, enable: Boolean, vdcContents: String): Boolean
+    external fun setCompressor(self: JamesDspHandle, enable: Boolean, maxAttack: Float, maxRelease: Float, adaptSpeed: Float): Boolean
+    external fun setReverb(self: JamesDspHandle, enable: Boolean, preset: Int): Boolean
+    external fun setConvolver(self: JamesDspHandle, enable: Boolean, impulseResponse: FloatArray, irChannels: Int, irFrames: Int): Boolean
+    external fun setGraphicEq(self: JamesDspHandle, enable: Boolean, graphicEq: String): Boolean
+    external fun setCrossfeed(self: JamesDspHandle, enable: Boolean, mode: Int, customFcut: Int, customFeed: Int): Boolean
+    external fun setBassBoost(self: JamesDspHandle, enable: Boolean, maxGain: Float): Boolean
+    external fun setStereoEnhancement(self: JamesDspHandle, enable: Boolean, level: Float): Boolean
+    external fun setVacuumTube(self: JamesDspHandle, enable: Boolean, level: Float): Boolean
+    external fun setLiveprog(self: JamesDspHandle, enable: Boolean, id: String, liveprogContent: String): Boolean
 
     // EEL VM utilities
     external fun enumerateEelVariables(self: JamesDspHandle): ArrayList<EelVmVariable>

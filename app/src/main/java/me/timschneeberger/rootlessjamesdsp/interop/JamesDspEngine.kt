@@ -159,10 +159,9 @@ class JamesDspEngine(val context: Context, val callbacks: JamesDspWrapper.JamesD
             targets.forEach {
                 Timber.tag(TAG).i("Committing new changes in namespace '$it'")
 
-                when (it) {
+                val result = when (it) {
                     Constants.PREF_OUTPUT -> {
-                        setLimiter(limiterThreshold, limiterRelease)
-                        setPostGain(outputPostGain)
+                        setLimiter(limiterThreshold, limiterRelease) and setPostGain(outputPostGain)
                     }
                     Constants.PREF_COMPRESSOR -> setCompressor(compEnabled, compMaxAtk, compMaxRel, compAdaptSpeed)
                     Constants.PREF_BASS -> setBassBoost(bassEnabled, bassMaxGain)
@@ -175,6 +174,11 @@ class JamesDspEngine(val context: Context, val callbacks: JamesDspWrapper.JamesD
                     Constants.PREF_DDC -> setVdc(ddcEnabled, ddcFile)
                     Constants.PREF_LIVEPROG -> setLiveprog(liveProgEnabled, liveprogFile)
                     Constants.PREF_CONVOLVER -> setConvolver(convolverEnabled, convolverFile, convolverMode, convolverAdvImp)
+                    else -> true
+                }
+
+                if(!result) {
+                    Timber.e("Failed to apply $it")
                 }
             }
 
@@ -184,17 +188,17 @@ class JamesDspEngine(val context: Context, val callbacks: JamesDspWrapper.JamesD
     }
 
     // Effect config
-    fun setLimiter(threshold: Float, release: Float)
+    fun setLimiter(threshold: Float, release: Float): Boolean
     {
-        JamesDspWrapper.setLimiter(handle, threshold, release)
+        return JamesDspWrapper.setLimiter(handle, threshold, release)
     }
 
-    fun setPostGain(postGain: Float)
+    fun setPostGain(postGain: Float): Boolean
     {
-        JamesDspWrapper.setPostGain(handle, postGain)
+        return JamesDspWrapper.setPostGain(handle, postGain)
     }
 
-    fun setFirEqualizer(enable: Boolean, filterType: Int, interpolationMode: Int, bands: String)
+    fun setFirEqualizer(enable: Boolean, filterType: Int, interpolationMode: Int, bands: String): Boolean
     {
         val doubleArray = DoubleArray(30)
         val array = bands.split(";")
@@ -203,43 +207,43 @@ class JamesDspEngine(val context: Context, val callbacks: JamesDspWrapper.JamesD
             val number = str.toDoubleOrNull()
             if(number == null) {
                 Timber.tag(TAG).e("setFirEqualizer: malformed EQ string")
-                return
+                return false
             }
             doubleArray[i] = number
         }
 
-        JamesDspWrapper.setFirEqualizer(handle, enable, filterType, interpolationMode, doubleArray)
+        return JamesDspWrapper.setFirEqualizer(handle, enable, filterType, interpolationMode, doubleArray)
     }
 
-    fun setVdc(enable: Boolean, vdcPath: String)
+    fun setVdc(enable: Boolean, vdcPath: String): Boolean
     {
         if(!File(vdcPath).exists()) {
             Timber.tag(TAG).w("setVdc: file does not exist")
             JamesDspWrapper.setVdc(handle, false, "")
-            return
+            return true /* non-critical */
         }
 
-        val reader = FileReader(vdcPath)
-        JamesDspWrapper.setVdc(handle, enable, reader.readText())
-        reader.close()
+        return FileReader(vdcPath).use {
+            JamesDspWrapper.setVdc(handle, enable, it.readText())
+        }
     }
 
-    fun setCompressor(enable: Boolean, maxAttack: Float, maxRelease: Float, adaptSpeed: Float)
+    fun setCompressor(enable: Boolean, maxAttack: Float, maxRelease: Float, adaptSpeed: Float): Boolean
     {
-        JamesDspWrapper.setCompressor(handle, enable, maxAttack, maxRelease, adaptSpeed)
+        return JamesDspWrapper.setCompressor(handle, enable, maxAttack, maxRelease, adaptSpeed)
     }
 
-    fun setReverb(enable: Boolean, preset: Int)
+    fun setReverb(enable: Boolean, preset: Int): Boolean
     {
-        JamesDspWrapper.setReverb(handle, enable, preset)
+        return JamesDspWrapper.setReverb(handle, enable, preset)
     }
 
-    fun setConvolver(enable: Boolean, impulseResponsePath: String, optimizationMode: Int, waveEditStr: String)
+    fun setConvolver(enable: Boolean, impulseResponsePath: String, optimizationMode: Int, waveEditStr: String): Boolean
     {
         if(!File(impulseResponsePath).exists()) {
             Timber.tag(TAG).w("setConvolver: file does not exist")
             JamesDspWrapper.setConvolver(handle, false, FloatArray(0), 0, 0)
-            return
+            return true /* non-critical */
         }
 
         val advConv = waveEditStr.split(";")
@@ -280,54 +284,62 @@ class JamesDspEngine(val context: Context, val callbacks: JamesDspWrapper.JamesD
         if(imp == null) {
             Timber.tag(TAG).e("setConvolver: Failed to read IR")
             JamesDspWrapper.setConvolver(handle, false, FloatArray(0), 0, 0)
-            return
+            return false
         }
 
         JamesDspWrapper.setConvolver(handle, enable, imp, info[0], info[1])
+        return true
     }
 
-    fun setGraphicEq(enable: Boolean, bands: String)
+    fun setGraphicEq(enable: Boolean, bands: String): Boolean
     {
-        JamesDspWrapper.setGraphicEq(handle, enable, bands)
+        // Sanity check
+        if(!bands.contains("GraphicEQ:", true)) {
+            Timber.e("setGraphicEq: malformed string")
+            JamesDspWrapper.setGraphicEq(handle, false, "")
+            return false
+        }
+
+        return JamesDspWrapper.setGraphicEq(handle, enable, bands)
     }
 
-    fun setCrossfeed(enable: Boolean, mode: Int)
+    fun setCrossfeed(enable: Boolean, mode: Int): Boolean
     {
-        JamesDspWrapper.setCrossfeed(handle, enable, mode, 0, 0)
+        return JamesDspWrapper.setCrossfeed(handle, enable, mode, 0, 0)
     }
 
-    fun setCrossfeedCustom(enable: Boolean, fcut: Int, feed: Int)
+    fun setCrossfeedCustom(enable: Boolean, fcut: Int, feed: Int): Boolean
     {
-        JamesDspWrapper.setCrossfeed(handle, enable, 99, fcut, feed)
+        return JamesDspWrapper.setCrossfeed(handle, enable, 99, fcut, feed)
     }
 
-    fun setBassBoost(enable: Boolean, maxGain: Float)
+    fun setBassBoost(enable: Boolean, maxGain: Float): Boolean
     {
-        JamesDspWrapper.setBassBoost(handle, enable, maxGain)
+        return JamesDspWrapper.setBassBoost(handle, enable, maxGain)
     }
 
-    fun setStereoEnhancement(enable: Boolean, level: Float)
+    fun setStereoEnhancement(enable: Boolean, level: Float): Boolean
     {
-        JamesDspWrapper.setStereoEnhancement(handle, enable, level)
+        return JamesDspWrapper.setStereoEnhancement(handle, enable, level)
     }
 
-    fun setVacuumTube(enable: Boolean, level: Float)
+    fun setVacuumTube(enable: Boolean, level: Float): Boolean
     {
-        JamesDspWrapper.setVacuumTube(handle, enable, level)
+        return JamesDspWrapper.setVacuumTube(handle, enable, level)
     }
 
-    fun setLiveprog(enable: Boolean, path: String)
+    fun setLiveprog(enable: Boolean, path: String): Boolean
     {
         if(!File(path).exists()) {
             Timber.tag(TAG).w("setLiveprog: file does not exist")
-            JamesDspWrapper.setLiveprog(handle, false, "", "")
-            return
+            return JamesDspWrapper.setLiveprog(handle, false, "", "")
         }
 
         val reader = FileReader(path)
         val name = File(path).name
-        JamesDspWrapper.setLiveprog(handle, enable, name, reader.readText())
+        val result = JamesDspWrapper.setLiveprog(handle, enable, name, reader.readText())
         reader.close()
+        return result
     }
 
     // EEL VM utilities

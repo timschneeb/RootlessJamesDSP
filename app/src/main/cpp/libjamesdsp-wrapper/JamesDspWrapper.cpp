@@ -210,19 +210,21 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_processFloat(JN
     return outputObj;
 }
 
-extern "C" JNIEXPORT void JNICALL
+extern "C" JNIEXPORT jboolean JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setLimiter(JNIEnv *env, jobject obj, jlong self, jfloat threshold, jfloat release)
 {
     JLimiterSetCoefficients(cast(THIS->dsp), threshold, release);
+    return true;
 }
 
-extern "C" JNIEXPORT void JNICALL
+extern "C" JNIEXPORT jboolean JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setPostGain(JNIEnv *env, jobject obj, jlong self, jfloat gain)
 {
     JamesDSPSetPostGain(cast(THIS->dsp), gain);
+    return true;
 }
 
-extern "C" JNIEXPORT void JNICALL
+extern "C" JNIEXPORT jboolean JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setFirEqualizer(JNIEnv *env, jobject obj, jlong self,
                                                                                 jboolean enable, jint filterType, jint interpolationMode,
                                                                                 jdoubleArray bands)
@@ -232,14 +234,14 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setFirEqualizer
     {
         LOGE("JamesDspWrapper::setFirEqualizer: Invalid EQ data. 30 semicolon-separated fields expected, "
                       "found %d fields instead.", env->GetArrayLength(bands));
-        return;
+        return false;
     }
 
     if(bands == nullptr)
     {
         LOGW("JamesDspWrapper::setFirEqualizer: EQ band pointer is NULL. Disabling EQ");
         FIREqualizerDisable(dsp);
-        return;
+        return true;
     }
 
     if(enable)
@@ -253,9 +255,10 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setFirEqualizer
     {
         FIREqualizerDisable(dsp);
     }
+    return true;
 }
 
-extern "C" JNIEXPORT void JNICALL
+extern "C" JNIEXPORT jboolean JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setVdc(JNIEnv *env, jobject obj, jlong self,
                                                                        jboolean enable, jstring vdcContents)
 {
@@ -275,16 +278,17 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setVdc(JNIEnv *
             env->CallVoidMethod(wrapper->callbackInterface, wrapper->callbackOnVdcParseError);
 
             DDCDisable(dsp);
-            return;
+            return false;
         }
     }
     else
     {
         DDCDisable(dsp);
     }
+    return true;
 }
 
-extern "C" JNIEXPORT void JNICALL
+extern "C" JNIEXPORT jboolean JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setCompressor(JNIEnv *env, jobject obj, jlong self,
                                                                               jboolean enable, jfloat maxAttack, jfloat maxRelease, float adaptSpeed)
 {
@@ -298,9 +302,10 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setCompressor(J
     {
         CompressorDisable(dsp);
     }
+    return true;
 }
 
-extern "C" JNIEXPORT void JNICALL
+extern "C" JNIEXPORT jboolean JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setReverb(JNIEnv *env, jobject obj, jlong self,
                                                                           jboolean enable, jint preset)
 {
@@ -314,9 +319,10 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setReverb(JNIEn
     {
         ReverbDisable(dsp);
     }
+    return true;
 }
 
-extern "C" JNIEXPORT void JNICALL
+extern "C" JNIEXPORT jboolean JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setConvolver(JNIEnv *env, jobject obj, jlong self,
                                                                              jboolean enable, jfloatArray impulseResponse,
                                                                              jint irChannels, jint irFrames)
@@ -354,10 +360,13 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setConvolver(JN
     if(success <= 0)
     {
         LOGD("JamesDspWrapper::setConvolver: Failed to update convolver. Convolver1DLoadImpulseResponse returned an error.");
+        return false;
     }
+
+    return true;
 }
 
-extern "C" JNIEXPORT void JNICALL
+extern "C" JNIEXPORT jboolean JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setGraphicEq(JNIEnv *env, jobject obj, jlong self,
                                                                              jboolean enable, jstring graphicEq)
 {
@@ -378,9 +387,11 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setGraphicEq(JN
     }
     else
         ArbitraryResponseEqualizerDisable(dsp);
+
+    return true;
 }
 
-extern "C" JNIEXPORT void JNICALL
+extern "C" JNIEXPORT jboolean JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setCrossfeed(JNIEnv *env, jobject obj, jlong self,
                                                                              jboolean enable, jint mode, jint customFcut, jint customFeed)
 {
@@ -400,9 +411,11 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setCrossfeed(JN
         CrossfeedEnable(dsp);
     else
         CrossfeedDisable(dsp);
+
+    return true;
 }
 
-extern "C" JNIEXPORT void JNICALL
+extern "C" JNIEXPORT jboolean JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setBassBoost(JNIEnv *env, jobject obj, jlong self,
                                                                              jboolean enable, jfloat maxGain)
 {
@@ -417,9 +430,10 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setBassBoost(JN
     {
         BassBoostDisable(dsp);
     }
+    return true;
 }
 
-extern "C" JNIEXPORT void JNICALL
+extern "C" JNIEXPORT jboolean JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setStereoEnhancement(JNIEnv *env, jobject obj, jlong self,
                                                                                      jboolean enable, jfloat level)
 {
@@ -430,9 +444,10 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setStereoEnhanc
     {
         StereoEnhancementEnable(dsp);
     }
+    return true;
 }
 
-extern "C" JNIEXPORT void JNICALL
+extern "C" JNIEXPORT jboolean JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setVacuumTube(JNIEnv *env, jobject obj, jlong self,
                                                                               jboolean enable, jfloat level)
 {
@@ -446,9 +461,10 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setVacuumTube(J
     {
         VacuumTubeDisable(dsp);
     }
+    return true;
 }
 
-extern "C" JNIEXPORT void JNICALL
+extern "C" JNIEXPORT jboolean JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setLiveprog(JNIEnv *env, jobject obj, jlong self,
                                                                             jboolean enable, jstring id, jstring liveprogContent)
 {
@@ -464,7 +480,7 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setLiveprog(JNI
     if(strlen(nativeString) < 1) {
         LOGD("JamesDspWrapper::setLiveprog: empty file")
         env->ReleaseStringUTFChars(liveprogContent, nativeString);
-        return;
+        return true;
     }
 
     env->CallVoidMethod(wrapper->callbackInterface, wrapper->callbackOnLiveprogExec, id);
@@ -493,6 +509,7 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setLiveprog(JNI
         LiveProgEnable(dsp);
     else
         LiveProgDisable(dsp);
+    return true;
 }
 
 
