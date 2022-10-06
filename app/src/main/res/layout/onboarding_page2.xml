@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -21,7 +22,8 @@
             android:layout_marginBottom="8dp"
             android:alpha="0.8"
             app:srcCompat="@drawable/ic_twotone_warning_24dp"
-            app:tint="?attr/colorOnSurface" />
+            app:tint="?attr/colorOnSurface"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -55,43 +57,43 @@
             <me.timschneeberger.rootlessjamesdsp.view.Card
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:titleText="Disable other audio effect apps"
-                app:bodyText="Audio effect apps using Android's built-in Dynamic Processing effect interfere with this app."
+                app:titleText="@string/limit_session_control_conflict_title"
+                app:bodyText="@string/limit_session_control_conflict"
                 app:cardMargin="8dp" />
 
             <me.timschneeberger.rootlessjamesdsp.view.Card
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:titleText="Unsupported media apps"
-                app:bodyText="Apps blocking internal audio capture remain unprocessed (e.g., Spotify, Google Chrome)."
+                app:titleText="@string/limit_unsupported_apps_title"
+                app:bodyText="@string/limit_unsupported_apps"
                 app:cardMargin="8dp" />
 
             <me.timschneeberger.rootlessjamesdsp.view.Card
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:titleText="HW-accelerated audio playback issues"
-                app:bodyText="HW-accelerated audio playback (fast tracks) may sometimes cause duplicated audio or kill JamesDSP in some circumstances. Please add the affected music player to the excluded apps list to prevent JamesDSP from re-routing it."
+                app:titleText="@string/limit_hw_accel_title"
+                app:bodyText="@string/limit_hw_accel"
                 app:cardMargin="8dp" />
 
             <me.timschneeberger.rootlessjamesdsp.view.Card
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:titleText="Audio session detection delay"
-                app:bodyText="After an app has opened a new media session to playback audio, you may hear duplicated or cut-off audio for a very short period (about &lt;250ms)."
+                app:titleText="@string/limit_detect_delay_title"
+                app:bodyText="@string/limit_detect_delay"
                 app:cardMargin="8dp" />
 
             <me.timschneeberger.rootlessjamesdsp.view.Card
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:titleText="Increased latency"
-                app:bodyText="This app adds a noticable amount of delay to the audio stream. You can add movie/video apps to the exclusion list to prevent AV-desync by not processing them."
+                app:titleText="@string/limit_latency_title"
+                app:bodyText="@string/limit_latency"
                 app:cardMargin="8dp" />
 
             <me.timschneeberger.rootlessjamesdsp.view.Card
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:titleText="Tested devices"
-                app:bodyText="Changes made to Android\'s audio subsystem by your device manufacturer can easily break this app because it uses a few undocumented APIs.\nIt has been tested on these devices:\n\u25CF Samsung S20+ (Android 12)\n\u25CF AOSP emulator (Android 10-13)"
+                app:titleText="@string/limit_tested_devices_title"
+                app:bodyText="@string/limit_tested_devices"
                 app:cardMargin="8dp" />
         </LinearLayout>
     </ScrollView>

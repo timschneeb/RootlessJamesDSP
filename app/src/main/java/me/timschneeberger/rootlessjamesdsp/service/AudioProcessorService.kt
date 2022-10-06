@@ -37,7 +37,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_PROCESSOR_MESS
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_HARD_REBOOT_CORE
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_RELOAD_LIVEPROG
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_SOFT_REBOOT_CORE
-import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_UPDATE_PREFERENCES
+import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_PREFERENCES_UPDATED
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.CHANNEL_ID_SERVICE
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.CHANNEL_ID_SESSION_LOSS
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.NOTIFICATION_ID_PERMISSION_PROMPT
@@ -135,7 +135,7 @@ class AudioProcessorService : Service() {
 
         // Setup general-purpose broadcast receiver
         val filter = IntentFilter()
-        filter.addAction(ACTION_UPDATE_PREFERENCES)
+        filter.addAction(ACTION_PREFERENCES_UPDATED)
         filter.addAction(ACTION_SERVICE_RELOAD_LIVEPROG)
         filter.addAction(ACTION_SERVICE_HARD_REBOOT_CORE)
         filter.addAction(ACTION_SERVICE_SOFT_REBOOT_CORE)
@@ -258,6 +258,7 @@ class AudioProcessorService : Service() {
         // Unregister receivers and release resources
         unregisterLocalReceiver(broadcastReceiver)
         mediaProjection?.unregisterCallback(projectionCallback)
+        mediaProjection = null
 
         audioSessionManager.sessionPolicyDatabase.unregisterOnRestrictedSessionChangeListener(onSessionPolicyChangeListener)
         audioSessionManager.sessionDatabase.unregisterOnSessionChangeListener(onSessionChangeListener)
@@ -303,7 +304,7 @@ class AudioProcessorService : Service() {
     private val broadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             when (intent.action) {
-                ACTION_UPDATE_PREFERENCES -> engine.syncWithPreferences()
+                ACTION_PREFERENCES_UPDATED -> engine.syncWithPreferences()
                 ACTION_SERVICE_RELOAD_LIVEPROG -> engine.syncWithPreferences(arrayOf(Constants.PREF_LIVEPROG))
                 ACTION_SERVICE_HARD_REBOOT_CORE -> restartRecording()
                 ACTION_SERVICE_SOFT_REBOOT_CORE -> requestAudioRecordRecreation()

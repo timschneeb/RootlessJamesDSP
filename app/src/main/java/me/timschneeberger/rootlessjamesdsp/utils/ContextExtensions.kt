@@ -52,7 +52,6 @@ object ContextExtensions {
     }
 
     /** Open another app.
-     * @param context current Context, like Activity, App, or Service
      * @param packageName the full package name of the app to open
      * @return true if likely successful, false if unsuccessful
      */
@@ -142,14 +141,17 @@ object ContextExtensions {
             .show()
     }
 
-
     fun Context.showInputAlert(layoutInflater: LayoutInflater, @StringRes title: Int, @StringRes hint: Int, value: String, callback: ((String?) -> Unit)) {
+       showInputAlert(layoutInflater, getString(title), getString(hint), value, callback)
+    }
+
+    fun Context.showInputAlert(layoutInflater: LayoutInflater, title: String, hint: String, value: String, callback: ((String?) -> Unit)) {
         val content = DialogTextinputBinding.inflate(layoutInflater)
-        content.textInputLayout.hint = getString(hint)
+        content.textInputLayout.hint = hint
         content.text1.text = Editable.Factory.getInstance().newEditable(value)
 
         AlertDialog.Builder(this)
-            .setTitle(getString(title))
+            .setTitle(title)
             .setView(content.root)
             .setPositiveButton(android.R.string.ok) { inputDialog, _ ->
                 val input = (inputDialog as AlertDialog).requireViewById<TextView>(android.R.id.text1)
@@ -166,7 +168,7 @@ object ContextExtensions {
         return when (uid) {
             Process.ROOT_UID -> "root"
             Process.SHELL_UID -> "com.android.shell"
-            /*Process.MEDIA_UID*/ 1013 ->  "media";
+            /*Process.MEDIA_UID*/ 1013 ->  "media"
             /*Process.AUDIOSERVER_UID*/ 1041 -> "audioserver"
             /*Process.CAMERASERVER_UID*/ 1047 -> "cameraserver"
             Process.SYSTEM_UID -> "android"

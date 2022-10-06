@@ -11,14 +11,15 @@ import androidx.preference.*
 import androidx.preference.Preference.SummaryProvider
 import androidx.recyclerview.widget.RecyclerView
 import me.timschneeberger.rootlessjamesdsp.R
+import me.timschneeberger.rootlessjamesdsp.activity.GraphicEqualizerActivity
 import me.timschneeberger.rootlessjamesdsp.activity.LiveprogParamsActivity
+import me.timschneeberger.rootlessjamesdsp.adapter.RoundedRipplePreferenceGroupAdapter
 import me.timschneeberger.rootlessjamesdsp.liveprog.EelParser
 import me.timschneeberger.rootlessjamesdsp.preference.EqualizerPreference
 import me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
 import me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
-import me.timschneeberger.rootlessjamesdsp.adapter.RoundedRipplePreferenceGroupAdapter
 
 
 class PreferenceGroupFragment : PreferenceFragmentCompat() {
@@ -26,7 +27,7 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
 
     private val listener =
         SharedPreferences.OnSharedPreferenceChangeListener { _, _ ->
-            requireContext().sendLocalBroadcast(Intent(Constants.ACTION_UPDATE_PREFERENCES))
+            requireContext().sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
         }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
@@ -52,12 +53,6 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
                         else
                             it.toString()
                     }
-            }
-            R.xml.dsp_graphiceq_preferences -> {
-                findPreference<EditTextPreference>(getString(R.string.key_geq_nodes))?.summaryProvider = SummaryProvider<EditTextPreference> {
-                    val number = it.text?.split(";")?.count { sub -> sub.isNotBlank() } ?: 0
-                    requireContext().resources.getQuantityString(R.plurals.nodes, number, number)
-                }
             }
             R.xml.dsp_liveprog_preferences -> {
                 val liveprogParams = findPreference<Preference>(getString(R.string.key_liveprog_params))
@@ -102,6 +97,13 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
                     true
                 }
             }
+            R.xml.dsp_graphiceq_preferences -> {
+                findPreference<Preference>(getString(R.string.key_geq_nodes))?.setOnPreferenceClickListener {
+                    val intent = Intent(requireContext(), GraphicEqualizerActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+            }
         }
 
         preferenceManager.sharedPreferences?.registerOnSharedPreferenceChangeListener(listener)
@@ -110,7 +112,7 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
     override fun onCreateRecyclerView(
         inflater: LayoutInflater,
         parent: ViewGroup,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): RecyclerView {
         val recyclerView = super.onCreateRecyclerView(inflater, parent, savedInstanceState)
         recyclerView.itemAnimator = null // Fix to prevent RecyclerView crash if group is toggled rapidly

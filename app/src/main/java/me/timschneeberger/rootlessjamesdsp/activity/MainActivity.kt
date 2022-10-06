@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.*
 import android.content.pm.PackageManager
 import android.media.projection.MediaProjectionManager
+import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
 import android.view.HapticFeedbackConstants
@@ -12,15 +13,11 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.crashlytics.FirebaseCrashlytics
-import com.google.firebase.crashlytics.ktx.crashlytics
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.ActivityMainBinding
 import me.timschneeberger.rootlessjamesdsp.databinding.ContentMainBinding
@@ -34,6 +31,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.check
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.unregisterLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import me.timschneeberger.rootlessjamesdsp.view.FloatingToggleButton
 import timber.log.Timber
@@ -43,7 +41,6 @@ import kotlin.concurrent.schedule
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
     private lateinit var bindingContent: ContentMainBinding
 
@@ -172,11 +169,15 @@ class MainActivity : AppCompatActivity() {
                     // Currently on, let's turn it off
                     AudioProcessorService.stop(this@MainActivity)
                     binding.powerToggle.isToggled = false
-                    binding.powerToggle.performHapticFeedback(HapticFeedbackConstants.REJECT)
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                        binding.powerToggle.performHapticFeedback(HapticFeedbackConstants.REJECT)
+                    }
                 }
                 else {
                     // Currently off, let's turn it on
-                    binding.powerToggle.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                        binding.powerToggle.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                    }
                     requestCapturePermission()
                 }
             }
@@ -208,7 +209,7 @@ class MainActivity : AppCompatActivity() {
         mActionBar?.setHomeButtonEnabled(true)
         mActionBar?.setDisplayShowTitleEnabled(true)
 
-        sendLocalBroadcast(Intent(Constants.ACTION_UPDATE_PREFERENCES))
+        sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
 
         if(intent.getBooleanExtra(EXTRA_FORCE_SHOW_CAPTURE_PROMPT, false)) {
             requestCapturePermission()
@@ -234,9 +235,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        super.onDestroy()
+        unregisterLocalReceiver(broadcastReceiver)
+        unregisterLocalReceiver(processorMessageReceiver)
+
+        if(processorService != null && processorServiceBound)
+            unbindService(processorServiceConnection)
+
+        processorService = null
+        processorServiceBound = false
+
         prefsVar.edit().putBoolean(getString(R.string.key_is_activity_active), false)
             .apply()
+        super.onDestroy()
     }
 
     override fun onResume() {

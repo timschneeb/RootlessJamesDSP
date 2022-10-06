@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="?attr/textInputFilledStyle"
+        android:id="@+id/inputLayout"
+        android:minWidth="100dp"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:layout_gravity="center_horizontal"
+        app:helperTextEnabled="true">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:textAlignment="textEnd"
+            android:inputType="numberDecimal|numberSigned"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        style="?attr/materialIconButtonStyle"
+        android:id="@+id/plus"
+        android:layout_marginTop="3dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/number_box_increment"
+        android:tooltipText="@string/number_box_increment"
+        app:icon="@drawable/ic_baseline_add_24dp" />
+    <Button
+        style="?attr/materialIconButtonStyle"
+        android:id="@+id/minus"
+        android:layout_marginTop="3dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/number_box_decrement"
+        android:tooltipText="@string/number_box_decrement"
+        app:icon="@drawable/ic_twotone_remove_24dp" />
+
+</LinearLayout>

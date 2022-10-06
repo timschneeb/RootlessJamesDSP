@@ -123,7 +123,7 @@ class JamesDspEngine(val context: Context, val callbacks: JamesDspWrapper.JamesD
 
             cache.select(Constants.PREF_GEQ)
             val geqEnabled = cache.get(R.string.key_geq_enable, false)
-            val geqBands = cache.get(R.string.key_geq_nodes, Constants.DEFAULT_GEQ)
+            val geqBands = cache.get(R.string.key_geq_nodes, Constants.DEFAULT_GEQ_INTERNAL)
 
             cache.select(Constants.PREF_REVERB)
             val reverbEnabled = cache.get(R.string.key_reverb_enable, false)

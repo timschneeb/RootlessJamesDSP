@@ -32,4 +32,17 @@
         <attr name="cardBackground" format="color" />
         <attr name="cardMargin" format="dimension" />
     </declare-styleable>
+
+    <declare-styleable name="NumberInputBox">
+        <attr name="floatPrecision" format="integer" />
+        <attr name="step" format="float" />
+        <attr name="value" format="float" />
+        <attr name="android:min" format="float" />
+        <attr name="android:max" format="float" />
+
+        <attr name="suffixText" format="string" />
+        <attr name="hintText" format="string" />
+        <attr name="helperText" format="string" />
+        <attr name="helperTextEnabled" format="boolean" />
+    </declare-styleable>
 </resources>

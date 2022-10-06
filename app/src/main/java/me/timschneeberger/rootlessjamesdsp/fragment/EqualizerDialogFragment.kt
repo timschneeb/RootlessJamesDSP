@@ -14,7 +14,7 @@ import me.timschneeberger.rootlessjamesdsp.view.EqualizerSurface.Companion.MIN_D
 
 class EqualizerDialogFragment : PreferenceDialogFragmentCompat() {
 
-    private var dialogEqualizerView: EqualizerSurface? = null
+    private var equalizer: EqualizerSurface? = null
     private lateinit var mLevels: DoubleArray
     private var shouldReset = true
 
@@ -36,10 +36,10 @@ class EqualizerDialogFragment : PreferenceDialogFragmentCompat() {
     override fun onBindDialogView(view: View) {
         super.onBindDialogView(view)
         val binding = PreferenceEqualizerDialogBinding.bind(view)
-        dialogEqualizerView = binding.equalizerDialog
-        dialogEqualizerView!!.areKnobsVisible = true
-        dialogEqualizerView!!.setOnTouchListener { v, event ->
-            val band = dialogEqualizerView!!.findClosest(event.x)
+        equalizer = binding.equalizerSurface
+        equalizer!!.areKnobsVisible = true
+        equalizer!!.setOnTouchListener { v, event ->
+            val band = equalizer!!.findClosest(event.x)
             var level = event.y / v.height * (MIN_DB - MAX_DB) - MIN_DB
             if (level > -0.05 && level < 0.0) {
                 level = 0f
@@ -53,7 +53,7 @@ class EqualizerDialogFragment : PreferenceDialogFragmentCompat() {
             true
         }
 
-        mLevels.forEachIndexed(dialogEqualizerView!!::setBand)
+        mLevels.forEachIndexed(equalizer!!::setBand)
 
         (preference as EqualizerPreference).entries.forEachIndexed { index, charSequence ->
             val chip =
@@ -101,12 +101,12 @@ class EqualizerDialogFragment : PreferenceDialogFragmentCompat() {
 
     private fun updateBand(i: Int, gain: Double) {
         mLevels[i] = gain
-        dialogEqualizerView!!.setBand(i, gain)
+        equalizer!!.setBand(i, gain)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        dialogEqualizerView = null
+        equalizer = null
     }
 
     companion object {

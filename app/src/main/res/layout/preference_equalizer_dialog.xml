@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <me.timschneeberger.rootlessjamesdsp.view.EqualizerSurface
-        android:id="@+id/equalizer_dialog"
+        android:id="@+id/equalizer_surface"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />

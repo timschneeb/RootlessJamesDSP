@@ -1,11 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="256dp">
+    android:layout_height="335dp"
+    android:orientation="vertical">
+
+        <LinearLayout
+            android:minHeight="?android:attr/listPreferredItemHeightSmall"
+            android:gravity="center_vertical"
+            android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+            android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
+            android:clipToPadding="false"
+            android:baselineAligned="false"
+            android:orientation="vertical"
+            android:layout_height="79dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:layout_width="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceListItem"
+                android:text="@string/geq_nodes"
+                android:ellipsize="marquee"/>
+            <TextView
+                android:id="@+id/node_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:textAlignment="viewStart"
+                android:textColor="?android:attr/textColorSecondary"
+                android:text="@string/geq_nodes"
+                android:maxLines="10"
+                style="@style/PreferenceSummaryTextStyle"/>
+        </LinearLayout>
 
     <me.timschneeberger.rootlessjamesdsp.view.GraphicEqualizerSurface
         android:id="@+id/layout_equalizer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="256dp" />
 
-</FrameLayout>
+</LinearLayout>

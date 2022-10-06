@@ -1,8 +1,10 @@
 package me.timschneeberger.rootlessjamesdsp.utils
 
+import android.os.Build
+import android.os.Bundle
 import android.text.Html
 import android.text.Spanned
-import android.util.TypedValue
+import java.io.Serializable
 import java.math.BigDecimal
 import java.math.RoundingMode
 import kotlin.math.*
@@ -35,9 +37,9 @@ fun prettyNumberFormat(input: Double): String {
     // 999999999 to show as 999.99M and not 1B
     val roundedDown = floor(base*100) /100.0
 
-    // Convert the number to a string with up to 2 decimal places
+    // Convert the number to a string with up to 1 decimal place
     var baseStr = BigDecimal(roundedDown)
-        .setScale(2, RoundingMode.HALF_EVEN)
+        .setScale(1, RoundingMode.HALF_EVEN)
         .toString()
 
     // Drop trailing zeros, then drop any trailing '.' if present
@@ -49,4 +51,13 @@ fun prettyNumberFormat(input: Double): String {
         pow < suffixes.size -> "$prefix$baseStr${suffixes[pow]}"
         else -> "${prefix}∞"
     }
+}
+
+@Suppress("UNCHECKED_CAST")
+fun <T : Serializable> Bundle.getSerializableAs(key: String, clazz: Class<T>): T? {
+    return (if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        this.getSerializable(key, clazz)
+    } else {
+        this.getSerializable(key)
+    }) as? T
 }

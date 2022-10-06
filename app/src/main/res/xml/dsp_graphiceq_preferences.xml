@@ -6,18 +6,18 @@
         android:key="@string/key_geq_enable"
         android:title="@string/geq_enable"
         app:iconSpaceReserved="false">
-        <EditTextPreference
+        <!--<EditTextPreference
             android:key="@string/key_geq_nodes"
-            android:defaultValue="GraphicEQ: 0.0 0.0; "
+            android:defaultValue="GraphicEQ: "
             android:dialogTitle="@string/geq_nodes"
             android:title="@string/geq_nodes"
             android:inputType="textMultiLine"
-            app:iconSpaceReserved="false"/>
-        <!--<me.timschneeberger.rootlessjamesdsp.preference.GraphicEqualizerPreference
-
-            android:defaultValue="GraphicEQ: 16.1 2.39; 29.4 7.39; 52.1 7.91; 98.3 7.91; 160 6.7; 250 6.7; 400 5.47; 630 4.24; 1000 3.5; 1600 4.92; 2500 3.5; 5541.6 1.87; 6300 3.5; 7386.7 5.7; 16000 3.5"
-            android:entries="@array/equalizer_preset_modes"
-            android:entryValues="@array/equalizer_preset_values"
             app:iconSpaceReserved="false"/>-->
+        <me.timschneeberger.rootlessjamesdsp.preference.GraphicEqualizerPreference
+            android:key="@string/key_geq_nodes"
+            android:defaultValue="GraphicEQ: "
+            android:dialogTitle="@string/geq_nodes"
+            android:title="@string/geq_nodes"
+            app:iconSpaceReserved="false"/>
     </me.timschneeberger.rootlessjamesdsp.preference.SwitchPreferenceGroup>
 </PreferenceScreen>

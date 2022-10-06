@@ -69,6 +69,12 @@
             android:theme="@style/Theme.RootlessJamesDSP" />
 
         <activity
+            android:name=".activity.GraphicEqualizerActivity"
+            android:exported="false"
+            android:label="@string/title_activity_geq"
+            android:theme="@style/Theme.RootlessJamesDSP" />
+
+        <activity
             android:name=".activity.OnboardingActivity"
             android:exported="false"
             android:label="@string/title_activity_onboarding"

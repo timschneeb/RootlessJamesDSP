@@ -200,6 +200,19 @@
     <string name="onboarding_finish_header">JamesDSP is set-up!</string>
     <string name="onboarding_finish_caption">If you encounter any issues, please visit the troubleshooting options.</string>
 
+    <string name="limit_session_control_conflict_title">Disable other audio effect apps</string>
+    <string name="limit_session_control_conflict">Audio effect apps using Android\'s built-in Dynamic Processing effect interfere with this app.</string>
+    <string name="limit_unsupported_apps_title">Unsupported media apps</string>
+    <string name="limit_unsupported_apps">Apps blocking internal audio capture remain unprocessed (e.g., Spotify, Google Chrome).</string>
+    <string name="limit_hw_accel_title">HW-accelerated audio playback issues</string>
+    <string name="limit_hw_accel">HW-accelerated audio playback (fast tracks) may sometimes cause duplicated audio or kill JamesDSP in some circumstances. Please add the affected music player to the excluded apps list to prevent JamesDSP from re-routing it.</string>
+    <string name="limit_detect_delay_title">Audio session detection delay</string>
+    <string name="limit_detect_delay"><![CDATA[After an app has opened a new media session to playback audio, you may hear duplicated or cut-off audio for a very short period (about <250ms).]]></string>
+    <string name="limit_latency_title">Increased latency</string>
+    <string name="limit_latency">This app may add some delay to the audio stream. You can add movie/video apps to the exclusion list to prevent AV-desync by not processing them.</string>
+    <string name="limit_tested_devices_title">Tested devices</string>
+    <string name="limit_tested_devices">Changes made to Android\'s audio subsystem by your device manufacturer can easily break this app because it uses a few undocumented APIs.\nIt has been tested on these devices:\n● Samsung S20+ (Android 12)\n● AOSP emulator (Android 10–13)</string>
+
     <!-- Settings -->
     <string name="title_activity_settings">Settings</string>
     <string name="session_exclude_restricted">Exclude unsupported apps</string>
@@ -281,6 +294,35 @@
     <string name="message_vdc_corrupt">Selected VDC file is corrupt. Please choose another one.</string>
     <string name="message_liveprog_compile_fail">Liveprog execution failed. Selected script is damaged.</string>
 
+    <!-- GraphicEQ editor -->
+    <string name="title_activity_geq">Magnitude response editor</string>
+    <string name="geq_edit_as_string">Edit as string</string>
+    <string name="geq_autoeq">AutoEQ profiles</string>
+    <string name="gep_add_node">Add</string>
+    <string name="geq_preview">Preview</string>
+    <string name="geq_preview_collapsed">Preview (tap to expand)</string>
+    <string name="geq_edit_hint">GraphicEQ nodes</string>
+    <string name="geq_reset">Reset</string>
+    <string name="geq_reset_confirm_title">Are you sure?</string>
+    <string name="geq_reset_confirm">Do you want to reset your GraphicEQ settings?</string>
+    <string name="geq_node_editor">Node editor</string>
+    <string name="geq_node_list">Node list</string>
+    <string name="geq_no_nodes_defined">No nodes defined</string>
+    <string name="geq_delete_node">Delete node</string>
+    <string name="geq_go_back_to_node_list">Go back to node list</string>
+    <string name="geq_next_node">Next node</string>
+    <string name="geq_previous_node">Previous node</string>
+    <string name="geq_done_spaced">&#160;&#160;Done&#160;</string>
+    <string name="geq_done">Done</string>
+    <string name="geq_cancel_spaced">&#160;&#160;Discard&#160;</string>
+    <string name="geq_cancel">Discard</string>
+    <string name="geq_discard_changes_title">Discard changes and exit?</string>
+    <string name="geq_discard_changes">The values are not valid or empty. Your changes can\'t be saved.\nDo you want to discard your changes and exit?</string>
+    <string name="geq_frequeny_range">Value between 1Hz and 24000Hz</string>
+    <string name="geq_gain_range">Value between -32dB and 32dB</string>
+    <string name="geq_gain">Gain</string>
+    <string name="geq_frequency">Frequency</string>
+
     <!-- Customizable liveprog script parameters -->
     <string name="title_activity_liveprog_params">Customizable script parameters</string>
     <string name="action_restore_defaults">Restore defaults</string>
@@ -299,4 +341,9 @@
     <string name="app_list_loading">Loading apps…</string>
     <string name="app_list_search">Search</string>
     <string name="app_list_icon_alt">App icon</string>
+
+    <!-- Number box view -->
+    <string name="number_box_decrement">Decrement</string>
+    <string name="number_box_increment">Increment</string>
+
 </resources>

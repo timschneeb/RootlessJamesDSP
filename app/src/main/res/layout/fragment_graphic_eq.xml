@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginTop="4dp"
+    android:animateLayoutChanges="true">
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbarDefaultDelayBeforeFade="0"
+        app:layout_constraintBottom_toTopOf="@id/edit_card"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.chip.ChipGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            app:singleLine="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/add"
+                style="@style/Widget.Material3.Chip.Assist.Elevated"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gep_add_node"
+                app:chipIcon="@drawable/ic_baseline_add_24dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/reset"
+                style="@style/Widget.Material3.Chip.Assist.Elevated"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/geq_reset"
+                app:chipIcon="@drawable/ic_twotone_delete_forever_24dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/autoeq"
+                style="@style/Widget.Material3.Chip.Assist.Elevated"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/geq_autoeq"
+                app:chipIcon="@drawable/ic_twotone_download_24" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/edit_string"
+                style="@style/Widget.Material3.Chip.Assist.Elevated"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/geq_edit_as_string"
+                app:chipIcon="@drawable/ic_twotone_edit_24dp" />
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/edit_card"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintVertical_weight="0"
+        app:layout_constraintHeight_default="spread"
+        app:layout_constraintBottom_toTopOf="@id/preview_card"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/horizontalScrollView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="2dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/edit_card_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/geq_node_list"
+                    android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:id="@+id/node_detail_context_buttons"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    android:orientation="horizontal">
+                    <Button
+                        style="?attr/materialIconButtonFilledTonalStyle"
+                        android:id="@+id/cancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/geq_cancel_spaced"
+                        android:contentDescription="@string/geq_cancel"
+                        android:tooltipText="@string/geq_cancel"
+                        app:icon="@drawable/ic_close_24dp" />
+
+                    <Button
+                        style="?attr/materialIconButtonFilledStyle"
+                        android:id="@+id/confirm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/geq_done_spaced"
+                        android:contentDescription="@string/geq_done"
+                        android:tooltipText="@string/geq_done"
+                        app:icon="@drawable/ic_twotone_check_24dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/empty_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:alpha="0.8"
+                        android:text="@string/geq_no_nodes_defined"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
+                        app:drawableTint="?attr/colorOnBackground"
+                        app:drawableTopCompat="@drawable/ic_twotone_nodes_24dp" />
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/node_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    android:scrollbars="vertical"/>
+
+                <androidx.core.widget.NestedScrollView
+                    android:id="@+id/node_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:ignore="SpeakableTextPresentCheck">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="16dp"
+                        android:orientation="vertical">
+
+                        <me.timschneeberger.rootlessjamesdsp.view.NumberInputBox
+                            android:id="@+id/freqInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:helperText="@string/geq_frequeny_range"
+                            app:helperTextEnabled="true"
+                            app:hintText="@string/geq_frequency"
+                            app:step="10"
+                            app:suffixText="Hz"
+                            app:value="100"
+                            app:floatPrecision="1"
+                            android:min="0"
+                            android:max="24000" />
+
+                        <me.timschneeberger.rootlessjamesdsp.view.NumberInputBox
+                            android:id="@+id/gainInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:helperText="@string/geq_gain_range"
+                            app:helperTextEnabled="true"
+                            app:hintText="@string/geq_gain"
+                            app:floatPrecision="4"
+                            app:step="0.5"
+                            app:suffixText="dB"
+                            android:min="-32"
+                            android:max="32"/>
+                    </LinearLayout>
+
+                </androidx.core.widget.NestedScrollView>
+            </FrameLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/preview_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_card">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:animateLayoutChanges="true">
+
+            <TextView
+                android:id="@+id/preview_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="@string/geq_preview"
+                android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+            <me.timschneeberger.rootlessjamesdsp.view.GraphicEqualizerSurface
+                android:id="@+id/equalizer_surface"
+                android:layout_width="match_parent"
+                android:layout_height="256dp" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
