@@ -12,9 +12,14 @@ import androidx.recyclerview.widget.RecyclerView
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.model.GraphicEqNode
 import me.timschneeberger.rootlessjamesdsp.model.GraphicEqNodeList
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import java.util.*
 
 class GraphicEqNodeAdapter(var nodes: GraphicEqNodeList) :
     RecyclerView.Adapter<GraphicEqNodeAdapter.ViewHolder>() {
+
+    private val df = DecimalFormat("0", DecimalFormatSymbols.getInstance())
 
     var onItemsChanged: ((GraphicEqNodeAdapter) -> Unit)? = null
     var onItemClicked: ((GraphicEqNode, Int) -> Unit)? = null
@@ -104,8 +109,10 @@ class GraphicEqNodeAdapter(var nodes: GraphicEqNodeList) :
         viewHolder.deleteButton.isEnabled = true
 
         // Set content
-        viewHolder.freq.text = "${String.format("%.1f", nodes[position].freq)}Hz"
-        viewHolder.gain.text = "${String.format("%.2f", nodes[position].gain)}dB"
+        df.maximumFractionDigits = 1
+        viewHolder.freq.text = "${df.format(nodes[position].freq)}Hz"
+        df.maximumFractionDigits = 4
+        viewHolder.gain.text = "${df.format(nodes[position].gain)}dB"
 
         // Set click listeners
         viewHolder.deleteButton.setOnClickListener {

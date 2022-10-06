@@ -4,14 +4,23 @@ import android.os.Bundle
 import androidx.databinding.ObservableArrayList
 import me.timschneeberger.rootlessjamesdsp.utils.getSerializableAs
 import timber.log.Timber
-import java.util.UUID
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import java.util.*
 
 class GraphicEqNodeList : ObservableArrayList<GraphicEqNode>() {
+    private val dfFreq = DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH))
+    private val dfGain = DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH))
+
+    init {
+        dfFreq.maximumFractionDigits = 2
+        dfGain.maximumFractionDigits = 6
+    }
+
     fun serialize(): String {
-        // TODO: check for locale issues
         var str = "GraphicEQ: "
         for (i in 0 until this.size) {
-            str += "${this[i].freq} ${this[i].gain}; "
+            str += "${dfFreq.format(this[i].freq)} ${dfGain.format(this[i].gain)}; "
         }
 
         return str
@@ -28,7 +37,6 @@ class GraphicEqNodeList : ObservableArrayList<GraphicEqNode>() {
             .filter(String::isNotBlank)
             .forEach { s ->
                 val pair = s.split(" ").filter(String::isNotBlank)
-                // TODO: check for locale issues
                 val freq = pair.getOrNull(0)?.toDoubleOrNull()
                 val gain = pair.getOrNull(1)?.toDoubleOrNull()
 

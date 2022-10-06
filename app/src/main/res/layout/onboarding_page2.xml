@@ -7,8 +7,6 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- TODO extract strings  -->
-
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="match_parent"

@@ -243,6 +243,7 @@ class GraphicEqualizerFragment : Fragment() {
         updateViewState()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun editorSave() {
         if(!editorCanSave()) {
             requireContext().showYesNoAlert(
@@ -261,6 +262,7 @@ class GraphicEqualizerFragment : Fragment() {
         editorActive = false
 
         adapter.nodes.sortBy { it.freq }
+        adapter.notifyDataSetChanged()
 
         updateViewState()
     }
