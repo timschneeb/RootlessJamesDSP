@@ -42,8 +42,7 @@ class OnboardingFragment : Fragment() {
         PAGE_METHOD_SELECT          to R.id.onboarding_page3,
         PAGE_ADB_SETUP              to R.id.onboarding_page4,
         PAGE_RUNTIME_PERMISSIONS    to R.id.onboarding_page5,
-        PAGE_SELF_CHECK             to R.id.onboarding_page6,
-        PAGE_READY                  to R.id.onboarding_page7,
+        PAGE_READY                  to R.id.onboarding_page6,
     )
 
     private enum class SetupMethods {
@@ -343,7 +342,6 @@ class OnboardingFragment : Fragment() {
                 else requireContext().checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) == PERMISSION_GRANTED
                 notificationGranted && requireContext().checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PERMISSION_GRANTED
             }
-            PAGE_SELF_CHECK -> true /* FIXME skip dummy page */
             else -> false
         }
 
@@ -521,7 +519,6 @@ class OnboardingFragment : Fragment() {
         const val PAGE_METHOD_SELECT = 3
         const val PAGE_ADB_SETUP = 4
         const val PAGE_RUNTIME_PERMISSIONS = 5
-        const val PAGE_SELF_CHECK = 6
-        const val PAGE_READY = 7
+        const val PAGE_READY = 6
     }
 }
