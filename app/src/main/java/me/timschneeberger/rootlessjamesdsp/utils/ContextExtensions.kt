@@ -185,7 +185,7 @@ object ContextExtensions {
     fun Context.getAppName(packageName: String): CharSequence? {
         return try {
             packageManager.getApplicationInfo(packageName, 0)
-        } catch (e: PackageManager.NameNotFoundException) {
+        } catch (e: Exception) {
             null
         }?.let {
             packageManager.getApplicationLabel(it)
@@ -198,11 +198,15 @@ object ContextExtensions {
             return getAppName(it).toString()
         }
 
-        packageManager.getPackagesForUid(uid)?.forEach { pkg ->
-            getAppName(pkg)?.let  {
-                return it.toString()
+        try {
+            packageManager.getPackagesForUid(uid)?.forEach { pkg ->
+                getAppName(pkg)?.let {
+                    return it.toString()
+                }
             }
         }
+        catch (_: SecurityException) {}
+        catch (ex: Exception) { Timber.w(ex) }
         return null
     }
 
@@ -212,15 +216,19 @@ object ContextExtensions {
             return getAppName(it).toString()
         }
 
-        val pkgs = packageManager.getPackagesForUid(uid)
-        pkgs?.forEach { pkg ->
-            getAppName(pkg)?.let {
-                return it.toString()
+        try {
+            val pkgs = packageManager.getPackagesForUid(uid)
+            pkgs?.forEach { pkg ->
+                getAppName(pkg)?.let {
+                    return it.toString()
+                }
+            }
+            pkgs?.firstOrNull()?.let {
+                return it
             }
         }
-        pkgs?.firstOrNull()?.let {
-            return it
-        }
+        catch (_: SecurityException) {}
+        catch (ex: Exception) { Timber.w(ex) }
         return "UID $uid"
     }
 
