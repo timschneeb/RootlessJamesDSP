@@ -1,14 +1,18 @@
 package me.timschneeberger.rootlessjamesdsp.utils
 
+import android.app.Activity
 import android.content.*
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
+import android.inputmethodservice.InputMethodService
 import android.net.Uri
 import android.os.Process
 import android.text.Editable
 import android.util.Base64
 import android.util.TypedValue
 import android.view.LayoutInflater
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
@@ -226,6 +230,11 @@ object ContextExtensions {
         } catch (e: PackageManager.NameNotFoundException) {
             null
         }
+    }
+
+    fun Context.hideKeyboardFrom(view: View) {
+        val imm = SystemServices.get(this, InputMethodManager::class.java)
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     const val TAG = "ContextExtensions"

@@ -295,7 +295,7 @@
     <string name="message_liveprog_compile_fail">Liveprog execution failed. Selected script is damaged.</string>
 
     <!-- GraphicEQ editor -->
-    <string name="title_activity_geq">Magnitude response editor</string>
+    <string name="title_activity_geq">Magnitude response</string>
     <string name="geq_edit_as_string">Edit as string</string>
     <string name="geq_autoeq">AutoEQ profiles</string>
     <string name="gep_add_node">Add</string>
@@ -323,6 +323,14 @@
     <string name="geq_gain">Gain</string>
     <string name="geq_frequency">Frequency</string>
 
+    <!-- AutoEQ GraphicEQ selector -->
+    <string name="geq_api_network_error">Failed to connect to server. %1$s</string>
+    <string name="geq_api_network_error_details_code">Server responded with error code: %1$d</string>
+    <string name="autoeq_search">AutoEQ search</string>
+    <string name="autoeq_enter_model">Enter your headphone model…</string>
+    <string name="autoeq_partial_results_warning">Showing the first %1$d results. Please fine-tune your search to get more relevant results.</string>
+    <string name="autoeq_no_results">No results found</string>
+
     <!-- Customizable liveprog script parameters -->
     <string name="title_activity_liveprog_params">Customizable script parameters</string>
     <string name="action_restore_defaults">Restore defaults</string>
@@ -345,5 +353,4 @@
     <!-- Number box view -->
     <string name="number_box_decrement">Decrement</string>
     <string name="number_box_increment">Increment</string>
-
 </resources>

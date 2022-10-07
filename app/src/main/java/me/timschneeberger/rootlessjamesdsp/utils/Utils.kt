@@ -1,5 +1,6 @@
 package me.timschneeberger.rootlessjamesdsp.utils
 
+import android.app.Activity
 import android.os.Build
 import android.os.Bundle
 import android.text.Html

@@ -16,5 +16,11 @@
         <item name="colorBackgroundFloating">@color/alert_dialog_background</item>
     </style>
 
+    <style name="Theme.RootlessJamesDSP.SearchButton" parent="Widget.AppCompat.ImageButton">
+        <item name="android:minWidth" tools:ignore="PrivateResource">@dimen/mtrl_min_touch_target_size</item>
+        <item name="android:minHeight" tools:ignore="PrivateResource">@dimen/mtrl_min_touch_target_size</item>
+        <item name="android:background">?attr/actionBarItemBackground</item>
+    </style>
+
     <style name="Theme.RootlessJamesDSP.CardView" parent="Widget.Material3.CardView.Elevated" />
 </resources>

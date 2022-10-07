@@ -13,7 +13,10 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import me.timschneeberger.rootlessjamesdsp.R
+import me.timschneeberger.rootlessjamesdsp.activity.AeqSelectorActivity
+import me.timschneeberger.rootlessjamesdsp.activity.BlocklistActivity
 import me.timschneeberger.rootlessjamesdsp.adapter.GraphicEqNodeAdapter
+import me.timschneeberger.rootlessjamesdsp.contract.AutoEqSelectorContract
 import me.timschneeberger.rootlessjamesdsp.databinding.FragmentGraphicEqBinding
 import me.timschneeberger.rootlessjamesdsp.model.GraphicEqNode
 import me.timschneeberger.rootlessjamesdsp.model.GraphicEqNodeList
@@ -42,6 +45,14 @@ class GraphicEqualizerFragment : Fragment() {
             binding.reset.isEnabled = !value
             binding.autoeq.isEnabled = !value
             binding.editString.isEnabled = !value
+        }
+
+    private val autoEqSelectorLauncher =
+        registerForActivityResult(AutoEqSelectorContract()) { result ->
+            result?.let {
+                adapter.nodes.deserialize(it)
+                save()
+            }
         }
 
     override fun onCreateView(
@@ -120,8 +131,10 @@ class GraphicEqualizerFragment : Fragment() {
             editorDiscard()
         }
 
-        // TODO implement
-        binding.autoeq.isVisible = false
+        binding.autoeq.setOnClickListener {
+            editorDiscard()
+            autoEqSelectorLauncher.launch(0)
+        }
 
         // Load node data
         val nodes = GraphicEqNodeList()

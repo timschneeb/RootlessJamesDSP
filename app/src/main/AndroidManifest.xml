@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="me.timschneeberger.rootlessjamesdsp">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
@@ -73,6 +74,12 @@
             android:exported="false"
             android:label="@string/title_activity_geq"
             android:theme="@style/Theme.RootlessJamesDSP" />
+
+        <activity
+            android:name=".activity.AeqSelectorActivity"
+            android:exported="false"
+            android:theme="@style/Theme.RootlessJamesDSP"
+            android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name=".activity.OnboardingActivity"
