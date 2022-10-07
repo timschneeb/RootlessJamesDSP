@@ -4,6 +4,13 @@ A re-implementation of the system-wide JamesDSP audio processing engine for non-
 
 This app has several limitations that may be deal-breaking to some people; please read this whole document before using the app. See below for APK downloads.
 
+<p align="left">
+  <a href='https://play.google.com/store/apps/details?id=me.timschneeberger.rootlessjamesdsp&utm_source=github&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'> 
+    <img width="300" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/>
+  </a>
+</p>
+
+
 ## Limitations
 * Apps blocking internal audio capture remain unprocessed (e.g., Spotify, Google Chrome)
 * Apps using some types of HW-accelerated playback currently cause the audio processing service to stop itself (e.g., some Unity games)
@@ -42,5 +49,5 @@ The setup is very easy:
 5. You can now use Spotify with RootlessJamesDSP.
 
 ## Downloads
-APK files are available for download here: https://github.com/ThePBone/RootlessJamesDSP/releases
 
+This app is available for free on Google Play: [https://play.google.com/store/apps/details?id=me.timschneeberger.rootlessjamesdsp](https://play.google.com/store/apps/details?id=me.timschneeberger.rootlessjamesdsp&utm_source=github&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)
