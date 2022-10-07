@@ -42,8 +42,12 @@ Tested on:
 ## Spotify support patch
 You can only use Spotify with this application if you patch the Spotify app.
 The setup is very easy:
+
 1. Download and install the [ReVanced manager APK](https://github.com/revanced/revanced-manager/releases) 
 2. Install the unpatched Spotify app
+
+NOTE: Tested with Spotify version `8.7.48.1062` and `8.7.68.568`
+
 3. Open ReVanced Manager, select Spotify and enable the `disable-capture-restriction` patch.
 4. Start the patching process and install the patched APK once it is done.
 5. You can now use Spotify with RootlessJamesDSP.
