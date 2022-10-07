@@ -80,6 +80,9 @@ class AeqSelectorActivity : AppCompatActivity() {
             ?: arrayOf()
 
         val isLoadingOld = savedInstanceState?.getBoolean(STATE_IS_LOADING, false) ?: false
+        val isPartialOld = savedInstanceState?.getBoolean(STATE_IS_PARTIAL, false) ?: false
+        binding.partialResultsCard.isVisible = isPartialOld
+        binding.partialResultsCard.bodyText = getString(R.string.autoeq_partial_results_warning, initialResults.size)
 
         if(initialResults.isNotEmpty() || isLoadingOld) {
             hideKeyboard()
@@ -120,6 +123,7 @@ class AeqSelectorActivity : AppCompatActivity() {
         {
             putSerializable(STATE_RESULTS, adapter.results)
             putBoolean(STATE_IS_LOADING, isLoading)
+            putBoolean(STATE_IS_PARTIAL, binding.partialResultsCard.isVisible)
         })
     }
 
@@ -172,5 +176,6 @@ class AeqSelectorActivity : AppCompatActivity() {
     companion object {
         private const val STATE_RESULTS = "results"
         private const val STATE_IS_LOADING = "isLoading"
+        private const val STATE_IS_PARTIAL = "isPartial"
     }
 }
