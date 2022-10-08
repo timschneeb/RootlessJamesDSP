@@ -238,8 +238,11 @@ class MainActivity : AppCompatActivity() {
         unregisterLocalReceiver(broadcastReceiver)
         unregisterLocalReceiver(processorMessageReceiver)
 
-        if(processorService != null && processorServiceBound)
-            unbindService(processorServiceConnection)
+        try {
+            if (processorService != null && processorServiceBound)
+                unbindService(processorServiceConnection)
+        }
+        catch (_: Exception) {}
 
         processorService = null
         processorServiceBound = false
