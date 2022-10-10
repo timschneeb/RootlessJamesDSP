@@ -1,13 +1,42 @@
-# RootlessJamesDSP
+<h1 align="center">
+  <img alt="Icon" width="75" src="https://github.com/Audio4Linux/JDSP4Linux/blob/master/resources/icons/icon.png?raw=true">
+  <br>
+  RootlessJamesDSP
+  <br>
+</h1>
+<h4 align="center">System-wide JamesDSP implementation for non-rooted Android devices</h4>
+<p align="center">
+  <a href="https://github.com/ThePBone/RootlessJamesDSP/releases">
+  	<img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/ThePBone/RootlessJamesDSP">
+  </a>
+  <a href="https://github.com/ThePBone/RootlessJamesDSP/blob/master/LICENSE">
+      <img alt="License" src="https://img.shields.io/github/license/ThePBone/RootlessJamesDSP">
+  </a>
+</p>
+<p align="center">
+  <a href="#limitations">Limitations</a> •
+  <a href="#spotify-support-patch">Spotify patch</a> •
+  <a href="#download">Download</a> •
+  <a href="#credits">Credits</a>
+</p>
 
-A re-implementation of the system-wide JamesDSP audio processing engine for non-rooted Android devices. **Currently work-in-progress.**
-
-This app has several limitations that may be deal-breaking to some people; please read this whole document before using the app. See below for APK downloads.
-
-<p align="left">
+<p align="center">
   <a href='https://play.google.com/store/apps/details?id=me.timschneeberger.rootlessjamesdsp&utm_source=github&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'> 
     <img width="300" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/>
   </a>
+</p>
+
+<p align="center">
+This app uses <a href="https://github.com/james34602/JamesDSPManager">libjamesdsp</a> which is written by <a href="https://github.com/james34602">James Fung (@james34602)</a>.
+</p>
+
+<p align="center">
+    This app has several limitations that may be deal-breaking to some people; please read this whole document before using the app.</i>
+</p>
+
+<p align="center">
+   <img alt="Screenshot" width="300" src="img/screenshot1.png">
+   <img alt="Screenshot" width="300" src="img/screenshot7.png">
 </p>
 
 
@@ -55,3 +84,7 @@ NOTE: Tested with Spotify version `8.7.48.1062` and `8.7.68.568`
 ## Downloads
 
 This app is available for free on Google Play: [https://play.google.com/store/apps/details?id=me.timschneeberger.rootlessjamesdsp](https://play.google.com/store/apps/details?id=me.timschneeberger.rootlessjamesdsp&utm_source=github&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)
+
+## Credits
+
+* JamesDSP - [James Fung (@james34602)](https://github.com/james34602)
