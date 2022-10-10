@@ -16,7 +16,7 @@
 <p align="center">
   <a href="#limitations">Limitations</a> •
   <a href="#spotify-support-patch">Spotify patch</a> •
-  <a href="#download">Download</a> •
+  <a href="#downloads">Downloads</a> •
   <a href="#credits">Credits</a>
 </p>
 
