@@ -55,7 +55,15 @@ class DumpManager private constructor(val context: Context) {
 
     fun dumpSessions(): ISessionInfoDump? {
         val preferred = availableDumpMethods[activeDumpMethod]
-        var dump = preferred?.dump(context)
+        var dump: ISessionInfoDump? = null
+        try {
+            dump = preferred?.dump(context)
+        }
+        catch (ex: Exception) {
+            Timber.e("Exception raised while dumping session info using method ${activeDumpMethod.name} (id ${activeDumpMethod})")
+            Timber.e(ex)
+        }
+
         if(!allowFallback || (dump != null && dump.sessions.isNotEmpty()))
         {
             return dump
