@@ -17,6 +17,10 @@ class MutedSessionManager(private val context: Context) {
     private val changeCallbacks = mutableListOf<OnSessionChangeListener>()
     private var sessionLossListener: OnSessionLossListener? = null
     private var excludedUids = arrayOf<Int>()
+    private val excludedPackages = arrayOf(
+        context.packageName,
+        "com.google.android.googlequicksearchbox"
+    )
 
     fun destroy()
     {
@@ -50,8 +54,8 @@ class MutedSessionManager(private val context: Context) {
             val sid = it.key
             val data = it.value
             val name = context.packageManager.getNameForUid(it.value.uid)
-            if (data.uid == myUid() || name == context.packageName) {
-                Timber.tag(TAG).d("Skipped session $sid ($data)")
+            if (data.uid == myUid() || excludedPackages.contains(name)) {
+                Timber.tag(TAG).d("Skipped session $sid due to package name $name ($data)")
                 return@next
             }
             if (sid == 0) {
