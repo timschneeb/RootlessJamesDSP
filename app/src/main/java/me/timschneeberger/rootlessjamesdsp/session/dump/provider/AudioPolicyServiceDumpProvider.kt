@@ -59,7 +59,7 @@ class AudioPolicyServiceDumpProvider : ISessionDumpProvider {
         // Parse capture allow log
         val captureAllowLog = hashMapOf<String, Boolean>()
         captureAllowedRegex.findAll(dump).forEach regexLoop@{ it2 ->
-            val pkgName = it2.groups[2]?.value ?: return@regexLoop
+            val pkgName = it2.groups[2]?.value?.replace("shared:", "") ?: return@regexLoop
             val allowed = it2.groups[1]?.value?.trim()?.lowercase(Locale.ROOT) == "true"
             captureAllowLog[pkgName] = allowed
             if (!allowed) {
