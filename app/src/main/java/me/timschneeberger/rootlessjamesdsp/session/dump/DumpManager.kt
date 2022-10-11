@@ -88,7 +88,15 @@ class DumpManager private constructor(val context: Context) {
 
     fun dumpCaptureAllowlistLog(): ISessionPolicyInfoDump? {
         // Only AudioPolicyService contains this data
-        return (availableDumpMethods[Method.AudioPolicyService]?.dump(context) as? AudioPolicyServiceDump)
+        var dump: ISessionPolicyInfoDump? = null
+        try {
+            dump = (availableDumpMethods[Method.AudioPolicyService]?.dump(context) as? AudioPolicyServiceDump)
+        }
+        catch (ex: Exception) {
+            Timber.e("Exception raised while dumping allowlist info using method ${Method.AudioPolicyService.name}")
+            Timber.e(ex)
+        }
+        return dump
     }
 
     private fun loadFromPreferences(key: String){
