@@ -1,0 +1,209 @@
+desc: Dynamic Bass (based on ViperFX)
+author: VipersAudio, thepbone
+
+dBassGain:100<0,100,1>Bass strength (%)
+
+dX1:800<0,8000,1>Filter 1 Minimum frequency (Hz)
+dX2:6200<0,8000,1>Filter 1 Maximum frequency (Hz)
+dSideGainX:20<0,100,1>Filter 1 Side gain
+
+dY1:80<0,8000,1>Filter 2 Minimum frequency (Hz)
+dY2:140<0,8000,1>Filter 2 Maximum frequency (Hz)
+dSideGainY:0<0,100,1>Filter 2 Side gain
+
+// DYNSYS PRESET LIST             x1,  x2,  y1,y2, s1,s2
+//("Extreme Headphone (v2)",    ({140 ,6200,40,60 ,10,80}))
+//("High-end Headphone (v2)",   ({180 ,5800,55,80 ,10,70}))
+//("Common Headphone (v2)",     ({300 ,5600,60,105,10,50}))
+//("Low-end Headphone (v2)",    ({600 ,5400,60,105,10,20}))
+//("Common Earphone (v2)",      ({100 ,5600,40,80 ,50,50}))
+//("Extreme Headphone (v1)",    ({1200,6200,40,80 ,0 ,20}))
+//("High-end Headphone (v1)",   ({1000,6200,40,80 ,0 ,10}))
+//("Common Headphone (v1)",     ({800 ,6200,40,80 ,10,0 }))
+//("Common Earphone (v1)",      ({400 ,6200,40,80 ,10,0 }))
+//("Apple Earphone",            ({1200,6200,50,90 ,15,10}))
+//("Monster Earphone",          ({1000,6200,50,90 ,30,10}))
+//("Moto Earphone",             ({1100,6200,60,100,20,0 }))
+//("Philips Earphone",          ({1200,6200,50,100,10,50}))
+//("SHP2000",                   ({1200,6200,60,100,0 ,30}))
+//("SHP9000",                   ({1200,6200,40,80 ,0 ,30}))
+//("Unknown Type I",            ({1000,6200,60,100,0 ,0 }))
+//("Unknown Type II",           ({1000,6200,60,120,0 ,0 }))
+//("Unknown Type III",          ({1000,6200,80,140,0 ,0 }))
+//("Unknown Type IV",           ({800 ,6200,80,140,0 ,0 }))
+
+@init
+dBassGain = 100.00;
+dX1 = 800.00;
+dX2 = 6200.00;
+dSideGainX = 20.00;
+dY1 = 80.00;
+dY2 = 140.00;
+dSideGainY = 0.00;
+
+function LowPassFilter_Set(frequency qFactor)(
+    x = (frequency * 2.f * $PI) / srate;
+    sinX = sin(x);
+    y = sinX / (qFactor * 2.f);
+    cosX = cos(x);
+    z = (1.f - cosX) / 2.f;
+
+    _a0 = y + 1.f;
+    _a1 = cosX * -2.f;
+    _a2 = 1.f - y;
+    _b0 = z;
+    _b1 = 1.f - cosX;
+    _b2 = z;
+
+    this.y_2 = 0; this.y_1 = 0; this.x_2 = 0; this.x_1 = 0;
+    this.b0 = _b0 / _a0;
+    this.b1 = _b1 / _a0;
+    this.b2 = _b2 / _a0;
+    this.a1 = -_a1 / _a0;
+    this.a2 = -_a2 / _a0;
+);
+
+function LowPassFilter_ProcessSample(sample)(
+    out = sample * this.b0 + this.x_1 * this.b1 + this.x_2 * this.b2 + this.y_1 * this.a1 + this.y_2 * this.a2;
+    this.y_2 = this.y_1;
+    this.y_1 = out;
+    this.x_2 = this.x_1;
+    this.x_1 = sample;
+
+    out;
+);
+
+function PolesFilter_Set(lower_freq upper_freq) (
+    this.input0 = this.input1 = this.input2 = 0;
+    this.x0 = this.x1 = this.x2 = this.x3 = 0;
+    this.y0 = this.y1 = this.y2 = this.y3 = 0;
+
+    this.lower_angle = (lower_freq * $PI / srate);
+    this.upper_angle = (upper_freq * $PI / srate);
+);
+
+function PolesFilter_ProcessSample(sample) (
+    oldestSampleIn = this.input2;
+    this.input2 = this.input1;
+    this.input1 = this.input0;
+    this.input0 = sample;
+
+    this.x0 += this.lower_angle * (sample - this.x0);
+    this.x1 += this.lower_angle * (this.x0 - this.x1);
+    this.x2 += this.lower_angle * (this.x1 - this.x2);
+    this.x3 += this.lower_angle * (this.x2 - this.x3);
+
+    this.y0 += this.upper_angle * (sample - this.y0);
+    this.y1 += this.upper_angle * (this.y0 - this.y1);
+    this.y2 += this.upper_angle * (this.y1 - this.y2);
+    this.y3 += this.upper_angle * (this.y2 - this.y3);
+
+    this.out0 = this.x3;
+    this.out1 = oldestSampleIn - this.y3;
+    this.out2 = this.y3 - this.x3;
+);
+
+function PolesFilter_GetProcessed0() (
+    this.out0;
+);
+function PolesFilter_GetProcessed1() (
+    this.out1;
+);
+function PolesFilter_GetProcessed2() (
+    this.out2;
+);
+
+function DynamicBass_Init()(
+    this.qPeak = 0;
+    this.bassGain = 1.f;
+    this.sideGainX = 1.f;
+    this.sideGainY = 1.f;
+    this.lowFreqX = 120;
+    this.highFreqX = 80;
+    this.lowFreqY = 40;
+    this.highFreqY = srate / 4.f;
+
+    this.filterXL.PolesFilter_Set(this.lowFreqX, this.highFreqX);
+    this.filterXR.PolesFilter_Set(this.lowFreqX, this.highFreqX);
+    this.filterYL.PolesFilter_Set(this.lowFreqY, this.highFreqY);
+    this.filterYR.PolesFilter_Set(this.lowFreqY, this.highFreqY);
+    this.lowPass.LowPassFilter_Set(55.f, this.qPeak / 666.f + 0.5f);
+);
+
+function DynamicBass_ProcessSamples(left right) (
+
+    this.lowFreqX <= 120 ? (
+        avg = this.lowPass.LowPassFilter_ProcessSample(left + right);
+        this.outSampleL = left + avg;
+        this.outSampleR = right + avg;
+    ) : (
+
+        this.filterXL.PolesFilter_ProcessSample(left);
+        this.filterXR.PolesFilter_ProcessSample(right);
+
+        xL0 = this.filterXL.PolesFilter_GetProcessed0(); xR0 = this.filterXR.PolesFilter_GetProcessed0();
+        xL1 = this.filterXL.PolesFilter_GetProcessed1(); xR1 = this.filterXR.PolesFilter_GetProcessed1();
+        xL2 = this.filterXL.PolesFilter_GetProcessed2(); xR2 = this.filterXR.PolesFilter_GetProcessed2();
+
+        this.filterYL.PolesFilter_ProcessSample(this.bassGain * xL0);
+        this.filterYR.PolesFilter_ProcessSample(this.bassGain * xR0);
+
+        yL0 = this.filterYL.PolesFilter_GetProcessed0(); yR0 = this.filterYR.PolesFilter_GetProcessed0();
+        yL1 = this.filterYL.PolesFilter_GetProcessed1(); yR1 = this.filterYR.PolesFilter_GetProcessed1();
+        yL2 = this.filterYL.PolesFilter_GetProcessed2(); yR2 = this.filterYR.PolesFilter_GetProcessed2();
+
+        this.outSampleL = xL1 + yL2 + this.sideGainX * yL1 + this.sideGainY * yL0 + xL2;
+        this.outSampleR = xR1 + yR2 + this.sideGainX * yR1 + this.sideGainY * yR0 + xR2;
+    );
+);
+
+function DynamicBass_SetBassGain(gain) (
+    this.bassGain = (gain * 20 + 100) * 0.01;
+    this.qPeak = (this.bassGain - 1.f) / 20.f * 1600.f;
+    this.qPeak > 1600.f ? (
+        this.qPeak = 1600.f;
+    );
+    this.lowPass.LowPassFilter_Set(55.f, this.qPeak / 666.f + 0.5f);
+);
+
+function DynamicBass_SetSideGain(gainX gainY) (
+    this.sideGainX = gainX * 0.01;
+    this.sideGainY = gainY * 0.01;
+);
+
+function DynamicBass_SetFilterXPassFrequency(low high) (
+    this.lowFreqX = low;
+    this.highFreqX = high;
+
+    this.filterXL.PolesFilter_Set(low, high);
+    this.filterXR.PolesFilter_Set(low, high);
+    this.lowPass.LowPassFilter_Set(55.f, this.qPeak / 666.f + 0.5f);
+);
+
+function DynamicBass_SetFilterYPassFrequency(low high) (
+    this.lowFreqY = low;
+    this.highFreqY = high;
+
+    this.filterYL.PolesFilter_Set(low, high);
+    this.filterYR.PolesFilter_Set(low, high);
+    this.lowPass.LowPassFilter_Set(55.f, this.qPeak / 666.f + 0.5f);
+);
+
+function DynamicBass_GetProcessedLeft() (
+    this.outSampleL;
+);
+
+function DynamicBass_GetProcessedRight() (
+    this.outSampleR;
+);
+
+bass.DynamicBass_Init();
+bass.DynamicBass_SetBassGain(dBassGain); // 0-100%
+bass.DynamicBass_SetFilterXPassFrequency(dX1, dX2);
+bass.DynamicBass_SetFilterYPassFrequency(dY1, dY2);
+bass.DynamicBass_SetSideGain(dSideGainX, dSideGainY);
+
+@sample
+bass.DynamicBass_ProcessSamples(spl0, spl1);
+spl0 = bass.DynamicBass_GetProcessedLeft();
+spl1 = bass.DynamicBass_GetProcessedRight();
