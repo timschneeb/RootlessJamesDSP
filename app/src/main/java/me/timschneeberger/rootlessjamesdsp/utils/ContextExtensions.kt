@@ -198,39 +198,42 @@ object ContextExtensions {
             return getAppName(it).toString()
         }
 
-        try {
-            packageManager.getPackagesForUid(uid)?.forEach { pkg ->
-                getAppName(pkg)?.let {
-                    return it.toString()
-                }
-            }
-        }
-        catch (_: SecurityException) {}
-        catch (ex: Exception) { Timber.w(ex) }
+        val pkg = getPackageNameFromUid(uid)
+        if(pkg != null)
+            return pkg
+
         return null
     }
 
     fun Context.getAppNameFromUidSafe(uid: Int): String {
-        val reserved = resolveReservedUid(uid)
-        reserved?.let {
-            return getAppName(it).toString()
-        }
+        val name = getAppNameFromUid(uid)
+        if(name != null)
+            return name
 
+        return "UID $uid"
+    }
+
+    fun Context.getPackageNameFromUid(uid: Int): String? {
+
+        var pkgName: String? = null
         try {
-            val pkgs = packageManager.getPackagesForUid(uid)
-            pkgs?.forEach { pkg ->
-                getAppName(pkg)?.let {
-                    return it.toString()
-                }
-            }
-            pkgs?.firstOrNull()?.let {
-                return it
-            }
+            pkgName = packageManager.getPackagesForUid(uid)?.firstOrNull()
         }
         catch (_: SecurityException) {}
         catch (ex: Exception) { Timber.w(ex) }
-        return "UID $uid"
+
+        if(pkgName != null)
+            return pkgName
+
+        try {
+            pkgName = packageManager.getNameForUid(uid)
+        }
+        catch (_: SecurityException) {}
+        catch (ex: Exception) { Timber.w(ex) }
+
+        return pkgName
     }
+
 
     fun Context.getAppIcon(packageName: String): Drawable? {
         return try {

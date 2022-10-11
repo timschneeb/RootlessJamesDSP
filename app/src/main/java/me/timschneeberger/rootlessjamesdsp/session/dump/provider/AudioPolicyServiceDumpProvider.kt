@@ -5,6 +5,7 @@ import me.timschneeberger.rootlessjamesdsp.session.dump.data.AudioPolicyServiceD
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.utils.DumpUtils
 import me.timschneeberger.rootlessjamesdsp.model.AudioSessionEntry
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getPackageNameFromUid
 import timber.log.Timber
 import java.util.*
 
@@ -45,9 +46,7 @@ class AudioPolicyServiceDumpProvider : ISessionDumpProvider {
                     return@next
                 }
 
-                val pkg = context.packageManager.getNameForUid(uid)
-                    ?: context.packageManager.getPackagesForUid(uid)?.firstOrNull()
-                    ?: uid.toString()
+                val pkg = context.getPackageNameFromUid(uid) ?: uid.toString()
                 sessions[sid] = AudioSessionEntry(uid, pkg, usage, content)
                 Timber.tag(TAG).v("Found session id $sid (uid $uid; usage $usage; content $content; pkg $pkg)")
 

@@ -6,6 +6,8 @@ import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.utils.AudioFlingerServiceDumpUtils
 import me.timschneeberger.rootlessjamesdsp.session.dump.utils.DumpUtils
 import me.timschneeberger.rootlessjamesdsp.model.AudioSessionEntry
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppNameFromUid
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getPackageNameFromUid
 import timber.log.Timber
 import java.lang.Exception
 
@@ -93,9 +95,8 @@ class AudioServiceDumpProvider : ISessionDumpProvider {
                     Timber.tag(TAG).e("Failed to determine session id for p/uid: $pid/$uid (usage=$usage; content=$content)")
                     return@next
                 }
-                val pkg = context.packageManager.getPackagesForUid(uid)?.firstOrNull()
-                    ?: context.packageManager.getNameForUid(uid)
-                    ?: uid.toString()
+
+                val pkg = context.getPackageNameFromUid(uid) ?: uid.toString()
                 sessions[sid] = AudioSessionEntry(uid, pkg, usage, content)
             } catch (ex: NumberFormatException) {
                 Timber.tag(TAG).e("Failed to parse match")
