@@ -9,6 +9,7 @@ import me.timschneeberger.rootlessjamesdsp.session.AudioSessionManager
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.AudioPolicyServiceDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionPolicyInfoDump
+import me.timschneeberger.rootlessjamesdsp.session.dump.provider.AudioFlingerServiceDumpProvider
 import me.timschneeberger.rootlessjamesdsp.session.dump.provider.AudioPolicyServiceDumpProvider
 import me.timschneeberger.rootlessjamesdsp.session.dump.provider.AudioServiceDumpProvider
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
@@ -19,7 +20,8 @@ import timber.log.Timber
 class DumpManager constructor(val context: Context) {
     enum class Method (val value: Int) {
         AudioPolicyService(0),
-        AudioService(1);
+        AudioService(1),
+        AudioFlingerService(2); /* Only used for debugging */
 
         companion object {
             fun fromInt(value: Int) = values().first { it.value == value }
@@ -33,8 +35,10 @@ class DumpManager constructor(val context: Context) {
     private val dumpChangeCallbacks = mutableListOf<OnDumpMethodChangeListener>()
     private val availableDumpMethods = mapOf(
         Method.AudioPolicyService to AudioPolicyServiceDumpProvider(),
-        Method.AudioService to AudioServiceDumpProvider()
-    )
+        Method.AudioService to AudioServiceDumpProvider(),
+
+
+        )
 
     private var activeDumpMethod: Method = Method.AudioPolicyService
         set(value) {
@@ -54,12 +58,13 @@ class DumpManager constructor(val context: Context) {
     fun dumpSessions(): ISessionInfoDump? {
         val preferred = availableDumpMethods[activeDumpMethod]
         var dump: ISessionInfoDump? = null
-        try {
-            dump = preferred?.dump(context)
-        }
-        catch (ex: Exception) {
-            Timber.e("Exception raised while dumping session info using method ${activeDumpMethod.name} (id ${activeDumpMethod})")
-            Timber.e(ex)
+        if(preferred is ISessionInfoDump) {
+            try {
+                dump = preferred.dump(context)
+            } catch (ex: Exception) {
+                Timber.e("Exception raised while dumping session info using method ${activeDumpMethod.name} (id ${activeDumpMethod})")
+                Timber.e(ex)
+            }
         }
 
         if(!allowFallback || (dump != null && dump.sessions.isNotEmpty()))
@@ -68,15 +73,17 @@ class DumpManager constructor(val context: Context) {
         }
 
         availableDumpMethods.forEach {
-            Timber.d("Falling back to method: ${it.key.name}")
+            if(it.value is ISessionInfoDump) {
+                Timber.d("Falling back to method: ${it.key.name}")
 
-            if(it.key != activeDumpMethod)
-            {
-                dump = it.value.dump(context)
-            }
-            if(dump != null && dump!!.sessions.isNotEmpty())
-            {
-                return dump
+                if(it.key != activeDumpMethod)
+                {
+                    dump = it.value.dump(context)
+                }
+                if(dump != null && dump!!.sessions.isNotEmpty())
+                {
+                    return dump
+                }
             }
         }
 

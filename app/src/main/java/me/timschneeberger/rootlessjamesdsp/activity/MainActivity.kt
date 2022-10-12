@@ -133,6 +133,7 @@ class MainActivity : BaseActivity() {
             onboarding.putExtra(OnboardingActivity.EXTRA_FIX_PERMS, !firstBoot)
             startActivity(onboarding)
             this.finish()
+            return
         }
 
         menuInflater.inflate(R.menu.menu_main_bottom_left, binding.leftMenu.menu)

@@ -7,6 +7,7 @@ import android.content.pm.PackageManager.PERMISSION_DENIED
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.os.Build
 import android.os.Bundle
+import android.os.Process.myUid
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -372,11 +373,26 @@ class OnboardingFragment : Fragment() {
         // If not, use Shizuku to grant it if connected
         if(shizukuAlive && Shizuku.checkSelfPermission() == PERMISSION_GRANTED) {
             val pkg = requireContext().packageName
+            val uid = myUid()
             Timber.tag(TAG)
                 .d("Granting $DUMP_PERM via Shizuku (uid ${Shizuku.getUid()}) for $pkg")
 
             // Grant DUMP as system
             ShizukuSystemServerApi.PermissionManager_grantRuntimePermission(pkg, DUMP_PERM, UserHandle.USER_SYSTEM)
+            try {
+                val result = ShizukuSystemServerApi.AppOpsService_setMode(
+                    ShizukuSystemServerApi.APP_OPS_OP_PROJECT_MEDIA,
+                    uid,
+                    pkg,
+                    ShizukuSystemServerApi.APP_OPS_MODE_ALLOW
+                )
+                if(!result)
+                    Timber.e("AppOpsService_setMode failed")
+            }
+            catch (ex: Exception) {
+                Timber.e("AppOpsService_setMode threw an exception")
+                Timber.e(ex)
+            }
 
             // Re-check permission
             return if (requireContext().checkSelfPermission(DUMP_PERM) == PERMISSION_GRANTED) {

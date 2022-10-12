@@ -289,7 +289,6 @@
     <string name="appearance_navigation_title">Navigation</string>
     <string name="appearance_nav_hide">Hide navigation bar on scroll</string>
 
-
     <!-- Theme names -->
     <string name="theme_default">Default</string>
     <string name="theme_monet">Dynamic</string>

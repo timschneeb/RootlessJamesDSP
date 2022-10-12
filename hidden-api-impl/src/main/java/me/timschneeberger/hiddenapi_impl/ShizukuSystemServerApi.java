@@ -1,10 +1,16 @@
 package me.timschneeberger.hiddenapi_impl;
 
+import android.app.AppOpsManager;
+import android.app.AppOpsManagerHidden;
 import android.media.IAudioPolicyService;
 import android.os.IBinder;
 import android.permission.IPermissionManager;
 import android.os.RemoteException;
 import android.util.Log;
+
+import com.android.internal.app.IAppOpsService;
+
+import java.util.Objects;
 
 import rikka.shizuku.ShizukuBinderWrapper;
 import rikka.shizuku.SystemServiceHelper;
@@ -20,6 +26,15 @@ public class ShizukuSystemServerApi {
         }
     };
 
+    public static final Singleton<IAppOpsService> APP_OPS_SERVICE = new Singleton<IAppOpsService>() {
+        @Override
+        protected IAppOpsService create() {
+            IBinder service = SystemServiceHelper.getSystemService("appops");
+            ShizukuBinderWrapper wrapper = new ShizukuBinderWrapper(service);
+            return IAppOpsService.Stub.asInterface(wrapper);
+        }
+    };
+
     public static final Singleton<IAudioPolicyService> AUDIO_POLICY_SERVICE = new Singleton<IAudioPolicyService>() {
         @Override
         protected IAudioPolicyService create() {
@@ -31,6 +46,51 @@ public class ShizukuSystemServerApi {
 
     public static void PermissionManager_grantRuntimePermission(String packageName, String permissionName, int userId) throws RemoteException {
         PERMISSION_MANAGER.get().grantRuntimePermission(packageName, permissionName, userId);
+    }
+
+    public static final String APP_OPS_MODE_ALLOW = "allow";
+    public static final String APP_OPS_MODE_IGNORE = "ignore";
+    public static final String APP_OPS_MODE_DENY = "deny";
+    public static final String APP_OPS_MODE_DEFAULT = "default";
+    public static final String APP_OPS_MODE_FOREGROUND = "foreground";
+
+    public static final String APP_OPS_OP_PROJECT_MEDIA = "PROJECT_MEDIA";
+
+    public static boolean AppOpsService_setMode(String op, int packageUid, String packageName, String mode) throws RemoteException {
+        int index = -1;
+        for(int i = 0; i <= 10; i++) {
+            if(mode.equals(AppOpsManagerHidden.modeToName(i))) {
+                index = i;
+                break;
+            }
+        }
+
+        int opIndex = -1;
+        try {
+            opIndex = AppOpsManagerHidden.strOpToOp(op);
+        }
+        catch(IllegalArgumentException ignored) {}
+        try {
+            opIndex = AppOpsManagerHidden.strDebugOpToOp(op);
+        }
+        catch(IllegalArgumentException ignored) {}
+
+        Log.e("AppOps", String.valueOf(opIndex));
+        Log.e("AppOps", op);
+        Log.e("AppOps", String.valueOf(index));
+        Log.e("AppOps", mode);
+
+        if(index < 0 || opIndex < 0)
+            return false;
+        Log.e("AppOps", "SET MODE");
+        APP_OPS_SERVICE.get().setMode(
+                opIndex,
+                packageUid,
+                packageName,
+                index
+        );
+
+        return true;
     }
 
     public static void AudioPolicyService_setAllowedCapturePolicy(int uid, CapturePolicy capturePolicy) {
