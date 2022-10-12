@@ -101,10 +101,7 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
-        Timber.e("onSharedPreferenceChanged")
         sharedPreferences ?: return
-
-        Timber.e(key)
 
         if(key == getString(R.string.key_appearance_theme_mode)) {
             AppCompatDelegate.setDefaultNightMode(

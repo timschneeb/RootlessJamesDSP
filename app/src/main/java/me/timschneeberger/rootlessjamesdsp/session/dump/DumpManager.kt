@@ -9,9 +9,7 @@ import me.timschneeberger.rootlessjamesdsp.session.AudioSessionManager
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.AudioPolicyServiceDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionPolicyInfoDump
-import me.timschneeberger.rootlessjamesdsp.session.dump.provider.AudioFlingerServiceDumpProvider
-import me.timschneeberger.rootlessjamesdsp.session.dump.provider.AudioPolicyServiceDumpProvider
-import me.timschneeberger.rootlessjamesdsp.session.dump.provider.AudioServiceDumpProvider
+import me.timschneeberger.rootlessjamesdsp.session.dump.provider.*
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getVersionCode
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getVersionName
@@ -36,8 +34,7 @@ class DumpManager constructor(val context: Context) {
     private val availableDumpMethods = mapOf(
         Method.AudioPolicyService to AudioPolicyServiceDumpProvider(),
         Method.AudioService to AudioServiceDumpProvider(),
-
-
+        Method.AudioFlingerService to AudioFlingerServiceDumpProvider()
         )
 
     private var activeDumpMethod: Method = Method.AudioPolicyService
@@ -58,14 +55,12 @@ class DumpManager constructor(val context: Context) {
     fun dumpSessions(): ISessionInfoDump? {
         val preferred = availableDumpMethods[activeDumpMethod]
         var dump: ISessionInfoDump? = null
-        if(preferred is ISessionInfoDump) {
             try {
-                dump = preferred.dump(context)
+                dump = preferred?.dump(context)
             } catch (ex: Exception) {
                 Timber.e("Exception raised while dumping session info using method ${activeDumpMethod.name} (id ${activeDumpMethod})")
                 Timber.e(ex)
             }
-        }
 
         if(!allowFallback || (dump != null && dump.sessions.isNotEmpty()))
         {
@@ -73,18 +68,16 @@ class DumpManager constructor(val context: Context) {
         }
 
         availableDumpMethods.forEach {
-            if(it.value is ISessionInfoDump) {
                 Timber.d("Falling back to method: ${it.key.name}")
 
                 if(it.key != activeDumpMethod)
                 {
-                    dump = it.value.dump(context)
+                    dump = (it.value as ISessionDumpProvider).dump(context)
                 }
                 if(dump != null && dump!!.sessions.isNotEmpty())
                 {
                     return dump
                 }
-            }
         }
 
         Timber.e("Failed to find session info using any method")
@@ -95,7 +88,7 @@ class DumpManager constructor(val context: Context) {
         // Only AudioPolicyService contains this data
         var dump: ISessionPolicyInfoDump? = null
         try {
-            dump = (availableDumpMethods[Method.AudioPolicyService]?.dump(context) as? AudioPolicyServiceDump)
+            dump = availableDumpMethods[Method.AudioPolicyService]?.dump(context) as? ISessionPolicyInfoDump
         }
         catch (ex: Exception) {
             Timber.e("Exception raised while dumping allowlist info using method ${Method.AudioPolicyService.name}")

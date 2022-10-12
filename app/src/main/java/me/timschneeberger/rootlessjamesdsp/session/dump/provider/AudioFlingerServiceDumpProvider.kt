@@ -9,9 +9,13 @@ import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getPackageNam
 import timber.log.Timber
 import java.util.*
 
-class AudioFlingerServiceDumpProvider : IDumpProvider {
+class AudioFlingerServiceDumpProvider : ISessionDumpProvider {
 
-     override fun dumpString(context: Context): String {
+    override fun dump(context: Context): ISessionInfoDump? {
+        return null
+    }
+
+    override fun dumpString(context: Context): String {
         val dump = DumpUtils.dumpAll(context, TARGET_SERVICE)
         val sb = StringBuilder("=====> $TARGET_SERVICE raw dump\n")
         sb.append(dump)
