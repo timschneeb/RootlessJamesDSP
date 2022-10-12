@@ -8,7 +8,7 @@ import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.ActivityLiveprogParamsBinding
 import me.timschneeberger.rootlessjamesdsp.fragment.LiveprogParamsFragment
 
-class LiveprogParamsActivity : AppCompatActivity() {
+class LiveprogParamsActivity : BaseActivity() {
     private var showReset = false
     private var enableReset = false
 

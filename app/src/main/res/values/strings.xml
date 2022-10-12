@@ -277,6 +277,28 @@
     <string name="credits_project_play_page_summary">Search for new updates</string>
     <string name="credits_version">Application version</string>
     <string name="credits_build_info">Build info</string>
+    <string name="appearance_section_header">Appearance</string>
+    <string name="appearance_summary">App theme, pure black dark mode</string>
+    <string name="appearance_title">Theme</string>
+    <string name="appearance_theme_mode">Dark mode</string>
+    <string name="appearance_theme_mode_default">Follow system theme</string>
+    <string name="appearance_theme_mode_light">Off</string>
+    <string name="appearance_theme_mode_dark">On</string>
+    <string name="appearance_pure_black_mode">Pure black dark mode</string>
+    <string name="appearance_app_theme">App theme</string>
+
+    <!-- Theme names -->
+    <string name="theme_default">Default</string>
+    <string name="theme_monet">Dynamic</string>
+    <string name="theme_greenapple">Green Apple</string>
+    <string name="theme_lavender">Lavender</string>
+    <string name="theme_midnightdusk">Midnight Dusk</string>
+    <string name="theme_strawberrydaiquiri">Strawberry Daiquiri</string>
+    <string name="theme_tako">Tako</string>
+    <string name="theme_tealturquoise">Teal &amp; Turquoise</string>
+    <string name="theme_yinyang">Yin &amp; Yang</string>
+    <string name="theme_yotsuba">Yotsuba</string>
+    <string name="theme_tidalwave">Tidal Wave</string>
 
     <!-- File library preference -->
     <string name="filelibrary_hint_tap_and_hold">Tap and hold any item for more options</string>

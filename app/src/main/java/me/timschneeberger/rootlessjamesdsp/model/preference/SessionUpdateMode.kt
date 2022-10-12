@@ -1,4 +1,4 @@
-package me.timschneeberger.rootlessjamesdsp.model
+package me.timschneeberger.rootlessjamesdsp.model.preference
 
 enum class SessionUpdateMode(val value: Int) {
     Listener(0),

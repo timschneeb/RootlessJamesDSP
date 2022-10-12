@@ -1,10 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.RootlessJamesDSP" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
-        <item name="materialSwitchStyle">@style/Widget.Material3.CompoundButton.MaterialSwitch</item>
-        <item name="alertDialogTheme">@style/AppTheme.AlertDialogTheme</item>
-        <item name="materialCardViewStyle">@style/Widget.Material3.CardView.Elevated</item>
+    <style name="Theme.RootlessJamesDSP" parent="Base.Theme.RootlessJamesDSP" />
+
+    <style name="ThemeOverlay.RootlessJamesDSP.Amoled" parent="">
+        <!-- Theme Colors -->
+        <item name="colorSurface">@color/surface_amoled</item>
+        <item name="android:colorBackground">@color/background_amoled</item>
     </style>
+
 </resources>

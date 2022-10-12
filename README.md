@@ -88,3 +88,4 @@ This app is available for free on Google Play: [https://play.google.com/store/ap
 ## Credits
 
 * JamesDSP - [James Fung (@james34602)](https://github.com/james34602)
+* Theming system based on Tachiyomi

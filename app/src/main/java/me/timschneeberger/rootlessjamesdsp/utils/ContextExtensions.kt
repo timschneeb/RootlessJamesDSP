@@ -3,6 +3,8 @@ package me.timschneeberger.rootlessjamesdsp.utils
 import android.app.Activity
 import android.content.*
 import android.content.pm.PackageManager
+import android.content.res.Resources
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.inputmethodservice.InputMethodService
 import android.net.Uri
@@ -14,21 +16,54 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
+import androidx.annotation.AttrRes
+import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
+import androidx.core.graphics.alpha
+import androidx.core.graphics.blue
+import androidx.core.graphics.green
+import androidx.core.graphics.red
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.DialogTextinputBinding
 import timber.log.Timber
+import kotlin.math.roundToInt
 
 
 object ContextExtensions {
-    fun Context.dpToPx(value: Int): Int {
-        return TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP,
-            value.toFloat(), resources.displayMetrics).toInt()
+    /**
+     * Converts to dp.
+     */
+    val Int.pxToDp: Int
+        get() = (this / Resources.getSystem().displayMetrics.density).toInt()
+
+    /**
+     * Converts to px.
+     */
+    val Int.dpToPx: Int
+        get() = (this * Resources.getSystem().displayMetrics.density).toInt()
+
+    /**
+     * Returns the color for the given attribute.
+     *
+     * @param resource the attribute.
+     * @param alphaFactor the alpha number [0,1].
+     */
+    @ColorInt
+    fun Context.getResourceColor(@AttrRes resource: Int, alphaFactor: Float = 1f): Int {
+        val typedArray = obtainStyledAttributes(intArrayOf(resource))
+        val color = typedArray.getColor(0, 0)
+        typedArray.recycle()
+
+        if (alphaFactor < 1f) {
+            val alpha = (color.alpha * alphaFactor).roundToInt()
+            return Color.argb(alpha, color.red, color.green, color.blue)
+        }
+
+        return color
     }
 
     fun Context.openPlayStoreApp(pkgName:String?){

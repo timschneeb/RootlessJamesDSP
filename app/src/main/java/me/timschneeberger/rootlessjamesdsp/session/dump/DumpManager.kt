@@ -14,11 +14,9 @@ import me.timschneeberger.rootlessjamesdsp.session.dump.provider.AudioServiceDum
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getVersionCode
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getVersionName
-import me.timschneeberger.rootlessjamesdsp.utils.SingletonHolder
 import timber.log.Timber
-import java.io.File
 
-class DumpManager private constructor(val context: Context) {
+class DumpManager constructor(val context: Context) {
     enum class Method (val value: Int) {
         AudioPolicyService(0),
         AudioService(1);
@@ -38,12 +36,12 @@ class DumpManager private constructor(val context: Context) {
         Method.AudioService to AudioServiceDumpProvider()
     )
 
-    var activeDumpMethod: Method = Method.AudioPolicyService
+    private var activeDumpMethod: Method = Method.AudioPolicyService
         set(value) {
             field = value
             dumpChangeCallbacks.forEach { it.onDumpMethodChange(value) }
         }
-    var allowFallback: Boolean = true
+    private var allowFallback: Boolean = true
 
     init {
         loadFromPreferences(context.getString(R.string.key_session_detection_method))
@@ -70,7 +68,7 @@ class DumpManager private constructor(val context: Context) {
         }
 
         availableDumpMethods.forEach {
-            Timber.tag(TAG).d("Falling back to method: ${it.key.name}")
+            Timber.d("Falling back to method: ${it.key.name}")
 
             if(it.key != activeDumpMethod)
             {
@@ -82,7 +80,7 @@ class DumpManager private constructor(val context: Context) {
             }
         }
 
-        Timber.tag(TAG).e("Failed to find session info using any method")
+        Timber.e("Failed to find session info using any method")
         return null
     }
 
@@ -105,7 +103,7 @@ class DumpManager private constructor(val context: Context) {
                 val method =
                     Method.fromInt(sharedPreferences.getString(key, "0")?.toIntOrNull() ?: 0)
                 activeDumpMethod = method
-                Timber.tag(AudioSessionManager.TAG).d("Session detection method set to ${method.name}")
+                Timber.d("Session detection method set to ${method.name}")
             }
         }
     }
@@ -153,9 +151,5 @@ class DumpManager private constructor(val context: Context) {
 
     interface OnDumpMethodChangeListener {
         fun onDumpMethodChange(method: Method)
-    }
-
-    companion object : SingletonHolder<DumpManager, Context>(::DumpManager){
-        const val TAG = "DumpManager"
     }
 }

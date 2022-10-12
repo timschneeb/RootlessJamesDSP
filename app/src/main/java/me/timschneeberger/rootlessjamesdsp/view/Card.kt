@@ -77,7 +77,7 @@ class Card @JvmOverloads constructor(
 
         val iconCentered = a.getBoolean(R.styleable.Card_iconCentered, false)
         val iconParams = LayoutParams(binding.icon.layoutParams)
-        iconParams.setMargins(0, 0, context.dpToPx(14), 0)
+        iconParams.setMargins(0, 0, 14.dpToPx, 0)
         iconParams.gravity = if(iconCentered) Gravity.CENTER_VERTICAL else Gravity.TOP
         binding.icon.layoutParams = iconParams
 

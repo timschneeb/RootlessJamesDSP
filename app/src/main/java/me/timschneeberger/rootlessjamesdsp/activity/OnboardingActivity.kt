@@ -9,7 +9,7 @@ import me.timschneeberger.rootlessjamesdsp.fragment.OnboardingFragment
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
 
 
-class OnboardingActivity : AppCompatActivity(){
+class OnboardingActivity : BaseActivity(){
     private lateinit var binding: ActivityOnboardingBinding
     private lateinit var fragment: OnboardingFragment
 

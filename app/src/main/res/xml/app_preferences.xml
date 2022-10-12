@@ -1,5 +1,10 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Preference
+        app:title="@string/appearance_section_header"
+        app:summary="@string/appearance_summary"
+        app:icon="@drawable/ic_twotone_color_lens_24dp"
+        app:fragment="me.timschneeberger.rootlessjamesdsp.fragment.SettingsAppearanceFragment" />
 
     <Preference
         app:title="@string/audio_format_header"

@@ -16,22 +16,27 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.session.dump.DumpManager
-import me.timschneeberger.rootlessjamesdsp.model.SessionUpdateMode
+import me.timschneeberger.rootlessjamesdsp.model.preference.SessionUpdateMode
 import me.timschneeberger.rootlessjamesdsp.service.NotificationListenerService
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionPolicyInfoDump
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.unregisterLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 import timber.log.Timber
 
 
 class AudioSessionManager(val context: Context) : DumpManager.OnDumpMethodChangeListener,
-    BroadcastReceiver(), MediaSessionManager.OnActiveSessionsChangedListener
+    BroadcastReceiver(), MediaSessionManager.OnActiveSessionsChangedListener, KoinComponent
 {
     // System services
     private val audioManager = SystemServices.get(context, AudioManager::class.java)
     private val sessionManager = SystemServices.get(context, MediaSessionManager::class.java)
+
+    // Session dump manager
+    private val dumpManager: DumpManager by inject()
 
     // Session polling settings
     private var sessionUpdateMode: SessionUpdateMode = SessionUpdateMode.Listener
@@ -65,13 +70,13 @@ class AudioSessionManager(val context: Context) : DumpManager.OnDumpMethodChange
             override fun onPlaybackConfigChanged(configs: MutableList<AudioPlaybackConfiguration>?) {
                 super.onPlaybackConfigChanged(configs)
 
-                Timber.tag(TAG).d("Playback config changed")
+                Timber.d("Playback config changed")
                 pollOnce(false)
             }
         }
 
         // Register callbacks
-        DumpManager.get(context).registerOnDumpMethodChangeListener(this)
+        dumpManager.registerOnDumpMethodChangeListener(this)
         audioManager.registerAudioPlaybackCallback(audioPlaybackCallback, Handler(Looper.getMainLooper()))
         context.registerLocalReceiver(this, IntentFilter(Constants.ACTION_SESSION_CHANGED))
         installNotificationListenerService()
@@ -88,7 +93,7 @@ class AudioSessionManager(val context: Context) : DumpManager.OnDumpMethodChange
 
     fun destroy()
     {
-        DumpManager.get(context).unregisterOnDumpMethodChangeListener(this)
+        dumpManager.unregisterOnDumpMethodChangeListener(this)
 
         audioManager.unregisterAudioPlaybackCallback(audioPlaybackCallback)
         sessionManager.removeOnActiveSessionsChangedListener(this)
@@ -108,13 +113,13 @@ class AudioSessionManager(val context: Context) : DumpManager.OnDumpMethodChange
                         SessionUpdateMode.ContinuousPolling
                     else
                         SessionUpdateMode.Listener
-                Timber.tag(TAG).d("Session update mode set to ${sessionUpdateMode.name}")
+                Timber.d("Session update mode set to ${sessionUpdateMode.name}")
             }
             context.getString(R.string.key_session_continuous_polling_rate) -> {
                 pollingTimeout = sharedPreferences.getString(key, "3000")?.toLongOrNull() ?: 3000L
                 continuousPollingJob?.cancel()
                 updatePollingMode()
-                Timber.tag(TAG).d("Session polling interval set to ${pollingTimeout}ms")
+                Timber.d("Session polling interval set to ${pollingTimeout}ms")
             }
         }
     }
@@ -122,7 +127,7 @@ class AudioSessionManager(val context: Context) : DumpManager.OnDumpMethodChange
     private fun installNotificationListenerService() {
         val hasPermission = NotificationManagerCompat.getEnabledListenerPackages(context)
             .contains(context.packageName)
-        Timber.tag(TAG).d("Notification listener permission granted? $hasPermission")
+        Timber.d("Notification listener permission granted? $hasPermission")
         try {
             if (hasPermission) {
                 sessionManager.addOnActiveSessionsChangedListener(
@@ -134,7 +139,7 @@ class AudioSessionManager(val context: Context) : DumpManager.OnDumpMethodChange
             }
         }
         catch (ex: SecurityException) {
-            Timber.tag(TAG).e("installNotificationListenerService: SecurityException; missing permission")
+            Timber.e("installNotificationListenerService: SecurityException; missing permission")
         }
     }
 
@@ -164,12 +169,12 @@ class AudioSessionManager(val context: Context) : DumpManager.OnDumpMethodChange
         }
 
         pollingMutex.withLock {
-            val sessions = DumpManager.get(context).dumpSessions()
+            val sessions = dumpManager.dumpSessions()
             if(sessions is ISessionPolicyInfoDump) {
                 sessionPolicyDatabase.update(sessions)
             }
             else {
-                DumpManager.get(context).dumpCaptureAllowlistLog()?.let { sessionPolicyDatabase.update(it) }
+                dumpManager.dumpCaptureAllowlistLog()?.let { sessionPolicyDatabase.update(it) }
             }
 
             sessions?.let { sessionDatabase.update(it) }
@@ -196,7 +201,7 @@ class AudioSessionManager(val context: Context) : DumpManager.OnDumpMethodChange
             if (sessionId < 0)
                 return
 
-            Timber.tag(TAG).d("Audio effect control session broadcast: $sessionId (${intent.getStringExtra(AudioEffect.EXTRA_PACKAGE_NAME)})")
+            Timber.d("Audio effect control session broadcast: $sessionId (${intent.getStringExtra(AudioEffect.EXTRA_PACKAGE_NAME)})")
             pollOnce(false)
         }
     }
@@ -205,16 +210,11 @@ class AudioSessionManager(val context: Context) : DumpManager.OnDumpMethodChange
     override fun onActiveSessionsChanged(controllers: MutableList<MediaController>?) {
         controllers ?: return
         controllers.forEach {
-            Timber.tag(TAG).d("active session changed: package ${it.packageName}; " +
+            Timber.d("active session changed: package ${it.packageName}; " +
                     "uid ${Refine.unsafeCast<MediaSessionHidden.TokenHidden>(it.sessionToken).uid}; " +
                     "usage ${it.playbackInfo?.audioAttributes?.usage}")
         }
 
         pollOnce(false)
-    }
-
-    companion object
-    {
-        const val TAG = "AudioSessionManager"
     }
 }

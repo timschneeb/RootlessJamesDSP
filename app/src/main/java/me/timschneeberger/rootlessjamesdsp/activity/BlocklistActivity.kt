@@ -9,7 +9,7 @@ import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.ActivityBlocklistBinding
 import me.timschneeberger.rootlessjamesdsp.fragment.BlocklistFragment
 
-class BlocklistActivity : AppCompatActivity() {
+class BlocklistActivity : BaseActivity() {
 
     private lateinit var binding: ActivityBlocklistBinding
 

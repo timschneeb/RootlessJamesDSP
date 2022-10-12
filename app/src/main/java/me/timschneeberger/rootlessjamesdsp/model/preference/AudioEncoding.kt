@@ -1,4 +1,4 @@
-package me.timschneeberger.rootlessjamesdsp.model
+package me.timschneeberger.rootlessjamesdsp.model.preference
 
 enum class AudioEncoding(val value: Int) {
     PcmShort(0),

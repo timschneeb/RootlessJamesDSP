@@ -26,12 +26,15 @@ import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppNameFro
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showYesNoAlert
 import me.timschneeberger.rootlessjamesdsp.utils.loadHtml
+import org.koin.android.ext.android.inject
 
 class BlocklistFragment : Fragment() {
 
     private lateinit var binding: FragmentBlocklistBinding
     private lateinit var appsListFragment: AppsListFragment
     private lateinit var adapter: AppBlocklistAdapter
+    private val dumpManager: DumpManager by inject()
+
     private val viewModel: AppBlocklistViewModel by viewModels {
         AppBlocklistViewModelFactory((requireActivity().application as MainApplication).blockedAppRepository)
     }
@@ -126,7 +129,7 @@ class BlocklistFragment : Fragment() {
             restrictedApps = if(!isAllowed) {
                 arrayOf()
             } else {
-                DumpManager.get(requireContext()).dumpCaptureAllowlistLog()?.let {
+                dumpManager.dumpCaptureAllowlistLog()?.let {
                     sessionRecordingPolicyManager.update(it)
                 }
 

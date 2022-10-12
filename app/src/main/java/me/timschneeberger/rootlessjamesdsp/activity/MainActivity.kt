@@ -39,7 +39,7 @@ import java.util.*
 import kotlin.concurrent.schedule
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var bindingContent: ContentMainBinding

@@ -18,18 +18,21 @@ import me.timschneeberger.rootlessjamesdsp.utils.ApplicationUtils
 import me.timschneeberger.rootlessjamesdsp.utils.AssetManagerExtensions.installPrivateAssets
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
+import org.koin.android.ext.android.inject
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStreamWriter
 
 class SettingsTroubleshootingFragment : PreferenceFragmentCompat() {
 
+    private val dumpManager: DumpManager by inject()
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceManager.sharedPreferencesName = Constants.PREF_APP
         setPreferencesFromResource(R.xml.app_troubleshooting_preferences, rootKey)
 
         findPreference<Preference>(getString(R.string.key_troubleshooting_dump))?.setOnPreferenceClickListener {
-            val debug = DumpManager.get(requireContext()).collectDebugDumps()
+            val debug = dumpManager.collectDebugDumps()
             val path = File(requireContext().filesDir, "dump.txt")
             val output = FileOutputStream(path)
             val writer = OutputStreamWriter(output)

@@ -19,7 +19,7 @@ import me.timschneeberger.rootlessjamesdsp.model.api.AeqSearchResult
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.hideKeyboardFrom
 import me.timschneeberger.rootlessjamesdsp.utils.getSerializableAs
 
-class AeqSelectorActivity : AppCompatActivity() {
+class AeqSelectorActivity : BaseActivity() {
 
     private lateinit var binding: ActivityAeqSelectorBinding
     private lateinit var autoEqClient: AutoEqClient

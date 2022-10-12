@@ -1,0 +1,29 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        app:title="@string/appearance_title"
+        app:iconSpaceReserved="false">
+        <ListPreference
+            app:key="@string/key_appearance_theme_mode"
+            app:title="@string/appearance_theme_mode"
+            app:entries="@array/theme_modes"
+            app:entryValues="@array/theme_modes_values"
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="0"
+            app:iconSpaceReserved="false" />
+
+        <me.timschneeberger.rootlessjamesdsp.preference.ThemesPreference
+            android:key="@string/key_appearance_app_theme"
+            android:title="@string/appearance_app_theme"
+            android:defaultValue="DEFAULT"
+            app:singleLineTitle="false"
+            app:iconSpaceReserved="false" />
+
+        <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
+            android:key="@string/key_appearance_pure_black"
+            android:defaultValue="false"
+            android:title="@string/appearance_pure_black_mode"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+</PreferenceScreen>

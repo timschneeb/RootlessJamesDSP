@@ -2,31 +2,40 @@ package me.timschneeberger.rootlessjamesdsp
 
 import android.app.Application
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Build
 import android.util.Log
+import androidx.appcompat.app.AppCompatDelegate
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.ktx.app
 import fr.bipi.tressence.file.FileLoggerTree
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
+import me.timschneeberger.rootlessjamesdsp.model.preference.ThemeMode
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistDatabase
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistRepository
+import me.timschneeberger.rootlessjamesdsp.session.dump.DumpManager
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.GlobalContext.startKoin
+import org.koin.dsl.module
 import org.lsposed.hiddenapibypass.HiddenApiBypass
 import timber.log.Timber
 import timber.log.Timber.*
 import java.io.File
 
 
-class MainApplication : Application() {
+class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChangeListener {
     init {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.P)
         {
             HiddenApiBypass.addHiddenApiExemptions("L")
         }
     }
+
+    val prefs: SharedPreferences by lazy { getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE) }
 
     val applicationScope = CoroutineScope(SupervisorJob())
     val blockedAppDatabase by lazy { AppBlocklistDatabase.getDatabase(this, applicationScope) }
@@ -51,7 +60,6 @@ class MainApplication : Application() {
             dumpFile.delete()
         }
 
-        val prefs = getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
         // Soft-disable crashlytics in debug mode by default on each launch
         if(BuildConfig.DEBUG) {
             prefs
@@ -67,7 +75,46 @@ class MainApplication : Application() {
         FirebaseCrashlytics.getInstance().setCustomKey("buildType", BuildConfig.BUILD_TYPE)
         FirebaseCrashlytics.getInstance().setCustomKey("buildCommit", BuildConfig.COMMIT_SHA)
 
+        val initialPrefList = arrayOf(
+            R.string.key_appearance_theme_mode
+        )
+        for (pref in initialPrefList)
+            this.onSharedPreferenceChanged(prefs, getString(pref))
+        prefs.registerOnSharedPreferenceChangeListener(this)
+
+        val appModule = module {
+            single { DumpManager(androidContext()) }
+        }
+
+        startKoin {
+            androidLogger()
+            androidContext(this@MainApplication)
+            modules(appModule)
+        }
+
         super.onCreate()
+    }
+
+    override fun onTerminate() {
+        prefs.unregisterOnSharedPreferenceChangeListener(this)
+        super.onTerminate()
+    }
+
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+        Timber.e("onSharedPreferenceChanged")
+        sharedPreferences ?: return
+
+        Timber.e(key)
+
+        if(key == getString(R.string.key_appearance_theme_mode)) {
+            AppCompatDelegate.setDefaultNightMode(
+                when (ThemeMode.fromInt(sharedPreferences.getString(key, "0")?.toIntOrNull() ?: 0)) {
+                    ThemeMode.Light -> AppCompatDelegate.MODE_NIGHT_NO
+                    ThemeMode.Dark -> AppCompatDelegate.MODE_NIGHT_YES
+                    ThemeMode.FollowSystem -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+                }
+            )
+        }
     }
 
     /** A tree which logs important information for crash reporting.  */

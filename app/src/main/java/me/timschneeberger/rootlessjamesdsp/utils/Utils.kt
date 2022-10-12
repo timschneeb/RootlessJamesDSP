@@ -1,10 +1,16 @@
 package me.timschneeberger.rootlessjamesdsp.utils
 
 import android.app.Activity
+import android.content.Context
+import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
 import android.text.Spanned
+import androidx.appcompat.view.ContextThemeWrapper
+import me.timschneeberger.rootlessjamesdsp.R
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.get
 import java.io.Serializable
 import java.math.BigDecimal
 import java.math.RoundingMode

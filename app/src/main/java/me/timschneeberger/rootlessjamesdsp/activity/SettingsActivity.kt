@@ -1,18 +1,15 @@
 package me.timschneeberger.rootlessjamesdsp.activity
 
+import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentTransaction
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.ActivitySettingsBinding
 import me.timschneeberger.rootlessjamesdsp.fragment.SettingsAboutFragment
 import me.timschneeberger.rootlessjamesdsp.fragment.SettingsFragment
-import timber.log.Timber
 
-
-class SettingsActivity : AppCompatActivity(),
+class SettingsActivity : BaseActivity(),
     PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {

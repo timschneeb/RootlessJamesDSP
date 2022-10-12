@@ -10,6 +10,18 @@
         <item>1</item>
     </string-array>
 
+    <string-array name="theme_modes" translatable="false">
+        <item>@string/appearance_theme_mode_default</item>
+        <item>@string/appearance_theme_mode_light</item>
+        <item>@string/appearance_theme_mode_dark</item>
+    </string-array>
+
+    <string-array name="theme_modes_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
     <string-array name="audio_format_encodings" translatable="false">
         <item>@string/audio_format_encoding_int16</item>
         <item>@string/audio_format_encoding_float</item>

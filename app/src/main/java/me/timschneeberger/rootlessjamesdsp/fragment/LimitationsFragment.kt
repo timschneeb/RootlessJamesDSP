@@ -17,7 +17,7 @@ class LimitationsFragment : Fragment() {
         viewGroup: ViewGroup?,
         bundle: Bundle?
     ): View {
-        val padding = requireContext().dpToPx(16)
+        val padding = 16.dpToPx
         binding = OnboardingPage2Binding.inflate(layoutInflater, viewGroup, false)
         binding.root.setPadding(padding, 0, padding, padding)
         binding.header.isVisible = false

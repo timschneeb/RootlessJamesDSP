@@ -6,7 +6,7 @@ import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.ActivityGraphicEqBinding
 import me.timschneeberger.rootlessjamesdsp.fragment.GraphicEqualizerFragment
 
-class GraphicEqualizerActivity : AppCompatActivity() {
+class GraphicEqualizerActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityGraphicEqBinding.inflate(layoutInflater)

@@ -131,6 +131,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.5.1")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.recyclerview:recyclerview:1.3.0-rc01")
     implementation("androidx.navigation:navigation-fragment-ktx:2.5.2")
     implementation("androidx.navigation:navigation-fragment:2.5.2")
     implementation("androidx.navigation:navigation-ui-ktx:2.5.2")
@@ -138,6 +139,9 @@ dependencies {
     implementation("androidx.preference:preference:1.2.0")
     implementation("androidx.databinding:databinding-runtime:7.3.0")
     implementation("com.google.android.material:material:1.8.0-alpha01")
+
+    // Dependency injection
+    implementation("io.insert-koin:koin-android:3.2.0")
 
     // Firebase
     implementation(platform("com.google.firebase:firebase-bom:30.4.1"))
