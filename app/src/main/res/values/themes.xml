@@ -22,7 +22,7 @@
 
     <style name="AppTheme.AlertDialogTheme" parent="@style/ThemeOverlay.Material3.MaterialAlertDialog">
         <item name="dialogCornerRadius">28dp</item>
-        <item name="colorBackgroundFloating">@color/alert_dialog_background</item>
+        <item name="colorBackgroundFloating">?attr/colorSurface</item>
     </style>
 
     <style name="Theme.RootlessJamesDSP.SearchButton" parent="Widget.AppCompat.ImageButton">
@@ -33,7 +33,7 @@
 
     <style name="Theme.RootlessJamesDSP.CardView" parent="Widget.Material3.CardView.Elevated" />
 
-    <!-- === Themes taken from Tachiyomi: https://github.com/tachiyomiorg/tachiyomi === -->
+    <!-- === Custom themes taken from Tachiyomi: https://github.com/tachiyomiorg/tachiyomi === -->
     <style name="Theme.RootlessJamesDSP.Monet" />
 
     <!--== Green Apple Theme ==-->

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="alert_dialog_background">@android:color/white</color>
     <color name="divider_default">@color/md_black_1000_12</color>
 
     <!-- AMOLED Mode -->

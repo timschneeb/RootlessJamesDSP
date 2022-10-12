@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="alert_dialog_background">#ff212121</color>
     <color name="divider_default">@color/md_white_1000_12</color>
 </resources>
