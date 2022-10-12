@@ -63,62 +63,6 @@
         <item name="colorPrimaryInverse">@color/greenapple_primaryInverse</item>
     </style>
 
-    <!--== Lavender Theme ==-->
-    <style name="Theme.RootlessJamesDSP.Lavender">
-        <!-- Theme Colors -->
-        <item name="colorPrimary">@color/lavender_primary</item>
-        <item name="colorOnPrimary">@color/lavender_onPrimary</item>
-        <item name="colorPrimaryContainer">@color/lavender_primaryContainer</item>
-        <item name="colorOnPrimaryContainer">@color/lavender_onPrimaryContainer</item>
-        <item name="colorSecondary">@color/lavender_secondary</item>
-        <item name="colorOnSecondary">@color/lavender_onSecondary</item>
-        <item name="colorSecondaryContainer">@color/lavender_secondaryContainer</item>
-        <item name="colorOnSecondaryContainer">@color/lavender_onSecondaryContainer</item>
-        <item name="colorTertiary">@color/lavender_tertiary</item>
-        <item name="colorOnTertiary">@color/lavender_onTertiary</item>
-        <item name="colorTertiaryContainer">@color/lavender_tertiaryContainer</item>
-        <item name="colorOnTertiaryContainer">@color/lavender_onTertiaryContainer</item>
-        <item name="android:colorBackground">@color/lavender_background</item>
-        <item name="colorOnBackground">@color/lavender_onBackground</item>
-        <item name="colorSurface">@color/lavender_surface</item>
-        <item name="colorOnSurface">@color/lavender_onSurface</item>
-        <item name="colorSurfaceVariant">@color/lavender_surfaceVariant</item>
-        <item name="colorOnSurfaceVariant">@color/lavender_onSurfaceVariant</item>
-        <item name="colorOutline">@color/lavender_outline</item>
-        <item name="colorOnSurfaceInverse">@color/lavender_inverseOnSurface</item>
-        <item name="colorSurfaceInverse">@color/lavender_inverseSurface</item>
-        <item name="colorPrimaryInverse">@color/lavender_primaryInverse</item>
-        <item name="elevationOverlayColor">@color/lavender_elevationOverlay</item>
-    </style>
-
-    <!--== Midnight Dusk Theme ==-->
-    <style name="Theme.RootlessJamesDSP.MidnightDusk">
-        <!-- Theme Colors -->
-        <item name="colorPrimary">@color/midnightdusk_primary</item>
-        <item name="colorOnPrimary">@color/midnightdusk_onPrimary</item>
-        <item name="colorPrimaryContainer">@color/midnightdusk_primaryContainer</item>
-        <item name="colorOnPrimaryContainer">@color/midnightdusk_onPrimaryContainer</item>
-        <item name="colorSecondary">@color/midnightdusk_secondary</item>
-        <item name="colorOnSecondary">@color/midnightdusk_onSecondary</item>
-        <item name="colorSecondaryContainer">@color/midnightdusk_secondaryContainer</item>
-        <item name="colorOnSecondaryContainer">@color/midnightdusk_onSecondaryContainer</item>
-        <item name="colorTertiary">@color/midnightdusk_tertiary</item>
-        <item name="colorOnTertiary">@color/midnightdusk_onTertiary</item>
-        <item name="colorTertiaryContainer">@color/midnightdusk_tertiaryContainer</item>
-        <item name="colorOnTertiaryContainer">@color/midnightdusk_onTertiaryContainer</item>
-        <item name="android:colorBackground">@color/midnightdusk_background</item>
-        <item name="colorOnBackground">@color/midnightdusk_onBackground</item>
-        <item name="colorSurface">@color/midnightdusk_surface</item>
-        <item name="colorOnSurface">@color/midnightdusk_onSurface</item>
-        <item name="colorSurfaceVariant">@color/midnightdusk_surfaceVariant</item>
-        <item name="colorOnSurfaceVariant">@color/midnightdusk_onSurfaceVariant</item>
-        <item name="colorOutline">@color/midnightdusk_outline</item>
-        <item name="colorOnSurfaceInverse">@color/midnightdusk_inverseOnSurface</item>
-        <item name="colorSurfaceInverse">@color/midnightdusk_inverseSurface</item>
-        <item name="colorPrimaryInverse">@color/midnightdusk_primaryInverse</item>
-        <item name="elevationOverlayColor">@color/midnightdusk_elevationOverlay</item>
-    </style>
-
     <!--== Strawberry Daiquiri Theme ==-->
     <style name="Theme.RootlessJamesDSP.StrawberryDaiquiri">
         <!-- Theme Colors -->
@@ -146,32 +90,32 @@
         <item name="colorPrimaryInverse">@color/strawberry_primaryInverse</item>
     </style>
 
-    <!--== Tako Theme ==-->
-    <style name="Theme.RootlessJamesDSP.Tako">
+    <!--== Honey Theme ==-->
+    <style name="Theme.RootlessJamesDSP.Honey">
         <!-- Theme Colors -->
-        <item name="colorPrimary">@color/tako_primary</item>
-        <item name="colorOnPrimary">@color/tako_onPrimary</item>
-        <item name="colorPrimaryContainer">@color/tako_primaryContainer</item>
-        <item name="colorOnPrimaryContainer">@color/tako_onPrimaryContainer</item>
-        <item name="colorSecondary">@color/tako_secondary</item>
-        <item name="colorOnSecondary">@color/tako_onSecondary</item>
-        <item name="colorSecondaryContainer">@color/tako_secondaryContainer</item>
-        <item name="colorOnSecondaryContainer">@color/tako_onSecondaryContainer</item>
-        <item name="colorTertiary">@color/tako_tertiary</item>
-        <item name="colorOnTertiary">@color/tako_onTertiary</item>
-        <item name="colorTertiaryContainer">@color/tako_tertiaryContainer</item>
-        <item name="colorOnTertiaryContainer">@color/tako_onTertiaryContainer</item>
-        <item name="android:colorBackground">@color/tako_background</item>
-        <item name="colorOnBackground">@color/tako_onBackground</item>
-        <item name="colorSurface">@color/tako_surface</item>
-        <item name="colorOnSurface">@color/tako_onSurface</item>
-        <item name="colorSurfaceVariant">@color/tako_surfaceVariant</item>
-        <item name="colorOnSurfaceVariant">@color/tako_onSurfaceVariant</item>
-        <item name="colorOutline">@color/tako_outline</item>
-        <item name="colorOnSurfaceInverse">@color/tako_inverseOnSurface</item>
-        <item name="colorSurfaceInverse">@color/tako_inverseSurface</item>
-        <item name="colorPrimaryInverse">@color/tako_primaryInverse</item>
-        <item name="elevationOverlayColor">@color/tako_elevationOverlay</item>
+        <item name="colorPrimary">@color/honey_primary</item>
+        <item name="colorOnPrimary">@color/honey_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/honey_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/honey_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/honey_secondary</item>
+        <item name="colorOnSecondary">@color/honey_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/honey_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/honey_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/honey_tertiary</item>
+        <item name="colorOnTertiary">@color/honey_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/honey_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/honey_onTertiaryContainer</item>
+        <item name="android:colorBackground">@color/honey_background</item>
+        <item name="colorOnBackground">@color/honey_onBackground</item>
+        <item name="colorSurface">@color/honey_surface</item>
+        <item name="colorOnSurface">@color/honey_onSurface</item>
+        <item name="colorSurfaceVariant">@color/honey_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/honey_onSurfaceVariant</item>
+        <item name="colorOutline">@color/honey_outline</item>
+        <item name="colorOnSurfaceInverse">@color/honey_inverseOnSurface</item>
+        <item name="colorSurfaceInverse">@color/honey_inverseSurface</item>
+        <item name="colorPrimaryInverse">@color/honey_primaryInverse</item>
+        <item name="elevationOverlayColor">@color/honey_elevationOverlay</item>
     </style>
 
     <!--== Teal & Turquoise Theme ==-->

@@ -2,6 +2,7 @@ package me.timschneeberger.rootlessjamesdsp.view
 
 import android.animation.AnimatorInflater
 import android.content.Context
+import android.graphics.PorterDuff
 import android.util.AttributeSet
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import me.timschneeberger.rootlessjamesdsp.R
@@ -31,7 +32,8 @@ class FloatingToggleButton @JvmOverloads constructor(
         }
 
         stateListAnimator = AnimatorInflater.loadStateListAnimator(context, com.google.android.material.R.animator.mtrl_extended_fab_state_list_animator)
-        backgroundTintList = context.getColorStateList(R.color.selector_floating_toggle_tint)
+        supportBackgroundTintList = context.getColorStateList(R.color.selector_floating_toggle_tint)
+        drawable.setTintList(context.getColorStateList(R.color.selector_floating_toggle_foreground_tint))
     }
 
     fun setOnToggledListener(listener: OnToggledListener) {

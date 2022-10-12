@@ -13,7 +13,7 @@
 <resources>
     <color name="strawberry_primary">#B61E40</color>
     <color name="strawberry_onPrimary">#FFFFFF</color>
-    <color name="strawberry_primaryContainer">#FFDADD</color>
+    <color name="strawberry_primaryContainer">#E8727B</color>
     <color name="strawberry_onPrimaryContainer">#40000D</color>
     <color name="strawberry_secondary">#B61E40</color>
     <color name="strawberry_onSecondary">#FFFFFF</color>

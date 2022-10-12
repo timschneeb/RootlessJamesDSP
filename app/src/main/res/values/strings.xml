@@ -286,15 +286,16 @@
     <string name="appearance_theme_mode_dark">On</string>
     <string name="appearance_pure_black_mode">Pure black dark mode</string>
     <string name="appearance_app_theme">App theme</string>
+    <string name="appearance_navigation_title">Navigation</string>
+    <string name="appearance_nav_hide">Hide navigation bar on scroll</string>
+
 
     <!-- Theme names -->
     <string name="theme_default">Default</string>
     <string name="theme_monet">Dynamic</string>
     <string name="theme_greenapple">Green Apple</string>
-    <string name="theme_lavender">Lavender</string>
-    <string name="theme_midnightdusk">Midnight Dusk</string>
     <string name="theme_strawberrydaiquiri">Strawberry Daiquiri</string>
-    <string name="theme_tako">Tako</string>
+    <string name="theme_honey">Honey</string>
     <string name="theme_tealturquoise">Teal &amp; Turquoise</string>
     <string name="theme_yinyang">Yin &amp; Yang</string>
     <string name="theme_yotsuba">Yotsuba</string>

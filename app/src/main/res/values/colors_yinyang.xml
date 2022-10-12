@@ -11,7 +11,7 @@
     <color name="yinyang_onPrimaryContainer">#FFFFFF</color>
     <color name="yinyang_secondary">#000000</color>
     <color name="yinyang_onSecondary">#FFFFFF</color>
-    <color name="yinyang_secondaryContainer">#DDDDDD</color>
+    <color name="yinyang_secondaryContainer">#AAAAAA</color>
     <color name="yinyang_onSecondaryContainer">#0C0C0C</color>
     <color name="yinyang_tertiary">#FFFFFF</color>
     <color name="yinyang_onTertiary">#000000</color>
@@ -21,10 +21,10 @@
     <color name="yinyang_onBackground">#222222</color>
     <color name="yinyang_surface">#FDFDFD</color>
     <color name="yinyang_onSurface">#222222</color>
-    <color name="yinyang_surfaceVariant">#EDEDED</color>
+    <color name="yinyang_surfaceVariant">#CCCCCC</color>
     <color name="yinyang_onSurfaceVariant">#515151</color>
     <color name="yinyang_outline">#838383</color>
     <color name="yinyang_inverseOnSurface">#F4F4F4</color>
     <color name="yinyang_inverseSurface">#333333</color>
-    <color name="yinyang_primaryInverse">#A6A6A6</color>
+    <color name="yinyang_primaryInverse">#555555</color>
 </resources>

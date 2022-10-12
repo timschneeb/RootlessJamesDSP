@@ -11,7 +11,7 @@
   ~ Neutral #655C5A
 -->
 <resources>
-    <color name="yotsuba_primary">#FFB59D</color>
+    <!--<color name="yotsuba_primary">#FFB59D</color>
     <color name="yotsuba_onPrimary">#5F1600</color>
     <color name="yotsuba_primaryContainer">#862200</color>
     <color name="yotsuba_onPrimaryContainer">#FFDBCF</color>
@@ -32,5 +32,35 @@
     <color name="yotsuba_outline">#A08C87</color>
     <color name="yotsuba_inverseOnSurface">#211A18</color>
     <color name="yotsuba_inverseSurface">#EDE0DD</color>
+    <color name="yotsuba_primaryInverse">#AE3200</color>-->
+
+    <color name="yotsuba_primary">#FFB59E</color>
+    <color name="yotsuba_onPrimary">#5E1700</color>
+    <color name="yotsuba_primaryContainer">#852400</color>
+    <color name="yotsuba_onPrimaryContainer">#FFDBD0</color>
+    <color name="yotsuba_secondary">#FFB59E</color>
+    <color name="yotsuba_onSecondary">#5E1700</color>
+    <color name="yotsuba_secondaryContainer">#852400</color>
+    <color name="yotsuba_onSecondaryContainer">#FFDBD0</color>
+    <color name="yotsuba_tertiary">#E4C44A</color>
+    <color name="yotsuba_onTertiary">#3B2F00</color>
+    <color name="yotsuba_tertiaryContainer">#554500</color>
+    <color name="yotsuba_onTertiaryContainer">#FFE173</color>
+    <color name="yotsuba_error">#FFB4AB</color>
+    <color name="yotsuba_errorContainer">#93000A</color>
+    <color name="yotsuba_onError">#690005</color>
+    <color name="yotsuba_onErrorContainer">#FFDAD6</color>
+    <color name="yotsuba_background">#3D0700</color>
+    <color name="yotsuba_onBackground">#FFDAD2</color>
+    <color name="yotsuba_surface">#3D0700</color>
+    <color name="yotsuba_onSurface">#FFDAD2</color>
+    <color name="yotsuba_surfaceVariant">#53433F</color>
+    <color name="yotsuba_onSurfaceVariant">#D8C2BC</color>
+    <color name="yotsuba_outline">#A08C87</color>
+    <color name="yotsuba_inverseOnSurface">#3D0700</color>
+    <color name="yotsuba_inverseSurface">#FFDAD2</color>
     <color name="yotsuba_primaryInverse">#AE3200</color>
+    <color name="yotsuba_shadow">#000000</color>
+    <color name="yotsuba_surfaceTint">#FFB59E</color>
+    <color name="yotsuba_surfaceTintColor">#FFB59E</color>
 </resources>

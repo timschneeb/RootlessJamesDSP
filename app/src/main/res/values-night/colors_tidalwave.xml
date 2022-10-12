@@ -31,6 +31,6 @@
     <color name="tidalwave_outline">#8a9296</color>
     <color name="tidalwave_inverseOnSurface">#001c3b</color>
     <color name="tidalwave_inverseSurface">#ffe3c4</color>
-    <color name="tidalwave_primaryInverse">#a12b03</color>
+    <color name="tidalwave_primaryInverse">#008CAF</color>
 
 </resources>

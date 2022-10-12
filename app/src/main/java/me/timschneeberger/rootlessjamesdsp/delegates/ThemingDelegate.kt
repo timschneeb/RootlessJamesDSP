@@ -19,17 +19,11 @@ interface ThemingDelegate {
                 AppTheme.GREEN_APPLE -> {
                     resIds += R.style.Theme_RootlessJamesDSP_GreenApple
                 }
-                AppTheme.LAVENDER -> {
-                    resIds += R.style.Theme_RootlessJamesDSP_Lavender
-                }
-                AppTheme.MIDNIGHT_DUSK -> {
-                    resIds += R.style.Theme_RootlessJamesDSP_MidnightDusk
-                }
                 AppTheme.STRAWBERRY_DAIQUIRI -> {
                     resIds += R.style.Theme_RootlessJamesDSP_StrawberryDaiquiri
                 }
-                AppTheme.TAKO -> {
-                    resIds += R.style.Theme_RootlessJamesDSP_Tako
+                AppTheme.HONEY -> {
+                    resIds += R.style.Theme_RootlessJamesDSP_Honey
                 }
                 AppTheme.TEALTURQUOISE -> {
                     resIds += R.style.Theme_RootlessJamesDSP_TealTurquoise

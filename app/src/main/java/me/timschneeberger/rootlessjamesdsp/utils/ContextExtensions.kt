@@ -229,15 +229,15 @@ object ContextExtensions {
 
     fun Context.getAppNameFromUid(uid: Int): String? {
         val reserved = resolveReservedUid(uid)
-        reserved?.let {
-            return getAppName(it).toString()
-        }
+        if(reserved != null)
+            return reserved
 
         val pkg = getPackageNameFromUid(uid)
-        if(pkg != null)
-            return pkg
+        val name = pkg?.let { getAppName(it) }
+        if(name != null)
+            return name.toString()
 
-        return null
+        return pkg
     }
 
     fun Context.getAppNameFromUidSafe(uid: Int): String {
