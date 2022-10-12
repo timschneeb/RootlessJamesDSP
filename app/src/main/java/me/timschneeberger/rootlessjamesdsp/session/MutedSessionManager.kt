@@ -1,13 +1,13 @@
 package me.timschneeberger.rootlessjamesdsp.session
 
 import android.content.Context
+import android.content.Intent
 import android.media.audiofx.DynamicsProcessing
 import android.os.Process.myUid
-import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
 import me.timschneeberger.rootlessjamesdsp.model.AudioSessionEntry
 import me.timschneeberger.rootlessjamesdsp.model.MutedSessionEntry
+import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
 import timber.log.Timber
-import java.lang.Exception
 
 
 class MutedSessionManager(private val context: Context) {
@@ -108,6 +108,7 @@ class MutedSessionManager(private val context: Context) {
                     {
                         Timber.tag(TAG).w("Failed to re-enable processor")
                         Timber.tag(TAG).w(ex)
+                        sendFxCloseBroadcast(data.packageName, sid)
                         sessionLossListener?.onSessionLost(sid)
                     }
                 }
@@ -115,6 +116,7 @@ class MutedSessionManager(private val context: Context) {
             muteEffect.setControlStatusListener { effect, controlGranted ->
                 if(!controlGranted)
                 {
+                    sendFxCloseBroadcast(data.packageName, sid)
                     sessionLossListener?.onSessionLost(sid)
                 }
                 else {
@@ -128,6 +130,7 @@ class MutedSessionManager(private val context: Context) {
                     {
                         Timber.tag(TAG).w("Failed to re-mute session")
                         Timber.tag(TAG).w(ex)
+                        sendFxCloseBroadcast(data.packageName, sid)
                         sessionLossListener?.onSessionLost(sid)
                     }
                 }
@@ -145,10 +148,21 @@ class MutedSessionManager(private val context: Context) {
                 .e("Failed to attach DynamicsProcessing to session $sid (data: $data; message: ${ex.message})")
             if(data.usage.uppercase().contains("MEDIA") || data.usage.uppercase().contains("GAME") || data.usage.uppercase().contains("UNKNOWN"))
             {
+                sendFxCloseBroadcast(data.packageName, sid)
                 // TODO callback not appropriate -> attach fail != session loss
                 sessionLossListener?.onSessionLost(sid)
             }
         }
+    }
+
+    private fun sendFxCloseBroadcast(pkgName: String, sid: Int) {
+        val intent = Intent("android.media.action.CLOSE_AUDIO_EFFECT_CONTROL_SESSION")
+        intent.putExtra("android.media.extra.PACKAGE_NAME", pkgName)
+        intent.putExtra("android.media.extra.AUDIO_SESSION", sid)
+        intent.putExtra(EXTRA_IGNORE, 1)
+        context.sendBroadcast(intent)
+
+        Timber.d("Sent control session close request for $pkgName")
     }
 
     fun setExcludedUids(uids: Array<Int>) {
@@ -188,5 +202,6 @@ class MutedSessionManager(private val context: Context) {
 
     companion object {
         const val TAG = "MutedSessionManager"
+        const val EXTRA_IGNORE = "rootlessjamesdsp.ignore"
     }
 }

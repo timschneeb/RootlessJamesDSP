@@ -70,7 +70,6 @@ android {
     sourceSets {
         // Use different app icon for non-release builds
         getByName("debug").res.srcDirs("src/debug/res")
-        getByName("preview").res.srcDirs("src/preview/res")
     }
 
     // Export multiple CPU architecture split apks

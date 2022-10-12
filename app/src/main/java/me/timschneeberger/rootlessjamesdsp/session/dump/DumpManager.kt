@@ -5,8 +5,6 @@ import android.content.SharedPreferences
 import android.os.Build
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
-import me.timschneeberger.rootlessjamesdsp.session.AudioSessionManager
-import me.timschneeberger.rootlessjamesdsp.session.dump.data.AudioPolicyServiceDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionPolicyInfoDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.provider.*
@@ -72,7 +70,7 @@ class DumpManager constructor(val context: Context) {
 
                 if(it.key != activeDumpMethod)
                 {
-                    dump = (it.value as ISessionDumpProvider).dump(context)
+                    dump = it.value.dump(context)
                 }
                 if(dump != null && dump!!.sessions.isNotEmpty())
                 {
