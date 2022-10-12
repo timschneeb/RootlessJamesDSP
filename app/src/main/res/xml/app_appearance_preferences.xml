@@ -26,4 +26,16 @@
             app:iconSpaceReserved="false" />
 
     </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/appearance_navigation_title"
+        app:iconSpaceReserved="false">
+
+        <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
+            android:key="@string/key_appearance_nav_hide"
+            android:defaultValue="false"
+            android:title="@string/appearance_nav_hide"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
 </PreferenceScreen>

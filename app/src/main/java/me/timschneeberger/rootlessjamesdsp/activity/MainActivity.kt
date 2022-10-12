@@ -183,15 +183,6 @@ class MainActivity : BaseActivity() {
             }
         })
 
-        binding.powerToggle.setOnLongClickListener {
-            // Force request capture permission on long click
-            mediaProjectionStartIntent = null
-            binding.powerToggle.isToggled = false
-            AudioProcessorService.stop(this@MainActivity)
-            requestCapturePermission()
-            true
-        }
-
         capturePermissionLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) { result ->
@@ -214,6 +205,20 @@ class MainActivity : BaseActivity() {
         if(intent.getBooleanExtra(EXTRA_FORCE_SHOW_CAPTURE_PROMPT, false)) {
             requestCapturePermission()
         }
+
+        // Load initial preference states
+        val initialPrefList = arrayOf(R.string.key_appearance_nav_hide)
+        for (pref in initialPrefList)
+            this.onSharedPreferenceChanged(appPref, getString(pref))
+    }
+
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+        sharedPreferences ?: return
+
+        if(key == getString(R.string.key_appearance_nav_hide)) {
+            binding.bar.hideOnScroll = sharedPreferences.getBoolean(key, false)
+        }
+        super.onSharedPreferenceChanged(sharedPreferences, key)
     }
 
     override fun onStart() {
