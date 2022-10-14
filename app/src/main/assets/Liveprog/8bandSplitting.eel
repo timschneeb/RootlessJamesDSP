@@ -1,0 +1,45 @@
+desc: 8-Band Splitting
+freqSplit1:400<1,24000,1>Split 1 at frequency (Hz)
+freqSplit2:10000<1,24000,1>Split 2 at frequency (Hz)
+freqSplit3:10000<1,24000,1>Split 3 at frequency (Hz)
+freqSplit4:10000<1,24000,1>Split 4 at frequency (Hz)
+freqSplit5:10000<1,24000,1>Split 5 at frequency (Hz)
+freqSplit6:10000<1,24000,1>Split 6 at frequency (Hz)
+freqSplit7:10000<1,24000,1>Split 7 at frequency (Hz)
+bandPart1:6<-30,15,1>Gain between 0Hz and split 1 (dB)
+bandPart2:0<-30,15,1>Gain between split 1 and split 2 (dB)
+bandPart3:0<-30,15,1>Gain between split 2 and split 3 (dB)
+bandPart4:0<-30,15,1>Gain between split 3 and split 4 (dB)
+bandPart5:0<-30,15,1>Gain between split 4 and split 5 (dB)
+bandPart6:0<-30,15,1>Gain between split 5 and split 6 (dB)
+bandPart7:0<-30,15,1>Gain between split 6 and split 7 (dB)
+bandPart8:0<-30,15,1>Gain between split 7 and 24000Hz (dB)
+
+@init
+freqSplit1 = 400;
+freqSplit2 = 10000;
+freqSplit3 = 10000;
+freqSplit4 = 10000;
+freqSplit5 = 10000;
+freqSplit6 = 10000;
+freqSplit7 = 10000;
+bandPart1 = 6;
+bandPart2 = 0;
+bandPart3 = 0;
+bandPart4 = 0;
+bandPart5 = 0;
+bandPart6 = 0;
+bandPart7 = 0;
+bandPart8 = 0;
+
+DB_2_LOG = 0.11512925464970228420089957273422;
+iirBPS1 = 0;
+reqSize = IIRBandSplitterInit(iirBPS1, srate, freqSplit1, freqSplit2, freqSplit3, freqSplit4, freqSplit5, freqSplit6, freqSplit7);
+iirBPS2 = iirBPS1 + reqSize;
+reqSize = IIRBandSplitterInit(iirBPS2, srate, freqSplit1, freqSplit2, freqSplit3, freqSplit4, freqSplit5, freqSplit6, freqSplit7);
+
+@sample
+IIRBandSplitterProcess(iirBPS1, spl0, band1, band2, band3, band4, band5, band6, band7, band8);
+IIRBandSplitterProcess(iirBPS2, spl1, band1b, band2b, band3b, band4b, band5b, band6b, band7b, band8b);
+spl0 = band1 * exp(bandPart1 * DB_2_LOG) + band2 * exp(bandPart2 * DB_2_LOG) + band3 * exp(bandPart3 * DB_2_LOG) + band4 * exp(bandPart4 * DB_2_LOG) + band5 * exp(bandPart5 * DB_2_LOG) + band6 * exp(bandPart6 * DB_2_LOG) + band7 * exp(bandPart7 * DB_2_LOG) + band8 * exp(bandPart8 * DB_2_LOG);
+spl1 = band1b * exp(bandPart1 * DB_2_LOG) + band2b * exp(bandPart2 * DB_2_LOG) + band3b * exp(bandPart3 * DB_2_LOG) + band4b * exp(bandPart4 * DB_2_LOG) + band5b * exp(bandPart5 * DB_2_LOG) + band6b * exp(bandPart6 * DB_2_LOG) + band7b * exp(bandPart7 * DB_2_LOG) + band8b * exp(bandPart8 * DB_2_LOG);
