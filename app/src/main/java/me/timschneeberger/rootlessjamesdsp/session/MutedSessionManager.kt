@@ -2,7 +2,6 @@ package me.timschneeberger.rootlessjamesdsp.session
 
 import android.content.Context
 import android.content.Intent
-import android.media.audiofx.DynamicsProcessing
 import android.os.Process.myUid
 import me.timschneeberger.rootlessjamesdsp.model.AudioSessionEntry
 import me.timschneeberger.rootlessjamesdsp.model.MutedSessionEntry
@@ -23,8 +22,7 @@ class MutedSessionManager(private val context: Context) {
     private var excludedUids = arrayOf<Int>()
     private val excludedPackages = arrayOf(
         context.packageName,
-        "com.google.android.googlequicksearchbox",
-        "com.habby.archero"
+        "com.google.android.googlequicksearchbox"
     )
 
     init {

@@ -386,6 +386,9 @@
     <string name="app_compat_instruction">Please check the app\'s settings if you can disable HW-acceleration or other settings that could interfere with RootlessJamesDSP and tap \'Retry\'.</string>
     <string name="app_compat_instruction_exclude">Alternatively, select \'Exclude\' to bypass this issue by excluding the incompatible app from audio processing.</string>
 
+    <!-- Hints for compatibility issues for individual apps -->
+    <string name="app_compat_quirk_voice_search">Voice search and voice recognition and is known to cause this issue with this app. Try to avoid using these feature and revoke the microphone permission for the problematic apps if the issue persists.</string>
+
     <!-- App list -->
     <string name="app_list_loading">Loading apps…</string>
     <string name="app_list_search">Search</string>
@@ -394,4 +397,5 @@
     <!-- Number box view -->
     <string name="number_box_decrement">Decrement</string>
     <string name="number_box_increment">Increment</string>
+    <string name="app_compat_unknown_pkg_name">Unknown package name</string>
 </resources>

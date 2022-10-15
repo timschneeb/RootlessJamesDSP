@@ -27,7 +27,7 @@ class AppCompatibilityActivity : BaseActivity() {
             val uid = intent.extras?.getInt(AudioProcessorService.EXTRA_APP_UID, -1) ?: -1
             val internalCall = intent.extras?.getBoolean(AudioProcessorService.EXTRA_APP_COMPAT_INTERNAL_CALL, false) ?: false
             val projectIntent = intent.extras?.getParcelableAs<Intent>(AudioProcessorService.EXTRA_MEDIA_PROJECTION_DATA)
-            if(uid < 0 || projectIntent == null) {
+            if(uid < 0) {
                 finish()
                 return
             }

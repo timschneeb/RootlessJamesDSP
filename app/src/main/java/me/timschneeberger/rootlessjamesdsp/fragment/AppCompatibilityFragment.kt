@@ -6,9 +6,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.StringRes
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import me.timschneeberger.rootlessjamesdsp.MainApplication
+import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.activity.MainActivity
 import me.timschneeberger.rootlessjamesdsp.databinding.FragmentAppCompatibilityBinding
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistViewModel
@@ -31,6 +34,14 @@ class AppCompatibilityFragment : Fragment() {
         AppBlocklistViewModelFactory((requireActivity().application as MainApplication).blockedAppRepository)
     }
 
+    private val knownQuirks = mapOf(
+        arrayOf(
+            "com.google.android.youtube",
+            "com.vanced.android.youtube",
+            "app.revanced.android.youtube"
+        ) to R.string.app_compat_quirk_voice_search
+    )
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,7 +54,7 @@ class AppCompatibilityFragment : Fragment() {
         val projectIntent = args.getParcelableAs<Intent>(BUNDLE_MEDIA_PROJECTION)
         val internalCall = args.getBoolean(BUNDLE_INTERNAL_CALL, false)
         val appUid = args.getInt(BUNDLE_APP_UID, -1)
-        val appPackage = requireContext().getPackageNameFromUid(appUid) ?: "Unknown package name"
+        val appPackage = requireContext().getPackageNameFromUid(appUid) ?: getString(R.string.app_compat_unknown_pkg_name)
         val appName = requireContext().getAppNameFromUidSafe(appUid)
         val appIcon = requireContext().getAppIcon(appPackage) ?: requireContext().getAppIcon("android")
 
@@ -52,6 +63,12 @@ class AppCompatibilityFragment : Fragment() {
         binding.icon.setImageDrawable(appIcon)
         binding.appName.text = appName
         binding.packageName.text = appPackage
+
+        val hint = findAppHint(appPackage)
+        binding.hint.isVisible = hint != null
+        hint?.let {
+            binding.hint.text = getString(it)
+        }
 
         binding.appCard.setOnClickListener {
             val launchIntent = requireContext().packageManager.getLaunchIntentForPackage(appPackage)
@@ -100,12 +117,21 @@ class AppCompatibilityFragment : Fragment() {
         return binding.root
     }
 
+    @StringRes
+    private fun findAppHint(pkg: String): Int? {
+        for((packages, hint) in knownQuirks) {
+            if(packages.contains(pkg))
+                return hint
+        }
+        return null
+    }
+
     companion object {
         private const val BUNDLE_APP_UID = "appUid"
         private const val BUNDLE_MEDIA_PROJECTION = "mediaProjection"
         private const val BUNDLE_INTERNAL_CALL = "internalCall"
 
-        fun newInstance(uid: Int, mediaProjectionIntent: Intent, internalCall: Boolean): AppCompatibilityFragment {
+        fun newInstance(uid: Int, mediaProjectionIntent: Intent?, internalCall: Boolean): AppCompatibilityFragment {
             val fragment = AppCompatibilityFragment()
             val args = Bundle()
             args.putInt(BUNDLE_APP_UID, uid)
