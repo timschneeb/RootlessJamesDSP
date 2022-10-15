@@ -7,20 +7,30 @@ import android.os.Process.myUid
 import me.timschneeberger.rootlessjamesdsp.model.AudioSessionEntry
 import me.timschneeberger.rootlessjamesdsp.model.MutedSessionEntry
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
+import me.timschneeberger.rootlessjamesdsp.utils.AudioEffectFactory
 import timber.log.Timber
 
 
 class MutedSessionManager(private val context: Context) {
 
     private var isDisposing = false
+    private val factory by lazy { AudioEffectFactory() }
     private val sessionList = hashMapOf<Int,MutedSessionEntry>()
     private val changeCallbacks = mutableListOf<OnSessionChangeListener>()
     private var sessionLossListener: OnSessionLossListener? = null
     private var excludedUids = arrayOf<Int>()
     private val excludedPackages = arrayOf(
         context.packageName,
-        "com.google.android.googlequicksearchbox"
+        "com.google.android.googlequicksearchbox",
+        "com.habby.archero"
     )
+
+    init {
+        factory.sessionLossListener = { sid, data ->
+            sendFxCloseBroadcast(data.packageName, sid)
+            sessionLossListener?.onSessionLost(sid)
+        }
+    }
 
     fun destroy()
     {
@@ -30,8 +40,8 @@ class MutedSessionManager(private val context: Context) {
 
     fun clearSessions(){
         sessionList.forEach { (_, session) ->
-            session.dynamicsProcessing?.enabled = false
-            session.dynamicsProcessing?.release()
+            session.audioMuteEffect?.enabled = false
+            session.audioMuteEffect?.release()
         }
         sessionList.clear()
     }
@@ -55,16 +65,16 @@ class MutedSessionManager(private val context: Context) {
             val data = it.value
             val name = context.packageManager.getNameForUid(it.value.uid)
             if (data.uid == myUid() || excludedPackages.contains(name)) {
-                Timber.tag(TAG).d("Skipped session $sid due to package name $name ($data)")
+                Timber.d("Skipped session $sid due to package name $name ($data)")
                 return@next
             }
             if (sid == 0) {
-                Timber.tag(TAG).w("Session 0 skipped ($data)")
+                Timber.w("Session 0 skipped ($data)")
                 return@next
             }
 
             if (!AudioSessionEntry.isUsageRecordable(it.value.usage)) {
-                Timber.tag(TAG).d("Skipped session $sid due to usage ($data)")
+                Timber.d("Skipped session $sid due to usage ($data)")
                 return@next
             }
 
@@ -72,9 +82,8 @@ class MutedSessionManager(private val context: Context) {
         }
 
         removedSessions.forEach {
-            Timber.tag(TAG)
-                .d("Removed session: session ${it.key}; data: ${it.value.audioSession}")
-            it.value.dynamicsProcessing?.release()
+            Timber.d("Removed session: session ${it.key}; data: ${it.value.audioSession}")
+            it.value.audioMuteEffect?.release()
             sessionList.remove(it.key)
         }
 
@@ -86,73 +95,28 @@ class MutedSessionManager(private val context: Context) {
 
     private fun addSession(sid: Int, data: AudioSessionEntry){
         if(excludedUids.contains(data.uid)) {
-            Timber.tag(TAG).d("Rejected session $sid from excluded uid ${data.uid} ($data)")
+            Timber.d("Rejected session $sid from excluded uid ${data.uid} ($data)")
             return
         }
 
-        Timber.tag(TAG).d("Added session: sid=$sid; $data")
+        Timber.d("Added session: sid=$sid; $data")
 
-        try {
-            val muteEffect = DynamicsProcessing(Int.MAX_VALUE, sid, null)
-            muteEffect.setInputGainAllChannelsTo(-200f)
-            muteEffect.enabled = true
-            muteEffect.setEnableStatusListener { effect, enabled ->
-                if (!enabled) {
-                    try {
-                        (effect as DynamicsProcessing).setInputGainAllChannelsTo(-200f)
-                        effect.enabled = true
-                        Timber.tag(TAG)
-                            .d("Dynamics processor control re-enabled (session $sid)")
-                    }
-                    catch(ex: Exception)
-                    {
-                        Timber.tag(TAG).w("Failed to re-enable processor")
-                        Timber.tag(TAG).w(ex)
-                        sendFxCloseBroadcast(data.packageName, sid)
-                        sessionLossListener?.onSessionLost(sid)
-                    }
-                }
-            }
-            muteEffect.setControlStatusListener { effect, controlGranted ->
-                if(!controlGranted)
-                {
-                    sendFxCloseBroadcast(data.packageName, sid)
-                    sessionLossListener?.onSessionLost(sid)
-                }
-                else {
-                    try {
-                        (effect as DynamicsProcessing).setInputGainAllChannelsTo(-200f)
-                        effect.enabled = true
-                        Timber.tag(TAG)
-                            .d("Dynamics processor re-muted (session $sid)")
-                    }
-                    catch(ex: Exception)
-                    {
-                        Timber.tag(TAG).w("Failed to re-mute session")
-                        Timber.tag(TAG).w(ex)
-                        sendFxCloseBroadcast(data.packageName, sid)
-                        sessionLossListener?.onSessionLost(sid)
-                    }
-                }
-                Timber.tag(TAG)
-                    .d(
-                        "Dynamics processor control %s",
-                        if (controlGranted) " returned" else "taken (session $sid)"
-                    )
-            }
-
-            sessionList[sid] = MutedSessionEntry(data, muteEffect)
-            Timber.tag(TAG).d("Successfully added session $sid")
-        } catch (ex: RuntimeException) {
-            Timber.tag(TAG)
-                .e("Failed to attach DynamicsProcessing to session $sid (data: $data; message: ${ex.message})")
-            if(data.usage.uppercase().contains("MEDIA") || data.usage.uppercase().contains("GAME") || data.usage.uppercase().contains("UNKNOWN"))
-            {
-                sendFxCloseBroadcast(data.packageName, sid)
-                // TODO callback not appropriate -> attach fail != session loss
-                sessionLossListener?.onSessionLost(sid)
-            }
+        val muteEffect = factory.make(sid, data)
+        if(muteEffect == null &&
+            (data.usage.uppercase().contains("MEDIA") ||
+                    data.usage.uppercase().contains("GAME") ||
+                    data.usage.uppercase().contains("UNKNOWN")))
+        {
+            // TODO don't send session loss event here, add to exclusion list automatically
+            // TODO callback not appropriate -> attach fail != session loss
+            sessionLossListener?.onSessionLost(sid)
+            return
         }
+
+        muteEffect ?: return
+
+        sessionList[sid] = MutedSessionEntry(data, muteEffect)
+        Timber.d("Successfully added session $sid")
     }
 
     private fun sendFxCloseBroadcast(pkgName: String, sid: Int) {
@@ -170,8 +134,8 @@ class MutedSessionManager(private val context: Context) {
 
         val excludedSessions = sessionList.filter { excludedUids.contains(it.value.audioSession.uid) }
         excludedSessions.forEach { (_, session) ->
-            session.dynamicsProcessing?.enabled = false
-            session.dynamicsProcessing?.release()
+            session.audioMuteEffect?.enabled = false
+            session.audioMuteEffect?.release()
         }
         excludedSessions.map { it.key }.forEach { sid ->
             sessionList.remove(sid)
@@ -191,7 +155,6 @@ class MutedSessionManager(private val context: Context) {
         changeCallbacks.remove(changeListener)
     }
 
-
     interface OnSessionChangeListener {
         fun onSessionChanged(sessionList: HashMap<Int,MutedSessionEntry>)
     }
@@ -201,7 +164,6 @@ class MutedSessionManager(private val context: Context) {
     }
 
     companion object {
-        const val TAG = "MutedSessionManager"
         const val EXTRA_IGNORE = "rootlessjamesdsp.ignore"
     }
 }
