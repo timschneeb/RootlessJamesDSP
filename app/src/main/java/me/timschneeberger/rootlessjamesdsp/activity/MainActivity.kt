@@ -73,7 +73,7 @@ class MainActivity : BaseActivity() {
         override fun onReceive(context: Context, intent: Intent) {
             when (intent.action) {
                 Constants.ACTION_DISCARD_AUTHORIZATION -> {
-                    Timber.tag(TAG).i("mediaProjectionStartIntent discarded")
+                    Timber.i("mediaProjectionStartIntent discarded")
                     mediaProjectionStartIntent = null
                 }
                 Constants.ACTION_SERVICE_STOPPED -> {
@@ -102,7 +102,7 @@ class MainActivity : BaseActivity() {
                 "($check) Cannot launch application. Please re-download the latest version from the official GitHub project site.",
                 Toast.LENGTH_LONG
             ).show()
-            Timber.tag(TAG).wtf(UnsupportedOperationException("Launch error $check; ${ApplicationUtils.describe(this)}"))
+            Timber.wtf(UnsupportedOperationException("Launch error $check; ${ApplicationUtils.describe(this)}"))
             quitGracefully()
             return
         }
@@ -127,7 +127,7 @@ class MainActivity : BaseActivity() {
         // Check permissions and launch onboarding if required
         if(checkSelfPermission(Manifest.permission.DUMP) == PackageManager.PERMISSION_DENIED ||
             checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_DENIED) {
-            Timber.tag(TAG).i("Launching onboarding (first boot: $firstBoot)")
+            Timber.i("Launching onboarding (first boot: $firstBoot)")
 
             val onboarding = Intent(this, OnboardingActivity::class.java)
             onboarding.putExtra(OnboardingActivity.EXTRA_FIX_PERMS, !firstBoot)
@@ -345,7 +345,6 @@ class MainActivity : BaseActivity() {
     }
 
     companion object {
-        const val TAG = "MainActivity"
         const val EXTRA_FORCE_SHOW_CAPTURE_PROMPT = "ForceShowCapturePrompt"
     }
 }

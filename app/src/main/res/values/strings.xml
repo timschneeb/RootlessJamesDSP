@@ -8,9 +8,12 @@
     <string name="notification_channel_service">Service notification</string>
     <string name="notification_channel_session_loss_alert">Session loss alert</string>
     <string name="notification_channel_permission_prompt">Permission prompt request</string>
+    <string name="notification_channel_app_compat_alert">Incompatible app alert</string>
+
 
     <!-- Service notifications -->
     <string name="action_retry">Retry</string>
+    <string name="action_fix">Fix issue</string>
     <string name="action_stop">Stop</string>
     <string name="notification_waiting">Waiting for user action…</string>
     <string name="notification_processing">Active apps: %1$s</string>
@@ -25,6 +28,11 @@
     <string name="session_control_loss_notification_title">Audio processing stopped. Another app is interfering with JamesDSP.</string>
     <string name="session_control_loss_notification">Please disable all other apps that provide global audio effects before re-enabling JamesDSP.</string>
 
+    <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_toast">JamesDSP stopped due to incompatible media app. Please check the notification to resolve this problem.</string>
+    <string name="session_app_compat_notification_title">Audio processing stopped. Another app is interfering with JamesDSP.</string>
+    <string name="session_app_compat_notification">Tap this notification to resolve the problem.</string>
+
     <!-- Capture permission revoked notifications -->
     <string name="capture_permission_revoked_toast">JamesDSP has been stopped because the audio capture permission was revoked.</string>
 
@@ -34,6 +42,7 @@
     <string name="details">Details</string>
     <string name="warning">Warning</string>
     <string name="success">Success</string>
+    <string name="open">Open</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
@@ -226,6 +235,7 @@
     <string name="session_detection_method">Preferred session detection method</string>
     <string name="session_detection_method_audiopolicyservice">AudioPolicyService dump</string>
     <string name="session_detection_method_audioservice">AudioService dump</string>
+    <string name="session_app_problem_ignore">Ignore app compatibility issues</string>
     <string name="session_loss_ignore">Ignore session control loss</string>
     <string name="session_loss_ignore_off">Disabled, handle normally (recommended)</string>
     <string name="session_loss_ignore_on">Don\'t take any action (may cause duplicated audio)</string>
@@ -366,6 +376,15 @@
     <string name="blocklist_no_exclusions">No excluded apps</string>
     <string name="blocklist_unsupported_apps">Unsupported apps</string>
     <string name="blocklist_unsupported_apps_message"><![CDATA[<p>This app does not support processing apps that block third parties from recording their audio output. To prevent these apps from being muted due to their capture restrictions, they are automatically excluded from audio processing and are not re-routed.</p><p><u>Affected apps:</u><br/>%s</p>]]></string>
+
+    <!-- Compatibility issue activity -->
+    <string name="title_activity_app_compat">Compatibility issue</string>
+    <string name="app_compat_retry">Retry</string>
+    <string name="app_compat_exclude">Exclude</string>
+    <string name="app_compat_title">Audio processing has been suspended to prevent duplicated audio</string>
+    <string name="app_compat_explanation">The following app is unsupported because it causes RootlessJamesDSP to lose control over its audio routing:</string>
+    <string name="app_compat_instruction">Please check the app\'s settings if you can disable HW-acceleration or other settings that could interfere with RootlessJamesDSP and tap \'Retry\'.</string>
+    <string name="app_compat_instruction_exclude">Alternatively, select \'Exclude\' to bypass this issue by excluding the incompatible app from audio processing.</string>
 
     <!-- App list -->
     <string name="app_list_loading">Loading apps…</string>

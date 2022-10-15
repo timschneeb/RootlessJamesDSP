@@ -3,6 +3,7 @@
     <!-- Internal -->
     <string name="key_firstboot" translatable="false">first_boot</string>
     <string name="key_is_activity_active" translatable="false">is_activity_active</string>
+    <string name="key_is_app_compat_activity_active" translatable="false">is_app_compat_activity_active</string>
 
     <!-- Settings -->
     <string name="key_share_crash_reports" translatable="false">share_crash_reports</string>
@@ -15,6 +16,7 @@
     <string name="key_session_continuous_polling_rate" translatable="false">session_continuous_polling_rate</string>
     <string name="key_session_continuous_polling" translatable="false">session_continuous_polling</string>
     <string name="key_session_loss_ignore" translatable="false">session_loss_ignore</string>
+    <string name="key_session_app_problem_ignore" translatable="false">session_app_problem_ignore</string>
     <string name="key_autostart_prompt_at_boot" translatable="false">autostart_prompt_at_boot</string>
     <string name="key_powersave_suspend" translatable="false">powersave_suspend</string>
     <string name="key_audioformat_encoding" translatable="false">audioformat_encoding</string>

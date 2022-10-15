@@ -42,7 +42,10 @@ object Constants {
     const val CHANNEL_ID_SERVICE = "JamesDSP"
     const val CHANNEL_ID_SESSION_LOSS = "Session loss alert"
     const val CHANNEL_ID_PERMISSION_PROMPT = "Permission prompt"
+    const val CHANNEL_ID_APP_INCOMPATIBILITY = "App incompatibility alert"
+
     const val NOTIFICATION_ID_SERVICE = 1
     const val NOTIFICATION_ID_SESSION_LOSS = 2
     const val NOTIFICATION_ID_PERMISSION_PROMPT = 3
+    const val NOTIFICATION_ID_APP_INCOMPATIBILITY = 4
 }

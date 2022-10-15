@@ -64,7 +64,6 @@ class OnboardingActivity : BaseActivity(){
 
     companion object
     {
-        const val TAG = "OnboardingActivity"
         const val EXTRA_FIX_PERMS = "FixPermissions"
     }
 }

@@ -50,11 +50,11 @@ object AudioFlingerServiceDumpUtils {
                         29
                     }
                     else -> {
-                        Timber.tag(TAG).e("Failed to determine table version. Table head: $s")
+                        Timber.e("Failed to determine table version. Table head: $s")
                         return null
                     }
                 }
-                Timber.tag(TAG).d("Table version $tableHeadApiVersion")
+                Timber.d("Table version $tableHeadApiVersion")
 
                 lastLineIsTable = true
             }
@@ -125,6 +125,5 @@ object AudioFlingerServiceDumpUtils {
         return sb.toString()
     }
 
-    const val TAG = "AudioFlingerServiceDumpUtils"
     const val TARGET_SERVICE = "media.audio_flinger"
 }

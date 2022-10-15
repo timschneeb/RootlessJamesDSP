@@ -34,11 +34,11 @@ class AudioServiceDumpProvider : ISessionDumpProvider {
         globalSessionRefs?.forEach {
             if(sidPidLookupMap.contains(it.pid))
             {
-                Timber.tag(TAG).w("SID/PID map: Duplicated PID (pid=${it.pid}; sid=${it.sid})")
+                Timber.w("SID/PID map: Duplicated PID (pid=${it.pid}; sid=${it.sid})")
             }
             else
             {
-                Timber.tag(TAG).d("SID/PID map: AudioFlinger: pid=${it.pid}; sid=${it.sid}")
+                Timber.d("SID/PID map: AudioFlinger: pid=${it.pid}; sid=${it.sid}")
             }
 
             sidPidLookupMap[it.pid] = it.sid
@@ -73,7 +73,7 @@ class AudioServiceDumpProvider : ISessionDumpProvider {
 
                 if(pid == null || uid == null || usage == null)
                 {
-                    Timber.tag(TAG).e("Failed to parse match for p/uid: $pid/$uid (usage=$usage)")
+                    Timber.e("Failed to parse match for p/uid: $pid/$uid (usage=$usage)")
                     return@next
                 }
 
@@ -87,24 +87,24 @@ class AudioServiceDumpProvider : ISessionDumpProvider {
                 {
                     // Fallback to SID/PID table from AudioFlinger
                     sid = sidPidLookupMap[pid]
-                    Timber.tag(TAG).d("Falling back to SID lookup via AudioFlinger (p/uid=$pid/$uid; usage=$usage; content=$content) => sid=$sid")
+                    Timber.d("Falling back to SID lookup via AudioFlinger (p/uid=$pid/$uid; usage=$usage; content=$content) => sid=$sid")
                 }
 
                 if(sid == null)
                 {
-                    Timber.tag(TAG).e("Failed to determine session id for p/uid: $pid/$uid (usage=$usage; content=$content)")
+                    Timber.e("Failed to determine session id for p/uid: $pid/$uid (usage=$usage; content=$content)")
                     return@next
                 }
 
                 val pkg = context.getPackageNameFromUid(uid) ?: uid.toString()
                 sessions[sid] = AudioSessionEntry(uid, pkg, usage, content)
             } catch (ex: NumberFormatException) {
-                Timber.tag(TAG).e("Failed to parse match")
-                Timber.tag(TAG).e(ex)
+                Timber.e("Failed to parse match")
+                Timber.e(ex)
             }
         }
 
-        Timber.tag(TAG).d("Dump processed")
+        Timber.d("Dump processed")
         return AudioServiceDump(sessions)
     }
 
@@ -122,7 +122,6 @@ class AudioServiceDumpProvider : ISessionDumpProvider {
     }
 
     companion object {
-        const val TAG = "AudioServiceDumpProvider"
         const val TARGET_SERVICE = "audio"
     }
 }

@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
+import android.os.Parcelable
 import android.text.Html
 import android.text.Spanned
 import androidx.appcompat.view.ContextThemeWrapper
@@ -14,6 +15,7 @@ import org.koin.core.component.get
 import java.io.Serializable
 import java.math.BigDecimal
 import java.math.RoundingMode
+import java.util.*
 import kotlin.math.*
 
 
@@ -67,4 +69,13 @@ fun <T : Serializable> Bundle.getSerializableAs(key: String, clazz: Class<T>): T
     } else {
         this.getSerializable(key)
     }) as? T
+}
+
+@Suppress("UNCHECKED_CAST")
+inline fun <reified T : Parcelable> Bundle.getParcelableAs(key: String): T? {
+    return (if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        this.getParcelable(key, T::class.java)
+    } else {
+        this.getParcelable(key)
+    })
 }

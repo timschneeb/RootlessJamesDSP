@@ -63,12 +63,12 @@ class OnboardingFragment : Fragment() {
     private var shizukuAlive = false
 
     private val binderReceivedListener = Shizuku.OnBinderReceivedListener {
-        Timber.tag(TAG).d("Shizuku binder received")
+        Timber.d("Shizuku binder received")
         shizukuAlive = true
         updateSetupInstructions()
     }
     private val binderDeadListener =  Shizuku.OnBinderDeadListener {
-        Timber.tag(TAG).d("Shizuku binder died")
+        Timber.d("Shizuku binder died")
         shizukuAlive = false
         updateSetupInstructions()
     }
@@ -294,14 +294,14 @@ class OnboardingFragment : Fragment() {
         val prev = pageMap[currentPage]
         val next = pageMap[number]
         if(prev == null || next == null) {
-            Timber.tag(TAG).e("Unknown page resource (prev=$prev; next=$next)")
+            Timber.e("Unknown page resource (prev=$prev; next=$next)")
             return
         }
 
         val prevView = view?.findViewById<View>(prev)
         val nextView = view?.findViewById<View>(next)
         if(prevView == null || nextView == null) {
-            Timber.tag(TAG).e("View is null (prev=$prev; next=$next)")
+            Timber.e("View is null (prev=$prev; next=$next)")
             return
         }
 
@@ -321,12 +321,12 @@ class OnboardingFragment : Fragment() {
     private fun changePage(forward: Boolean, ignoreConditions: Boolean = false) {
         val nextIndex = if (forward) requestNextPage(currentPage + 1, forward) else requestNextPage(currentPage - 1, forward)
         if(nextIndex < 1) {
-            Timber.tag(TAG).w("Page index out of range ($nextIndex)")
+            Timber.w("Page index out of range ($nextIndex)")
             return
         }
 
         if(forward && !canAccessNextPage(currentPage) && !ignoreConditions) {
-            Timber.tag(TAG).d("Next page not ready; instructions not yet fulfilled by the user")
+            Timber.d("Next page not ready; instructions not yet fulfilled by the user")
             return
         }
 
@@ -346,7 +346,7 @@ class OnboardingFragment : Fragment() {
             else -> false
         }
 
-        Timber.tag(TAG).d("requestNextPage: shouldSkip $nextPage? $shouldSkip")
+        Timber.d("requestNextPage: shouldSkip $nextPage? $shouldSkip")
 
         if(!shouldSkip)
             return nextPage
@@ -366,7 +366,7 @@ class OnboardingFragment : Fragment() {
     private fun ensureDumpPermission(): Boolean{
         // Permission already granted?
         if(requireContext().checkSelfPermission(DUMP_PERM) == PERMISSION_GRANTED) {
-            Timber.tag(TAG).d("DUMP permission granted")
+            Timber.d("DUMP permission granted")
             return true
         }
 
@@ -374,7 +374,7 @@ class OnboardingFragment : Fragment() {
         if(shizukuAlive && Shizuku.checkSelfPermission() == PERMISSION_GRANTED) {
             val pkg = requireContext().packageName
             val uid = myUid()
-            Timber.tag(TAG)
+            Timber
                 .d("Granting $DUMP_PERM via Shizuku (uid ${Shizuku.getUid()}) for $pkg")
 
             // Grant DUMP as system
@@ -396,10 +396,10 @@ class OnboardingFragment : Fragment() {
 
             // Re-check permission
             return if (requireContext().checkSelfPermission(DUMP_PERM) == PERMISSION_GRANTED) {
-                Timber.tag(TAG).d("DUMP permission via Shizuku granted")
+                Timber.d("DUMP permission via Shizuku granted")
                 true
             } else {
-                Timber.tag(TAG).e("$DUMP_PERM not granted")
+                Timber.e("$DUMP_PERM not granted")
                 requireContext().showAlert(R.string.onboarding_adb_shizuku_no_dump_perm_title,
                     R.string.onboarding_adb_shizuku_no_dump_perm)
 
@@ -524,7 +524,6 @@ class OnboardingFragment : Fragment() {
     {
         fun newInstance() = OnboardingFragment()
 
-        const val TAG = "OnboardingFragment"
         const val DUMP_PERM = "android.permission.DUMP"
         const val SHIZUKU_PKG = "moe.shizuku.privileged.api"
 

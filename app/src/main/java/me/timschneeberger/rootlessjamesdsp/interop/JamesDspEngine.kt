@@ -27,7 +27,7 @@ class JamesDspEngine(val context: Context, val callbacks: JamesDspWrapper.JamesD
     private val cache = PreferenceCache(context)
 
     override fun close() {
-        Timber.tag(TAG).d("Closing engine. Handle $handle can't be used anymore")
+        Timber.d("Closing engine. Handle $handle can't be used anymore")
         syncScope.cancel()
         JamesDspWrapper.free(handle)
         handle = 0
@@ -96,7 +96,7 @@ class JamesDspEngine(val context: Context, val callbacks: JamesDspWrapper.JamesD
     }
 
     private suspend fun syncWithPreferencesAsync(forceUpdateNamespaces: Array<String>? = null) {
-        Timber.tag(TAG).d("Synchronizing with preferences... (forced: %s)", forceUpdateNamespaces?.joinToString(";") { it })
+        Timber.d("Synchronizing with preferences... (forced: %s)", forceUpdateNamespaces?.joinToString(";") { it })
 
         syncMutex.withLock {
 
@@ -157,7 +157,7 @@ class JamesDspEngine(val context: Context, val callbacks: JamesDspWrapper.JamesD
 
             val targets = cache.changedNamespaces.toTypedArray() + (forceUpdateNamespaces ?: arrayOf())
             targets.forEach {
-                Timber.tag(TAG).i("Committing new changes in namespace '$it'")
+                Timber.i("Committing new changes in namespace '$it'")
 
                 val result = when (it) {
                     Constants.PREF_OUTPUT -> {
@@ -183,7 +183,7 @@ class JamesDspEngine(val context: Context, val callbacks: JamesDspWrapper.JamesD
             }
 
             cache.markChangesAsCommitted()
-            Timber.tag(TAG).i("Preferences synchronized")
+            Timber.i("Preferences synchronized")
         }
     }
 
@@ -206,7 +206,7 @@ class JamesDspEngine(val context: Context, val callbacks: JamesDspWrapper.JamesD
         {
             val number = str.toDoubleOrNull()
             if(number == null) {
-                Timber.tag(TAG).e("setFirEqualizer: malformed EQ string")
+                Timber.e("setFirEqualizer: malformed EQ string")
                 return false
             }
             doubleArray[i] = number
@@ -218,7 +218,7 @@ class JamesDspEngine(val context: Context, val callbacks: JamesDspWrapper.JamesD
     fun setVdc(enable: Boolean, vdcPath: String): Boolean
     {
         if(!File(vdcPath).exists()) {
-            Timber.tag(TAG).w("setVdc: file does not exist")
+            Timber.w("setVdc: file does not exist")
             JamesDspWrapper.setVdc(handle, false, "")
             return true /* non-critical */
         }
@@ -241,7 +241,7 @@ class JamesDspEngine(val context: Context, val callbacks: JamesDspWrapper.JamesD
     fun setConvolver(enable: Boolean, impulseResponsePath: String, optimizationMode: Int, waveEditStr: String): Boolean
     {
         if(!File(impulseResponsePath).exists()) {
-            Timber.tag(TAG).w("setConvolver: file does not exist")
+            Timber.w("setConvolver: file does not exist")
             JamesDspWrapper.setConvolver(handle, false, FloatArray(0), 0, 0)
             return true /* non-critical */
         }
@@ -257,12 +257,12 @@ class JamesDspEngine(val context: Context, val callbacks: JamesDspWrapper.JamesD
                 for (i in advConv.indices) advSetting[i] = Integer.valueOf(advConv[i])
             }
             else {
-                Timber.tag(TAG)
+                Timber
                     .w("setConvolver: AdvImp setting has the wrong size (${advConv.size})")
             }
         }
         catch(ex: NumberFormatException) {
-            Timber.tag(TAG)
+            Timber
                 .e("setConvolver: NumberFormatException while parsing AdvImp setting. Using defaults.")
 
             advSetting[0] = -80
@@ -282,7 +282,7 @@ class JamesDspEngine(val context: Context, val callbacks: JamesDspWrapper.JamesD
             advSetting
         )
         if(imp == null) {
-            Timber.tag(TAG).e("setConvolver: Failed to read IR")
+            Timber.e("setConvolver: Failed to read IR")
             JamesDspWrapper.setConvolver(handle, false, FloatArray(0), 0, 0)
             return false
         }
@@ -331,7 +331,7 @@ class JamesDspEngine(val context: Context, val callbacks: JamesDspWrapper.JamesD
     fun setLiveprog(enable: Boolean, path: String): Boolean
     {
         if(!File(path).exists()) {
-            Timber.tag(TAG).w("setLiveprog: file does not exist")
+            Timber.w("setLiveprog: file does not exist")
             return JamesDspWrapper.setLiveprog(handle, false, "", "")
         }
 
@@ -364,10 +364,5 @@ class JamesDspEngine(val context: Context, val callbacks: JamesDspWrapper.JamesD
         override fun onLiveprogExec(id: String) {}
         override fun onLiveprogResult(resultCode: Int, id: String, errorMessage: String?) {}
         override fun onVdcParseError() {}
-    }
-
-    companion object
-    {
-        const val TAG = "JamesDspEngine"
     }
 }

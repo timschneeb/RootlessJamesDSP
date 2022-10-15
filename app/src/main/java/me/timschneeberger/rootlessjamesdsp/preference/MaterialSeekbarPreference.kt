@@ -18,7 +18,6 @@ import kotlin.math.min
 
 
 class MaterialSeekbarPreference : Preference {
-    private val TAG = "MaterialSeekbarPreference"
     var mSeekBarValue/* synthetic access */ = 0f
     var mMin/* synthetic access */ = 0f
     private var mMax = 0f
@@ -90,7 +89,7 @@ class MaterialSeekbarPreference : Preference {
                 return@OnKeyListener false
             }
             if (mSeekBar == null) {
-                Timber.tag(TAG).e("SeekBar view is null and hence cannot be adjusted.")
+                Timber.e("SeekBar view is null and hence cannot be adjusted.")
                 return@OnKeyListener false
             }
             mSeekBar!!.onKeyDown(keyCode, event)
@@ -154,7 +153,7 @@ class MaterialSeekbarPreference : Preference {
             mSeekBarValueTextView = null
         }
         if (mSeekBar == null) {
-            Timber.tag(TAG).e("SeekBar view is null in onBindViewHolder.")
+            Timber.e("SeekBar view is null in onBindViewHolder.")
             return
         }
 

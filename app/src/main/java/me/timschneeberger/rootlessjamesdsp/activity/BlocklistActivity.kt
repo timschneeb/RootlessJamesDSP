@@ -1,10 +1,6 @@
 package me.timschneeberger.rootlessjamesdsp.activity
 
 import android.os.Bundle
-import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.ActivityBlocklistBinding
 import me.timschneeberger.rootlessjamesdsp.fragment.BlocklistFragment
@@ -33,9 +29,5 @@ class BlocklistActivity : BaseActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.toolbar.setNavigationOnClickListener { onBackPressed() }
-    }
-
-    companion object {
-        const val TAG = "BlocklistActivity"
     }
 }

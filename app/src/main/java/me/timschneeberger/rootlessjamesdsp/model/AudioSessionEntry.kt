@@ -6,6 +6,11 @@ data class AudioSessionEntry(val uid: Int, val packageName: String, val usage: S
         return "uid=$uid; package=$packageName; usage=$usage; content=$content; isUsageRecordable=${isUsageRecordable(usage)}"
     }
 
+    fun isUsageRecordable(): Boolean
+    {
+        return Companion.isUsageRecordable(usage)
+    }
+
     companion object
     {
         const val USAGE_UNKNOWN = "USAGE_UNKNOWN"

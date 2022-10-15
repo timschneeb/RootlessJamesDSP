@@ -42,17 +42,17 @@ class AudioPolicyServiceDumpProvider : ISessionDumpProvider {
                 val usage = it.groups[4]?.value
                 if(sid == null || uid == null || usage == null)
                 {
-                    Timber.tag(TAG).e("Incomplete match at '${it.value}': uid=$uid; sid=$sid; content=$content; usage=$usage")
+                    Timber.e("Incomplete match at '${it.value}': uid=$uid; sid=$sid; content=$content; usage=$usage")
                     return@next
                 }
 
                 val pkg = context.getPackageNameFromUid(uid) ?: uid.toString()
                 sessions[sid] = AudioSessionEntry(uid, pkg, usage, content)
-                Timber.tag(TAG).v("Found session id $sid (uid $uid; usage $usage; content $content; pkg $pkg)")
+                Timber.v("Found session id $sid (uid $uid; usage $usage; content $content; pkg $pkg)")
 
             } catch (ex: NumberFormatException) {
-                Timber.tag(TAG).e("Failed to parse match")
-                Timber.tag(TAG).e(ex)
+                Timber.e("Failed to parse match")
+                Timber.e(ex)
             }
         }
 
@@ -63,11 +63,11 @@ class AudioPolicyServiceDumpProvider : ISessionDumpProvider {
             val allowed = it2.groups[1]?.value?.trim()?.lowercase(Locale.ROOT) == "true"
             captureAllowLog[pkgName] = allowed
             if (!allowed) {
-                Timber.tag(TAG).v("Playback capture restricted by $pkgName")
+                Timber.v("Playback capture restricted by $pkgName")
             }
         }
 
-        Timber.tag(TAG).d("Dump processed")
+        Timber.d("Dump processed")
         return AudioPolicyServiceDump(sessions, captureAllowLog)
     }
 
@@ -84,7 +84,6 @@ class AudioPolicyServiceDumpProvider : ISessionDumpProvider {
 
     companion object
     {
-        const val TAG = "AudioPolicyServiceDumpProvider"
         const val TARGET_SERVICE = "media.audio_policy"
     }
 }

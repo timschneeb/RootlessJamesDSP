@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Icon
 import me.timschneeberger.rootlessjamesdsp.R
+import me.timschneeberger.rootlessjamesdsp.activity.AppCompatibilityActivity
 import me.timschneeberger.rootlessjamesdsp.activity.MainActivity
 import me.timschneeberger.rootlessjamesdsp.model.AudioSessionEntry
 import me.timschneeberger.rootlessjamesdsp.service.AudioProcessorService
@@ -64,6 +65,22 @@ object ServiceNotificationHelper {
             .notify(Constants.NOTIFICATION_ID_SESSION_LOSS, notification)
     }
 
+    fun pushAppIssueNotification(context: Context, mediaProjectionStartIntent: Intent?, data: AudioSessionEntry) {
+        val intent = createAppTroubleshootIntent(context, mediaProjectionStartIntent, data, directLaunch = false)
+        val contentIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+        val notification = Notification.Builder(context, Constants.CHANNEL_ID_APP_INCOMPATIBILITY)
+            .setContentTitle(context.getString(R.string.session_app_compat_notification_title))
+            .setContentText(context.getString(R.string.session_app_compat_notification))
+            .setSmallIcon(R.drawable.ic_baseline_warning_24dp)
+            .addAction(createAppTroubleshootAction(context, mediaProjectionStartIntent, data))
+            .setAutoCancel(true)
+            .setContentIntent(contentIntent)
+            .build()
+
+        SystemServices.get(context, NotificationManager::class.java)
+            .notify(Constants.NOTIFICATION_ID_APP_INCOMPATIBILITY, notification)
+    }
+
     private fun createStopAction(context: Context): Notification.Action {
         val stopIntent = createStopIntent(context)
         val stopPendingIntent = PendingIntent.getService(
@@ -93,6 +110,29 @@ object ServiceNotificationHelper {
         return actionBuilder.build()
     }
 
+    private fun createAppTroubleshootAction(context: Context, mediaProjectionStartIntent: Intent?, data: AudioSessionEntry): Notification.Action? {
+        mediaProjectionStartIntent ?: return null
+        val fixIntent = PendingIntent.getService(
+            context,
+            0,
+            createAppTroubleshootIntent(context, mediaProjectionStartIntent, data, directLaunch = false),
+            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
+        )
+        val fixIcon = Icon.createWithResource(context, R.drawable.ic_twotone_chevron_right_24dp)
+        val fixString = context.getString(R.string.action_fix)
+        val actionBuilder = Notification.Action.Builder(fixIcon, fixString, fixIntent)
+        return actionBuilder.build()
+    }
+
+    fun createAppTroubleshootIntent(ctx: Context, mediaProjectionData: Intent?, data: AudioSessionEntry, directLaunch: Boolean): Intent {
+        val intent = Intent(ctx, AppCompatibilityActivity::class.java)
+        intent.action = AudioProcessorService.ACTION_START
+        intent.putExtra(AudioProcessorService.EXTRA_MEDIA_PROJECTION_DATA, mediaProjectionData)
+        intent.putExtra(AudioProcessorService.EXTRA_APP_UID, data.uid)
+        intent.putExtra(AudioProcessorService.EXTRA_APP_COMPAT_INTERNAL_CALL, directLaunch)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        return intent
+    }
 
     fun createStopIntent(ctx: Context): Intent {
         val intent = Intent(ctx, AudioProcessorService::class.java)

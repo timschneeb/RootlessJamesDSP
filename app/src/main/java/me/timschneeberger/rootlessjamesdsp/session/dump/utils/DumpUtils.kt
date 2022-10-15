@@ -27,7 +27,7 @@ object DumpUtils {
 
             val serviceBinder = SystemServiceHelper.getSystemService(service)
             if (serviceBinder == null) {
-                Timber.tag(TAG).wtf("Service '$service' does not exist")
+                Timber.wtf("Service '$service' does not exist")
                 return null
             }
             serviceBinder.dumpAsync(writePipe.fileDescriptor, arrayOf<String>())
@@ -42,17 +42,15 @@ object DumpUtils {
         }
         catch (ex: IOException)
         {
-            Timber.tag(TAG).e("IOException during dump")
-            Timber.tag(TAG).d(ex)
+            Timber.e("IOException during dump")
+            Timber.d(ex)
             return null
         }
         catch (ex: Exception)
         {
-            Timber.tag(TAG).wtf(ex)
+            Timber.wtf(ex)
             return null
         }
 
     }
-
-    const val TAG = "DumpUtils"
 }

@@ -18,6 +18,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.asLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
+import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.session.AudioSessionManager
 import me.timschneeberger.rootlessjamesdsp.session.MutedSessionManager
 import me.timschneeberger.rootlessjamesdsp.R
@@ -28,6 +29,7 @@ import me.timschneeberger.rootlessjamesdsp.model.ProcessorMessage
 import me.timschneeberger.rootlessjamesdsp.model.SessionRecordingPolicyEntry
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspEngine
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspWrapper
+import me.timschneeberger.rootlessjamesdsp.model.AudioSessionEntry
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistDatabase
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistRepository
 import me.timschneeberger.rootlessjamesdsp.model.room.BlockedApp
@@ -38,8 +40,10 @@ import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_HARD_R
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_RELOAD_LIVEPROG
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_SOFT_REBOOT_CORE
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_PREFERENCES_UPDATED
+import me.timschneeberger.rootlessjamesdsp.utils.Constants.CHANNEL_ID_APP_INCOMPATIBILITY
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.CHANNEL_ID_SERVICE
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.CHANNEL_ID_SESSION_LOSS
+import me.timschneeberger.rootlessjamesdsp.utils.Constants.NOTIFICATION_ID_APP_INCOMPATIBILITY
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.NOTIFICATION_ID_PERMISSION_PROMPT
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.NOTIFICATION_ID_SERVICE
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.NOTIFICATION_ID_SESSION_LOSS
@@ -126,6 +130,7 @@ class AudioProcessorService : Service() {
         // Setup session manager
         audioSessionManager = AudioSessionManager(this)
         audioSessionManager.sessionDatabase.setOnSessionLossListener(onSessionLossListener)
+        audioSessionManager.sessionDatabase.setOnAppProblemListener(onAppProblemListener)
         audioSessionManager.sessionDatabase.registerOnSessionChangeListener(onSessionChangeListener)
         audioSessionManager.sessionPolicyDatabase.registerOnRestrictedSessionChangeListener(onSessionPolicyChangeListener)
 
@@ -161,9 +166,15 @@ class AudioProcessorService : Service() {
             getString(R.string.notification_channel_session_loss_alert),
             NotificationManager.IMPORTANCE_HIGH
         )
+        val channelAppCompatIssue = NotificationChannel(
+            CHANNEL_ID_APP_INCOMPATIBILITY,
+            getString(R.string.notification_channel_app_compat_alert),
+            NotificationManager.IMPORTANCE_HIGH
+        )
 
         notificationManager.createNotificationChannel(channel)
         notificationManager.createNotificationChannel(channelSessionLoss)
+        notificationManager.createNotificationChannel(channelAppCompatIssue)
         notificationManager.cancel(NOTIFICATION_ID_PERMISSION_PROMPT)
 
         // No need to recreate in this stage
@@ -189,18 +200,18 @@ class AudioProcessorService : Service() {
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
 
-        Timber.tag(TAG).d("onStartCommand")
+        Timber.d("onStartCommand")
 
         // Handle intent action
         when (intent.action) {
             null -> {
-                Timber.tag(TAG).wtf("onStartCommand: intent.action is null")
+                Timber.wtf("onStartCommand: intent.action is null")
             }
             ACTION_START -> {
-                Timber.tag(TAG).d("Starting service")
+                Timber.d("Starting service")
             }
             ACTION_STOP -> {
-                Timber.tag(TAG).d("Stopping service")
+                Timber.d("Stopping service")
                 stopSelf()
                 return START_NOT_STICKY
             }
@@ -212,6 +223,7 @@ class AudioProcessorService : Service() {
 
         // Cancel outdated notifications
         notificationManager.cancel(NOTIFICATION_ID_SESSION_LOSS)
+        notificationManager.cancel(NOTIFICATION_ID_APP_INCOMPATIBILITY)
 
         // Setup media projection
         mediaProjectionStartIntent = intent.getParcelableExtra(EXTRA_MEDIA_PROJECTION_DATA)
@@ -223,9 +235,9 @@ class AudioProcessorService : Service() {
             )
         }
         catch (ex: Exception) {
-            Timber.tag(TAG).e("Failed to acquire media projection")
+            Timber.e("Failed to acquire media projection")
             sendLocalBroadcast(Intent(Constants.ACTION_DISCARD_AUTHORIZATION))
-            Timber.tag(TAG).e(ex)
+            Timber.e(ex)
             null
         }
 
@@ -234,7 +246,7 @@ class AudioProcessorService : Service() {
         if (mediaProjection != null) {
             startRecording()
         } else {
-            Timber.tag(TAG).w("Failed to capture audio")
+            Timber.w("Failed to capture audio")
             stopSelf()
         }
 
@@ -264,6 +276,8 @@ class AudioProcessorService : Service() {
         audioSessionManager.sessionDatabase.unregisterOnSessionChangeListener(onSessionChangeListener)
         audioSessionManager.destroy()
 
+        notificationManager.cancel(NOTIFICATION_ID_SERVICE)
+
         // Stop recording and release resources
         stopRecording()
         engine.close()
@@ -289,7 +303,7 @@ class AudioProcessorService : Service() {
                 return
             }
 
-            Timber.tag(TAG).w("Capture permission revoked. Stopping service.")
+            Timber.w("Capture permission revoked. Stopping service.")
 
             sendLocalBroadcast(Intent(Constants.ACTION_DISCARD_AUTHORIZATION))
 
@@ -322,20 +336,21 @@ class AudioProcessorService : Service() {
                 if(sessionLossRetryCount < SESSION_LOSS_MAX_RETRIES) {
                     // Retry
                     sessionLossRetryCount++
-                    Timber.tag(TAG).d("Session lost. Retry count: $sessionLossRetryCount/$SESSION_LOSS_MAX_RETRIES")
+                    Timber.d("Session lost. Retry count: $sessionLossRetryCount/$SESSION_LOSS_MAX_RETRIES")
                     audioSessionManager.pollOnce(false)
                     restartRecording()
                     return
                 }
                 else {
-                    Timber.tag(TAG).d("Giving up on saving session. User interaction required.")
+                    sessionLossRetryCount = 0
+                    Timber.d("Giving up on saving session. User interaction required.")
                 }
 
                 // Request users attention
                 notificationManager.cancel(NOTIFICATION_ID_SERVICE)
                 ServiceNotificationHelper.pushSessionLossNotification(this@AudioProcessorService, mediaProjectionStartIntent)
                 Toast.makeText(this@AudioProcessorService, getString(R.string.session_control_loss_toast), Toast.LENGTH_SHORT).show()
-                Timber.tag(TAG).w("Terminating service due to session loss")
+                Timber.w("Terminating service due to session loss")
                 stopSelf()
             }
         }
@@ -345,7 +360,7 @@ class AudioProcessorService : Service() {
     private val onSessionChangeListener = object : MutedSessionManager.OnSessionChangeListener {
         override fun onSessionChanged(sessionList: HashMap<Int, MutedSessionEntry>) {
             isProcessorIdle = sessionList.size == 0
-            Timber.tag(TAG).d("onSessionChanged: isProcessorIdle=$isProcessorIdle")
+            Timber.d("onSessionChanged: isProcessorIdle=$isProcessorIdle")
 
             ServiceNotificationHelper.pushServiceNotification(
                 this@AudioProcessorService,
@@ -354,20 +369,53 @@ class AudioProcessorService : Service() {
         }
     }
 
+    // App problem listener
+    private val onAppProblemListener = object : MutedSessionManager.OnAppProblemListener {
+        override fun onAppProblemDetected(data: AudioSessionEntry) {
+            // Push notification if enabled
+            val ignore = sharedPreferences.getBoolean(getString(R.string.key_session_app_problem_ignore), false)
+            if(!ignore) {
+                // Request users attention
+                notificationManager.cancel(NOTIFICATION_ID_SERVICE)
+
+                // Determine if we should redirect instantly, or push a non-intrusive notification
+                val prefsVar = this@AudioProcessorService.getSharedPreferences(Constants.PREF_VAR, Context.MODE_PRIVATE)
+                if(prefsVar.getBoolean(getString(R.string.key_is_activity_active), false) ||
+                    prefsVar.getBoolean(getString(R.string.key_is_app_compat_activity_active), false)) {
+                    startActivity(
+                        ServiceNotificationHelper.createAppTroubleshootIntent(
+                            this@AudioProcessorService,
+                            mediaProjectionStartIntent,
+                            data,
+                            directLaunch = true
+                        )
+                    )
+                    notificationManager.cancel(NOTIFICATION_ID_APP_INCOMPATIBILITY)
+                }
+                else
+                    ServiceNotificationHelper.pushAppIssueNotification(this@AudioProcessorService, mediaProjectionStartIntent, data)
+
+                Toast.makeText(this@AudioProcessorService, getString(R.string.session_app_compat_toast), Toast.LENGTH_SHORT).show()
+                Timber.w("Terminating service due to app incompatibility; redirect user to troubleshooting options")
+                stopSelf()
+            }
+        }
+    }
+
     // Session policy change listener
     private val onSessionPolicyChangeListener = object : SessionRecordingPolicyManager.OnSessionRecordingPolicyChangeListener {
         override fun onSessionRecordingPolicyChanged(sessionList: HashMap<String, SessionRecordingPolicyEntry>, isMinorUpdate: Boolean) {
             if(!this@AudioProcessorService.excludeRestrictedSessions) {
-                Timber.tag(TAG).d("onRestrictedSessionChanged: blocked; excludeRestrictedSessions disabled")
+                Timber.d("onRestrictedSessionChanged: blocked; excludeRestrictedSessions disabled")
                 return
             }
 
             if(!isMinorUpdate) {
-                Timber.tag(TAG).d("onRestrictedSessionChanged: major update detected; requesting soft-reboot")
+                Timber.d("onRestrictedSessionChanged: major update detected; requesting soft-reboot")
                 requestAudioRecordRecreation()
             }
             else {
-                Timber.tag(TAG).d("onRestrictedSessionChanged: minor update detected")
+                Timber.d("onRestrictedSessionChanged: minor update detected")
             }
         }
     }
@@ -376,11 +424,11 @@ class AudioProcessorService : Service() {
         when (key) {
             getString(R.string.key_powersave_suspend) -> {
                 suspendOnIdle = sharedPreferences.getBoolean(key, true)
-                Timber.tag(TAG).d("Suspend on idle set to $suspendOnIdle")
+                Timber.d("Suspend on idle set to $suspendOnIdle")
             }
             getString(R.string.key_session_exclude_restricted) -> {
                 excludeRestrictedSessions = sharedPreferences.getBoolean(key, true)
-                Timber.tag(TAG).d("Exclude restricted set to $excludeRestrictedSessions")
+                Timber.d("Exclude restricted set to $excludeRestrictedSessions")
 
                 requestAudioRecordRecreation()
             }
@@ -390,7 +438,7 @@ class AudioProcessorService : Service() {
     // Request recreation of the AudioRecord object to update AudioPlaybackRecordingConfiguration
     fun requestAudioRecordRecreation() {
         if(isProcessorDisposing || isServiceDisposing) {
-            Timber.tag(TAG).e("recreateAudioRecorder: service or processor already disposing")
+            Timber.e("recreateAudioRecorder: service or processor already disposing")
             return
         }
 
@@ -402,7 +450,7 @@ class AudioProcessorService : Service() {
     private fun startRecording() {
         // Sanity check
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-            Timber.tag(TAG).e("Record audio permission missing. Can't record")
+            Timber.e("Record audio permission missing. Can't record")
             stopSelf()
             return
         }
@@ -423,7 +471,7 @@ class AudioProcessorService : Service() {
         }
         val sampleRate = determineSamplingRate()
 
-        Timber.tag(TAG).i("Sample rate: $sampleRate; Encoding: ${encoding.name}; " +
+        Timber.i("Sample rate: $sampleRate; Encoding: ${encoding.name}; " +
                 "Buffer size: $bufferSize; Buffer size (bytes): $bufferSizeBytes ; " +
                 "HAL buffer size (bytes): ${determineBufferSize()}")
 
@@ -432,7 +480,7 @@ class AudioProcessorService : Service() {
         val track = buildAudioTrack(encodingFormat, sampleRate, bufferSizeBytes)
 
         if(engine.sampleRate.toInt() != sampleRate) {
-            Timber.tag(TAG).d("Sampling rate changed to ${sampleRate}Hz")
+            Timber.d("Sampling rate changed to ${sampleRate}Hz")
             engine.setSamplingRate(sampleRate.toFloat())
         }
 
@@ -494,11 +542,11 @@ class AudioProcessorService : Service() {
                     }
                 }
             } catch (e: IOException) {
-                Timber.tag(TAG).w(e)
+                Timber.w(e)
                 // ignore
             } catch (e: Exception) {
-                Timber.tag(TAG).e("Exception in recorderThread raised")
-                Timber.tag(TAG).e(e)
+                Timber.e("Exception in recorderThread raised")
+                Timber.e(e)
                 stopSelf()
             } finally {
                 // Clean up recorder and track
@@ -529,7 +577,7 @@ class AudioProcessorService : Service() {
     // Hard restart recording thread
     fun restartRecording() {
         if(isProcessorDisposing || isServiceDisposing) {
-            Timber.tag(TAG).e("restartRecording: service or processor already disposing")
+            Timber.e("restartRecording: service or processor already disposing")
             return
         }
 
@@ -559,7 +607,7 @@ class AudioProcessorService : Service() {
 
     private fun buildAudioRecord(encoding: Int, sampleRate: Int, bufferSizeBytes: Int): AudioRecord {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-            Timber.tag(TAG).e("buildAudioRecord: RECORD_AUDIO not granted")
+            Timber.e("buildAudioRecord: RECORD_AUDIO not granted")
             throw RuntimeException("RECORD_AUDIO not granted")
         }
 
@@ -622,7 +670,7 @@ class AudioProcessorService : Service() {
             broadcastProcessorMessage(ProcessorMessage.Type.LiveprogExec, mapOf(
                 ProcessorMessage.Param.LiveprogFileId to id
             ))
-            Timber.tag(TAG).v("onLiveprogExec: $id")
+            Timber.v("onLiveprogExec: $id")
         }
 
         override fun onLiveprogResult(
@@ -635,12 +683,12 @@ class AudioProcessorService : Service() {
                 ProcessorMessage.Param.LiveprogFileId to id,
                 ProcessorMessage.Param.LiveprogErrorMessage to (errorMessage ?: "")
             ))
-            Timber.tag(TAG).v("onLiveprogResult: $resultCode; message: $errorMessage")
+            Timber.v("onLiveprogResult: $resultCode; message: $errorMessage")
         }
 
         override fun onVdcParseError() {
             broadcastProcessorMessage(ProcessorMessage.Type.VdcParseError)
-            Timber.tag(TAG).v("onVdcParseError")
+            Timber.v("onVdcParseError")
         }
     }
 
@@ -671,12 +719,13 @@ class AudioProcessorService : Service() {
     }
 
     companion object {
-        const val TAG = "AudioProcessorService"
         const val SESSION_LOSS_MAX_RETRIES = 1
 
-        const val ACTION_START = ".service.START"
-        const val ACTION_STOP = ".service.STOP"
+        const val ACTION_START = BuildConfig.APPLICATION_ID + ".service.START"
+        const val ACTION_STOP = BuildConfig.APPLICATION_ID + ".service.STOP"
         const val EXTRA_MEDIA_PROJECTION_DATA = "mediaProjectionData"
+        const val EXTRA_APP_UID = "uid"
+        const val EXTRA_APP_COMPAT_INTERNAL_CALL = "appCompatInternalCall"
 
         private const val MSG_PROCESSOR_READY = 1
 

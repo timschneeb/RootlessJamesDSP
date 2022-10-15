@@ -18,6 +18,8 @@ class MutedSessionManager(private val context: Context) {
     private val sessionList = hashMapOf<Int,MutedSessionEntry>()
     private val changeCallbacks = mutableListOf<OnSessionChangeListener>()
     private var sessionLossListener: OnSessionLossListener? = null
+    private var appProblemListener: OnAppProblemListener? = null
+
     private var excludedUids = arrayOf<Int>()
     private val excludedPackages = arrayOf(
         context.packageName,
@@ -102,14 +104,10 @@ class MutedSessionManager(private val context: Context) {
         Timber.d("Added session: sid=$sid; $data")
 
         val muteEffect = factory.make(sid, data)
-        if(muteEffect == null &&
-            (data.usage.uppercase().contains("MEDIA") ||
-                    data.usage.uppercase().contains("GAME") ||
-                    data.usage.uppercase().contains("UNKNOWN")))
+        if(muteEffect == null && data.isUsageRecordable())
         {
-            // TODO don't send session loss event here, add to exclusion list automatically
-            // TODO callback not appropriate -> attach fail != session loss
-            sessionLossListener?.onSessionLost(sid)
+            // App did not allow to attach effect; possibly caused by HW-acceleration
+            appProblemListener?.onAppProblemDetected(data)
             return
         }
 
@@ -146,6 +144,10 @@ class MutedSessionManager(private val context: Context) {
         sessionLossListener = _sessionLossListener
     }
 
+    fun setOnAppProblemListener(_appProblemListener: OnAppProblemListener) {
+        appProblemListener = _appProblemListener
+    }
+
     fun registerOnSessionChangeListener(changeListener: OnSessionChangeListener) {
         changeCallbacks.add(changeListener)
         changeListener.onSessionChanged(sessionList)
@@ -161,6 +163,10 @@ class MutedSessionManager(private val context: Context) {
 
     interface OnSessionLossListener {
         fun onSessionLost(sid: Int)
+    }
+
+    interface OnAppProblemListener {
+        fun onAppProblemDetected(data: AudioSessionEntry)
     }
 
     companion object {

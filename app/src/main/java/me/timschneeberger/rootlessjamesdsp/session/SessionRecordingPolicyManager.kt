@@ -43,7 +43,7 @@ class SessionRecordingPolicyManager(private val context: Context) {
 
         var isMinorUpdate = true
         removedPolicies.forEach {
-            Timber.tag(TAG).d("Removed session policy: ${it.value}")
+            Timber.d("Removed session policy: ${it.value}")
             sessionPolicyList.remove(it.key)
             if(it.value.isRestricted) {
                 isMinorUpdate = false
@@ -71,7 +71,7 @@ class SessionRecordingPolicyManager(private val context: Context) {
 
     private fun addSessionPolicy(packageName: String, isRestricted: Boolean){
         if (packageName == context.packageName) {
-            Timber.tag(TAG).d("Skipped session policy for '$packageName'")
+            Timber.d("Skipped session policy for '$packageName'")
             return
         }
 
@@ -83,9 +83,9 @@ class SessionRecordingPolicyManager(private val context: Context) {
         }
         val data = SessionRecordingPolicyEntry(uid, packageName, isRestricted)
         if(sessionPolicyList.containsKey(data.packageName))
-            Timber.tag(TAG).d("Updated session policy: $data")
+            Timber.d("Updated session policy: $data")
         else if(data.isRestricted) // Only log new restricted sessions
-            Timber.tag(TAG).d("Added session policy: $data")
+            Timber.d("Added session policy: $data")
         sessionPolicyList[data.packageName] = data
     }
 
@@ -107,9 +107,5 @@ class SessionRecordingPolicyManager(private val context: Context) {
 
     interface OnSessionRecordingPolicyChangeListener {
         fun onSessionRecordingPolicyChanged(sessionList: HashMap<String, SessionRecordingPolicyEntry>, isMinorUpdate: Boolean)
-    }
-
-    companion object {
-        const val TAG = "SessionRecordingPolicyManager"
     }
 }

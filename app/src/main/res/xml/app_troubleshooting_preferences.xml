@@ -80,6 +80,14 @@
             app:iconSpaceReserved="false" />
 
         <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
+            app:key="@string/key_session_app_problem_ignore"
+            app:title="@string/session_app_problem_ignore"
+            app:defaultValue="false"
+            app:summaryOff="@string/session_loss_ignore_off"
+            app:summaryOn="@string/session_loss_ignore_on"
+            app:iconSpaceReserved="false" />
+
+        <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
             app:key="@string/key_session_exclude_restricted"
             app:title="@string/session_exclude_restricted"
             app:defaultValue="true"
