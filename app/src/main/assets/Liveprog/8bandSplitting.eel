@@ -1,10 +1,10 @@
 desc: 8-Band Splitting
-freqSplit1:400<1,24000,1>Split 1 at frequency (Hz)
-freqSplit2:10000<1,24000,1>Split 2 at frequency (Hz)
-freqSplit3:10000<1,24000,1>Split 3 at frequency (Hz)
-freqSplit4:10000<1,24000,1>Split 4 at frequency (Hz)
-freqSplit5:10000<1,24000,1>Split 5 at frequency (Hz)
-freqSplit6:10000<1,24000,1>Split 6 at frequency (Hz)
+freqSplit1:180<1,24000,1>Split 1 at frequency (Hz)
+freqSplit2:800<1,24000,1>Split 2 at frequency (Hz)
+freqSplit3:1600<1,24000,1>Split 3 at frequency (Hz)
+freqSplit4:2700<1,24000,1>Split 4 at frequency (Hz)
+freqSplit5:5600<1,24000,1>Split 5 at frequency (Hz)
+freqSplit6:6500<1,24000,1>Split 6 at frequency (Hz)
 freqSplit7:10000<1,24000,1>Split 7 at frequency (Hz)
 bandPart1:6<-30,15,1>Gain between 0Hz and split 1 (dB)
 bandPart2:0<-30,15,1>Gain between split 1 and split 2 (dB)
@@ -16,12 +16,12 @@ bandPart7:0<-30,15,1>Gain between split 6 and split 7 (dB)
 bandPart8:0<-30,15,1>Gain between split 7 and 24000Hz (dB)
 
 @init
-freqSplit1 = 400;
-freqSplit2 = 10000;
-freqSplit3 = 10000;
-freqSplit4 = 10000;
-freqSplit5 = 10000;
-freqSplit6 = 10000;
+freqSplit1 = 180;
+freqSplit2 = 800;
+freqSplit3 = 1600;
+freqSplit4 = 2700;
+freqSplit5 = 5600;
+freqSplit6 = 6500;
 freqSplit7 = 10000;
 bandPart1 = 6;
 bandPart2 = 0;
