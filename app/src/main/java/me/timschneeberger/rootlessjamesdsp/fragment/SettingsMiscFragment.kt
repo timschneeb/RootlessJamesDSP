@@ -1,10 +1,12 @@
 package me.timschneeberger.rootlessjamesdsp.fragment
 
+import android.os.Build
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.preference.*
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
@@ -32,10 +34,10 @@ class SettingsMiscFragment : PreferenceFragmentCompat() {
         val view = super.onCreateView(inflater, container, savedInstanceState)
         val a = TypedValue()
         requireContext().theme.resolveAttribute(android.R.attr.windowBackground, a, true)
-        if (a.isColorType) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && a.isColorType) {
             view.setBackgroundColor(a.data)
         } else {
-            view.background = requireContext().resources.getDrawable(a.resourceId, requireContext().theme)
+            view.background = ResourcesCompat.getDrawable(requireContext().resources, a.resourceId, requireContext().theme)
         }
         return view
     }

@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name">RootlessJamesDSP</string>
-
     <!-- Main menu bar -->
     <string name="action_settings">Settings</string>
 

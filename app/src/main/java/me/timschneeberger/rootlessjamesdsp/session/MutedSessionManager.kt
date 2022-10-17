@@ -2,13 +2,14 @@ package me.timschneeberger.rootlessjamesdsp.session
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Process.myUid
+import androidx.annotation.RequiresApi
 import me.timschneeberger.rootlessjamesdsp.model.AudioSessionEntry
 import me.timschneeberger.rootlessjamesdsp.model.MutedSessionEntry
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
 import me.timschneeberger.rootlessjamesdsp.utils.AudioEffectFactory
 import timber.log.Timber
-
 
 class MutedSessionManager(private val context: Context) {
 

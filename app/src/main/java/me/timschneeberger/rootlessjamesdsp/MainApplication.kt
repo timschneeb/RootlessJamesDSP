@@ -17,6 +17,8 @@ import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistDatabase
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistRepository
 import me.timschneeberger.rootlessjamesdsp.session.dump.DumpManager
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.BuildConfig
+import me.timschneeberger.rootlessjamesdsp.R
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext.startKoin

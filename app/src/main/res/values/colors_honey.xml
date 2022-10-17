@@ -36,7 +36,7 @@
     <color name="honey_outline">#827568</color>
     <color name="honey_inverseOnSurface">#FAEFE7</color>
     <color name="honey_inverseSurface">#352F2A</color>
-    <color name="honey_inversePrimary">#FFB869</color>
+    <color name="honey_primaryInverse">#FFB869</color>
     <color name="honey_shadow">#000000</color>
     <color name="honey_surfaceTint">#885200</color>
     <color name="honey_surfaceTintColor">#885200</color>

@@ -9,8 +9,6 @@ import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionPolicyInfoDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.provider.*
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getVersionCode
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getVersionName
 import timber.log.Timber
 
 class DumpManager constructor(val context: Context) {
@@ -53,12 +51,12 @@ class DumpManager constructor(val context: Context) {
     fun dumpSessions(): ISessionInfoDump? {
         val preferred = availableDumpMethods[activeDumpMethod]
         var dump: ISessionInfoDump? = null
-            try {
-                dump = preferred?.dump(context)
-            } catch (ex: Exception) {
-                Timber.e("Exception raised while dumping session info using method ${activeDumpMethod.name} (id ${activeDumpMethod})")
-                Timber.e(ex)
-            }
+        try {
+            dump = preferred?.dump(context)
+        } catch (ex: Exception) {
+            Timber.e("Exception raised while dumping session info using method ${activeDumpMethod.name} (id ${activeDumpMethod})")
+            Timber.e(ex)
+        }
 
         if(!allowFallback || (dump != null && dump.sessions.isNotEmpty()))
         {
@@ -108,7 +106,7 @@ class DumpManager constructor(val context: Context) {
 
     fun collectDebugDumps(): String {
         var exceptionRaised = false
-        val sb = StringBuilder("Application version: ${context.getVersionName()} (${context.getVersionCode()})\n")
+        val sb = StringBuilder("Application version: ${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})\n")
         sb.append("Package: ${context.packageName}")
         sb.append("Commit: ${BuildConfig.COMMIT_SHA}; commits since release: ${BuildConfig.COMMIT_COUNT}; debug build: ${BuildConfig.DEBUG}\n")
         sb.append("Device model: ${Build.MANUFACTURER}; ${Build.PRODUCT}; ${Build.MODEL}; ${Build.DEVICE}\n")

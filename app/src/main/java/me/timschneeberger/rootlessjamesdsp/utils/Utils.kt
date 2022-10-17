@@ -9,6 +9,7 @@ import android.os.Parcelable
 import android.text.Html
 import android.text.Spanned
 import androidx.appcompat.view.ContextThemeWrapper
+import me.timschneeberger.hiddenapi_impl.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get

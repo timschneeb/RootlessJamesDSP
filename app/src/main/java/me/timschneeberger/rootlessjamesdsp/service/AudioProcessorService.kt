@@ -13,6 +13,7 @@ import android.media.projection.MediaProjection
 import android.media.projection.MediaProjectionManager
 import android.os.*
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.asLiveData
@@ -59,6 +60,7 @@ import java.lang.Exception
 import java.lang.RuntimeException
 
 
+@RequiresApi(Build.VERSION_CODES.Q)
 class AudioProcessorService : Service() {
     // System services
     private lateinit var mediaProjectionManager: MediaProjectionManager
@@ -588,6 +590,14 @@ class AudioProcessorService : Service() {
     }
 
     private fun buildAudioTrack(encoding: Int, sampleRate: Int, bufferSizeBytes: Int): AudioTrack {
+        val attributesBuilder = AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_UNKNOWN)
+                .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
+                .setFlags(0)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            attributesBuilder.setAllowedCapturePolicy(AudioAttributes.ALLOW_CAPTURE_BY_NONE)
+        }
+
         return AudioTrack.Builder().setAudioFormat(
             AudioFormat.Builder()
                 .setChannelMask(AudioFormat.CHANNEL_OUT_STEREO)
@@ -595,12 +605,7 @@ class AudioProcessorService : Service() {
                 .setSampleRate(sampleRate)
                 .build())
             .setTransferMode(AudioTrack.MODE_STREAM)
-            .setAudioAttributes(AudioAttributes.Builder()
-                .setAllowedCapturePolicy(AudioAttributes.ALLOW_CAPTURE_BY_NONE)
-                .setUsage(AudioAttributes.USAGE_UNKNOWN)
-                .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
-                .setFlags(0)
-                .build())
+            .setAudioAttributes(attributesBuilder.build())
             .setBufferSizeInBytes(bufferSizeBytes)
             .build()
     }

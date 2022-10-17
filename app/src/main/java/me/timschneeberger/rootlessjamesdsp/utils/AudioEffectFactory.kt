@@ -3,6 +3,9 @@ package me.timschneeberger.rootlessjamesdsp.utils
 import android.media.audiofx.AudioEffect
 import android.media.audiofx.AudioEffectHidden
 import android.media.audiofx.DynamicsProcessing
+import android.os.Build
+import android.os.Build.VERSION_CODES
+import androidx.annotation.RequiresApi
 import dev.rikka.tools.refine.Refine
 import me.timschneeberger.rootlessjamesdsp.model.AudioSessionEntry
 import timber.log.Timber
@@ -34,13 +37,18 @@ class AudioEffectFactory {
         val name = type.name
         Timber.d("make: Creating $name effect instance")
 
-        val muteEffect: AudioEffect
+        val muteEffect: AudioEffect?
         try {
             muteEffect = when (type) {
                 MuteEffects.DynamicsProcessing -> {
-                    with(DynamicsProcessing(Int.MAX_VALUE, sid, null)) {
-                        setInputGainAllChannelsTo(-200f)
-                        this
+                    if (Build.VERSION.SDK_INT >= VERSION_CODES.P) {
+                        with(DynamicsProcessing(Int.MAX_VALUE, sid, null)) {
+                            setInputGainAllChannelsTo(-200f)
+                            this
+                        }
+                    } else {
+                        Timber.e("DynamicsProcessing unsupported below P")
+                        null
                     }
                 }
                 MuteEffects.Volume -> {
@@ -74,11 +82,13 @@ class AudioEffectFactory {
             throw ex
         }
 
+        muteEffect ?: return null
+
         muteEffect.enabled = true
         muteEffect.setEnableStatusListener { effect, enabled ->
             if (!enabled) {
                 try {
-                    if(effect is DynamicsProcessing)
+                    if(Build.VERSION.SDK_INT >= VERSION_CODES.P && effect is DynamicsProcessing)
                         effect.setInputGainAllChannelsTo(-200f)
                     effect.enabled = true
                     Timber.d("$name effect re-enabled (session $sid)")
@@ -99,7 +109,7 @@ class AudioEffectFactory {
             }
             else {
                 try {
-                    if(effect is DynamicsProcessing)
+                    if(Build.VERSION.SDK_INT >= VERSION_CODES.P && effect is DynamicsProcessing)
                         effect.setInputGainAllChannelsTo(-200f)
                     effect.enabled = true
                     Timber.d("$name effect regained control (session $sid)")
@@ -135,8 +145,13 @@ class AudioEffectFactory {
         }
 
         private val volumeHiddenTypeUuid = UUID.fromString("09e8ede0-ddde-11db-b4f6-0002a5d5c51b")
+        private val dynamicsProcessingTypeUuid = if (Build.VERSION.SDK_INT >= VERSION_CODES.P)
+            AudioEffect.EFFECT_TYPE_DYNAMICS_PROCESSING
+        else
+            UUID.fromString("00000000-0000-0000-0000-000000000000")
+
         private val supportedTypeUuids = mapOf(
-            MuteEffects.DynamicsProcessing to AudioEffect.EFFECT_TYPE_DYNAMICS_PROCESSING,
+            MuteEffects.DynamicsProcessing to dynamicsProcessingTypeUuid,
             MuteEffects.Volume to volumeHiddenTypeUuid,
         )
 

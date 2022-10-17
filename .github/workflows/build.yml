@@ -39,13 +39,13 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         uses: gradle/gradle-command-action@v2
         with:
-          arguments: assembleRelease
+          arguments: assembleRootlessRelease
 
       - name: Build preview app
         if: "!startsWith(github.ref, 'refs/tags/')"
         uses: gradle/gradle-command-action@v2
         with:
-          arguments: assemblePreview
+          arguments: assembleRootlessPreview
           
       - name: Declare preview build type
         if: "!startsWith(github.ref, 'refs/tags/')"

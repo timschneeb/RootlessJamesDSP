@@ -12,12 +12,14 @@ import android.view.Menu
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.ui.AppBarConfiguration
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.ActivityMainBinding
 import me.timschneeberger.rootlessjamesdsp.databinding.ContentMainBinding
@@ -40,24 +42,29 @@ import kotlin.concurrent.schedule
 
 
 class MainActivity : BaseActivity() {
-
+    /* UI */
     private lateinit var binding: ActivityMainBinding
     private lateinit var bindingContent: ContentMainBinding
 
+    /* Rootless version */
+    private var mediaProjectionStartIntent: Intent? = null
     private lateinit var mediaProjectionManager: MediaProjectionManager
     private lateinit var capturePermissionLauncher: ActivityResultLauncher<Intent>
+
+    /* General */
     private lateinit var prefsVar: SharedPreferences
 
     private var processorService: AudioProcessorService? = null
     private var processorServiceBound: Boolean = false
 
-    private var mediaProjectionStartIntent: Intent? = null
-
     private val processorServiceConnection = object : ServiceConnection {
         override fun onServiceConnected(className: ComponentName, service: IBinder) {
             // We've bound to LocalService, cast the IBinder and get LocalService instance
-            val binder = service as AudioProcessorService.LocalBinder
-            processorService = binder.service
+            processorService = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && BuildConfig.ROOTLESS)
+                (service as AudioProcessorService.LocalBinder).service
+            else
+                null // TODO implement root service
+
             processorServiceBound = true
 
             binding.powerToggle.isToggled = true
@@ -124,9 +131,11 @@ class MainActivity : BaseActivity() {
             .replace(R.id.dsp_fragment_container, DspFragment.newInstance())
             .commit()
 
-        // Check permissions and launch onboarding if required
-        if(checkSelfPermission(Manifest.permission.DUMP) == PackageManager.PERMISSION_DENIED ||
-            checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_DENIED) {
+        // Rootless: Check permissions and launch onboarding if required
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q &&
+            BuildConfig.ROOTLESS &&
+            (checkSelfPermission(Manifest.permission.DUMP) == PackageManager.PERMISSION_DENIED ||
+            checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_DENIED)) {
             Timber.i("Launching onboarding (first boot: $firstBoot)")
 
             val onboarding = Intent(this, OnboardingActivity::class.java)
@@ -165,34 +174,36 @@ class MainActivity : BaseActivity() {
         binding.powerToggle.toggleOnClick = false
         binding.powerToggle.setOnToggleClickListener(object : FloatingToggleButton.OnToggleClickListener{
             override fun onClick() {
-
-                if(binding.powerToggle.isToggled) {
-                    // Currently on, let's turn it off
-                    AudioProcessorService.stop(this@MainActivity)
-                    binding.powerToggle.isToggled = false
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                        binding.powerToggle.performHapticFeedback(HapticFeedbackConstants.REJECT)
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && BuildConfig.ROOTLESS) {
+                    if (binding.powerToggle.isToggled) {
+                        // Currently on, let's turn it off
+                        AudioProcessorService.stop(this@MainActivity)
+                        binding.powerToggle.isToggled = false
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                            binding.powerToggle.performHapticFeedback(HapticFeedbackConstants.REJECT)
+                        }
+                    } else {
+                        // Currently off, let's turn it on
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                            binding.powerToggle.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
+                        }
+                        requestCapturePermission()
                     }
-                }
-                else {
-                    // Currently off, let's turn it on
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                        binding.powerToggle.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                    }
-                    requestCapturePermission()
                 }
             }
         })
 
-        capturePermissionLauncher = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()
-        ) { result ->
-            if (result.resultCode == RESULT_OK) {
-                mediaProjectionStartIntent = result.data
-                binding.powerToggle.isToggled = true
-                AudioProcessorService.start(this, result.data)
-            } else {
-                binding.powerToggle.isToggled = false
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && BuildConfig.ROOTLESS) {
+            capturePermissionLauncher = registerForActivityResult(
+                ActivityResultContracts.StartActivityForResult()
+            ) { result ->
+                if (result.resultCode == RESULT_OK) {
+                    mediaProjectionStartIntent = result.data
+                    binding.powerToggle.isToggled = true
+                    AudioProcessorService.start(this, result.data)
+                } else {
+                    binding.powerToggle.isToggled = false
+                }
             }
         }
 
@@ -203,8 +214,10 @@ class MainActivity : BaseActivity() {
 
         sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
 
-        if(intent.getBooleanExtra(EXTRA_FORCE_SHOW_CAPTURE_PROMPT, false)) {
-            requestCapturePermission()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && BuildConfig.ROOTLESS) {
+            if (intent.getBooleanExtra(EXTRA_FORCE_SHOW_CAPTURE_PROMPT, false)) {
+                requestCapturePermission()
+            }
         }
 
         // Load initial preference states
@@ -267,17 +280,27 @@ class MainActivity : BaseActivity() {
     }
 
     private fun bindProcessorService() {
-        Intent(this, AudioProcessorService::class.java).also { intent ->
-            val ret = bindService(intent, processorServiceConnection, 0)
-            // Service not active
-            if(!ret)
-                requestCapturePermission()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && BuildConfig.ROOTLESS) {
+            Intent(this, AudioProcessorService::class.java).also { intent ->
+                val ret = bindService(intent, processorServiceConnection, 0)
+                // Service not active
+                if(!ret)
+                    requestCapturePermission()
+            }
         }
-
+        else if (!BuildConfig.ROOTLESS) {
+            // TODO implement root service
+        }
     }
 
     private fun unbindProcessorService() {
-        unbindService(processorServiceConnection)
+        try {
+            unbindService(processorServiceConnection)
+        }
+        catch (ex: IllegalArgumentException) {
+            Timber.d("Failed to unbind service connection. Not registered?")
+            Timber.i(ex)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -291,6 +314,7 @@ class MainActivity : BaseActivity() {
                 ||*/ super.onSupportNavigateUp()
     }
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     fun requestCapturePermission() {
         if(mediaProjectionStartIntent != null) {
             binding.powerToggle.isToggled = true

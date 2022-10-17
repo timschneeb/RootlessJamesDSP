@@ -9,6 +9,8 @@ import android.media.session.MediaController
 import android.media.session.MediaSessionHidden
 import android.media.session.MediaSessionManager
 import android.os.*
+import android.os.Build.VERSION_CODES
+import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationManagerCompat
 import dev.rikka.tools.refine.Refine
 import kotlinx.coroutines.*
@@ -52,7 +54,8 @@ class AudioSessionManager(val context: Context) : DumpManager.OnDumpMethodChange
     private var continuousPollingJob: Job? = null
 
     // Callbacks
-    private val audioPlaybackCallback: AudioManager.AudioPlaybackCallback
+    @RequiresApi(VERSION_CODES.O)
+    private var audioPlaybackCallback: AudioManager.AudioPlaybackCallback? = null
 
     // Preferences
     private val preferencesListener: SharedPreferences.OnSharedPreferenceChangeListener
@@ -66,18 +69,20 @@ class AudioSessionManager(val context: Context) : DumpManager.OnDumpMethodChange
 
     init {
         // Notify on playback changes
-        audioPlaybackCallback = object : AudioManager.AudioPlaybackCallback() {
-            override fun onPlaybackConfigChanged(configs: MutableList<AudioPlaybackConfiguration>?) {
-                super.onPlaybackConfigChanged(configs)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            audioPlaybackCallback = object : AudioManager.AudioPlaybackCallback() {
+                override fun onPlaybackConfigChanged(configs: MutableList<AudioPlaybackConfiguration>?) {
+                    super.onPlaybackConfigChanged(configs)
 
-                Timber.d("Playback config changed")
-                pollOnce(false)
+                    Timber.d("Playback config changed")
+                    pollOnce(false)
+                }
             }
+            audioManager.registerAudioPlaybackCallback(audioPlaybackCallback!!, Handler(Looper.getMainLooper()))
         }
 
         // Register callbacks
         dumpManager.registerOnDumpMethodChangeListener(this)
-        audioManager.registerAudioPlaybackCallback(audioPlaybackCallback, Handler(Looper.getMainLooper()))
         context.registerLocalReceiver(this, IntentFilter(Constants.ACTION_SESSION_CHANGED))
         installNotificationListenerService()
 
@@ -95,7 +100,10 @@ class AudioSessionManager(val context: Context) : DumpManager.OnDumpMethodChange
     {
         dumpManager.unregisterOnDumpMethodChangeListener(this)
 
-        audioManager.unregisterAudioPlaybackCallback(audioPlaybackCallback)
+        if (Build.VERSION.SDK_INT >= VERSION_CODES.O) {
+            audioPlaybackCallback?.let { audioManager.unregisterAudioPlaybackCallback(it) }
+        }
+
         sessionManager.removeOnActiveSessionsChangedListener(this)
         context.unregisterLocalReceiver(this)
 

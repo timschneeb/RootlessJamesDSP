@@ -6,15 +6,44 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Icon
+import android.os.Build
+import androidx.annotation.RequiresApi
+import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.activity.AppCompatibilityActivity
 import me.timschneeberger.rootlessjamesdsp.activity.MainActivity
 import me.timschneeberger.rootlessjamesdsp.model.AudioSessionEntry
 import me.timschneeberger.rootlessjamesdsp.service.AudioProcessorService
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppName
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppNameFromUid
 
 
 object ServiceNotificationHelper {
+    private fun createNotificationBuilder(context: Context, channel: String): Notification.Builder {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+            Notification.Builder(context, channel)
+        else
+            Notification.Builder(context)
+    }
+
+    fun pushPermissionPromptNotification(context: Context) {
+        val intent = Intent(context, MainActivity::class.java)
+        intent.putExtra(MainActivity.EXTRA_FORCE_SHOW_CAPTURE_PROMPT, true)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        val contentIntent =
+            PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+
+        val notification = createNotificationBuilder(context, Constants.CHANNEL_ID_PERMISSION_PROMPT)
+            .setContentTitle(context.getString(R.string.notification_request_permission_title))
+            .setContentText(context.getString(R.string.notification_request_permission))
+            .setSmallIcon(R.drawable.ic_tune_vertical_variant_24dp)
+            .setContentIntent(contentIntent)
+            .build()
+
+        SystemServices.get(context, NotificationManager::class.java)
+            .notify(Constants.NOTIFICATION_ID_PERMISSION_PROMPT, notification)
+    }
+
     fun pushServiceNotification(context: Context, sessions: Array<AudioSessionEntry>?) {
         val notification = createServiceNotification(context, sessions)
         SystemServices.get(context, NotificationManager::class.java)
@@ -37,8 +66,9 @@ object ServiceNotificationHelper {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
 
         val contentIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
-        return Notification.Builder(context, Constants.CHANNEL_ID_SERVICE)
-            .setContentTitle(context.getString(R.string.app_name))
+
+        return createNotificationBuilder(context, Constants.CHANNEL_ID_SERVICE)
+            .setContentTitle(context.getAppName())
             .setContentText(text)
             .setSmallIcon(R.drawable.ic_tune_vertical_variant_24dp)
             .addAction(createStopAction(context))
@@ -52,7 +82,7 @@ object ServiceNotificationHelper {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
 
         val contentIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
-        val notification = Notification.Builder(context, Constants.CHANNEL_ID_SESSION_LOSS)
+        val notification = createNotificationBuilder(context, Constants.CHANNEL_ID_SESSION_LOSS)
             .setContentTitle(context.getString(R.string.session_control_loss_notification_title))
             .setContentText(context.getString(R.string.session_control_loss_notification))
             .setSmallIcon(R.drawable.ic_baseline_warning_24dp)
@@ -65,10 +95,11 @@ object ServiceNotificationHelper {
             .notify(Constants.NOTIFICATION_ID_SESSION_LOSS, notification)
     }
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     fun pushAppIssueNotification(context: Context, mediaProjectionStartIntent: Intent?, data: AudioSessionEntry) {
         val intent = createAppTroubleshootIntent(context, mediaProjectionStartIntent, data, directLaunch = false)
         val contentIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
-        val notification = Notification.Builder(context, Constants.CHANNEL_ID_APP_INCOMPATIBILITY)
+        val notification = createNotificationBuilder(context, Constants.CHANNEL_ID_APP_INCOMPATIBILITY)
             .setContentTitle(context.getString(R.string.session_app_compat_notification_title))
             .setContentText(context.getString(R.string.session_app_compat_notification))
             .setSmallIcon(R.drawable.ic_baseline_warning_24dp)
@@ -110,6 +141,7 @@ object ServiceNotificationHelper {
         return actionBuilder.build()
     }
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     private fun createAppTroubleshootAction(context: Context, mediaProjectionStartIntent: Intent?, data: AudioSessionEntry): Notification.Action? {
         mediaProjectionStartIntent ?: return null
         val fixIntent = PendingIntent.getService(
@@ -124,6 +156,7 @@ object ServiceNotificationHelper {
         return actionBuilder.build()
     }
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     fun createAppTroubleshootIntent(ctx: Context, mediaProjectionData: Intent?, data: AudioSessionEntry, directLaunch: Boolean): Intent {
         val intent = Intent(ctx, AppCompatibilityActivity::class.java)
         intent.action = AudioProcessorService.ACTION_START
@@ -135,15 +168,27 @@ object ServiceNotificationHelper {
     }
 
     fun createStopIntent(ctx: Context): Intent {
-        val intent = Intent(ctx, AudioProcessorService::class.java)
-        intent.action = AudioProcessorService.ACTION_STOP
-        return intent
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && BuildConfig.ROOTLESS) {
+            with(Intent(ctx, AudioProcessorService::class.java)) {
+                action = AudioProcessorService.ACTION_STOP
+                this
+            }
+        }
+        else {
+            throw NotImplementedError("TODO") // TODO implement root service
+        }
     }
 
     fun createStartIntent(ctx: Context, mediaProjectionData: Intent?): Intent {
-        val intent = Intent(ctx, AudioProcessorService::class.java)
-        intent.action = AudioProcessorService.ACTION_START
-        intent.putExtra(AudioProcessorService.EXTRA_MEDIA_PROJECTION_DATA, mediaProjectionData)
-        return intent
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && BuildConfig.ROOTLESS) {
+            with(Intent(ctx, AudioProcessorService::class.java)) {
+                action = AudioProcessorService.ACTION_START
+                putExtra(AudioProcessorService.EXTRA_MEDIA_PROJECTION_DATA, mediaProjectionData)
+                this
+            }
+        }
+        else {
+            throw NotImplementedError("TODO") // TODO implement root service
+        }
     }
 }
