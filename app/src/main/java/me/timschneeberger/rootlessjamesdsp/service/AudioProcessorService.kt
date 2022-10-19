@@ -75,7 +75,7 @@ class AudioProcessorService : Service() {
     private var recreateRecorderRequested = false
     private var recorderThread: Thread? = null
     private val engineCallbacks = EngineCallbacks()
-    private val handler: Handler = StartupHandler(this)
+    private val handler by lazy { StartupHandler(this) }
     private lateinit var engine: JamesDspEngine
     private val isRunning: Boolean
         get() = recorderThread != null

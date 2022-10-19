@@ -57,22 +57,25 @@ class MainActivity : BaseActivity() {
     private var processorService: AudioProcessorService? = null
     private var processorServiceBound: Boolean = false
 
-    private val processorServiceConnection = object : ServiceConnection {
-        override fun onServiceConnected(className: ComponentName, service: IBinder) {
-            // We've bound to LocalService, cast the IBinder and get LocalService instance
-            processorService = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && BuildConfig.ROOTLESS)
-                (service as AudioProcessorService.LocalBinder).service
-            else
-                null // TODO implement root service
+    private val processorServiceConnection by lazy {
+        object : ServiceConnection {
+            override fun onServiceConnected(className: ComponentName, service: IBinder) {
+                // We've bound to LocalService, cast the IBinder and get LocalService instance
+                processorService =
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && BuildConfig.ROOTLESS)
+                        (service as AudioProcessorService.LocalBinder).service
+                    else
+                        null // TODO implement root service
 
-            processorServiceBound = true
+                processorServiceBound = true
 
-            binding.powerToggle.isToggled = true
-        }
+                binding.powerToggle.isToggled = true
+            }
 
-        override fun onServiceDisconnected(arg0: ComponentName) {
-            processorService = null
-            processorServiceBound = false
+            override fun onServiceDisconnected(arg0: ComponentName) {
+                processorService = null
+                processorServiceBound = false
+            }
         }
     }
 
