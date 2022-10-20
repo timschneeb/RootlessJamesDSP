@@ -1,6 +1,6 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory app:title="Auto-start"
+    <PreferenceCategory app:title="@string/autostart"
         app:iconSpaceReserved="false">
         <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
             app:key="@string/key_autostart_prompt_at_boot"
@@ -8,6 +8,15 @@
             app:defaultValue="true"
             app:summaryOff="@string/autostart_prompt_at_boot_off"
             app:summaryOn="@string/autostart_prompt_at_boot_on"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/assets"
+        app:iconSpaceReserved="false">
+        <Preference
+            android:key="@string/key_troubleshooting_repair_assets"
+            android:title="@string/troubleshooting_repair_assets"
+            android:summary="@string/troubleshooting_repair_assets_summary"
             app:iconSpaceReserved="false" />
     </PreferenceCategory>
 

@@ -13,12 +13,14 @@ import me.timschneeberger.rootlessjamesdsp.R
 
 class SettingsAboutFragment : PreferenceFragmentCompat() {
 
+    private val version by lazy { findPreference<Preference>(getString(R.string.key_credits_version)) }
+    private val buildInfo by lazy { findPreference<Preference>(getString(R.string.key_credits_build_info)) }
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.app_about_preferences, rootKey)
 
-        findPreference<Preference>(getString(R.string.key_credits_version))?.summary = BuildConfig.VERSION_NAME
-        val build = findPreference<Preference>(getString(R.string.key_credits_build_info))
-        build?.isVisible = BuildConfig.DEBUG || BuildConfig.PREVIEW
+        version?.summary = BuildConfig.VERSION_NAME
+        buildInfo?.isVisible = BuildConfig.DEBUG || BuildConfig.PREVIEW
         val type = if(BuildConfig.PREVIEW)
             "Preview"
         else if(BuildConfig.DEBUG)
@@ -26,7 +28,7 @@ class SettingsAboutFragment : PreferenceFragmentCompat() {
         else
             "Release"
 
-        build?.summary = "${type} build @${BuildConfig.COMMIT_SHA} (compiled at ${BuildConfig.BUILD_TIME})"
+        buildInfo?.summary = "$type build @${BuildConfig.COMMIT_SHA} (compiled at ${BuildConfig.BUILD_TIME})"
     }
 
     override fun onCreateView(

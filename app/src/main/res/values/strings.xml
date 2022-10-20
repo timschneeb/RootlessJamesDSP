@@ -269,7 +269,9 @@
     <string name="troubleshooting_repair_assets_summary">Unpack preloaded assets if you lost them</string>
     <string name="troubleshooting_repair_assets_success">Bundled assets have been restored</string>
     <string name="misc_settings">Miscellaneous</string>
-    <string name="misc_settings_summary">Auto-start prompt, crash reports</string>
+    <string name="misc_settings_summary">Crash reports, other actions</string>
+    <string name="autostart">Auto-start</string>
+    <string name="assets">Assets</string>
     <string name="about_settings">About</string>
     <string name="about_settings_summary">Credits, support, updates</string>
     <string name="privacy">Privacy</string>

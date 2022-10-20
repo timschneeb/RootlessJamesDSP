@@ -158,16 +158,17 @@ class MainActivity : BaseActivity() {
                 false
         }
 
-        binding.bar.inflateMenu(R.menu.menu_main_bottom)
-        binding.bar.setOnMenuItemClickListener { arg0 ->
-            if (arg0.itemId == R.id.action_blocklist) {
-                startActivity(Intent(this, BlocklistActivity::class.java))
-                true
+        // TODO root: add support for app exclusion list
+        if(BuildConfig.ROOTLESS) {
+            binding.bar.inflateMenu(R.menu.menu_main_bottom)
+            binding.bar.setOnMenuItemClickListener { arg0 ->
+                if (arg0.itemId == R.id.action_blocklist) {
+                    startActivity(Intent(this, BlocklistActivity::class.java))
+                    true
+                } else
+                    false
             }
-            else
-                false
         }
-
 
         val filter = IntentFilter(Constants.ACTION_SERVICE_STOPPED)
         filter.addAction(Constants.ACTION_DISCARD_AUTHORIZATION)

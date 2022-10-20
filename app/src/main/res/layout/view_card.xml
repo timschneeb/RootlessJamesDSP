@@ -34,14 +34,14 @@
                 android:orientation="vertical">
                 <TextView
                     android:id="@+id/title"
-                    android:text="Title text"
+                    tools:text="Title text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:textAppearance="?attr/textAppearanceTitleMedium" />
                 <TextView
                     android:id="@+id/text"
-                    android:text="Body text"
+                    tools:text="Body text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?attr/textAppearanceBody1" />

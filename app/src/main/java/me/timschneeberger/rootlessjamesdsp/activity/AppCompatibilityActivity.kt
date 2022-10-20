@@ -1,5 +1,6 @@
 package me.timschneeberger.rootlessjamesdsp.activity
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -14,6 +15,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.getParcelableAs
 class AppCompatibilityActivity : BaseActivity() {
     private lateinit var prefsVar: SharedPreferences
 
+    @SuppressLint("InlinedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         prefsVar = getSharedPreferences(Constants.PREF_VAR, Context.MODE_PRIVATE)

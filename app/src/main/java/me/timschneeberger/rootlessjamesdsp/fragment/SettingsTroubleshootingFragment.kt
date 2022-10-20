@@ -75,11 +75,6 @@ class SettingsTroubleshootingFragment : PreferenceFragmentCompat() {
             startActivity(Intent.createChooser(shareIntent, getString(R.string.troubleshooting_dump_share_title)))
             true
         }
-        findPreference<Preference>(getString(R.string.key_troubleshooting_repair_assets))?.setOnPreferenceClickListener {
-            requireContext().assets.installPrivateAssets(requireContext(), force = true)
-            requireContext().showAlert(R.string.success, R.string.troubleshooting_repair_assets_success)
-            true
-        }
         findPreference<Preference>(getString(R.string.key_troubleshooting_notification_access))?.setOnPreferenceClickListener {
             val intent = ApplicationUtils.getIntentForNotificationAccess(requireContext().packageName, NotificationListenerService::class.java)
             requireActivity().startActivity(intent)

@@ -1,24 +1,28 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <Preference
+        app:key="@string/key_appearance"
         app:title="@string/appearance_section_header"
         app:summary="@string/appearance_summary"
         app:icon="@drawable/ic_twotone_color_lens_24dp"
         app:fragment="me.timschneeberger.rootlessjamesdsp.fragment.SettingsAppearanceFragment" />
 
     <Preference
+        app:key="@string/key_audio_format"
         app:title="@string/audio_format_header"
         app:summary="@string/audio_format_summary"
         app:icon="@drawable/ic_twotone_volume_up_24dp"
         app:fragment="me.timschneeberger.rootlessjamesdsp.fragment.SettingsAudioFormatFragment" />
 
     <Preference
+        app:key="@string/key_troubleshooting"
         app:title="@string/troubleshooting"
         app:summary="@string/troubleshooting_summary"
         app:icon="@drawable/ic_twotone_troubleshoot_24dp"
         app:fragment="me.timschneeberger.rootlessjamesdsp.fragment.SettingsTroubleshootingFragment" />
 
     <Preference
+        app:key="@string/key_misc"
         app:title="@string/misc_settings"
         app:summary="@string/misc_settings_summary"
         app:icon="@drawable/ic_twotone_more_horiz_24"
@@ -26,6 +30,7 @@
         app:allowDividerBelow="true" />
 
     <Preference
+        app:key="@string/key_about"
         app:title="@string/about_settings"
         app:summary="@string/about_settings_summary"
         app:icon="@drawable/ic_twotone_help_24dp"

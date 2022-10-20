@@ -11,19 +11,34 @@ import androidx.preference.*
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
+import me.timschneeberger.rootlessjamesdsp.utils.AssetManagerExtensions.installPrivateAssets
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
 
 class SettingsMiscFragment : PreferenceFragmentCompat() {
+
+    private val autoStartNotify by lazy { findPreference<Preference>(getString(R.string.key_autostart_prompt_at_boot)) }
+    private val repairAssets by lazy { findPreference<Preference>(getString(R.string.key_troubleshooting_repair_assets)) }
+    private val crashReports by lazy { findPreference<Preference>(getString(R.string.key_share_crash_reports)) }
+    private val debugDatabase by lazy { findPreference<Preference>(getString(R.string.key_debug_database)) }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceManager.sharedPreferencesName = Constants.PREF_APP
         setPreferencesFromResource(R.xml.app_misc_preferences, rootKey)
 
-        findPreference<Preference>(getString(R.string.key_share_crash_reports))?.setOnPreferenceChangeListener { _, newValue ->
+        crashReports?.setOnPreferenceChangeListener { _, newValue ->
             FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(newValue as Boolean)
             true
         }
-        findPreference<Preference>(getString(R.string.key_debug_database))?.parent?.isVisible = BuildConfig.DEBUG
+
+        repairAssets?.setOnPreferenceClickListener {
+            requireContext().assets.installPrivateAssets(requireContext(), force = true)
+            requireContext().showAlert(R.string.success, R.string.troubleshooting_repair_assets_success)
+            true
+        }
+
+        debugDatabase?.parent?.isVisible = BuildConfig.DEBUG
+        autoStartNotify?.parent?.isVisible = BuildConfig.ROOTLESS
     }
 
     override fun onCreateView(
