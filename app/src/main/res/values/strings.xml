@@ -385,9 +385,17 @@
     <string name="app_compat_explanation">The following app is unsupported because it causes RootlessJamesDSP to lose control over its audio routing:</string>
     <string name="app_compat_instruction">Please check the app\'s settings if you can disable HW-acceleration or other settings that could interfere with RootlessJamesDSP and tap \'Retry\'.</string>
     <string name="app_compat_instruction_exclude">Alternatively, select \'Exclude\' to bypass this issue by excluding the incompatible app from audio processing.</string>
+    <string name="app_compat_unknown_pkg_name">Unknown package name</string>
 
     <!-- Hints for compatibility issues for individual apps -->
     <string name="app_compat_quirk_voice_search">Voice search and voice recognition and is known to cause this issue with this app. Try to avoid using these feature and revoke the microphone permission for the problematic apps if the issue persists.</string>
+
+    <!-- Root: Library load failure -->
+    <string name="load_fail_header">Magisk module not installed</string>
+    <string name="load_fail_card_title">Failed to load libjamesdsp.so</string>
+    <string name="load_fail_card">Please install the JamesDSP magisk module and reboot your Android device to use this application. You may also need to reinstall this app after rebooting.</string>
+    <string name="load_fail_rootless_card_title">Looking for a rootless alternative?</string>
+    <string name="load_fail_rootless_card">This flavor of JamesDSP was designed to be used with a rooted/modified device. A non-root alternative with some limitations is also available. Tap here for details.</string>
 
     <!-- App list -->
     <string name="app_list_loading">Loading apps…</string>
@@ -397,5 +405,4 @@
     <!-- Number box view -->
     <string name="number_box_decrement">Decrement</string>
     <string name="number_box_increment">Increment</string>
-    <string name="app_compat_unknown_pkg_name">Unknown package name</string>
 </resources>
