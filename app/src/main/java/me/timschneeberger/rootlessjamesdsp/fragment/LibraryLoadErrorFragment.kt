@@ -22,4 +22,10 @@ class LibraryLoadErrorFragment : Fragment() {
         }
         return binding.root
     }
+
+    companion object {
+        fun newInstance(): LibraryLoadErrorFragment {
+            return LibraryLoadErrorFragment()
+        }
+    }
 }

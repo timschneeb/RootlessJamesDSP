@@ -7,6 +7,7 @@ import android.media.projection.MediaProjectionManager
 import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
+import android.os.PersistableBundle
 import android.view.HapticFeedbackConstants
 import android.view.Menu
 import android.widget.Toast
@@ -14,6 +15,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.navigation.ui.AppBarConfiguration
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.shape.MaterialShapeDrawable
@@ -24,6 +26,7 @@ import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.ActivityMainBinding
 import me.timschneeberger.rootlessjamesdsp.databinding.ContentMainBinding
 import me.timschneeberger.rootlessjamesdsp.fragment.DspFragment
+import me.timschneeberger.rootlessjamesdsp.fragment.LibraryLoadErrorFragment
 import me.timschneeberger.rootlessjamesdsp.model.ProcessorMessage
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspWrapper
 import me.timschneeberger.rootlessjamesdsp.service.AudioProcessorService
@@ -42,7 +45,7 @@ import kotlin.concurrent.schedule
 
 
 class MainActivity : BaseActivity() {
-    /* UI */
+    /* UI bindings */
     private lateinit var binding: ActivityMainBinding
     private lateinit var bindingContent: ContentMainBinding
 
@@ -50,6 +53,9 @@ class MainActivity : BaseActivity() {
     private var mediaProjectionStartIntent: Intent? = null
     private lateinit var mediaProjectionManager: MediaProjectionManager
     private lateinit var capturePermissionLauncher: ActivityResultLauncher<Intent>
+
+    /* Root version */
+    private var hasLoadFailed = false
 
     /* General */
     private lateinit var prefsVar: SharedPreferences
@@ -96,6 +102,12 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        savedInstanceState?.let {
+            hasLoadFailed = it.getBoolean(STATE_LOAD_FAILED)
+        }
+
+        hasLoadFailed = true
+
         prefsVar = getSharedPreferences(Constants.PREF_VAR, Context.MODE_PRIVATE)
 
         val firstBoot = prefsVar.getBoolean(getString(R.string.key_firstboot), true)
@@ -129,16 +141,18 @@ class MainActivity : BaseActivity() {
         }
 
         // Load dsp settings fragment
-        val fragmentManager = supportFragmentManager
-        fragmentManager.beginTransaction()
-            .replace(R.id.dsp_fragment_container, DspFragment.newInstance())
-            .commit()
+        if(!hasLoadFailed)
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.dsp_fragment_container, DspFragment.newInstance())
+                .commit()
+        else
+            showLibraryLoadError()
 
         // Rootless: Check permissions and launch onboarding if required
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q &&
             BuildConfig.ROOTLESS &&
             (checkSelfPermission(Manifest.permission.DUMP) == PackageManager.PERMISSION_DENIED ||
-            checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_DENIED)) {
+                    checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_DENIED)) {
             Timber.i("Launching onboarding (first boot: $firstBoot)")
 
             val onboarding = Intent(this, OnboardingActivity::class.java)
@@ -239,6 +253,12 @@ class MainActivity : BaseActivity() {
         super.onSharedPreferenceChanged(sharedPreferences, key)
     }
 
+    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+        super.onSaveInstanceState(outState, outPersistentState.apply {
+            putBoolean(STATE_LOAD_FAILED, hasLoadFailed)
+        })
+    }
+
     override fun onStart() {
         super.onStart()
         bindProcessorService()
@@ -281,6 +301,17 @@ class MainActivity : BaseActivity() {
             .putBoolean(getString(R.string.key_is_activity_active), true)
             .apply()
         binding.powerToggle.isToggled = processorService != null
+    }
+
+    private fun showLibraryLoadError() {
+        hasLoadFailed = true
+
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.dsp_fragment_container, LibraryLoadErrorFragment.newInstance())
+            .commit()
+
+        binding.toolbar.isVisible = false
     }
 
     private fun bindProcessorService() {
@@ -374,5 +405,7 @@ class MainActivity : BaseActivity() {
 
     companion object {
         const val EXTRA_FORCE_SHOW_CAPTURE_PROMPT = "ForceShowCapturePrompt"
+
+        private const val STATE_LOAD_FAILED = "LoadFailed"
     }
 }
