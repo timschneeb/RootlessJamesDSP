@@ -28,7 +28,7 @@ import me.timschneeberger.rootlessjamesdsp.model.preference.AudioEncoding
 import me.timschneeberger.rootlessjamesdsp.model.MutedSessionEntry
 import me.timschneeberger.rootlessjamesdsp.model.ProcessorMessage
 import me.timschneeberger.rootlessjamesdsp.model.SessionRecordingPolicyEntry
-import me.timschneeberger.rootlessjamesdsp.interop.JamesDspEngine
+import me.timschneeberger.rootlessjamesdsp.interop.JamesDspLocalEngine
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspWrapper
 import me.timschneeberger.rootlessjamesdsp.model.AudioSessionEntry
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistDatabase
@@ -76,7 +76,7 @@ class AudioProcessorService : Service() {
     private var recorderThread: Thread? = null
     private val engineCallbacks = EngineCallbacks()
     private val handler by lazy { StartupHandler(this) }
-    private lateinit var engine: JamesDspEngine
+    private lateinit var engine: JamesDspLocalEngine
     private val isRunning: Boolean
         get() = recorderThread != null
 
@@ -137,7 +137,7 @@ class AudioProcessorService : Service() {
         audioSessionManager.sessionPolicyDatabase.registerOnRestrictedSessionChangeListener(onSessionPolicyChangeListener)
 
         // Setup core engine
-        engine = JamesDspEngine(this, engineCallbacks)
+        engine = JamesDspLocalEngine(this, engineCallbacks)
         engine.syncWithPreferences()
 
         // Setup general-purpose broadcast receiver
@@ -483,7 +483,7 @@ class AudioProcessorService : Service() {
 
         if(engine.sampleRate.toInt() != sampleRate) {
             Timber.d("Sampling rate changed to ${sampleRate}Hz")
-            engine.setSamplingRate(sampleRate.toFloat())
+            engine.sampleRate = sampleRate.toFloat()
         }
 
         // TODO Move all audio-related code to C++

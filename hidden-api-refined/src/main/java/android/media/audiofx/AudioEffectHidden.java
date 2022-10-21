@@ -87,4 +87,26 @@ public class AudioEffectHidden {
     public int setParameter(int param, int value) throws IllegalStateException {
         throw new RuntimeException("Stub!");
     }
+
+    /**
+     * Set effect parameter. The parameter is an integer and the value is an
+     * array of bytes.
+     *
+     * @see #setParameter(byte[], byte[])
+     */
+    public int setParameter(int param, byte[] value)
+            throws IllegalStateException {
+        throw new RuntimeException("Stub!");
+    }
+
+    /**
+     * Set effect parameter. The parameter is an integer and the value is a
+     * short integer.
+     *
+     * @see #setParameter(byte[], byte[])
+     */
+    public int setParameter(int param, short value)
+            throws IllegalStateException {
+        throw new RuntimeException("Stub!");
+    }
 }
