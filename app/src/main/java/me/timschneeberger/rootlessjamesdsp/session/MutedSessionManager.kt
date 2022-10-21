@@ -23,7 +23,8 @@ class MutedSessionManager(private val context: Context) {
     private var excludedUids = arrayOf<Int>()
     private val excludedPackages = arrayOf(
         context.packageName,
-        "com.google.android.googlequicksearchbox"
+        "com.google.android.googlequicksearchbox",
+        "com.google.android.as"
     )
 
     init {

@@ -106,8 +106,6 @@ class MainActivity : BaseActivity() {
             hasLoadFailed = it.getBoolean(STATE_LOAD_FAILED)
         }
 
-        hasLoadFailed = true
-
         prefsVar = getSharedPreferences(Constants.PREF_VAR, Context.MODE_PRIVATE)
 
         val firstBoot = prefsVar.getBoolean(getString(R.string.key_firstboot), true)
