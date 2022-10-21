@@ -24,7 +24,8 @@ class MutedSessionManager(private val context: Context) {
     private val excludedPackages = arrayOf(
         context.packageName,
         "com.google.android.googlequicksearchbox",
-        "com.google.android.as"
+        "com.google.android.as",
+        "com.kieronquinn.app.pixelambientmusic"
     )
 
     init {
