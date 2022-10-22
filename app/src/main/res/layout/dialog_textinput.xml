@@ -9,6 +9,7 @@
     android:paddingEnd="?attr/dialogPreferredPadding">
 
     <com.google.android.material.textfield.TextInputLayout
+        style="?attr/textInputFilledStyle"
         android:id="@+id/text_input_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

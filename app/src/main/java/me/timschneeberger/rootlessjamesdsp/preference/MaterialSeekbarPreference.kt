@@ -4,15 +4,19 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.KeyEvent
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.SeekBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.preference.Preference
 import androidx.preference.PreferenceViewHolder
 import androidx.preference.SeekBarPreference
 import com.google.android.material.slider.Slider
 import me.timschneeberger.rootlessjamesdsp.R
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showInputAlert
 import timber.log.Timber
+import java.util.*
 import kotlin.math.abs
 import kotlin.math.min
 
@@ -175,6 +179,32 @@ class MaterialSeekbarPreference : Preference {
         mSeekBar!!.value = mSeekBarValue
         updateLabelValue(mSeekBarValue)
         mSeekBar!!.isEnabled = isEnabled
+
+        this.setOnPreferenceClickListener {
+            context.showInputAlert(
+                LayoutInflater.from(context), 
+                context.getString(R.string.slider_dialog_title),
+                title?.toString(),
+                "%.${mPrecision}f".format(Locale.ROOT, getValue()),
+                true,
+                mUnit
+            ) {
+                it ?: return@showInputAlert
+                try {
+                    setValue(it.toFloat())
+                }
+                catch (ex: Exception) {
+                    Timber.e("Failed to parse number input")
+                    Timber.d(ex)
+                    Toast.makeText(
+                        context,
+                        context.getString(R.string.slider_dialog_format_error),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+            true
+        }
     }
 
     override fun onSetInitialValue(_defaultValue: Any?) {
@@ -391,7 +421,7 @@ class MaterialSeekbarPreference : Preference {
 
             if(valueLabelOverride == null)
             {
-                mSeekBarValueTextView!!.text = "%.${mPrecision}f${mUnit}".format(value)
+                mSeekBarValueTextView!!.text = "%.${mPrecision}f${mUnit}".format(Locale.ROOT, value)
             }
             else
             {

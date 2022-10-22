@@ -11,6 +11,7 @@ import android.os.PowerManager
 import android.os.Process
 import android.provider.Settings
 import android.text.Editable
+import android.text.InputType
 import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
@@ -172,14 +173,34 @@ object ContextExtensions {
             .show()
     }
 
-    fun Context.showInputAlert(layoutInflater: LayoutInflater, @StringRes title: Int, @StringRes hint: Int, value: String, callback: ((String?) -> Unit)) {
-       showInputAlert(layoutInflater, getString(title), getString(hint), value, callback)
+    fun Context.showInputAlert(
+        layoutInflater: LayoutInflater,
+        @StringRes title: Int,
+        @StringRes hint: Int,
+        value: String,
+        isNumberInput: Boolean,
+        suffix: String?,
+        callback: ((String?) -> Unit)
+    ) {
+       showInputAlert(layoutInflater, getString(title), getString(hint), value, isNumberInput, suffix, callback)
     }
 
-    fun Context.showInputAlert(layoutInflater: LayoutInflater, title: String, hint: String, value: String, callback: ((String?) -> Unit)) {
+    fun Context.showInputAlert(
+        layoutInflater: LayoutInflater,
+        title: String?,
+        hint: String?,
+        value: String,
+        isNumberInput: Boolean,
+        suffix: String?,
+        callback: ((String?) -> Unit)
+    ) {
         val content = DialogTextinputBinding.inflate(layoutInflater)
         content.textInputLayout.hint = hint
         content.text1.text = Editable.Factory.getInstance().newEditable(value)
+        if(isNumberInput)
+            content.text1.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
+
+        content.textInputLayout.suffixText = suffix
 
         AlertDialog.Builder(this)
             .setTitle(title)

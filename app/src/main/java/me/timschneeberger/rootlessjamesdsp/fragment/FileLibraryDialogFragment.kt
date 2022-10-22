@@ -56,7 +56,9 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
                             layoutInflater,
                             R.string.filelibrary_context_duplicate,
                             R.string.filelibrary_new_file_name,
-                            selectedFile.nameWithoutExtension
+                            selectedFile.nameWithoutExtension,
+                            false,
+                            null
                         ) {
                             if (it != null) {
                                 val newFile =
