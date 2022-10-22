@@ -16,11 +16,11 @@ import java.io.FileReader
 import java.lang.NumberFormatException
 
 abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspWrapper.JamesDspCallbacks? = null) : AutoCloseable {
-    abstract var bypass: Boolean
+    abstract var enabled: Boolean
     abstract var sampleRate: Float
 
-    protected val syncScope = CoroutineScope(Dispatchers.Main)
-    protected val syncMutex = Mutex()
+    private val syncScope = CoroutineScope(Dispatchers.IO)
+    private val syncMutex = Mutex()
     protected val cache = PreferenceCache(context)
 
     override fun close() {
@@ -28,10 +28,14 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
         syncScope.cancel()
     }
 
-    fun syncWithPreferences(forceUpdateNamespaces: Array<String>? = null) {
+    open fun syncWithPreferences(forceUpdateNamespaces: Array<String>? = null) {
         syncScope.launch {
             syncWithPreferencesAsync(forceUpdateNamespaces)
         }
+    }
+
+    fun clearCache() {
+        cache.clear()
     }
 
     private suspend fun syncWithPreferencesAsync(forceUpdateNamespaces: Array<String>? = null) {
@@ -99,9 +103,7 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
                 Timber.i("Committing new changes in namespace '$it'")
 
                 val result = when (it) {
-                    Constants.PREF_OUTPUT -> {
-                        setLimiter(limiterThreshold, limiterRelease) and setPostGain(outputPostGain)
-                    }
+                    Constants.PREF_OUTPUT -> setOutputControl(limiterThreshold, limiterRelease, outputPostGain)
                     Constants.PREF_COMPRESSOR -> setCompressor(compEnabled, compMaxAtk, compMaxRel, compAdaptSpeed)
                     Constants.PREF_BASS -> setBassBoost(bassEnabled, bassMaxGain)
                     Constants.PREF_EQ -> setFirEqualizer(eqEnabled, eqFilterType, eqInterpolationMode, eqBands)
@@ -158,10 +160,10 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
 
     fun setConvolver(enable: Boolean, impulseResponsePath: String, optimizationMode: Int, waveEditStr: String): Boolean
     {
-        if(!File(impulseResponsePath).exists()) {
-            Timber.w("setConvolver: file does not exist")
+        // Handle disabled state before everything else
+        if(!enable || !File(impulseResponsePath).exists()) {
             setConvolverInternal(false, FloatArray(0), 0, 0)
-            return true /* non-critical */
+            return true
         }
 
         val advConv = waveEditStr.split(";")
@@ -199,13 +201,22 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
             optimizationMode,
             advSetting
         )
+
         if(imp == null) {
             Timber.e("setConvolver: Failed to read IR")
             setConvolverInternal(false, FloatArray(0), 0, 0)
+            callbacks?.onConvolverParseError()
             return false
         }
 
-        return setConvolverInternal(enable, imp, info[0], info[1])
+        if(info[1] == 0) {
+            Timber.e("setConvolver: IR has no frames")
+            setConvolverInternal(false, FloatArray(0), 0, 0)
+            callbacks?.onConvolverParseError()
+            return false
+        }
+
+        return setConvolverInternal(true, imp, info[0], info[1])
     }
 
     fun setGraphicEq(enable: Boolean, bands: String): Boolean
@@ -235,8 +246,7 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
     }
 
     // Effect config
-    abstract fun setLimiter(threshold: Float, release: Float): Boolean
-    abstract fun setPostGain(postGain: Float): Boolean
+    abstract fun setOutputControl(threshold: Float, release: Float, postGain: Float): Boolean
     abstract fun setCompressor(enable: Boolean, maxAttack: Float, maxRelease: Float, adaptSpeed: Float): Boolean
     abstract fun setReverb(enable: Boolean, preset: Int): Boolean
     abstract fun setCrossfeed(enable: Boolean, mode: Int): Boolean
@@ -246,13 +256,16 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
     abstract fun setVacuumTube(enable: Boolean, level: Float): Boolean
 
     protected abstract fun setFirEqualizerInternal(enable: Boolean, filterType: Int, interpolationMode: Int, bands: DoubleArray): Boolean
-    protected abstract fun setVdcInternal(enable: Boolean, vdcPath: String): Boolean
+    protected abstract fun setVdcInternal(enable: Boolean, vdc: String): Boolean
     protected abstract fun setConvolverInternal(enable: Boolean, impulseResponse: FloatArray, irChannels: Int, irFrames: Int): Boolean
     protected abstract fun setGraphicEqInternal(enable: Boolean, bands: String): Boolean
     protected abstract fun setLiveprogInternal(enable: Boolean, name: String, path: String): Boolean
 
-    // EEL VM utilities
+    // Feature support
     abstract fun supportsEelVmAccess(): Boolean
+    abstract fun supportsCustomCrossfeed(): Boolean
+
+    // EEL VM utilities
     abstract fun enumerateEelVariables(): ArrayList<EelVmVariable>
     abstract fun manipulateEelVariable(name: String, value: Float): Boolean
     abstract fun freezeLiveprogExecution(freeze: Boolean)
@@ -263,5 +276,6 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
         override fun onLiveprogExec(id: String) {}
         override fun onLiveprogResult(resultCode: Int, id: String, errorMessage: String?) {}
         override fun onVdcParseError() {}
+        override fun onConvolverParseError() {}
     }
 }

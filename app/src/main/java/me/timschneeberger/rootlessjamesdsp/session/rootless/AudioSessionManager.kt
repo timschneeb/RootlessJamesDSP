@@ -1,4 +1,4 @@
-package me.timschneeberger.rootlessjamesdsp.session
+package me.timschneeberger.rootlessjamesdsp.session.rootless
 
 import android.annotation.SuppressLint
 import android.content.*

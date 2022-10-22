@@ -9,7 +9,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="32dp"
+            android:paddingTop="48dp"
             android:layout_marginHorizontal="16dp"
             android:paddingBottom="16dp">
             <ImageView
@@ -40,13 +40,23 @@
                 app:cardMargin="8dp" />
 
             <me.timschneeberger.rootlessjamesdsp.view.Card
+                android:id="@+id/architectureNotice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:titleText="@string/load_fail_arch_card_title"
+                app:bodyText="@string/load_fail_arch_card"
+                app:cardMargin="8dp"/>
+
+            <me.timschneeberger.rootlessjamesdsp.view.Card
                 android:id="@+id/rootlessNotice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
                 app:titleText="@string/load_fail_rootless_card_title"
                 app:bodyText="@string/load_fail_rootless_card"
                 app:cardMargin="8dp"
-                android:layout_marginBottom="16dp"/>
+                android:layout_marginBottom="48dp" />
 
         </LinearLayout>
 </androidx.core.widget.NestedScrollView>

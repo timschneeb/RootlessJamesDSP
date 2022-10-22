@@ -1,8 +1,8 @@
-package me.timschneeberger.rootlessjamesdsp.session
+package me.timschneeberger.rootlessjamesdsp.session.rootless
 
 import android.content.Context
 import android.content.pm.PackageManager
-import me.timschneeberger.rootlessjamesdsp.model.SessionRecordingPolicyEntry
+import me.timschneeberger.rootlessjamesdsp.model.rootless.SessionRecordingPolicyEntry
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionPolicyInfoDump
 import timber.log.Timber
 
@@ -10,7 +10,7 @@ import timber.log.Timber
 class SessionRecordingPolicyManager(private val context: Context) {
 
     private var isDisposing = false
-    private val sessionPolicyList = hashMapOf<String,SessionRecordingPolicyEntry>()
+    private val sessionPolicyList = hashMapOf<String, SessionRecordingPolicyEntry>()
     private val changeCallbacks = mutableListOf<OnSessionRecordingPolicyChangeListener>()
 
     fun destroy()

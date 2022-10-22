@@ -13,20 +13,33 @@ import androidx.preference.*
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
-import me.timschneeberger.rootlessjamesdsp.preference.ThemesPreference
+import me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
+import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.requestIgnoreBatteryOptimizations
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
 
 class SettingsAudioFormatFragment : PreferenceFragmentCompat() {
 
     private val encoding by lazy { findPreference<ListPreference>(getString(R.string.key_audioformat_encoding)) }
     private val bufferSize by lazy { findPreference<MaterialSeekbarPreference>(getString(R.string.key_audioformat_buffersize)) }
+    private val legacyMode by lazy { findPreference<MaterialSwitchPreference>(getString(R.string.key_audioformat_legacymode)) }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceManager.sharedPreferencesName = Constants.PREF_APP
         setPreferencesFromResource(R.xml.app_audio_format_preferences, rootKey)
 
-       encoding?.isVisible = BuildConfig.ROOTLESS
+        // Root: Hide audio format category
+        encoding?.parent?.isVisible = BuildConfig.ROOTLESS
+
+        // Rootless: Hide audio processing category
+        legacyMode?.parent?.isVisible = !BuildConfig.ROOTLESS
+        legacyMode?.setOnPreferenceChangeListener { _, newValue ->
+            if (!(newValue as Boolean))
+                requireContext().requestIgnoreBatteryOptimizations()
+            RootAudioProcessorService.updateLegacyMode(requireContext(), newValue)
+            true
+        }
 
         bufferSize?.setOnPreferenceChangeListener { _, newValue ->
             if((newValue as Float) <= 1024){

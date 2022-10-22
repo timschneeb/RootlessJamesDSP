@@ -3,11 +3,13 @@ package me.timschneeberger.rootlessjamesdsp.utils
 import android.app.Activity
 import android.content.Context
 import android.content.res.Configuration
+import android.media.audiofx.AudioEffect
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
 import android.text.Html
 import android.text.Spanned
+import android.util.Log
 import androidx.appcompat.view.ContextThemeWrapper
 import me.timschneeberger.hiddenapi_impl.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
@@ -80,3 +82,5 @@ inline fun <reified T : Parcelable> Bundle.getParcelableAs(key: String): T? {
         this.getParcelable(key)
     })
 }
+
+fun Boolean.toShort() = (if (this) 1 else 0).toShort()

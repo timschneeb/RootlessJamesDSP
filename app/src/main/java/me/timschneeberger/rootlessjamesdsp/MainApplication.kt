@@ -2,10 +2,13 @@ package me.timschneeberger.rootlessjamesdsp
 
 import android.app.Application
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
+import android.media.audiofx.AudioEffect
 import android.os.Build
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.preference.PreferenceManager
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.ktx.Firebase
@@ -19,6 +22,8 @@ import me.timschneeberger.rootlessjamesdsp.session.dump.DumpManager
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
+import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
+import me.timschneeberger.rootlessjamesdsp.session.root.EffectSessionManager
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext.startKoin
@@ -38,6 +43,9 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
     }
 
     val prefs: SharedPreferences by lazy { getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE) }
+    val rootSessionManager by lazy { EffectSessionManager(this) }
+    val isLegacyMode
+        get() = prefs.getBoolean(getString(R.string.key_audioformat_legacymode), true)
 
     val applicationScope = CoroutineScope(SupervisorJob())
     val blockedAppDatabase by lazy { AppBlocklistDatabase.getDatabase(this, applicationScope) }
@@ -76,6 +84,7 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
 
         FirebaseCrashlytics.getInstance().setCustomKey("buildType", BuildConfig.BUILD_TYPE)
         FirebaseCrashlytics.getInstance().setCustomKey("buildCommit", BuildConfig.COMMIT_SHA)
+        FirebaseCrashlytics.getInstance().setCustomKey("flavor", BuildConfig.FLAVOR)
 
         val initialPrefList = arrayOf(
             R.string.key_appearance_theme_mode
@@ -93,6 +102,9 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
             androidContext(this@MainApplication)
             modules(appModule)
         }
+
+        if (!BuildConfig.ROOTLESS && isLegacyMode)
+            RootAudioProcessorService.updateLegacyMode(applicationContext, true)
 
         super.onCreate()
     }

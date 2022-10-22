@@ -18,7 +18,7 @@ import me.timschneeberger.rootlessjamesdsp.databinding.FragmentAppCompatibilityB
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistViewModel
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistViewModelFactory
 import me.timschneeberger.rootlessjamesdsp.model.room.BlockedApp
-import me.timschneeberger.rootlessjamesdsp.service.AudioProcessorService
+import me.timschneeberger.rootlessjamesdsp.service.RootlessAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppIcon
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppNameFromUidSafe
@@ -86,7 +86,7 @@ class AppCompatibilityFragment : Fragment() {
 
             projectIntent?.let {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
-                    AudioProcessorService.start(requireContext(), it)
+                    RootlessAudioProcessorService.start(requireContext(), it)
             }
 
             Timer("Close", false).schedule(300L) {
@@ -106,7 +106,7 @@ class AppCompatibilityFragment : Fragment() {
             Timer("Reboot", false).schedule(100L) {
                 projectIntent?.let {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
-                        AudioProcessorService.start(requireContext(), it)
+                        RootlessAudioProcessorService.start(requireContext(), it)
                 }
 
                 Timer("Close", false).schedule(300L) {

@@ -18,7 +18,7 @@ import me.timschneeberger.rootlessjamesdsp.model.ItemViewModel
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistViewModel
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistViewModelFactory
 import me.timschneeberger.rootlessjamesdsp.model.room.BlockedApp
-import me.timschneeberger.rootlessjamesdsp.session.SessionRecordingPolicyManager
+import me.timschneeberger.rootlessjamesdsp.session.rootless.SessionRecordingPolicyManager
 import me.timschneeberger.rootlessjamesdsp.session.dump.DumpManager
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppIcon

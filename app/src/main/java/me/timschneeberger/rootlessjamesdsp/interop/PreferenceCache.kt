@@ -14,6 +14,13 @@ class PreferenceCache(val context: Context) {
         selectedNamespace = namespace
     }
 
+    fun clear() {
+        try {
+            cache.clear()
+        }
+        catch (_: Exception) {}
+    }
+
     inline fun <reified T> get(@StringRes nameRes: Int, default: T): T {
         if(selectedNamespace == null)
             throw IllegalStateException("No active namespace selected")

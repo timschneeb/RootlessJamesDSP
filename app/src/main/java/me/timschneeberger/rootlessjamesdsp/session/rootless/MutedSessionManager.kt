@@ -1,12 +1,10 @@
-package me.timschneeberger.rootlessjamesdsp.session
+package me.timschneeberger.rootlessjamesdsp.session.rootless
 
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Process.myUid
-import androidx.annotation.RequiresApi
-import me.timschneeberger.rootlessjamesdsp.model.AudioSessionEntry
-import me.timschneeberger.rootlessjamesdsp.model.MutedSessionEntry
+import me.timschneeberger.rootlessjamesdsp.model.rootless.AudioSessionEntry
+import me.timschneeberger.rootlessjamesdsp.model.rootless.MutedSessionEntry
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
 import me.timschneeberger.rootlessjamesdsp.utils.AudioEffectFactory
 import timber.log.Timber
@@ -15,7 +13,7 @@ class MutedSessionManager(private val context: Context) {
 
     private var isDisposing = false
     private val factory by lazy { AudioEffectFactory() }
-    private val sessionList = hashMapOf<Int,MutedSessionEntry>()
+    private val sessionList = hashMapOf<Int, MutedSessionEntry>()
     private val changeCallbacks = mutableListOf<OnSessionChangeListener>()
     private var sessionLossListener: OnSessionLossListener? = null
     private var appProblemListener: OnAppProblemListener? = null
@@ -159,7 +157,7 @@ class MutedSessionManager(private val context: Context) {
     }
 
     interface OnSessionChangeListener {
-        fun onSessionChanged(sessionList: HashMap<Int,MutedSessionEntry>)
+        fun onSessionChanged(sessionList: HashMap<Int, MutedSessionEntry>)
     }
 
     interface OnSessionLossListener {

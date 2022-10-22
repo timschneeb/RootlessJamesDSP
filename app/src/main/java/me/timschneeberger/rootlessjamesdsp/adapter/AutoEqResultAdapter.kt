@@ -35,7 +35,7 @@ class AutoEqResultAdapter(
         holder.title!!.text = results[position].name
         holder.subtitle!!.text = results[position].source
         holder.container.setOnClickListener{
-            onClickListener?.invoke(results[holder.adapterPosition])
+            onClickListener?.invoke(results[holder.bindingAdapterPosition])
         }
     }
 

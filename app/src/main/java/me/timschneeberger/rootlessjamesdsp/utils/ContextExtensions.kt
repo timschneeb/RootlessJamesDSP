@@ -1,12 +1,15 @@
 package me.timschneeberger.rootlessjamesdsp.utils
 
+import android.annotation.SuppressLint
 import android.content.*
 import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.os.PowerManager
 import android.os.Process
+import android.provider.Settings
 import android.text.Editable
 import android.util.Base64
 import android.view.LayoutInflater
@@ -24,6 +27,7 @@ import androidx.core.graphics.red
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
+import me.timschneeberger.rootlessjamesdsp.MainApplication
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.DialogTextinputBinding
 import timber.log.Timber
@@ -101,6 +105,14 @@ object ContextExtensions {
             true
         } catch (e: ActivityNotFoundException) {
             false
+        }
+    }
+
+    @SuppressLint("BatteryLife")
+    fun Context.requestIgnoreBatteryOptimizations() {
+        if (!BuildConfig.ROOTLESS && !SystemServices.get(this, PowerManager::class.java).isIgnoringBatteryOptimizations(packageName)) {
+            startActivity(Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS,
+                Uri.parse("package:$packageName")))
         }
     }
 

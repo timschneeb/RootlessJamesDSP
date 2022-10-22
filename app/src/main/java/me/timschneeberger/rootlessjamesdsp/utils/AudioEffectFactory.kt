@@ -5,9 +5,8 @@ import android.media.audiofx.AudioEffectHidden
 import android.media.audiofx.DynamicsProcessing
 import android.os.Build
 import android.os.Build.VERSION_CODES
-import androidx.annotation.RequiresApi
 import dev.rikka.tools.refine.Refine
-import me.timschneeberger.rootlessjamesdsp.model.AudioSessionEntry
+import me.timschneeberger.rootlessjamesdsp.model.rootless.AudioSessionEntry
 import timber.log.Timber
 import java.util.*
 

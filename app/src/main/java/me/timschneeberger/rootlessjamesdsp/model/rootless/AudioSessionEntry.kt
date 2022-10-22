@@ -1,4 +1,4 @@
-package me.timschneeberger.rootlessjamesdsp.model
+package me.timschneeberger.rootlessjamesdsp.model.rootless
 
 data class AudioSessionEntry(val uid: Int, val packageName: String, val usage: String, val content: String)
 {
@@ -8,7 +8,7 @@ data class AudioSessionEntry(val uid: Int, val packageName: String, val usage: S
 
     fun isUsageRecordable(): Boolean
     {
-        return Companion.isUsageRecordable(usage)
+        return isUsageRecordable(usage)
     }
 
     companion object

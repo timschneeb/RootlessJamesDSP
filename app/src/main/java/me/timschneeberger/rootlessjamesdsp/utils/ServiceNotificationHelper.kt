@@ -7,19 +7,25 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Icon
 import android.os.Build
+import android.util.SparseArray
 import androidx.annotation.RequiresApi
+import androidx.core.util.isEmpty
+import androidx.core.util.isNotEmpty
+import androidx.core.util.valueIterator
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.activity.AppCompatibilityActivity
 import me.timschneeberger.rootlessjamesdsp.activity.MainActivity
-import me.timschneeberger.rootlessjamesdsp.model.AudioSessionEntry
-import me.timschneeberger.rootlessjamesdsp.service.AudioProcessorService
+import me.timschneeberger.rootlessjamesdsp.model.root.EffectSessionEntry
+import me.timschneeberger.rootlessjamesdsp.model.rootless.AudioSessionEntry
+import me.timschneeberger.rootlessjamesdsp.service.RootlessAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppName
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppNameFromUid
 
 
 object ServiceNotificationHelper {
     private fun createNotificationBuilder(context: Context, channel: String): Notification.Builder {
+        @Suppress("DEPRECATION")
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
             Notification.Builder(context, channel)
         else
@@ -50,32 +56,90 @@ object ServiceNotificationHelper {
             .notify(Constants.NOTIFICATION_ID_SERVICE, notification)
     }
 
+    fun pushServiceNotificationRoot(context: Context, sessions: SparseArray<EffectSessionEntry>?) {
+        val notification = createServiceNotificationRoot(context, sessions)
+        SystemServices.get(context, NotificationManager::class.java)
+            .notify(Constants.NOTIFICATION_ID_SERVICE, notification)
+    }
+
+    fun pushServiceNotificationLegacy(context: Context) {
+        val notification = createServiceNotificationLegacy(context)
+        SystemServices.get(context, NotificationManager::class.java)
+            .notify(Constants.NOTIFICATION_ID_SERVICE, notification)
+    }
+
+    fun createServiceNotificationLegacy(context: Context): Notification {
+        val enabled = context
+            .getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
+            .getBoolean(context.getString(R.string.key_powered_on), true)
+        return createServiceNotification(
+            context,
+            context.getString(
+                if(enabled) R.string.notification_processing_title
+                else R.string.notification_processing_disabled_title
+            ),
+            context.getString(R.string.notification_processing_legacy)
+        )
+    }
+
+    private fun createServiceNotificationRoot(context: Context, sessions: SparseArray<EffectSessionEntry>?): Notification {
+        val apps = sessions?.valueIterator()?.asSequence()?.joinToString(", ") {
+            if(it.packageName == null)
+                return@joinToString "?"
+            context.getAppName(it.packageName!!) ?: it.packageName as CharSequence
+        }
+
+        val enabled = context
+            .getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
+            .getBoolean(context.getString(R.string.key_powered_on), true)
+
+        return createServiceNotification(context,
+            context.getString(
+                if(enabled) R.string.notification_processing_title
+                else R.string.notification_processing_disabled_title
+            ), when {
+                sessions?.isNotEmpty() == true -> context.getString(R.string.notification_processing, apps)
+                sessions?.isEmpty() == true -> context.getString(R.string.notification_idle)
+                else -> context.getString(R.string.notification_waiting)
+            })
+    }
+
     fun createServiceNotification(context: Context, sessions: Array<AudioSessionEntry>?): Notification {
         val apps = sessions?.distinct()?.joinToString(", ") {
             context.getAppNameFromUid(it.uid) ?: it.packageName
         }
 
-        val text: String =
+        return createServiceNotification(context,
+            context.getAppName(),
             when {
                 sessions?.isNotEmpty() == true -> context.getString(R.string.notification_processing, apps)
                 sessions?.isEmpty() == true -> context.getString(R.string.notification_idle)
                 else -> context.getString(R.string.notification_waiting)
-            }
+            })
+    }
 
+    private fun createServiceNotification(context: Context, title: String, message: String): Notification {
         val intent = Intent(context, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
 
         val contentIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 
-        return createNotificationBuilder(context, Constants.CHANNEL_ID_SERVICE)
-            .setContentTitle(context.getAppName())
-            .setContentText(text)
+        val builder = createNotificationBuilder(context, Constants.CHANNEL_ID_SERVICE)
+            .setShowWhen(false)
+            .setOnlyAlertOnce(true)
+            .setCategory(Notification.CATEGORY_SERVICE)
+            .setContentTitle(title)
+            .setContentText(message)
             .setSmallIcon(R.drawable.ic_tune_vertical_variant_24dp)
-            .addAction(createStopAction(context))
             .setContentIntent(contentIntent)
             .setOngoing(true)
-            .build()
+
+        if(BuildConfig.ROOTLESS)
+            builder.addAction(createStopAction(context))
+
+        return builder.build()
     }
+
 
     fun pushSessionLossNotification(context: Context, mediaProjectionStartIntent: Intent?) {
         val intent = Intent(context, MainActivity::class.java)
@@ -159,36 +223,34 @@ object ServiceNotificationHelper {
     @RequiresApi(Build.VERSION_CODES.Q)
     fun createAppTroubleshootIntent(ctx: Context, mediaProjectionData: Intent?, data: AudioSessionEntry, directLaunch: Boolean): Intent {
         val intent = Intent(ctx, AppCompatibilityActivity::class.java)
-        intent.action = AudioProcessorService.ACTION_START
-        intent.putExtra(AudioProcessorService.EXTRA_MEDIA_PROJECTION_DATA, mediaProjectionData)
-        intent.putExtra(AudioProcessorService.EXTRA_APP_UID, data.uid)
-        intent.putExtra(AudioProcessorService.EXTRA_APP_COMPAT_INTERNAL_CALL, directLaunch)
+        intent.action = RootlessAudioProcessorService.ACTION_START
+        intent.putExtra(RootlessAudioProcessorService.EXTRA_MEDIA_PROJECTION_DATA, mediaProjectionData)
+        intent.putExtra(RootlessAudioProcessorService.EXTRA_APP_UID, data.uid)
+        intent.putExtra(RootlessAudioProcessorService.EXTRA_APP_COMPAT_INTERNAL_CALL, directLaunch)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
         return intent
     }
 
     fun createStopIntent(ctx: Context): Intent {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && BuildConfig.ROOTLESS) {
-            with(Intent(ctx, AudioProcessorService::class.java)) {
-                action = AudioProcessorService.ACTION_STOP
+            with(Intent(ctx, RootlessAudioProcessorService::class.java)) {
+                action = RootlessAudioProcessorService.ACTION_STOP
                 this
             }
         }
-        else {
-            throw NotImplementedError("TODO") // TODO implement root service
-        }
+        else
+            throw IllegalStateException()
     }
 
-    fun createStartIntent(ctx: Context, mediaProjectionData: Intent?): Intent {
+    fun createStartIntent(ctx: Context, mediaProjectionData: Intent? = null): Intent {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && BuildConfig.ROOTLESS) {
-            with(Intent(ctx, AudioProcessorService::class.java)) {
-                action = AudioProcessorService.ACTION_START
-                putExtra(AudioProcessorService.EXTRA_MEDIA_PROJECTION_DATA, mediaProjectionData)
+            with(Intent(ctx, RootlessAudioProcessorService::class.java)) {
+                action = RootlessAudioProcessorService.ACTION_START
+                putExtra(RootlessAudioProcessorService.EXTRA_MEDIA_PROJECTION_DATA, mediaProjectionData)
                 this
             }
         }
-        else {
-            throw NotImplementedError("TODO") // TODO implement root service
-        }
+        else
+            throw IllegalStateException()
     }
 }

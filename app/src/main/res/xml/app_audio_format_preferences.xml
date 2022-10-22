@@ -25,4 +25,16 @@
             app:showSeekBarValue="true"
             app:iconSpaceReserved="false"/>
     </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/audio_format_processing_header"
+        app:iconSpaceReserved="false">
+        <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
+            android:key="@string/key_audioformat_legacymode"
+            android:defaultValue="true"
+            android:title="@string/audio_format_processing_legacy"
+            android:summaryOff="@string/audio_format_processing_legacy_off"
+            android:summaryOn="@string/audio_format_processing_legacy_on"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
 </PreferenceScreen>

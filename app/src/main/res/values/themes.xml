@@ -8,7 +8,7 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
 
         <!-- Ripples -->
-        <item name="colorControlHighlight">?attr/colorSurfaceVariant</item>
+        <!--<item name="colorControlHighlight">?attr/colorSurfaceVariant</item>-->
 
         <item name="materialSwitchStyle">@style/Widget.Material3.CompoundButton.MaterialSwitch</item>
         <item name="alertDialogTheme">@style/AppTheme.AlertDialogTheme</item>

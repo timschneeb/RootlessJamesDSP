@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ServiceNotificationHelper
@@ -14,7 +15,10 @@ import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 
 class BootCompletedReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
-        if (Intent.ACTION_BOOT_COMPLETED == intent.action) {
+        if (intent.action != Intent.ACTION_BOOT_COMPLETED)
+            return
+
+        if(BuildConfig.ROOTLESS) {
             val notificationManager = SystemServices.get(context, NotificationManager::class.java)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 val channel = NotificationChannel(
@@ -27,8 +31,9 @@ class BootCompletedReceiver : BroadcastReceiver() {
                 notificationManager.createNotificationChannel(channel)
             }
 
-            if(context.getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
-                    .getBoolean(context.getString(R.string.key_autostart_prompt_at_boot), true))
+            if (context.getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
+                    .getBoolean(context.getString(R.string.key_autostart_prompt_at_boot), true)
+            )
                 ServiceNotificationHelper.pushPermissionPromptNotification(context)
         }
     }

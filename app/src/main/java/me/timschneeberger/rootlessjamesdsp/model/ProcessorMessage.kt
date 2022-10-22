@@ -6,7 +6,8 @@ package me.timschneeberger.rootlessjamesdsp.model
          VdcParseError(1),
          LiveprogOutput(2),
          LiveprogExec(3),
-         LiveprogResult(4);
+         LiveprogResult(4),
+         ConvolverParseError(5);
 
          companion object {
              fun fromInt(value: Int) = values().first { it.value == value }

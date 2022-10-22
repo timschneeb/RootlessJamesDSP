@@ -8,7 +8,6 @@
     <string name="notification_channel_permission_prompt">Permission prompt request</string>
     <string name="notification_channel_app_compat_alert">Incompatible app alert</string>
 
-
     <!-- Service notifications -->
     <string name="action_retry">Retry</string>
     <string name="action_fix">Fix issue</string>
@@ -16,6 +15,9 @@
     <string name="notification_waiting">Waiting for user action…</string>
     <string name="notification_processing">Active apps: %1$s</string>
     <string name="notification_idle">Audio processing idle</string>
+    <string name="notification_processing_title">Audio processing active</string>
+    <string name="notification_processing_disabled_title">Audio processing disabled</string>
+    <string name="notification_processing_legacy">Tap to open JamesDSP manager</string>
 
     <!-- Permission request notifications -->
     <string name="notification_request_permission_title">User action is required to launch JamesDSP</string>
@@ -238,9 +240,14 @@
     <string name="session_loss_ignore_off">Disabled, handle normally (recommended)</string>
     <string name="session_loss_ignore_on">Don\'t take any action (may cause duplicated audio)</string>
     <string name="session_loss_ignore_warning">Enabling this setting can cause duplicated audio when another audio effects app takes control of an audio session.\nPlease keep this setting disabled unless you encounter false-positive session loss events.</string>
-    <string name="audio_format_header">Audio format</string>
+    <string name="audio_format_header">Audio processing</string>
     <string name="audio_format_section_header">Preferred audio format</string>
+    <string name="audio_format_processing_header">Audio processing options</string>
+    <string name="audio_format_processing_legacy">Legacy mode</string>
+    <string name="audio_format_processing_legacy_on">Attach globally to session 0 (deprecated)</string>
+    <string name="audio_format_processing_legacy_off">Attach to each app individually (some apps not supported)</string>
     <string name="audio_format_summary">Preferred audio encoding, buffer size</string>
+    <string name="audio_format_summary_root">Legacy mode</string>
     <string name="audio_format_encoding">Audio encoding</string>
     <string name="audio_format_encoding_int16">16-bit integer PCM</string>
     <string name="audio_format_encoding_float">32-bit float PCM</string>
@@ -396,6 +403,8 @@
     <string name="load_fail_card">Please install the JamesDSP magisk module and reboot your Android device to use this application. You may also need to reinstall this app after rebooting.</string>
     <string name="load_fail_rootless_card_title">Looking for a rootless alternative?</string>
     <string name="load_fail_rootless_card">This flavor of JamesDSP was designed to be used with a rooted/modified device. A non-root alternative with some limitations is also available. Tap here for details.</string>
+    <string name="load_fail_arch_card_title">Module already installed?</string>
+    <string name="load_fail_arch_card">If you already installed the magisk module, you may have chosen the wrong settings during installation. Please re-install and try to enable Huawei compatibility (even if your phone is not from that manufacturer).</string>
 
     <!-- App list -->
     <string name="app_list_loading">Loading apps…</string>

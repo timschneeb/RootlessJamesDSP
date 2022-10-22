@@ -23,7 +23,7 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
             field = value
             JamesDspWrapper.setSamplingRate(handle, value, false)
         }
-    override var bypass: Boolean = false
+    override var enabled: Boolean = true
 
     override fun close() {
         JamesDspWrapper.free(handle)
@@ -34,7 +34,7 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
     // Processing
     fun processInt16(input: ShortArray): ShortArray
     {
-        if(bypass)
+        if(!enabled)
         {
             return input
         }
@@ -50,7 +50,7 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
 
     fun processInt32(input: IntArray): IntArray
     {
-        if(bypass)
+        if(!enabled)
         {
             return input
         }
@@ -66,7 +66,7 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
 
     fun processFloat(input: FloatArray): FloatArray
     {
-        if(bypass)
+        if(!enabled)
         {
             return input
         }
@@ -81,14 +81,8 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
     }
 
     // Effect config
-    override fun setLimiter(threshold: Float, release: Float): Boolean
-    {
-        return JamesDspWrapper.setLimiter(handle, threshold, release)
-    }
-
-    override fun setPostGain(postGain: Float): Boolean
-    {
-        return JamesDspWrapper.setPostGain(handle, postGain)
+    override fun setOutputControl(threshold: Float, release: Float, postGain: Float): Boolean {
+        return JamesDspWrapper.setLimiter(handle, threshold, release) and JamesDspWrapper.setPostGain(handle, postGain)
     }
 
     override fun setCompressor(enable: Boolean, maxAttack: Float, maxRelease: Float, adaptSpeed: Float): Boolean
@@ -135,8 +129,8 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
         return JamesDspWrapper.setFirEqualizer(handle, enable, filterType, interpolationMode, bands)
     }
 
-    override fun setVdcInternal(enable: Boolean, vdcPath: String): Boolean {
-        return JamesDspWrapper.setVdc(handle, enable, vdcPath)
+    override fun setVdcInternal(enable: Boolean, vdc: String): Boolean {
+        return JamesDspWrapper.setVdc(handle, enable, vdc)
     }
 
     override fun setConvolverInternal(
@@ -156,9 +150,11 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
         return JamesDspWrapper.setLiveprog(handle, enable, name, path)
     }
 
-    // EEL VM utilities
+    // Feature support
     override fun supportsEelVmAccess(): Boolean { return true }
+    override fun supportsCustomCrossfeed(): Boolean { return true }
 
+    // EEL VM utilities
     override fun enumerateEelVariables(): ArrayList<EelVmVariable>
     {
         return JamesDspWrapper.enumerateEelVariables(handle)
@@ -172,13 +168,5 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
     override fun freezeLiveprogExecution(freeze: Boolean)
     {
         JamesDspWrapper.freezeLiveprogExecution(handle, freeze)
-    }
-
-    private inner class DummyCallbacks : JamesDspWrapper.JamesDspCallbacks
-    {
-        override fun onLiveprogOutput(message: String) {}
-        override fun onLiveprogExec(id: String) {}
-        override fun onLiveprogResult(resultCode: Int, id: String, errorMessage: String?) {}
-        override fun onVdcParseError() {}
     }
 }

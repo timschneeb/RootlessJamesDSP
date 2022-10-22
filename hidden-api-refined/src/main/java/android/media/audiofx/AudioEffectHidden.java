@@ -109,4 +109,80 @@ public class AudioEffectHidden {
             throws IllegalStateException {
         throw new RuntimeException("Stub!");
     }
+
+
+    /**
+     * Get effect parameter. The getParameter method is provided in several
+     * forms addressing most common parameter formats. This form is the most
+     * generic one where the parameter and its value are both specified as an
+     * array of bytes. The parameter and value type and length are therefore
+     * totally free.
+     *
+     * @param param the identifier of the parameter to set
+     * @param value the new value for the specified parameter
+     * @return the number of meaningful bytes in value array in case of success or
+     * ERROR_BAD_VALUE, ERROR_NO_MEMORY, ERROR_INVALID_OPERATION
+     * or ERROR_DEAD_OBJECT in case of failure.
+     * @throws IllegalStateException
+     */
+    public int getParameter(byte[] param, byte[] value)
+            throws IllegalStateException {
+        throw new RuntimeException("Stub!");
+    }
+
+    /**
+     * Get effect parameter. The parameter is an integer and the value is an
+     * array of bytes.
+     *
+     * @see #getParameter(byte[], byte[])
+     */
+    public int getParameter(int param, byte[] value)
+            throws IllegalStateException {
+        throw new RuntimeException("Stub!");
+    }
+
+    /**
+     * Enable or disable the effect.
+     * Creating an audio effect does not automatically apply this effect on the audio source. It
+     * creates the resources necessary to process this effect but the audio signal is still bypassed
+     * through the effect engine. Calling this method will make that the effect is actually applied
+     * or not to the audio content being played in the corresponding audio session.
+     *
+     * @param enabled the requested enable state
+     * @return SUCCESS in case of success, ERROR_INVALID_OPERATION
+     *         or ERROR_DEAD_OBJECT in case of failure.
+     * @throws IllegalStateException
+     */
+    public int setEnabled(boolean enabled) throws IllegalStateException {
+        throw new RuntimeException("Stub!");
+    }
+
+    /**
+     * Returns effect enabled state
+     *
+     * @return true if the effect is enabled, false otherwise.
+     * @throws IllegalStateException
+     */
+    public boolean getEnabled() throws IllegalStateException {
+        throw new RuntimeException("Stub!");
+    }
+
+    /**
+     * Get the effect descriptor.
+     *
+     * @see android.media.audiofx.AudioEffect.Descriptor
+     * @throws IllegalStateException
+     */
+    public AudioEffect.Descriptor getDescriptor() throws IllegalStateException {
+        throw new RuntimeException("Stub!");
+    }
+
+    /**
+     * Releases the native AudioEffect resources. It is a good practice to
+     * release the effect engine when not in use as control can be returned to
+     * other applications or the native resources released.
+     */
+    public void release() {
+        throw new RuntimeException("Stub!");
+    }
 }
