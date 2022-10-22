@@ -6,8 +6,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.text.Editable
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.PopupMenu
@@ -15,7 +13,6 @@ import androidx.core.content.FileProvider
 import androidx.preference.ListPreferenceDialogFragmentCompat
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
-import me.timschneeberger.rootlessjamesdsp.databinding.DialogTextinputBinding
 import me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showInputAlert
@@ -25,6 +22,15 @@ import java.io.File
 
 
 class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
+
+    private val fileLibPreference by lazy {
+        if(requireArguments().getBoolean(BUNDLE_PRESET_TYPE))
+            FileLibraryPreference(requireContext(), null).apply {
+                this.type = "presets"
+            }
+        else
+            preference as FileLibraryPreference
+    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = super.onCreateDialog(savedInstanceState) as AlertDialog
@@ -36,12 +42,12 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
         }
         dialog.listView.setOnItemLongClickListener {
                 _, view, position, _ ->
-            val name = getFileLibraryPreference().entries[position]
-            val path = getFileLibraryPreference().entryValues[position]
+            val name = fileLibPreference.entries[position]
+            val path = fileLibPreference.entryValues[position]
 
             val popupMenu = PopupMenu(requireContext(), view)
             popupMenu.menuInflater.inflate(R.menu.menu_filelibrary_context, popupMenu.menu)
-            popupMenu.menu.findItem(R.id.duplicate_selection).isVisible = getFileLibraryPreference().isLiveprog()
+            popupMenu.menu.findItem(R.id.duplicate_selection).isVisible = fileLibPreference.isLiveprog()
 
             popupMenu.setOnMenuItemClickListener { menuItem ->
                 val selectedFile = File(path.toString())
@@ -49,7 +55,7 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
                     R.id.delete_selection -> {
                         selectedFile.delete()
                         // Refresh by re-opening alert dialog
-                        reopenDialog()
+                        refresh()
                     }
                     R.id.duplicate_selection -> {
                         requireContext().showInputAlert(
@@ -72,7 +78,7 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
                                     return@showInputAlert
                                 }
                                 selectedFile.copyTo(newFile)
-                                reopenDialog()
+                                refresh()
                             }
                         }
                     }
@@ -98,19 +104,19 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
         return dialog
     }
 
-    private fun reopenDialog() {
-        this.dismiss()
-        getFileLibraryPreference().showDialog()
+    private fun refresh() {
+        if(requireArguments().getBoolean(BUNDLE_PRESET_TYPE))
+            fileLibPreference.refresh()
+        else {
+            this.dismiss()
+            fileLibPreference.showDialog()
+        }
     }
 
     override fun onPrepareDialogBuilder(builder: AlertDialog.Builder) {
         super.onPrepareDialogBuilder(builder)
         builder.setView(R.layout.dialog_filelibrary)
-        builder.setNeutralButton("Import") { _, _ -> }
-    }
-
-    private fun getFileLibraryPreference(): FileLibraryPreference {
-        return preference as FileLibraryPreference
+        builder.setNeutralButton(getString(R.string.action_import)) { _, _ -> }
     }
 
     private fun import() {
@@ -129,7 +135,7 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
         {
             data?.data?.also { uri ->
 
-                val correctType = getFileLibraryPreference().hasCorrectExtension(
+                val correctType = fileLibPreference.hasCorrectExtension(
                     StorageUtils.queryName(
                         requireContext(),
                         uri
@@ -144,13 +150,13 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
                 this.dismiss()
 
                 val file = StorageUtils.importFile(requireContext(),
-                    getFileLibraryPreference().directory?.absolutePath ?: "", uri)
+                    fileLibPreference.directory?.absolutePath ?: "", uri)
                 if(file == null)
                 {
                     Timber.e("Failed to import file")
                 }
                 Handler(Looper.getMainLooper()).postDelayed({
-                    getFileLibraryPreference().showDialog()
+                    refresh()
                 }, 150)
             }
         }
@@ -159,12 +165,23 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
     companion object {
         private const val IMPORT_FILE = 0x200
         private const val BUNDLE_KEY = "key"
+        private const val BUNDLE_PRESET_TYPE = "isPresetType"
 
         fun newInstance(key: String): FileLibraryDialogFragment {
             val fragment = FileLibraryDialogFragment()
 
             val args = Bundle()
             args.putString(BUNDLE_KEY, key)
+            args.putBoolean(BUNDLE_PRESET_TYPE, false)
+            fragment.arguments = args
+            return fragment
+        }
+
+        fun newPresetDialogInstance(): FileLibraryDialogFragment {
+            val fragment = FileLibraryDialogFragment()
+
+            val args = Bundle()
+            args.putBoolean(BUNDLE_PRESET_TYPE, true)
             fragment.arguments = args
             return fragment
         }

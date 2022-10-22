@@ -418,5 +418,7 @@
     <!-- Slider widget -->
     <string name="slider_dialog_title">Edit value</string>
     <string name="slider_dialog_format_error">Invalid number format. Changes not applied.</string>
+    <string name="action_presets">Presets</string>
+    <string name="action_import">Import</string>
 
 </resources>

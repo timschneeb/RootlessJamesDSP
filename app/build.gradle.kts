@@ -182,6 +182,9 @@ dependencies {
     implementation("com.jakewharton.timber:timber:5.0.1")
     implementation("com.github.bastienpaulfr:Treessence:1.0.0")
 
+    // Archiving
+    implementation("org.kamranzafar:jtar:2.3")
+
     // Room databases
     val roomVersion = "2.4.3"
     implementation("androidx.room:room-runtime:$roomVersion")

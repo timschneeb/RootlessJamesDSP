@@ -3,8 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="me.timschneeberger.rootlessjamesdsp.activity.MainActivity">
     <item
-        android:id="@+id/action_blocklist"
+        android:id="@+id/action_presets"
         android:orderInCategory="100"
+        android:title="@string/action_presets"
+        android:iconTint="?attr/actionMenuTextColor"
+        android:icon="@drawable/ic_twotone_app_blocking_24dp"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_blocklist"
+        android:orderInCategory="10"
         android:title="@string/action_blocked_apps"
         android:iconTint="?attr/actionMenuTextColor"
         android:icon="@drawable/ic_twotone_app_blocking_24dp"

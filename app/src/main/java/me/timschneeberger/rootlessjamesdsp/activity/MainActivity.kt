@@ -6,6 +6,7 @@ import android.content.*
 import android.content.pm.PackageManager
 import android.media.projection.MediaProjectionManager
 import android.os.*
+import android.util.AttributeSet
 import android.view.HapticFeedbackConstants
 import android.view.Menu
 import android.widget.Toast
@@ -13,6 +14,10 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.preference.DialogPreference.TargetFragment
+import androidx.preference.Preference
+import androidx.preference.PreferenceManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.snackbar.Snackbar
@@ -23,10 +28,12 @@ import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.ActivityMainBinding
 import me.timschneeberger.rootlessjamesdsp.databinding.ContentMainBinding
 import me.timschneeberger.rootlessjamesdsp.fragment.DspFragment
+import me.timschneeberger.rootlessjamesdsp.fragment.FileLibraryDialogFragment
 import me.timschneeberger.rootlessjamesdsp.fragment.LibraryLoadErrorFragment
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspRemoteEngine
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspWrapper
 import me.timschneeberger.rootlessjamesdsp.model.ProcessorMessage
+import me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
 import me.timschneeberger.rootlessjamesdsp.service.BaseAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.service.RootlessAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
@@ -99,6 +106,14 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    // TODO
+    private val pref by lazy {
+        FileLibraryPreference(this, null).apply {
+            this.type = "presets"
+            this.key = "presets"
+        }
+    }
+
     @SuppressLint("BatteryLife")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -168,16 +183,30 @@ class MainActivity : BaseActivity() {
                 false
         }
 
+        // Inflate bottom right menu
+        binding.bar.inflateMenu(R.menu.menu_main_bottom)
         // TODO root: add support for app exclusion list
-        // Rootless: inflate bottom right menu
-        if(BuildConfig.ROOTLESS) {
-            binding.bar.inflateMenu(R.menu.menu_main_bottom)
-            binding.bar.setOnMenuItemClickListener { arg0 ->
-                if (arg0.itemId == R.id.action_blocklist) {
+        binding.bar.menu.findItem(R.id.action_blocklist).isVisible = BuildConfig.ROOTLESS
+        binding.bar.setOnMenuItemClickListener { arg0 ->
+            when (arg0.itemId) {
+                R.id.action_blocklist -> {
                     startActivity(Intent(this, BlocklistActivity::class.java))
                     true
-                } else
-                    false
+                }
+                R.id.action_presets -> {
+                    @Suppress("UNCHECKED_CAST")
+                    class FakeFragment : Fragment(), TargetFragment {
+                        override fun <T : Preference?> findPreference(key: CharSequence): T? {
+                            return pref as? T
+                        }
+                    }
+
+                    val dialogFragment = FileLibraryDialogFragment.newInstance("presets")
+                    dialogFragment.setTargetFragment(FakeFragment(), 0)
+                    dialogFragment.show(supportFragmentManager, null)
+                    true
+                }
+                else -> false
             }
         }
 
