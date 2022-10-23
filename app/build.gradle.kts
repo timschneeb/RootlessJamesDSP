@@ -16,8 +16,6 @@ android {
     project.setProperty("archivesBaseName", "RootlessJamesDSP-v${AndroidConfig.versionName}")
 
     defaultConfig {
-        applicationId = "me.timschneeberger.rootlessjamesdsp"
-        minSdk = AndroidConfig.minSdk
         targetSdk = AndroidConfig.targetSdk
         versionCode = AndroidConfig.versionCode
         versionName = AndroidConfig.versionName
@@ -64,6 +62,29 @@ android {
             val debugType = getByName("debug")
             versionNameSuffix = debugType.versionNameSuffix
             matchingFallbacks.add("release")
+        }
+    }
+
+    flavorDimensions += "version"
+    productFlavors {
+        create("rootless") {
+            dimension = "version"
+
+            manifestPlaceholders["label"] = "RootlessJamesDSP"
+            applicationId = "me.timschneeberger.rootlessjamesdsp"
+            AndroidConfig.minSdk = 29
+            minSdk = AndroidConfig.minSdk
+            buildConfigField("boolean", "ROOTLESS", "true")
+        }
+        create("root") {
+            dimension = "version"
+
+            manifestPlaceholders["label"] = "JamesDSP"
+            project.setProperty("archivesBaseName", "JamesDSP-v${AndroidConfig.versionName}")
+            applicationId = "james.dsp"
+            AndroidConfig.minSdk = 26
+            minSdk = AndroidConfig.minSdk
+            buildConfigField("boolean", "ROOTLESS", "false")
         }
     }
 
@@ -114,9 +135,12 @@ android {
 
 // Hooks to upload native symbols to crashlytics automatically
 afterEvaluate {
-    getTasksByName("assembleRelease", false).first().finalizedBy("uploadCrashlyticsSymbolFileRelease")
-    getTasksByName("bundleRelease", false).first().finalizedBy("uploadCrashlyticsSymbolFileRelease")
-    getTasksByName("assemblePreview", false).first().finalizedBy("uploadCrashlyticsSymbolFileRelease")
+    getTasksByName("assembleRootlessRelease", false).first().finalizedBy("uploadCrashlyticsSymbolFileRelease")
+    getTasksByName("bundleRootlessRelease", false).first().finalizedBy("uploadCrashlyticsSymbolFileRelease")
+    getTasksByName("assembleRootlessPreview", false).first().finalizedBy("uploadCrashlyticsSymbolFileRelease")
+    getTasksByName("assembleRootRelease", false).first().finalizedBy("uploadCrashlyticsSymbolFileRelease")
+    getTasksByName("bundleRootRelease", false).first().finalizedBy("uploadCrashlyticsSymbolFileRelease")
+    getTasksByName("assembleRootPreview", false).first().finalizedBy("uploadCrashlyticsSymbolFileRelease")
 }
 
 dependencies {
@@ -157,6 +181,9 @@ dependencies {
     // Logging
     implementation("com.jakewharton.timber:timber:5.0.1")
     implementation("com.github.bastienpaulfr:Treessence:1.0.0")
+
+    // Archiving
+    implementation("org.kamranzafar:jtar:2.3")
 
     // Room databases
     val roomVersion = "2.4.3"

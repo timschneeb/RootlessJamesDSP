@@ -1,4 +1,4 @@
-package me.timschneeberger.rootlessjamesdsp.model
+package me.timschneeberger.rootlessjamesdsp.model.rootless
 
 import android.media.audiofx.AudioEffect
 

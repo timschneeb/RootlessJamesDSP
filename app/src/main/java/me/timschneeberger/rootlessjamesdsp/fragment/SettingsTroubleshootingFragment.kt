@@ -1,6 +1,7 @@
 package me.timschneeberger.rootlessjamesdsp.fragment
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.text.InputType
 import android.util.TypedValue
@@ -8,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.FileProvider
+import androidx.core.content.res.ResourcesCompat
 import androidx.preference.*
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
@@ -73,11 +75,6 @@ class SettingsTroubleshootingFragment : PreferenceFragmentCompat() {
             startActivity(Intent.createChooser(shareIntent, getString(R.string.troubleshooting_dump_share_title)))
             true
         }
-        findPreference<Preference>(getString(R.string.key_troubleshooting_repair_assets))?.setOnPreferenceClickListener {
-            requireContext().assets.installPrivateAssets(requireContext(), force = true)
-            requireContext().showAlert(R.string.success, R.string.troubleshooting_repair_assets_success)
-            true
-        }
         findPreference<Preference>(getString(R.string.key_troubleshooting_notification_access))?.setOnPreferenceClickListener {
             val intent = ApplicationUtils.getIntentForNotificationAccess(requireContext().packageName, NotificationListenerService::class.java)
             requireActivity().startActivity(intent)
@@ -106,10 +103,10 @@ class SettingsTroubleshootingFragment : PreferenceFragmentCompat() {
         val view = super.onCreateView(inflater, container, savedInstanceState)
         val a = TypedValue()
         requireContext().theme.resolveAttribute(android.R.attr.windowBackground, a, true)
-        if (a.isColorType) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && a.isColorType) {
             view.setBackgroundColor(a.data)
         } else {
-            view.background = requireContext().resources.getDrawable(a.resourceId, requireContext().theme)
+            view.background = ResourcesCompat.getDrawable(requireContext().resources, a.resourceId, requireContext().theme)
         }
         return view
     }

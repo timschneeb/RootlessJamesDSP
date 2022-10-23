@@ -284,7 +284,7 @@ class OnboardingFragment : Fragment() {
         else if(number == PAGE_RUNTIME_PERMISSIONS) {
             val pageBinding = binding.onboardingPage5
             if(Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-                pageBinding.requireViewById<View>(R.id.onboarding_notification_permission).visibility = View.GONE
+                pageBinding.findViewById<View>(R.id.onboarding_notification_permission).visibility = View.GONE
             }
         }
 

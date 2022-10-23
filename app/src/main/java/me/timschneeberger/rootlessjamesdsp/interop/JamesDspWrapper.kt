@@ -47,6 +47,7 @@ object JamesDspWrapper {
         fun onLiveprogExec(id: String)
         fun onLiveprogResult(resultCode: Int, id: String, errorMessage: String?)
         fun onVdcParseError()
+        fun onConvolverParseError()
     }
 
     init

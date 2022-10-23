@@ -15,3 +15,5 @@
 .cxx
 local.properties
 /hidden-refine-api/build/
+/app/src/main/cpp/libjamesdsp/Main/DSPManager/.idea/
+/app/src/main/cpp/libjamesdsp/Main/DSPManager/DSPManager.iml

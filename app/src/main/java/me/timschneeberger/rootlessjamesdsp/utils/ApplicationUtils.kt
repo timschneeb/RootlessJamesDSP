@@ -6,15 +6,13 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Base64
-import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.service.NotificationListenerService
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppName
 
 
 object ApplicationUtils {
     fun describe(ctx: Context): String {
-        return "package=${ctx.packageName}; app_name=${ctx.getString(R.string.app_name)}; label=${ctx.getAppName()}"
+        return "package=${ctx.packageName}; app_name=${ctx.getAppName()}; label=${ctx.getAppName()}"
     }
 
     fun getIntentForNotificationAccess(packageName: String, notificationAccessServiceClass: Class<out NotificationListenerService>): Intent =

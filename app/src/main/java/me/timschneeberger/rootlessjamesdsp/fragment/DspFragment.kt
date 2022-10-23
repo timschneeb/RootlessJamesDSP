@@ -14,7 +14,7 @@ class DspFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         val view = inflater.inflate(R.layout.fragment_dsp, container, false)
 
@@ -73,6 +73,12 @@ class DspFragment : Fragment() {
                 ))
             .commit()
         return view
+    }
+
+    fun restartFragment(id: Int, newFragment: Fragment) {
+        childFragmentManager.beginTransaction()
+            .replace(id, newFragment)
+            .commit()
     }
 
     companion object {

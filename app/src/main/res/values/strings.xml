@@ -1,15 +1,13 @@
 <resources>
-    <string name="app_name">RootlessJamesDSP</string>
-
     <!-- Main menu bar -->
     <string name="action_settings">Settings</string>
+    <string name="action_presets">Presets</string>
 
     <!-- Notification channels -->
     <string name="notification_channel_service">Service notification</string>
     <string name="notification_channel_session_loss_alert">Session loss alert</string>
     <string name="notification_channel_permission_prompt">Permission prompt request</string>
     <string name="notification_channel_app_compat_alert">Incompatible app alert</string>
-
 
     <!-- Service notifications -->
     <string name="action_retry">Retry</string>
@@ -18,6 +16,9 @@
     <string name="notification_waiting">Waiting for user action…</string>
     <string name="notification_processing">Active apps: %1$s</string>
     <string name="notification_idle">Audio processing idle</string>
+    <string name="notification_processing_title">Audio processing active</string>
+    <string name="notification_processing_disabled_title">Audio processing disabled</string>
+    <string name="notification_processing_legacy">Tap to open JamesDSP manager</string>
 
     <!-- Permission request notifications -->
     <string name="notification_request_permission_title">User action is required to launch JamesDSP</string>
@@ -43,6 +44,8 @@
     <string name="warning">Warning</string>
     <string name="success">Success</string>
     <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="add">Add</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
@@ -240,9 +243,14 @@
     <string name="session_loss_ignore_off">Disabled, handle normally (recommended)</string>
     <string name="session_loss_ignore_on">Don\'t take any action (may cause duplicated audio)</string>
     <string name="session_loss_ignore_warning">Enabling this setting can cause duplicated audio when another audio effects app takes control of an audio session.\nPlease keep this setting disabled unless you encounter false-positive session loss events.</string>
-    <string name="audio_format_header">Audio format</string>
+    <string name="audio_format_header">Audio processing</string>
     <string name="audio_format_section_header">Preferred audio format</string>
+    <string name="audio_format_processing_header">Audio processing options</string>
+    <string name="audio_format_processing_legacy">Legacy mode</string>
+    <string name="audio_format_processing_legacy_on">Attach globally to session 0 (deprecated)</string>
+    <string name="audio_format_processing_legacy_off">Attach to each app individually (some apps not supported)</string>
     <string name="audio_format_summary">Preferred audio encoding, buffer size</string>
+    <string name="audio_format_summary_root">Legacy mode</string>
     <string name="audio_format_encoding">Audio encoding</string>
     <string name="audio_format_encoding_int16">16-bit integer PCM</string>
     <string name="audio_format_encoding_float">32-bit float PCM</string>
@@ -271,7 +279,9 @@
     <string name="troubleshooting_repair_assets_summary">Unpack preloaded assets if you lost them</string>
     <string name="troubleshooting_repair_assets_success">Bundled assets have been restored</string>
     <string name="misc_settings">Miscellaneous</string>
-    <string name="misc_settings_summary">Auto-start prompt, crash reports</string>
+    <string name="misc_settings_summary">Crash reports, other actions</string>
+    <string name="autostart">Auto-start</string>
+    <string name="assets">Assets</string>
     <string name="about_settings">About</string>
     <string name="about_settings_summary">Credits, support, updates</string>
     <string name="privacy">Privacy</string>
@@ -311,16 +321,28 @@
     <string name="theme_tidalwave">Tidal Wave</string>
 
     <!-- File library preference -->
+    <string name="action_import">Import</string>
     <string name="filelibrary_hint_tap_and_hold">Tap and hold any item for more options</string>
+    <string name="filelibrary_context_load">Load</string>
+    <string name="filelibrary_context_overwrite">Overwrite</string>
+    <string name="filelibrary_context_rename">Rename</string>
     <string name="filelibrary_context_share">Share…</string>
     <string name="filelibrary_context_duplicate">Duplicate</string>
     <string name="filelibrary_context_delete">Delete</string>
+    <string name="filelibrary_context_new_preset">New</string>
+    <string name="filelibrary_context_new_preset_long">New preset</string>
     <string name="filelibrary_unsupported_format_title">Unsupported file type</string>
     <string name="filelibrary_unsupported_format">The selected file has not have the correct file extension.</string>
     <string name="filelibrary_access_fail">Failed to access directory</string>
     <string name="filelibrary_no_file_selected">No file selected</string>
     <string name="filelibrary_new_file_name">New file name</string>
     <string name="filelibrary_file_exists">File exists already</string>
+    <string name="filelibrary_preset_overwritten">Preset \'%1$s\' overwritten</string>
+    <string name="filelibrary_preset_created">Preset \'%1$s\' created</string>
+    <string name="filelibrary_renamed">Renamed to \'%1$s\'</string>
+    <string name="filelibrary_deleted">\'%1$s\' deleted</string>
+    <string name="filelibrary_preset_loaded">Preset \'%1$s\' loaded</string>
+    <string name="filelibrary_no_presets">No presets saved. Tap \'Add\' to create a new one.</string>
 
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">Selected VDC file is corrupt. Please choose another one.</string>
@@ -385,9 +407,19 @@
     <string name="app_compat_explanation">The following app is unsupported because it causes RootlessJamesDSP to lose control over its audio routing:</string>
     <string name="app_compat_instruction">Please check the app\'s settings if you can disable HW-acceleration or other settings that could interfere with RootlessJamesDSP and tap \'Retry\'.</string>
     <string name="app_compat_instruction_exclude">Alternatively, select \'Exclude\' to bypass this issue by excluding the incompatible app from audio processing.</string>
+    <string name="app_compat_unknown_pkg_name">Unknown package name</string>
 
     <!-- Hints for compatibility issues for individual apps -->
     <string name="app_compat_quirk_voice_search">Voice search and voice recognition and is known to cause this issue with this app. Try to avoid using these feature and revoke the microphone permission for the problematic apps if the issue persists.</string>
+
+    <!-- Root: Library load failure -->
+    <string name="load_fail_header">Magisk module not installed</string>
+    <string name="load_fail_card_title">Failed to load libjamesdsp.so</string>
+    <string name="load_fail_card">Please install the JamesDSP magisk module and reboot your Android device to use this application. You may also need to reinstall this app after rebooting.</string>
+    <string name="load_fail_rootless_card_title">Looking for a rootless alternative?</string>
+    <string name="load_fail_rootless_card">This flavor of JamesDSP was designed to be used with a rooted/modified device. A non-root alternative with some limitations is also available. Tap here for details.</string>
+    <string name="load_fail_arch_card_title">Module already installed?</string>
+    <string name="load_fail_arch_card">If you already installed the magisk module, you may have chosen the wrong settings during installation. Please re-install and try to enable Huawei compatibility (even if your phone is not from that manufacturer).</string>
 
     <!-- App list -->
     <string name="app_list_loading">Loading apps…</string>
@@ -397,5 +429,9 @@
     <!-- Number box view -->
     <string name="number_box_decrement">Decrement</string>
     <string name="number_box_increment">Increment</string>
-    <string name="app_compat_unknown_pkg_name">Unknown package name</string>
+
+    <!-- Slider widget -->
+    <string name="slider_dialog_title">Edit value</string>
+    <string name="slider_dialog_format_error">Invalid number format. Changes not applied.</string>
+
 </resources>

@@ -3,6 +3,7 @@ package me.timschneeberger.rootlessjamesdsp.activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
+import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.ActivityOnboardingBinding
 import me.timschneeberger.rootlessjamesdsp.fragment.OnboardingFragment
@@ -31,6 +32,12 @@ class OnboardingActivity : BaseActivity(){
             .beginTransaction()
             .replace(R.id.onboarding_fragment_container, fragment)
             .commit()
+
+        // Root: onboarding currently not required
+        if(!BuildConfig.ROOTLESS) {
+            this.finish()
+            return
+        }
 
         // Request to fix permissions using the wizard
         if(intent.getBooleanExtra(EXTRA_FIX_PERMS, false)){

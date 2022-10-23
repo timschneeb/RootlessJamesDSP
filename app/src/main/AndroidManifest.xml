@@ -22,7 +22,7 @@
         android:hasFragileUserData="true"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:label="@string/app_name"
+        android:label="${label}"
         android:supportsRtl="true"
         android:theme="@style/Theme.RootlessJamesDSP"
         android:appCategory="audio"
@@ -55,31 +55,51 @@
             android:name=".activity.SettingsActivity"
             android:exported="false"
             android:label="@string/title_activity_settings"
-            android:theme="@style/Theme.RootlessJamesDSP" />
+            android:theme="@style/Theme.RootlessJamesDSP">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.MainActivity" />
+        </activity>
 
         <activity
             android:name=".activity.BlocklistActivity"
             android:exported="false"
             android:label="@string/title_activity_blocklist"
-            android:theme="@style/Theme.RootlessJamesDSP" />
+            android:theme="@style/Theme.RootlessJamesDSP">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.MainActivity" />
+        </activity>
 
         <activity
             android:name=".activity.LiveprogParamsActivity"
             android:exported="false"
             android:label="@string/title_activity_liveprog_params"
-            android:theme="@style/Theme.RootlessJamesDSP" />
+            android:theme="@style/Theme.RootlessJamesDSP">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.MainActivity" />
+        </activity>
 
         <activity
             android:name=".activity.GraphicEqualizerActivity"
             android:exported="false"
             android:label="@string/title_activity_geq"
-            android:theme="@style/Theme.RootlessJamesDSP" />
+            android:theme="@style/Theme.RootlessJamesDSP">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.MainActivity" />
+        </activity>
 
         <activity
             android:name=".activity.AeqSelectorActivity"
             android:exported="false"
             android:theme="@style/Theme.RootlessJamesDSP"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.GraphicEqualizerActivity" />
+        </activity>
 
         <activity
             android:name=".activity.AppCompatibilityActivity"
@@ -95,10 +115,16 @@
 
         <!-- Services -->
         <service
-            android:name=".service.AudioProcessorService"
+            android:name=".service.RootlessAudioProcessorService"
             android:enabled="true"
             android:exported="false"
             android:foregroundServiceType="mediaProjection" />
+
+        <service
+            android:name=".service.RootAudioProcessorService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback" />
 
         <service
             android:name=".service.NotificationListenerService"

@@ -88,7 +88,9 @@ class GraphicEqualizerFragment : Fragment() {
                 layoutInflater,
                 R.string.geq_edit_as_string,
                 R.string.geq_edit_hint,
-                adapter.nodes.serialize()
+                adapter.nodes.serialize(),
+                false,
+            null
             ) {
                 it?.let {
                     adapter.nodes.deserialize(it)

@@ -13,33 +13,33 @@ import android.media.projection.MediaProjection
 import android.media.projection.MediaProjectionManager
 import android.os.*
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.asLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
-import me.timschneeberger.rootlessjamesdsp.session.AudioSessionManager
-import me.timschneeberger.rootlessjamesdsp.session.MutedSessionManager
+import me.timschneeberger.rootlessjamesdsp.session.rootless.AudioSessionManager
+import me.timschneeberger.rootlessjamesdsp.session.rootless.MutedSessionManager
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.ServiceNotificationHelper
 import me.timschneeberger.rootlessjamesdsp.model.preference.AudioEncoding
-import me.timschneeberger.rootlessjamesdsp.model.MutedSessionEntry
-import me.timschneeberger.rootlessjamesdsp.model.ProcessorMessage
-import me.timschneeberger.rootlessjamesdsp.model.SessionRecordingPolicyEntry
-import me.timschneeberger.rootlessjamesdsp.interop.JamesDspEngine
-import me.timschneeberger.rootlessjamesdsp.interop.JamesDspWrapper
-import me.timschneeberger.rootlessjamesdsp.model.AudioSessionEntry
+import me.timschneeberger.rootlessjamesdsp.model.rootless.MutedSessionEntry
+import me.timschneeberger.rootlessjamesdsp.model.rootless.SessionRecordingPolicyEntry
+import me.timschneeberger.rootlessjamesdsp.interop.JamesDspLocalEngine
+import me.timschneeberger.rootlessjamesdsp.interop.ProcessorMessageHandler
+import me.timschneeberger.rootlessjamesdsp.model.rootless.AudioSessionEntry
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistDatabase
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistRepository
 import me.timschneeberger.rootlessjamesdsp.model.room.BlockedApp
-import me.timschneeberger.rootlessjamesdsp.session.SessionRecordingPolicyManager
+import me.timschneeberger.rootlessjamesdsp.session.rootless.SessionRecordingPolicyManager
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
-import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_PROCESSOR_MESSAGE
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_HARD_REBOOT_CORE
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_RELOAD_LIVEPROG
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_SOFT_REBOOT_CORE
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_PREFERENCES_UPDATED
+import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_PRESET_LOADED
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.CHANNEL_ID_APP_INCOMPATIBILITY
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.CHANNEL_ID_SERVICE
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.CHANNEL_ID_SESSION_LOSS
@@ -54,12 +54,12 @@ import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import me.timschneeberger.rootlessjamesdsp.utils.concatenate
 import timber.log.Timber
 import java.io.IOException
-import java.io.Serializable
 import java.lang.Exception
 import java.lang.RuntimeException
 
 
-class AudioProcessorService : Service() {
+@RequiresApi(Build.VERSION_CODES.Q)
+class RootlessAudioProcessorService : BaseAudioProcessorService() {
     // System services
     private lateinit var mediaProjectionManager: MediaProjectionManager
     private lateinit var notificationManager: NotificationManager
@@ -72,9 +72,7 @@ class AudioProcessorService : Service() {
     // Processing
     private var recreateRecorderRequested = false
     private var recorderThread: Thread? = null
-    private val engineCallbacks = EngineCallbacks()
-    private val handler: Handler = StartupHandler(this)
-    private lateinit var engine: JamesDspEngine
+    private lateinit var engine: JamesDspLocalEngine
     private val isRunning: Boolean
         get() = recorderThread != null
 
@@ -107,18 +105,6 @@ class AudioProcessorService : Service() {
             recreateRecorderRequested = true
     }
 
-    // Remote binder access
-    private val binder: IBinder = LocalBinder()
-
-    inner class LocalBinder : Binder() {
-        val service: AudioProcessorService
-            get() = this@AudioProcessorService
-    }
-
-    override fun onBind(intent: Intent): IBinder {
-        return binder
-    }
-
     override fun onCreate() {
         super.onCreate()
 
@@ -135,7 +121,7 @@ class AudioProcessorService : Service() {
         audioSessionManager.sessionPolicyDatabase.registerOnRestrictedSessionChangeListener(onSessionPolicyChangeListener)
 
         // Setup core engine
-        engine = JamesDspEngine(this, engineCallbacks)
+        engine = JamesDspLocalEngine(this, ProcessorMessageHandler())
         engine.syncWithPreferences()
 
         // Setup general-purpose broadcast receiver
@@ -181,21 +167,11 @@ class AudioProcessorService : Service() {
         recreateRecorderRequested = false
 
         // Launch foreground service
-        val notification = ServiceNotificationHelper.createServiceNotification(this, null)
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            startForeground(
-                NOTIFICATION_ID_SERVICE,
-                notification,
-                ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION
-            )
-        } else {
-            throw NotImplementedError() // TODO
-            startForeground(
-                NOTIFICATION_ID_SERVICE,
-                notification
-            )
-        }
+        startForeground(
+            NOTIFICATION_ID_SERVICE,
+            ServiceNotificationHelper.createServiceNotification(this, null),
+            ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION
+        )
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
@@ -259,7 +235,11 @@ class AudioProcessorService : Service() {
         isServiceDisposing = true
 
         // Stop foreground service
-        stopForeground(true)
+        @Suppress("DEPRECATION")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+            stopForeground(STOP_FOREGROUND_REMOVE)
+        else
+            stopForeground(true)
 
         // Notify app about service termination
         sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_STOPPED))
@@ -276,6 +256,7 @@ class AudioProcessorService : Service() {
         audioSessionManager.sessionDatabase.unregisterOnSessionChangeListener(onSessionChangeListener)
         audioSessionManager.destroy()
 
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(preferencesListener)
         notificationManager.cancel(NOTIFICATION_ID_SERVICE)
 
         // Stop recording and release resources
@@ -307,7 +288,7 @@ class AudioProcessorService : Service() {
 
             sendLocalBroadcast(Intent(Constants.ACTION_DISCARD_AUTHORIZATION))
 
-            Toast.makeText(this@AudioProcessorService,
+            Toast.makeText(this@RootlessAudioProcessorService,
                 getString(R.string.capture_permission_revoked_toast), Toast.LENGTH_LONG).show()
             notificationManager.cancel(NOTIFICATION_ID_SERVICE)
             stopSelf()
@@ -348,8 +329,8 @@ class AudioProcessorService : Service() {
 
                 // Request users attention
                 notificationManager.cancel(NOTIFICATION_ID_SERVICE)
-                ServiceNotificationHelper.pushSessionLossNotification(this@AudioProcessorService, mediaProjectionStartIntent)
-                Toast.makeText(this@AudioProcessorService, getString(R.string.session_control_loss_toast), Toast.LENGTH_SHORT).show()
+                ServiceNotificationHelper.pushSessionLossNotification(this@RootlessAudioProcessorService, mediaProjectionStartIntent)
+                Toast.makeText(this@RootlessAudioProcessorService, getString(R.string.session_control_loss_toast), Toast.LENGTH_SHORT).show()
                 Timber.w("Terminating service due to session loss")
                 stopSelf()
             }
@@ -363,7 +344,7 @@ class AudioProcessorService : Service() {
             Timber.d("onSessionChanged: isProcessorIdle=$isProcessorIdle")
 
             ServiceNotificationHelper.pushServiceNotification(
-                this@AudioProcessorService,
+                this@RootlessAudioProcessorService,
                 sessionList.map { it.value.audioSession }.toTypedArray()
             )
         }
@@ -379,12 +360,12 @@ class AudioProcessorService : Service() {
                 notificationManager.cancel(NOTIFICATION_ID_SERVICE)
 
                 // Determine if we should redirect instantly, or push a non-intrusive notification
-                val prefsVar = this@AudioProcessorService.getSharedPreferences(Constants.PREF_VAR, Context.MODE_PRIVATE)
+                val prefsVar = this@RootlessAudioProcessorService.getSharedPreferences(Constants.PREF_VAR, Context.MODE_PRIVATE)
                 if(prefsVar.getBoolean(getString(R.string.key_is_activity_active), false) ||
                     prefsVar.getBoolean(getString(R.string.key_is_app_compat_activity_active), false)) {
                     startActivity(
                         ServiceNotificationHelper.createAppTroubleshootIntent(
-                            this@AudioProcessorService,
+                            this@RootlessAudioProcessorService,
                             mediaProjectionStartIntent,
                             data,
                             directLaunch = true
@@ -393,9 +374,9 @@ class AudioProcessorService : Service() {
                     notificationManager.cancel(NOTIFICATION_ID_APP_INCOMPATIBILITY)
                 }
                 else
-                    ServiceNotificationHelper.pushAppIssueNotification(this@AudioProcessorService, mediaProjectionStartIntent, data)
+                    ServiceNotificationHelper.pushAppIssueNotification(this@RootlessAudioProcessorService, mediaProjectionStartIntent, data)
 
-                Toast.makeText(this@AudioProcessorService, getString(R.string.session_app_compat_toast), Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@RootlessAudioProcessorService, getString(R.string.session_app_compat_toast), Toast.LENGTH_SHORT).show()
                 Timber.w("Terminating service due to app incompatibility; redirect user to troubleshooting options")
                 stopSelf()
             }
@@ -405,7 +386,7 @@ class AudioProcessorService : Service() {
     // Session policy change listener
     private val onSessionPolicyChangeListener = object : SessionRecordingPolicyManager.OnSessionRecordingPolicyChangeListener {
         override fun onSessionRecordingPolicyChanged(sessionList: HashMap<String, SessionRecordingPolicyEntry>, isMinorUpdate: Boolean) {
-            if(!this@AudioProcessorService.excludeRestrictedSessions) {
+            if(!this@RootlessAudioProcessorService.excludeRestrictedSessions) {
                 Timber.d("onRestrictedSessionChanged: blocked; excludeRestrictedSessions disabled")
                 return
             }
@@ -481,13 +462,13 @@ class AudioProcessorService : Service() {
 
         if(engine.sampleRate.toInt() != sampleRate) {
             Timber.d("Sampling rate changed to ${sampleRate}Hz")
-            engine.setSamplingRate(sampleRate.toFloat())
+            engine.sampleRate = sampleRate.toFloat()
         }
 
         // TODO Move all audio-related code to C++
         recorderThread = Thread {
             try {
-                handler.sendEmptyMessage(MSG_PROCESSOR_READY)
+                ServiceNotificationHelper.pushServiceNotification(applicationContext, arrayOf())
 
                 val floatBuffer = FloatArray(bufferSize)
                 val shortBuffer = ShortArray(bufferSize)
@@ -588,6 +569,14 @@ class AudioProcessorService : Service() {
     }
 
     private fun buildAudioTrack(encoding: Int, sampleRate: Int, bufferSizeBytes: Int): AudioTrack {
+        val attributesBuilder = AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_UNKNOWN)
+                .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
+                .setFlags(0)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            attributesBuilder.setAllowedCapturePolicy(AudioAttributes.ALLOW_CAPTURE_BY_NONE)
+        }
+
         return AudioTrack.Builder().setAudioFormat(
             AudioFormat.Builder()
                 .setChannelMask(AudioFormat.CHANNEL_OUT_STEREO)
@@ -595,12 +584,7 @@ class AudioProcessorService : Service() {
                 .setSampleRate(sampleRate)
                 .build())
             .setTransferMode(AudioTrack.MODE_STREAM)
-            .setAudioAttributes(AudioAttributes.Builder()
-                .setAllowedCapturePolicy(AudioAttributes.ALLOW_CAPTURE_BY_NONE)
-                .setUsage(AudioAttributes.USAGE_UNKNOWN)
-                .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
-                .setFlags(0)
-                .build())
+            .setAudioAttributes(attributesBuilder.build())
             .setBufferSizeInBytes(bufferSizeBytes)
             .build()
     }
@@ -646,66 +630,6 @@ class AudioProcessorService : Service() {
             .build()
     }
 
-
-    // Broadcast processor message
-    private fun broadcastProcessorMessage(type: ProcessorMessage.Type, params: Map<ProcessorMessage.Param, Serializable>? = null){
-        val intent = Intent(ACTION_PROCESSOR_MESSAGE)
-        intent.putExtra(ProcessorMessage.TYPE, type.value)
-        params?.forEach { (k, v) ->
-            intent.putExtra(k.name, v)
-        }
-        sendLocalBroadcast(intent)
-    }
-
-    // Engine callback connector
-    private inner class EngineCallbacks : JamesDspWrapper.JamesDspCallbacks
-    {
-        override fun onLiveprogOutput(message: String) {
-            broadcastProcessorMessage(ProcessorMessage.Type.LiveprogOutput, mapOf(
-                ProcessorMessage.Param.LiveprogStdout to message
-            ))
-        }
-
-        override fun onLiveprogExec(id: String) {
-            broadcastProcessorMessage(ProcessorMessage.Type.LiveprogExec, mapOf(
-                ProcessorMessage.Param.LiveprogFileId to id
-            ))
-            Timber.v("onLiveprogExec: $id")
-        }
-
-        override fun onLiveprogResult(
-            resultCode: Int,
-            id: String,
-            errorMessage: String?
-        ) {
-            broadcastProcessorMessage(ProcessorMessage.Type.LiveprogResult, mapOf(
-                ProcessorMessage.Param.LiveprogResultCode to resultCode,
-                ProcessorMessage.Param.LiveprogFileId to id,
-                ProcessorMessage.Param.LiveprogErrorMessage to (errorMessage ?: "")
-            ))
-            Timber.v("onLiveprogResult: $resultCode; message: $errorMessage")
-        }
-
-        override fun onVdcParseError() {
-            broadcastProcessorMessage(ProcessorMessage.Type.VdcParseError)
-            Timber.v("onVdcParseError")
-        }
-    }
-
-    // Startup message handler
-    private class StartupHandler(private val service: AudioProcessorService) :
-        Handler(Looper.myLooper()!!) {
-        override fun handleMessage(message: Message) {
-            if (!service.isRunning) {
-                // not running anymore, ignore events
-                return
-            }
-            if (message.what == MSG_PROCESSOR_READY) {
-                ServiceNotificationHelper.pushServiceNotification(service, arrayOf())
-            }
-        }
-    }
-
     // Determine HAL sampling rate
     private fun determineSamplingRate(): Int {
         val sampleRateStr: String? = audioManager.getProperty(AudioManager.PROPERTY_OUTPUT_SAMPLE_RATE)
@@ -721,13 +645,11 @@ class AudioProcessorService : Service() {
     companion object {
         const val SESSION_LOSS_MAX_RETRIES = 1
 
-        const val ACTION_START = BuildConfig.APPLICATION_ID + ".service.START"
-        const val ACTION_STOP = BuildConfig.APPLICATION_ID + ".service.STOP"
+        const val ACTION_START = BuildConfig.APPLICATION_ID + ".rootless.service.START"
+        const val ACTION_STOP = BuildConfig.APPLICATION_ID + ".rootless.service.STOP"
         const val EXTRA_MEDIA_PROJECTION_DATA = "mediaProjectionData"
         const val EXTRA_APP_UID = "uid"
         const val EXTRA_APP_COMPAT_INTERNAL_CALL = "appCompatInternalCall"
-
-        private const val MSG_PROCESSOR_READY = 1
 
         fun start(context: Context, data: Intent?) {
             context.startForegroundService(ServiceNotificationHelper.createStartIntent(context, data))

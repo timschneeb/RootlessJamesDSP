@@ -1,17 +1,18 @@
 package me.timschneeberger.rootlessjamesdsp.utils
 
-import android.app.Activity
+import android.annotation.SuppressLint
 import android.content.*
 import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.Drawable
-import android.inputmethodservice.InputMethodService
 import android.net.Uri
+import android.os.PowerManager
 import android.os.Process
+import android.provider.Settings
 import android.text.Editable
+import android.text.InputType
 import android.util.Base64
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -27,6 +28,7 @@ import androidx.core.graphics.red
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
+import me.timschneeberger.rootlessjamesdsp.MainApplication
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.DialogTextinputBinding
 import timber.log.Timber
@@ -107,38 +109,29 @@ object ContextExtensions {
         }
     }
 
+    @SuppressLint("BatteryLife")
+    fun Context.requestIgnoreBatteryOptimizations() {
+        if (!BuildConfig.ROOTLESS && !SystemServices.get(this, PowerManager::class.java).isIgnoringBatteryOptimizations(packageName)) {
+            startActivity(Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS,
+                Uri.parse("package:$packageName")))
+        }
+    }
+
     // Very simple & naive app cloner checks; please don't use multiple instances at once
     private val PKGNAME_REFS = setOf("bWUudGltc2NobmVlYmVyZ2VyLnJvb3RsZXNzamFtZXNkc3A=",
-                                     "bWUudGltc2NobmVlYmVyZ2VyLnJvb3RsZXNzamFtZXNkc3AuZGVidWc=")
-    private const val APPNAME_REF = "Um9vdGxlc3NKYW1lc0RTUA=="
+                                     "bWUudGltc2NobmVlYmVyZ2VyLnJvb3RsZXNzamFtZXNkc3AuZGVidWc=",
+                                     "amFtZXMuZHNw", "amFtZXMuZHNwLmRlYnVn")
+    private val APPNAME_REFS = setOf("Um9vdGxlc3NKYW1lc0RTUA==", "SmFtZXNEU1A=")
     fun Context.check(): Int {
+        val appName = getAppName()
         if(PKGNAME_REFS.none { decode(it) == packageName }) return 1
-        if(decode(APPNAME_REF) != getText(R.string.app_name)) return 2
-        if(decode(APPNAME_REF) != getAppName()) return 3
-        if(!BuildConfig.DEBUG && packageName.contains("debug")) return 4
+        if(APPNAME_REFS.none { decode(it) == appName }) return 2
+        if(!BuildConfig.DEBUG && packageName.contains("debug")) return 3
         return 0
     }
 
     private fun decode(input: String): String {
         return String(Base64.decode(input, 0), Charsets.UTF_8)
-    }
-
-    fun Context.getVersionName(): String? {
-        return try {
-            packageManager.getPackageInfo(packageName, 0).versionName
-        } catch (e: PackageManager.NameNotFoundException) {
-            Timber.tag(TAG).e("getVersionName: Package not found")
-            null
-        }
-    }
-
-    fun Context.getVersionCode(): Long? {
-        return try {
-            packageManager.getPackageInfo(packageName, 0).longVersionCode
-        } catch (e: PackageManager.NameNotFoundException) {
-            Timber.tag(TAG).e("getVersionCode: Package not found")
-            null
-        }
     }
 
     fun Context.sendLocalBroadcast(intent: Intent) {
@@ -180,21 +173,41 @@ object ContextExtensions {
             .show()
     }
 
-    fun Context.showInputAlert(layoutInflater: LayoutInflater, @StringRes title: Int, @StringRes hint: Int, value: String, callback: ((String?) -> Unit)) {
-       showInputAlert(layoutInflater, getString(title), getString(hint), value, callback)
+    fun Context.showInputAlert(
+        layoutInflater: LayoutInflater,
+        @StringRes title: Int,
+        @StringRes hint: Int,
+        value: String,
+        isNumberInput: Boolean,
+        suffix: String?,
+        callback: ((String?) -> Unit)
+    ) {
+       showInputAlert(layoutInflater, getString(title), getString(hint), value, isNumberInput, suffix, callback)
     }
 
-    fun Context.showInputAlert(layoutInflater: LayoutInflater, title: String, hint: String, value: String, callback: ((String?) -> Unit)) {
+    fun Context.showInputAlert(
+        layoutInflater: LayoutInflater,
+        title: String?,
+        hint: String?,
+        value: String,
+        isNumberInput: Boolean,
+        suffix: String?,
+        callback: ((String?) -> Unit)
+    ) {
         val content = DialogTextinputBinding.inflate(layoutInflater)
         content.textInputLayout.hint = hint
         content.text1.text = Editable.Factory.getInstance().newEditable(value)
+        if(isNumberInput)
+            content.text1.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
+
+        content.textInputLayout.suffixText = suffix
 
         AlertDialog.Builder(this)
             .setTitle(title)
             .setView(content.root)
             .setPositiveButton(android.R.string.ok) { inputDialog, _ ->
-                val input = (inputDialog as AlertDialog).requireViewById<TextView>(android.R.id.text1)
-                callback.invoke(input.text.toString())
+                val input = (inputDialog as AlertDialog).findViewById<TextView>(android.R.id.text1)
+                callback.invoke(input?.text?.toString())
             }
             .setNegativeButton(android.R.string.cancel) { _, _ ->
                 callback.invoke(null)

@@ -3,10 +3,13 @@ package me.timschneeberger.rootlessjamesdsp.view
 import android.content.Context
 import android.content.res.ColorStateList
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.annotation.DrawableRes
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.core.view.setMargins
 import me.timschneeberger.rootlessjamesdsp.R
@@ -14,8 +17,12 @@ import me.timschneeberger.rootlessjamesdsp.databinding.ViewCardBinding
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.dpToPx
 import me.timschneeberger.rootlessjamesdsp.utils.loadHtml
 
+
 class Card @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = android.R.attr.theme, defStyleRes: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = android.R.attr.theme,
+    defStyleRes: Int = 0,
 ) : LinearLayout(context, attrs) {
 
     private var onButtonClickListener: (() -> Unit)? = null
@@ -61,6 +68,11 @@ class Card @JvmOverloads constructor(
             binding.icon.imageTintList = value
         }
 
+    override fun setClickable(clickable: Boolean) {
+        updateForeground()
+        super.setClickable(clickable)
+    }
+
     init {
         val a = context.obtainStyledAttributes(attrs, R.styleable.Card, defStyleAttr, defStyleRes)
         binding = ViewCardBinding.inflate(LayoutInflater.from(context), this, true)
@@ -91,13 +103,21 @@ class Card @JvmOverloads constructor(
         binding.button.setOnClickListener {
             onButtonClickListener?.invoke()
         }
+
+        updateForeground()
+    }
+
+    private fun updateForeground() {
+        binding.root.foreground = if(isClickable) {
+            val value = TypedValue()
+            context.theme.resolveAttribute(android.R.attr.selectableItemBackground, value, true)
+            ContextCompat.getDrawable(context, value.resourceId)
+        } else {
+            AppCompatResources.getDrawable(context, android.R.color.transparent)
+        }
     }
 
     fun setOnButtonClickListener(listener: (() -> Unit)?) {
         onButtonClickListener = listener
-    }
-
-    interface OnToggledListener {
-        fun onToggled(enabled: Boolean)
     }
 }

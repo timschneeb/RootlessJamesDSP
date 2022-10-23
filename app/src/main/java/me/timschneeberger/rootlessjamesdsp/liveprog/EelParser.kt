@@ -50,7 +50,7 @@ class EelParser {
         val rangeParamRegex = """(?<var>\w+):(?<def>-?\d+\.?\d*)?<(?<min>-?\d+\.?\d*),(?<max>-?\d+\.?\d*),?(?<step>-?\d+\.?\d*)?>(?<desc>[\s\S][^\n]*)""".toRegex()
         contents!!.lines().forEach next@ {
             val match = rangeParamRegex.find(it)
-            val groups = match?.groups as? MatchGroupCollection
+            val groups = match?.groups
             if(groups != null) {
                 val key = groups[1]?.value
                 val def = groups[2]?.value

@@ -18,11 +18,6 @@
             android:summary="@string/troubleshooting_notification_access_summary"
             app:iconSpaceReserved="false" />
         <Preference
-            android:key="@string/key_troubleshooting_repair_assets"
-            android:title="@string/troubleshooting_repair_assets"
-            android:summary="@string/troubleshooting_repair_assets_summary"
-            app:iconSpaceReserved="false" />
-        <Preference
             android:key="@string/key_troubleshooting_dump"
             android:title="@string/troubleshooting_dump"
             android:summary="@string/troubleshooting_dump_summary"

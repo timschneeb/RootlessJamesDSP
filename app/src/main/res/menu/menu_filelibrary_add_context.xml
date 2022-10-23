@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="me.timschneeberger.rootlessjamesdsp.fragment.FileLibraryDialogFragment">
+
+    <item
+        android:id="@+id/preset_new"
+        android:title="@string/filelibrary_context_new_preset" />
+
+    <item
+        android:id="@+id/preset_import"
+        android:title="@string/action_import" />
+</menu>

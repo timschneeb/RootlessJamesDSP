@@ -14,12 +14,20 @@ class PreferenceCache(val context: Context) {
         selectedNamespace = namespace
     }
 
+    fun clear() {
+        try {
+            cache.clear()
+        }
+        catch (_: Exception) {}
+    }
+
+    @Suppress("DEPRECATION")
     inline fun <reified T> get(@StringRes nameRes: Int, default: T): T {
         if(selectedNamespace == null)
             throw IllegalStateException("No active namespace selected")
 
         val name = context.getString(nameRes)
-        val prefs = context.getSharedPreferences(selectedNamespace, Context.MODE_PRIVATE)
+        val prefs = context.getSharedPreferences(selectedNamespace, Context.MODE_MULTI_PROCESS)
         val current: T = when(T::class) {
             Boolean::class -> prefs.getBoolean(name, default as Boolean) as T
             String::class -> prefs.getString(name, default as String) as T

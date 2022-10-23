@@ -2,20 +2,24 @@ package me.timschneeberger.rootlessjamesdsp.fragment
 
 import android.app.Activity
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.text.Editable
-import android.widget.TextView
+import android.widget.ArrayAdapter
+import android.widget.ListAdapter
 import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.FileProvider
+import androidx.core.view.isVisible
 import androidx.preference.ListPreferenceDialogFragmentCompat
+import kotlinx.coroutines.*
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
-import me.timschneeberger.rootlessjamesdsp.databinding.DialogTextinputBinding
+import me.timschneeberger.rootlessjamesdsp.model.Preset
 import me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showInputAlert
@@ -26,52 +30,102 @@ import java.io.File
 
 class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
 
+    private val fileLibPreference by lazy {
+        preference as FileLibraryPreference
+    }
+
+    private lateinit var dialog: AlertDialog
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val dialog = super.onCreateDialog(savedInstanceState) as AlertDialog
+        dialog = super.onCreateDialog(savedInstanceState) as AlertDialog
         // Workaround to prevent the button from closing the dialog
         dialog.setOnShowListener {
-            dialog.getButton(AlertDialog.BUTTON_NEUTRAL)?.setOnClickListener {
-                import()
+            if(fileLibPreference.isPreset() && dialog.listView.adapter.isEmpty) {
+                showMessage(getString(R.string.filelibrary_no_presets))
             }
+
+            dialog.getButton(AlertDialog.BUTTON_NEUTRAL)?.setOnClickListener {
+                if(fileLibPreference.isPreset()) {
+                    val popupMenu = PopupMenu(requireContext(), it)
+                    popupMenu.menuInflater.inflate(R.menu.menu_filelibrary_add_context, popupMenu.menu)
+
+                    popupMenu.setOnMenuItemClickListener { menuItem ->
+                        when (menuItem.itemId) {
+                            R.id.preset_import -> { import() }
+                            R.id.preset_new -> {
+                                showFileNamePrompt(
+                                    R.string.filelibrary_context_new_preset_long,
+                                    Preset("Untitled.tar").file(),
+                                    autofill = false,
+                                    allowOverwrite = true
+                                ) { file ->
+                                    if(file.exists())
+                                        showMessage(getString(R.string.filelibrary_preset_overwritten, file.nameWithoutExtension))
+                                    else
+                                        showMessage(getString(R.string.filelibrary_preset_created, file.nameWithoutExtension))
+
+                                    Preset(file.name).save()
+                                    refresh()
+                                }
+                            }
+                        }
+                        true
+                    }
+                    popupMenu.show()
+                }
+                else
+                    import()
+            }
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).isVisible = false
         }
+
         dialog.listView.setOnItemLongClickListener {
                 _, view, position, _ ->
-            val name = getFileLibraryPreference().entries[position]
-            val path = getFileLibraryPreference().entryValues[position]
+            val name = fileLibPreference.entries[position]
+            val path = fileLibPreference.entryValues[position]
 
             val popupMenu = PopupMenu(requireContext(), view)
             popupMenu.menuInflater.inflate(R.menu.menu_filelibrary_context, popupMenu.menu)
-            popupMenu.menu.findItem(R.id.duplicate_selection).isVisible = getFileLibraryPreference().isLiveprog()
+            popupMenu.menu.findItem(R.id.duplicate_selection).isVisible =
+                fileLibPreference.isLiveprog() || fileLibPreference.isPreset()
+            popupMenu.menu.findItem(R.id.overwrite_selection).isVisible = fileLibPreference.isPreset()
 
             popupMenu.setOnMenuItemClickListener { menuItem ->
                 val selectedFile = File(path.toString())
                 when (menuItem.itemId) {
+                    R.id.overwrite_selection -> {
+                        if(fileLibPreference.isPreset()) {
+                            Preset(selectedFile.name).save()
+                            showMessage(getString(R.string.filelibrary_preset_overwritten, name))
+                        }
+                        refresh()
+                    }
+                    R.id.rename_selection -> {
+                        showFileNamePrompt(
+                            R.string.filelibrary_context_rename,
+                            selectedFile,
+                            autofill = true,
+                            allowOverwrite = false
+                        ) {
+                            selectedFile.renameTo(it)
+                            showMessage(getString(R.string.filelibrary_renamed, it.nameWithoutExtension))
+                            refresh()
+                        }
+                    }
                     R.id.delete_selection -> {
                         selectedFile.delete()
-                        // Refresh by re-opening alert dialog
-                        reopenDialog()
+                        showMessage(getString(R.string.filelibrary_deleted, name))
+                        refresh()
                     }
                     R.id.duplicate_selection -> {
-                        requireContext().showInputAlert(
-                            layoutInflater,
+                        showFileNamePrompt(
                             R.string.filelibrary_context_duplicate,
-                            R.string.filelibrary_new_file_name,
-                            selectedFile.nameWithoutExtension
+                            selectedFile,
+                            autofill = true,
+                            allowOverwrite = false
                         ) {
-                            if (it != null) {
-                                val newFile =
-                                    File(selectedFile.parentFile!!.absolutePath + File.separator + it + "." + selectedFile.extension)
-                                if (newFile.exists()) {
-                                    Toast.makeText(
-                                        context,
-                                        getString(R.string.filelibrary_file_exists),
-                                        Toast.LENGTH_LONG
-                                    ).show()
-                                    return@showInputAlert
-                                }
-                                selectedFile.copyTo(newFile)
-                                reopenDialog()
-                            }
+                            selectedFile.copyTo(it)
+                            refresh()
                         }
                     }
                     R.id.share_selection -> {
@@ -96,19 +150,75 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
         return dialog
     }
 
-    private fun reopenDialog() {
-        this.dismiss()
-        getFileLibraryPreference().showDialog()
+    private fun showMessage(text: String) {
+        Toast.makeText(requireContext(), text, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun showFileNamePrompt(
+        @StringRes title: Int,
+        selectedFile: File,
+        autofill: Boolean,
+        allowOverwrite: Boolean,
+        callback: (File) -> Unit
+    ) {
+        requireContext().showInputAlert(
+            layoutInflater,
+            title,
+            R.string.filelibrary_new_file_name,
+            if (autofill) selectedFile.nameWithoutExtension else "",
+            false,
+            null
+        ) {
+            if (it != null) {
+                val newFile =
+                    File(selectedFile.absoluteFile.parentFile!!.absolutePath + File.separator + it + "." + selectedFile.extension)
+                if (newFile.exists() && !allowOverwrite) {
+                    showMessage(getString(R.string.filelibrary_file_exists))
+                    return@showInputAlert
+                }
+                callback.invoke(newFile)
+            }
+        }
+    }
+
+    private fun refresh() {
+        if(fileLibPreference.isPreset()) {
+            fileLibPreference.refresh()
+            dialog.listView.adapter = createPresetAdapter()
+        }
+        else {
+            // TODO refresh without closing
+            this.dismiss()
+            fileLibPreference.showDialog()
+        }
+    }
+
+    private fun createPresetAdapter(): ListAdapter {
+        return ListItemAdapter(
+            requireContext(),
+            R.layout.item_preset_list,
+            android.R.id.text1,
+            fileLibPreference.entries
+        )
     }
 
     override fun onPrepareDialogBuilder(builder: AlertDialog.Builder) {
         super.onPrepareDialogBuilder(builder)
         builder.setView(R.layout.dialog_filelibrary)
-        builder.setNeutralButton("Import") { _, _ -> }
-    }
+        builder.setNeutralButton(getString(R.string.action_import)) { _, _ -> }
 
-    private fun getFileLibraryPreference(): FileLibraryPreference {
-        return preference as FileLibraryPreference
+        if(fileLibPreference.isPreset()) {
+            builder.setNeutralButton(getString(R.string.add)) { _, _ -> }
+            builder.setNegativeButton(getString(R.string.close)) { _, _ -> }
+            builder.setTitle(getString(R.string.action_presets))
+            builder.setAdapter(createPresetAdapter()) { _, position ->
+                val name = fileLibPreference.entries[position]
+                val path = fileLibPreference.entryValues[position]
+                Preset(File(path.toString()).name).load()
+                showMessage(getString(R.string.filelibrary_preset_loaded, name))
+                this.dismiss()
+            }
+        }
     }
 
     private fun import() {
@@ -127,7 +237,7 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
         {
             data?.data?.also { uri ->
 
-                val correctType = getFileLibraryPreference().hasCorrectExtension(
+                val correctType = fileLibPreference.hasCorrectExtension(
                     StorageUtils.queryName(
                         requireContext(),
                         uri
@@ -139,18 +249,33 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
                         R.string.filelibrary_unsupported_format)
                     return
                 }
-                this.dismiss()
 
                 val file = StorageUtils.importFile(requireContext(),
-                    getFileLibraryPreference().directory?.absolutePath ?: "", uri)
+                    fileLibPreference.directory?.absolutePath ?: "", uri)
                 if(file == null)
                 {
                     Timber.e("Failed to import file")
                 }
-                Handler(Looper.getMainLooper()).postDelayed({
-                    getFileLibraryPreference().showDialog()
-                }, 150)
+
+                CoroutineScope(Dispatchers.Main).launch {
+                    delay(150L)
+                    refresh()
+                }
             }
+        }
+    }
+
+    private inner class ListItemAdapter(
+        context: Context, resource: Int, textViewResourceId: Int,
+        objects: Array<CharSequence?>?,
+    ) :
+        ArrayAdapter<CharSequence?>(context, resource, textViewResourceId, objects!!) {
+        override fun hasStableIds(): Boolean {
+            return true
+        }
+
+        override fun getItemId(position: Int): Long {
+            return position.toLong()
         }
     }
 

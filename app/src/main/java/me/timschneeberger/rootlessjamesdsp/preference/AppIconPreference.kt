@@ -6,6 +6,7 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceViewHolder
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.PreferenceAppiconBinding
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppName
 
 class AppIconPreference : Preference {
 
@@ -33,7 +34,8 @@ class AppIconPreference : Preference {
         super.onBindViewHolder(holder)
 
         val drawable = context.applicationInfo.loadIcon(context.packageManager)
-        val icon = PreferenceAppiconBinding.bind(holder.itemView).preferenceAppicon
-        icon.setImageDrawable(drawable)
+        val binding = PreferenceAppiconBinding.bind(holder.itemView)
+        binding.preferenceAppicon.setImageDrawable(drawable)
+        binding.title.text = context.getAppName()
     }
 }

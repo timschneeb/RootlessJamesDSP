@@ -2,6 +2,7 @@ package me.timschneeberger.rootlessjamesdsp.fragment
 
 import android.app.NotificationManager
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +18,7 @@ import me.timschneeberger.rootlessjamesdsp.databinding.FragmentAppCompatibilityB
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistViewModel
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistViewModelFactory
 import me.timschneeberger.rootlessjamesdsp.model.room.BlockedApp
-import me.timschneeberger.rootlessjamesdsp.service.AudioProcessorService
+import me.timschneeberger.rootlessjamesdsp.service.RootlessAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppIcon
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppNameFromUidSafe
@@ -84,7 +85,8 @@ class AppCompatibilityFragment : Fragment() {
             Timber.d("Requesting retry")
 
             projectIntent?.let {
-                AudioProcessorService.start(requireContext(), it)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+                    RootlessAudioProcessorService.start(requireContext(), it)
             }
 
             Timer("Close", false).schedule(300L) {
@@ -103,7 +105,8 @@ class AppCompatibilityFragment : Fragment() {
 
             Timer("Reboot", false).schedule(100L) {
                 projectIntent?.let {
-                    AudioProcessorService.start(requireContext(), it)
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+                        RootlessAudioProcessorService.start(requireContext(), it)
                 }
 
                 Timer("Close", false).schedule(300L) {
