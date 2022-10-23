@@ -71,7 +71,6 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
     // Processing
     private var recreateRecorderRequested = false
     private var recorderThread: Thread? = null
-    private val handler by lazy { StartupHandler(this) }
     private lateinit var engine: JamesDspLocalEngine
     private val isRunning: Boolean
         get() = recorderThread != null
@@ -468,7 +467,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         // TODO Move all audio-related code to C++
         recorderThread = Thread {
             try {
-                handler.sendEmptyMessage(MSG_PROCESSOR_READY)
+                ServiceNotificationHelper.pushServiceNotification(applicationContext, arrayOf())
 
                 val floatBuffer = FloatArray(bufferSize)
                 val shortBuffer = ShortArray(bufferSize)
@@ -630,20 +629,6 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
             .build()
     }
 
-    // Startup message handler
-    private class StartupHandler(private val service: RootlessAudioProcessorService) :
-        Handler(Looper.myLooper()!!) {
-        override fun handleMessage(message: Message) {
-            if (!service.isRunning) {
-                // not running anymore, ignore events
-                return
-            }
-            if (message.what == MSG_PROCESSOR_READY) {
-                ServiceNotificationHelper.pushServiceNotification(service, arrayOf())
-            }
-        }
-    }
-
     // Determine HAL sampling rate
     private fun determineSamplingRate(): Int {
         val sampleRateStr: String? = audioManager.getProperty(AudioManager.PROPERTY_OUTPUT_SAMPLE_RATE)
@@ -664,8 +649,6 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         const val EXTRA_MEDIA_PROJECTION_DATA = "mediaProjectionData"
         const val EXTRA_APP_UID = "uid"
         const val EXTRA_APP_COMPAT_INTERNAL_CALL = "appCompatInternalCall"
-
-        private const val MSG_PROCESSOR_READY = 1
 
         fun start(context: Context, data: Intent?) {
             context.startForegroundService(ServiceNotificationHelper.createStartIntent(context, data))

@@ -74,6 +74,8 @@ class MainActivity : BaseActivity() {
     private val processorServiceConnection by lazy {
         object : ServiceConnection {
             override fun onServiceConnected(className: ComponentName, service: IBinder) {
+                Timber.d("Service connected")
+
                 processorService = (service as BaseAudioProcessorService.LocalBinder).service
                 processorServiceBound = true
 
@@ -82,6 +84,8 @@ class MainActivity : BaseActivity() {
             }
 
             override fun onServiceDisconnected(arg0: ComponentName) {
+                Timber.d("Service disconnected")
+
                 processorService = null
                 processorServiceBound = false
             }

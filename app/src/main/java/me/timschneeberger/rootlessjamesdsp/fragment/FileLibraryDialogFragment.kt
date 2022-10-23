@@ -76,7 +76,7 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
                 else
                     import()
             }
-            dialog.getButton(AlertDialog.BUTTON_POSITIVE).isVisible = !fileLibPreference.isPreset()
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).isVisible = false
         }
 
         dialog.listView.setOnItemLongClickListener {
