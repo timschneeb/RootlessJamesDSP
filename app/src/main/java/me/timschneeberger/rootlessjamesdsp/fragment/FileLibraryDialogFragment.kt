@@ -16,6 +16,7 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.FileProvider
 import androidx.core.view.isVisible
 import androidx.preference.ListPreferenceDialogFragmentCompat
+import kotlinx.coroutines.*
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.model.Preset
@@ -247,7 +248,6 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
                         R.string.filelibrary_unsupported_format)
                     return
                 }
-                this.dismiss()
 
                 val file = StorageUtils.importFile(requireContext(),
                     fileLibPreference.directory?.absolutePath ?: "", uri)
@@ -255,9 +255,11 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
                 {
                     Timber.e("Failed to import file")
                 }
-                Handler(Looper.getMainLooper()).postDelayed({
+
+                CoroutineScope(Dispatchers.Main).launch {
+                    delay(150L)
                     refresh()
-                }, 150)
+                }
             }
         }
     }
