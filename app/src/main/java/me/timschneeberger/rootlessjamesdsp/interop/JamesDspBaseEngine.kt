@@ -42,7 +42,6 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
         Timber.d("Synchronizing with preferences... (forced: %s)", forceUpdateNamespaces?.joinToString(";") { it })
 
         syncMutex.withLock {
-
             cache.select(Constants.PREF_OUTPUT)
             val outputPostGain = cache.get(R.string.key_output_postgain, 0f)
             val limiterThreshold = cache.get(R.string.key_limiter_threshold, -0.1f)

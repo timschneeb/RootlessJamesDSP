@@ -216,6 +216,7 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
                 val path = fileLibPreference.entryValues[position]
                 Preset(File(path.toString()).name).load()
                 showMessage(getString(R.string.filelibrary_preset_loaded, name))
+                this.dismiss()
             }
         }
     }

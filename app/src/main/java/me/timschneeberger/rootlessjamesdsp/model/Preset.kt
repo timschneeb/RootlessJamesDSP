@@ -77,10 +77,13 @@ class Preset(val name: String): KoinComponent {
                 return@next
             }
 
-            f.copyTo(File(currentPath, f.name), overwrite = true)
+            val target = File(currentPath, f.name)
+            f.copyTo(target, overwrite = true)
+            Timber.d("Extracting to ${target.absolutePath}")
         }
 
         ctx.sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
+        ctx.sendLocalBroadcast(Intent(Constants.ACTION_PRESET_LOADED))
         return metadata
     }
 

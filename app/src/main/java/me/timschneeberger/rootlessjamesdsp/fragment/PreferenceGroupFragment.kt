@@ -1,8 +1,6 @@
 package me.timschneeberger.rootlessjamesdsp.fragment
 
-import android.content.Context
-import android.content.Intent
-import android.content.SharedPreferences
+import android.content.*
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -19,7 +17,10 @@ import me.timschneeberger.rootlessjamesdsp.preference.EqualizerPreference
 import me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
 import me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.unregisterLocalReceiver
+import timber.log.Timber
 
 
 class PreferenceGroupFragment : PreferenceFragmentCompat() {
@@ -30,11 +31,24 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
             requireContext().sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
         }
 
+    private val receiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            if(intent?.action == Constants.ACTION_PRESET_LOADED) {
+                val id = this@PreferenceGroupFragment.id
+                Timber.d("Reloading group fragment for ${this@PreferenceGroupFragment.preferenceManager.sharedPreferencesName}")
+                (requireParentFragment() as DspFragment).restartFragment(id, cloneInstance(this@PreferenceGroupFragment))
+            }
+        }
+    }
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         val args = requireArguments()
         preferenceManager.sharedPreferencesName = args.getString(BUNDLE_PREF_NAME)
-        preferenceManager.sharedPreferencesMode = Context.MODE_PRIVATE
+        @Suppress("DEPRECATION")
+        preferenceManager.sharedPreferencesMode = Context.MODE_MULTI_PROCESS
         addPreferencesFromResource(args.getInt(BUNDLE_XML_RES))
+
+        requireContext().registerLocalReceiver(receiver, IntentFilter(Constants.ACTION_PRESET_LOADED))
 
         when(args.getInt(BUNDLE_XML_RES)) {
             R.xml.dsp_stereowide_preferences -> {
@@ -126,6 +140,7 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
 
     override fun onDestroy() {
         super.onDestroy()
+        requireContext().unregisterLocalReceiver(receiver)
         preferenceManager.sharedPreferences?.unregisterOnSharedPreferenceChangeListener(listener)
     }
 
@@ -150,7 +165,7 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
         private const val BUNDLE_PREF_NAME = "preferencesName"
         private const val BUNDLE_XML_RES = "preferencesXmlRes"
 
-        fun newInstance(preferencesName: String, @XmlRes preferencesXmlRes: Int): PreferenceGroupFragment {
+        fun newInstance(preferencesName: String?, @XmlRes preferencesXmlRes: Int): PreferenceGroupFragment {
             val fragment = PreferenceGroupFragment()
 
             val args = Bundle()
@@ -158,6 +173,11 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
             args.putInt(BUNDLE_XML_RES, preferencesXmlRes)
             fragment.arguments = args
             return fragment
+        }
+
+        fun cloneInstance(fragment: PreferenceGroupFragment): PreferenceGroupFragment {
+            val args = fragment.requireArguments()
+            return newInstance(args.getString(BUNDLE_PREF_NAME), args.getInt(BUNDLE_XML_RES))
         }
     }
 }

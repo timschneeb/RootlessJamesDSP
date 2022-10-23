@@ -210,6 +210,7 @@ class MainActivity : BaseActivity() {
 
         val filter = IntentFilter(Constants.ACTION_SERVICE_STOPPED)
         filter.addAction(Constants.ACTION_DISCARD_AUTHORIZATION)
+        filter.addAction(Constants.ACTION_PRESET_LOADED)
         registerLocalReceiver(broadcastReceiver, filter)
         registerLocalReceiver(processorMessageReceiver, IntentFilter(Constants.ACTION_PROCESSOR_MESSAGE))
 
