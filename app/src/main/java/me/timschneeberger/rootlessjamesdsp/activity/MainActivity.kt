@@ -6,7 +6,6 @@ import android.content.*
 import android.content.pm.PackageManager
 import android.media.projection.MediaProjectionManager
 import android.os.*
-import android.util.AttributeSet
 import android.view.HapticFeedbackConstants
 import android.view.Menu
 import android.widget.Toast
@@ -17,7 +16,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.preference.DialogPreference.TargetFragment
 import androidx.preference.Preference
-import androidx.preference.PreferenceManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.snackbar.Snackbar
@@ -54,7 +52,7 @@ import kotlin.concurrent.schedule
 
 class MainActivity : BaseActivity() {
     /* UI bindings */
-    private lateinit var binding: ActivityMainBinding
+    lateinit var binding: ActivityMainBinding
     private lateinit var bindingContent: ContentMainBinding
 
     /* Rootless version */
@@ -103,14 +101,6 @@ class MainActivity : BaseActivity() {
                         binding.powerToggle.isToggled = false
                 }
             }
-        }
-    }
-
-    // TODO
-    private val pref by lazy {
-        FileLibraryPreference(this, null).apply {
-            this.type = "presets"
-            this.key = "presets"
         }
     }
 
@@ -194,15 +184,8 @@ class MainActivity : BaseActivity() {
                     true
                 }
                 R.id.action_presets -> {
-                    @Suppress("UNCHECKED_CAST")
-                    class FakeFragment : Fragment(), TargetFragment {
-                        override fun <T : Preference?> findPreference(key: CharSequence): T? {
-                            return pref as? T
-                        }
-                    }
-
                     val dialogFragment = FileLibraryDialogFragment.newInstance("presets")
-                    dialogFragment.setTargetFragment(FakeFragment(), 0)
+                    dialogFragment.setTargetFragment(presetDialogHost, 0)
                     dialogFragment.show(supportFragmentManager, null)
                     true
                 }
@@ -302,7 +285,7 @@ class MainActivity : BaseActivity() {
         if(key == getString(R.string.key_appearance_nav_hide)) {
             binding.bar.hideOnScroll = sharedPreferences.getBoolean(key, false)
         }
-        else if(key == getString(R.string.key_powered_on)) {
+        else if(key == getString(R.string.key_powered_on) && !hasLoadFailed && !BuildConfig.ROOTLESS) {
             binding.powerToggle.isToggled = sharedPreferences.getBoolean(key, true)
         }
         super.onSharedPreferenceChanged(sharedPreferences, key)
@@ -455,6 +438,27 @@ class MainActivity : BaseActivity() {
         Timer().schedule(2000){
             this@MainActivity.finishAndRemoveTask()
         }
+    }
+
+    private val presetDialogHost by lazy {
+        @Suppress("UNCHECKED_CAST")
+        class FakePresetFragment : Fragment(), TargetFragment {
+            val pref by lazy {
+                FileLibraryPreference(this@MainActivity, null).apply {
+                    this.type = "Presets"
+                    this.key = "presets"
+                }
+            }
+            override fun <T : Preference?> findPreference(key: CharSequence): T? {
+                return pref as? T
+            }
+        }
+
+        val fragment = FakePresetFragment()
+        supportFragmentManager.beginTransaction()
+            .add(R.id.dsp_fragment_container, fragment)
+            .commitNow()
+        fragment
     }
 
     companion object {

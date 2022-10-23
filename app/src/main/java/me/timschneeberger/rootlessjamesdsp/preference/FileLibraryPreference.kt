@@ -32,7 +32,7 @@ class FileLibraryPreference(context: Context, attrs: AttributeSet?) :
             }
 
             directory = context.getExternalFilesDir(type)
-            if(type != "unknown")
+            if(type.lowercase() != "unknown")
                 directory?.mkdir()
             refresh()
         }

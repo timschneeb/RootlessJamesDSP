@@ -2,12 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="me.timschneeberger.rootlessjamesdsp.fragment.FileLibraryDialogFragment">
+
     <item
-        android:id="@+id/share_selection"
-        android:title="@string/filelibrary_context_share" />
+        android:id="@+id/overwrite_selection"
+        android:title="@string/filelibrary_context_overwrite" />
+
+    <item
+        android:id="@+id/rename_selection"
+        android:title="@string/filelibrary_context_rename" />
+
     <item
         android:id="@+id/duplicate_selection"
         android:title="@string/filelibrary_context_duplicate" />
+
+    <item
+        android:id="@+id/share_selection"
+        android:title="@string/filelibrary_context_share" />
+
     <item
         android:id="@+id/delete_selection"
         android:title="@string/filelibrary_context_delete" />

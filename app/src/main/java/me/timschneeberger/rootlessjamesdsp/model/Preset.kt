@@ -1,7 +1,10 @@
 package me.timschneeberger.rootlessjamesdsp.model
 
 import android.content.Context
+import android.content.Intent
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
+import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
 import org.kamranzafar.jtar.TarEntry
 import org.kamranzafar.jtar.TarInputStream
 import org.kamranzafar.jtar.TarOutputStream
@@ -18,8 +21,14 @@ class Preset(val name: String): KoinComponent {
     private val externalPath = File("${ctx.getExternalFilesDir(null)!!.path}/Presets")
     private val currentPath = File(ctx.applicationInfo.dataDir + "/shared_prefs")
 
+    fun file(): File = File(externalPath, name)
+
+    fun rename(newName: String): Boolean {
+        return file().renameTo(File(externalPath, newName))
+    }
+
     fun load(): PresetMetadata {
-        val file = File(externalPath, name)
+        val file = file()
         Timber.d("Loading preset from ${file.path}")
 
         val targetFolder = File(ctx.cacheDir, "preset")
@@ -29,15 +38,18 @@ class Preset(val name: String): KoinComponent {
 
         val metadataBytes = ByteArrayOutputStream()
         TarInputStream(BufferedInputStream(FileInputStream(file))).use { tis ->
-            var entry: TarEntry
+            var entry: TarEntry?
             while (tis.nextEntry.also { entry = it } != null) {
+                val entryName = entry?.name
+                entryName ?: break
+
                 var count: Int
                 val data = ByteArray(2048)
                 BufferedOutputStream(FileOutputStream(
-                    targetFolder.absolutePath + "/" + entry.name
+                    targetFolder.absolutePath + "/" + entryName
                 )).use { dest ->
                     while (tis.read(data).also { count = it } != -1) {
-                        if(entry.name == "metadata")
+                        if(entryName == "metadata")
                             metadataBytes.write(data)
                         else
                             dest.write(data, 0, count)
@@ -59,20 +71,21 @@ class Preset(val name: String): KoinComponent {
         Timber.d("Loaded preset file version ${metadata[META_VERSION]}")
 
         targetFolder.listFiles()?.forEach next@ { f ->
-            if(!f.startsWith("dsp_") || f.extension != "xml") {
-                Timber.w("load: Unknown file in archive ${f.name}")
+            if(!f.name.startsWith("dsp_") || f.extension != "xml") {
+                if (f.name != "metadata")
+                    Timber.w("load: Unknown file in archive ${f.name}")
                 return@next
             }
 
-            f.copyTo(currentPath, overwrite = true)
+            f.copyTo(File(currentPath, f.name), overwrite = true)
         }
 
-        // TODO send force reload broadcast
+        ctx.sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
         return metadata
     }
 
     fun save(): Boolean {
-        val targetFile = File(externalPath, name)
+        val targetFile = file()
         if (targetFile.exists())
             targetFile.delete()
 

@@ -1,6 +1,7 @@
 <resources>
     <!-- Main menu bar -->
     <string name="action_settings">Settings</string>
+    <string name="action_presets">Presets</string>
 
     <!-- Notification channels -->
     <string name="notification_channel_service">Service notification</string>
@@ -43,6 +44,8 @@
     <string name="warning">Warning</string>
     <string name="success">Success</string>
     <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="add">Add</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
@@ -318,16 +321,28 @@
     <string name="theme_tidalwave">Tidal Wave</string>
 
     <!-- File library preference -->
+    <string name="action_import">Import</string>
     <string name="filelibrary_hint_tap_and_hold">Tap and hold any item for more options</string>
+    <string name="filelibrary_context_load">Load</string>
+    <string name="filelibrary_context_overwrite">Overwrite</string>
+    <string name="filelibrary_context_rename">Rename</string>
     <string name="filelibrary_context_share">Share…</string>
     <string name="filelibrary_context_duplicate">Duplicate</string>
     <string name="filelibrary_context_delete">Delete</string>
+    <string name="filelibrary_context_new_preset">New</string>
+    <string name="filelibrary_context_new_preset_long">New preset</string>
     <string name="filelibrary_unsupported_format_title">Unsupported file type</string>
     <string name="filelibrary_unsupported_format">The selected file has not have the correct file extension.</string>
     <string name="filelibrary_access_fail">Failed to access directory</string>
     <string name="filelibrary_no_file_selected">No file selected</string>
     <string name="filelibrary_new_file_name">New file name</string>
     <string name="filelibrary_file_exists">File exists already</string>
+    <string name="filelibrary_preset_overwritten">Preset \'%1$s\' overwritten</string>
+    <string name="filelibrary_preset_created">Preset \'%1$s\' created</string>
+    <string name="filelibrary_renamed">Renamed to \'%1$s\'</string>
+    <string name="filelibrary_deleted">\'%1$s\' deleted</string>
+    <string name="filelibrary_preset_loaded">Preset \'%1$s\' loaded</string>
+    <string name="filelibrary_no_presets">No presets saved. Tap \'Add\' to create a new one.</string>
 
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">Selected VDC file is corrupt. Please choose another one.</string>
@@ -418,7 +433,5 @@
     <!-- Slider widget -->
     <string name="slider_dialog_title">Edit value</string>
     <string name="slider_dialog_format_error">Invalid number format. Changes not applied.</string>
-    <string name="action_presets">Presets</string>
-    <string name="action_import">Import</string>
 
 </resources>
