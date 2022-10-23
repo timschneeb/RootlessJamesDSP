@@ -8,6 +8,7 @@ import android.media.projection.MediaProjectionManager
 import android.os.*
 import android.view.HapticFeedbackConstants
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -175,8 +176,18 @@ class MainActivity : BaseActivity() {
 
         // Inflate bottom right menu
         binding.bar.inflateMenu(R.menu.menu_main_bottom)
+
+        val actBlocklist = binding.bar.menu.findItem(R.id.action_blocklist)
+        val actPresets = binding.bar.menu.findItem(R.id.action_presets)
+
+        if(BuildConfig.ROOTLESS) {
+            actBlocklist.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER or MenuItem.SHOW_AS_ACTION_WITH_TEXT)
+            actPresets.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER or MenuItem.SHOW_AS_ACTION_WITH_TEXT)
+        }
+
         // TODO root: add support for app exclusion list
-        binding.bar.menu.findItem(R.id.action_blocklist).isVisible = BuildConfig.ROOTLESS
+        actBlocklist.isVisible = BuildConfig.ROOTLESS
+
         binding.bar.setOnMenuItemClickListener { arg0 ->
             when (arg0.itemId) {
                 R.id.action_blocklist -> {
