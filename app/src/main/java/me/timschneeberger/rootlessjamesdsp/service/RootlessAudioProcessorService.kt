@@ -482,6 +482,13 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
                         track.stop()
                         recorder.release()
 
+
+                        if (mediaProjection == null) {
+                            Timber.e("Media projection handle is null, stopping service")
+                            stopSelf()
+                            return@Thread
+                        }
+
                         // Recreate recorder with new AudioPlaybackRecordingConfiguration
                         recorder = buildAudioRecord(encodingFormat, sampleRate, bufferSizeBytes)
                         Timber.d("Recorder recreated")
