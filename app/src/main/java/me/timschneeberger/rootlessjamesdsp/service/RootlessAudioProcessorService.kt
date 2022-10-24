@@ -234,6 +234,10 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
 
         isServiceDisposing = true
 
+        // Stop recording and release engine
+        stopRecording()
+        engine.close()
+
         // Stop foreground service
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
@@ -258,10 +262,6 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
 
         sharedPreferences.unregisterOnSharedPreferenceChangeListener(preferencesListener)
         notificationManager.cancel(NOTIFICATION_ID_SERVICE)
-
-        // Stop recording and release resources
-        stopRecording()
-        engine.close()
     }
 
     // Preferences listener

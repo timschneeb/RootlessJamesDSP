@@ -1,19 +1,8 @@
 package me.timschneeberger.rootlessjamesdsp.interop
 
 import android.content.Context
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.sync.Mutex
-import kotlinx.coroutines.sync.withLock
-import me.timschneeberger.rootlessjamesdsp.R
-import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.interop.structure.EelVmVariable
 import timber.log.Timber
-import java.io.File
-import java.io.FileReader
-import java.lang.NumberFormatException
 
 class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspCallbacks? = null) : JamesDspBaseEngine(context, callbacks) {
     var handle: JamesDspHandle = JamesDspWrapper.alloc(callbacks ?: DummyCallbacks())

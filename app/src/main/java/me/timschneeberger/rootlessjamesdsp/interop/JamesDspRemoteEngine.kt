@@ -6,7 +6,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.media.audiofx.AudioEffect
 import android.media.audiofx.AudioEffectHidden
-import android.util.Log
 import android.widget.Toast
 import me.timschneeberger.rootlessjamesdsp.interop.structure.EelVmVariable
 import me.timschneeberger.rootlessjamesdsp.utils.AudioEffectExtensions.getParameterInt

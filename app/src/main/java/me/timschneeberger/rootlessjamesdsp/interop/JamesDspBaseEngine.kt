@@ -237,11 +237,10 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
             return setLiveprogInternal(false, "", "")
         }
 
-        val reader = FileReader(path)
-        val name = File(path).name
-        val result = setLiveprogInternal(enable, name, reader.readText())
-        reader.close()
-        return result
+        return FileReader(path).use {
+            val name = File(path).name
+            setLiveprogInternal(enable, name, it.readText())
+        }
     }
 
     // Effect config
