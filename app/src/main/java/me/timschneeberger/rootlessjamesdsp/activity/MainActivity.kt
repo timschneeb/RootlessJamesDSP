@@ -456,21 +456,26 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    private val presetDialogHost by lazy {
-        @Suppress("UNCHECKED_CAST")
-        class FakePresetFragment : Fragment(), TargetFragment {
-            val pref by lazy {
-                FileLibraryPreference(this@MainActivity, null).apply {
-                    this.type = "Presets"
-                    this.key = "presets"
-                }
-            }
-            override fun <T : Preference?> findPreference(key: CharSequence): T? {
-                return pref as? T
+    private class FakePresetFragment : Fragment(), TargetFragment {
+        val pref by lazy {
+            FileLibraryPreference(requireContext(), null).apply {
+                this.type = "Presets"
+                this.key = "presets"
             }
         }
 
-        val fragment = FakePresetFragment()
+        @Suppress("UNCHECKED_CAST")
+        override fun <T : Preference?> findPreference(key: CharSequence): T? {
+            return pref as? T
+        }
+
+        companion object {
+            fun newInstance() = FakePresetFragment()
+        }
+    }
+
+    private val presetDialogHost by lazy {
+        val fragment = FakePresetFragment.newInstance()
         supportFragmentManager.beginTransaction()
             .add(R.id.dsp_fragment_container, fragment)
             .commitNow()
