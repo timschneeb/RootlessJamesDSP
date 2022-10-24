@@ -1,3 +1,7 @@
 /build
 /release
 /preview
+/rootless/release
+/rootless/preview
+/root/release
+/root/preview
