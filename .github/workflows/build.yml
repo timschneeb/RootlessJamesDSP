@@ -68,7 +68,7 @@ jobs:
       - name: Sign APKs
         uses: r0adkll/sign-android-release@v1
         with:
-          releaseDirectory: app/build/outputs/apk/${{ env.BUILD_TYPE }}
+          releaseDirectory: app/build/outputs/apk/rootless/${{ env.BUILD_TYPE }}
           signingKeyBase64: ${{ secrets.SIGNING_KEYSTORE }}
           alias: ${{ secrets.KEY_ALIAS }}
           keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
@@ -77,39 +77,39 @@ jobs:
       - name: Rename build artifacts
         run: |
           set -e
-          rename -v 's/-unsigned-signed//g' app/build/outputs/apk/${{ env.BUILD_TYPE }}/*.apk
-          rm app/build/outputs/apk/${{ env.BUILD_TYPE }}/*unsigned*.apk
+          rename -v 's/-unsigned-signed//g' app/build/outputs/apk/rootless/${{ env.BUILD_TYPE }}/*.apk
+          rm app/build/outputs/apk/rootless/${{ env.BUILD_TYPE }}/*unsigned*.apk
           ls -l
 
       - name: Upload build artifact (universal)
         uses: actions/upload-artifact@v2.2.2
         with:
           name: "RootlessJamesDSP-universal-preview_apk"
-          path: app/build/outputs/apk/${{ env.BUILD_TYPE }}/*universal-*.apk
+          path: app/build/outputs/apk/rootless/${{ env.BUILD_TYPE }}/*universal-*.apk
 
       - name: Upload build artifact (x86)
         uses: actions/upload-artifact@v2.2.2
         with:
           name: "RootlessJamesDSP-x86-preview_apk"
-          path: app/build/outputs/apk/${{ env.BUILD_TYPE }}/*x86-*.apk
+          path: app/build/outputs/apk/rootless/${{ env.BUILD_TYPE }}/*x86-*.apk
           
       - name: Upload build artifact (x86_64)
         uses: actions/upload-artifact@v2.2.2
         with:
           name: "RootlessJamesDSP-x86_64-preview_apk"
-          path: app/build/outputs/apk/${{ env.BUILD_TYPE }}/*x86_64-*.apk
+          path: app/build/outputs/apk/rootless/${{ env.BUILD_TYPE }}/*x86_64-*.apk
           
       - name: Upload build artifact (armeabi-v7a)
         uses: actions/upload-artifact@v2.2.2
         with:
           name: "RootlessJamesDSP-armeabi-v7a-preview_apk"
-          path: app/build/outputs/apk/${{ env.BUILD_TYPE }}/*armeabi-v7a-*.apk
+          path: app/build/outputs/apk/rootless/${{ env.BUILD_TYPE }}/*armeabi-v7a-*.apk
                
       - name: Upload build artifact (arm64-v8a)
         uses: actions/upload-artifact@v2.2.2
         with:
           name: "RootlessJamesDSP-arm64-v8a-preview_apk"
-          path: app/build/outputs/apk/${{ env.BUILD_TYPE }}/*arm64-v8a-*.apk
+          path: app/build/outputs/apk/rootless/${{ env.BUILD_TYPE }}/*arm64-v8a-*.apk
        
       - name: Changelog
         if: startsWith(github.ref, 'refs/tags/')
@@ -130,7 +130,7 @@ jobs:
           name: RootlessJamesDSP ${{ env.VERSION_TAG }}
           body: "${{ steps.changelog.outputs.changelog }} &#x20;"
           files: |
-             app/build/outputs/apk/${{ env.BUILD_TYPE }}/*.apk
+             app/build/outputs/apk/rootless/${{ env.BUILD_TYPE }}/*.apk
           draft: true
           prerelease: false
         env:
