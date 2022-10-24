@@ -119,11 +119,17 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
                                 )
 
                                 withContext(Dispatchers.Main) {
-                                    if (newName == "Invalid")
-                                        showMessage(getString(R.string.filelibrary_resample_failed))
-                                    else
-                                        showMessage(getString(R.string.filelibrary_resample_complete, targetRate))
-                                    refresh()
+                                    try {
+                                        if (newName == "Invalid")
+                                            showMessage(getString(R.string.filelibrary_resample_failed))
+                                        else
+                                            showMessage(getString(R.string.filelibrary_resample_complete,
+                                                targetRate))
+                                        refresh()
+                                    }
+                                    catch (_: IllegalStateException) {
+                                        // Context may not be attached to fragment at this point
+                                    }
                                 }
                             }
                         }
@@ -225,7 +231,10 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
         else {
             // TODO refresh without closing
             this.dismiss()
-            fileLibPreference.showDialog()
+            CoroutineScope(Dispatchers.Main).launch {
+                delay(50L)
+                fileLibPreference.showDialog()
+            }
         }
     }
 
