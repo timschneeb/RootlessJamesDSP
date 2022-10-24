@@ -45,7 +45,10 @@ class JamesDspRemoteEngine(
         get() = effect.enabled
 
     override var sampleRate: Float
-        get() = effect.getParameterInt(20001)?.toFloat() ?: -0f
+        get() {
+            super.sampleRate = effect.getParameterInt(20001)?.toFloat() ?: -0f
+            return super.sampleRate
+        }
         set(_){}
 
     init {

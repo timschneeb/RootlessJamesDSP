@@ -1,9 +1,7 @@
 package me.timschneeberger.rootlessjamesdsp
 
 import android.app.Application
-import android.content.Context
-import android.content.Intent
-import android.content.SharedPreferences
+import android.content.*
 import android.media.audiofx.AudioEffect
 import android.os.Build
 import android.util.Log
@@ -24,6 +22,7 @@ import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.session.root.EffectSessionManager
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocalReceiver
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext.startKoin
@@ -50,6 +49,19 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
     val applicationScope = CoroutineScope(SupervisorJob())
     val blockedAppDatabase by lazy { AppBlocklistDatabase.getDatabase(this, applicationScope) }
     val blockedAppRepository by lazy { AppBlocklistRepository(blockedAppDatabase.appBlocklistDao()) }
+
+    var engineSampleRate = 0f
+        private set
+
+    private val receiver by lazy {
+        object : BroadcastReceiver() {
+            override fun onReceive(context: Context?, intent: Intent?) {
+                if (intent?.action == Constants.ACTION_REPORT_SAMPLE_RATE) {
+                    engineSampleRate = intent.getFloatExtra(Constants.EXTRA_SAMPLE_RATE, 0f)
+                }
+            }
+        }
+    }
 
     override fun onCreate() {
         Timber.plant(DebugTree())
@@ -103,6 +115,8 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
             modules(appModule)
         }
 
+        registerLocalReceiver(receiver, IntentFilter(Constants.ACTION_REPORT_SAMPLE_RATE))
+
         if (!BuildConfig.ROOTLESS && isLegacyMode)
             RootAudioProcessorService.updateLegacyMode(applicationContext, true)
 
@@ -111,6 +125,7 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
 
     override fun onTerminate() {
         prefs.unregisterOnSharedPreferenceChangeListener(this)
+        unregisterReceiver(receiver)
         super.onTerminate()
     }
 

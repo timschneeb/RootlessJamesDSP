@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.media.AudioManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -18,14 +19,18 @@ import androidx.core.view.isVisible
 import androidx.preference.ListPreferenceDialogFragmentCompat
 import kotlinx.coroutines.*
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
+import me.timschneeberger.rootlessjamesdsp.MainApplication
 import me.timschneeberger.rootlessjamesdsp.R
+import me.timschneeberger.rootlessjamesdsp.interop.JdspImpResToolbox
 import me.timschneeberger.rootlessjamesdsp.model.Preset
 import me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showInputAlert
 import me.timschneeberger.rootlessjamesdsp.utils.StorageUtils
+import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import timber.log.Timber
 import java.io.File
+import kotlin.math.roundToInt
 
 
 class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
@@ -89,10 +94,41 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
             popupMenu.menu.findItem(R.id.duplicate_selection).isVisible =
                 fileLibPreference.isLiveprog() || fileLibPreference.isPreset()
             popupMenu.menu.findItem(R.id.overwrite_selection).isVisible = fileLibPreference.isPreset()
+            popupMenu.menu.findItem(R.id.resample_selection).isVisible = fileLibPreference.isIrs()
 
             popupMenu.setOnMenuItemClickListener { menuItem ->
                 val selectedFile = File(path.toString())
                 when (menuItem.itemId) {
+                    R.id.resample_selection -> {
+                        if(fileLibPreference.isIrs()) {
+                            var targetRate = (requireActivity().application as MainApplication).engineSampleRate.roundToInt()
+                            if (targetRate <= 0) {
+                                targetRate = SystemServices.get(requireContext(), AudioManager::class.java)
+                                    .getProperty(AudioManager.PROPERTY_OUTPUT_SAMPLE_RATE)
+                                    ?.let { str -> Integer.parseInt(str).takeUnless { it == 0 } } ?: 48000
+                                Timber.w("resample: engine sample rate is zero, using HAL rate instead")
+                            }
+
+                            Timber.d("resample: Resampling ${selectedFile.name} to ${targetRate}Hz")
+
+                            CoroutineScope(Dispatchers.IO).launch {
+                                val newName = JdspImpResToolbox.OfflineAudioResample(
+                                    (selectedFile.absoluteFile.parentFile?.absolutePath + "/") ?: "",
+                                    selectedFile.name,
+                                    targetRate
+                                )
+
+                                withContext(Dispatchers.Main) {
+                                    if (newName == "Invalid")
+                                        showMessage(getString(R.string.filelibrary_resample_failed))
+                                    else
+                                        showMessage(getString(R.string.filelibrary_resample_complete, targetRate))
+                                    refresh()
+                                }
+                            }
+                        }
+                        refresh()
+                    }
                     R.id.overwrite_selection -> {
                         if(fileLibPreference.isPreset()) {
                             Preset(selectedFile.name).save()

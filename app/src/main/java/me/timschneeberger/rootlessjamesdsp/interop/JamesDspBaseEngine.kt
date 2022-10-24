@@ -1,6 +1,7 @@
 package me.timschneeberger.rootlessjamesdsp.interop
 
 import android.content.Context
+import android.content.Intent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
@@ -10,6 +11,7 @@ import kotlinx.coroutines.sync.withLock
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.interop.structure.EelVmVariable
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
 import timber.log.Timber
 import java.io.File
 import java.io.FileReader
@@ -17,7 +19,11 @@ import java.lang.NumberFormatException
 
 abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspWrapper.JamesDspCallbacks? = null) : AutoCloseable {
     abstract var enabled: Boolean
-    abstract var sampleRate: Float
+    open var sampleRate: Float = 0.0f
+        set(value) {
+            field = value
+            reportSampleRate(value)
+        }
 
     private val syncScope = CoroutineScope(Dispatchers.IO)
     private val syncMutex = Mutex()
@@ -25,6 +31,7 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
 
     override fun close() {
         Timber.d("Closing engine")
+        reportSampleRate(0f)
         syncScope.cancel()
     }
 
@@ -36,6 +43,12 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
 
     fun clearCache() {
         cache.clear()
+    }
+
+    private fun reportSampleRate(value: Float) {
+        context.sendLocalBroadcast(Intent(Constants.ACTION_REPORT_SAMPLE_RATE).apply {
+            putExtra(Constants.EXTRA_SAMPLE_RATE, value)
+        })
     }
 
     private suspend fun syncWithPreferencesAsync(forceUpdateNamespaces: Array<String>? = null) {

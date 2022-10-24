@@ -10,10 +10,10 @@ object JdspImpResToolbox {
     ): FloatArray?
 
     external fun OfflineAudioResample(
-        path: String?,
-        filename: String?,
+        path: String,
+        filename: String,
         targetSampleRate: Int
-    ): String?
+    ): String
 
     external fun ComputeEqResponse(
         n: Int,

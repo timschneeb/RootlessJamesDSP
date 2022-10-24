@@ -327,6 +327,7 @@
     <string name="filelibrary_context_overwrite">Overwrite</string>
     <string name="filelibrary_context_rename">Rename</string>
     <string name="filelibrary_context_share">Share…</string>
+    <string name="filelibrary_context_resample">Offline resample</string>
     <string name="filelibrary_context_duplicate">Duplicate</string>
     <string name="filelibrary_context_delete">Delete</string>
     <string name="filelibrary_context_new_preset">New</string>
@@ -337,6 +338,8 @@
     <string name="filelibrary_no_file_selected">No file selected</string>
     <string name="filelibrary_new_file_name">New file name</string>
     <string name="filelibrary_file_exists">File exists already</string>
+    <string name="filelibrary_resample_complete">Resampled to %1$dHz</string>
+    <string name="filelibrary_resample_failed">Resampling failed. Corrupt input file?</string>
     <string name="filelibrary_preset_overwritten">Preset \'%1$s\' overwritten</string>
     <string name="filelibrary_preset_created">Preset \'%1$s\' created</string>
     <string name="filelibrary_renamed">Renamed to \'%1$s\'</string>

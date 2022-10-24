@@ -7,11 +7,12 @@ import timber.log.Timber
 class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspCallbacks? = null) : JamesDspBaseEngine(context, callbacks) {
     var handle: JamesDspHandle = JamesDspWrapper.alloc(callbacks ?: DummyCallbacks())
 
-    override var sampleRate: Float = 48000.0f
+    override var sampleRate: Float
         set(value) {
-            field = value
+            super.sampleRate = value
             JamesDspWrapper.setSamplingRate(handle, value, false)
         }
+        get() = super.sampleRate
     override var enabled: Boolean = true
 
     override fun close() {
