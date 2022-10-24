@@ -6,6 +6,5 @@
 
     <fragment
         android:id="@+id/dspScreen"
-        android:name="me.timschneeberger.rootlessjamesdsp.fragment.DspFragment"
-        android:label="@string/app_name" />
+        android:name="me.timschneeberger.rootlessjamesdsp.fragment.DspFragment" />
 </navigation>

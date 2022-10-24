@@ -136,10 +136,8 @@ android {
 // Hooks to upload native symbols to crashlytics automatically
 afterEvaluate {
     getTasksByName("assembleRootlessRelease", false).first().finalizedBy("uploadCrashlyticsSymbolFileRelease")
-    getTasksByName("bundleRootlessRelease", false).first().finalizedBy("uploadCrashlyticsSymbolFileRelease")
     getTasksByName("assembleRootlessPreview", false).first().finalizedBy("uploadCrashlyticsSymbolFileRelease")
     getTasksByName("assembleRootRelease", false).first().finalizedBy("uploadCrashlyticsSymbolFileRelease")
-    getTasksByName("bundleRootRelease", false).first().finalizedBy("uploadCrashlyticsSymbolFileRelease")
     getTasksByName("assembleRootPreview", false).first().finalizedBy("uploadCrashlyticsSymbolFileRelease")
 }
 
