@@ -200,6 +200,7 @@ class MainActivity : BaseActivity() {
                 }
                 R.id.action_presets -> {
                     if (presetDialogHost == null) {
+                        Timber.d("Initialize preset dialog host")
                         presetDialogHost = FakePresetFragment.newInstance()
                         supportFragmentManager.beginTransaction()
                             .add(R.id.dsp_fragment_container, presetDialogHost!!)
@@ -463,8 +464,8 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    private class FakePresetFragment : Fragment(), TargetFragment {
-        val pref by lazy {
+    class FakePresetFragment : Fragment(), TargetFragment {
+        private val pref by lazy {
             FileLibraryPreference(requireContext(), null).apply {
                 this.type = "Presets"
                 this.key = "presets"
