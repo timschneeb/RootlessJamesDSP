@@ -199,6 +199,13 @@ class MainActivity : BaseActivity() {
                     true
                 }
                 R.id.action_presets -> {
+                    if (presetDialogHost == null) {
+                        presetDialogHost = FakePresetFragment.newInstance()
+                        supportFragmentManager.beginTransaction()
+                            .add(R.id.dsp_fragment_container, presetDialogHost!!)
+                            .commitNow()
+                    }
+
                     val dialogFragment = FileLibraryDialogFragment.newInstance("presets")
                     dialogFragment.setTargetFragment(presetDialogHost, 0)
                     dialogFragment.show(supportFragmentManager, null)
@@ -474,13 +481,7 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    private val presetDialogHost by lazy {
-        val fragment = FakePresetFragment.newInstance()
-        supportFragmentManager.beginTransaction()
-            .add(R.id.dsp_fragment_container, fragment)
-            .commitNow()
-        fragment
-    }
+    private var presetDialogHost: FakePresetFragment? = null
 
     companion object {
         const val EXTRA_FORCE_SHOW_CAPTURE_PROMPT = "ForceShowCapturePrompt"
