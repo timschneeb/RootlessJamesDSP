@@ -17,21 +17,19 @@ extern "C" {
 
 // C interop
 inline JamesDSPLib* cast(void* raw){
-    auto* ptr = static_cast<JamesDSPLib*>(raw);
-    if(ptr == nullptr)
+    if(raw == nullptr)
     {
         LOGE("JamesDspWrapper::cast: JamesDSPLib pointer is NULL")
     }
-    return ptr;
+    return static_cast<JamesDSPLib*>(raw);
 }
 
 inline JamesDspWrapper* castWrapper(jlong raw){
-    auto* ptr = reinterpret_cast<JamesDspWrapper*>(raw);
-    if(ptr == nullptr)
+    if(raw == 0)
     {
         LOGE("JamesDspWrapper::castWrapper: JamesDspWrapper pointer is NULL")
     }
-    return ptr;
+    return reinterpret_cast<JamesDspWrapper*>(raw);
 }
 
 #define RETURN_IF_NULL(name, retval) \
@@ -260,6 +258,7 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setFirEqualizer
                                                                                 jdoubleArray bands)
 {
     DECLARE_DSP_B
+
     if(env->GetArrayLength(bands) != 30)
     {
         LOGE("JamesDspWrapper::setFirEqualizer: Invalid EQ data. 30 semicolon-separated fields expected, "

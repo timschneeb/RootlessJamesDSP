@@ -234,11 +234,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         engine.close()
 
         // Stop foreground service
-        @Suppress("DEPRECATION")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
-            stopForeground(STOP_FOREGROUND_REMOVE)
-        else
-            stopForeground(true)
+        stopForeground(STOP_FOREGROUND_REMOVE)
 
         // Notify app about service termination
         sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_STOPPED))
