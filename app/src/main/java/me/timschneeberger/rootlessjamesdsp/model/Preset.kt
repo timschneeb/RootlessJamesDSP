@@ -27,7 +27,12 @@ class Preset(val name: String): KoinComponent {
         return file().renameTo(File(externalPath, newName))
     }
 
-    fun load(): PresetMetadata {
+    fun validate(): Boolean {
+        return Companion.validate(FileInputStream(file()))
+    }
+
+    fun load(): PresetMetadata? {
+
         val file = file()
         Timber.d("Loading preset from ${file.path}")
 
@@ -37,27 +42,39 @@ class Preset(val name: String): KoinComponent {
         targetFolder.mkdir()
 
         val metadataBytes = ByteArrayOutputStream()
-        TarInputStream(BufferedInputStream(FileInputStream(file))).use { tis ->
-            var entry: TarEntry?
-            while (tis.nextEntry.also { entry = it } != null) {
-                val entryName = entry?.name
-                entryName ?: break
+        try {
+            TarInputStream(BufferedInputStream(FileInputStream(file))).use { tis ->
+                var entry: TarEntry?
+                while (tis.nextEntry.also { entry = it } != null) {
+                    val entryName = entry?.name
+                    entryName ?: break
 
-                var count: Int
-                val data = ByteArray(2048)
-                BufferedOutputStream(FileOutputStream(
-                    targetFolder.absolutePath + "/" + entryName
-                )).use { dest ->
-                    while (tis.read(data).also { count = it } != -1) {
-                        if(entryName == "metadata")
-                            metadataBytes.write(data)
-                        else
-                            dest.write(data, 0, count)
+                    if (!isKnownEntry(entryName)) {
+                        Timber.w("Unknown entry name: $entryName")
+                        continue
                     }
-                    dest.flush()
+
+                    var count: Int
+                    val data = ByteArray(2048)
+                    BufferedOutputStream(FileOutputStream(
+                        targetFolder.absolutePath + "/" + entryName
+                    )).use { dest ->
+                        while (tis.read(data).also { count = it } != -1) {
+                            if (entryName == "metadata")
+                                metadataBytes.write(data)
+                            else
+                                dest.write(data, 0, count)
+                        }
+                        dest.flush()
+                    }
                 }
+                metadataBytes.flush()
             }
-            metadataBytes.flush()
+        }
+        catch(ex: IOException) {
+            Timber.e("Preset extraction failed.")
+            Timber.w(ex)
+            return null
         }
 
         val metadata = mutableMapOf<String, String>()
@@ -70,12 +87,15 @@ class Preset(val name: String): KoinComponent {
 
         Timber.d("Loaded preset file version ${metadata[META_VERSION]}")
 
-        targetFolder.listFiles()?.forEach next@ { f ->
-            if(!f.name.startsWith("dsp_") || f.extension != "xml") {
-                if (f.name != "metadata")
-                    Timber.w("load: Unknown file in archive ${f.name}")
+        val files = targetFolder.listFiles()
+        if(files == null || files.isEmpty()) {
+            Timber.e("Preset archive did not contain any useful data")
+            return null
+        }
+
+        files.forEach next@ { f ->
+            if(!isKnownEntry(f.name) || f.name == "metadata")
                 return@next
-            }
 
             val target = File(currentPath, f.name)
             f.copyTo(target, overwrite = true)
@@ -135,6 +155,42 @@ class Preset(val name: String): KoinComponent {
         const val META_VERSION = "version"
         const val META_APP_VERSION = "app_version"
         const val META_APP_FLAVOR = "app_flavor"
+
+        private fun isKnownEntry(n: String) = (n.startsWith("dsp_") && n.endsWith("xml")) || n == "metadata"
+
+        fun validate(stream: InputStream): Boolean {
+            Timber.d("Validating preset")
+
+            var knownCount = 0
+            try {
+                TarInputStream(BufferedInputStream(stream)).use { tis ->
+                    var entry: TarEntry?
+                    while (tis.nextEntry.also { entry = it } != null) {
+                        val entryName = entry?.name
+                        entryName ?: break
+
+                        if (!isKnownEntry(entryName)) {
+                            Timber.w("Unknown entry name: $entryName")
+                            continue
+                        }
+
+                        knownCount++
+                    }
+                }
+            }
+            catch(ex: IOException) {
+                Timber.e("Preset validation failed.")
+                Timber.w(ex)
+                return false
+            }
+
+            if (knownCount < 1) {
+                Timber.e("Preset archive did not contain any useful data")
+                return false
+            }
+
+            return true
+        }
     }
 }
 

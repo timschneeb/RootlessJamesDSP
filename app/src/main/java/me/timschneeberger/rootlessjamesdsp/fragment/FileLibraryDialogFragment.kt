@@ -259,8 +259,11 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
             builder.setAdapter(createPresetAdapter()) { _, position ->
                 val name = fileLibPreference.entries[position]
                 val path = fileLibPreference.entryValues[position]
-                Preset(File(path.toString()).name).load()
-                showMessage(getString(R.string.filelibrary_preset_loaded, name))
+                val result = Preset(File(path.toString()).name).load() != null
+                if(result)
+                    showMessage(getString(R.string.filelibrary_preset_loaded, name))
+                else
+                    showMessage(getString(R.string.filelibrary_preset_load_failed, name))
                 this.dismiss()
             }
         }
@@ -295,11 +298,21 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
                     return
                 }
 
+                StorageUtils.openInputStreamSafe(requireContext(), uri)?.use {
+                    if(!fileLibPreference.hasValidContent(it)) {
+                        Timber.e("File rejected due to invalid content")
+                        requireContext().showAlert(R.string.filelibrary_corrupted_title,
+                            R.string.filelibrary_corrupted)
+                        return@also
+                    }
+                }
+
                 val file = StorageUtils.importFile(requireContext(),
                     fileLibPreference.directory?.absolutePath ?: "", uri)
                 if(file == null)
                 {
                     Timber.e("Failed to import file")
+                    return
                 }
 
                 CoroutineScope(Dispatchers.Main).launch {

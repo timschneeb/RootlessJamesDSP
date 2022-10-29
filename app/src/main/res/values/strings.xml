@@ -334,6 +334,8 @@
     <string name="filelibrary_context_new_preset_long">New preset</string>
     <string name="filelibrary_unsupported_format_title">Unsupported file type</string>
     <string name="filelibrary_unsupported_format">The selected file has not have the correct file extension.</string>
+    <string name="filelibrary_corrupted_title">Unsupported or corrupted file</string>
+    <string name="filelibrary_corrupted">The selected file contains no useable data or is corrupted.</string>
     <string name="filelibrary_access_fail">Failed to access directory</string>
     <string name="filelibrary_no_file_selected">No file selected</string>
     <string name="filelibrary_new_file_name">New file name</string>
@@ -345,6 +347,7 @@
     <string name="filelibrary_renamed">Renamed to \'%1$s\'</string>
     <string name="filelibrary_deleted">\'%1$s\' deleted</string>
     <string name="filelibrary_preset_loaded">Preset \'%1$s\' loaded</string>
+    <string name="filelibrary_preset_load_failed">File \'%1$s\' is not compatible with this app</string>
     <string name="filelibrary_no_presets">No presets saved. Tap \'Add\' to create a new one.</string>
 
     <!-- JamesDSP engine messages -->

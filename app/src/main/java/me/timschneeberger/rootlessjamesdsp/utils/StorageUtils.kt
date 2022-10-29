@@ -29,6 +29,16 @@ object StorageUtils {
         return destinationFilename
     }
 
+    fun openInputStreamSafe(context: Context, uri: Uri): InputStream? {
+        return try {
+            context.contentResolver.openInputStream(uri)
+        } catch (ex: Exception) {
+            Timber.e(ex.message)
+            ex.printStackTrace()
+            null
+        }
+    }
+
     private fun createFileFromStream(ins: InputStream, destination: File?): Boolean {
         try {
             FileOutputStream(destination).use { os ->

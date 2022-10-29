@@ -9,7 +9,9 @@ import androidx.preference.ListPreference
 import androidx.preference.Preference.SummaryProvider
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.fragment.FileLibraryDialogFragment
+import me.timschneeberger.rootlessjamesdsp.model.Preset
 import java.io.File
+import java.io.InputStream
 
 
 class FileLibraryPreference(context: Context, attrs: AttributeSet?) :
@@ -91,6 +93,13 @@ class FileLibraryPreference(context: Context, attrs: AttributeSet?) :
                 (isVdc() && hasVdcExtension(it)) ||
                 (isLiveprog() && hasLiveprogExtension(it)) ||
                 (isPreset() && hasPresetExtension(it))
+    }
+
+    fun hasValidContent(stream: InputStream): Boolean {
+        return if (isPreset())
+            Preset.validate(stream)
+        else
+            true
     }
 
     fun isLiveprog(): Boolean {
