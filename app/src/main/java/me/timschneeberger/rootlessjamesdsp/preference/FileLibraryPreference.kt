@@ -26,14 +26,14 @@ class FileLibraryPreference(context: Context, attrs: AttributeSet?) :
             field = value
 
             summaryProvider = SummaryProvider<ListPreference> {
-                if(it.value == null || it.value.isBlank())
+                if(it.entry.isNullOrBlank())
                     if(isLiveprog()) context.getString(R.string.liveprog_no_script_selected) else context.getString(
                         R.string.filelibrary_no_file_selected)
                 else
                     it.entry
             }
 
-            directory = context.getExternalFilesDir(type)
+            directory = File(context.getExternalFilesDir(null), type)
             if(type.lowercase() != "unknown")
                 directory?.mkdir()
             refresh()

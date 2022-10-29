@@ -1,13 +1,13 @@
 package me.timschneeberger.rootlessjamesdsp.fragment
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.media.AudioManager
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.widget.ArrayAdapter
 import android.widget.ListAdapter
 import android.widget.Toast
@@ -39,6 +39,7 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
         preference as FileLibraryPreference
     }
 
+    private var clickedEntryValue: CharSequence? = null
     private lateinit var dialog: AlertDialog
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -158,6 +159,11 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
                         selectedFile.delete()
                         showMessage(getString(R.string.filelibrary_deleted, name))
                         refresh()
+
+                        // If this file was active, we need to reset the selection to null
+                        if (fileLibPreference.callChangeListener("")) {
+                            fileLibPreference.value = ""
+                        }
                     }
                     R.id.duplicate_selection -> {
                         showFileNamePrompt(
@@ -189,7 +195,19 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
             true
         }
 
+        refreshSelection()
+
         return dialog
+    }
+
+    override fun onDialogClosed(positiveResult: Boolean) {
+        if (positiveResult && !clickedEntryValue.isNullOrEmpty()) {
+            val value = clickedEntryValue.toString()
+
+            if (fileLibPreference.callChangeListener(value)) {
+                fileLibPreference.value = value
+            }
+        }
     }
 
     private fun showMessage(text: String) {
@@ -201,7 +219,7 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
         selectedFile: File,
         autofill: Boolean,
         allowOverwrite: Boolean,
-        callback: (File) -> Unit
+        callback: (File) -> Unit,
     ) {
         requireContext().showInputAlert(
             layoutInflater,
@@ -224,27 +242,38 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
     }
 
     private fun refresh() {
-        if(fileLibPreference.isPreset()) {
-            fileLibPreference.refresh()
-            dialog.listView.adapter = createPresetAdapter()
-        }
-        else {
-            // TODO refresh without closing
-            CoroutineScope(Dispatchers.Main).launch {
-                this@FileLibraryDialogFragment.dismiss()
-                delay(100L)
-                fileLibPreference.showDialog()
-            }
+        fileLibPreference.refresh()
+        dialog.listView.adapter = createAdapter()
+        refreshSelection()
+    }
+
+    private fun refreshSelection() {
+        if (fileLibPreference.isPreset())
+            return
+
+        val selectedIndex = fileLibPreference.entryValues.indexOf(fileLibPreference.value)
+        if (selectedIndex >= 0) {
+            dialog.listView.setItemChecked(selectedIndex, true);
+            dialog.listView.setSelection(selectedIndex);
         }
     }
 
-    private fun createPresetAdapter(): ListAdapter {
-        return ListItemAdapter(
-            requireContext(),
-            R.layout.item_preset_list,
-            android.R.id.text1,
-            fileLibPreference.entries
-        )
+    @SuppressLint("PrivateResource")
+    private fun createAdapter(): ListAdapter {
+        return if (fileLibPreference.isPreset())
+            ListItemAdapter(
+                requireContext(),
+                R.layout.item_preset_list,
+                android.R.id.text1,
+                fileLibPreference.entries
+            )
+        else
+            return ListItemAdapter(
+                requireContext(),
+                com.google.android.material.R.layout.select_dialog_singlechoice_material,
+                android.R.id.text1,
+                fileLibPreference.entries
+            )
     }
 
     override fun onPrepareDialogBuilder(builder: AlertDialog.Builder) {
@@ -256,16 +285,25 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
             builder.setNeutralButton(getString(R.string.add)) { _, _ -> }
             builder.setNegativeButton(getString(R.string.close)) { _, _ -> }
             builder.setTitle(getString(R.string.action_presets))
-            builder.setAdapter(createPresetAdapter()) { _, position ->
-                val name = fileLibPreference.entries[position]
-                val path = fileLibPreference.entryValues[position]
-                val result = Preset(File(path.toString()).name).load() != null
+        }
+
+        builder.setAdapter(createAdapter()) { _, position ->
+            val name = fileLibPreference.entries[position]
+            val value = fileLibPreference.entryValues[position]
+
+            if(fileLibPreference.isPreset()) {
+                val result = Preset(File(value.toString()).name).load() != null
                 if(result)
                     showMessage(getString(R.string.filelibrary_preset_loaded, name))
                 else
                     showMessage(getString(R.string.filelibrary_preset_load_failed, name))
-                this.dismiss()
             }
+
+            clickedEntryValue = value
+
+            // Simulate positive button press and dismiss
+            this.onClick(dialog, DialogInterface.BUTTON_POSITIVE)
+            dialog.dismiss()
         }
     }
 
