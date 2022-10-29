@@ -96,7 +96,7 @@ class SwitchPreferenceGroup(context: Context, attrs: AttributeSet) : PreferenceG
         if(selected) {
             transition.startTransition(TRANSITION_DURATION)
         }
-        else if(!selected) {
+        else {
             transition.startTransition(0) // ensure animation has been played
             transition.reverseTransition(TRANSITION_DURATION)
         }

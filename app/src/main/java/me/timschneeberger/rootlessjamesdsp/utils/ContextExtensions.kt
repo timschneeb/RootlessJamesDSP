@@ -173,6 +173,25 @@ object ContextExtensions {
             .show()
     }
 
+    fun Context.showSingleChoiceAlert(
+        @StringRes title: Int,
+        choices: Array<CharSequence>,
+        checkedIndex: Int,
+        callback: ((Int?) -> Unit)
+    ) {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(getString(title))
+            .setSingleChoiceItems(choices, checkedIndex) { dialog, i ->
+                dialog.dismiss()
+                callback.invoke(i)
+            }
+            .setNegativeButton(getString(android.R.string.cancel)) { _, _ ->
+                callback.invoke(null)
+            }
+            .create()
+            .show()
+    }
+
     fun Context.showInputAlert(
         layoutInflater: LayoutInflater,
         @StringRes title: Int,

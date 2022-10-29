@@ -445,4 +445,15 @@
     <string name="revert_confirmation_title">Are you sure?</string>
     <string name="revert_confirmation">Do you want to reset your current JamesDSP preset to the default values?</string>
 
+    <!-- File intent handler -->
+    <string name="intent_import_preset">Import preset</string>
+    <string name="intent_import_irs">Import impulse response</string>
+    <string name="intent_import_vdc">Import VDC file</string>
+    <string name="intent_import_liveprog">Import Liveprog script</string>
+    <string name="intent_import_mode_add">Import only</string>
+    <string name="intent_import_mode_select">Import and activate</string>
+    <string name="intent_import_fail">Failed to import file \'%1$s\'</string>
+    <string name="intent_import_success">File \'%1$s\' imported</string>
+    <string name="intent_import_select_success">File \'%1$s\' imported and activated</string>
+
 </resources>

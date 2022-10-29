@@ -19,7 +19,6 @@ class Preset(val name: String): KoinComponent {
 
     private val ctx: Context by inject()
     private val externalPath = File("${ctx.getExternalFilesDir(null)!!.path}/Presets")
-    private val currentPath = File(ctx.applicationInfo.dataDir + "/shared_prefs")
 
     fun file(): File = File(externalPath, name)
 
@@ -32,79 +31,9 @@ class Preset(val name: String): KoinComponent {
     }
 
     fun load(): PresetMetadata? {
-
         val file = file()
         Timber.d("Loading preset from ${file.path}")
-
-        val targetFolder = File(ctx.cacheDir, "preset")
-        if(targetFolder.exists())
-            targetFolder.delete()
-        targetFolder.mkdir()
-
-        val metadataBytes = ByteArrayOutputStream()
-        try {
-            TarInputStream(BufferedInputStream(FileInputStream(file))).use { tis ->
-                var entry: TarEntry?
-                while (tis.nextEntry.also { entry = it } != null) {
-                    val entryName = entry?.name
-                    entryName ?: break
-
-                    if (!isKnownEntry(entryName)) {
-                        Timber.w("Unknown entry name: $entryName")
-                        continue
-                    }
-
-                    var count: Int
-                    val data = ByteArray(2048)
-                    BufferedOutputStream(FileOutputStream(
-                        targetFolder.absolutePath + "/" + entryName
-                    )).use { dest ->
-                        while (tis.read(data).also { count = it } != -1) {
-                            if (entryName == "metadata")
-                                metadataBytes.write(data)
-                            else
-                                dest.write(data, 0, count)
-                        }
-                        dest.flush()
-                    }
-                }
-                metadataBytes.flush()
-            }
-        }
-        catch(ex: IOException) {
-            Timber.e("Preset extraction failed.")
-            Timber.w(ex)
-            return null
-        }
-
-        val metadata = mutableMapOf<String, String>()
-        metadataBytes.toString().lines().forEach {
-            val args = it.split("=")
-            if(args.count() < 2)
-                return@forEach
-            metadata[args[0]] = args[1]
-        }
-
-        Timber.d("Loaded preset file version ${metadata[META_VERSION]}")
-
-        val files = targetFolder.listFiles()
-        if(files == null || files.isEmpty()) {
-            Timber.e("Preset archive did not contain any useful data")
-            return null
-        }
-
-        files.forEach next@ { f ->
-            if(!isKnownEntry(f.name) || f.name == "metadata")
-                return@next
-
-            val target = File(currentPath, f.name)
-            f.copyTo(target, overwrite = true)
-            Timber.d("Extracting to ${target.absolutePath}")
-        }
-
-        ctx.sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
-        ctx.sendLocalBroadcast(Intent(Constants.ACTION_PRESET_LOADED))
-        return metadata
+       return load(ctx, FileInputStream(file))
     }
 
     fun save(): Boolean {
@@ -128,7 +57,7 @@ class Preset(val name: String): KoinComponent {
                 }
             }
 
-            currentPath
+            currentPath(ctx)
                 .listFiles()
                 ?.filter { it.name.startsWith("dsp_") }
                 ?.filter { it.extension == "xml" }
@@ -142,8 +71,8 @@ class Preset(val name: String): KoinComponent {
                     META_APP_VERSION to BuildConfig.VERSION_NAME,
                     META_APP_FLAVOR to BuildConfig.FLAVOR
                 )
-                .map{ "${it.key}=${it.value}" }
-                .joinToString("\n")
+                    .map{ "${it.key}=${it.value}" }
+                    .joinToString("\n")
             )
             addFile(metadataFile)
         }
@@ -156,6 +85,7 @@ class Preset(val name: String): KoinComponent {
         const val META_APP_VERSION = "app_version"
         const val META_APP_FLAVOR = "app_flavor"
 
+        private fun currentPath(ctx: Context) = File(ctx.applicationInfo.dataDir + "/shared_prefs")
         private fun isKnownEntry(n: String) = (n.startsWith("dsp_") && n.endsWith("xml")) || n == "metadata"
 
         fun validate(stream: InputStream): Boolean {
@@ -190,6 +120,80 @@ class Preset(val name: String): KoinComponent {
             }
 
             return true
+        }
+
+        fun load(ctx: Context, stream: InputStream): PresetMetadata? {
+            Timber.d("Loading preset from stream")
+
+            val targetFolder = File(ctx.cacheDir, "preset")
+            if(targetFolder.exists())
+                targetFolder.delete()
+            targetFolder.mkdir()
+
+            val metadataBytes = ByteArrayOutputStream()
+            try {
+                TarInputStream(BufferedInputStream(stream)).use { tis ->
+                    var entry: TarEntry?
+                    while (tis.nextEntry.also { entry = it } != null) {
+                        val entryName = entry?.name
+                        entryName ?: break
+
+                        if (!isKnownEntry(entryName)) {
+                            Timber.w("Unknown entry name: $entryName")
+                            continue
+                        }
+
+                        var count: Int
+                        val data = ByteArray(2048)
+                        BufferedOutputStream(FileOutputStream(
+                            targetFolder.absolutePath + "/" + entryName
+                        )).use { dest ->
+                            while (tis.read(data).also { count = it } != -1) {
+                                if (entryName == "metadata")
+                                    metadataBytes.write(data)
+                                else
+                                    dest.write(data, 0, count)
+                            }
+                            dest.flush()
+                        }
+                    }
+                    metadataBytes.flush()
+                }
+            }
+            catch(ex: IOException) {
+                Timber.e("Preset extraction failed.")
+                Timber.w(ex)
+                return null
+            }
+
+            val metadata = mutableMapOf<String, String>()
+            metadataBytes.toString().lines().forEach {
+                val args = it.split("=")
+                if(args.count() < 2)
+                    return@forEach
+                metadata[args[0]] = args[1]
+            }
+
+            Timber.d("Loaded preset file version ${metadata[META_VERSION]}")
+
+            val files = targetFolder.listFiles()
+            if(files == null || files.isEmpty()) {
+                Timber.e("Preset archive did not contain any useful data")
+                return null
+            }
+
+            files.forEach next@ { f ->
+                if(!isKnownEntry(f.name) || f.name == "metadata")
+                    return@next
+
+                val target = File(currentPath(ctx), f.name)
+                f.copyTo(target, overwrite = true)
+                Timber.d("Extracting to ${target.absolutePath}")
+            }
+
+            ctx.sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
+            ctx.sendLocalBroadcast(Intent(Constants.ACTION_PRESET_LOADED))
+            return metadata
         }
     }
 }

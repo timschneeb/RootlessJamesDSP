@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import timber.log.Timber
 
 class DspFragment : Fragment() {
 
@@ -76,9 +77,12 @@ class DspFragment : Fragment() {
     }
 
     fun restartFragment(id: Int, newFragment: Fragment) {
-        childFragmentManager.beginTransaction()
-            .replace(id, newFragment)
-            .commit()
+        try {
+            childFragmentManager.beginTransaction()
+                .replace(id, newFragment)
+                .commit()
+        }
+        catch(_: IllegalStateException) {}
     }
 
     companion object {

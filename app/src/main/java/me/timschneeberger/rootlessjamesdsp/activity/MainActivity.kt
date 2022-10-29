@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.content.*
 import android.content.pm.PackageManager
 import android.media.projection.MediaProjectionManager
+import android.net.Uri
 import android.os.*
 import android.view.HapticFeedbackConstants
 import android.view.Menu
@@ -21,6 +22,10 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.MainApplication
 import me.timschneeberger.rootlessjamesdsp.R
@@ -44,12 +49,16 @@ import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.check
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.requestIgnoreBatteryOptimizations
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showSingleChoiceAlert
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showYesNoAlert
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.unregisterLocalReceiver
+import me.timschneeberger.rootlessjamesdsp.utils.StorageUtils
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import me.timschneeberger.rootlessjamesdsp.view.FloatingToggleButton
 import timber.log.Timber
 import java.io.File
+import java.net.URI
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -58,6 +67,7 @@ class MainActivity : BaseActivity() {
     /* UI bindings */
     lateinit var binding: ActivityMainBinding
     private lateinit var bindingContent: ContentMainBinding
+    private lateinit var dspFragment: DspFragment
 
     /* Rootless version */
     private var mediaProjectionStartIntent: Intent? = null
@@ -149,9 +159,10 @@ class MainActivity : BaseActivity() {
         binding.appBarLayout.statusBarForeground = MaterialShapeDrawable.createWithElevationOverlay(this)
 
         // Load main fragment
+        dspFragment = DspFragment.newInstance()
         if(!hasLoadFailed)
             supportFragmentManager.beginTransaction()
-                .replace(R.id.dsp_fragment_container, DspFragment.newInstance())
+                .replace(R.id.dsp_fragment_container, dspFragment)
                 .commit()
         else
             showLibraryLoadError()
@@ -317,6 +328,11 @@ class MainActivity : BaseActivity() {
             this.onSharedPreferenceChanged(appPref, getString(pref))
 
         sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
+
+        // Handle potential incoming file intent
+        if(intent?.action == Intent.ACTION_VIEW) {
+            intent.data?.let { handleFileIntent(it) }
+        }
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
@@ -465,6 +481,103 @@ class MainActivity : BaseActivity() {
                     }
                 }
                 else -> {}
+            }
+        }
+    }
+
+    private fun handleFileIntent(uri: Uri) {
+        val name = StorageUtils.queryName(this, uri)
+        val choices = arrayOf<CharSequence>(
+            getString(R.string.intent_import_mode_add),
+            getString(R.string.intent_import_mode_select)
+        )
+
+        val titleRes: Int?
+        val subDir: String?
+        var namespace: String? = null
+        var key: Int? = null
+        var keyEnable: Int? = null
+        when {
+            name.endsWith(".tar") -> {
+                // Validate presets
+                StorageUtils.openInputStreamSafe(this, uri)?.use {
+                    if (!Preset.validate(it)) {
+                        Timber.e("File rejected due to invalid content")
+                        showAlert(R.string.filelibrary_corrupted_title,
+                            R.string.filelibrary_corrupted)
+                        return
+                    }
+                }
+
+                titleRes = R.string.intent_import_preset
+                subDir = "Presets"
+            }
+            name.endsWith(".eel") -> {
+                titleRes = R.string.intent_import_liveprog
+                subDir = "Liveprog"
+                namespace = Constants.PREF_LIVEPROG
+                key = R.string.key_liveprog_file
+                keyEnable = R.string.key_liveprog_enable
+            }
+            name.endsWith(".vdc") -> {
+                titleRes = R.string.intent_import_vdc
+                subDir = "DDC"
+                namespace = Constants.PREF_DDC
+                key = R.string.key_ddc_file
+                keyEnable = R.string.key_ddc_enable
+            }
+            name.endsWith(".irs") || name.endsWith(".wav") -> {
+                titleRes = R.string.intent_import_irs
+                subDir = "Convolver"
+                namespace = Constants.PREF_CONVOLVER
+                key = R.string.key_convolver_file
+                keyEnable = R.string.key_convolver_enable
+            }
+            else -> return
+        }
+
+        showSingleChoiceAlert(titleRes, choices, -1) { idx ->
+            idx ?: return@showSingleChoiceAlert
+            if (idx < 0 || idx > 1)
+                return@showSingleChoiceAlert
+
+            val file = StorageUtils.importFile(
+                this,
+                File(getExternalFilesDir(null), subDir).absolutePath,
+                uri
+            )
+
+            if (file == null) {
+                Timber.w("Failed to import file '$uri'")
+                makeSnackbar(getString(R.string.intent_import_fail, name)).show()
+                return@showSingleChoiceAlert
+            }
+
+            when (idx) {
+                0 -> makeSnackbar(getString(R.string.intent_import_success, name)).show()
+                1 -> {
+                    CoroutineScope(Dispatchers.Default).launch {
+                        delay(250L)
+
+                        if (name.endsWith(".tar"))
+                            StorageUtils.openInputStreamSafe(this@MainActivity, uri)?.use {
+                                Preset.load(this@MainActivity, it)
+                            }
+                        else if (namespace != null && key != null && keyEnable != null)
+                            @Suppress("DEPRECATION")
+                            getSharedPreferences(namespace, MODE_MULTI_PROCESS)
+                                .edit()
+                                .putBoolean(getString(keyEnable), true)
+                                .putString(getString(key), file.absolutePath)
+                                .apply()
+
+                        delay(250L)
+                        sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
+                        sendLocalBroadcast(Intent(Constants.ACTION_PRESET_LOADED))
+
+                        makeSnackbar(getString(R.string.intent_import_select_success, name)).show()
+                    }
+                }
             }
         }
     }
