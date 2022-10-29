@@ -230,9 +230,9 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
         }
         else {
             // TODO refresh without closing
-            this.dismiss()
             CoroutineScope(Dispatchers.Main).launch {
-                delay(50L)
+                this@FileLibraryDialogFragment.dismiss()
+                delay(100L)
                 fileLibPreference.showDialog()
             }
         }
