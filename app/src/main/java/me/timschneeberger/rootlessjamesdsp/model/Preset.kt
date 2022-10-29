@@ -2,7 +2,12 @@ package me.timschneeberger.rootlessjamesdsp.model
 
 import android.content.Context
 import android.content.Intent
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
+import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
 import org.kamranzafar.jtar.TarEntry
@@ -10,8 +15,11 @@ import org.kamranzafar.jtar.TarInputStream
 import org.kamranzafar.jtar.TarOutputStream
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import org.xml.sax.SAXException
 import timber.log.Timber
 import java.io.*
+import javax.xml.parsers.DocumentBuilderFactory
+
 
 typealias PresetMetadata = Map<String, String>
 
@@ -46,6 +54,11 @@ class Preset(val name: String): KoinComponent {
         // Create a TarOutputStream
         TarOutputStream(BufferedOutputStream(FileOutputStream(targetFile))).use { out ->
             fun addFile(file: File) {
+                if(!file.exists() || file.isDirectory) {
+                    Timber.e("addFile: ${file.absolutePath} is not valid")
+                    return
+                }
+
                 out.putNextEntry(TarEntry(file, file.name))
                 BufferedInputStream(FileInputStream(file)).use { origin ->
                     var count: Int
@@ -63,14 +76,30 @@ class Preset(val name: String): KoinComponent {
                 ?.filter { it.extension == "xml" }
                 ?.forEach(::addFile)
 
-            val metadataFile = File(ctx.cacheDir, "metadata")
+            val metadata = mutableMapOf(
+                META_VERSION to "2",
+                META_APP_VERSION to BuildConfig.VERSION_NAME,
+                META_APP_FLAVOR to BuildConfig.FLAVOR,
+                META_LIVEPROG_INCLUDED to false.toString()
+            )
 
+            val liveprogPath = findLiveprogScriptPath(ctx)
+            if (liveprogPath != null) {
+                val liveprogFile = File(liveprogPath)
+                if (liveprogFile.exists()) {
+                    Timber.d("Saving included liveprog script state from '$liveprogPath'")
+
+                    metadata[META_LIVEPROG_INCLUDED] = true.toString()
+                    File(ctx.cacheDir, FILE_LIVEPROG).let {
+                        liveprogFile.copyTo(it, overwrite = true)
+                        addFile(it)
+                    }
+                }
+            }
+
+            val metadataFile = File(ctx.cacheDir, FILE_METADATA)
             metadataFile.writeText(
-                mutableMapOf(
-                    META_VERSION to "1",
-                    META_APP_VERSION to BuildConfig.VERSION_NAME,
-                    META_APP_FLAVOR to BuildConfig.FLAVOR
-                )
+                metadata
                     .map{ "${it.key}=${it.value}" }
                     .joinToString("\n")
             )
@@ -81,12 +110,17 @@ class Preset(val name: String): KoinComponent {
     }
 
     companion object {
+        const val FILE_METADATA = "metadata"
+        const val FILE_LIVEPROG = "liveprog"
+
         const val META_VERSION = "version"
         const val META_APP_VERSION = "app_version"
         const val META_APP_FLAVOR = "app_flavor"
+        const val META_LIVEPROG_INCLUDED = "liveprog_included" /* version 2+ */
 
         private fun currentPath(ctx: Context) = File(ctx.applicationInfo.dataDir + "/shared_prefs")
-        private fun isKnownEntry(n: String) = (n.startsWith("dsp_") && n.endsWith("xml")) || n == "metadata"
+        private fun isExtractableEntry(n: String) = (n.startsWith("dsp_") && n.endsWith("xml")) || n == FILE_LIVEPROG
+        private fun isKnownEntry(n: String) = isExtractableEntry(n) || n == FILE_METADATA
 
         fun validate(stream: InputStream): Boolean {
             Timber.d("Validating preset")
@@ -149,8 +183,8 @@ class Preset(val name: String): KoinComponent {
                             targetFolder.absolutePath + "/" + entryName
                         )).use { dest ->
                             while (tis.read(data).also { count = it } != -1) {
-                                if (entryName == "metadata")
-                                    metadataBytes.write(data)
+                                if (entryName == FILE_METADATA)
+                                    metadataBytes.write(data, 0, count)
                                 else
                                     dest.write(data, 0, count)
                             }
@@ -171,7 +205,7 @@ class Preset(val name: String): KoinComponent {
                 val args = it.split("=")
                 if(args.count() < 2)
                     return@forEach
-                metadata[args[0]] = args[1]
+                metadata[args[0]] = args[1].trim()
             }
 
             Timber.d("Loaded preset file version ${metadata[META_VERSION]}")
@@ -183,7 +217,7 @@ class Preset(val name: String): KoinComponent {
             }
 
             files.forEach next@ { f ->
-                if(!isKnownEntry(f.name) || f.name == "metadata")
+                if(!isExtractableEntry(f.name))
                     return@next
 
                 val target = File(currentPath(ctx), f.name)
@@ -191,10 +225,55 @@ class Preset(val name: String): KoinComponent {
                 Timber.d("Extracting to ${target.absolutePath}")
             }
 
+            if (files.any {
+                    Timber.e("${it.name} == $FILE_LIVEPROG")
+                    it.name == FILE_LIVEPROG
+            } && metadata[META_LIVEPROG_INCLUDED].toBoolean()) {
+                findLiveprogScriptPath(ctx)?.let {
+                    val originalFile = File(it)
+                    val targetFile = File("${ctx.getExternalFilesDir(null)!!.path}/Liveprog", originalFile.name)
+                    Timber.d("Restoring included liveprog script state to '${targetFile.absolutePath}'")
+                    val tempPath = File(currentPath(ctx), FILE_LIVEPROG)
+                    tempPath.copyTo(targetFile, overwrite = true)
+                    tempPath.delete()
+
+                    ctx.sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_RELOAD_LIVEPROG))
+                }
+            }
+
             ctx.sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
             ctx.sendLocalBroadcast(Intent(Constants.ACTION_PRESET_LOADED))
+
             return metadata
         }
+
+        private fun findLiveprogScriptPath(ctx: Context): String? {
+            val xmlFile = File(currentPath(ctx), "${Constants.PREF_LIVEPROG}.xml")
+            if (!xmlFile.exists())
+                return null
+            try {
+                val factory = DocumentBuilderFactory.newInstance()
+                val builder = factory.newDocumentBuilder()
+                val doc = builder.parse(FileInputStream(xmlFile))
+                val nodes = doc.getElementsByTagName("string")
+
+                for(i in 0 until nodes.length) {
+                    val node = nodes.item(i)
+                    if(node.attributes.getNamedItem("name").nodeValue ==
+                        ctx.getString(R.string.key_liveprog_file)) {
+                        Timber.d("Found liveprog file path: ${node.textContent}")
+                        return node.textContent
+                    }
+                }
+            } catch (e: SAXException) {
+                Timber.w(e)
+            }
+            catch (e: IOException) {
+                Timber.w(e)
+            }
+            return null
+        }
+
     }
 }
 
