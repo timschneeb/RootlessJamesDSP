@@ -253,6 +253,8 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
 
         sharedPreferences.unregisterOnSharedPreferenceChangeListener(preferencesListener)
         notificationManager.cancel(NOTIFICATION_ID_SERVICE)
+
+        stopSelf()
     }
 
     // Preferences listener
