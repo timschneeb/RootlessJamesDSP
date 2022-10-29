@@ -25,7 +25,32 @@ inline JamesDSPLib* cast(void* raw){
     return ptr;
 }
 
-#define THIS (reinterpret_cast<JamesDspWrapper*>(self))
+inline JamesDspWrapper* castWrapper(jlong raw){
+    auto* ptr = reinterpret_cast<JamesDspWrapper*>(raw);
+    if(ptr == nullptr)
+    {
+        LOGE("JamesDspWrapper::castWrapper: JamesDspWrapper pointer is NULL")
+    }
+    return ptr;
+}
+
+#define RETURN_IF_NULL(name, retval) \
+    if(name == nullptr)      \
+        return retval;
+
+#define DECLARE_WRAPPER(retval) \
+     auto* wrapper = castWrapper(self); \
+     RETURN_IF_NULL(wrapper, retval)
+
+#define DECLARE_DSP(retval) \
+    DECLARE_WRAPPER(retval) \
+    auto* dsp = cast(wrapper->dsp); \
+    RETURN_IF_NULL(dsp, retval)
+
+#define DECLARE_WRAPPER_V DECLARE_WRAPPER()
+#define DECLARE_DSP_V DECLARE_DSP()
+#define DECLARE_WRAPPER_B DECLARE_WRAPPER(false)
+#define DECLARE_DSP_B DECLARE_DSP(false)
 
 inline int32_t arySearch(int32_t *array, int32_t N, int32_t x)
 {
@@ -122,15 +147,17 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_alloc(JNIEnv *e
 extern "C" JNIEXPORT void JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_free(JNIEnv *env, jobject obj, jlong self)
 {
+    DECLARE_DSP_V
+
     setStdOutHandler(nullptr, nullptr);
 
-    JamesDSPFree(cast(THIS->dsp));
-    THIS->dsp = nullptr;
+    JamesDSPFree(dsp);
+    wrapper->dsp = nullptr;
 
     JamesDSPGlobalMemoryDeallocation();
 
-    env->DeleteGlobalRef(THIS->callbackInterface);
-    delete THIS;
+    env->DeleteGlobalRef(wrapper->callbackInterface);
+    delete wrapper;
 
     LOGD("JamesDspWrapper::dtor: memory freed");
 }
@@ -143,16 +170,15 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setSamplingRate
                                                                                 jfloat sample_rate,
                                                                                 jboolean force_refresh)
 {
-    JamesDSPSetSampleRate(cast(THIS->dsp), sample_rate, force_refresh);
+    DECLARE_DSP_V
+    JamesDSPSetSampleRate(dsp, sample_rate, force_refresh);
 }
+
 
 extern "C" JNIEXPORT jboolean JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_isHandleValid(JNIEnv *env, jobject obj, jlong self)
 {
-    if(THIS == nullptr || cast(THIS->dsp) == nullptr)
-    {
-        return false;
-    }
+    DECLARE_DSP_B // This macro returns false if the DSP object can't be accessed
     return true;
 }
 
@@ -160,7 +186,8 @@ extern "C"
 JNIEXPORT jshortArray JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_processInt16(JNIEnv *env, jobject obj, jlong self, jshortArray inputObj)
 {
-    auto* dsp = cast(THIS->dsp);
+    // Return inputObj if DECLARE failed
+    DECLARE_DSP(inputObj)
 
     auto inputLength = env->GetArrayLength(inputObj);
     auto outputObj = env->NewShortArray(inputLength);
@@ -175,10 +202,11 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_processInt16(JN
 
 extern "C"
 JNIEXPORT jintArray JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_processInt32(JNIEnv *env, jobject obj,
-                                                                        jlong self, jintArray inputObj)
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_processInt32(JNIEnv *env, jobject obj, jlong self, jintArray inputObj)
 {
-    auto* dsp = cast(THIS->dsp);
+    // Return inputObj if DECLARE failed
+    DECLARE_DSP(inputObj)
+
     auto inputLength = env->GetArrayLength(inputObj);
     auto outputObj = env->NewIntArray(inputLength);
 
@@ -192,10 +220,10 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_processInt32(JN
 
 extern "C"
 JNIEXPORT jfloatArray JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_processFloat(JNIEnv *env, jobject obj,
-                                                                             jlong self, jfloatArray inputObj)
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_processFloat(JNIEnv *env, jobject obj, jlong self, jfloatArray inputObj)
 {
-    auto* dsp = cast(THIS->dsp);
+    // Return inputObj if DECLARE failed
+    DECLARE_DSP(inputObj)
 
     auto inputLength = env->GetArrayLength(inputObj);
     auto outputObj = env->NewFloatArray(inputLength);
@@ -213,14 +241,16 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_processFloat(JN
 extern "C" JNIEXPORT jboolean JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setLimiter(JNIEnv *env, jobject obj, jlong self, jfloat threshold, jfloat release)
 {
-    JLimiterSetCoefficients(cast(THIS->dsp), threshold, release);
+    DECLARE_DSP_B
+    JLimiterSetCoefficients(dsp, threshold, release);
     return true;
 }
 
 extern "C" JNIEXPORT jboolean JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setPostGain(JNIEnv *env, jobject obj, jlong self, jfloat gain)
 {
-    JamesDSPSetPostGain(cast(THIS->dsp), gain);
+    DECLARE_DSP_B
+    JamesDSPSetPostGain(dsp, gain);
     return true;
 }
 
@@ -229,7 +259,7 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setFirEqualizer
                                                                                 jboolean enable, jint filterType, jint interpolationMode,
                                                                                 jdoubleArray bands)
 {
-    auto* dsp = cast(THIS->dsp);
+    DECLARE_DSP_B
     if(env->GetArrayLength(bands) != 30)
     {
         LOGE("JamesDspWrapper::setFirEqualizer: Invalid EQ data. 30 semicolon-separated fields expected, "
@@ -262,8 +292,7 @@ extern "C" JNIEXPORT jboolean JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setVdc(JNIEnv *env, jobject obj, jlong self,
                                                                        jboolean enable, jstring vdcContents)
 {
-    auto* wrapper = THIS;
-    auto* dsp = cast(wrapper->dsp);
+    DECLARE_DSP_B
     if(enable)
     {
         const char *nativeString = env->GetStringUTFChars(vdcContents, nullptr);
@@ -292,7 +321,7 @@ extern "C" JNIEXPORT jboolean JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setCompressor(JNIEnv *env, jobject obj, jlong self,
                                                                               jboolean enable, jfloat maxAttack, jfloat maxRelease, float adaptSpeed)
 {
-    auto* dsp = cast(THIS->dsp);
+    DECLARE_DSP_B
     if(enable)
     {
         CompressorSetParam(dsp, maxAttack, maxRelease, adaptSpeed);
@@ -309,7 +338,7 @@ extern "C" JNIEXPORT jboolean JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setReverb(JNIEnv *env, jobject obj, jlong self,
                                                                           jboolean enable, jint preset)
 {
-    auto* dsp = cast(THIS->dsp);
+    DECLARE_DSP_B
     if(enable)
     {
         Reverb_SetParam(dsp, preset);
@@ -327,7 +356,7 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setConvolver(JN
                                                                              jboolean enable, jfloatArray impulseResponse,
                                                                              jint irChannels, jint irFrames)
 {
-    auto* dsp = cast(THIS->dsp);
+    DECLARE_DSP_B
 
     int success = 1;
     if(env->GetArrayLength(impulseResponse) <= 0)
@@ -370,7 +399,7 @@ extern "C" JNIEXPORT jboolean JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setGraphicEq(JNIEnv *env, jobject obj, jlong self,
                                                                              jboolean enable, jstring graphicEq)
 {
-    auto* dsp = cast(THIS->dsp);
+    DECLARE_DSP_B
     if(graphicEq == nullptr || env->GetStringUTFLength(graphicEq) <= 0)
     {
         LOGE("JamesDspWrapper::setGraphicEq: graphicEq is empty or NULL. Disabling graphic eq.");
@@ -395,7 +424,7 @@ extern "C" JNIEXPORT jboolean JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setCrossfeed(JNIEnv *env, jobject obj, jlong self,
                                                                              jboolean enable, jint mode, jint customFcut, jint customFeed)
 {
-    auto* dsp = cast(THIS->dsp);
+    DECLARE_DSP_B
     if(mode == 99)
     {
         memset(&dsp->advXF.bs2b, 0, sizeof(dsp->advXF.bs2b));
@@ -419,8 +448,7 @@ extern "C" JNIEXPORT jboolean JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setBassBoost(JNIEnv *env, jobject obj, jlong self,
                                                                              jboolean enable, jfloat maxGain)
 {
-    auto* wrapper = THIS;
-    auto* dsp = cast(wrapper->dsp);
+    DECLARE_DSP_B
     if(enable)
     {
         BassBoostSetParam(dsp, maxGain);
@@ -437,7 +465,7 @@ extern "C" JNIEXPORT jboolean JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setStereoEnhancement(JNIEnv *env, jobject obj, jlong self,
                                                                                      jboolean enable, jfloat level)
 {
-    auto* dsp = cast(THIS->dsp);
+    DECLARE_DSP_B
     StereoEnhancementDisable(dsp);
     StereoEnhancementSetParam(dsp, level / 100.0f);
     if(enable)
@@ -451,7 +479,7 @@ extern "C" JNIEXPORT jboolean JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setVacuumTube(JNIEnv *env, jobject obj, jlong self,
                                                                               jboolean enable, jfloat level)
 {
-    auto* dsp = cast(THIS->dsp);
+    DECLARE_DSP_B
     if(enable)
     {
         VacuumTubeSetGain(dsp, level / 100.0f);
@@ -468,12 +496,11 @@ extern "C" JNIEXPORT jboolean JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setLiveprog(JNIEnv *env, jobject obj, jlong self,
                                                                             jboolean enable, jstring id, jstring liveprogContent)
 {
-    auto* wrapper = THIS;
+    DECLARE_DSP_B
 
     // Attach log listener
     setStdOutHandler(receiveLiveprogStdOut, wrapper);
 
-    auto* dsp = cast(wrapper->dsp);
     LiveProgDisable(dsp);
 
     const char *nativeString = env->GetStringUTFChars(liveprogContent, nullptr);
@@ -518,7 +545,10 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_enumerateEelVar
 {
     auto array = JArrayList(env);
 
-    auto *ctx = (compileContext*)cast(THIS->dsp)->eel.vm;
+    // Return empty array if DECLARE failed
+    DECLARE_DSP(array.getJavaReference())
+
+    auto *ctx = (compileContext*)dsp->eel.vm;
     for (int i = 0; i < ctx->varTable_numBlocks; i++)
     {
         for (int j = 0; j < NSEEL_VARS_PER_BLOCK; j++)
@@ -549,7 +579,7 @@ extern "C" JNIEXPORT jboolean JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_manipulateEelVariable(JNIEnv *env, jobject obj, jlong self,
                                                                                       jstring name, jfloat value)
 {
-    auto* dsp = cast(THIS->dsp);
+    DECLARE_DSP_B
     auto* ctx = (compileContext*)dsp->eel.vm;
     for (int i = 0; i < ctx->varTable_numBlocks; i++)
     {
@@ -588,7 +618,8 @@ extern "C" JNIEXPORT void JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_freezeLiveprogExecution(JNIEnv *env, jobject obj, jlong self,
                                                                                         jboolean freeze)
 {
-    cast(THIS->dsp)->eel.active = !freeze;
+    DECLARE_DSP_V
+    dsp->eel.active = !freeze;
     LOGD("JamesDspWrapper::freezeLiveprogExecution: Liveprog execution has been %s", (freeze ? "frozen" : "resumed"));
 }
 
