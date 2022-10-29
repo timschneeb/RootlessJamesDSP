@@ -29,12 +29,6 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
             return input
         }
 
-        if(!JamesDspWrapper.isHandleValid(handle))
-        {
-            Timber.e("Invalid handle")
-            return input
-        }
-
         return JamesDspWrapper.processInt16(handle, input)
     }
 
@@ -45,12 +39,6 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
             return input
         }
 
-        if(!JamesDspWrapper.isHandleValid(handle))
-        {
-            Timber.e("Invalid handle")
-            return input
-        }
-
         return JamesDspWrapper.processInt32(handle, input)
     }
 
@@ -58,12 +46,6 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
     {
         if(!enabled)
         {
-            return input
-        }
-
-        if(!JamesDspWrapper.isHandleValid(handle))
-        {
-            Timber.e("Invalid handle")
             return input
         }
 
