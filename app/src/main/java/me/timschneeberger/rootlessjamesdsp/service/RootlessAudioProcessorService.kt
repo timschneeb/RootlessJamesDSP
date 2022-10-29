@@ -7,8 +7,6 @@ import android.content.*
 import android.content.pm.PackageManager
 import android.content.pm.ServiceInfo
 import android.media.*
-import android.media.AudioRecord
-import android.media.AudioTrack
 import android.media.projection.MediaProjection
 import android.media.projection.MediaProjectionManager
 import android.os.*
@@ -20,26 +18,24 @@ import androidx.lifecycle.asLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
-import me.timschneeberger.rootlessjamesdsp.session.rootless.AudioSessionManager
-import me.timschneeberger.rootlessjamesdsp.session.rootless.MutedSessionManager
 import me.timschneeberger.rootlessjamesdsp.R
-import me.timschneeberger.rootlessjamesdsp.utils.ServiceNotificationHelper
-import me.timschneeberger.rootlessjamesdsp.model.preference.AudioEncoding
-import me.timschneeberger.rootlessjamesdsp.model.rootless.MutedSessionEntry
-import me.timschneeberger.rootlessjamesdsp.model.rootless.SessionRecordingPolicyEntry
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspLocalEngine
 import me.timschneeberger.rootlessjamesdsp.interop.ProcessorMessageHandler
-import me.timschneeberger.rootlessjamesdsp.model.rootless.AudioSessionEntry
+import me.timschneeberger.rootlessjamesdsp.model.preference.AudioEncoding
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistDatabase
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistRepository
 import me.timschneeberger.rootlessjamesdsp.model.room.BlockedApp
+import me.timschneeberger.rootlessjamesdsp.model.rootless.AudioSessionEntry
+import me.timschneeberger.rootlessjamesdsp.model.rootless.MutedSessionEntry
+import me.timschneeberger.rootlessjamesdsp.model.rootless.SessionRecordingPolicyEntry
+import me.timschneeberger.rootlessjamesdsp.session.rootless.AudioSessionManager
+import me.timschneeberger.rootlessjamesdsp.session.rootless.MutedSessionManager
 import me.timschneeberger.rootlessjamesdsp.session.rootless.SessionRecordingPolicyManager
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_PREFERENCES_UPDATED
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_HARD_REBOOT_CORE
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_RELOAD_LIVEPROG
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_SOFT_REBOOT_CORE
-import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_PREFERENCES_UPDATED
-import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_PRESET_LOADED
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.CHANNEL_ID_APP_INCOMPATIBILITY
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.CHANNEL_ID_SERVICE
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.CHANNEL_ID_SESSION_LOSS
@@ -50,12 +46,11 @@ import me.timschneeberger.rootlessjamesdsp.utils.Constants.NOTIFICATION_ID_SESSI
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.unregisterLocalReceiver
+import me.timschneeberger.rootlessjamesdsp.utils.ServiceNotificationHelper
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import me.timschneeberger.rootlessjamesdsp.utils.concatenate
 import timber.log.Timber
 import java.io.IOException
-import java.lang.Exception
-import java.lang.RuntimeException
 
 
 @RequiresApi(Build.VERSION_CODES.Q)
@@ -497,8 +492,13 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
                     // Suspend core while idle
                     if(isProcessorIdle && suspendOnIdle)
                     {
-                        recorder.stop()
-                        track.stop()
+                        if(recorder.state == AudioRecord.STATE_INITIALIZED &&
+                            recorder.recordingState == AudioRecord.RECORDSTATE_RECORDING)
+                            recorder.stop()
+                        if(track.state == AudioTrack.STATE_INITIALIZED &&
+                            track.playState != AudioTrack.PLAYSTATE_STOPPED)
+                            track.stop()
+
                         try {
                             Thread.sleep(50)
                         }
@@ -509,7 +509,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
                     }
 
                     // Resume recorder if suspended
-                    if(recorder.state == AudioRecord.RECORDSTATE_STOPPED) {
+                    if(recorder.recordingState == AudioRecord.RECORDSTATE_STOPPED) {
                         recorder.startRecording()
                     }
                     // Resume track if suspended
