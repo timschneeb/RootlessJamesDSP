@@ -225,8 +225,6 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
     }
 
     override fun onDestroy() {
-        super.onDestroy()
-
         isServiceDisposing = true
 
         // Stop recording and release engine
@@ -255,6 +253,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         notificationManager.cancel(NOTIFICATION_ID_SERVICE)
 
         stopSelf()
+        super.onDestroy()
     }
 
     // Preferences listener
