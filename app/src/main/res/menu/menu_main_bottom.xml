@@ -8,12 +8,21 @@
         android:title="@string/action_presets"
         android:iconTint="?attr/actionMenuTextColor"
         android:icon="@drawable/ic_twotone_folder_special_24dp"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_revert"
+        android:orderInCategory="100"
+        android:title="@string/action_revert"
+        android:iconTint="?attr/actionMenuTextColor"
+        app:showAsAction="never" />
+
     <item
         android:id="@+id/action_blocklist"
-        android:orderInCategory="10"
+        android:orderInCategory="100"
         android:title="@string/action_blocked_apps"
         android:iconTint="?attr/actionMenuTextColor"
         android:icon="@drawable/ic_twotone_app_blocking_24dp"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
+
 </menu>

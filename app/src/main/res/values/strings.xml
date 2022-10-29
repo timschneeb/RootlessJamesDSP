@@ -2,6 +2,7 @@
     <!-- Main menu bar -->
     <string name="action_settings">Settings</string>
     <string name="action_presets">Presets</string>
+    <string name="action_revert">Reset to defaults</string>
 
     <!-- Notification channels -->
     <string name="notification_channel_service">Service notification</string>
@@ -439,5 +440,9 @@
     <!-- Slider widget -->
     <string name="slider_dialog_title">Edit value</string>
     <string name="slider_dialog_format_error">Invalid number format. Changes not applied.</string>
+
+    <!-- Revert confirmation -->
+    <string name="revert_confirmation_title">Are you sure?</string>
+    <string name="revert_confirmation">Do you want to reset your current JamesDSP preset to the default values?</string>
 
 </resources>

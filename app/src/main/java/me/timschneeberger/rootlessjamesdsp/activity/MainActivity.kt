@@ -31,6 +31,7 @@ import me.timschneeberger.rootlessjamesdsp.fragment.FileLibraryDialogFragment
 import me.timschneeberger.rootlessjamesdsp.fragment.LibraryLoadErrorFragment
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspRemoteEngine
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspWrapper
+import me.timschneeberger.rootlessjamesdsp.model.Preset
 import me.timschneeberger.rootlessjamesdsp.model.ProcessorMessage
 import me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
 import me.timschneeberger.rootlessjamesdsp.service.BaseAudioProcessorService
@@ -43,10 +44,12 @@ import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.check
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.requestIgnoreBatteryOptimizations
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showYesNoAlert
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.unregisterLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import me.timschneeberger.rootlessjamesdsp.view.FloatingToggleButton
 import timber.log.Timber
+import java.io.File
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -181,16 +184,8 @@ class MainActivity : BaseActivity() {
         // Inflate bottom right menu
         binding.bar.inflateMenu(R.menu.menu_main_bottom)
 
-        val actBlocklist = binding.bar.menu.findItem(R.id.action_blocklist)
-        val actPresets = binding.bar.menu.findItem(R.id.action_presets)
-
-        if(BuildConfig.ROOTLESS) {
-            actBlocklist.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER or MenuItem.SHOW_AS_ACTION_WITH_TEXT)
-            actPresets.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER or MenuItem.SHOW_AS_ACTION_WITH_TEXT)
-        }
-
-        // TODO root: add support for app exclusion list
-        actBlocklist.isVisible = BuildConfig.ROOTLESS
+        // only rootless version has support for app exclusion list
+        binding.bar.menu.findItem(R.id.action_blocklist).isVisible = BuildConfig.ROOTLESS
 
         binding.bar.setOnMenuItemClickListener { arg0 ->
             when (arg0.itemId) {
@@ -210,6 +205,27 @@ class MainActivity : BaseActivity() {
                     val dialogFragment = FileLibraryDialogFragment.newInstance("presets")
                     dialogFragment.setTargetFragment(presetDialogHost, 0)
                     dialogFragment.show(supportFragmentManager, null)
+                    true
+                }
+                R.id.action_revert -> {
+                    this.showYesNoAlert(
+                        R.string.revert_confirmation_title,
+                        R.string.revert_confirmation
+                    ) {
+                        if(it) {
+                            // Delete DSP settings
+                            Timber.d("Reverting dsp preferences")
+                            File(applicationInfo.dataDir + "/shared_prefs")
+                                .listFiles()?.forEach next@ { f ->
+                                    if(!f.name.startsWith("dsp_") || f.extension != "xml" || f.isDirectory)
+                                        return@next
+                                    f.delete()
+                                }
+
+                            sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
+                            sendLocalBroadcast(Intent(Constants.ACTION_PRESET_LOADED))
+                        }
+                    }
                     true
                 }
                 else -> false
