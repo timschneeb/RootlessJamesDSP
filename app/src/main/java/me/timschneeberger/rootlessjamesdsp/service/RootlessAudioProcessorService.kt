@@ -51,6 +51,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import me.timschneeberger.rootlessjamesdsp.utils.concatenate
 import timber.log.Timber
 import java.io.IOException
+import kotlin.math.roundToInt
 
 
 @RequiresApi(Build.VERSION_CODES.Q)
@@ -581,15 +582,31 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
             attributesBuilder.setAllowedCapturePolicy(AudioAttributes.ALLOW_CAPTURE_BY_NONE)
         }
 
-        return AudioTrack.Builder().setAudioFormat(
-            AudioFormat.Builder()
-                .setChannelMask(AudioFormat.CHANNEL_OUT_STEREO)
-                .setEncoding(encoding)
-                .setSampleRate(sampleRate)
-                .build())
+        val format = AudioFormat.Builder()
+            .setChannelMask(AudioFormat.CHANNEL_OUT_STEREO)
+            .setEncoding(encoding)
+            .setSampleRate(sampleRate)
+            .build()
+
+        val frameSizeInBytes: Int = if (encoding == AudioFormat.ENCODING_PCM_16BIT) {
+            2 /* channels */ * 2 /* bytes */
+        } else {
+            2 /* channels */ * 4 /* bytes */
+        }
+
+        val bufferSize = if (((bufferSizeBytes % frameSizeInBytes) != 0 || bufferSizeBytes < 1)) {
+            Timber.e("Invalid audio buffer size $bufferSizeBytes")
+            128 * (bufferSizeBytes / 128)
+        }
+        else bufferSizeBytes
+
+        Timber.d("Using buffer size $bufferSize")
+
+        return AudioTrack.Builder()
+            .setAudioFormat(format)
             .setTransferMode(AudioTrack.MODE_STREAM)
             .setAudioAttributes(attributesBuilder.build())
-            .setBufferSizeInBytes(bufferSizeBytes)
+            .setBufferSizeInBytes(bufferSize)
             .build()
     }
 

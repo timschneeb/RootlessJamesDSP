@@ -200,7 +200,7 @@ class MaterialSeekbarPreference : Preference {
                     else {
                         Toast.makeText(
                             context,
-                            context.getString(R.string.slider_dialog_step_error),
+                            context.getString(R.string.slider_dialog_step_error, mSeekBar.stepSize.roundToInt()),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -378,6 +378,11 @@ class MaterialSeekbarPreference : Preference {
         if (seekBarValue > mMax) {
             seekBarValue = mMax
         }
+        if (mSeekBarIncrement > 0 && !valueLandsOnTick(seekBarValue)) {
+            seekBarValue = mSeekBarIncrement * ((seekBarValue / mSeekBarIncrement).roundToInt())
+            Timber.w("setValueInternal: value corrected $_seekBarValue to $seekBarValue")
+        }
+
         if (seekBarValue != mSeekBarValue) {
             mSeekBarValue = seekBarValue
             updateLabelValue(mSeekBarValue)
@@ -444,13 +449,13 @@ class MaterialSeekbarPreference : Preference {
 
     private fun valueLandsOnTick(value: Float): Boolean {
         // Check that the value is a multiple of stepSize given the offset of valueFrom.
-        return isMultipleOfStepSize(value - mSeekBar.valueFrom)
+        return isMultipleOfStepSize(value - mMin)
     }
 
     private fun isMultipleOfStepSize(value: Float): Boolean {
         // We're using BigDecimal here to avoid floating point rounding errors.
         val result = BigDecimal(value.toString())
-            .divide(BigDecimal(mSeekBar.stepSize.toString()), MathContext.DECIMAL64)
+            .divide(BigDecimal(mSeekBarIncrement.toString()), MathContext.DECIMAL64)
             .toDouble()
 
         // If the result is a whole number, it means the value is a multiple of stepSize.
