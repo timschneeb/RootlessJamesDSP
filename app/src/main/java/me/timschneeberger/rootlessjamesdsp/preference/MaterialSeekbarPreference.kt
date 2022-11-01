@@ -12,7 +12,6 @@ import android.widget.Toast
 import androidx.preference.Preference
 import androidx.preference.PreferenceViewHolder
 import androidx.preference.SeekBarPreference
-import com.google.android.material.slider.BaseSlider
 import com.google.android.material.slider.Slider
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showInputAlert
