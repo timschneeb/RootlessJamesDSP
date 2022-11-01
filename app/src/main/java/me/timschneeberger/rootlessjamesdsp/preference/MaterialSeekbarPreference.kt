@@ -12,13 +12,17 @@ import android.widget.Toast
 import androidx.preference.Preference
 import androidx.preference.PreferenceViewHolder
 import androidx.preference.SeekBarPreference
+import com.google.android.material.slider.BaseSlider
 import com.google.android.material.slider.Slider
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showInputAlert
 import timber.log.Timber
+import java.math.BigDecimal
+import java.math.MathContext
 import java.util.*
 import kotlin.math.abs
 import kotlin.math.min
+import kotlin.math.roundToInt
 
 
 class MaterialSeekbarPreference : Preference {
@@ -27,7 +31,7 @@ class MaterialSeekbarPreference : Preference {
     private var mMax = 0f
     private var mSeekBarIncrement = 0f
     var mTrackingTouch/* synthetic access */ = false
-    var mSeekBar: /* synthetic access */Slider? = null
+    lateinit var mSeekBar: /* synthetic access */Slider
     private var mSeekBarValueTextView: TextView? = null
 
     var mUnit: String = ""
@@ -101,7 +105,7 @@ class MaterialSeekbarPreference : Preference {
 
     constructor(
         context: Context, attrs: AttributeSet?, defStyleAttr: Int,
-        defStyleRes: Int
+        defStyleRes: Int,
     ) : super(context, attrs, defStyleAttr, defStyleRes) {
         layoutResource = R.layout.preference_materialslider
 
@@ -130,15 +134,15 @@ class MaterialSeekbarPreference : Preference {
 
     constructor(
         context: Context, attrs: AttributeSet?,
-        defStyleAttr: Int
+        defStyleAttr: Int,
     ) : this(context, attrs, defStyleAttr, 0)
 
     constructor(
-        context: Context, attrs: AttributeSet?
+        context: Context, attrs: AttributeSet?,
     ) : this(context, attrs, R.attr.seekBarStyle)
 
     constructor(
-        context: Context
+        context: Context,
     ) : this(context, null)
 
     override fun onBindViewHolder(holder: PreferenceViewHolder) {
@@ -161,24 +165,24 @@ class MaterialSeekbarPreference : Preference {
             return
         }
 
-        mSeekBar!!.clearOnChangeListeners()
-        mSeekBar!!.clearOnSliderTouchListeners()
-        mSeekBar!!.addOnChangeListener(mSeekBarChangeListener)
-        mSeekBar!!.addOnSliderTouchListener(mSeekBarTouchListener)
-        mSeekBar!!.valueFrom = mMin
-        mSeekBar!!.valueTo = mMax
+        mSeekBar.clearOnChangeListeners()
+        mSeekBar.clearOnSliderTouchListeners()
+        mSeekBar.addOnChangeListener(mSeekBarChangeListener)
+        mSeekBar.addOnSliderTouchListener(mSeekBarTouchListener)
+        mSeekBar.valueFrom = mMin
+        mSeekBar.valueTo = mMax
         // If the increment is not zero, use that. Otherwise, use the default mKeyProgressIncrement
         // in AbsSeekBar when it's zero. This default increment value is set by AbsSeekBar
         // after calling setMax. That's why it's important to call setKeyProgressIncrement after
         // calling setMax() since setMax() can change the increment value.
         if (mSeekBarIncrement != 0f) {
-            mSeekBar!!.stepSize = mSeekBarIncrement
+            mSeekBar.stepSize = mSeekBarIncrement
         } else {
-            mSeekBarIncrement = mSeekBar!!.stepSize
+            mSeekBarIncrement = mSeekBar.stepSize
         }
-        mSeekBar!!.value = mSeekBarValue
+        mSeekBar.value = mSeekBarValue
         updateLabelValue(mSeekBarValue)
-        mSeekBar!!.isEnabled = isEnabled
+        mSeekBar.isEnabled = isEnabled
 
         this.setOnPreferenceClickListener {
             context.showInputAlert(
@@ -191,7 +195,16 @@ class MaterialSeekbarPreference : Preference {
             ) {
                 it ?: return@showInputAlert
                 try {
-                    setValue(it.toFloat())
+                    if(mSeekBar.stepSize <= 0 || valueLandsOnTick(it.toFloat())) {
+                        setValue(it.toFloat())
+                    }
+                    else {
+                        Toast.makeText(
+                            context,
+                            context.getString(R.string.slider_dialog_step_error),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
                 catch (ex: Exception) {
                     Timber.e("Failed to parse number input")
@@ -428,5 +441,20 @@ class MaterialSeekbarPreference : Preference {
                 mSeekBarValueTextView!!.text = valueLabelOverride!!(value)
             }
         }
+    }
+
+    private fun valueLandsOnTick(value: Float): Boolean {
+        // Check that the value is a multiple of stepSize given the offset of valueFrom.
+        return isMultipleOfStepSize(value - mSeekBar.valueFrom)
+    }
+
+    private fun isMultipleOfStepSize(value: Float): Boolean {
+        // We're using BigDecimal here to avoid floating point rounding errors.
+        val result = BigDecimal(value.toString())
+            .divide(BigDecimal(mSeekBar.stepSize.toString()), MathContext.DECIMAL64)
+            .toDouble()
+
+        // If the result is a whole number, it means the value is a multiple of stepSize.
+        return abs(result.roundToInt() - result) < 1.0E-4
     }
 }

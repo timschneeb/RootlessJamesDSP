@@ -440,6 +440,7 @@
     <!-- Slider widget -->
     <string name="slider_dialog_title">Edit value</string>
     <string name="slider_dialog_format_error">Invalid number format. Changes not applied.</string>
+    <string name="slider_dialog_step_error">Value must be a multiple of %1$d. Changes not applied.</string>
 
     <!-- Revert confirmation -->
     <string name="revert_confirmation_title">Are you sure?</string>
