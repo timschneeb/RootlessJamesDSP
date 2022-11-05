@@ -17,6 +17,7 @@ If you want to use this app with the JamesDSP magisk module on a rooted device, 
 **This app behaves differently than the original app:**
 
 * Different preset file format (.tar); you can't import old presets
+* `/sdcard/Android/data/james.dsp/` is used instead of `/sdcard/JamesDSP` due to scoped storage
 * No separate configurations for speaker/bluetooth/usb/wired; there's one active category for all
 
 ### Restore original app
