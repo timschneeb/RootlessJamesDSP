@@ -487,6 +487,11 @@ class MainActivity : BaseActivity() {
 
     private fun handleFileIntent(uri: Uri) {
         val name = StorageUtils.queryName(this, uri)
+        if (name == null) {
+            Toast.makeText(this, getString(R.string.intent_import_error_file_uri), Toast.LENGTH_LONG).show()
+            return
+        }
+
         val choices = arrayOf<CharSequence>(
             getString(R.string.intent_import_mode_add),
             getString(R.string.intent_import_mode_select)

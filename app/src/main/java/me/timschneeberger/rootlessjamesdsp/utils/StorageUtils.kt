@@ -11,10 +11,16 @@ import java.io.InputStream
 
 object StorageUtils {
     fun importFile(context: Context, targetDir: String, uri: Uri): File? {
+        val name = queryName(context, uri)
+        if(name == null) {
+            Timber.e("importFile: name is null")
+            return null
+        }
+
         val destinationFilename = File(
                     targetDir +
                     File.separatorChar +
-                    queryName(context, uri)
+                    name
         )
         try {
             context.contentResolver.openInputStream(uri)?.use { ins ->
@@ -57,8 +63,9 @@ object StorageUtils {
         return true
     }
 
-    fun queryName(context: Context, uri: Uri): String {
-        val returnCursor = context.contentResolver.query(uri, null, null, null, null)!!
+    fun queryName(context: Context, uri: Uri): String? {
+        val returnCursor = context.contentResolver.query(uri, null, null, null, null)
+        returnCursor ?: return null
         val nameIndex: Int = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
         returnCursor.moveToFirst()
         val name: String = returnCursor.getString(nameIndex)

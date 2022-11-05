@@ -456,5 +456,6 @@
     <string name="intent_import_fail">Failed to import file \'%1$s\'</string>
     <string name="intent_import_success">File \'%1$s\' imported</string>
     <string name="intent_import_select_success">File \'%1$s\' imported and activated</string>
+    <string name="intent_import_error_file_uri">Failed to import file. Unsupported file URI.</string>
 
 </resources>

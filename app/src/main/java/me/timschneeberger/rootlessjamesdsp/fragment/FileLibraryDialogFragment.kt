@@ -327,7 +327,7 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
                     StorageUtils.queryName(
                         requireContext(),
                         uri
-                    )
+                    ) ?: "INVALID"
                 )
                 if(!correctType)
                 {
