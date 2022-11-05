@@ -31,6 +31,8 @@ import org.lsposed.hiddenapibypass.HiddenApiBypass
 import timber.log.Timber
 import timber.log.Timber.*
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChangeListener {
@@ -127,6 +129,19 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
         prefs.unregisterOnSharedPreferenceChangeListener(this)
         unregisterReceiver(receiver)
         super.onTerminate()
+    }
+
+    override fun onLowMemory() {
+        Timber.w("onLowMemory: Running low on memory")
+        FirebaseCrashlytics.getInstance().setCustomKey("last_low_memory_event", SimpleDateFormat("yyyyMMdd HHmmss z", Locale.US).format(Date()))
+        super.onLowMemory()
+    }
+
+    override fun onTrimMemory(level: Int) {
+        Timber.w("onTrimMemory: Memory trim at level $level requested")
+        FirebaseCrashlytics.getInstance().setCustomKey("last_memory_trim_event", SimpleDateFormat("yyyyMMdd HHmmss z", Locale.US).format(Date()))
+        FirebaseCrashlytics.getInstance().setCustomKey("last_memory_trim_level", level)
+        super.onTrimMemory(level)
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
