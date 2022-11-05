@@ -1,0 +1,33 @@
+desc: Butterworth 8 bands (Equalization example)
+
+@init
+iirBPS = 0;
+reqSize = IIRBandSplitterInit(iirBPS, srate, 180, 800, 1600, 2700, 5600, 6500, 10000);
+iirBPS2 = iirBPS + reqSize; // Shift the pointer
+reqSize = IIRBandSplitterInit(iirBPS2, srate, 180, 800, 1600, 2700, 5600, 6500, 10000);
+subbandLeft = iirBPS2 + reqSize; // Subband temp buffer, shift pointer again
+subbandRight = subbandLeft + 8; // Subband temp buffer, shift pointer again, subbandLeft has 8 elements
+eqGain = subbandRight + 8; // Shift pointer again, subbandRight has 8 elements
+eqGain[0] = 1;
+eqGain[1] = 0;
+eqGain[2] = 1;
+eqGain[3] = 1;
+eqGain[4] = 0;
+eqGain[5] = 1;
+eqGain[6] = 0;
+eqGain[7] = 1;
+
+@sample
+IIRBandSplitterProcess(iirBPS, spl0, subbandLeft[0], subbandLeft[1], subbandLeft[2], subbandLeft[3], subbandLeft[4], subbandLeft[5], subbandLeft[6], subbandLeft[7]);
+IIRBandSplitterProcess(iirBPS2, spl1, subbandRight[0], subbandRight[1], subbandRight[2], subbandRight[3], subbandRight[4], subbandRight[5], subbandRight[6], subbandRight[7]);
+sumLeft = 0;
+sumRight = 0;
+i = 0;
+loop(8, 
+subbandLeft[i] *= eqGain[i];
+subbandRight[i] *= eqGain[i];
+sumLeft += subbandLeft[i];
+sumRight += subbandRight[i];
+i += 1);
+spl0 = sumLeft;
+spl1 = sumRight;

@@ -1,0 +1,26 @@
+desc: Butterworth 3 bands (Equalization example)
+
+@init
+iirBPS = 0;
+reqSize = IIRBandSplitterInit(iirBPS, srate, 4000, 12000);
+iirBPS2 = iirBPS + reqSize; // Shift the pointer
+reqSize = IIRBandSplitterInit(iirBPS2, srate, 4000, 12000);
+low1 = 0;
+mid1 = 0;
+high1 = 0;
+eqGain = iirBPS2 + reqSize; // Shift pointer again
+eqGain[0] = 1;
+eqGain[1] = 0;
+eqGain[2] = 1;
+
+@sample
+IIRBandSplitterProcess(iirBPS, spl0, low1, mid1, high1);
+IIRBandSplitterProcess(iirBPS, spl1, low2, mid2, high2);
+low1 *= eqGain[0];
+mid1 *= eqGain[1];
+high1 *= eqGain[2];
+low2 *= eqGain[0];
+mid2 *= eqGain[1];
+high2 *= eqGain[2];
+spl0 = low1 + mid1 + high1;
+spl1 = low2 + mid2 + high2;
