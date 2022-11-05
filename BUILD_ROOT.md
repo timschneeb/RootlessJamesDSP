@@ -14,7 +14,11 @@ If you want to use this app with the JamesDSP magisk module on a rooted device, 
 
    
 
-This app behaves differently than the original app:
+**This app behaves differently than the original app:**
 
 * Different preset file format (.tar); you can't import old presets
 * No separate configurations for speaker/bluetooth/usb/wired; there's one active category for all
+
+### Restore original app
+
+Uninstall this app, download original app APK: https://github.com/Magisk-Modules-Repo/ainur_jamesdsp/raw/master/JamesDSPManager.apk and install it.
