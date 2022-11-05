@@ -85,6 +85,10 @@ NOTE: Tested with Spotify version `8.7.48.1062` and `8.7.68.568`
 
 This app is available for free on Google Play: [https://play.google.com/store/apps/details?id=me.timschneeberger.rootlessjamesdsp](https://play.google.com/store/apps/details?id=me.timschneeberger.rootlessjamesdsp&utm_source=github&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)
 
+## Using Root
+
+This app focuses on a rootless implementation, but it can be made to work with the magisk module too. [See here for details](BUILD_ROOT.md).
+
 ## Credits
 
 * JamesDSP - [James Fung (@james34602)](https://github.com/james34602)
