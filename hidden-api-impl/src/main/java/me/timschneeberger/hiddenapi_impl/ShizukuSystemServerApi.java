@@ -44,8 +44,13 @@ public class ShizukuSystemServerApi {
         }
     };
 
-    public static void PermissionManager_grantRuntimePermission(String packageName, String permissionName, int userId) throws RemoteException {
-        PERMISSION_MANAGER.get().grantRuntimePermission(packageName, permissionName, userId);
+    public static void PermissionManager_grantRuntimePermission(String packageName, String permissionName, int userId) {
+        try {
+            PERMISSION_MANAGER.getOrThrow().grantRuntimePermission(packageName, permissionName, userId);
+        }
+        catch(Exception ex) {
+            Log.e("ShizukuSystemServerApi", "Failed to call app ops service");
+        }
     }
 
     public static final String APP_OPS_MODE_ALLOW = "allow";
@@ -75,20 +80,21 @@ public class ShizukuSystemServerApi {
         }
         catch(IllegalArgumentException ignored) {}
 
-        Log.e("AppOps", String.valueOf(opIndex));
-        Log.e("AppOps", op);
-        Log.e("AppOps", String.valueOf(index));
-        Log.e("AppOps", mode);
-
         if(index < 0 || opIndex < 0)
             return false;
-        Log.e("AppOps", "SET MODE");
-        APP_OPS_SERVICE.get().setMode(
-                opIndex,
-                packageUid,
-                packageName,
-                index
-        );
+
+        try {
+            APP_OPS_SERVICE.getOrThrow().setMode(
+                    opIndex,
+                    packageUid,
+                    packageName,
+                    index
+            );
+        }
+        catch(NullPointerException ex) {
+            Log.e("ShizukuSystemServerApi", "Failed to call app ops service");
+            return false;
+        }
 
         return true;
     }
@@ -112,9 +118,9 @@ public class ShizukuSystemServerApi {
 
         try {
             Log.d("ShizukuSystemServerApi", "AudioPolicyService_setAllowedCapturePolicy flags=" + flags);
-            AUDIO_POLICY_SERVICE.get().setAllowedCapturePolicy(uid, flags);
+            AUDIO_POLICY_SERVICE.getOrThrow().setAllowedCapturePolicy(uid, flags);
         }
-        catch (RemoteException ex) {
+        catch (Exception ex) {
             Log.d("ShizukuSystemServerApi", ex.toString());
         }
     }
