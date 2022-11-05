@@ -20,5 +20,5 @@ If you want to use this app with the JamesDSP magisk module on a rooted device, 
 * `/sdcard/Android/data/james.dsp/` is used instead of `/sdcard/JamesDSP` due to scoped storage
 * No separate configurations for speaker/bluetooth/usb/wired; there's one active category for all
 
-### Restore the original app
+## Restoring the original app
 Uninstall this app, download the original app APK: https://github.com/Magisk-Modules-Repo/ainur_jamesdsp/raw/master/JamesDSPManager.apk, and install it.
