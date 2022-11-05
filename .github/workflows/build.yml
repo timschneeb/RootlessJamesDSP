@@ -75,7 +75,7 @@ jobs:
           echo "VERSION_TAG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
 
       - name: Sign APKs
-        uses: r0adkll/sign-android-release@v1
+        uses: ilharp/sign-android-release@v1.0.4
         with:
           releaseDirectory: app/build/outputs/apk/${{ steps.flavor.outputs.lowercase }}/${{ env.BUILD_TYPE }}
           signingKeyBase64: ${{ secrets.SIGNING_KEYSTORE }}
