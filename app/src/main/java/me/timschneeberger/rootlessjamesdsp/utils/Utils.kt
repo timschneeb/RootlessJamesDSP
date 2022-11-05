@@ -9,15 +9,10 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.text.Html
 import android.text.Spanned
-import android.util.Log
-import androidx.appcompat.view.ContextThemeWrapper
-import me.timschneeberger.hiddenapi_impl.BuildConfig
-import me.timschneeberger.rootlessjamesdsp.R
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.get
 import java.io.Serializable
 import java.math.BigDecimal
 import java.math.RoundingMode
+import java.security.MessageDigest
 import java.util.*
 import kotlin.math.*
 
@@ -84,3 +79,8 @@ inline fun <reified T : Parcelable> Bundle.getParcelableAs(key: String): T? {
 }
 
 fun Boolean.toShort() = (if (this) 1 else 0).toShort()
+
+val String.md5: ByteArray
+    get() {
+        return MessageDigest.getInstance("MD5").digest(this.toByteArray())
+    }

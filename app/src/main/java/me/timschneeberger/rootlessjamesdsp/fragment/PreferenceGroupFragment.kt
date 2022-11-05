@@ -25,6 +25,7 @@ import timber.log.Timber
 
 class PreferenceGroupFragment : PreferenceFragmentCompat() {
     private val eelParser = EelParser()
+    private var recyclerView: RecyclerView? = null
 
     private val listener =
         SharedPreferences.OnSharedPreferenceChangeListener { _, _ ->
@@ -75,11 +76,20 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
                 fun updateLiveprog(newValue: String) {
                     eelParser.load(newValue)
                     val count = eelParser.properties.count()
-                    liveprogParams?.isEnabled = count > 0
-                    liveprogParams?.summary = if(count > 0)
-                        requireContext().resources.getQuantityString(R.plurals.custom_parameters, count, count)
+                    val uiUpdate = {
+                        liveprogParams?.isEnabled = count > 0
+                        liveprogParams?.summary = if(count > 0)
+                            requireContext().resources.getQuantityString(R.plurals.custom_parameters, count, count)
+                        else
+                            getString(R.string.liveprog_additional_params_not_supported)
+                    }
+
+                    if (recyclerView == null)
+                        // Recycler view doesn't exist yet, directly setup the preference
+                        uiUpdate()
                     else
-                        getString(R.string.liveprog_additional_params_not_supported)
+                        // Recycler view does exist, queue on UI thread
+                        recyclerView!!.post(uiUpdate)
                 }
 
                 liveprogFile?.summaryProvider = SummaryProvider<FileLibraryPreference> {
@@ -88,10 +98,6 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
                         "No script selected"
                     else
                         eelParser.description
-                    /*if(eelParser.hasDescription)
-                        eelParser.description + " ("+ eelParser.fileName +")"
-                    else
-                        eelParser.description*/
                 }
 
                 if(liveprogFile != null) {
@@ -102,7 +108,6 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
                     updateLiveprog(newValue as String)
                     true
                 }
-
 
                 liveprogParams?.setOnPreferenceClickListener {
                     val intent = Intent(requireContext(), LiveprogParamsActivity::class.java)
@@ -128,10 +133,10 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
         parent: ViewGroup,
         savedInstanceState: Bundle?,
     ): RecyclerView {
-        val recyclerView = super.onCreateRecyclerView(inflater, parent, savedInstanceState)
-        recyclerView.itemAnimator = null // Fix to prevent RecyclerView crash if group is toggled rapidly
-        recyclerView.isNestedScrollingEnabled = false
-        return recyclerView
+        recyclerView = super.onCreateRecyclerView(inflater, parent, savedInstanceState)
+        recyclerView!!.itemAnimator = null // Fix to prevent RecyclerView crash if group is toggled rapidly
+        recyclerView!!.isNestedScrollingEnabled = false
+        return recyclerView!!
     }
 
     override fun onCreateAdapter(preferenceScreen: PreferenceScreen): RecyclerView.Adapter<*> {

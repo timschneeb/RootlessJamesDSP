@@ -138,7 +138,8 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
     }
 
     override fun onTrimMemory(level: Int) {
-        Timber.w("onTrimMemory: Memory trim at level $level requested")
+        if (level >= 60)
+            Timber.w("onTrimMemory: Memory trim at level $level requested")
         FirebaseCrashlytics.getInstance().setCustomKey("last_memory_trim_event", SimpleDateFormat("yyyyMMdd HHmmss z", Locale.US).format(Date()))
         FirebaseCrashlytics.getInstance().setCustomKey("last_memory_trim_level", level)
         super.onTrimMemory(level)

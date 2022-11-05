@@ -1,11 +1,11 @@
 package me.timschneeberger.rootlessjamesdsp.liveprog
 
+import me.timschneeberger.rootlessjamesdsp.utils.md5
 import timber.log.Timber
 import java.io.File
 import java.io.FileNotFoundException
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.math.floor
 
 class EelParser {
     var isFileLoaded: Boolean
@@ -23,6 +23,7 @@ class EelParser {
         private set
     var properties = ArrayList<EelBaseProperty>()
         private set
+    private var lastFileHash: ByteArray? = null
 
     fun load(path: String): Boolean {
         if(path.isBlank()) {
@@ -39,12 +40,18 @@ class EelParser {
             this.path = null
             return false
         }
-        properties = arrayListOf()
 
         Timber.d("Loaded '$path'")
 
+        if(lastFileHash != null && lastFileHash.contentEquals(contents?.md5)) {
+            Timber.w("Parsing skipped. Script identical with previous file.")
+            return false
+        }
+
         // Parse description
         parseDescription()
+
+        properties = arrayListOf()
 
         // Parse number range parameters
         val rangeParamRegex = """(?<var>\w+):(?<def>-?\d+\.?\d*)?<(?<min>-?\d+\.?\d*),(?<max>-?\d+\.?\d*),?(?<step>-?\d+\.?\d*)?>(?<desc>[\s\S][^\n]*)""".toRegex()
@@ -89,6 +96,7 @@ class EelParser {
             }
         }
 
+        lastFileHash = contents?.md5
         return true
     }
 

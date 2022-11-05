@@ -150,6 +150,7 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_free(JNIEnv *en
     setStdOutHandler(nullptr, nullptr);
 
     JamesDSPFree(dsp);
+    free(dsp);
     wrapper->dsp = nullptr;
 
     JamesDSPGlobalMemoryDeallocation();
