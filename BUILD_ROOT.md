@@ -5,12 +5,10 @@ If you want to use this app with the JamesDSP magisk module on a rooted device, 
 **Important: I don't actively test root builds; therefore I won't provide stable APK files. They may be more unstable than the regular rootless version.**
 
 1. Install the JamesDSP magisk module, if not already done
-
 2. Uninstall the original JamesDSP app
-
-3. Select the latest successful workflow run and download the prebuilt root APK artifact: https://github.com/ThePBone/RootlessJamesDSP/actions/workflows/build.yml
-
-4. Install the APK, and it _should_ work
+3. Select the latest successful workflow run on this page: https://github.com/ThePBone/RootlessJamesDSP/actions/workflows/build.yml
+4. On the next page, scroll down to the artifacts section and download the prebuilt root APK artifact
+5. Install the APK and it _should_ work
 
    
 
