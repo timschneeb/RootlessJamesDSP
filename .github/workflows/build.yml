@@ -77,9 +77,9 @@ jobs:
       - name: Sign APKs
         uses: ilharp/sign-android-release@v1.0.4
         with:
-          releaseDirectory: app/build/outputs/apk/${{ steps.flavor.outputs.lowercase }}/${{ env.BUILD_TYPE }}
-          signingKeyBase64: ${{ secrets.SIGNING_KEYSTORE }}
-          alias: ${{ secrets.KEY_ALIAS }}
+          releaseDir: app/build/outputs/apk/${{ steps.flavor.outputs.lowercase }}/${{ env.BUILD_TYPE }}
+          signingKey: ${{ secrets.SIGNING_KEYSTORE }}
+          keyAlias: ${{ secrets.KEY_ALIAS }}
           keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
 
