@@ -21,7 +21,7 @@ jobs:
         
     steps:
       - id: flavor
-        uses: ASzc/change-string-case-action@v2
+        uses: ASzc/change-string-case-action@v5
         with:
           string: ${{ matrix.flavor }}
           
@@ -75,11 +75,11 @@ jobs:
           echo "VERSION_TAG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
 
       - name: Sign APKs
-        uses: r0adkll/sign-android-release@v1
+        uses: ilharp/sign-android-release@v1.0.4
         with:
-          releaseDirectory: app/build/outputs/apk/${{ steps.flavor.outputs.lowercase }}/${{ env.BUILD_TYPE }}
-          signingKeyBase64: ${{ secrets.SIGNING_KEYSTORE }}
-          alias: ${{ secrets.KEY_ALIAS }}
+          releaseDir: app/build/outputs/apk/${{ steps.flavor.outputs.lowercase }}/${{ env.BUILD_TYPE }}
+          signingKey: ${{ secrets.SIGNING_KEYSTORE }}
+          keyAlias: ${{ secrets.KEY_ALIAS }}
           keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
 
@@ -91,31 +91,31 @@ jobs:
           ls -l
 
       - name: Upload build artifact (universal)
-        uses: actions/upload-artifact@v2.2.2
+        uses: actions/upload-artifact@v3.1.1
         with:
           name: "${{ matrix.flavor }}JamesDSP-universal-preview_apk"
           path: app/build/outputs/apk/${{ steps.flavor.outputs.lowercase }}/${{ env.BUILD_TYPE }}/*universal-*.apk
 
       - name: Upload build artifact (x86)
-        uses: actions/upload-artifact@v2.2.2
+        uses: actions/upload-artifact@v3.1.1
         with:
           name: "${{ matrix.flavor }}JamesDSP-x86-preview_apk"
           path: app/build/outputs/apk/${{ steps.flavor.outputs.lowercase }}/${{ env.BUILD_TYPE }}/*x86-*.apk
           
       - name: Upload build artifact (x86_64)
-        uses: actions/upload-artifact@v2.2.2
+        uses: actions/upload-artifact@v3.1.1
         with:
           name: "${{ matrix.flavor }}JamesDSP-x86_64-preview_apk"
           path: app/build/outputs/apk/${{ steps.flavor.outputs.lowercase }}/${{ env.BUILD_TYPE }}/*x86_64-*.apk
           
       - name: Upload build artifact (armeabi-v7a)
-        uses: actions/upload-artifact@v2.2.2
+        uses: actions/upload-artifact@v3.1.1
         with:
           name: "${{ matrix.flavor }}JamesDSP-armeabi-v7a-preview_apk"
           path: app/build/outputs/apk/${{ steps.flavor.outputs.lowercase }}/${{ env.BUILD_TYPE }}/*armeabi-v7a-*.apk
                
       - name: Upload build artifact (arm64-v8a)
-        uses: actions/upload-artifact@v2.2.2
+        uses: actions/upload-artifact@v3.1.1
         with:
           name: "${{ matrix.flavor }}JamesDSP-arm64-v8a-preview_apk"
           path: app/build/outputs/apk/${{ steps.flavor.outputs.lowercase }}/${{ env.BUILD_TYPE }}/*arm64-v8a-*.apk
