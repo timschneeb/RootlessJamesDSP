@@ -1,7 +1,10 @@
 package me.timschneeberger.rootlessjamesdsp.interop
 
 import android.content.Context
+import android.content.Intent
 import me.timschneeberger.rootlessjamesdsp.interop.structure.EelVmVariable
+import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
 import timber.log.Timber
 
 class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspCallbacks? = null) : JamesDspBaseEngine(context, callbacks) {
@@ -11,6 +14,7 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
         set(value) {
             super.sampleRate = value
             JamesDspWrapper.setSamplingRate(handle, value, false)
+            context.sendLocalBroadcast(Intent(Constants.ACTION_SAMPLE_RATE_UPDATED))
         }
         get() = super.sampleRate
     override var enabled: Boolean = true
