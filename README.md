@@ -56,6 +56,7 @@ Apps confirmed working:
 * Substreamer
 * Twitch
 * Spotify ReVanced **(Patch required)**
+* Apple Music
 * ...
 
 Unsupported apps include:
