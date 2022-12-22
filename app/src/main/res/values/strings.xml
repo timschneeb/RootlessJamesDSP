@@ -225,7 +225,7 @@
     <string name="limit_latency_title">Increased latency</string>
     <string name="limit_latency">This app may add some delay to the audio stream. You can add movie/video apps to the exclusion list to prevent AV-desync by not processing them.</string>
     <string name="limit_tested_devices_title">Tested devices</string>
-    <string name="limit_tested_devices">Changes made to Android\'s audio subsystem by your device manufacturer can easily break this app because it uses a few undocumented APIs.\nIt has been tested on these devices:\n● Samsung S20+ (Android 12)\n● AOSP emulator (Android 10–13)</string>
+    <string name="limit_tested_devices">Changes made to Android\'s audio subsystem by your device manufacturer can easily break this app because it uses a few undocumented APIs.\nIt has been tested on these devices:\n• Samsung S20+ (Android 12)\n• AOSP emulator (Android 10–13)\n• Google Pixel 6 Pro (Android 13)</string>
 
     <!-- Settings -->
     <string name="title_activity_settings">Settings</string>
