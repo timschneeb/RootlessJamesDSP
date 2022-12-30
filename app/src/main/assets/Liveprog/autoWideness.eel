@@ -1,0 +1,210 @@
+// filter written by SStillwell based on RBJ's filter cookbook
+// SStillwell's copyright notice can be found at the bottom
+
+desc: Auto-Wideness
+//tags: processing stereo
+//author: Till
+
+slider1:-18<-60,0,1>0% Wideness @ (dB)
+slider2:-6<-30,24,1>100% Wideness @ (dB)
+slider3:1<0,50,1>Attack (ms)
+slider4:250<20,2000,10>Release (ms)
+slider5:0<0,50,1>Min Width (%)
+slider6:100<50,500,10>Max Width (%)
+slider7:0<0,2,1{Left and right,Left,Right}>0% Signal
+slider8:0<0,1,1{Off,On}>Reverse Mode
+slider10:20<20,20000,10>Director HP (Hz)
+slider11:20000<20,20000,10>Director LP (Hz)
+
+/////////////////
+///           ///
+///  I N I T  ///
+///           ///
+/////////////////
+
+@init
+
+  curwideness = 0; // factor
+
+slider1=-18;
+slider2=-6;
+slider3=1;
+slider4=250;
+slider5=0;
+slider6=100;
+slider7=0;
+slider8=0;
+slider14=0;
+slider10=20;
+slider11=20000;
+
+
+  bottomdb = slider1; // dB
+  bottom = 2 ^ (bottomdb / 6); // Amplitude
+
+  topdb = slider2; // dB
+  top = 2 ^ (topdb / 6); // factor
+
+  attack = max(1, ceil(slider3 / 1000 * srate)); // samples
+
+  release = max(1, ceil(slider4 / 1000 * srate)); // samples
+
+  minwidth = slider5;
+
+  maxwidth = slider6;
+
+  zerowidth = slider7;
+
+  reverse = slider8;
+
+  hipass = slider10;
+  lopass = slider11;
+
+  // filtering values
+
+  a0 = 1;
+  s0 = 1;
+  q0 = 1 / (sqrt((a0 + 1/a0)*(1/s0 - 1) + 2));
+  w00 = 2 * $pi * hipass/srate;
+  cosw00 = cos(w00);
+  sinw00 = sin(w00);
+  alpha0 = sinw00 / (2 * q0);
+  
+  b00 = (1 + cosw00)/2;
+  b10 = -(1 + cosw00);
+  b20 = (1 + cosw00)/2;
+  a00 = 1 + alpha0;
+  a10 = -2 * cosw00;
+  a20 = 1 - alpha0;
+  b00 /= a00;
+  b10 /= a00;
+  b20 /= a00;
+  a10 /= a00;
+  a20 /= a00;
+  
+  a9 = 1;
+  s9 = 2;
+  q9 = 1 / (sqrt((a9 + 1/a9)*(1/s9 - 1) + 2));
+  w09 = 2 * $pi * lopass/srate;
+  cosw09 = cos(w09);
+  sinw09 = sin(w09);
+  alpha9 = sinw09 / (2 * q9);
+  
+  b09 = (1 - cosw09)/2;
+  b19 = (1 - cosw09);
+  b29 = (1 - cosw09)/2;
+  a09 = 1 + alpha9;
+  a19 = -2 * cosw09;
+  a29 = 1 - alpha9;
+  b09 /= a09;
+  b19 /= a09;
+  b29 /= a09;
+  a19 /= a09;
+  a29 /= a09;
+
+/////////////////
+///           ///
+///  SAMPLE   ///
+///           ///
+/////////////////
+
+@sample
+
+    dl = spl0;
+    dr = spl1;
+
+  // filtering
+
+  hipass > 20 ? (
+    ospl0 = dl;
+    dl = b00 * dl + b10 * xl10 + b20 * xl20 - a10 * yl10 - a20 * yl20;
+    xl20 = xl10;
+    xl10 = ospl0;
+    yl20 = yl10;
+    yl10 = dl;
+  
+    ospl1 = dr;
+    dr = b00 * dr + b10 * xr10 + b20 * xr20 - a10 * yr10 - a20 * yr20;
+    xr20 = xr10;
+    xr10 = ospl1;
+    yr20 = yr10;
+    yr10 = dr;
+  );
+  
+  lopass < 20000 ? (
+    ospl0 = dl;
+    dl = b09 * dl + b19 * xl19 + b29 * xl29 - a19 * yl19 - a29 * yl29;
+    xl29 = xl19;
+    xl19 = ospl0;
+    yl29 = yl19;
+    yl19 = dl;
+    
+    ospl1 = dr;
+    dr = b09 * dr + b19 * xr19 + b29 * xr29 - a19 * yr19 - a29 * yr29;
+    xr29 = xr19;
+    xr19 = ospl1;
+    yr29 = yr19;
+    yr19 = dr;
+  );
+
+  // choosing 0% width signal
+
+  zerowidth == 0 ? (
+    z = (spl0 + spl1) / 2;
+  ) : zerowidth == 1 ? (
+    z = spl0;
+  ) : zerowidth == 2 ? (
+    z = spl1;
+  ) : 0;
+
+  cursample = (abs(dl) + abs(dr)) / 2;
+
+  cursampledb = 6 * log(cursample) / log(2);
+  destwideness = (cursampledb - bottomdb) / (topdb - bottomdb);
+
+  widenesschange = destwideness - curwideness;
+
+  widenesschange > 0 ? (widenesschange = widenesschange / attack) : (widenesschange = widenesschange / release);
+
+  curwideness += widenesschange;
+
+  curwideness = min(reverse ? (1 - minwidth / 100) : (maxwidth / 100), curwideness);
+  curwideness = max(reverse ? (1 - maxwidth / 100) : (minwidth / 100), curwideness);
+
+  actualwideness = curwideness;
+
+  reverse ? (
+    actualwideness = 1 - actualwideness;
+  ) : 0;
+
+  l = actualwideness * spl0 + (1 - actualwideness) * z;
+  r = actualwideness * spl1 + (1 - actualwideness) * z;
+  
+  spl0 = l;
+  spl1 = r;
+  
+  slider14 = ceil(actualwideness * 100);
+
+// Copyright 2006, Thomas Scott Stillwell
+// All rights reserved.
+//
+//Redistribution and use in source and binary forms, with or without modification, are permitted 
+//provided that the following conditions are met:
+//
+//Redistributions of source code must retain the above copyright notice, this list of conditions 
+//and the following disclaimer. 
+//
+//Redistributions in binary form must reproduce the above copyright notice, this list of conditions 
+//and the following disclaimer in the documentation and/or other materials provided with the distribution. 
+//
+//The name of Thomas Scott Stillwell may not be used to endorse or 
+//promote products derived from this software without specific prior written permission. 
+//
+//THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR 
+//IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND 
+//FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS 
+//BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES 
+//(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+//PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+//STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF 
+//THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

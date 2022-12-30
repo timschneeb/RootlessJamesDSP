@@ -1,0 +1,41 @@
+desc: Time adjustment (delay)
+//tags: delay
+
+slider1:0<-100,100,.1>Delay amount (ms)
+slider2:0<-120,12,1>Wet mix (dB)
+slider3:-120<-120,12,1>Dry mix (dB)
+slider4:0<-40000,40000,1>Additional delay amount (samples)
+
+@init
+bpos=0;
+
+slider1 = 0;
+slider2 = 0;
+slider3 = -120;
+slider4 = 0;
+
+wet=2^(slider2/6);
+dry=2^(slider3/6);
+delaylen = (slider1*srate*0.001 + slider4)|0;
+delaylen<0?(
+  pdc_delay=-delaylen;  
+  pdc_top_ch=2;
+  pdc_bot_ch=0;
+  delaylen=0;
+):(
+delaylen+=pdc_delay;
+//pdc_delay=0;
+);
+bufsize=srate*4.0; // extra in case the user wants to go over
+
+@sample
+bpos[0]=spl0;
+bpos[1]=spl1;
+
+rdpos=bpos-delaylen*2;
+rdpos<0 ? rdpos+=bufsize*2;
+spl0=spl0*dry+rdpos[0]*wet;
+spl1=spl1*dry+rdpos[1]*wet;
+
+bpos+=2;
+bpos>=bufsize*2 ? bpos=0;

@@ -1,0 +1,358 @@
+// License: GPL - http://www.gnu.org/licenses/gpl.html 
+// paranoia (destructive mangler)
+// by daniel arena (dan@remaincalm.org)
+// http://remaincalm.org
+
+desc:Paranoia Mangler
+desc:paranoia mangler [remaincalm.org]
+//tags: lo-fi distortion filter mangler
+//author: remaincalm.org
+
+slider1:0<-24,12,1>Input Gain (dB)
+slider2:-3<-96,12,1>Dry Out (dB)
+slider3:-3<-96,12,1>Wet Out (dB)
+slider4:12000<125,33150,1>Bad Resampler (Hz)
+slider5:1<0,2,1{Off,On,On+Noisier}>Bitcrusher
+slider6:0<0,16,0.01>Thermonuclear War
+slider7:8<3,10,1>Bitdepth
+slider8:0<0,100,1>Gate (%)
+slider13:75<0,100,1>Love (%)
+slider14:15<0,150,1>Jive (%) 
+slider15:1<0,3,1{No,Murky,Confused,Unpleasant}>Attitude
+
+@init
+itm1=itm2=otm1=otm2=0;
+
+slider1=0;
+slider2=-3;
+slider3=-3;
+slider4=12000;
+slider5=1;
+slider6=0;
+slider7=8;
+slider8=0;
+slider13=75;
+slider14=15;
+slider15=1;
+
+
+dcshift = 1;
+
+// bit patterns
+relgain=0;
+lut_start=128;
+lut=lut_start;
+lut[7]=1;lut[6]=1;lut[5]=1;lut[4]=1;
+lut[3]=1;lut[2]=1;lut[1]=1;lut[0]=1;
+relgain[0]=1.0;
+
+lut+=16;
+lut[7]=1;lut[6]=1;lut[5]=1;lut[4]=1;
+lut[3]=1;lut[2]=1;lut[1]=1;lut[0]=0;
+relgain[1]=1.0;
+
+lut+=16;
+lut[7]=1;lut[6]=1;lut[5]=1;lut[4]=1;
+lut[3]=1;lut[2]=1;lut[1]=1;lut[0]=-1;
+relgain[2]=1.0;
+
+lut+=16;;
+lut[7]=1;lut[6]=1;lut[5]=1;lut[4]=1;
+lut[3]=1;lut[2]=1;lut[1]=0;lut[0]=1;
+relgain[3]=1.0;
+
+lut+=16;;
+lut[7]=1;lut[6]=1;lut[5]=1;lut[4]=1;
+lut[3]=1;lut[2]=1;lut[1]=-1;lut[0]=1;
+relgain[4]=1.0;
+
+lut+=16;;
+lut[7]=1;lut[6]=1;lut[5]=1;lut[4]=1;
+lut[3]=1;lut[2]=0;lut[1]=0;lut[0]=1;
+relgain[5]=1.0;
+
+lut+=16;;
+lut[7]=1;lut[6]=1;lut[5]=1;lut[4]=1;
+lut[3]=1;lut[2]=1;lut[1]=-1;lut[0]=-1;
+relgain[6]=1.0;
+
+lut+=16;;
+lut[7]=1;lut[6]=1;lut[5]=1;lut[4]=-1;
+lut[3]=1;lut[2]=1;lut[1]=1;lut[0]=1;
+relgain[7]=0.4 ;
+
+lut+=16;;
+lut[7]=1;lut[6]=1;lut[5]=0;lut[4]=1;
+lut[3]=1;lut[2]=1;lut[1]=1;lut[0]=1;
+relgain[8]=0.08;
+
+lut+=16;;
+lut[7]=0;lut[6]=-1;lut[5]=1;lut[4]=0;
+lut[3]=-1;lut[2]=0;lut[1]=-1;lut[0]=1;
+relgain[9]=0.5;
+
+lut+=16;
+lut[7]=-1;lut[6]=-1;lut[5]=1;lut[4]=1;
+lut[3]=-1;lut[2]=1;lut[1]=-1;lut[0]=1;
+relgain[10]=0.08;
+
+lut+=16;
+lut[7]=0;lut[6]=0;lut[5]=0;lut[4]=0;
+lut[3]=1;lut[2]=0;lut[1]=0;lut[0]=0;
+relgain[11]=1.5;
+lut+=16;;
+lut[7]=0;lut[6]=0;lut[5]=0;lut[4]=0;
+lut[3]=0;lut[2]=-1;lut[1]=0;lut[0]=1;
+relgain[12]=3;
+lut+=16;;
+lut[7]=0;lut[6]=0;lut[5]=1;lut[4]=1;
+lut[3]=0;lut[2]=0;lut[1]=-1;lut[0]=1;
+relgain[13]=0.2;
+lut+=16;;
+lut[7]=0;lut[6]=0;lut[5]=0;lut[4]=1;
+lut[3]=1;lut[2]=-1;lut[1]=0;lut[0]=-1;
+relgain[14]=2;
+lut+=16;;
+lut[7]=0;lut[6]=0;lut[5]=0;lut[4]=0;
+lut[3]=1;lut[2]=1;lut[1]=-1;lut[0]=-1;
+relgain[15]=1.0;
+lut+=16;;
+lut[7]=0;lut[6]=0;lut[5]=0;lut[4]=0;
+lut[3]=1;lut[2]=1;lut[1]=1;lut[0]=1;
+relgain[16]=1.0;
+
+// waveshapes
+shaper_amt = 0.857;
+ 
+// less waveshaping here
+shaper_amt_2 = 0.9;
+
+
+// gate params
+
+gate_amt = slider8 / 100;
+gate_open_time = (0.05 + (1-gate_amt)*0.3) * srate;
+fade_point = gate_open_time * 0.5;
+gate_threshold =(0.15 + gate_amt *0.25);
+gate_leakage = (gate_amt > 0.5) ? 0 : (1-gate_amt)*0.2;
+
+bitdepth = slider7;
+resol=2^(bitdepth-1); 
+invresl=1/resol; 
+
+target_per_sample = srate / slider4;
+//sample_csr = 0;
+//next_sample = target_per_sample;
+
+gain=2^(slider1/6);
+dry_gain=2^(slider2/6);
+wet_gain=2^(slider3/6); 
+
+// get lookup
+
+left_bit_slider = slider6 | 0;
+mix = slider6-left_bit_slider;
+right_bit_slider = (mix>0) ? left_bit_slider + 1 : left_bit_slider;
+
+
+
+bit_1=lut_start + left_bit_slider*16;
+bit_2=lut_start + right_bit_slider*16;
+
+
+(bitdepth<8)?
+loop(8-bitdepth,
+(bit_1+=1;bit_2+=1;);  
+);
+
+(bitdepth>8)?
+loop(bitdepth-8,
+bit_1-=1;bit_2-=1;bit_1[0]=1;bit_2[0]=1;
+);
+
+clear_mask_1 = 0;
+xor_mask_1 = 0;
+clear_mask_2 = 0;
+xor_mask_2 = 0;
+i = 0;
+loop(bitdepth,
+  (bit_1[i]==0)?clear_mask_1 = (clear_mask_1 | (2^i));
+  (bit_2[i]==0)?clear_mask_2 = (clear_mask_2 | (2^i));
+  (bit_1[i]==-1)?(xor_mask_1 = xor_mask_1 | 2^i;);
+  (bit_2[i]==-1)?(xor_mask_2 = xor_mask_2 | 2^i;);
+  i+=1; 
+);
+
+post_bit_gain=relgain[left_bit_slider] * (1-mix) + relgain[right_bit_slider]*mix;
+
+// RC filter params (hi/lo)
+LPF_c = 0.5^(5-(slider13/25));
+LPF_r = 0.5^((slider14/40)-0.6);
+HPF_c = 0.5^(5-(slider13/32));
+HPF_r = 0.5^(3-(slider14/40));
+
+ // precalc
+Lrc = LPF_r*LPF_c;
+Hrc = HPF_r*HPF_c;
+
+@sample
+
+dry0 = spl0;
+dry1 = spl1;
+
+per_sample = 0.9995* per_sample + 0.0005 * target_per_sample;
+
+
+// deliberately broken resampler
+// (BAD DIGITAL)
+sample_csr += 1;
+(sample_csr < next_sample && slider4 < 33150) ? (
+
+  spl0 = last_spl0;
+  spl1 = last_spl1;
+
+) : (
+
+
+  
+  // for resampler - this doesn't work properly but sounds cool
+  next_sample += per_sample;
+  (slider4 == 33150) ? (sample_csr = next_sample);
+
+  // gain
+  s0 = spl0*gain;
+  s1 = spl1*gain;
+  
+  // simple gate
+  (slider8 > 0) ? (
+
+    detector = abs(s0)*0.15 + abs(s1)*0.15 + detector*0.7;
+    (detector > gate_threshold) ? (
+      // open gate      
+      gate_open = gate_open_time;
+    );
+    
+    // gate open
+    gate_gain = 1;
+    (gate_open <= fade_point) ? (
+      (gate_open <= 0) ? (       
+        // hard close
+         gate_gain = gate_leakage;
+      ) : ( 
+        // fade out
+         gate_gain = gate_leakage + (1-gate_leakage) * (fade_point - gate_open)/fade_point;
+      )
+    );
+
+    gate_open -= 1;
+    s0 *= gate_gain;
+    s1 *= gate_gain;
+  );
+
+  // and shape
+  s0 = (1+shaper_amt)*s0/(1+shaper_amt*abs(s0));
+  s1 = (1+shaper_amt)*s1/(1+shaper_amt*abs(s1));
+  
+  // clamp
+  s0 = max(min(s0,0.95),-0.95);
+  s1 = max(min(s1,0.95),-0.95);
+  
+  
+  (slider5>0) ? (
+    (slider5==2) ? (
+      // boost to positive range, 0->255
+      // SOMETHING GOES WRONG HERE
+      s0 = ((dcshift + s0) * resol) | 0;
+      s1 = ((dcshift + s1) * resol) | 0;
+    ) : (
+      // boost to positive range, -resol to +resol-1
+      s0 = (s0 * resol) | 0;
+      s1 = (s1 * resol) | 0;
+      
+      // 2s complement
+      (s0<0)?(s0=(2^bitdepth)+s0);
+      (s1<0)?(s1=(2^bitdepth)+s1);
+    );
+    
+    (slider6>0)?(
+    
+      // mangle 
+      s0A = s0 & (1023-clear_mask_1);
+      s1A = s1 & (1023-clear_mask_1);
+      s0A = (s0A & (1023-xor_mask_1)) | ((1023-s0A) & xor_mask_1);
+      s1A = (s1A & (1023-xor_mask_1)) | ((1023-s1A) & xor_mask_1);
+      s0B = s0 & (1023-clear_mask_2);
+      s1B = s1 & (1023-clear_mask_2);
+      s0B = (s0B & (1023-xor_mask_2)) | ((1023-s0B) & xor_mask_2);
+      s1B = (s1B & (1023-xor_mask_2)) | ((1023-s1B) & xor_mask_2);
+      
+      s0 = s0A * (1-mix) + s0B * mix;
+      s1 = s1A * (1-mix) + s1B * mix;
+    
+    );
+    
+    (slider5==2) ? (
+      // revert
+      s0 = (s0 * invresl - dcshift);
+      s1 = (s1 * invresl - dcshift);
+    ) : (
+      // revert
+      s0 = (s0 * invresl);
+      s1 = (s1 * invresl);
+      (s0>=1.0)?(s0=s0-2);
+      (s1>=1.0)?(s1=s1-2);
+    );
+  );
+  
+  spl0 = s0;
+  spl1 = s1;
+  
+  // remember last sample
+  last_spl0 = spl0;
+  last_spl1 = spl1;
+
+);
+
+// LPF
+(slider15 == 1 || slider15 == 2) ?
+(
+  v0L = (1 - Lrc)*v0L - LPF_c*(v1L - spl0);
+  v1L = (1 - Lrc)*v1L + LPF_c*v0L;
+  spl0 = v1L;
+  v0R = (1 - Lrc)*v0R - LPF_c*(v1R - spl1);
+  v1R = (1 - Lrc)*v1R + LPF_c*v0R;
+  spl1 = v1R;
+);
+
+
+// HPF
+(slider15 == 2 || slider15 == 3) ?
+(
+  hv0L = (1 - Hrc)*hv0L - HPF_c*(hv1L - spl0);
+  hv1L = (1 - Hrc)*hv1L + HPF_c*hv0L;
+  spl0 -= hv1L;
+  hv0R = (1 - Hrc)*hv0R - HPF_c*(hv1R - spl1);
+  hv1R = (1 - Hrc)*hv1R + HPF_c*hv0R;
+  spl1 -= hv1R;
+);
+
+// waveshape again, just because
+spl0 = wet_gain * spl0;
+spl1 = wet_gain * spl1;
+spl0 = (1+shaper_amt_2)*spl0/(1+shaper_amt_2*abs(spl0));
+spl1 = (1+shaper_amt_2)*spl1/(1+shaper_amt_2*abs(spl1));
+
+
+// dc filter
+otm1=0.99*otm1 + spl0 - itm1; itm1=spl0; spl0=otm1;
+otm2=0.99*otm2 + spl1 - itm2; itm2=spl1; spl1=otm2;
+
+// try and handle weird bit pattern supergain
+(slider5>0)?(
+  spl0 = spl0 * post_bit_gain;
+  spl1 = spl1 * post_bit_gain;
+);
+
+// mix
+spl0 = spl0 + dry0 * dry_gain;
+spl1 = spl1 + dry1 * dry_gain;

@@ -1,0 +1,66 @@
+// This effect Copyright (C) 2004 and later Cockos Incorporated
+// License: GPL - http://www.gnu.org/licenses/gpl.html
+desc: Delay w/Chorus
+//tags: delay chorus modulation
+//author: Cockos
+
+slider1:300<1,4000,20>Delay (ms)
+slider2:-6<-120,6,1>Feedback (dB)
+slider3:-6<-120,6,1>Output Wet (Chorus) (dB)
+slider4:-6<-120,6,1>Output Wet (Clean) (dB)
+slider5:0<-120,6,1>Output Dry (dB)
+slider6:500<1,1000,10>Chorus Period (ms)
+slider7:2<0,100,1>Chorus Length (ms)
+
+@init
+delaypos=0;
+
+slider1=300;
+slider2=-6;
+slider3=-6;
+slider4=-6;
+slider5=0;
+slider6=500;
+slider7=2;
+
+odelay=delaylen;
+delaylen=min(slider1 * srate / 1000,500000);
+
+wetmix = 2 ^ (slider2/6);
+drymix = 1;
+wetmix2 = 2 ^ (slider3/6);
+wetmix3 = 2 ^ (slider4/6);
+drymix2 = 2 ^ (slider5/6);
+dppossc = $pi/(slider6 * srate * 0.001);
+dpbacksc = min(max(slider7/slider1,0),1)*delaylen*0.5 - 1;
+
+
+@sample
+
+dppos = dppos+dppossc;
+dpback = (sin(dppos)+1)*dpbacksc;
+dpint = delaypos-dpback-1;
+dpint < 0 ? dpint += delaylen;
+dpinto=dpint;
+dpint=(0|dpint);
+frac=dpinto-dpint;
+dpint2=dpint>=(delaylen-1)?0:(dpint+1);
+
+dpint += dpint;
+dpint2 += dpint2;
+
+os1=dpint[0]*(1-frac)+frac*dpint2[0];
+os2=dpint[1]*(1-frac)+frac*dpint2[1];
+
+dpint = delaypos*2;
+
+oss1=dpint[0];
+oss2=dpint[1];
+
+dpint[0]=min(max(spl0*drymix + oss1*wetmix,-4),4);
+dpint[1]=min(max(spl1*drymix + oss2*wetmix,-4),4);
+
+(delaypos+=1) >= delaylen ? delaypos=0;
+
+spl0=spl0*drymix2 + os1*wetmix2 + oss1*wetmix3;
+spl1=spl1*drymix2 + os2*wetmix2 + oss2*wetmix3;

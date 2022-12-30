@@ -1,0 +1,94 @@
+// This effect Copyright (C) 2004 and later Cockos Incorporated
+// License: GPL - http://www.gnu.org/licenses/gpl.html
+
+desc: Pitch Down-Shifter 2
+//tags: processing pitch
+//author: Cockos
+
+//slider1:1<0,6,1>Octaves Down
+//slider2:0<0,11,1>Semitones Down
+//slider3:0<0,99,1>Cents Down
+//slider4:250<4,500,10>Chunk Size (ms)
+//slider5:0.5<0.001,1>Overlap Size
+//slider6:-120<-120,6,1>Dry Mix (dB)
+//slider7:0.9<0.1,1,0.1>Subdivide Ratio
+//slider8:4<1,8,1>Subdivide
+
+@init
+  slider1=1;
+  slider2=0;
+  slider3=0;
+  slider4=250;
+  slider5=0.5;
+  slider6=-120;
+  slider7=0.9;
+  slider8=4;
+  lbufsize=bufsize; bufsize=(srate*0.001*slider4)&65534; 
+  lbufsize!=bufsize ? ( memset(0,0,1024););   //freembuf(0);
+  scl=2 ^ (-(slider1 + slider2/12 + slider3/1200)); 
+  rilen=(max(scl,0.5)*bufsize)|0; 
+  rrilen=((scl*bufsize)|0); 
+  slider5=min(1,max(slider5,0)); 
+  rspos=slider5*(bufsize-rilen); 
+  invbs=1/rspos;
+  drymix=2 ^ (slider6/6); 
+  subdivide=max(slider8|0,1);
+  wetmix=1 / subdivide;
+  sdfact=slider7;
+  isdfact=1/sdfact;
+
+@sample
+ss0=spl0; ss1=spl1;
+s0=0;
+s1=0;
+
+
+splbuf=1024;
+tbufsize=bufsize;
+posbuf=0;
+rrilen_l=rrilen;
+rspos_l = rspos;
+invbs_l = invbs;
+
+loop(subdivide,
+
+  bufpos = posbuf[0];
+
+  hbp=((bufpos * scl)|0)*2;
+
+  // pre read these before writing
+  s0r=splbuf[2*rrilen_l+hbp];
+  s1r=splbuf[2*rrilen_l+hbp+1];
+
+  splbuf[bufpos*2]=spl0;
+  splbuf[bufpos*2+1]=spl1;
+
+  bufpos < rspos_l ? 
+  (
+     // mix
+     sc=bufpos*invbs_l;
+     s0+=splbuf[hbp]*sc + s0r*(1-sc);
+     s1+=splbuf[hbp+1]*sc + s1r*(1-sc);
+  ) : (
+    // straight resample
+     s0+=splbuf[hbp]; 
+     s1+=splbuf[hbp+1];
+  );
+  (bufpos+=1) >= tbufsize ? bufpos=0;
+
+  posbuf[0] = bufpos;
+  posbuf += 1;
+
+  splbuf += tbufsize*2+1024;
+
+
+  invbs_l *= isdfact;
+  tbufsize *= sdfact;
+  rspos_l *= sdfact;
+  rrilen_l = (rrilen_l*sdfact)|0;
+ 
+);
+
+
+spl0 = s0*wetmix + ss0*drymix;
+spl1 = s1*wetmix + ss1*drymix;

@@ -1,0 +1,48 @@
+desc: High Pass Filter
+//tags: filter
+
+freq:250<10,10000,1>Cut-off frequency
+qFactor:2<0.01,10,0.1>Q factor
+
+@init
+freq = 250;
+qFactor = 2.00;
+
+function HighPassFilter_Set(frequency qFactor)(
+    x = (frequency * 2.f * $PI) / srate;
+    sinX = sin(x);
+    y = sinX / (qFactor * 2.f);
+    cosX = cos(x);
+    z = (1.f - cosX) / 2.f;
+    
+    _a0 = y + 1.f;
+    _a1 = cosX * -2.f;
+    _a2 = 1.f - y;
+    _b0 = 1.f - z;   
+    _b1 = cosX * -2.f;   
+    _b2 = 1.f - z;   
+    
+    this.y_2 = 0; this.y_1 = 0; this.x_2 = 0; this.x_1 = 0;
+    this.b0 = _b0 / _a0;
+    this.b1 = _b1 / _a0;
+    this.b2 = _b2 / _a0;
+    this.a1 = -_a1 / _a0;
+    this.a2 = -_a2 / _a0;
+);
+
+function HighPassFilter_ProcessSample(sample)(
+    out = sample * this.b0 + this.x_1 * this.b1 + this.x_2 * this.b2 + this.y_1 * this.a1 + this.y_2 * this.a2;
+    this.y_2 = this.y_1;
+    this.y_1 = out;
+    this.x_2 = this.x_1;
+    this.x_1 = sample;
+    
+    out;
+);
+
+highpass.HighPassFilter_Set(freq, qFactor);
+
+@sample
+avg = highpass.HighPassFilter_ProcessSample(spl0 + spl1);
+spl0 -= avg;
+spl1 -= avg;

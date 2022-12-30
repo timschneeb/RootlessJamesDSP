@@ -1,0 +1,139 @@
+desc: Pitch Shifter
+//tags: processing pitch
+//author: Cockos
+
+slider1:0<-100,100,1>Pitch Adjust (cents)
+slider2:0<-12,12,1>Pitch Adjust (st)
+slider3:0<-12,12,1>Pitch Adjust (oct)
+slider4:50<0,200,1>Window Size (ms)
+slider5:20<0.05,50,0.5>Overlap Size (ms)
+slider6:0<-120,6,1>Wet Mix (dB)
+slider7:-120<-120,6,1>Dry Mix (dB)
+slider8:1<0,1,1{Off,On}>Filter
+
+@init
+  bufsize = srate|0;
+  xfade=100;
+  bufloc0 = 10000;
+  bufloc1 = bufloc0+bufsize+1000;
+
+  buffer0 = bufloc0;
+  buffer1 = bufloc1;
+  bufdiff=bufloc1-bufloc0;
+  pitch=1.0;
+  denorm=10^-20;
+
+slider1=0;
+slider2=0;
+slider3=0;
+slider4=50;
+slider5=20;
+slider6=0;
+slider7=-120;
+slider8=1;
+
+
+  filter=slider8>0.5;
+  bsnew=(min(slider4,1000)*0.001*srate)|0;
+  bsnew!=bufsize ? 
+  (
+      bufsize = bsnew;
+      v0=buffer0+bufsize*0.5;
+      v0 > bufloc0 + bufsize? v0-=bufsize;
+  );
+
+  xfade=(slider5*0.001*srate)|0;
+  xfade>bsnew*0.5 ? xfade=bsnew*0.5;
+
+  npitch=2^((slider2+slider1*0.01)/12+slider3);
+  pitch!=npitch ? (
+    pitch=npitch;
+    lppos=pitch > 1.0 ? 1.0/pitch : pitch;
+    lppos< (.1/srate) ? lppos=.1/srate;
+    r=1.0;       
+    c = 1.0 / tan($pi * lppos * 0.5);
+    a1 = 1.0 / ( 1.0 + r * c + c * c);
+    a2 = 2*a1;
+    a3 = a1;
+    b1 = 2.0 * ( 1.0 - c*c) * a1;
+    b2 = ( 1.0 - r * c + c * c) * a1;
+    h01=h02=h03=h04=0;
+    h11=h12=h13=h14=0;
+  );
+  drymix = 2 ^ (slider7/6); 
+  wetmix = 2 ^ (slider6/6);
+
+@sample
+  iv0=0|(v0); frac0=v0-iv0;
+  iv02 = iv0 >= (bufloc0+bufsize-1) ? iv0-bufsize+1 : iv0+1;   
+  
+  ren0=(iv0[0]*(1-frac0)+iv02[0]*frac0);
+  ren1=(iv0[bufdiff]*(1-frac0)+iv02[bufdiff]*frac0);
+  vr=pitch;
+
+  vr >= 1.0 ?
+  (
+    tv=v0;
+    tv>buffer0?tv-=bufsize;
+    (tv >= buffer0-xfade && tv < buffer0) ? (
+       // xfade
+      frac=(buffer0-tv)/xfade;
+      tmp=v0+xfade;
+      tmp>=bufloc0+bufsize?tmp-=bufsize;
+      tmp2=tmp>=bufloc0+bufsize-1?bufloc0:tmp+1;
+      ren0 = ren0*frac + (1-frac)*( tmp[0]*(1-frac0)+tmp2[0]*frac0 );
+      ren1 = ren1*frac + (1-frac)*( tmp[bufdiff]*(1-frac0)+tmp2[bufdiff]*frac0 );
+      tv+vr > buffer0+1 ? v0+=xfade;
+    );
+  ) : ( // read pointer moving slower than write pointer
+    tv=v0;
+    tv<buffer0?tv+=bufsize;
+    (tv >= buffer0 && tv < buffer0+xfade) ? (
+       // xfade
+      frac=(tv-buffer0)/xfade;
+      tmp=v0+xfade;
+      tmp>=bufloc0+bufsize?tmp-=bufsize;
+      tmp2=tmp>=bufloc0+bufsize-1?bufloc0:tmp+1;
+      ren0 = ren0*frac + (1-frac)*( tmp[0]*(1-frac0)+tmp2[0]*frac0 );
+      ren1 = ren1*frac + (1-frac)*( tmp[bufdiff]*(1-frac0)+tmp2[bufdiff]*frac0 );
+      tv+vr < buffer0+1 ? v0+=xfade;
+    );
+  );
+    
+
+  ((v0+=vr) >= (bufloc0+bufsize)) ? v0 -= bufsize;
+
+  os0=spl0; os1=spl1;
+  filter && pitch>1.0?
+  (
+    t0=spl0; t1=spl1;
+    spl0=a1*spl0 + a2*h01 + a3*h02 - b1*h03 - b2*h04 + denorm;
+    spl1=a1*spl1 + a2*h11 + a3*h12 - b1*h13 - b2*h14 + denorm;
+    h02=h01; h01=t0;
+    h12=h11; h11=t1;
+    h04=h03; h03=spl0;
+    h14=h13; h13=spl1;
+  );
+
+
+  buffer0[0] = spl0; // write after reading it to avoid clicks
+  buffer0[bufdiff] = spl1;
+
+  spl0 = ren0 * wetmix;
+  spl1 = ren1 * wetmix;
+
+  filter && pitch<1.0?
+  (
+    t0=spl0; t1=spl1;
+    spl0=a1*spl0 + a2*h01 + a3*h02 - b1*h03 - b2*h04 + denorm;
+    spl1=a1*spl1 + a2*h11 + a3*h12 - b1*h13 - b2*h14 + denorm;
+    h02=h01; h01=t0;
+    h12=h11; h11=t1;
+    h04=h03; h03=spl0;
+    h14=h13; h13=spl1;
+  );
+
+  spl0+=os0*drymix;
+  spl1+=os1*drymix;
+
+  ((buffer0+=1) >= (bufloc0 + bufsize)) ? buffer0 -= bufsize;
