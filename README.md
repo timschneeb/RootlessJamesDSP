@@ -56,6 +56,7 @@ Apps confirmed working:
 * Substreamer
 * Twitch
 * Spotify ReVanced **(Patch required)**
+* Apple Music
 * ...
 
 Unsupported apps include:
@@ -67,6 +68,7 @@ Unsupported apps include:
 Tested on:
 * Samsung Galaxy S20+ (Android 12; OneUI 4.0)
 * Stock AOSP emulator (Android 10-13)
+* Google Pixel 6 Pro (Android 13)
 
 ## Spotify support patch
 You can only use Spotify with this application if you patch the Spotify app.
