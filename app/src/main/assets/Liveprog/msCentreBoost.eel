@@ -1,8 +1,9 @@
 desc: MS centre boost
 
+//tags: surround
+
 midBoostDB:3<-15,15>Mid boost (dB)
 sideBoostDB:0<-15,15>Side boost (dB)
-
 
 @init
 midBoostDB = 3.00;

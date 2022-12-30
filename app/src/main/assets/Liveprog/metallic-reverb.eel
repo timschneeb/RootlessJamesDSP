@@ -1,6 +1,7 @@
 desc: Delay effects (waveguide)
 author: @thepbone
 //reimplemented from: https://www.musicdsp.org/en/latest/Effects/98-class-for-waveguide-delay-effects.html
+//tags: reverb delay
 
 //delay:1000<0,1024>Delay
 //fb:0.6<0,0.99>Feedback

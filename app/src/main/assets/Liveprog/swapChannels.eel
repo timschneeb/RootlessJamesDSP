@@ -1,4 +1,5 @@
 desc: Swap channels
+//tags: gain
 
 leftGain:0<-30,10>Left post-gain (dB)
 rightGain:0<-30,10>Right post-gain (dB)

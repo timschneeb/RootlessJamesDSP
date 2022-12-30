@@ -1,5 +1,7 @@
 desc: Polyphase filterbank
 
+//tags: polyphase
+
 @init
 N = 5; // number of subbands
 m = 3; 

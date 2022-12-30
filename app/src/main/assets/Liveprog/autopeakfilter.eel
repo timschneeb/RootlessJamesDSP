@@ -1,4 +1,6 @@
 desc: FFT peak-following filter
+//tags: fft filter
+
 //fftsize:{64,128,256,512,1024,2048,4096}FFT Size
 //lowestFc:60<0,24000,10>Minimum Center Freq (Hz)
 //highestFc:8000<0,24000,10>Maximum Center Freq (Hz)

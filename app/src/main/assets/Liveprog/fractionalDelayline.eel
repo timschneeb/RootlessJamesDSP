@@ -1,4 +1,6 @@
 desc: Fractional delay line
+//tags: delay
+
 leftDelay:15.1<0,1024,0.1>Fractional delay L (samples) 
 rightDelay:4.2<0,1024,0.1>Fractional delay R (samples) 
 

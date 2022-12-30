@@ -1,5 +1,7 @@
 desc: Least square FIR design (firls) and processing (Direct form)
 
+//tags: fir filter
+
 @init
 N = 53;
 F = 0;

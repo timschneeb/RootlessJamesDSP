@@ -1,5 +1,7 @@
 desc: Hadamard variable delay array
 
+//tags: surround reverb delay
+
 slider1:0.2<0.01,1>Base Delay (s)
 slider4:2<0,5>Fb 1
 slider5:2<0,5>Fb 2

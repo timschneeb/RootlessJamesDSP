@@ -1,4 +1,5 @@
 desc: STFT CentreCut
+//tags: stft
 
 @init
 fftsize = 4096;

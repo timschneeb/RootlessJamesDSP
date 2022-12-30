@@ -1,6 +1,7 @@
 desc: Stereo widener
 //width:2<0,6,0.1>Stereo Width
 //reimplemented from: https://www.musicdsp.org/en/latest/Effects/256-stereo-width-control-obtained-via-transfromation-matrix.html
+//tags: stereo
 
 @init
 width = 2;

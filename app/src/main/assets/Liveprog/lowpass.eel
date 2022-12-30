@@ -1,5 +1,6 @@
 desc: Low-pass filter
 author: @thepbone
+//tags: filter
 
 freq:55<10,10000,1>Cut-off frequency
 qFactor:2<0.01,10,0.1>Q factor

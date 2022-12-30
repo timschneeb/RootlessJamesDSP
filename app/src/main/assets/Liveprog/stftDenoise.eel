@@ -1,4 +1,5 @@
 desc: STFT Denoiser
+//tags: stft
 
 @init
 function nesInit(frameLen, kOverlapCount, fs) local(halfLen ta tinc)

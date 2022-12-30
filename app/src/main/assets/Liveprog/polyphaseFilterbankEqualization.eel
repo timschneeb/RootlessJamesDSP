@@ -1,5 +1,7 @@
 desc: Polyphase filterbank (Equalization example)
 
+//tags: polyphase
+
 @init
 N = 8;
 m = 3;

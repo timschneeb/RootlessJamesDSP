@@ -1,5 +1,7 @@
 desc: Stereo to mono downmixer
 
+//tags: stereo
+
 @init
 ;
 

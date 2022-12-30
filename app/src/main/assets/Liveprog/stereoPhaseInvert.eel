@@ -12,7 +12,7 @@
 *******************************************************************************/
 
 desc:Channel Polarity Control
-//tags: processing phase polarity
+//tags: processing phase stereo
 //author: IXix
 
 mode:0<0,3,1{Normal, Left, Right, Both}>Polarity Mode

@@ -1,4 +1,5 @@
 desc: Decimate
+//tags: distortion
 
 @init
 bits=16;

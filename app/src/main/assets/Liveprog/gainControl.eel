@@ -1,4 +1,6 @@
 desc: Gain control
+//tags: gain
+
 dB:-8<-30,15,1>Volume gain (dB)
 
 @init

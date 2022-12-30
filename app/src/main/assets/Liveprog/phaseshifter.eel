@@ -1,6 +1,7 @@
 desc: 6-stage phase shifter
 author: @thepbone
 //reimplemented from: https://www.musicdsp.org/en/latest/Effects/78-phaser-code.html
+//tags: modulation phase
 
 //minFreq:440<10,24000>Minimum frequency (Hz)
 //maxFreq:1600<10,24000>Maximum frequency (Hz)

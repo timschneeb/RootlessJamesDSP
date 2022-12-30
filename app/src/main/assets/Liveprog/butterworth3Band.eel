@@ -1,5 +1,7 @@
 desc: Butterworth 3 bands (Equalization example)
 
+//tags: iir
+
 @init
 iirBPS = 0;
 reqSize = IIRBandSplitterInit(iirBPS, srate, 4000, 12000);

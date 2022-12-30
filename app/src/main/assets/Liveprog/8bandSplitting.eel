@@ -1,4 +1,6 @@
 desc: 8-Band Splitting
+//tags: iir splitting
+
 freqSplit1:180<1,24000,1>Split 1 at frequency (Hz)
 freqSplit2:800<1,24000,1>Split 2 at frequency (Hz)
 freqSplit3:1600<1,24000,1>Split 3 at frequency (Hz)

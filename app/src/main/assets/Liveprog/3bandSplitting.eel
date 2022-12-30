@@ -1,4 +1,6 @@
 desc: 3-Band splitting
+//tags: iir splitting
+
 freqSplit1:400<1,24000,1>Split 1 at frequency (Hz)
 freqSplit2:10000<1,24000,1>Split 2 at frequency (Hz)
 bandPart1:-6<-30,15,1>Low frequencies gain (dB)

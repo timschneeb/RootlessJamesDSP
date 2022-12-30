@@ -1,5 +1,7 @@
 desc: 2x4x2 FFT convolution combined
 
+//tags: fft
+
 @init
 requiredSamples = 1024;
 h1 = 0;

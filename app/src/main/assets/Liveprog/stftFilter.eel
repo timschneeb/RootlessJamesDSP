@@ -1,4 +1,6 @@
 desc: STFT Filter
+//tags: stft filter
+
 bandEdge1:100<0,24000,1>Band edge 1 (Hz) 
 bandEdge2:480<0,24000,1>Band edge 2 (Hz) 
 
