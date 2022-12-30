@@ -6,7 +6,7 @@ import kotlin.math.floor
 import kotlin.math.max
 import kotlin.math.min
 
-class EelNumberRangeProperty<T:Number>(
+open class EelNumberRangeProperty<T:Number>(
     key: String,
     description: String,
     var default: T?,
@@ -16,11 +16,15 @@ class EelNumberRangeProperty<T:Number>(
     val step: T
 ) : EelBaseProperty(key, description) {
     init {
+        if(minimum.toDouble() >= maximum.toDouble()) {
+            throw NumberFormatException("Minimum must be smaller than the maximum (key=$key)")
+        }
+
         value = validateRange(value)
     }
 
     @Suppress("UNCHECKED_CAST")
-    private fun validateRange(input: T): T {
+    public fun validateRange(input: T): T {
         return when (input) {
             is Double -> min(max(minimum.toDouble(), input.toDouble()), maximum.toDouble()) as T
             is Int -> min(max(minimum.toInt(), input.toInt()), maximum.toInt()) as T

@@ -2,25 +2,27 @@ package me.timschneeberger.rootlessjamesdsp.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
+import androidx.appcompat.widget.PopupMenu
+import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceScreen
 import androidx.recyclerview.widget.RecyclerView
-import me.timschneeberger.rootlessjamesdsp.utils.NonPersistentDatastore
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.activity.LiveprogParamsActivity
+import me.timschneeberger.rootlessjamesdsp.adapter.RoundedRipplePreferenceGroupAdapter
+import me.timschneeberger.rootlessjamesdsp.liveprog.EelListProperty
 import me.timschneeberger.rootlessjamesdsp.liveprog.EelNumberRangeProperty
 import me.timschneeberger.rootlessjamesdsp.liveprog.EelParser
+import me.timschneeberger.rootlessjamesdsp.preference.DropDownPreference
 import me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
-import me.timschneeberger.rootlessjamesdsp.adapter.RoundedRipplePreferenceGroupAdapter
+import me.timschneeberger.rootlessjamesdsp.utils.NonPersistentDatastore
 import timber.log.Timber
 
-class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastore.OnPreferenceChanged{
+class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastore.OnPreferenceChanged {
     private val eelParser = EelParser()
     private val dataStore = NonPersistentDatastore()
     private var isCreated = false
@@ -56,7 +58,11 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
 
         Timber.d("onFloatPreferenceChanged: $key=$value")
 
-        val prop = eelParser.properties.find { it.key == key } as? EelNumberRangeProperty<Float>
+        val baseProp = eelParser.properties.find { it.key == key }
+        if(baseProp is EelListProperty)
+            return;
+
+        val prop = baseProp as? EelNumberRangeProperty<Float>
         prop ?: return
         prop.value = value
         eelParser.manipulateProperty(prop)
@@ -69,17 +75,54 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
     private fun createPreferences(): PreferenceScreen {
         val screen = preferenceManager.createPreferenceScreen(requireContext())
 
-        eelParser.properties.forEach {
-            if(it is EelNumberRangeProperty<*>) {
+        eelParser.properties.forEach { prop ->
+            if(prop is EelListProperty) {
+                val preference = DropDownPreference(requireContext())
+                preference.key = prop.key
+                preference.title = prop.description
+                //preference.summary = prop.options.getOrNull(prop.value) ?: getString(R.string.value_not_set);
+                preference.setDefaultValue(prop.value.toString())
+                preference.entries = prop.options.toTypedArray()
+                preference.entryValues = (0 until(prop.options.size)).toList().map { it.toString() }.toTypedArray()
+                preference.setValueIndex(prop.validateRange(prop.value))
+                preference.setOnPreferenceChangeListener { preference, newValue ->
+                    if(!isCreated) {
+                        Timber.d("onPreferenceChangeListener not yet ready")
+                        return@setOnPreferenceChangeListener false
+                    }
+
+                    val currentProp = eelParser.properties.find { it.key == prop.key } as? EelListProperty
+                    currentProp ?: return@setOnPreferenceChangeListener false
+
+                    Timber.d("List item with value $newValue selected")
+
+                    currentProp.value = (newValue as? String)?.toIntOrNull() ?: 0
+                    eelParser.manipulateProperty(currentProp)
+
+                    //preference.summary = currentProp.options.getOrNull(currentProp.value) ?: getString(R.string.value_not_set)
+
+                    updateResetMenuItem()
+                    requireContext().sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_RELOAD_LIVEPROG))
+                    true
+                }
+                preference.setOnPreferenceClickListener {
+                    //preferenceManager
+                    //showListMenu(preference.getView, it)
+
+                    true
+                }
+                screen.addPreference(preference)
+            }
+            else if(prop is EelNumberRangeProperty<*>) {
                 val slider = MaterialSeekbarPreference(requireContext())
-                slider.key = it.key
-                slider.title = it.description
-                slider.mPrecision = if(it.handleAsInt()) 0 else 2
-                slider.setMin(it.minimum.toFloat())
-                slider.setMax(it.maximum.toFloat())
+                slider.key = prop.key
+                slider.title = prop.description
+                slider.mPrecision = if(prop.handleAsInt()) 0 else 2
+                slider.setMin(prop.minimum.toFloat())
+                slider.setMax(prop.maximum.toFloat())
                 slider.setUpdatesContinuously(false)
                 slider.setShowSeekBarValue(true)
-                slider.setDefaultValue(it.value)
+                slider.setDefaultValue(prop.value)
                 screen.addPreference(slider)
             }
         }
@@ -87,10 +130,36 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
         return screen
     }
 
+    private fun showListMenu(v: View, prop: EelListProperty) {
+        val popup = PopupMenu(requireContext(), v)
+        prop.options.forEachIndexed { index, s ->
+            popup.menu.add(Menu.NONE, index, Menu.CATEGORY_CONTAINER, s)
+        }
+
+        popup.setOnMenuItemClickListener { menuItem: MenuItem ->
+            val currentProp = eelParser.properties.find { it.key == prop.key } as? EelListProperty
+            currentProp ?: return@setOnMenuItemClickListener false
+
+            Timber.d("List item '${menuItem.title}' with value ${menuItem.itemId} selected")
+
+            currentProp.value = menuItem.itemId
+            eelParser.manipulateProperty(currentProp)
+
+            val preference = this.preferenceManager.findPreference<Preference>(currentProp.key);
+            preference?.summary = currentProp.options.getOrNull(currentProp.value) ?: getString(R.string.value_not_set)
+
+            updateResetMenuItem()
+            requireContext().sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_RELOAD_LIVEPROG))
+            true
+        }
+        popup.show()
+    }
+
+
     override fun onCreateRecyclerView(
         inflater: LayoutInflater,
         parent: ViewGroup,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): RecyclerView {
         val recyclerView = super.onCreateRecyclerView(inflater, parent, savedInstanceState)
         recyclerView.itemAnimator = null // Fix to prevent RecyclerView crash if group is toggled rapidly

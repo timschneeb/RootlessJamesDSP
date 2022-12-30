@@ -162,7 +162,7 @@ dependencies {
     implementation("androidx.preference:preference-ktx:1.2.0")
     implementation("androidx.preference:preference:1.2.0")
     implementation("androidx.databinding:databinding-runtime:7.3.0")
-    implementation("com.google.android.material:material:1.8.0-alpha01")
+    implementation("com.google.android.material:material:1.8.0-beta01")
 
     // Dependency injection
     implementation("io.insert-koin:koin-android:3.2.0")

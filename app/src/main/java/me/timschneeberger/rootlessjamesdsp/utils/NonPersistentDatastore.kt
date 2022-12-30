@@ -10,6 +10,8 @@ class NonPersistentDatastore : PreferenceDataStore() {
         this.preferenceChangedListener?.onFloatPreferenceChanged(key, value)
     }
 
+    override fun putString(key: String?, value: String?) {}
+
     fun setOnPreferenceChanged(preferenceChangedListener: OnPreferenceChanged) {
         this.preferenceChangedListener = preferenceChangedListener
     }
