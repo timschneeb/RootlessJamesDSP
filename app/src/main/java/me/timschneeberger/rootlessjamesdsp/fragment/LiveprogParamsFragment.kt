@@ -99,16 +99,8 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
                     currentProp.value = (newValue as? String)?.toIntOrNull() ?: 0
                     eelParser.manipulateProperty(currentProp)
 
-                    //preference.summary = currentProp.options.getOrNull(currentProp.value) ?: getString(R.string.value_not_set)
-
                     updateResetMenuItem()
                     requireContext().sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_RELOAD_LIVEPROG))
-                    true
-                }
-                preference.setOnPreferenceClickListener {
-                    //preferenceManager
-                    //showListMenu(preference.getView, it)
-
                     true
                 }
                 screen.addPreference(preference)
@@ -129,32 +121,6 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
 
         return screen
     }
-
-    private fun showListMenu(v: View, prop: EelListProperty) {
-        val popup = PopupMenu(requireContext(), v)
-        prop.options.forEachIndexed { index, s ->
-            popup.menu.add(Menu.NONE, index, Menu.CATEGORY_CONTAINER, s)
-        }
-
-        popup.setOnMenuItemClickListener { menuItem: MenuItem ->
-            val currentProp = eelParser.properties.find { it.key == prop.key } as? EelListProperty
-            currentProp ?: return@setOnMenuItemClickListener false
-
-            Timber.d("List item '${menuItem.title}' with value ${menuItem.itemId} selected")
-
-            currentProp.value = menuItem.itemId
-            eelParser.manipulateProperty(currentProp)
-
-            val preference = this.preferenceManager.findPreference<Preference>(currentProp.key);
-            preference?.summary = currentProp.options.getOrNull(currentProp.value) ?: getString(R.string.value_not_set)
-
-            updateResetMenuItem()
-            requireContext().sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_RELOAD_LIVEPROG))
-            true
-        }
-        popup.show()
-    }
-
 
     override fun onCreateRecyclerView(
         inflater: LayoutInflater,
