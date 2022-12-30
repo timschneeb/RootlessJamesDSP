@@ -1,8 +1,5 @@
 package me.timschneeberger.rootlessjamesdsp.liveprog
 
-import timber.log.Timber
-
-
 class EelListProperty(
     key: String,
     description: String,

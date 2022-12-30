@@ -19,6 +19,8 @@ class EelParser {
         private set
     var description: String? = null
         private set
+    var tags = listOf<String>()
+        private set
     var hasDescription: Boolean = false
         private set
     var properties = ArrayList<EelBaseProperty>()
@@ -48,10 +50,11 @@ class EelParser {
             return false
         }
 
-        // Parse description
+        // Parse description & tags
         parseDescription()
+        parseTags()
 
-        properties = arrayListOf<EelBaseProperty>()
+        properties = arrayListOf()
 
         // Parse number range parameters
         val rangeParamRegex = """(?<var>\w+):(?<def>-?\d+\.?\d*)?<(?<min>-?\d+\.?\d*),(?<max>-?\d+\.?\d*),?(?<step>-?\d+\.?\d*)?>(?<desc>[\s\S][^\n]*)""".toRegex()
@@ -263,5 +266,19 @@ class EelParser {
         description = desc ?: File(path!!).name
 
         Timber.d("Found description: $description")
+    }
+
+    private fun parseTags() {
+        tags = listOf()
+
+        if(path == null)
+            return
+
+        val tagRegex = """(?:^|(?<=\n))(?:[\W\/]*tags:)([\s\S][^\n]*)""".toRegex()
+        val match = tagRegex.find(contents ?: "")
+
+        tags = match?.groups?.get(1)?.value?.trim()?.split(" ")?.map(String::trim) ?: listOf()
+
+        Timber.d("Found tags: $tags")
     }
 }
