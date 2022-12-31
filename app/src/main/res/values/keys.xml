@@ -32,6 +32,7 @@
     <string name="key_audioformat_encoding" translatable="false">audioformat_encoding</string>
     <string name="key_audioformat_buffersize" translatable="false">audioformat_buffersize</string>
     <string name="key_audioformat_legacymode" translatable="false">audioformat_processing</string>
+    <string name="key_audioformat_channels" translatable="false">audioformat_channels</string> <!-- testing only -->
 
     <!-- Appearance -->
     <string name="key_appearance_theme_mode" translatable="false">appearance_theme_mode</string>

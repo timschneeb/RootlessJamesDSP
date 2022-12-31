@@ -22,6 +22,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroa
 class SettingsAudioFormatFragment : PreferenceFragmentCompat() {
 
     private val encoding by lazy { findPreference<ListPreference>(getString(R.string.key_audioformat_encoding)) }
+    private val channels by lazy { findPreference<ListPreference>(getString(R.string.key_audioformat_channels)) }
     private val bufferSize by lazy { findPreference<MaterialSeekbarPreference>(getString(R.string.key_audioformat_buffersize)) }
     private val legacyMode by lazy { findPreference<MaterialSwitchPreference>(getString(R.string.key_audioformat_legacymode)) }
 
@@ -49,6 +50,10 @@ class SettingsAudioFormatFragment : PreferenceFragmentCompat() {
             true
         }
         encoding?.setOnPreferenceChangeListener { _, _ ->
+            requireContext().sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_HARD_REBOOT_CORE))
+            true
+        }
+        channels?.setOnPreferenceChangeListener { _, _ ->
             requireContext().sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_HARD_REBOOT_CORE))
             true
         }

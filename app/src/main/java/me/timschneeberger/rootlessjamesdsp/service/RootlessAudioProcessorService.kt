@@ -31,7 +31,7 @@ import me.timschneeberger.rootlessjamesdsp.model.rootless.SessionRecordingPolicy
 import me.timschneeberger.rootlessjamesdsp.session.rootless.AudioSessionManager
 import me.timschneeberger.rootlessjamesdsp.session.rootless.MutedSessionManager
 import me.timschneeberger.rootlessjamesdsp.session.rootless.SessionRecordingPolicyManager
-import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.*
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_PREFERENCES_UPDATED
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SAMPLE_RATE_UPDATED
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_HARD_REBOOT_CORE
@@ -47,12 +47,8 @@ import me.timschneeberger.rootlessjamesdsp.utils.Constants.NOTIFICATION_ID_SESSI
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.unregisterLocalReceiver
-import me.timschneeberger.rootlessjamesdsp.utils.ServiceNotificationHelper
-import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
-import me.timschneeberger.rootlessjamesdsp.utils.concatenate
 import timber.log.Timber
 import java.io.IOException
-import kotlin.math.roundToInt
 
 
 @RequiresApi(Build.VERSION_CODES.Q)
@@ -433,6 +429,8 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         }
 
         // Load preferences
+        val channelMask = sharedPreferences.getString(getString(R.string.key_audioformat_channels), AudioFormat.CHANNEL_OUT_STEREO.toString())
+            ?.toIntOrNull() ?: AudioFormat.CHANNEL_OUT_STEREO
         val encoding = AudioEncoding.fromInt(
             sharedPreferences.getString(getString(R.string.key_audioformat_encoding), "1")
                 ?.toIntOrNull() ?: 1
@@ -447,14 +445,29 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
             else -> AudioFormat.ENCODING_PCM_FLOAT
         }
         val sampleRate = determineSamplingRate()
+        val defaultDevice = determineDefaultAudioDevice()
 
-        Timber.i("Sample rate: $sampleRate; Encoding: ${encoding.name}; " +
-                "Buffer size: $bufferSize; Buffer size (bytes): $bufferSizeBytes ; " +
+        Timber.i("========= Detected default device =========")
+        Timber.i("Name: ${defaultDevice.productName}; Is sink?: ${defaultDevice.isSink}")
+        for(i in 0 until defaultDevice.channelMasks.size) {
+            Timber.i("[$i] Channel mask: ${defaultDevice.channelMasks[i]} (${defaultDevice.channelMasks[i].toString(2)}); " +
+                    "Channel count: ${defaultDevice.channelCounts.getOrNull(i) ?: '?'}")
+        }
+        for(i in 0 until defaultDevice.encodings.size) {
+            Timber.i("[$i] Encoding: ${AudioUtils.toLogFriendlyEncoding(defaultDevice.encodings[i])}")
+        }
+        for(i in 0 until defaultDevice.sampleRates.size) {
+            Timber.i("[$i] Sample rate: ${defaultDevice.sampleRates[i]}")
+        }
+        Timber.i("========= ======================= =========")
+
+        Timber.i("Using format:\nChannel mask id: $channelMask; Channel count: ${Integer.bitCount(channelMask)}; Sample rate: $sampleRate; \n" +
+                "Encoding: ${encoding.name}; Buffer size: $bufferSize; Buffer size (bytes): $bufferSizeBytes ; " +
                 "HAL buffer size (bytes): ${determineBufferSize()}")
 
         // Create recorder and track
         var recorder = buildAudioRecord(encodingFormat, sampleRate, bufferSizeBytes)
-        val track = buildAudioTrack(encodingFormat, sampleRate, bufferSizeBytes)
+        val track = buildAudioTrack(channelMask, encodingFormat, sampleRate, bufferSizeBytes)
 
         if(engine.sampleRate.toInt() != sampleRate) {
             Timber.d("Sampling rate changed to ${sampleRate}Hz")
@@ -576,7 +589,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         startRecording()
     }
 
-    private fun buildAudioTrack(encoding: Int, sampleRate: Int, bufferSizeBytes: Int): AudioTrack {
+    private fun buildAudioTrack(channelMask: Int, encoding: Int, sampleRate: Int, bufferSizeBytesPerChannel: Int): AudioTrack {
         val attributesBuilder = AudioAttributes.Builder()
                 .setUsage(AudioAttributes.USAGE_UNKNOWN)
                 .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
@@ -586,22 +599,34 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         }
 
         val format = AudioFormat.Builder()
-            .setChannelMask(AudioFormat.CHANNEL_OUT_STEREO)
+            .setChannelMask(channelMask)
             .setEncoding(encoding)
             .setSampleRate(sampleRate)
             .build()
 
-        val frameSizeInBytes: Int = if (encoding == AudioFormat.ENCODING_PCM_16BIT) {
-            2 /* channels */ * 2 /* bytes */
-        } else {
-            2 /* channels */ * 4 /* bytes */
-        }
+        val frameSizeInBytes = format.frameSizeInBytes
+        Timber.i("Using frame size (bytes): $frameSizeInBytes")
 
-        val bufferSize = if (((bufferSizeBytes % frameSizeInBytes) != 0 || bufferSizeBytes < 1)) {
+        /*val frameSizeInBytes: Int = if (encoding == AudioFormat.ENCODING_PCM_16BIT) {
+            Integer.bitCount(channelMask) /* channels */ * 2 /* bytes */
+        } else {
+            Integer.bitCount(channelMask) /* channels */ * 4 /* bytes */
+        }*/
+
+        val bufferSizeBytes = bufferSizeBytesPerChannel * Integer.bitCount(channelMask)
+
+
+        var bufferSize = if (((bufferSizeBytes % frameSizeInBytes) != 0 || bufferSizeBytes < 1)) {
             Timber.e("Invalid audio buffer size $bufferSizeBytes")
             128 * (bufferSizeBytes / 128)
         }
         else bufferSizeBytes
+
+        val minimumBufferSize = AudioTrack.getMinBufferSize(sampleRate, channelMask, encoding)
+        if(bufferSize < minimumBufferSize) {
+            Timber.w("Buffer size too small. Setting to minimum.")
+            bufferSize = minimumBufferSize
+        }
 
         Timber.d("Using buffer size $bufferSize")
 
@@ -664,6 +689,35 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
     private fun determineBufferSize(): Int {
         val framesPerBuffer: String? = audioManager.getProperty(AudioManager.PROPERTY_OUTPUT_FRAMES_PER_BUFFER)
         return framesPerBuffer?.let { str -> Integer.parseInt(str).takeUnless { it == 0 } } ?: 256
+    }
+
+    // Determine default audio device using a dummy AudioTrack
+    // https://developer.android.com/training/tv/playback/audio-capabilities#right-format
+    private fun determineDefaultAudioDevice(): AudioDeviceInfo {
+        MediaPlayer.create(this, R.raw.silence)
+        val probeTrack = AudioTrack.Builder()
+            .setAudioFormat(AudioFormat.Builder()
+                .setEncoding(AudioFormat.ENCODING_PCM_16BIT)
+                .setSampleRate(44100)
+                .setChannelMask(AudioFormat.CHANNEL_IN_STEREO)
+                .build())
+            .setTransferMode(AudioTrack.MODE_STATIC)
+            .setBufferSizeInBytes(AudioTrack.getMinBufferSize(44100, AudioFormat.CHANNEL_OUT_MONO, AudioFormat.ENCODING_PCM_16BIT))
+            .build()
+
+        var i = 0
+        val bufferSize = 512
+        val buffer = ByteArray(bufferSize)
+        val inputStream = resources.openRawResource(R.raw.silence)
+        try {
+            while (inputStream.read().also { i = it } != -1) probeTrack.write(buffer, 0, i)
+            inputStream.close()
+        } catch (e: IOException) {
+            Timber.e("Failed to play dummy file to determine default audio device")
+        }
+        probeTrack.play()
+
+        return probeTrack.routedDevice.also { probeTrack.stop(); probeTrack.release() }
     }
 
     companion object {

@@ -32,6 +32,26 @@
         <item>1</item>
     </string-array>
 
+    <string-array name="audio_format_channels" translatable="false">
+        <item>CHANNEL_OUT_MONO</item>
+        <item>CHANNEL_OUT_STEREO</item>
+        <item>CHANNEL_OUT_QUAD</item>
+        <item>CHANNEL_OUT_QUAD_SIDE</item>
+        <item>CHANNEL_OUT_SURROUND</item>
+        <item>CHANNEL_OUT_5POINT1</item>
+        <item>CHANNEL_OUT_7POINT1_SURROUND</item>
+    </string-array>
+
+    <string-array name="audio_format_channels_values" translatable="false">
+        <item>4</item>
+        <item>12</item>
+        <item>204</item>
+        <item>6156</item>
+        <item>1052</item>
+        <item>252</item>
+        <item>6396</item>
+    </string-array>
+
     <string-array name="reverb_presets" translatable="false">
         <item>@string/reverb_preset_default</item>
         <item>@string/reverb_preset_small_hall1</item>

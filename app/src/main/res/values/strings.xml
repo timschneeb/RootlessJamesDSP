@@ -255,6 +255,7 @@
     <string name="audio_format_summary">Preferred audio encoding, buffer size</string>
     <string name="audio_format_summary_root">Legacy mode</string>
     <string name="audio_format_encoding">Audio encoding</string>
+    <string name="audio_format_channels">Audio output channels (processing only works for stereo correctly)</string>
     <string name="audio_format_encoding_int16">16-bit integer PCM</string>
     <string name="audio_format_encoding_float">32-bit float PCM</string>
     <string name="audio_format_buffer_size">Buffer size</string>
