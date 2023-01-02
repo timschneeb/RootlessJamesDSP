@@ -154,14 +154,14 @@ class LiveprogEditorActivity : BaseActivity() {
                     if (ret == -1) // error in @init
                     {
                         if (relativeLine >= 0 && initLine >= 0)
-                            relativeLine += initLine - 1
+                            relativeLine += initLine
                         else
                             relativeLine = -1
                     }
                     else if (ret == -3) // error in @sample
                     {
                         if (relativeLine >= 0 && sampleLine >= 0)
-                            relativeLine += sampleLine - 1
+                            relativeLine += sampleLine
                         else
                             relativeLine = -1
                     }
