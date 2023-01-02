@@ -13,6 +13,7 @@ import android.os.*
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
+import androidx.core.math.MathUtils.clamp
 import androidx.lifecycle.Observer
 import androidx.lifecycle.asLiveData
 import kotlinx.coroutines.CoroutineScope
@@ -446,7 +447,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
             AudioEncoding.PcmShort -> AudioFormat.ENCODING_PCM_16BIT
             else -> AudioFormat.ENCODING_PCM_FLOAT
         }
-        val sampleRate = determineSamplingRate()
+        val sampleRate = clamp(determineSamplingRate(), 44100, 48000)
 
         Timber.i("Sample rate: $sampleRate; Encoding: ${encoding.name}; " +
                 "Buffer size: $bufferSize; Buffer size (bytes): $bufferSizeBytes ; " +
@@ -657,7 +658,9 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
     // Determine HAL sampling rate
     private fun determineSamplingRate(): Int {
         val sampleRateStr: String? = audioManager.getProperty(AudioManager.PROPERTY_OUTPUT_SAMPLE_RATE)
-        return sampleRateStr?.let { str -> Integer.parseInt(str).takeUnless { it == 0 } } ?: 48000
+        val srate = sampleRateStr?.let { str -> Integer.parseInt(str).takeUnless { it == 0 } } ?: 48000
+        Timber.i("Real HAL sampling rate is $srate")
+        return srate
     }
 
     // Determine HAL buffer size
