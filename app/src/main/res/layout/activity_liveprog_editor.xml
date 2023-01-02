@@ -1,0 +1,95 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    android:layout_alignParentBottom="true"
+    tools:context=".activity.LiveprogParamsActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/toolbar_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar_frame"
+        android:id="@+id/code_frame">
+
+        <androidx.core.widget.NestedScrollView
+            android:fillViewport="true"
+            android:id="@+id/codeViewScroller"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/source_info_layout"
+            android:scrollbars="vertical">
+            <HorizontalScrollView
+                android:fillViewport="true"
+                android:id="@+id/codeViewHorizScroller"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none">
+                <com.amrdeveloper.codeview.CodeView
+                    android:id="@+id/codeView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:dropDownWidth="150dp"
+                    android:dropDownHorizontalOffset="0dp"
+                    android:gravity="top|start"
+                    android:textDirection="firstStrong" />
+            </HorizontalScrollView>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <RelativeLayout
+            android:id="@+id/source_info_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="?attr/colorSurface">
+
+            <TextView
+                android:id="@+id/file_name_text"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="25dp"
+                android:gravity="center"
+                tools:text="No file loaded" />
+
+            <TextView
+                android:id="@+id/source_position_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="25dp"
+                android:gravity="center"
+                tools:text="0:0" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@id/file_name_text">
+
+                <me.timschneeberger.rootlessjamesdsp.editor.widget.SymbolInputView
+                    android:id="@+id/symbolInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:paddingHorizontal="13dp"/>
+
+            </HorizontalScrollView>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

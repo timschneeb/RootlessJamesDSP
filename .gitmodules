@@ -2,3 +2,5 @@
 	path = app/src/main/cpp/libjamesdsp
 	url = https://github.com/ThePBone/JamesDSPManager
 	branch = extensions
+[submodule "cpp/libjamesdsp"]
+	branch = extensions

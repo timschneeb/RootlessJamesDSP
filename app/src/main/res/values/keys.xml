@@ -84,6 +84,7 @@
     <string name="key_liveprog_enable" translatable="false">liveprog_enable</string>
     <string name="key_liveprog_file" translatable="false">liveprog_file</string>
     <string name="key_liveprog_params" translatable="false">liveprog_params</string> <!-- static -->
+    <string name="key_liveprog_edit" translatable="false">liveprog_edit</string> <!-- static -->
 
     <string name="key_limiter_threshold" translatable="false">limiter_threshold</string>
     <string name="key_limiter_release" translatable="false">limiter_release</string>

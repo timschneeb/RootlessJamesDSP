@@ -4,6 +4,10 @@
     tools:context="me.timschneeberger.rootlessjamesdsp.fragment.FileLibraryDialogFragment">
 
     <item
+        android:id="@+id/edit_selection"
+        android:title="@string/filelibrary_context_edit" />
+
+    <item
         android:id="@+id/overwrite_selection"
         android:title="@string/filelibrary_context_overwrite" />
 

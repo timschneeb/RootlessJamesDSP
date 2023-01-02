@@ -466,18 +466,7 @@ class MainActivity : BaseActivity() {
                     if(ret <= 0)
                     {
                         val msg = JamesDspWrapper.eelErrorCodeToString(ret)
-                        val msgDetail = intent.getStringExtra(ProcessorMessage.Param.LiveprogErrorMessage.name)
-                        val snackbar = makeSnackbar(getString(R.string.message_liveprog_compile_fail) + " $msg")
-                        if(msgDetail?.isNotBlank() == true){
-                            snackbar.setAction(getString(R.string.details)) {
-                                val alert = MaterialAlertDialogBuilder(this@MainActivity)
-                                alert.setMessage(msgDetail)
-                                alert.setTitle(msg)
-                                alert.setNegativeButton(android.R.string.ok, null)
-                                alert.create().show()
-                            }
-                        }
-                        snackbar.show()
+                        makeSnackbar(getString(R.string.message_liveprog_compile_fail) + " ($msg)").show()
                     }
                 }
                 else -> {}

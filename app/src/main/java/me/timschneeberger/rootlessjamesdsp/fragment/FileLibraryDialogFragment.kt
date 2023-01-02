@@ -21,6 +21,8 @@ import kotlinx.coroutines.*
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.MainApplication
 import me.timschneeberger.rootlessjamesdsp.R
+import me.timschneeberger.rootlessjamesdsp.activity.LiveprogEditorActivity
+import me.timschneeberger.rootlessjamesdsp.activity.SettingsActivity
 import me.timschneeberger.rootlessjamesdsp.interop.JdspImpResToolbox
 import me.timschneeberger.rootlessjamesdsp.model.Preset
 import me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
@@ -94,6 +96,7 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
             popupMenu.menuInflater.inflate(R.menu.menu_filelibrary_context, popupMenu.menu)
             popupMenu.menu.findItem(R.id.duplicate_selection).isVisible =
                 fileLibPreference.isLiveprog() || fileLibPreference.isPreset()
+            popupMenu.menu.findItem(R.id.edit_selection).isVisible = fileLibPreference.isLiveprog()
             popupMenu.menu.findItem(R.id.overwrite_selection).isVisible = fileLibPreference.isPreset()
             popupMenu.menu.findItem(R.id.resample_selection).isVisible = fileLibPreference.isIrs()
 
@@ -142,6 +145,14 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
                             showMessage(getString(R.string.filelibrary_preset_overwritten, name))
                         }
                         refresh()
+                    }
+                    R.id.edit_selection -> {
+                        if(fileLibPreference.isLiveprog()) {
+                            val intent = Intent(requireContext(), LiveprogEditorActivity::class.java)
+                            intent.putExtra(LiveprogEditorActivity.EXTRA_TARGET_FILE, selectedFile.absolutePath)
+                            startActivity(intent)
+                        }
+                        dismiss()
                     }
                     R.id.rename_selection -> {
                         showFileNamePrompt(

@@ -141,6 +141,17 @@
         </activity>
 
         <activity
+            android:name=".activity.LiveprogEditorActivity"
+            android:exported="false"
+            android:label="@string/title_activity_liveprog_editor"
+            android:theme="@style/Theme.RootlessJamesDSP"
+            android:windowSoftInputMode="adjustResize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.MainActivity" />
+        </activity>
+
+        <activity
             android:name=".activity.GraphicEqualizerActivity"
             android:exported="false"
             android:label="@string/title_activity_geq"

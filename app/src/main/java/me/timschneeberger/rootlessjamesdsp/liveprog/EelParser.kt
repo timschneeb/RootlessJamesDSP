@@ -16,7 +16,6 @@ class EelParser {
     var fileName: String? = null
         private set
     var contents: String? = null
-        private set
     var description: String? = null
         private set
     var tags = listOf<String>()
@@ -27,8 +26,20 @@ class EelParser {
         private set
     private var lastFileHash: ByteArray? = null
 
-    fun load(path: String): Boolean {
+    private fun reset() {
+        properties.clear()
+        tags = listOf()
+        hasDescription = false
+        description = null
+        path = null
+        fileName = null
+        contents = null
+        lastFileHash = null
+    }
+
+    fun load(path: String, force: Boolean = false): Boolean {
         if(path.isBlank()) {
+            reset()
             return false
         }
 
@@ -39,16 +50,39 @@ class EelParser {
         }
         catch (ex: FileNotFoundException) {
             Timber.e("File not found '$path'")
-            this.path = null
+            reset()
             return false
         }
 
         Timber.d("Loaded '$path'")
 
-        if(lastFileHash != null && lastFileHash.contentEquals(contents?.md5)) {
+        if(!force && lastFileHash != null && lastFileHash.contentEquals(contents?.md5)) {
             Timber.w("Parsing skipped. Script identical with previous file.")
             return false
         }
+
+        parse(false)
+
+        lastFileHash = contents?.md5
+        return true
+    }
+
+    fun save(): Boolean {
+        if(!isFileLoaded)
+            return false
+
+        contents?.let {
+            File(path!!).writeText(it)
+            return true
+        }
+
+        return false
+    }
+
+    fun parse(silent: Boolean) {
+        fun d(s: String) { if(silent) Timber.d(s) }
+        fun e(s: String) { if(silent) Timber.e(s) }
+        fun e(t: Throwable) { if(silent) Timber.e(t) }
 
         // Parse description & tags
         parseDescription()
@@ -76,7 +110,7 @@ class EelParser {
 
                 val current = EelNumberRangeProperty.findVariable(key, contents!!)
                 if(current == null) {
-                    Timber.e("Failed to find current value of number range parameter (key=$key)")
+                    e("Failed to find current value of number range parameter (key=$key)")
                     return@next
                 }
 
@@ -90,12 +124,12 @@ class EelParser {
                         max.toFloat(),
                         step.toFloatOrNull() ?: 0.1
                     )
-                    Timber.d("Found number range property: $prop")
+                    d("Found number range property: $prop")
                     properties.add(prop)
                 }
                 catch (ex: NumberFormatException) {
-                    Timber.e("Failed to parse number range parameter (key=$key)")
-                    Timber.e(ex)
+                    e("Failed to parse number range parameter (key=$key)")
+                    e(ex)
                 }
             }
             else {
@@ -116,7 +150,7 @@ class EelParser {
 
                     val current = EelListProperty.findVariable(key, contents!!)
                     if(current == null) {
-                        Timber.e("Failed to find current value of list option parameter (key=$key)")
+                        e("Failed to find current value of list option parameter (key=$key)")
                         return@next
                     }
 
@@ -131,31 +165,30 @@ class EelParser {
                             1,
                             opt.split(',').map(String::trim)
                         )
-                        Timber.d("Found list option property: $prop")
+                        d("Found list option property: $prop")
                         properties.add(prop)
                     }
                     catch (ex: NumberFormatException) {
-                        Timber.e("Failed to parse list option parameter (key=$key)")
-                        Timber.e(ex)
+                        e("Failed to parse list option parameter (key=$key)")
+                        e(ex)
                     }
                 }
             }
         }
-
-        lastFileHash = contents?.md5
-        return true
     }
 
-    fun save(): Boolean {
-        if(!isFileLoaded)
-            return false
-
-        contents?.let {
-            File(path!!).writeText(it)
-            return true
+    fun findAnnotationLine(name: String): Int {
+        val regex = """(?:^|(?<=\n))(?:\s*)(\@[^\s\W]*)""".toRegex()
+        var count = 0
+        contents?.lines()?.forEach { line ->
+            count++
+            val match = regex.find(line)?.groups?.get(1)?.value
+            match?.let {
+                if(it == name)
+                    return count
+            }
         }
-
-        return false
+        return -1;
     }
 
     fun refresh(): Boolean {

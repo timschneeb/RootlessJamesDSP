@@ -10,6 +10,7 @@ import androidx.preference.Preference.SummaryProvider
 import androidx.recyclerview.widget.RecyclerView
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.activity.GraphicEqualizerActivity
+import me.timschneeberger.rootlessjamesdsp.activity.LiveprogEditorActivity
 import me.timschneeberger.rootlessjamesdsp.activity.LiveprogParamsActivity
 import me.timschneeberger.rootlessjamesdsp.adapter.RoundedRipplePreferenceGroupAdapter
 import me.timschneeberger.rootlessjamesdsp.liveprog.EelParser
@@ -71,12 +72,16 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
             }
             R.xml.dsp_liveprog_preferences -> {
                 val liveprogParams = findPreference<Preference>(getString(R.string.key_liveprog_params))
+                val liveprogEdit = findPreference<Preference>(getString(R.string.key_liveprog_edit))
                 val liveprogFile = findPreference<FileLibraryPreference>(getString(R.string.key_liveprog_file))
 
                 fun updateLiveprog(newValue: String) {
                     eelParser.load(newValue)
                     val count = eelParser.properties.count()
+                    val filePresent = eelParser.contents != null
                     val uiUpdate = {
+                        liveprogEdit?.isEnabled = filePresent
+
                         liveprogParams?.isEnabled = count > 0
                         liveprogParams?.summary = if(count > 0)
                             requireContext().resources.getQuantityString(R.plurals.custom_parameters, count, count)
@@ -94,8 +99,9 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
 
                 liveprogFile?.summaryProvider = SummaryProvider<FileLibraryPreference> {
                     updateLiveprog(it.value)
-                    if(it.value == null || it.value.isBlank() || !eelParser.isFileLoaded)
+                    if(it.value == null || it.value.isBlank() || !eelParser.isFileLoaded) {
                         "No script selected"
+                    }
                     else
                         eelParser.description
                 }
@@ -112,6 +118,13 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
                 liveprogParams?.setOnPreferenceClickListener {
                     val intent = Intent(requireContext(), LiveprogParamsActivity::class.java)
                     intent.putExtra(LiveprogParamsActivity.EXTRA_TARGET_FILE, liveprogFile?.value)
+                    startActivity(intent)
+                    true
+                }
+
+                liveprogEdit?.setOnPreferenceClickListener {
+                    val intent = Intent(requireContext(), LiveprogEditorActivity::class.java)
+                    intent.putExtra(LiveprogEditorActivity.EXTRA_TARGET_FILE, liveprogFile?.value)
                     startActivity(intent)
                     true
                 }

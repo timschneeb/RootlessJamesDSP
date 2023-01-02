@@ -51,6 +51,8 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="value_not_set">Not set</string>
+    <string name="undo">Undo</string>
+    <string name="redo">Redo</string>
 
     <!-- Main screen -->
     <string name="power_button_alt">Toggle audio processing</string>
@@ -125,6 +127,9 @@
     <string name="liveprog_additional_params_not_supported">Selected script has no customizable parameters</string>
     <string name="liveprog_not_found">Script not found</string>
     <string name="liveprog_no_script_selected">No script selected</string>
+    <string name="liveprog_edit_header">Edit selected script</string>
+    <string name="liveprog_edit">Open active script in built-in editor</string>
+    <string name="liveprog_edit_error">Open active script in built-in liveprog editor</string>
 
     <string name="tube_enable">Analog modelling</string>
     <string name="tube_drive">Preamp</string>
@@ -327,6 +332,7 @@
     <string name="action_import">Import</string>
     <string name="filelibrary_hint_tap_and_hold">Tap and hold any item for more options</string>
     <string name="filelibrary_context_load">Load</string>
+    <string name="filelibrary_context_edit">Edit</string>
     <string name="filelibrary_context_overwrite">Overwrite</string>
     <string name="filelibrary_context_rename">Rename</string>
     <string name="filelibrary_context_share">Share…</string>
@@ -355,7 +361,7 @@
 
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">Selected VDC file is corrupt. Please choose another one.</string>
-    <string name="message_liveprog_compile_fail">Liveprog execution failed. Selected script is damaged.</string>
+    <string name="message_liveprog_compile_fail">Liveprog execution failed. Selected script is damaged. Please use the script editor for debugging.</string>
 
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">Magnitude response</string>
@@ -397,6 +403,25 @@
     <!-- Customizable liveprog script parameters -->
     <string name="title_activity_liveprog_params">Customizable script parameters</string>
     <string name="action_restore_defaults">Restore defaults</string>
+
+    <!-- Liveprog script editor -->
+    <string name="title_activity_liveprog_editor">Script editor</string>
+    <string name="editor_find_and_replace">Find/replace…</string>
+    <string name="editor_open_fail">Script file does not exist or cannot be opened.</string>
+    <string name="editor_run">Save and run</string>
+    <string name="editor_save">Save</string>
+    <string name="editor_liveprog_enabled">Liveprog has been automatically turned on.</string>
+    <string name="editor_replace_all">Replace all</string>
+    <string name="editor_replacement">Replacement</string>
+    <string name="editor_find_next_match">Find next match</string>
+    <string name="editor_find_previous_match">Find previous match</string>
+    <string name="editor_search_keyword">Search</string>
+    <string name="editor_source_position">%1$d:%2$d</string>
+    <string name="editor_engine_down_title">JamesDSP is not active</string>
+    <string name="editor_engine_down">Cannot run script because JamesDSP is disabled. Please turn on JamesDSP to execute scripts.</string>
+    <string name="editor_save_prompt_title">Save changes?</string>
+    <string name="editor_save_prompt">The current script has unsaved changes. Do you want to save your changes or discard them?</string>
+    <string name="editor_script_launched">Script launched</string>
 
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Excluded apps</string>

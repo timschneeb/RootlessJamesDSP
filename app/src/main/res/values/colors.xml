@@ -43,4 +43,24 @@
 
     <color name="md_blue_grey_900">#263238</color>
     <color name="md_blue_grey_800">#37474F</color>
+
+    <!-- Editor -->
+    <color name="gold">#e6b121</color>
+
+    <!--Monokai Pro Theme Colors-->
+    <color name="monokia_pro_green">#9ccc6b</color>
+    <color name="monokia_pro_black">#2d2a2e</color>
+    <color name="monokia_pro_gray">#323033</color>
+    <color name="monokia_pro_white">#fcfcfa</color>
+    <color name="monokia_pro_white_dim">#BEBEBE</color>
+    <color name="monokia_pro_sky_dim">#D1EEF1</color>
+    <color name="monokia_pro_sky">#78dce8</color>
+    <color name="monokia_pro_pink">#ff6188</color>
+    <color name="monokia_pro_orange">#ffd866</color>
+    <color name="monokia_pro_purple">#ab9df2</color>
+    <color name="monokia_pro_grey">#727072</color>
+    <color name="monokia_pro_error">#A30000</color>
+
+    <color name="black">#000000</color>
+
 </resources>

@@ -18,6 +18,14 @@
             android:key="@string/key_liveprog_params"
             android:summary="@string/liveprog_additional_params_not_supported"
             android:enabled="false"
+            android:persistent="false"
+            app:iconSpaceReserved="false"/>
+        <Preference
+            android:title="@string/liveprog_edit_header"
+            android:key="@string/key_liveprog_edit"
+            android:summary="@string/liveprog_edit"
+            android:enabled="false"
+            android:persistent="false"
             app:iconSpaceReserved="false"/>
     </me.timschneeberger.rootlessjamesdsp.preference.SwitchPreferenceGroup>
 </PreferenceScreen>

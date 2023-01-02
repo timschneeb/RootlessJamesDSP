@@ -13,6 +13,7 @@ import android.provider.Settings
 import android.text.Editable
 import android.text.InputType
 import android.util.Base64
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -21,6 +22,7 @@ import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.alpha
 import androidx.core.graphics.blue
 import androidx.core.graphics.green
@@ -66,6 +68,13 @@ object ContextExtensions {
         }
 
         return color
+    }
+
+    @ColorInt
+    fun Context.resolveColorAttribute(@AttrRes resId: Int): Int {
+        val value = TypedValue()
+        this.theme.resolveAttribute(resId, value, true)
+        return ContextCompat.getColor(this, value.resourceId)
     }
 
     fun Context.openPlayStoreApp(pkgName:String?){
