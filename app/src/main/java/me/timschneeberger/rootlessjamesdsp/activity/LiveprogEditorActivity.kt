@@ -6,21 +6,14 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Color
-import android.graphics.Typeface
+import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
-import android.text.method.ScrollingMovementMethod
 import android.util.TypedValue
-import android.view.GestureDetector
 import android.view.Menu
 import android.view.MenuItem
-import android.view.MotionEvent
-import android.view.View
 import android.widget.Button
-import android.widget.Scroller
 import android.widget.Toast
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.core.content.ContextCompat
@@ -48,6 +41,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroa
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showYesNoAlert
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.unregisterLocalReceiver
+import timber.log.Timber
 import java.util.regex.Pattern
 
 
@@ -87,11 +81,27 @@ class LiveprogEditorActivity : BaseActivity() {
         configCodeView()
         configCodeViewPlugins()
 
+        val savedPath = savedInstanceState?.getString(EXTRA_TARGET_FILE)
+
         if(!intent.hasExtra(EXTRA_TARGET_FILE)) {
             finish()
         }
 
-        intent.getStringExtra(EXTRA_TARGET_FILE)?.let { load(it) }
+        // Only load if path not is cached
+        savedPath ?: intent.getStringExtra(EXTRA_TARGET_FILE)?.let { load(it) }
+    }
+
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        savedInstanceState?.getString(EXTRA_TARGET_FILE)?.let { path ->
+            Timber.d("Restoring parser state")
+            parser.load(path, skipParse = true)
+            parser.contents = codeView.text.toString()
+            parser.parse(silent = true)
+            isDirty = savedInstanceState.getBoolean(STATE_IS_DIRTY)
+            undoRedoManager.clearHistory() // TODO save history instance state correctly
+        }
+
+        super.onPostCreate(savedInstanceState)
     }
 
     override fun onDestroy() {
@@ -144,14 +154,14 @@ class LiveprogEditorActivity : BaseActivity() {
                     if (ret == -1) // error in @init
                     {
                         if (relativeLine >= 0 && initLine >= 0)
-                            relativeLine += initLine
+                            relativeLine += initLine - 1
                         else
                             relativeLine = -1
                     }
                     else if (ret == -3) // error in @sample
                     {
                         if (relativeLine >= 0 && sampleLine >= 0)
-                            relativeLine += sampleLine
+                            relativeLine += sampleLine - 1
                         else
                             relativeLine = -1
                     }
@@ -338,6 +348,13 @@ class LiveprogEditorActivity : BaseActivity() {
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState.apply {
+            putString(EXTRA_TARGET_FILE, parser.path)
+            putBoolean(STATE_IS_DIRTY, isDirty)
+        })
+    }
+
     @SuppressLint("RestrictedApi")
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_liveprog_editor, menu)
@@ -349,10 +366,21 @@ class LiveprogEditorActivity : BaseActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.findMenu -> launchEditorButtonSheet()
-            R.id.text_undo -> undoRedoManager.undo()
-            R.id.text_redo -> undoRedoManager.redo()
+            R.id.text_undo -> {
+                if(undoRedoManager.canUndo())
+                    undoRedoManager.undo()
+                else
+                    Toast.makeText(this, getString(R.string.editor_cannot_undo), Toast.LENGTH_SHORT).show()
+            }
+            R.id.text_redo -> {
+                if(undoRedoManager.canRedo())
+                    undoRedoManager.redo()
+                else
+                    Toast.makeText(this, getString(R.string.editor_cannot_redo), Toast.LENGTH_SHORT).show()
+            }
             R.id.text_run -> run()
             R.id.text_save -> save()
+            R.id.docs -> startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/james34602/EEL_VM#readme")))
         }
         return super.onOptionsItemSelected(item)
     }
@@ -392,5 +420,6 @@ class LiveprogEditorActivity : BaseActivity() {
 
     companion object {
         const val EXTRA_TARGET_FILE = "TargetFile"
+        const val STATE_IS_DIRTY = "IsDirty"
     }
 }

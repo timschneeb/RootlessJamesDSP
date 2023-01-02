@@ -37,7 +37,7 @@ class EelParser {
         lastFileHash = null
     }
 
-    fun load(path: String, force: Boolean = false): Boolean {
+    fun load(path: String, force: Boolean = false, skipParse: Boolean = false): Boolean {
         if(path.isBlank()) {
             reset()
             return false
@@ -61,7 +61,15 @@ class EelParser {
             return false
         }
 
-        parse(false)
+        properties.clear()
+        tags = listOf()
+        hasDescription = false
+        description = null
+        lastFileHash = null
+
+        if(!skipParse) {
+            parse(false)
+        }
 
         lastFileHash = contents?.md5
         return true
@@ -93,7 +101,7 @@ class EelParser {
         // Parse number range parameters
         val rangeParamRegex = """(?<var>\w+):(?<def>-?\d+\.?\d*)?<(?<min>-?\d+\.?\d*),(?<max>-?\d+\.?\d*),?(?<step>-?\d+\.?\d*)?>(?<desc>[\s\S][^\n]*)""".toRegex()
         val listParamRegex = """(?<var>\w+):(?<def>-?\d+\.?\d*)?<(?<min>-?\d+\.?\d*),(?<max>-?\d+\.?\d*),?(?<step>-?\d+\.?\d*)?\{(?<opt>[^\}]*)\}>(?<desc>[\s\S][^\n]*)""".toRegex()
-        contents!!.lines().forEach next@ {
+        contents?.lines()?.forEach next@ {
             val matchRange = rangeParamRegex.find(it)
             val groupsRange = matchRange?.groups
             if(groupsRange != null) {

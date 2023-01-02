@@ -407,6 +407,7 @@
     <!-- Liveprog script editor -->
     <string name="title_activity_liveprog_editor">Script editor</string>
     <string name="editor_find_and_replace">Find/replace…</string>
+    <string name="editor_docs">Help</string>
     <string name="editor_open_fail">Script file does not exist or cannot be opened.</string>
     <string name="editor_run">Save and run</string>
     <string name="editor_save">Save</string>
@@ -422,6 +423,8 @@
     <string name="editor_save_prompt_title">Save changes?</string>
     <string name="editor_save_prompt">The current script has unsaved changes. Do you want to save your changes or discard them?</string>
     <string name="editor_script_launched">Script launched</string>
+    <string name="editor_cannot_undo">Nothing to undo.</string>
+    <string name="editor_cannot_redo">Nothing to redo.</string>
 
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Excluded apps</string>

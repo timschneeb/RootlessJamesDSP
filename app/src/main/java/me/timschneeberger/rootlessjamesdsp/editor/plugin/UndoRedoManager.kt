@@ -114,7 +114,7 @@ class UndoRedoManager(private val textView: TextView) {
             }
     }
 
-    private class EditNode(var start: Int, var before: CharSequence?, var after: CharSequence?)
+    private data class EditNode(var start: Int, var before: CharSequence?, var after: CharSequence?)
     private enum class ActionType {
         INSERT, DELETE, PASTE, NOT_DEF
     }

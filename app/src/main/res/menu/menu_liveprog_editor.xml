@@ -27,12 +27,18 @@
         android:id="@+id/text_save"
         android:icon="@drawable/ic_twotone_save_24dp"
         android:title="@string/editor_save"
-        android:orderInCategory="4" />
+        android:orderInCategory="3" />
 
     <item
         android:id="@+id/findMenu"
         android:icon="@drawable/ic_twotone_find_in_page_24dp"
-        android:orderInCategory="6"
+        android:orderInCategory="4"
         android:title="@string/editor_find_and_replace" />
+
+    <item
+        android:id="@+id/docs"
+        android:icon="@drawable/ic_twotone_help_24dp"
+        android:orderInCategory="5"
+        android:title="@string/editor_docs" />
 
 </menu>
