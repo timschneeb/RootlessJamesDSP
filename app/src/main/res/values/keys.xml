@@ -44,6 +44,9 @@
     <string name="key_credits_build_info" translatable="false">credits_build_info</string>
     <string name="key_debug_database" translatable="false">debug_database</string>
 
+    <!-- Script editor -->
+    <string name="key_editor_font_size" translatable="false">editor_font_size</string>
+
     <!-- DSP -->
     <string name="key_compression_enable" translatable="false">compression_enable</string>
     <string name="key_compression_max_atk" translatable="false">compression_max_atk</string>

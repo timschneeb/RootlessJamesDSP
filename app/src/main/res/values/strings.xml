@@ -425,6 +425,7 @@
     <string name="editor_script_launched">Script launched</string>
     <string name="editor_cannot_undo">Nothing to undo.</string>
     <string name="editor_cannot_redo">Nothing to redo.</string>
+    <string name="editor_text_size">Text size</string>
 
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Excluded apps</string>

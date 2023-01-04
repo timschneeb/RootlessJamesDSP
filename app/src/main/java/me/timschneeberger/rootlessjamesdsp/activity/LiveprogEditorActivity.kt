@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.TypedValue
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
@@ -39,10 +40,13 @@ import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocal
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.resolveColorAttribute
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showInputAlert
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showYesNoAlert
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.unregisterLocalReceiver
 import timber.log.Timber
+import java.util.Locale
 import java.util.regex.Pattern
+import kotlin.math.roundToInt
 
 
 class LiveprogEditorActivity : BaseActivity() {
@@ -265,7 +269,8 @@ class LiveprogEditorActivity : BaseActivity() {
         // Change default font to JetBrains Mono font
         val jetBrainsMono = ResourcesCompat.getFont(this, R.font.jetbrainsmono)
         codeView.typeface = jetBrainsMono
-        codeView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 13f)
+        val fontSize = appPref.getFloat(getString(R.string.key_editor_font_size), 13f)
+        codeView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, fontSize)
 
         // Add input view
         binding.symbolInput.bindEditor(codeView)
@@ -380,9 +385,40 @@ class LiveprogEditorActivity : BaseActivity() {
             }
             R.id.text_run -> run()
             R.id.text_save -> save()
+            R.id.fontSize -> changeFontSize()
             R.id.docs -> startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/james34602/EEL_VM#readme")))
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun changeFontSize() {
+        showInputAlert(
+            LayoutInflater.from(this),
+            R.string.editor_text_size,
+            R.string.editor_text_size,
+            "%.1f".format(Locale.ROOT, appPref.getFloat(getString(R.string.key_editor_font_size), 13f)),
+            true,
+            "dp"
+        ) {
+            it ?: return@showInputAlert
+            try {
+                val value = it.toFloat()
+                if(value < 1)
+                    throw NumberFormatException();
+
+                codeView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, value)
+                appPref.edit().putFloat(getString(R.string.key_editor_font_size), value).apply()
+            }
+            catch (ex: Exception) {
+                Timber.e("Failed to parse number input")
+                Timber.d(ex)
+                Toast.makeText(
+                    this,
+                    getString(R.string.slider_dialog_format_error),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
     }
 
     private fun launchEditorButtonSheet() {
