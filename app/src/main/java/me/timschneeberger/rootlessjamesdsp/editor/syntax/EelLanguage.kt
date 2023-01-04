@@ -21,7 +21,7 @@ class EelLanguage(private val context: Context, private val codeView: CodeView) 
     private val PATTERN_FUNCTION = Pattern.compile("\\b\\w+(?=\\([^\\n]*\\))")
     private val PATTERN_FUNCTION_SIGNATURE = Pattern.compile("(?<=function)\\s+[^\\s\\(]+")
     private val PATTERN_CONSTANTS = Pattern.compile("(${getConstants().joinToString("|").replace("$", "\\$")})", Pattern.CASE_INSENSITIVE)
-    private val PATTERN_PREFDEF_VARS = Pattern.compile("\\b(${getConstants().joinToString("|")})\\b")
+    private val PATTERN_PREFDEF_VARS = Pattern.compile("\\b(${getPredefinedVariables().joinToString("|")})\\b")
     private val PATTERN_OPERATION = Pattern.compile("\\*|=|==|>|<|!=|>=|<=|->|=|>|<|%|-|-=|%=|\\+|\\-|\\-=|\\+=|\\^|\\&|\\|\\*|\\||/|/=")
     private val PATTERN_CONDITION = Pattern.compile("\\?|:")
     private val PATTERN_ANNOTATION = Pattern.compile("(?<=\\n)[^\\S@\\n]*@.[a-zA-Z0-9]+")
@@ -84,8 +84,11 @@ class EelLanguage(private val context: Context, private val codeView: CodeView) 
     }
 
     private fun getConstants(): Array<String> {
-        return context.resources.getStringArray(R.array.editor_eel_constants) +
-                context.resources.getStringArray(R.array.editor_predef_vars)
+        return context.resources.getStringArray(R.array.editor_eel_constants)
+    }
+
+    private fun getPredefinedVariables(): Array<String> {
+        return context.resources.getStringArray(R.array.editor_predef_vars)
     }
 
     fun getCodeList(): List<Code> {
@@ -93,6 +96,7 @@ class EelLanguage(private val context: Context, private val codeView: CodeView) 
         getKeywords().forEach { codeList.add(Keyword(it)) }
         getFunctions().forEach { codeList.add(Function(it)) }
         getConstants().forEach { codeList.add(Constant(it)) }
+        getPredefinedVariables().forEach { codeList.add(Constant(it)) }
         return codeList
     }
 
