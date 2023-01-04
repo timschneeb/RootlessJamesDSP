@@ -49,8 +49,6 @@ class EelLanguage(private val context: Context, private val codeView: CodeView) 
 
         //Syntax Colors
         codeView.addSyntaxPattern(PATTERN_HEX, col(R.color.monokia_pro_purple))
-        codeView.addSyntaxPattern(PATTERN_CHAR, col(R.color.monokia_pro_green))
-        codeView.addSyntaxPattern(PATTERN_STRING, col(R.color.monokia_pro_orange))
         codeView.addSyntaxPattern(PATTERN_NUMBERS, col(R.color.monokia_pro_purple))
         codeView.addSyntaxPattern(PATTERN_KEYWORDS, col(R.color.monokia_pro_pink))
         codeView.addSyntaxPattern(PATTERN_BUILTINS, col(R.color.monokia_pro_white_dim))
@@ -61,6 +59,9 @@ class EelLanguage(private val context: Context, private val codeView: CodeView) 
         codeView.addSyntaxPattern(PATTERN_OPERATION, col(R.color.monokia_pro_pink))
         codeView.addSyntaxPattern(PATTERN_CONDITION, col(R.color.monokia_pro_orange))
         codeView.addSyntaxPattern(PATTERN_FUNCTION_SIGNATURE, col(R.color.monokia_pro_green))
+
+        codeView.addSyntaxPattern(PATTERN_CHAR, col(R.color.monokia_pro_green))
+        codeView.addSyntaxPattern(PATTERN_STRING, col(R.color.monokia_pro_orange))
 
         codeView.addSyntaxPattern(PATTERN_PROPERTY_RIGHT, col(R.color.monokia_pro_sky_dim))
         codeView.addSyntaxPattern(PATTERN_PROPERTY, col(R.color.monokia_pro_sky))
