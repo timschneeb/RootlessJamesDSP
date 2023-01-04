@@ -145,7 +145,7 @@ public class CodeView extends AppCompatMultiAutoCompleteTextView implements Find
             mAutoCompleteTokenizer = new KeywordTokenizer();
 
         setTokenizer(mAutoCompleteTokenizer);
-        setHorizontallyScrolling(true);
+        setHorizontallyScrolling(false);
         setFilters(new InputFilter[]{mInputFilter});
         addTextChangedListener(mEditorTextWatcher);
         setOnKeyListener(mOnKeyListener);
