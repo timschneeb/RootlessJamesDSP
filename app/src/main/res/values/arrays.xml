@@ -355,6 +355,9 @@
         <item>$phi</item>
         <item>$eps</item>
         <item>$dbl_max</item>
+    </string-array>
+
+    <string-array name="editor_predef_vars">
         <item>srate</item>
         <item>spl0</item>
         <item>spl1</item>
