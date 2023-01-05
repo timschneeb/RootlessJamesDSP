@@ -31,8 +31,8 @@ class EelLanguage(private val context: Context, private val codeView: CodeView) 
     private val PATTERN_STRING = Pattern.compile("[\"](.*?)[\"]")
     private val PATTERN_HEX = Pattern.compile("0x[0-9a-fA-F]+")
 
-    private val PATTERN_PROPERTY = Pattern.compile("\\b((?:[A-Za-z0-9])+:)")
-    private val PATTERN_PROPERTY_RIGHT = Pattern.compile("((?:[A-Za-z0-9])+:)[^\\n]*")
+    private val PATTERN_PROPERTY = Pattern.compile("(?<=^|\\n)\\s*((?:[A-Za-z0-9])+:)")
+    private val PATTERN_PROPERTY_RIGHT = Pattern.compile("(?<=^|\\n)\\s*((?:[A-Za-z0-9])+:)[^\\n]*")
 
     init {
         applyTheme()
