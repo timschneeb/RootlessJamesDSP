@@ -87,7 +87,7 @@ jobs:
         run: |
           set -e
           rename -v 's/-unsigned-signed//g' app/build/outputs/apk/${{ steps.flavor.outputs.lowercase }}/${{ env.BUILD_TYPE }}/*.apk
-          rm app/build/outputs/apk/${{ steps.flavor.outputs.lowercase }}/${{ env.BUILD_TYPE }}/*unsigned*.apk
+          rm -f app/build/outputs/apk/${{ steps.flavor.outputs.lowercase }}/${{ env.BUILD_TYPE }}/*unsigned*.apk || true
           ls -l
 
       - name: Upload build artifact (universal)
