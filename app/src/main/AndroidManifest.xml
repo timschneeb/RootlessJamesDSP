@@ -21,7 +21,6 @@
         android:fullBackupContent="@xml/backup_rules"
         android:hasFragileUserData="true"
         android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:label="${label}"
         android:supportsRtl="true"
         android:theme="@style/Theme.RootlessJamesDSP"

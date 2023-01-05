@@ -45,6 +45,7 @@ android {
             manifestPlaceholders["crashlyticsCollectionEnabled"] = "false"
         }
         getByName("release") {
+            manifestPlaceholders += mapOf()
             manifestPlaceholders["crashlyticsCollectionEnabled"] = "true"
             configure<CrashlyticsExtension> {
                 nativeSymbolUploadEnabled = true
@@ -54,6 +55,7 @@ android {
             //proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
             isMinifyEnabled = false
             isShrinkResources = false
+            signingConfig = signingConfigs.getByName("debug")
         }
         create("preview") {
             initWith(getByName("release"))
