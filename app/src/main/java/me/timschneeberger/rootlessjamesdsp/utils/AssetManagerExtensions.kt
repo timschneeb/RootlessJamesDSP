@@ -9,9 +9,17 @@ import java.io.FileOutputStream
 object AssetManagerExtensions {
     fun AssetManager.installPrivateAssets(context: Context, force: Boolean) {
         Timber.d("Installing private assets; force=$force")
-        this.copyAssetDir("Convolver", context.getExternalFilesDir(null)!!.absolutePath, force)
-        this.copyAssetDir("DDC", context.getExternalFilesDir(null)!!.absolutePath, force)
-        this.copyAssetDir("Liveprog", context.getExternalFilesDir(null)!!.absolutePath, force)
+        context.getExternalFilesDir(null)?.absolutePath?.let {
+            try {
+                this.copyAssetDir("Convolver", it, force)
+                this.copyAssetDir("DDC", it, force)
+                this.copyAssetDir("Liveprog", it, force)
+            }
+            catch (ex: Exception) {
+                Timber.e("Failed to extract assets")
+                Timber.e(ex)
+            }
+        }
     }
 
     private fun AssetManager.copyAssetDir(assetPath: String, destDirPath: String, force: Boolean) {

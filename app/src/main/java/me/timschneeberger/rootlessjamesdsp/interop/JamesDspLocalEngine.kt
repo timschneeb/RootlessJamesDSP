@@ -28,7 +28,7 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
     // Processing
     fun processInt16(input: ShortArray): ShortArray
     {
-        if(!enabled)
+        if(!enabled || handle == 0L)
         {
             return input
         }
@@ -38,7 +38,7 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
 
     fun processInt32(input: IntArray): IntArray
     {
-        if(!enabled)
+        if(!enabled || handle == 0L)
         {
             return input
         }
@@ -48,7 +48,7 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
 
     fun processFloat(input: FloatArray): FloatArray
     {
-        if(!enabled)
+        if(!enabled || handle == 0L)
         {
             return input
         }

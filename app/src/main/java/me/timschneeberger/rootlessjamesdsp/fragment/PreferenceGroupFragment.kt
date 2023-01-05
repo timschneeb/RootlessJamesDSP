@@ -84,7 +84,7 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
 
                         liveprogParams?.isEnabled = count > 0
                         liveprogParams?.summary = if(count > 0)
-                            requireContext().resources.getQuantityString(R.plurals.custom_parameters, count, count)
+                            resources.getQuantityString(R.plurals.custom_parameters, count, count)
                         else
                             getString(R.string.liveprog_additional_params_not_supported)
                     }

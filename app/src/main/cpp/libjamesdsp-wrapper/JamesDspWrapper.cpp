@@ -37,6 +37,8 @@ inline JamesDspWrapper* castWrapper(jlong raw){
         return retval;
 
 #define DECLARE_WRAPPER(retval) \
+     if(self == 0L) \
+        return retval; \
      auto* wrapper = castWrapper(self); \
      RETURN_IF_NULL(wrapper, retval)
 
@@ -164,10 +166,10 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_free(JNIEnv *en
 extern "C"
 JNIEXPORT void JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setSamplingRate(JNIEnv *env,
-                                                                                jobject obj,
-                                                                                jlong self,
-                                                                                jfloat sample_rate,
-                                                                                jboolean force_refresh)
+                                                                                 jobject obj,
+                                                                                 jlong self,
+                                                                                 jfloat sample_rate,
+                                                                                 jboolean force_refresh)
 {
     DECLARE_DSP_V
     JamesDSPSetSampleRate(dsp, sample_rate, force_refresh);

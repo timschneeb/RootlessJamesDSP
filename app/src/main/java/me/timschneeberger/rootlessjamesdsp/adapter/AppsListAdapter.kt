@@ -1,5 +1,6 @@
 package me.timschneeberger.rootlessjamesdsp.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import me.timschneeberger.rootlessjamesdsp.model.AppInfo
 
 class AppsListAdapter: RecyclerView.Adapter<AppsListAdapter.ViewHolder>(), Filterable {
     var dataList: List<AppInfo> = emptyList()
+        @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
             filteredDataList = value
@@ -62,6 +64,8 @@ class AppsListAdapter: RecyclerView.Adapter<AppsListAdapter.ViewHolder>(), Filte
         )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        if(position >= itemCount)
+            return
         holder.data = filteredDataList[position]
     }
 
