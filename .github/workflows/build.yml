@@ -48,13 +48,13 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         uses: gradle/gradle-command-action@v2
         with:
-          arguments: assemble${{ matrix.flavor }}Release
+          arguments: assemble${{ matrix.flavor }}FullRelease
 
       - name: Build preview app
         if: "!startsWith(github.ref, 'refs/tags/')"
         uses: gradle/gradle-command-action@v2
         with:
-          arguments: assemble${{ matrix.flavor }}Preview
+          arguments: assemble${{ matrix.flavor }}FullPreview
           
       - name: Declare preview build type
         if: "!startsWith(github.ref, 'refs/tags/')"
