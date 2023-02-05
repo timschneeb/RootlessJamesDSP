@@ -12,7 +12,7 @@
   <a href="https://github.com/ThePBone/RootlessJamesDSP/blob/master/LICENSE">
       <img alt="License" src="https://img.shields.io/github/license/ThePBone/RootlessJamesDSP">
   </a>
-</p>+
+</p>
 <p align="center">
   <a href="#limitations">Limitations</a> •
   <a href="#spotify-support-patch">Spotify patch</a> •
