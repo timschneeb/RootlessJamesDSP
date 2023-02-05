@@ -4,6 +4,11 @@
 
 #include "Log.h"
 
+#ifdef NO_CRASHLYTICS
+void log::toCrashlytics(const char *level, const char* tag, const char *fmt, ...) {
+    // Stubbed
+}
+#else
 // TODO clean up this abomination
 void log::toCrashlytics(const char *level, const char* tag, const char *fmt, ...) {
     va_list arguments;
@@ -15,3 +20,4 @@ void log::toCrashlytics(const char *level, const char* tag, const char *fmt, ...
     free(buf);
     va_end(arguments);
 }
+#endif

@@ -1,15 +1,11 @@
 package me.timschneeberger.rootlessjamesdsp
 
+import CrashlyticsImpl
 import android.app.Application
 import android.content.*
-import android.media.audiofx.AudioEffect
 import android.os.Build
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.preference.PreferenceManager
-import com.google.firebase.crashlytics.FirebaseCrashlytics
-import com.google.firebase.crashlytics.ktx.crashlytics
-import com.google.firebase.ktx.Firebase
 import fr.bipi.tressence.file.FileLoggerTree
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
@@ -67,7 +63,8 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
 
     override fun onCreate() {
         Timber.plant(DebugTree())
-        Timber.plant(CrashReportingTree())
+        if(!BuildConfig.FOSS_ONLY)
+            Timber.plant(CrashReportingTree())
         Timber.plant(FileLoggerTree.Builder()
             .withFileName("application.log")
             .withDirName(this.cacheDir.absolutePath)
@@ -84,21 +81,23 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
             dumpFile.delete()
         }
 
-        // Soft-disable crashlytics in debug mode by default on each launch
-        if(BuildConfig.DEBUG) {
-            prefs
-                .edit()
-                .putBoolean(getString(R.string.key_share_crash_reports), false)
-                .apply()
+        if(!BuildConfig.FOSS_ONLY) {
+            // Soft-disable crashlytics in debug mode by default on each launch
+            if (BuildConfig.DEBUG) {
+                prefs
+                    .edit()
+                    .putBoolean(getString(R.string.key_share_crash_reports), false)
+                    .apply()
+            }
+
+            val crashlytics = prefs.getBoolean(getString(R.string.key_share_crash_reports), true) && (!BuildConfig.DEBUG || BuildConfig.PREVIEW)
+            Timber.d("Crashlytics enabled? $crashlytics")
+            CrashlyticsImpl.setCollectionEnabled(crashlytics)
+
+            CrashlyticsImpl.setCustomKey("buildType", BuildConfig.BUILD_TYPE)
+            CrashlyticsImpl.setCustomKey("buildCommit", BuildConfig.COMMIT_SHA)
+            CrashlyticsImpl.setCustomKey("flavor", BuildConfig.FLAVOR)
         }
-
-        val crashlytics = prefs.getBoolean(getString(R.string.key_share_crash_reports), true) && (!BuildConfig.DEBUG || BuildConfig.PREVIEW)
-        Timber.d("Crashlytics enabled? $crashlytics")
-        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(crashlytics)
-
-        FirebaseCrashlytics.getInstance().setCustomKey("buildType", BuildConfig.BUILD_TYPE)
-        FirebaseCrashlytics.getInstance().setCustomKey("buildCommit", BuildConfig.COMMIT_SHA)
-        FirebaseCrashlytics.getInstance().setCustomKey("flavor", BuildConfig.FLAVOR)
 
         val initialPrefList = arrayOf(
             R.string.key_appearance_theme_mode
@@ -133,15 +132,15 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
 
     override fun onLowMemory() {
         Timber.w("onLowMemory: Running low on memory")
-        FirebaseCrashlytics.getInstance().setCustomKey("last_low_memory_event", SimpleDateFormat("yyyyMMdd HHmmss z", Locale.US).format(Date()))
+        CrashlyticsImpl.setCustomKey("last_low_memory_event", SimpleDateFormat("yyyyMMdd HHmmss z", Locale.US).format(Date()))
         super.onLowMemory()
     }
 
     override fun onTrimMemory(level: Int) {
         if (level >= 60)
             Timber.w("onTrimMemory: Memory trim at level $level requested")
-        FirebaseCrashlytics.getInstance().setCustomKey("last_memory_trim_event", SimpleDateFormat("yyyyMMdd HHmmss z", Locale.US).format(Date()))
-        FirebaseCrashlytics.getInstance().setCustomKey("last_memory_trim_level", level)
+        CrashlyticsImpl.setCustomKey("last_memory_trim_event", SimpleDateFormat("yyyyMMdd HHmmss z", Locale.US).format(Date()))
+        CrashlyticsImpl.setCustomKey("last_memory_trim_level", level)
         super.onTrimMemory(level)
     }
 
@@ -175,10 +174,10 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
 
         override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
             val safeTag = tag ?: "Unknown"
-            Firebase.crashlytics.log("[${priorityAsString(priority)}] $safeTag: $message")
+            CrashlyticsImpl.log("[${priorityAsString(priority)}] $safeTag: $message")
 
             if (t != null && (priority == Log.ERROR || priority == Log.WARN || priority == Log.ASSERT)) {
-                Firebase.crashlytics.recordException(t)
+                CrashlyticsImpl.recordException(t)
             }
         }
     }

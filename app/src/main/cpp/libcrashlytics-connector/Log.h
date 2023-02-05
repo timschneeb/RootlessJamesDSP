@@ -9,7 +9,10 @@
 #define TAG "Global_JNI"
 #endif
 
+#ifndef NO_CRASHLYTICS
 #include "crashlytics.h"
+#endif
+
 #include <android/log.h>
 #include <memory>
 #include <string>

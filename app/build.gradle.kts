@@ -68,7 +68,18 @@ android {
     }
 
     flavorDimensions += "version"
+    flavorDimensions += "dependencies"
     productFlavors {
+        create("fdroid") {
+            dimension = "dependencies"
+            buildConfigField("boolean", "FOSS_ONLY", "true")
+            android.defaultConfig.externalNativeBuild.cmake.arguments += "-DNO_CRASHLYTICS=1"
+        }
+        create("full") {
+            dimension = "dependencies"
+            buildConfigField("boolean", "FOSS_ONLY", "false")
+        }
+
         create("rootless") {
             dimension = "version"
 
@@ -137,13 +148,13 @@ android {
 
 // Hooks to upload native symbols to crashlytics automatically
 afterEvaluate {
-    getTasksByName("bundleRootlessRelease", false).firstOrNull()?.finalizedBy("uploadCrashlyticsSymbolFileRootlessRelease")
-    getTasksByName("bundleRootRelease", false).firstOrNull()?.finalizedBy("uploadCrashlyticsSymbolFileRootRelease")
-    getTasksByName("assembleRootlessRelease", false).firstOrNull()?.finalizedBy("uploadCrashlyticsSymbolFileRootlessRelease")
-    getTasksByName("assembleRootRelease", false).firstOrNull()?.finalizedBy("uploadCrashlyticsSymbolFileRootRelease")
+    getTasksByName("bundleRootlessFullRelease", false).firstOrNull()?.finalizedBy("uploadCrashlyticsSymbolFileRootlessFullRelease")
+    getTasksByName("bundleRootFullRelease", false).firstOrNull()?.finalizedBy("uploadCrashlyticsSymbolFileRootFullRelease")
+    getTasksByName("assembleRootlessFullRelease", false).firstOrNull()?.finalizedBy("uploadCrashlyticsSymbolFileRootlessFullRelease")
+    getTasksByName("assembleRootFullRelease", false).firstOrNull()?.finalizedBy("uploadCrashlyticsSymbolFileRootFullRelease")
 
-    getTasksByName("assembleRootlessPreview", false).first().finalizedBy("uploadCrashlyticsSymbolFileRootlessRelease")
-    getTasksByName("assembleRootPreview", false).first().finalizedBy("uploadCrashlyticsSymbolFileRootRelease")
+    getTasksByName("assembleRootlessFullPreview", false).first().finalizedBy("uploadCrashlyticsSymbolFileRootlessFullRelease")
+    getTasksByName("assembleRootFullPreview", false).first().finalizedBy("uploadCrashlyticsSymbolFileRootFullRelease")
 }
 
 dependencies {
@@ -164,16 +175,16 @@ dependencies {
     implementation("androidx.preference:preference-ktx:1.2.0")
     implementation("androidx.preference:preference:1.2.0")
     implementation("androidx.databinding:databinding-runtime:7.3.1")
-    implementation("com.google.android.material:material:1.8.0-beta01")
+    implementation("com.google.android.material:material:1.9.0-alpha01")
 
     // Dependency injection
     implementation("io.insert-koin:koin-android:3.2.0")
 
     // Firebase
-    implementation(platform("com.google.firebase:firebase-bom:30.4.1"))
-    implementation("com.google.firebase:firebase-analytics-ktx")
-    implementation("com.google.firebase:firebase-crashlytics-ktx")
-    implementation("com.google.firebase:firebase-crashlytics-ndk")
+    "fullImplementation"(platform("com.google.firebase:firebase-bom:30.4.1"))
+    "fullImplementation"("com.google.firebase:firebase-analytics-ktx")
+    "fullImplementation"("com.google.firebase:firebase-crashlytics-ktx")
+    "fullImplementation"("com.google.firebase:firebase-crashlytics-ndk")
 
     // Web API client
     implementation("com.google.code.gson:gson:2.10")

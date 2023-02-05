@@ -1,9 +1,8 @@
 package me.timschneeberger.rootlessjamesdsp.interop
 
+import CrashlyticsImpl
 import android.content.Context
 import androidx.annotation.StringRes
-import com.google.firebase.crashlytics.ktx.crashlytics
-import com.google.firebase.ktx.Firebase
 
 class PreferenceCache(val context: Context) {
     val changedNamespaces = ArrayList<String>()
@@ -43,7 +42,7 @@ class PreferenceCache(val context: Context) {
             }
         }
 
-        Firebase.crashlytics.setCustomKey("pref_$name", current.toString())
+        CrashlyticsImpl.setCustomKey("pref_$name", current.toString())
         cache[name] = current as Any
         return current
     }

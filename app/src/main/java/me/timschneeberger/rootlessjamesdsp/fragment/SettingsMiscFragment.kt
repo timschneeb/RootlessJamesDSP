@@ -1,5 +1,6 @@
 package me.timschneeberger.rootlessjamesdsp.fragment
 
+import CrashlyticsImpl
 import android.os.Build
 import android.os.Bundle
 import android.util.TypedValue
@@ -8,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import androidx.preference.*
-import com.google.firebase.crashlytics.FirebaseCrashlytics
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.AssetManagerExtensions.installPrivateAssets
@@ -27,7 +27,7 @@ class SettingsMiscFragment : PreferenceFragmentCompat() {
         setPreferencesFromResource(R.xml.app_misc_preferences, rootKey)
 
         crashReports?.setOnPreferenceChangeListener { _, newValue ->
-            FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(newValue as Boolean)
+            CrashlyticsImpl.setCollectionEnabled(newValue as Boolean)
             true
         }
 
@@ -37,6 +37,7 @@ class SettingsMiscFragment : PreferenceFragmentCompat() {
             true
         }
 
+        crashReports?.parent?.isVisible = !BuildConfig.FOSS_ONLY
         debugDatabase?.parent?.isVisible = BuildConfig.DEBUG
         autoStartNotify?.parent?.isVisible = BuildConfig.ROOTLESS
     }
