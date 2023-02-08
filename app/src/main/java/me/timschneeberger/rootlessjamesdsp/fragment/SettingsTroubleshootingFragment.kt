@@ -1,13 +1,16 @@
 package me.timschneeberger.rootlessjamesdsp.fragment
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.text.InputType
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.core.content.res.ResourcesCompat
 import androidx.preference.*
@@ -77,7 +80,16 @@ class SettingsTroubleshootingFragment : PreferenceFragmentCompat() {
         }
         findPreference<Preference>(getString(R.string.key_troubleshooting_notification_access))?.setOnPreferenceClickListener {
             val intent = ApplicationUtils.getIntentForNotificationAccess(requireContext().packageName, NotificationListenerService::class.java)
-            requireActivity().startActivity(intent)
+            // Try two methods; some devices don't behave as expected
+            try {
+                requireActivity().startActivity(intent)
+            }
+            catch(_: Exception) {
+                try {
+                    startActivity(Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS))
+                }
+                catch (_: Exception) { }
+            }
             true
         }
         findPreference<MaterialSwitchPreference>(getString(R.string.key_session_loss_ignore))?.setOnPreferenceChangeListener { _, newValue ->
