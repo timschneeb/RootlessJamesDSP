@@ -2,6 +2,8 @@ package me.timschneeberger.rootlessjamesdsp.model
 
 import android.content.Context
 import android.content.Intent
+import android.system.ErrnoException
+import android.widget.Toast
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -57,58 +59,71 @@ class Preset(val name: String): KoinComponent {
         Timber.d("Saving preset $name to ${targetFile.path}")
 
         // Create a TarOutputStream
-        TarOutputStream(BufferedOutputStream(FileOutputStream(targetFile))).use { out ->
-            fun addFile(file: File) {
-                if(!file.exists() || file.isDirectory) {
-                    Timber.e("addFile: ${file.absolutePath} is not valid")
-                    return
-                }
-
-                out.putNextEntry(TarEntry(file, file.name))
-                BufferedInputStream(FileInputStream(file)).use { origin ->
-                    var count: Int
-                    val data = ByteArray(2048)
-                    while (origin.read(data).also { count = it } != -1) {
-                        out.write(data, 0, count)
+        try {
+            TarOutputStream(BufferedOutputStream(FileOutputStream(targetFile))).use { out ->
+                fun addFile(file: File) {
+                    if (!file.exists() || file.isDirectory) {
+                        Timber.e("addFile: ${file.absolutePath} is not valid")
+                        return
                     }
-                    out.flush()
-                }
-            }
 
-            currentPath(ctx)
-                .listFiles()
-                ?.filter { it.name.startsWith("dsp_") }
-                ?.filter { it.extension == "xml" }
-                ?.forEach(::addFile)
-
-            val metadata = mutableMapOf(
-                META_VERSION to "2",
-                META_APP_VERSION to BuildConfig.VERSION_NAME,
-                META_APP_FLAVOR to BuildConfig.FLAVOR,
-                META_LIVEPROG_INCLUDED to false.toString()
-            )
-
-            val liveprogPath = findLiveprogScriptPath(ctx)
-            if (liveprogPath != null) {
-                val liveprogFile = File(liveprogPath)
-                if (liveprogFile.exists()) {
-                    Timber.d("Saving included liveprog script state from '$liveprogPath'")
-
-                    metadata[META_LIVEPROG_INCLUDED] = true.toString()
-                    File(ctx.cacheDir, FILE_LIVEPROG).let {
-                        liveprogFile.copyTo(it, overwrite = true)
-                        addFile(it)
+                    out.putNextEntry(TarEntry(file, file.name))
+                    BufferedInputStream(FileInputStream(file)).use { origin ->
+                        var count: Int
+                        val data = ByteArray(2048)
+                        while (origin.read(data).also { count = it } != -1) {
+                            out.write(data, 0, count)
+                        }
+                        out.flush()
                     }
                 }
-            }
 
-            val metadataFile = File(ctx.cacheDir, FILE_METADATA)
-            metadataFile.writeText(
-                metadata
-                    .map{ "${it.key}=${it.value}" }
-                    .joinToString("\n")
-            )
-            addFile(metadataFile)
+                currentPath(ctx)
+                    .listFiles()
+                    ?.filter { it.name.startsWith("dsp_") }
+                    ?.filter { it.extension == "xml" }
+                    ?.forEach(::addFile)
+
+                val metadata = mutableMapOf(
+                    META_VERSION to "2",
+                    META_APP_VERSION to BuildConfig.VERSION_NAME,
+                    META_APP_FLAVOR to BuildConfig.FLAVOR,
+                    META_LIVEPROG_INCLUDED to false.toString()
+                )
+
+                val liveprogPath = findLiveprogScriptPath(ctx)
+                if (liveprogPath != null) {
+                    val liveprogFile = File(liveprogPath)
+                    if (liveprogFile.exists()) {
+                        Timber.d("Saving included liveprog script state from '$liveprogPath'")
+
+                        metadata[META_LIVEPROG_INCLUDED] = true.toString()
+                        File(ctx.cacheDir, FILE_LIVEPROG).let {
+                            liveprogFile.copyTo(it, overwrite = true)
+                            addFile(it)
+                        }
+                    }
+                }
+
+                val metadataFile = File(ctx.cacheDir, FILE_METADATA)
+                metadataFile.writeText(
+                    metadata
+                        .map { "${it.key}=${it.value}" }
+                        .joinToString("\n")
+                )
+                addFile(metadataFile)
+            }
+        }
+        catch (ex: ErrnoException) {
+            Timber.d(ex)
+            ex.localizedMessage?.let {
+                Toast.makeText(ctx, it, Toast.LENGTH_LONG)
+            }
+            return false
+        }
+        catch (ex: Exception) {
+            Timber.d(ex)
+            return false
         }
 
         return true

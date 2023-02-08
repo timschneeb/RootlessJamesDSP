@@ -67,12 +67,15 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
                                     autofill = false,
                                     allowOverwrite = true
                                 ) { file ->
-                                    if(file.exists())
+                                    val overwritten = file.exists()
+                                    val success = Preset(file.name).save()
+                                    if(overwritten && success)
                                         showMessage(getString(R.string.filelibrary_preset_overwritten, file.nameWithoutExtension))
-                                    else
+                                    else if(!overwritten && success)
                                         showMessage(getString(R.string.filelibrary_preset_created, file.nameWithoutExtension))
+                                    else
+                                        showMessage(getString(R.string.filelibrary_preset_save_failed))
 
-                                    Preset(file.name).save()
                                     refresh()
                                 }
                             }
@@ -141,8 +144,10 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
                     }
                     R.id.overwrite_selection -> {
                         if(fileLibPreference.isPreset()) {
-                            Preset(selectedFile.name).save()
-                            showMessage(getString(R.string.filelibrary_preset_overwritten, name))
+                            if(Preset(selectedFile.name).save())
+                                showMessage(getString(R.string.filelibrary_preset_overwritten, name))
+                            else
+                                showMessage(getString(R.string.filelibrary_preset_save_failed))
                         }
                         refresh()
                     }

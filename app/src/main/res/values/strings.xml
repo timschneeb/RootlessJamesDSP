@@ -361,6 +361,7 @@
     <string name="filelibrary_resample_failed">Resampling failed. Corrupt input file?</string>
     <string name="filelibrary_preset_overwritten">Preset \'%1$s\' overwritten</string>
     <string name="filelibrary_preset_created">Preset \'%1$s\' created</string>
+    <string name="filelibrary_preset_save_failed">Failed to save preset</string>
     <string name="filelibrary_renamed">Renamed to \'%1$s\'</string>
     <string name="filelibrary_deleted">\'%1$s\' deleted</string>
     <string name="filelibrary_preset_loaded">Preset \'%1$s\' loaded</string>
