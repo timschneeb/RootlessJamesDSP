@@ -27,7 +27,8 @@ class MutedSessionManager(private val context: Context) {
         "com.google.android.as",
         "com.kieronquinn.app.pixelambientmusic",
         "com.draftkings.sportsbook",
-        "com.samsung.gpuwatchapp"
+        "com.samsung.gpuwatchapp",
+        "com.kalkiarts.hexabloompro"
     )
 
     init {
