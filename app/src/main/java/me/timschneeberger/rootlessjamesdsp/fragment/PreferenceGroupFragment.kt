@@ -83,10 +83,18 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
                         liveprogEdit?.isEnabled = filePresent
 
                         liveprogParams?.isEnabled = count > 0
-                        liveprogParams?.summary = if(count > 0)
-                            resources.getQuantityString(R.plurals.custom_parameters, count, count)
-                        else
-                            getString(R.string.liveprog_additional_params_not_supported)
+
+                        try {
+                            liveprogParams?.summary = if (count > 0)
+                                resources.getQuantityString(R.plurals.custom_parameters, count, count)
+                            else
+                                getString(R.string.liveprog_additional_params_not_supported)
+                        }
+                        catch(ex: IllegalStateException) {
+                            /* Because this lambda is executed async, it is possible that it is called
+                               while the fragment is destroyed, leading to accessing a detached context */
+                            Timber.d(ex)
+                        }
                     }
 
                     if (recyclerView == null)
