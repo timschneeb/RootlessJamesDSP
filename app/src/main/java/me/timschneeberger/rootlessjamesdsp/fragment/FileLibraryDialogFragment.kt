@@ -324,7 +324,12 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
             type = "*/*"
         }
 
-        startActivityForResult(intent, IMPORT_FILE)
+        try {
+            startActivityForResult(intent, IMPORT_FILE)
+        }
+        catch(_: Exception) {
+            Toast.makeText(requireContext(), R.string.no_activity_found, Toast.LENGTH_LONG).show()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

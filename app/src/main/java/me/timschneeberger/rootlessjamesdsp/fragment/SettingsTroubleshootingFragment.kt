@@ -84,7 +84,9 @@ class SettingsTroubleshootingFragment : PreferenceFragmentCompat() {
             try {
                 requireActivity().startActivity(intent)
             }
-            catch(_: Exception) {}
+            catch(_: Exception) {
+                Toast.makeText(requireContext(), R.string.no_activity_found, Toast.LENGTH_LONG).show()
+            }
             true
         }
         findPreference<MaterialSwitchPreference>(getString(R.string.key_session_loss_ignore))?.setOnPreferenceChangeListener { _, newValue ->

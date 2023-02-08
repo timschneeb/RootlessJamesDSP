@@ -53,6 +53,7 @@
     <string name="value_not_set">Not set</string>
     <string name="undo">Undo</string>
     <string name="redo">Redo</string>
+    <string name="no_activity_found">No Activity found to handle action</string>
 
     <!-- Main screen -->
     <string name="power_button_alt">Toggle audio processing</string>
