@@ -20,6 +20,17 @@
             app:iconSpaceReserved="false" />
     </PreferenceCategory>
 
+    <PreferenceCategory app:title="@string/network_services"
+        app:iconSpaceReserved="false">
+        <EditTextPreference
+            android:key="@string/key_network_autoeq_api_url"
+            android:title="@string/network_autoeq_api_url"
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="https://aeq.timschneeberger.me"
+            android:inputType="textUri"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
     <PreferenceCategory
         app:title="@string/privacy"
         app:iconSpaceReserved="false">
@@ -31,6 +42,7 @@
             android:summaryOff="@string/privacy_share_crash_reports_off"
             app:iconSpaceReserved="false" />
     </PreferenceCategory>
+
 
     <!-- This category is only available in debug builds. No translation required. -->
     <PreferenceCategory

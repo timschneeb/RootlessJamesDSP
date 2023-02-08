@@ -290,6 +290,13 @@
     <string name="misc_settings_summary">Crash reports, other actions</string>
     <string name="autostart">Auto-start</string>
     <string name="assets">Assets</string>
+    <string name="network_services">Network services</string>
+    <string name="network_autoeq_api_url">AutoEQ API backend URL</string>
+    <string name="network_invalid_url">Invalid URL format</string>
+    <string name="network_autoeq_conntest_running">Testing connection to server…</string>
+    <string name="network_autoeq_conntest_done">Connection test succeeded</string>
+    <string name="network_autoeq_conntest_fail">Connection test failed</string>
+    <string name="network_autoeq_conntest_fail_summary">Server did not respond correctly. Make sure the software at https://github.com/ThePBone/AutoEqApi is correctly set up on the server.\n\nNetwork error: %1$s\n\nDo you want to restore this setting to the default value?</string>
     <string name="about_settings">About</string>
     <string name="about_settings_summary">Credits, support, updates</string>
     <string name="privacy">Privacy</string>

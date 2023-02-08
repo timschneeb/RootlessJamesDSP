@@ -168,10 +168,10 @@ object ContextExtensions {
             .show()
     }
 
-    fun Context.showYesNoAlert(@StringRes title: Int, @StringRes message: Int, callback: ((Boolean) -> Unit)) {
+    fun Context.showYesNoAlert(title: String, message: String, callback: ((Boolean) -> Unit)) {
         MaterialAlertDialogBuilder(this)
-            .setMessage(getString(message))
-            .setTitle(getString(title))
+            .setMessage(message)
+            .setTitle(title)
             .setNegativeButton(getString(R.string.no)) { _, _ ->
                 callback.invoke(false)
             }
@@ -180,6 +180,10 @@ object ContextExtensions {
             }
             .create()
             .show()
+    }
+
+    fun Context.showYesNoAlert(@StringRes title: Int, @StringRes message: Int, callback: ((Boolean) -> Unit)) {
+        showYesNoAlert(getString(title), getString(message), callback)
     }
 
     fun Context.showSingleChoiceAlert(

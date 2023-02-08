@@ -17,6 +17,7 @@
 
     <!-- Settings -->
     <string name="key_share_crash_reports" translatable="false">share_crash_reports</string>
+    <string name="key_network_autoeq_api_url" translatable="false">network_autoeq_api_url</string>
     <string name="key_troubleshooting_dump" translatable="false">troubleshooting_dump</string>
     <string name="key_troubleshooting_notification_access" translatable="false">troubleshooting_notification_access</string>
     <string name="key_troubleshooting_repair_assets" translatable="false">troubleshooting_repair_assets</string>

@@ -4,6 +4,7 @@ import android.content.Context
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.model.api.AeqSearchResult
+import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -14,22 +15,31 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
-class AutoEqClient(val context: Context) {
+class AutoEqClient(val context: Context, callTimeout: Long = 10, customBaseUrl: String? = null) {
 
     private val http = OkHttpClient
         .Builder()
-        .callTimeout(10, TimeUnit.SECONDS)
+        .callTimeout(callTimeout, TimeUnit.SECONDS)
         .addInterceptor(UserAgentInterceptor("RootlessJamesDSP v${BuildConfig.VERSION_NAME}"))
         .build()
 
-    private val retrofit: Retrofit = Retrofit.Builder()
-        .baseUrl(API_URL)
-        .client(http)
-        .addConverterFactory(ScalarsConverterFactory.create())
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
+    private val retrofit: Retrofit
+    private val service: AutoEqService
 
-    private val service: AutoEqService = retrofit.create(AutoEqService::class.java)
+    init {
+        val apiUrl = customBaseUrl ?: context.getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
+            .getString(context.getString(R.string.key_network_autoeq_api_url), DEFAULT_API_URL) ?: DEFAULT_API_URL
+        Timber.i("Using API url: ", apiUrl)
+
+        retrofit = Retrofit.Builder()
+            .baseUrl(apiUrl)
+            .client(http)
+            .addConverterFactory(ScalarsConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        service = retrofit.create(AutoEqService::class.java)
+    }
 
     fun queryProfiles(query: String, onResponse: ((Array<AeqSearchResult>, Boolean /* isPartialResult */) -> Unit), onFailure: ((String) -> Unit)?) {
         val call = service.queryProfiles(query)
@@ -83,7 +93,7 @@ class AutoEqClient(val context: Context) {
     }
 
     companion object {
-        private const val API_URL = "https://aeq.timschneeberger.me/"
+        const val DEFAULT_API_URL = "https://aeq.timschneeberger.me/"
         private const val HEADER_PARTIAL_RESULT = "X-Partial-Result"
         private const val HEADER_PROFILE_ID = "X-Profile-Id"
         private const val HEADER_PROFILE_NAME = "X-Profile-Name"
