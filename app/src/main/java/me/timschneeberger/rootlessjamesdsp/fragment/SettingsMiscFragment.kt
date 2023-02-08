@@ -45,39 +45,64 @@ class SettingsMiscFragment : PreferenceFragmentCompat() {
         }
 
         aeqApiUrl?.setOnPreferenceChangeListener { _, newValue ->
-            if(!Patterns.WEB_URL.matcher(newValue.toString().lowercase(Locale.ROOT)).matches()) {
-                Toast.makeText(requireContext(), getString(R.string.network_invalid_url), Toast.LENGTH_LONG).show()
+            if (!Patterns.WEB_URL.matcher(newValue.toString().lowercase(Locale.ROOT)).matches()) {
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.network_invalid_url),
+                    Toast.LENGTH_LONG
+                ).show()
                 return@setOnPreferenceChangeListener false
             }
 
             // Verify URL by performing a connection test
-            Toast.makeText(requireContext(), R.string.network_autoeq_conntest_running, Toast.LENGTH_SHORT).show()
-            AutoEqClient(requireContext(), 5, newValue.toString()).queryProfiles(
-                "conntest",
-                onResponse = { _,_ ->
-                    Toast.makeText(requireContext(), R.string.network_autoeq_conntest_done, Toast.LENGTH_SHORT).show()
-                },
-                onFailure = { error ->
-                    requireContext().showYesNoAlert(
-                        getString(R.string.network_autoeq_conntest_fail),
-                        getString(R.string.network_autoeq_conntest_fail_summary, error)
-                    ) {
-                        if(it) {
-                            // Restore default URL if requested
-                            requireContext()
-                                .getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
-                                .edit()
-                                .putString(
-                                    getString(R.string.key_network_autoeq_api_url),
-                                    AutoEqClient.DEFAULT_API_URL
-                                )
-                                .apply()
+            try {
+                val client = AutoEqClient(requireContext(), 5, newValue.toString())
+                Toast.makeText(
+                    requireContext(),
+                    R.string.network_autoeq_conntest_running,
+                    Toast.LENGTH_SHORT
+                ).show()
 
-                            aeqApiUrl?.text = AutoEqClient.DEFAULT_API_URL
+                client.queryProfiles(
+                    "conntest",
+                    onResponse = { _, _ ->
+                        Toast.makeText(
+                            requireContext(),
+                            R.string.network_autoeq_conntest_done,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    },
+                    onFailure = { error ->
+                        requireContext().showYesNoAlert(
+                            getString(R.string.network_autoeq_conntest_fail),
+                            getString(R.string.network_autoeq_conntest_fail_summary, error)
+                        ) {
+                            if (it) {
+                                // Restore default URL if requested
+                                requireContext()
+                                    .getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
+                                    .edit()
+                                    .putString(
+                                        getString(R.string.key_network_autoeq_api_url),
+                                        AutoEqClient.DEFAULT_API_URL
+                                    )
+                                    .apply()
+
+                                aeqApiUrl?.text = AutoEqClient.DEFAULT_API_URL
+                            }
                         }
                     }
-                }
-            )
+                )
+            }
+            catch(ex: IllegalArgumentException) {
+                // Handle invalid base url argument in retrofit
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.network_invalid_url),
+                    Toast.LENGTH_LONG
+                ).show()
+                return@setOnPreferenceChangeListener false
+            }
 
             true
         }
