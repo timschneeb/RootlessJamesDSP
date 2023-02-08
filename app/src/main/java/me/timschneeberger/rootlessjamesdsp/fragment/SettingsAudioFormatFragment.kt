@@ -45,11 +45,11 @@ class SettingsAudioFormatFragment : PreferenceFragmentCompat() {
             if((newValue as Float) <= 1024){
                 Toast.makeText(requireContext(), getString(R.string.audio_format_buffer_size_warning_low_value), Toast.LENGTH_SHORT).show()
             }
-            requireContext().sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_HARD_REBOOT_CORE))
+            context?.sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_HARD_REBOOT_CORE))
             true
         }
         encoding?.setOnPreferenceChangeListener { _, _ ->
-            requireContext().sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_HARD_REBOOT_CORE))
+            context?.sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_HARD_REBOOT_CORE))
             true
         }
     }
