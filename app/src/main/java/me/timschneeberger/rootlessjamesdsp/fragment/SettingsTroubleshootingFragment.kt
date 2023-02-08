@@ -80,16 +80,11 @@ class SettingsTroubleshootingFragment : PreferenceFragmentCompat() {
         }
         findPreference<Preference>(getString(R.string.key_troubleshooting_notification_access))?.setOnPreferenceClickListener {
             val intent = ApplicationUtils.getIntentForNotificationAccess(requireContext().packageName, NotificationListenerService::class.java)
-            // Try two methods; some devices don't behave as expected
+            // TVs, smart-watches and some other weird devices do not have these settings
             try {
                 requireActivity().startActivity(intent)
             }
-            catch(_: Exception) {
-                try {
-                    startActivity(Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS))
-                }
-                catch (_: Exception) { }
-            }
+            catch(_: Exception) {}
             true
         }
         findPreference<MaterialSwitchPreference>(getString(R.string.key_session_loss_ignore))?.setOnPreferenceChangeListener { _, newValue ->
