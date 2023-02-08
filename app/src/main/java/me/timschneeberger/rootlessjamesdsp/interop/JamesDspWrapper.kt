@@ -1,6 +1,7 @@
 package me.timschneeberger.rootlessjamesdsp.interop
 
 import me.timschneeberger.rootlessjamesdsp.interop.structure.EelVmVariable
+import me.timschneeberger.rootlessjamesdsp.model.ProcessorMessage
 import java.util.ArrayList
 
 typealias JamesDspHandle = Long
@@ -47,7 +48,7 @@ object JamesDspWrapper {
         fun onLiveprogExec(id: String)
         fun onLiveprogResult(resultCode: Int, id: String, errorMessage: String?)
         fun onVdcParseError()
-        fun onConvolverParseError()
+        fun onConvolverParseError(errorCode: ProcessorMessage.ConvolverErrorCode)
     }
 
     init

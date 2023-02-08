@@ -361,6 +361,8 @@
 
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">Selected VDC file is corrupt. Please choose another one.</string>
+    <string name="message_irs_corrupt">Selected impulse response is corrupt. Please choose another one.</string>
+    <string name="message_convolver_advimp_invalid">Convolver: Advanced waveform editing contains invalid values.</string>
     <string name="message_liveprog_compile_fail">Liveprog execution failed. Selected script is damaged. Please use the script editor for debugging.</string>
 
     <!-- GraphicEQ editor -->

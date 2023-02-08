@@ -459,6 +459,17 @@ class MainActivity : BaseActivity() {
                 ProcessorMessage.Type.VdcParseError -> {
                     makeSnackbar(getString(R.string.message_vdc_corrupt)).show()
                 }
+                ProcessorMessage.Type.ConvolverParseError -> {
+                    when(ProcessorMessage.ConvolverErrorCode.fromInt(
+                        intent.getIntExtra(ProcessorMessage.Param.ConvolverErrorCode.name, 0)
+                    )) {
+                        ProcessorMessage.ConvolverErrorCode.Corrupted -> R.string.message_irs_corrupt
+                        ProcessorMessage.ConvolverErrorCode.AdvParamsInvalid -> R.string.message_convolver_advimp_invalid
+                        else -> null
+                    }?.let {
+                        makeSnackbar(getString(it)).show()
+                    }
+                }
                 ProcessorMessage.Type.LiveprogOutput -> {}
                 ProcessorMessage.Type.LiveprogExec -> {}
                 ProcessorMessage.Type.LiveprogResult -> {

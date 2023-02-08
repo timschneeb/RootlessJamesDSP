@@ -55,8 +55,10 @@ class ProcessorMessageHandler : JamesDspWrapper.JamesDspCallbacks, KoinComponent
         Timber.v("onVdcParseError")
     }
 
-    override fun onConvolverParseError() {
-        broadcastProcessorMessage(ProcessorMessage.Type.ConvolverParseError)
+    override fun onConvolverParseError(errorCode: ProcessorMessage.ConvolverErrorCode) {
+        broadcastProcessorMessage(ProcessorMessage.Type.ConvolverParseError, mapOf(
+            ProcessorMessage.Param.ConvolverErrorCode to errorCode.value
+        ))
         Timber.v("onConvolverParseError")
     }
 }

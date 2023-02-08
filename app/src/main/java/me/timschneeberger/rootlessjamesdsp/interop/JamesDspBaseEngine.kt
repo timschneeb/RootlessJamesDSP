@@ -11,6 +11,7 @@ import kotlinx.coroutines.sync.withLock
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.interop.structure.EelVmVariable
+import me.timschneeberger.rootlessjamesdsp.model.ProcessorMessage
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
 import timber.log.Timber
 import java.io.File
@@ -180,10 +181,10 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
 
         val advConv = waveEditStr.split(";")
         val advSetting = IntArray(6)
+        advSetting[0] = -80
+        advSetting[1] = -100
         try
         {
-            advSetting[0] = -100
-            advSetting[1] = -100
             if (advConv.size == 6)
             {
                 for (i in advConv.indices) advSetting[i] = Integer.valueOf(advConv[i])
@@ -196,16 +197,9 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
         catch(ex: NumberFormatException) {
             Timber
                 .e("setConvolver: NumberFormatException while parsing AdvImp setting. Using defaults.")
-
-            advSetting[0] = -80
-            advSetting[1] = -100
-            advSetting[2] = 23
-            advSetting[3] = 12
-            advSetting[4] = 17
-            advSetting[5] = 28
         }
 
-        val info = IntArray(2)
+        val info = IntArray(3)
         val imp = JdspImpResToolbox.ReadImpulseResponseToFloat(
             impulseResponsePath,
             sampleRate.toInt(),
@@ -217,15 +211,22 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
         if(imp == null) {
             Timber.e("setConvolver: Failed to read IR")
             setConvolverInternal(false, FloatArray(0), 0, 0)
-            callbacks?.onConvolverParseError()
+            callbacks?.onConvolverParseError(ProcessorMessage.ConvolverErrorCode.Corrupted)
             return false
         }
 
+        // check frame count
         if(info[1] == 0) {
             Timber.e("setConvolver: IR has no frames")
             setConvolverInternal(false, FloatArray(0), 0, 0)
-            callbacks?.onConvolverParseError()
+            callbacks?.onConvolverParseError(ProcessorMessage.ConvolverErrorCode.NoFrames)
             return false
+        }
+
+        // check if advSetting was invalid
+        if(info[2] == 0) {
+            Timber.w("setConvolver: advSetting was invalid")
+            callbacks?.onConvolverParseError(ProcessorMessage.ConvolverErrorCode.AdvParamsInvalid)
         }
 
         return setConvolverInternal(true, imp, info[0], info[1])
@@ -287,6 +288,6 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
         override fun onLiveprogExec(id: String) {}
         override fun onLiveprogResult(resultCode: Int, id: String, errorMessage: String?) {}
         override fun onVdcParseError() {}
-        override fun onConvolverParseError() {}
+        override fun onConvolverParseError(errorCode: ProcessorMessage.ConvolverErrorCode) {}
     }
 }

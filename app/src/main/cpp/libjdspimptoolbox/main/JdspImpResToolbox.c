@@ -482,6 +482,17 @@ float* loadAudioFile(const char *filename, double targetFs, unsigned int *channe
 	}
 	return pSampleData;
 }
+
+int validateAdvImpParameter(int frameCount, int convMode, jint* advSetPtr, jsize advSetSize) {
+	int frameCountGE8 = frameCount < 8 ? 8 : frameCount;
+    int splittedBufferSize = convMode == 2 ? (2 * frameCountGE8) : frameCount;
+    for(int i = 2; i < advSetSize; i++) {
+        if(advSetPtr[i] >= splittedBufferSize || advSetPtr[i] < 0)
+            return 0;
+    }
+    return 1;
+}
+
 JNIEXPORT jfloatArray JNICALL Java_me_timschneeberger_rootlessjamesdsp_interop_JdspImpResToolbox_ReadImpulseResponseToFloat
 (JNIEnv *env, jobject obj, jstring path, jint targetSampleRate, jintArray jImpInfo, jint convMode, jintArray jadvParam)
 {
@@ -496,6 +507,23 @@ JNIEXPORT jfloatArray JNICALL Java_me_timschneeberger_rootlessjamesdsp_interop_J
 		return 0;
 	}
 	jint *javaAdvSetPtr = (jint*) (*env)->GetIntArrayElements(env, jadvParam, 0);
+    jsize javaAdvSetSize = (*env)->GetArrayLength(env, jadvParam);
+
+    if(javaAdvSetSize != 6) {
+        return 0;
+    }
+
+    int isAdvSetValid = validateAdvImpParameter(frameCount, convMode, javaAdvSetPtr, javaAdvSetSize);
+    if(!isAdvSetValid) {
+        // Overwrite invalid advanced params
+        javaAdvSetPtr[0] = -80;
+        javaAdvSetPtr[1] = -100;
+        javaAdvSetPtr[2] = 0;
+        javaAdvSetPtr[3] = 0;
+        javaAdvSetPtr[4] = 0;
+        javaAdvSetPtr[5] = 0;
+    }
+
 	int i;
 	float *splittedBuffer[4];
 	int alloc = frameCount;
@@ -599,7 +627,8 @@ JNIEXPORT jfloatArray JNICALL Java_me_timschneeberger_rootlessjamesdsp_interop_J
 	jint *javaBasicInfoPtr = (jint*) (*env)->GetIntArrayElements(env, jImpInfo, 0);
 	javaBasicInfoPtr[0] = (int)channels;
 	javaBasicInfoPtr[1] = (int)frameCount;
-	(*env)->SetIntArrayRegion(env, jImpInfo, 0, 2, javaBasicInfoPtr);
+	javaBasicInfoPtr[2] = (int)isAdvSetValid;
+	(*env)->SetIntArrayRegion(env, jImpInfo, 0, 3, javaBasicInfoPtr);
 	jfloatArray outbuf;
 	int frameCountTotal = channels * frameCount;
 	size_t bufferSize = frameCountTotal * sizeof(float);

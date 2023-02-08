@@ -45,8 +45,7 @@ android {
             manifestPlaceholders["crashlyticsCollectionEnabled"] = "false"
         }
         getByName("release") {
-            manifestPlaceholders += mapOf()
-            manifestPlaceholders["crashlyticsCollectionEnabled"] = "true"
+            manifestPlaceholders += mapOf("crashlyticsCollectionEnabled" to "true")
             configure<CrashlyticsExtension> {
                 nativeSymbolUploadEnabled = true
                 mappingFileUploadEnabled = false
@@ -159,13 +158,13 @@ afterEvaluate {
 
 dependencies {
     // Kotlin extensions
-    implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.10")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.20")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
 
     // AndroidX
     implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.5.1")
+    implementation("androidx.appcompat:appcompat:1.6.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.recyclerview:recyclerview:1.3.0-rc01")
@@ -174,11 +173,13 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
     implementation("androidx.preference:preference-ktx:1.2.0")
     implementation("androidx.preference:preference:1.2.0")
-    implementation("androidx.databinding:databinding-runtime:7.3.1")
+    implementation("androidx.databinding:databinding-runtime:7.4.1")
     implementation("com.google.android.material:material:1.9.0-alpha01")
 
     // Dependency injection
     implementation("io.insert-koin:koin-android:3.2.0")
+    implementation("androidx.core:core-ktx:1.9.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
 
     // Firebase
     "fullImplementation"(platform("com.google.firebase:firebase-bom:30.4.1"))

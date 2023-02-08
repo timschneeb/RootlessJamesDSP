@@ -19,7 +19,19 @@ package me.timschneeberger.rootlessjamesdsp.model
          LiveprogFileId(1),
          LiveprogResultCode(2),
          LiveprogErrorMessage(3),
-         LiveprogStdout(4);
+         LiveprogStdout(4),
+         ConvolverErrorCode(5);
+
+         companion object {
+             fun fromInt(value: Int) = values().first { it.value == value }
+         }
+     }
+
+     enum class ConvolverErrorCode(val value: Int) {
+         Unknown(1),
+         Corrupted(1),
+         NoFrames(2),
+         AdvParamsInvalid(3);
 
          companion object {
              fun fromInt(value: Int) = values().first { it.value == value }

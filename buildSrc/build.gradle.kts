@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-    compileOnly("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10")
+    compileOnly("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.10")
 
     implementation(gradleApi())
 }
