@@ -21,9 +21,13 @@ class MutedSessionManager(private val context: Context) {
     private var excludedUids = arrayOf<Int>()
     private val excludedPackages = arrayOf(
         context.packageName,
+
+        // Non-music apps known to cause issues
         "com.google.android.googlequicksearchbox",
         "com.google.android.as",
-        "com.kieronquinn.app.pixelambientmusic"
+        "com.kieronquinn.app.pixelambientmusic",
+        "com.draftkings.sportsbook",
+        "com.samsung.gpuwatchapp"
     )
 
     init {
