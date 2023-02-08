@@ -91,7 +91,7 @@ class AppCompatibilityFragment : Fragment() {
             }
 
             Timer("Close", false).schedule(300L) {
-                requireActivity().finish()
+                activity?.finish()
                 if(internalCall)
                     startActivity(Intent(requireContext(), MainActivity::class.java))
             }
@@ -111,7 +111,7 @@ class AppCompatibilityFragment : Fragment() {
                 }
 
                 Timer("Close", false).schedule(300L) {
-                    requireActivity().finish()
+                    activity?.finish()
                     if(internalCall)
                         startActivity(Intent(requireContext(), MainActivity::class.java))
                 }
