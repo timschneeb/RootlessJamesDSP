@@ -20,9 +20,10 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
     override var enabled: Boolean = true
 
     override fun close() {
-        JamesDspWrapper.free(handle)
-        Timber.d("Handle $handle has been freed")
+        val oldHandle = handle
         handle = 0
+        JamesDspWrapper.free(oldHandle)
+        Timber.d("Handle $oldHandle has been freed")
     }
 
     // Processing
