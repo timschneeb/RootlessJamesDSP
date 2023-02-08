@@ -19,6 +19,7 @@ import org.xml.sax.SAXException
 import timber.log.Timber
 import java.io.*
 import javax.xml.parsers.DocumentBuilderFactory
+import kotlin.io.path.Path
 
 
 typealias PresetMetadata = Map<String, String>
@@ -48,6 +49,10 @@ class Preset(val name: String): KoinComponent {
         val targetFile = file()
         if (targetFile.exists())
             targetFile.delete()
+
+        try {
+            externalPath.mkdirs()
+        } catch (_: Exception) {}
 
         Timber.d("Saving preset $name to ${targetFile.path}")
 
