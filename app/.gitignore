@@ -1,7 +1,5 @@
 /build
-/release
-/preview
-/rootless/release
-/rootless/preview
-/root/release
-/root/preview
+/rootlessFull/
+/rootlessFdroid/
+/rootFull/
+/rootFdroid/
