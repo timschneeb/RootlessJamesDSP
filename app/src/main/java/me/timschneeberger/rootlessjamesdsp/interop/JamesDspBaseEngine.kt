@@ -181,6 +181,7 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
 
         val advConv = waveEditStr.split(";")
         val advSetting = IntArray(6)
+        advSetting.fill(0)
         advSetting[0] = -80
         advSetting[1] = -100
         try
