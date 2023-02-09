@@ -1,0 +1,2 @@
+json_key_file("~/.keys/pc-api-6940086729655979938-806-25f5e9d57917.json") # Path to the json secret file - Follow https://docs.fastlane.tools/actions/supply/#setup to get one
+package_name("me.timschneeberger.rootlessjamesdsp")

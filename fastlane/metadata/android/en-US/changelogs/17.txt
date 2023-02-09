@@ -1,0 +1,4 @@
+* Script editor: Fixed performance issues when opening large files
+* Script editor: Better syntax highlighting for user-defined functions and other tokens
+* Script editor: Added font size settings
+* Fixed various crashes
