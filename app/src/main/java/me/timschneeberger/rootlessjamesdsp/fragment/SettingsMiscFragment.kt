@@ -79,14 +79,14 @@ class SettingsMiscFragment : PreferenceFragmentCompat() {
                         ) {
                             if (it) {
                                 // Restore default URL if requested
-                                context?
-                                    .getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
-                                    .edit()
-                                    .putString(
+                                context
+                                    ?.getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
+                                    ?.edit()
+                                    ?.putString(
                                         getString(R.string.key_network_autoeq_api_url),
                                         AutoEqClient.DEFAULT_API_URL
                                     )
-                                    .apply()
+                                    ?.apply()
 
                                 aeqApiUrl?.text = AutoEqClient.DEFAULT_API_URL
                             }
