@@ -29,7 +29,8 @@ class AutoEqClient(val context: Context, callTimeout: Long = 10, customBaseUrl: 
     init {
         val apiUrl = customBaseUrl ?: context.getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
             .getString(context.getString(R.string.key_network_autoeq_api_url), DEFAULT_API_URL) ?: DEFAULT_API_URL
-        Timber.i("Using API url: ", apiUrl)
+        Timber.i("Using API url: $apiUrl")
+        CrashlyticsImpl.setCustomKey("aeq_api_url", apiUrl)
 
         retrofit = Retrofit.Builder()
             .baseUrl(apiUrl)

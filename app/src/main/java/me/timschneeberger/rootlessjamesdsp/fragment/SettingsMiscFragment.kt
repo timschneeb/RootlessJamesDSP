@@ -73,13 +73,13 @@ class SettingsMiscFragment : PreferenceFragmentCompat() {
                         ).show()
                     },
                     onFailure = { error ->
-                        requireContext().showYesNoAlert(
+                        context?.showYesNoAlert(
                             getString(R.string.network_autoeq_conntest_fail),
                             getString(R.string.network_autoeq_conntest_fail_summary, error)
                         ) {
                             if (it) {
                                 // Restore default URL if requested
-                                requireContext()
+                                context?
                                     .getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
                                     .edit()
                                     .putString(
