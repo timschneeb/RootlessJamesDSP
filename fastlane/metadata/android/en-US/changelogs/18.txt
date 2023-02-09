@@ -1,0 +1,4 @@
+* Added monochrome icon support for Android 13 launchers
+* Liveprog: Better syntax highlighting in script editor
+* Fixed many app crashes and bugs
+* Customizable AutoEQ API url (to allow self-hosting)
