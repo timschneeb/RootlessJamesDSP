@@ -83,6 +83,12 @@ NOTE: Tested with Spotify version `8.7.48.1062` and `8.7.68.568`
 4. Start the patching process and install the patched APK once it is done.
 5. You can now use Spotify with RootlessJamesDSP.
 
+## Translations
+
+This application can be translated via Crowdin: https://crowdin.com/project/rootlessjamesdsp
+
+Not all languages are enabled at the moment in Crowdin. To request a new language, please open an issue here on GitHub.
+
 ## Downloads
 
 This app is available for free on Google Play: [https://play.google.com/store/apps/details?id=me.timschneeberger.rootlessjamesdsp](https://play.google.com/store/apps/details?id=me.timschneeberger.rootlessjamesdsp&utm_source=github&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)
