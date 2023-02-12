@@ -40,3 +40,7 @@ Außerdem ist diese Anwendung direkt mit AutoEQ integriert. Mit der AutoEQ-Integ
 * Google Chrome
 * SoundCloud
 * ...
+
+--- Übersetzung
+Bitte hilf uns, diese App zu übersetzen: https://crowdin.com/project/rootlessjamesdsp
+Um eine Sprache vorzuschlagen, die noch nicht auf Crowdin aktiviert ist, öffne bitte eine Issue hier auf GitHub.
