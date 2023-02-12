@@ -66,11 +66,12 @@ class SettingsMiscFragment : PreferenceFragmentCompat() {
                 client.queryProfiles(
                     "conntest",
                     onResponse = { _, _ ->
-                        Toast.makeText(
-                            requireContext(),
-                            R.string.network_autoeq_conntest_done,
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        context?.let {
+                            Toast.makeText(it,
+                                R.string.network_autoeq_conntest_done,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     },
                     onFailure = { error ->
                         context?.showYesNoAlert(
