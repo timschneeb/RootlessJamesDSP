@@ -311,6 +311,8 @@
     <string name="credits_project_page_summary">Report issues, keep yourself updated, and read the source code</string>
     <string name="credits_project_play_page">Visit RootlessJamesDSP on Google Play</string>
     <string name="credits_project_play_page_summary">Search for new updates</string>
+    <string name="credits_project_translate">Contribute translations</string>
+    <string name="credits_project_translate_summary">Help us to translate this app into your language</string>
     <string name="credits_version">Application version</string>
     <string name="credits_build_info">Build info</string>
     <string name="appearance_section_header">Appearance</string>

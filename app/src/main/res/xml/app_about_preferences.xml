@@ -37,6 +37,15 @@
             android:data="https://play.google.com/store/apps/details?id=me.timschneeberger.rootlessjamesdsp" />
     </Preference>
 
+    <Preference
+        android:title="@string/credits_project_translate"
+        android:summary="@string/credits_project_translate_summary"
+        app:iconSpaceReserved="false">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="https://crowdin.com/project/rootlessjamesdsp" />
+    </Preference>
+
     <PreferenceCategory
     app:title="@string/credits"
     app:iconSpaceReserved="false">

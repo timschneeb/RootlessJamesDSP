@@ -285,6 +285,8 @@
     <string name="credits_project_page_summary">Melde Probleme, halte dich auf dem Laufenden und lese den Quellcode</string>
     <string name="credits_project_play_page">Besuche RootlessJamesDSP auf Google Play</string>
     <string name="credits_project_play_page_summary">Nach Updates suchen</string>
+    <string name="credits_project_translate">Zur Übersetzung beitragen</string>
+    <string name="credits_project_translate_summary">Hilf uns diese App in Deine Sprache zu übersetzen</string>
     <string name="credits_version">App-Version</string>
     <string name="credits_build_info">Build-Info</string>
     <string name="appearance_section_header">Erscheinungsbild</string>

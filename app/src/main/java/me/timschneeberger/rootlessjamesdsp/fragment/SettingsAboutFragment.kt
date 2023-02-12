@@ -28,7 +28,7 @@ class SettingsAboutFragment : PreferenceFragmentCompat() {
         else
             "Release"
 
-        buildInfo?.summary = "$type build @${BuildConfig.COMMIT_SHA} (compiled at ${BuildConfig.BUILD_TIME})"
+        buildInfo?.summary = "$type (${BuildConfig.FLAVOR_dependencies}) build @${BuildConfig.COMMIT_SHA} (compiled at ${BuildConfig.BUILD_TIME})"
     }
 
     override fun onCreateView(
