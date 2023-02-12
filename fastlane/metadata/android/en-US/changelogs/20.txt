@@ -1,0 +1,2 @@
+* Added german translation
+* Fixed minor crash
