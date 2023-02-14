@@ -1,0 +1,6 @@
+Updates for libjamesdsp:
+* Fixed bug in convolver causing crashes in rare cases
+* Fixed pop sound in EEL when switching script files
+
+Updates for RootlessJamesDSP:
+* None
