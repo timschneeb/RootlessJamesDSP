@@ -220,6 +220,44 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_processInt32(JN
 }
 
 extern "C"
+JNIEXPORT jbooleanArray JNICALL
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_processInt24Packed(JNIEnv *env, jobject obj, jlong self, jbooleanArray inputObj)
+{
+    /* We need to use jbooleanArray (= unsigned 8-bit) instead of jbyteArray (= signed 8-bit) here! */
+
+    // Return inputObj if DECLARE failed
+    DECLARE_DSP(inputObj)
+
+    auto inputLength = env->GetArrayLength(inputObj);
+    auto outputObj = env->NewBooleanArray(inputLength);
+
+    auto input = env->GetBooleanArrayElements(inputObj, nullptr);
+    auto output = env->GetBooleanArrayElements(outputObj, nullptr);
+    dsp->processInt24PackedMultiplexd(dsp, input, output, inputLength / 2);
+    env->ReleaseBooleanArrayElements(inputObj, input, JNI_ABORT);
+    env->ReleaseBooleanArrayElements(outputObj, output, 0);
+    return outputObj;
+}
+
+extern "C"
+JNIEXPORT jintArray JNICALL
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_processInt8U24(JNIEnv *env, jobject obj, jlong self, jintArray inputObj)
+{
+    // Return inputObj if DECLARE failed
+    DECLARE_DSP(inputObj)
+
+    auto inputLength = env->GetArrayLength(inputObj);
+    auto outputObj = env->NewIntArray(inputLength);
+
+    auto input = env->GetIntArrayElements(inputObj, nullptr);
+    auto output = env->GetIntArrayElements(outputObj, nullptr);
+    dsp->processInt8_24Multiplexd(dsp, input, output, inputLength / 2);
+    env->ReleaseIntArrayElements(inputObj, input, JNI_ABORT);
+    env->ReleaseIntArrayElements(outputObj, output, 0);
+    return outputObj;
+}
+
+extern "C"
 JNIEXPORT jfloatArray JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_processFloat(JNIEnv *env, jobject obj, jlong self, jfloatArray inputObj)
 {

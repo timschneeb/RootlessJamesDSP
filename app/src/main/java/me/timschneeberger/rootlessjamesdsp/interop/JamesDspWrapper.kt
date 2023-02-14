@@ -14,6 +14,9 @@ object JamesDspWrapper {
 
     // Processing (interleaved)
     external fun processInt16(self: JamesDspHandle, input: ShortArray): ShortArray
+    external fun processInt8U24(self: JamesDspHandle, input: IntArray): IntArray
+    external fun processInt24Packed(self: JamesDspHandle, input: BooleanArray): BooleanArray
+
     external fun processInt32(self: JamesDspHandle, input: IntArray): IntArray
     external fun processFloat(self: JamesDspHandle, input: FloatArray): FloatArray
 
