@@ -132,13 +132,19 @@ jobs:
           mention-new-contributors: false
           include-compare: true
           
+      - name: Read changelog template
+        id: changelog_post
+        uses: andstor/file-reader-action@v1
+        with:
+          path: ".github/CHANGELOG_POSTFIX.md"
+          
       - name: Create Release
         if: startsWith(github.ref, 'refs/tags/') && github.repository == 'ThePBone/RootlessJamesDSP'
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ env.VERSION_TAG }}
           name: RootlessJamesDSP ${{ env.VERSION_TAG }}
-          body: "${{ steps.changelog.outputs.changelog }} &#x20;"
+          body: "${{ steps.changelog.outputs.changelog }} &#x20; ${{ steps.changelog_post.outputs.contents }}"
           files: |
              app/build/outputs/apk/rootlessFull/${{ env.BUILD_TYPE }}/*.apk
           draft: true
