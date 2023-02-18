@@ -9,6 +9,7 @@ import android.media.audiofx.AudioEffectHidden
 import android.widget.Toast
 import me.timschneeberger.rootlessjamesdsp.interop.structure.EelVmVariable
 import me.timschneeberger.rootlessjamesdsp.utils.AudioEffectExtensions.getParameterInt
+import me.timschneeberger.rootlessjamesdsp.utils.AudioEffectExtensions.setParameter
 import me.timschneeberger.rootlessjamesdsp.utils.AudioEffectExtensions.setParameterCharBuffer
 import me.timschneeberger.rootlessjamesdsp.utils.AudioEffectExtensions.setParameterFloatArray
 import me.timschneeberger.rootlessjamesdsp.utils.AudioEffectExtensions.setParameterImpulseResponseBuffer
@@ -39,11 +40,11 @@ class JamesDspRemoteEngine(
         }
     }
 
-    var effect = createEffect()
+    var effect: AudioEffectHidden? = createEffect()
 
     override var enabled: Boolean
-        set(value) { effect.enabled = value }
-        get() = effect.enabled
+        set(value) { effect?.enabled = value }
+        get() = effect?.enabled ?: false
 
     override var sampleRate: Float
         get() {
@@ -90,24 +91,31 @@ class JamesDspRemoteEngine(
 
     private fun rebootEngine() {
         try {
-            effect.release()
+            effect?.release()
             effect = createEffect()
         }
         catch (ex: IllegalStateException) {
             Timber.e("Failed to re-instantiate JamesDSP effect")
             Timber.e(ex.cause)
+            effect = null
             return
         }
     }
 
     override fun syncWithPreferences(forceUpdateNamespaces: Array<String>?) {
+        if(effect == null) {
+            Timber.d("Rejecting update due to disposed engine")
+            return
+        }
+
         checkEngine()
         super.syncWithPreferences(forceUpdateNamespaces)
     }
 
     override fun close() {
         context.unregisterLocalReceiver(broadcastReceiver)
-        effect.release()
+        effect?.release()
+        effect = null
         super.close()
     }
 

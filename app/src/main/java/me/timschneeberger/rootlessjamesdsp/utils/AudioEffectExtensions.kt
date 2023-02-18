@@ -1,6 +1,8 @@
 package me.timschneeberger.rootlessjamesdsp.utils
 
+import android.media.audiofx.AudioEffect
 import android.media.audiofx.AudioEffectHidden
+import me.timschneeberger.rootlessjamesdsp.utils.AudioEffectExtensions.setParameterIntArray
 import timber.log.Timber
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
@@ -9,7 +11,9 @@ import kotlin.math.ceil
 
 
 object AudioEffectExtensions {
-    fun AudioEffectHidden.setParameterCharArray(parameter: Int, value: String): Int {
+    fun AudioEffectHidden?.setParameterCharArray(parameter: Int, value: String): Int {
+        this ?: return AudioEffect.ERROR_NO_INIT
+
         var result = value.toByteArray(Charset.forName("US-ASCII"))
         if (result.size < 256) {
             val zeroPad = 256 - result.size
@@ -18,7 +22,9 @@ object AudioEffectExtensions {
         return this.setParameter(parameter, result)
     }
 
-    fun AudioEffectHidden.setParameterCharBuffer(parameterSend: Int, parameterCommit: Int, string: String) {
+    fun AudioEffectHidden?.setParameterCharBuffer(parameterSend: Int, parameterCommit: Int, string: String): Int{
+        this ?: return AudioEffect.ERROR_NO_INIT
+
         val partitionCount = ceil(string.length.toDouble() / MAX_CHAR_PARTITION_SIZE).toInt()
 
         // Send buffer info for module to allocate memory
@@ -34,15 +40,17 @@ object AudioEffectExtensions {
             )
 
         // Commit buffer
-        setParameter(parameterCommit, 1.toShort())
+        return setParameter(parameterCommit, 1.toShort())
     }
 
-    fun AudioEffectHidden.setParameterImpulseResponseBuffer(
+    fun AudioEffectHidden?.setParameterImpulseResponseBuffer(
         parameterSend: Int,
         parameterCommit: Int,
         impulseResponse: FloatArray,
         channels: Int
-    ) {
+    ) : Int {
+        this ?: return AudioEffect.ERROR_NO_INIT
+
         val frames = impulseResponse.size
         val sendArray = FloatArray(MAX_IR_PARTITION_SIZE)
         val partitionCount = ceil(frames.toDouble() / MAX_IR_PARTITION_SIZE).toInt()
@@ -60,10 +68,12 @@ object AudioEffectExtensions {
         }
 
         // Commit buffer
-        setParameter(parameterCommit, 1.toShort())
+        return setParameter(parameterCommit, 1.toShort())
     }
 
-    fun AudioEffectHidden.setParameterFloatArray(parameter: Int, value: FloatArray): Int {
+    fun AudioEffectHidden?.setParameterFloatArray(parameter: Int, value: FloatArray): Int {
+        this ?: return AudioEffect.ERROR_NO_INIT
+
         val result = ByteArray(value.size * 4)
         val byteDataBuffer = ByteBuffer.wrap(result)
         byteDataBuffer.order(ByteOrder.nativeOrder())
@@ -73,7 +83,9 @@ object AudioEffectExtensions {
         return this.setParameter(parameter, result)
     }
 
-    fun AudioEffectHidden.setParameterIntArray(parameter: Int, value: IntArray): Int {
+    fun AudioEffectHidden?.setParameterIntArray(parameter: Int, value: IntArray): Int {
+        this ?: return AudioEffect.ERROR_NO_INIT
+
         val result = ByteArray(value.size * 4)
         val byteDataBuffer = ByteBuffer.wrap(result)
         byteDataBuffer.order(ByteOrder.nativeOrder())
@@ -83,7 +95,29 @@ object AudioEffectExtensions {
         return this.setParameter(parameter, result)
     }
 
-    fun AudioEffectHidden.getParameterInt(parameter: Int): Int? {
+    fun AudioEffectHidden?.setParameter(param: ByteArray, value: ByteArray): Int {
+        this ?: return AudioEffect.ERROR_NO_INIT
+        return this.setParameter(param, value)
+    }
+
+    fun AudioEffectHidden?.setParameter(param: Int, value: Int): Int {
+        this ?: return AudioEffect.ERROR_NO_INIT
+        return this.setParameter(param, value)
+    }
+
+    fun AudioEffectHidden?.setParameter(param: Int, value: ByteArray): Int {
+        this ?: return AudioEffect.ERROR_NO_INIT
+        return this.setParameter(param, value)
+    }
+
+    fun AudioEffectHidden?.setParameter(param: Int, value: Short): Int {
+        this ?: return AudioEffect.ERROR_NO_INIT
+        return this.setParameter(param, value)
+    }
+
+    fun AudioEffectHidden?.getParameterInt(parameter: Int): Int? {
+        this ?: return null
+
         val bytes = ByteArray(4)
         val ret = this.getParameter(parameter, bytes)
         if(ret < 0) {
