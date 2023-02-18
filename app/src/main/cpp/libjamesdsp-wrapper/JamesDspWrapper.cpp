@@ -140,7 +140,7 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_alloc(JNIEnv *e
 
     self->dsp = _dsp;
 
-    LOGD("JamesDspWrapper::ctor: memory allocated at %ld", (long)self);
+    LOGD("JamesDspWrapper::ctor: memory allocated at %lx", (long)self);
     return (long)self;
 }
 
@@ -148,6 +148,8 @@ extern "C" JNIEXPORT void JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_free(JNIEnv *env, jobject obj, jlong self)
 {
     DECLARE_DSP_V
+
+    LOGD("JamesDspWrapper::dtor: freeing memory allocated at %lx", (long)self);
 
     setStdOutHandler(nullptr, nullptr);
 
