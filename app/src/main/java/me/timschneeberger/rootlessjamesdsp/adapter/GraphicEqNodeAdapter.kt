@@ -116,12 +116,20 @@ class GraphicEqNodeAdapter(var nodes: GraphicEqNodeList) :
 
         // Set click listeners
         viewHolder.deleteButton.setOnClickListener {
-            nodes.removeAt(viewHolder.bindingAdapterPosition)
+            viewHolder.bindingAdapterPosition.let { pos ->
+                if(pos >= 0) {
+                    nodes.removeAt(pos)
+                }
+            }
             viewHolder.deleteButton.isEnabled = false
         }
 
         viewHolder.itemView.setOnClickListener {
-            onItemClicked?.invoke(nodes[viewHolder.bindingAdapterPosition], viewHolder.bindingAdapterPosition)
+            viewHolder.bindingAdapterPosition.let { pos ->
+                nodes.getOrNull(pos)?.let {
+                    onItemClicked?.invoke(it, pos)
+                }
+            }
         }
     }
 
