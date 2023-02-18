@@ -191,13 +191,13 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
                 for (i in advConv.indices) advSetting[i] = Integer.valueOf(advConv[i])
             }
             else {
-                Timber
-                    .w("setConvolver: AdvImp setting has the wrong size (${advConv.size})")
+                Timber.w("setConvolver: AdvImp setting has the wrong size (${advConv.size})")
+                callbacks?.onConvolverParseError(ProcessorMessage.ConvolverErrorCode.AdvParamsInvalid)
             }
         }
         catch(ex: NumberFormatException) {
-            Timber
-                .e("setConvolver: NumberFormatException while parsing AdvImp setting. Using defaults.")
+            Timber.e("setConvolver: NumberFormatException while parsing AdvImp setting. Using defaults.")
+            callbacks?.onConvolverParseError(ProcessorMessage.ConvolverErrorCode.AdvParamsInvalid)
         }
 
         val info = IntArray(3)
