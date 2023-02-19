@@ -12,6 +12,10 @@
   <a href="https://github.com/ThePBone/RootlessJamesDSP/blob/master/LICENSE">
       <img alt="License" src="https://img.shields.io/github/license/ThePBone/RootlessJamesDSP">
   </a>
+    <a href="https://github.com/ThePBone/RootlessJamesDSP/actions/workflows/build.yml">
+      <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/thepbone/rootlessjamesdsp/build.yml">
+  </a>
+ 
 </p>
 <p align="center">
   <a href="#limitations">Limitations</a> •
