@@ -6,6 +6,7 @@ import android.media.audiofx.AudioEffect
 import android.os.Process.myUid
 import android.util.Log
 import android.util.SparseArray
+import android.widget.Toast
 import androidx.core.util.containsKey
 import androidx.core.util.forEach
 import androidx.core.util.valueIterator
@@ -63,9 +64,12 @@ class EffectSessionManager(private val context: Context) {
             val effect = try {
                 JamesDspRemoteEngine(context, sessionId, 0, ProcessorMessageHandler())
             }
-            catch (ex: IllegalStateException) {
-                Timber.e("Failed to instantiate JamesDSP effect")
+            catch (ex: Exception) {
+                Timber.e("Failed to instantiate JamesDSP effect for session $sessionId ($pkg)")
                 Timber.e(ex.cause)
+
+                // Debug toast
+                Toast.makeText(context, "JDSP load fail (session=$sessionId): " + ex.message, Toast.LENGTH_LONG).show()
                 return
             }
 
