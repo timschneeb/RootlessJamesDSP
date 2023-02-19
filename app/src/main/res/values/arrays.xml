@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string-array name="session_detection_methods" translatable="false">
-        <item>@string/session_detection_method_audiopolicyservice</item>
         <item>@string/session_detection_method_audioservice</item>
+        <item>@string/session_detection_method_audiopolicyservice</item>
     </string-array>
 
     <string-array name="session_detection_methods_values" translatable="false">
-        <item>0</item>
         <item>1</item>
+        <item>0</item>
     </string-array>
 
     <string-array name="theme_modes" translatable="false">

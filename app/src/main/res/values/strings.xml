@@ -246,7 +246,7 @@
     <string name="session_continuous_polling_rate">Polling interval (ms)</string>
     <string name="session_detection_method">Preferred session detection method</string>
     <string name="session_detection_method_audiopolicyservice">AudioPolicyService dump</string>
-    <string name="session_detection_method_audioservice">AudioService dump</string>
+    <string name="session_detection_method_audioservice">AudioService dump (recommended)</string>
     <string name="session_app_problem_ignore">Ignore app compatibility issues</string>
     <string name="session_loss_ignore">Ignore session control loss</string>
     <string name="session_loss_ignore_off">Disabled, handle normally (recommended)</string>

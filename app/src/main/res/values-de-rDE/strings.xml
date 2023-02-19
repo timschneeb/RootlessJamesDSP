@@ -220,7 +220,7 @@
     <string name="session_continuous_polling_rate">Abrufintervall (ms)</string>
     <string name="session_detection_method">Bevorzugte Session-Erkennungsmethode</string>
     <string name="session_detection_method_audiopolicyservice">AudioPolicyService Dump</string>
-    <string name="session_detection_method_audioservice">AudioService Dump</string>
+    <string name="session_detection_method_audioservice">AudioService Dump (empfohlen)</string>
     <string name="session_app_problem_ignore">App-Kompatibilitätsprobleme ignorieren</string>
     <string name="session_loss_ignore">Verlust der Sitzungskontrolle ignorieren</string>
     <string name="session_loss_ignore_off">Deaktiviert, normal verhalten (empfohlen)</string>

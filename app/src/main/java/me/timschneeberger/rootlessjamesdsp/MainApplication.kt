@@ -99,6 +99,22 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
             CrashlyticsImpl.setCustomKey("flavor", BuildConfig.FLAVOR)
         }
 
+        /**
+         * Fix for existing users: reset mode selection to AudioService dump once.
+         *
+         * Reason: AudioPolicyService dumping (previously the default mode) cannot distinguish
+         *         between input and output streams and causes false compat alerts when attaching
+         *         to a input SID.
+         */
+        if(!prefs.getBoolean(getString(R.string.key_reset_proc_mode_fix_applied), false)) {
+            Timber.i("Applying service dump mode fix once")
+
+            prefs.edit()
+                .putString(getString(R.string.key_session_detection_method), DumpManager.Method.AudioService.value.toString())
+                .putBoolean(getString(R.string.key_reset_proc_mode_fix_applied), true)
+                .apply()
+        }
+
         val initialPrefList = arrayOf(
             R.string.key_appearance_theme_mode
         )

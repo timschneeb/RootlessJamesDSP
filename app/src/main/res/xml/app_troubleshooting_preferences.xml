@@ -45,7 +45,7 @@
             app:entries="@array/session_detection_methods"
             app:entryValues="@array/session_detection_methods_values"
             app:useSimpleSummaryProvider="true"
-            app:defaultValue="0"
+            app:defaultValue="1"
             app:iconSpaceReserved="false" />
 
         <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
