@@ -1,0 +1,1 @@
+* Fixed critical issue which caused JamesDSP to stop and detect a false compatibility issue when using apps are accessing the microphone (like the voice search feature in YouTube & YT Music)
