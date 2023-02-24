@@ -120,4 +120,43 @@ This app focuses on a rootless implementation, but it can be made to work with t
 ### Translators
 
 <!-- CROWDIN-CONTRIBUTORS-START -->
+<table>
+  <tr>
+    <td align="center" valign="top">
+      <a href="https://crowdin.com/profile/ThePBone"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15683553/medium/d13428d1e0922bc2069500aef57d1459.png" />
+        <br />
+        <sub><b>Tim Schneeberger (ThePBone)</b></sub></a>
+      <br />
+      <sub><b>4946 words</b></sub>
+    </td>
+    <td align="center" valign="top">
+      <a href="https://crowdin.com/profile/ianpok17"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15647373/medium/daf979a91f0a64b448cf88a954d45e2b.jpeg" />
+        <br />
+        <sub><b>Criss Santiesteban (ianpok17)</b></sub></a>
+      <br />
+      <sub><b>470 words</b></sub>
+    </td>
+    <td align="center" valign="top">
+      <a href="https://crowdin.com/profile/Tymwitko"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15706765/medium/a2288209d82b78b8e8d959c009382086_default.png" />
+        <br />
+        <sub><b>Tymwitko</b></sub></a>
+      <br />
+      <sub><b>210 words</b></sub>
+    </td>
+    <td align="center" valign="top">
+      <a href="https://crowdin.com/profile/michelequercetti"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15688795/medium/2ca2b8ce17c5319c71579160cd0f7b97.jpeg" />
+        <br />
+        <sub><b>michele quercetti (michelequercetti)</b></sub></a>
+      <br />
+      <sub><b>50 words</b></sub>
+    </td>
+    <td align="center" valign="top">
+      <a href="https://crowdin.com/profile/redwalery17"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15698583/medium/2e78c4e4e8152f0e56b34b67955e96ee.jpeg" />
+        <br />
+        <sub><b>Валерий Удовенко (redwalery17)</b></sub></a>
+      <br />
+      <sub><b>2 words</b></sub>
+    </td>
+  </tr>
+</table><a href="https://crowdin.com/project/rootlessjamesdsp" target="_blank">Translate in Crowdin 🚀</a>
 <!-- CROWDIN-CONTRIBUTORS-END -->
