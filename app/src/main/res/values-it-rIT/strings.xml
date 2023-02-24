@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Main menu bar -->
+    <string name="action_settings">Impostazioni</string>
+    <string name="action_presets">Preset</string>
+    <string name="action_revert">Reimposta ai valori predefiniti</string>
+    <string name="action_blocked_apps">Applicazioni escluse</string>
+    <!-- Notification channels -->
+    <string name="notification_channel_service">Notifica di servizio</string>
+    <string name="notification_channel_session_loss_alert">Avviso perdita di sessione</string>
+    <string name="notification_channel_permission_prompt">Richiesta di autorizzazione</string>
+    <string name="notification_channel_app_compat_alert">Avviso app non compatibile</string>
+    <!-- Service notifications -->
+    <string name="action_retry">Riprova</string>
+    <string name="action_fix">Aggiorna</string>
+    <string name="action_stop">Interrompi</string>
+    <string name="notification_waiting">In attesa dell\'azione utente…</string>
+    <string name="notification_processing">App attive: %1$s</string>
+    <string name="notification_idle">Elaborazione audio inattiva</string>
+    <string name="notification_processing_title">Elaborazione audio attiva</string>
+    <string name="notification_processing_disabled_title">Elaborazione audio disabilitata</string>
+    <string name="notification_processing_legacy">Tocca per aprire JamesDSP manager</string>
+    <!-- Permission request notifications -->
+    <string name="notification_request_permission_title">Per avviare JamesDSP è necessaria un\'azione utente</string>
+    <!-- Session control loss notifications -->
+    <!-- App compatibility issue notifications -->
+    <!-- Capture permission revoked notifications -->
+    <!-- General purpose -->
+    <!-- Main screen -->
+    <!-- Onboarding -->
+    <!-- Settings -->
+    <string name="title_activity_settings">Impostazioni</string>
+    <!-- Theme names -->
+    <!-- File library preference -->
+    <!-- JamesDSP engine messages -->
+    <!-- GraphicEQ editor -->
+    <!-- AutoEQ GraphicEQ selector -->
+    <!-- Customizable liveprog script parameters -->
+    <!-- Liveprog script editor -->
+    <!-- Blocklist -->
+    <string name="title_activity_blocklist">Applicazioni escluse</string>
+    <!-- Compatibility issue activity -->
+    <string name="app_compat_retry">Riprova</string>
+    <!-- Hints for compatibility issues for individual apps -->
+    <!-- Root: Library load failure -->
+    <!-- App list -->
+    <!-- Number box view -->
+    <!-- Slider widget -->
+    <!-- Revert confirmation -->
+    <!-- File intent handler -->
+</resources>
