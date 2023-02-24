@@ -26,6 +26,7 @@ class Card @JvmOverloads constructor(
 ) : LinearLayout(context, attrs) {
 
     private var onButtonClickListener: (() -> Unit)? = null
+    private var onCloseClickListener: (() -> Unit)? = null
     private val binding: ViewCardBinding
 
     var buttonEnabled: Boolean = true
@@ -40,6 +41,11 @@ class Card @JvmOverloads constructor(
             if(value != null) {
                 binding.button.text = value
             }
+        }
+    var closeButtonVisible: Boolean = false
+        set(value) {
+            field = value
+            binding.closeButtonLayout.isVisible = value
         }
     var titleText: String? = null
         set(value) {
@@ -82,6 +88,7 @@ class Card @JvmOverloads constructor(
         }
         titleText = a.getString(R.styleable.Card_titleText)
         bodyText = a.getString(R.styleable.Card_bodyText)
+        closeButtonVisible = a.getBoolean(R.styleable.Card_closeButtonVisible, false)
         buttonText = a.getString(R.styleable.Card_buttonText)
         buttonEnabled = a.getBoolean(R.styleable.Card_buttonEnabled, true)
         iconSrc = a.getResourceId(R.styleable.Card_iconSrc, 0)
@@ -104,6 +111,10 @@ class Card @JvmOverloads constructor(
             onButtonClickListener?.invoke()
         }
 
+        binding.close.setOnClickListener {
+            onCloseClickListener?.invoke()
+        }
+
         updateForeground()
     }
 
@@ -119,5 +130,9 @@ class Card @JvmOverloads constructor(
 
     fun setOnButtonClickListener(listener: (() -> Unit)?) {
         onButtonClickListener = listener
+    }
+
+    fun setOnCloseClickListener(listener: (() -> Unit)?) {
+        onCloseClickListener = listener
     }
 }

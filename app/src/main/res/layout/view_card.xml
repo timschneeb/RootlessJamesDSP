@@ -31,20 +31,47 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/title"
-                    tools:text="Title text"
-                    android:layout_width="match_parent"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:textAppearance="?attr/textAppearanceTitleMedium" />
-                <TextView
-                    android:id="@+id/text"
-                    tools:text="Body text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?attr/textAppearanceBody1" />
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/title"
+                        tools:text="Title text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:textAppearance="?attr/textAppearanceTitleMedium" />
+                    <TextView
+                        android:id="@+id/text"
+                        tools:text="Body text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?attr/textAppearanceBody1" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/closeButtonLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="-10dp"
+                    android:layout_marginEnd="-10dp"
+                    android:orientation="vertical">
+                    <Button
+                        style="?attr/materialIconButtonStyle"
+                        android:id="@+id/close"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:contentDescription="@string/close"
+                        android:tooltipText="@string/close"
+                        app:icon="@drawable/ic_close_24dp" />
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 

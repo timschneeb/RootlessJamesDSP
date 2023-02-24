@@ -1,16 +1,24 @@
 package me.timschneeberger.rootlessjamesdsp.fragment
 
 import android.animation.LayoutTransition
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.view.Card
 import timber.log.Timber
 
 class DspFragment : Fragment() {
+    private val prefsVar by lazy { requireContext().getSharedPreferences(Constants.PREF_VAR, Context.MODE_PRIVATE) }
+
+    private var translateNotice: Card? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -18,6 +26,16 @@ class DspFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         val view = inflater.inflate(R.layout.fragment_dsp, container, false)
+        translateNotice = view.findViewById(R.id.translation_notice)
+        translateNotice?.setOnCloseClickListener(::hideTranslationNotice)
+        translateNotice?.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://crowdin.com/project/rootlessjamesdsp")))
+            hideTranslationNotice()
+        }
+
+        // Should show translation notice?
+        translateNotice?.isVisible =
+            prefsVar.getLong(getString(R.string.key_snooze_translation_notice), 0L) < (System.currentTimeMillis() / 1000)
 
         val transition = LayoutTransition()
         transition.enableTransitionType(LayoutTransition.CHANGING)
@@ -74,6 +92,14 @@ class DspFragment : Fragment() {
                 ))
             .commit()
         return view
+    }
+
+    private fun hideTranslationNotice() {
+        translateNotice?.isVisible = false
+        // Set timer +1y
+        prefsVar.edit()
+            .putLong(getString(R.string.key_snooze_translation_notice), (System.currentTimeMillis() / 1000) + 31536000)
+            .apply()
     }
 
     fun restartFragment(id: Int, newFragment: Fragment) {

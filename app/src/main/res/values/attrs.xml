@@ -24,6 +24,7 @@
     <declare-styleable name="Card">
         <attr name="titleText" format="string" />
         <attr name="bodyText" format="string" />
+        <attr name="closeButtonVisible" format="boolean" />
         <attr name="buttonText" format="string" />
         <attr name="buttonEnabled" format="boolean" />
         <attr name="iconSrc" format="reference" />

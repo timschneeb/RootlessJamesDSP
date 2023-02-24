@@ -1,142 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/dsp_scrollview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.DspFragment">
+    tools:context=".fragment.DspFragment"
+    tools:ignore="SpeakableTextPresentCheck">
 
     <LinearLayout
         android:id="@+id/card_container"
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:showDividers="middle"
-        android:divider="@drawable/shape_card_divider"
         android:layout_marginHorizontal="16dp"
+        android:divider="@drawable/shape_card_divider"
+        android:orientation="vertical"
         android:paddingTop="4dp"
-        android:paddingBottom="16dp">
+        android:paddingBottom="16dp"
+        android:showDividers="middle">
+
+        <me.timschneeberger.rootlessjamesdsp.view.Card
+            android:id="@+id/translation_notice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="1dp"
+            android:clickable="true"
+            app:bodyText="@string/translation_notice_summary"
+            app:titleText="@string/translation_notice"
+            app:cardBackground="?attr/colorSecondaryContainer"
+            app:cardMargin="0dp"
+            app:closeButtonVisible="true"
+            app:iconSrc="@drawable/ic_twotone_translate_24dp"
+            app:iconTint="?attr/colorOnSecondaryContainer" />
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_marginHorizontal="1dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="1dp">
+
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/card_output_control"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_marginHorizontal="1dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="1dp">
+
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/card_compressor"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_marginHorizontal="1dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="1dp">
+
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/card_bass"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_marginHorizontal="1dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="1dp">
+
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/card_eq"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_marginHorizontal="1dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="1dp">
+
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/card_geq"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_marginHorizontal="1dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="1dp">
+
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/card_ddc"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_marginHorizontal="1dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="1dp">
+
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/card_convolver"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_marginHorizontal="1dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="1dp">
+
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/card_liveprog"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_marginHorizontal="1dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="1dp">
+
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/card_tube"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_marginHorizontal="1dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="1dp">
+
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/card_stereowide"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_marginHorizontal="1dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="1dp">
+
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/card_crossfeed"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_marginHorizontal="1dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="1dp"
             android:layout_marginBottom="?attr/actionBarSize">
+
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/card_reverb"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

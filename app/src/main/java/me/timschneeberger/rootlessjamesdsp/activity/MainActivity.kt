@@ -167,6 +167,13 @@ class MainActivity : BaseActivity() {
         else
             showLibraryLoadError()
 
+        if(firstBoot) {
+            // Set timer for translation notice (+30m)
+            prefsVar.edit()
+                .putLong(getString(R.string.key_snooze_translation_notice), (System.currentTimeMillis() / 1000) + 1800)
+                .apply()
+        }
+
         // Rootless: Check permissions and launch onboarding if required
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q &&
             BuildConfig.ROOTLESS &&

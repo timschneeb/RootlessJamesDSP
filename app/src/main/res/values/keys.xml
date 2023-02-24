@@ -2,6 +2,7 @@
 <resources>
     <!-- Internal -->
     <string name="key_firstboot" translatable="false">first_boot</string>
+    <string name="key_snooze_translation_notice" translatable="false">snooze_translation_notice</string>
     <string name="key_reset_proc_mode_fix_applied" translatable="false">reset_proc_mode_fix_applied</string>
     <string name="key_is_activity_active" translatable="false">is_activity_active</string>
     <string name="key_is_app_compat_activity_active" translatable="false">is_app_compat_activity_active</string>

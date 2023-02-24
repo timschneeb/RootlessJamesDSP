@@ -501,4 +501,8 @@
     <string name="intent_import_select_success">File \'%1$s\' imported and activated</string>
     <string name="intent_import_error_file_uri">Failed to import file. Unsupported file URI.</string>
 
+    <!-- Translation notice box -->
+    <string name="translation_notice_summary">Please help us to translate this app into your language! Tap here to visit the project site on Crowdin.</string>
+    <string name="translation_notice">Contribute translations</string>
+
 </resources>
