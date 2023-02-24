@@ -459,6 +459,5 @@
     <string name="intent_import_select_success">Datei \'%1$s\' importiert und aktiviert</string>
     <string name="intent_import_error_file_uri">Fehler beim Importieren der Datei. Nicht unterstützte Datei URI.</string>
     <!-- Translation notice box -->
-    <string name="translation_notice_summary">Bitte hilf uns diese App in deine Sprache zu übersetzen! Tippe hier, um die Projektseite auf Crowdin zu besuchen.</string>
-    <string name="translation_notice">Übersetzungen beitragen</string>
+    <string name="translation_notice">Zur Übersetzung beitragen</string>
 </resources>
