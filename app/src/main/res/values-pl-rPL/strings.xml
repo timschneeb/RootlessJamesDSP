@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Main menu bar -->
+    <string name="action_settings">Ustawienia</string>
+    <string name="action_presets">Predefiniowane ustawienia</string>
+    <string name="action_revert">Przywróć domyślne</string>
+    <string name="action_blocked_apps">Wykluczone aplikacje</string>
+    <!-- Notification channels -->
+    <string name="notification_channel_service">Powiadomienie serwisowe</string>
+    <string name="notification_channel_session_loss_alert">Ostrzeżenie o utracie sesji</string>
+    <string name="notification_channel_app_compat_alert">Ostrzeżenie o niekompatybilnej aplikacji</string>
+    <!-- Service notifications -->
+    <string name="action_retry">Spróbuj ponownie</string>
+    <string name="action_fix">Rozwiąż problem</string>
+    <string name="notification_waiting">Oczekiwanie na czynność użytkownika…</string>
+    <string name="notification_processing">Aktywne aplikacje: %1$s</string>
+    <string name="notification_processing_legacy">Dotknij, aby otworzyć menedżera JamesDSP</string>
+    <!-- Permission request notifications -->
+    <string name="notification_request_permission_title">Działanie użytkownika jest wymagane do uruchomienia JamesDSP</string>
+    <string name="notification_request_permission">Dotknij, aby przyznać uprawnienia do przechwytywania i włączyć przetwarzanie audio JamesDSP</string>
+    <!-- Session control loss notifications -->
+    <string name="session_control_loss_notification_title">Przetwarzanie dźwięku zatrzymane. Inna aplikacja zakłóca działanie JamesDSP.</string>
+    <string name="session_control_loss_notification">Proszę wyłączyć wszystkie inne aplikacje, które zapewniają efekty dźwiękowe obejmujące cały system przed ponownym włączeniem JamesDSP.</string>
+    <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_notification_title">Przetwarzanie dźwięku zatrzymane. Inna aplikacja zakłóca działanie JamesDSP.</string>
+    <string name="session_app_compat_notification">Kliknij to powiadomienie, aby rozwiązać problem.</string>
+    <!-- Capture permission revoked notifications -->
+    <string name="capture_permission_revoked_toast">Aplikacja JamesDSP została zatrzymana, ponieważ uprawnienie do przechwytywania dźwięku zostało wycofane.</string>
+    <!-- General purpose -->
+    <string name="details">Szczegóły</string>
+    <string name="warning">Ostrzeżenie</string>
+    <string name="open">Otwórz</string>
+    <string name="close">Zamknij</string>
+    <string name="add">Dodaj</string>
+    <string name="yes">Tak</string>
+    <string name="no">Nie</string>
+    <string name="value_not_set">Nie ustawiono</string>
+    <string name="undo">Cofnij</string>
+    <string name="redo">Ponów</string>
+    <!-- Main screen -->
+    <string name="eq_interpolator">Interpolator</string>
+    <string name="eq_filter_type_minimum">Minimalna faza</string>
+    <string name="eq_filter_type_linear">Liniowa faza</string>
+    <string name="eq_preset_dubstep">Dubstep</string>
+    <string name="eq_preset_electronic">Muzyka elektroniczna</string>
+    <string name="eq_preset_hiphop">Hip-hop</string>
+    <string name="eq_preset_jazz">Jazz</string>
+    <string name="eq_preset_metal">Metal</string>
+    <string name="eq_preset_movie">Film</string>
+    <string name="eq_preset_pop">Pop</string>
+    <string name="eq_preset_rb">R&amp;B</string>
+    <string name="eq_preset_rock">Rock</string>
+    <string name="ddc_enable">ViPER-DDC</string>
+    <string name="ddc_file">Plik DDC</string>
+    <string name="liveprog_not_found">Nie znaleziono skryptu</string>
+    <string name="liveprog_no_script_selected">Nie wybrano skryptu</string>
+    <string name="stereowide_level_none">Brak</string>
+    <!-- Onboarding -->
+    <string name="onboarding_greeting">Witaj w RootlessJamesDSP!</string>
+    <string name="onboarding_caption">Ten asystent pomoże Ci skonfigurować aplikację.</string>
+    <!-- Settings -->
+    <string name="title_activity_settings">Ustawienia</string>
+    <!-- Theme names -->
+    <!-- File library preference -->
+    <!-- JamesDSP engine messages -->
+    <!-- GraphicEQ editor -->
+    <string name="gep_add_node">Dodaj</string>
+    <string name="geq_cancel_spaced">&#160;&#160;Odrzuć&#160;</string>
+    <string name="geq_cancel">Odrzuć</string>
+    <string name="geq_discard_changes_title">Czy odrzucić zmiany i wyjść?</string>
+    <string name="geq_discard_changes">Wartości nie są prawidłowe lub są puste. Twoje zmiany nie mogą zostać zapisane.\nCzy chcesz odrzucić zmiany i wyjść?</string>
+    <string name="geq_frequeny_range">Wartość pomiędzy 1 Hz a 24000Hz</string>
+    <string name="geq_gain_range">Wartość pomiędzy -32dB a 32dB</string>
+    <string name="geq_frequency">Częstotliwość</string>
+    <!-- AutoEQ GraphicEQ selector -->
+    <string name="geq_api_network_error">Połączenie z serwerem nie powiodło się. %1$s</string>
+    <string name="geq_api_network_error_details_code">Serwer odpowiedział błędem o kodzie: %1$d</string>
+    <string name="autoeq_enter_model">Wprowadź swój model słuchawek…</string>
+    <!-- Customizable liveprog script parameters -->
+    <!-- Liveprog script editor -->
+    <string name="editor_cannot_undo">Nie ma nic do cofnięcia.</string>
+    <string name="editor_cannot_redo">Nie ma nic do zrobienia ponownie.</string>
+    <!-- Blocklist -->
+    <string name="title_activity_blocklist">Wykluczone aplikacje</string>
+    <!-- Compatibility issue activity -->
+    <string name="app_compat_retry">Spróbuj ponownie</string>
+    <string name="app_compat_exclude">Wyklucz</string>
+    <string name="app_compat_unknown_pkg_name">Nieznana nazwa pakietu</string>
+    <!-- Hints for compatibility issues for individual apps -->
+    <!-- Root: Library load failure -->
+    <string name="load_fail_header">Moduł Magisk nie jest zainstalowany</string>
+    <string name="load_fail_card_title">Nie udało się załadować libjamesdsp.so</string>
+    <!-- App list -->
+    <!-- Number box view -->
+    <!-- Slider widget -->
+    <!-- Revert confirmation -->
+    <!-- File intent handler -->
+</resources>
