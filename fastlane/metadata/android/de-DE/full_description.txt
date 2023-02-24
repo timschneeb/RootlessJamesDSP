@@ -20,9 +20,9 @@ JamesDSP unterstützt die folgenden Audioeffekte:
 Außerdem ist diese Anwendung direkt mit AutoEQ integriert. Mit der AutoEQ-Integration kannst du Frequenzantworten suchen und importieren, die darauf abzielen, deine Kopfhörer auf einen neutralen Klang zu korrigieren. Gehe zu 'Arbitrary response equalizer > Magnitude response > AutoEQ profiles', um loszulegen.
 
 --- Einschränkungen
-* Apps, die die interne Audioerfassung blockieren, bleiben unverarbeitet (z. B. Spotify, Google Chrome).
+* Apps, die die interne Audioerfassung blockieren, bleiben unverarbeitet (z. B. Spotify, Google, Chrome)
 * Apps, die einige Arten von HW-beschleunigter Wiedergabe verwenden, können Probleme verursachen und müssen manuell ausgeschlossen werden (z. B. einige Unity-Spiele)
-* Kann nicht mit (einigen) anderen Audioeffekt-Apps koexistieren (z. B. Wavelet und andere Apps, die die Android-API `DynamicsProcessing` nutzen)
+* Kann nicht mit (einigen) anderen Audio-Effekt-Apps koexistieren (z.B. Wavelet und anderen Apps, die die "DynamicsProcessing" Android API verwenden)
 
 
 - Apps, deren Funktionieren bestätigt wurde:

@@ -6,12 +6,19 @@
 </h1>
 <h4 align="center">System-wide JamesDSP implementation for non-rooted Android devices</h4>
 <p align="center">
-  <a href="https://github.com/ThePBone/RootlessJamesDSP/releases">
-  	<img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/ThePBone/RootlessJamesDSP">
+  <a href="https://play.google.com/store/apps/details?id=me.timschneeberger.rootlessjamesdsp&utm_source=github&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">
+  	<img alt="Google play release" src="https://img.shields.io/github/v/release/ThePBone/RootlessJamesDSP?label=google%20play">
+  </a>
+  <a href="https://f-droid.org/packages/me.timschneeberger.rootlessjamesdsp/">
+  	<img alt="F-Droid release" src="https://img.shields.io/f-droid/v/me.timschneeberger.rootlessjamesdsp">
   </a>
   <a href="https://github.com/ThePBone/RootlessJamesDSP/blob/master/LICENSE">
       <img alt="License" src="https://img.shields.io/github/license/ThePBone/RootlessJamesDSP">
   </a>
+    <a href="https://github.com/ThePBone/RootlessJamesDSP/actions/workflows/build.yml">
+      <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/thepbone/rootlessjamesdsp/build.yml">
+  </a>
+ 
 </p>
 <p align="center">
   <a href="#limitations">Limitations</a> •
@@ -42,7 +49,6 @@ This app uses <a href="https://github.com/james34602/JamesDSPManager">libjamesds
 
 ## Limitations
 * Apps blocking internal audio capture remain unprocessed (e.g., Spotify, Google Chrome)
-* Apps using some types of HW-accelerated playback currently cause the audio processing service to stop itself (e.g., some Unity games)
 * Cannot coexist with (some) other audio effect apps (e.g., Wavelet and other apps that make use of the `DynamicsProcessing` Android API)
 * Increased audio latency 
 
@@ -110,3 +116,47 @@ This app focuses on a rootless implementation, but it can be made to work with t
 
 * JamesDSP - [James Fung (@james34602)](https://github.com/james34602)
 * Theming system based on Tachiyomi
+
+### Translators
+
+<!-- CROWDIN-CONTRIBUTORS-START -->
+<table>
+  <tr>
+    <td align="center" valign="top">
+      <a href="https://crowdin.com/profile/ThePBone"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15683553/medium/d13428d1e0922bc2069500aef57d1459.png" />
+        <br />
+        <sub><b>Tim Schneeberger (ThePBone)</b></sub></a>
+      <br />
+      <sub><b>4946 words</b></sub>
+    </td>
+    <td align="center" valign="top">
+      <a href="https://crowdin.com/profile/ianpok17"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15647373/medium/daf979a91f0a64b448cf88a954d45e2b.jpeg" />
+        <br />
+        <sub><b>Criss Santiesteban (ianpok17)</b></sub></a>
+      <br />
+      <sub><b>470 words</b></sub>
+    </td>
+    <td align="center" valign="top">
+      <a href="https://crowdin.com/profile/Tymwitko"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15706765/medium/a2288209d82b78b8e8d959c009382086_default.png" />
+        <br />
+        <sub><b>Tymwitko</b></sub></a>
+      <br />
+      <sub><b>210 words</b></sub>
+    </td>
+    <td align="center" valign="top">
+      <a href="https://crowdin.com/profile/michelequercetti"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15688795/medium/2ca2b8ce17c5319c71579160cd0f7b97.jpeg" />
+        <br />
+        <sub><b>michele quercetti (michelequercetti)</b></sub></a>
+      <br />
+      <sub><b>50 words</b></sub>
+    </td>
+    <td align="center" valign="top">
+      <a href="https://crowdin.com/profile/redwalery17"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15698583/medium/2e78c4e4e8152f0e56b34b67955e96ee.jpeg" />
+        <br />
+        <sub><b>Валерий Удовенко (redwalery17)</b></sub></a>
+      <br />
+      <sub><b>2 words</b></sub>
+    </td>
+  </tr>
+</table><a href="https://crowdin.com/project/rootlessjamesdsp" target="_blank">Translate in Crowdin 🚀</a>
+<!-- CROWDIN-CONTRIBUTORS-END -->

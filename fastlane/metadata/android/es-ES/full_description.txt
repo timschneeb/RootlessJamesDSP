@@ -1,0 +1,46 @@
+Utilice James DSP como un motor de procesamiento de audio para todo el sistema sin acceso su.
+
+Esta aplicación tiene varias limitaciones que pueden ser de ruptura de acuerdos para algunas personas; por favor lea todo este documento antes de usar la aplicación. El acceso a Chistu (Android 11+) o ADB a través de una computadora es necesario para la configuración inicial.
+
+JamesDSP soporta los siguientes efectos de audio:
+* Control de límites
+* Control de la salida
+* Compresor del rango dinámico automático
+* Refuerzo de bajos dinámico
+* Ecualizador FIR interpolante
+* Ecualizador de respuesta arbitrario (EQ gráfico)
+* ViPE-DDC
+* Conversar
+* DSP programable en vivo (motor de scripts para efectos de audio)
+* Modelo analógico
+* Anchura de etapa de sonido
+* Diario
+* Efecto de habitación virtual (reverbio)
+
+Adicionalmente, esta aplicación se integra directamente con AutoEQ. Usando la integración AutoEQ, usted puede buscar e importar respuestas de frecuencia que apunten a corregir su auricular a un sonido neutro. Vaya a 'ecualizador de respuesta arbitraria > respuesta de Magnitud > perfiles AutoEQ' para empezar.
+
+Restricciones
+* Las aplicaciones que bloquean la captura interna de audio siguen sin procesar (por ejemplo, Spotify, Google Chrome)
+* Las aplicaciones que utilizan algún tipo de reproducción acelerada por HW pueden causar problemas y necesitan ser excluidas manualmente (por ejemplo, algunos juegos de unidad)
+* No se puede coexistir con (algunos) otras aplicaciones de efectos de audio (por ejemplo, Wavelet y otras aplicaciones que hacen uso de la API Android `DynamicsProcessing`)
+
+
+- Aplicaciones confirmadas en trabajo:
+Youtube
+* YouTube Música
+* Amazon Música
+* Deezer
+* Poweramp
+* Substreaming
+*Twitch
+* ...
+
+- Las aplicaciones no soportadas incluyen:
+* Spotify (Nota: Se requiere un parche ReVanced de Spotify para soportar Spotify)
+Google Chrome
+en SoundCloud
+* ...
+
+--- Translation
+Please help us translate this app here: https://crowdin.com/project/rootlessjamesdsp
+To request a new language that isn't enabled on Crowdin yet, please open an issue here on GitHub and I will turn it on.

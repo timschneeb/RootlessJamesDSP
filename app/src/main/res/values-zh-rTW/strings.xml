@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Main menu bar -->
+    <!-- Notification channels -->
+    <!-- Service notifications -->
+    <!-- Permission request notifications -->
+    <!-- Session control loss notifications -->
+    <!-- App compatibility issue notifications -->
+    <!-- Capture permission revoked notifications -->
+    <!-- General purpose -->
+    <!-- Main screen -->
+    <!-- Onboarding -->
+    <!-- Settings -->
+    <!-- Theme names -->
+    <!-- File library preference -->
+    <!-- JamesDSP engine messages -->
+    <!-- GraphicEQ editor -->
+    <!-- AutoEQ GraphicEQ selector -->
+    <!-- Customizable liveprog script parameters -->
+    <!-- Liveprog script editor -->
+    <!-- Blocklist -->
+    <!-- Compatibility issue activity -->
+    <!-- Hints for compatibility issues for individual apps -->
+    <!-- Root: Library load failure -->
+    <!-- App list -->
+    <!-- Number box view -->
+    <!-- Slider widget -->
+    <!-- Revert confirmation -->
+    <!-- File intent handler -->
+</resources>
