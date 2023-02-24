@@ -116,3 +116,8 @@ This app focuses on a rootless implementation, but it can be made to work with t
 
 * JamesDSP - [James Fung (@james34602)](https://github.com/james34602)
 * Theming system based on Tachiyomi
+
+### Translators
+
+<!-- CROWDIN-CONTRIBUTORS-START -->
+<!-- CROWDIN-CONTRIBUTORS-END -->
