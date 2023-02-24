@@ -1,6 +1,6 @@
 Verwende JamesDSP als systemweite Audioverarbeitungs-Engine ohne Root-Zugriff.
 
-Diese App hat einige Einschränkungen, die für manche Leute ein Problem darstellen können; bitte lese dieses Dokument vollständig durch, bevor du die App verwendest. Für die Ersteinrichtung wird Shizuku (Android 11+) oder ADB-Zugriff über einen Computer benötigt.
+Diese App hat einige Einschränkungen, die für manche Leute ein Problem darstellen können; bitte lese dieses Dokument vollständig durch, bevor du die App verwendest.
 
 JamesDSP unterstützt die folgenden Audioeffekte:
 * Limiter
@@ -20,9 +20,9 @@ JamesDSP unterstützt die folgenden Audioeffekte:
 Außerdem ist diese Anwendung direkt mit AutoEQ integriert. Mit der AutoEQ-Integration kannst du Frequenzantworten suchen und importieren, die darauf abzielen, deine Kopfhörer auf einen neutralen Klang zu korrigieren. Gehe zu 'Arbitrary response equalizer > Magnitude response > AutoEQ profiles', um loszulegen.
 
 --- Einschränkungen
-* Apps, die die interne Audioerfassung blockieren, bleiben unverarbeitet (z. B. Spotify, Google, Chrome)
-* Apps, die einige Arten von HW-beschleunigter Wiedergabe verwenden, können Probleme verursachen und müssen manuell ausgeschlossen werden (z. B. einige Unity-Spiele)
-* Kann nicht mit (einigen) anderen Audio-Effekt-Apps koexistieren (z.B. Wavelet und anderen Apps, die die "DynamicsProcessing" Android API verwenden)
+* Apps, die die interne Audioerfassung blockieren, bleiben unverarbeitet (z.
+* Apps, die einige Arten von HW-beschleunigter Wiedergabe verwenden, können Probleme verursachen und müssen manuell ausgeschlossen werden (z.
+Wavelet und anderen Apps, die die "DynamicsProcessing" Android API verwenden)
 
 
 - Apps, deren Funktionieren bestätigt wurde:
