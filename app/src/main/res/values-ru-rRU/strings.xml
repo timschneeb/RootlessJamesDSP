@@ -7,6 +7,7 @@
     <string name="action_blocked_apps">Исключенные приложения</string>
     <!-- Notification channels -->
     <!-- Service notifications -->
+    <string name="notification_processing_disabled_title">Обработка аудио отключена</string>
     <string name="notification_processing_legacy">Нажмите, чтобы открыть JamesDSP manager</string>
     <!-- Permission request notifications -->
     <string name="notification_request_permission_title">Для запуска JamesDSP необходимо действие пользователя</string>
@@ -83,11 +84,11 @@
     <string name="about_settings_summary">Авторы, поддержка, обновления</string>
     <string name="privacy">Конфиденциальность</string>
     <string name="privacy_share_crash_reports">Поделиться отчётами о сбоях приложения</string>
-    <string name="privacy_share_crash_reports_on">Отправлять информацию о сбоях разработчику</string>
-    <string name="privacy_share_crash_reports_off">Не отправлять отчеты о сбоях разработчику</string>
+    <string name="privacy_share_crash_reports_on">Отправлять отчёты о сбоях разработчику</string>
+    <string name="privacy_share_crash_reports_off">Не отправлять отчёты о сбоях разработчику</string>
     <string name="credits">Авторы</string>
-    <string name="credits_app">Приложение и rootless версия разработаны</string>
-    <string name="credits_dsp">Библиотека алгоритмов ядра JamesDSP разработана</string>
+    <string name="credits_app">Приложение и rootless версия</string>
+    <string name="credits_dsp">Библиотека алгоритмов ядра JamesDSP</string>
     <string name="credits_project_page">Страница проекта на GitHub</string>
     <string name="appearance_title">Тема оформления</string>
     <string name="appearance_theme_mode">Тёмный режим</string>
@@ -140,6 +141,7 @@
     <string name="app_list_icon_alt">Значок приложения</string>
     <!-- Number box view -->
     <!-- Slider widget -->
+    <string name="slider_dialog_title">Изменить значение</string>
     <!-- Revert confirmation -->
     <string name="revert_confirmation_title">Вы уверены?</string>
     <string name="revert_confirmation">Вы хотите сбросить текущий пресет JamesDSP к значениям по умолчанию?</string>
