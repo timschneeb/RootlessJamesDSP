@@ -1,6 +1,6 @@
 Utilice James DSP como un motor de procesamiento de audio para todo el sistema sin acceso su.
 
-Esta aplicación tiene varias limitaciones que pueden ser de ruptura de acuerdos para algunas personas; por favor lea todo este documento antes de usar la aplicación. El acceso a Chistu (Android 11+) o ADB a través de una computadora es necesario para la configuración inicial.
+El acceso a Chistu (Android 11+) o ADB a través de una computadora es necesario para la configuración inicial.
 
 JamesDSP soporta los siguientes efectos de audio:
 * Control de límites

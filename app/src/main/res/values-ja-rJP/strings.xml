@@ -10,6 +10,8 @@
     <!-- General purpose -->
     <!-- Main screen -->
     <!-- Onboarding -->
+    <!-- Rootless flavor -->
+    <!-- Root flavor -->
     <!-- Settings -->
     <!-- Theme names -->
     <!-- File library preference -->
@@ -27,4 +29,5 @@
     <!-- Slider widget -->
     <!-- Revert confirmation -->
     <!-- File intent handler -->
+    <!-- Translation notice box -->
 </resources>

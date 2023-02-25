@@ -58,6 +58,8 @@
     <!-- Onboarding -->
     <string name="onboarding_greeting">Witaj w RootlessJamesDSP!</string>
     <string name="onboarding_caption">Ten asystent pomoże Ci skonfigurować aplikację.</string>
+    <!-- Rootless flavor -->
+    <!-- Root flavor -->
     <!-- Settings -->
     <string name="title_activity_settings">Ustawienia</string>
     <!-- Theme names -->
@@ -95,4 +97,5 @@
     <!-- Slider widget -->
     <!-- Revert confirmation -->
     <!-- File intent handler -->
+    <!-- Translation notice box -->
 </resources>
