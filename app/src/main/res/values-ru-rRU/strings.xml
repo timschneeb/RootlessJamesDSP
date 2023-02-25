@@ -11,24 +11,63 @@
     <!-- Capture permission revoked notifications -->
     <!-- General purpose -->
     <!-- Main screen -->
+    <string name="liveprog_additional_params_not_supported">Выбранный скрипт не имеет настраиваемых параметров</string>
     <!-- Onboarding -->
+    <string name="onboarding_methods_shizuku_title">Shizuku</string>
+    <string name="onboarding_methods_adb_title">ADB</string>
+    <string name="onboarding_adb_shizuku_install_instruction">Установить \'Shizuku\' из Google Play.</string>
+    <string name="onboarding_adb_shizuku_open_button">Запустить Shizuku</string>
+    <string name="onboarding_adb_shizuku_grant_fail_version_title">Неподдерживаемая версия Shizuku</string>
+    <string name="onboarding_adb_manual_step2">Откройте https://app.webadb.com в веб-браузере на вашем компьютере (рекомендуется использовать Google Chrome) и подключите ваше устройство к компьютеру с помощью USB.</string>
+    <string name="limit_tested_devices">Изменения, внесенные производителем вашего устройства в аудио-подсистему Android, могут легко нарушить работу этого приложения, поскольку оно использует несколько не задокументированных API.\nОно было протестировано на следующих устройствах:\n• Samsung S20+ (Android 12)\n• Эмулятор AOSP (Android 10–13)\n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
     <string name="title_activity_settings">Настройки</string>
+    <string name="session_exclude_restricted">Исключить неподдерживаемые приложения</string>
+    <string name="session_exclude_restricted_on">Приложения, которые блокируют захват звука, исключаются и остаются без обработки (рекомендуется)</string>
+    <string name="session_loss_ignore_on">Не предпринимать никаких действий (может вызвать дублирование звука)</string>
+    <string name="autostart">Автозапуск</string>
+    <string name="network_autoeq_conntest_done">Соединение успешно установлено</string>
+    <string name="about_settings">О приложении</string>
+    <string name="about_settings_summary">Авторы, поддержка, обновления</string>
+    <string name="credits_project_page">Страница проекта на GitHub</string>
+    <string name="appearance_theme_mode">Тёмный режим</string>
     <!-- Theme names -->
     <!-- File library preference -->
+    <string name="filelibrary_hint_tap_and_hold">Коснитесь и удерживайте любой элемент для дополнительных опций</string>
+    <string name="filelibrary_corrupted_title">Файл не поддерживается или повреждён</string>
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
+    <string name="editor_save">Сохранить</string>
+    <string name="editor_replace_all">Заменить всё</string>
+    <string name="editor_find_next_match">Найти следующее совпадение</string>
+    <string name="editor_find_previous_match">Найти предыдущее совпадение</string>
+    <string name="editor_search_keyword">Поиск</string>
+    <string name="editor_engine_down_title">JamesDSP не активен</string>
+    <string name="editor_engine_down">Невозможно запустить скрипт, потому что JamesDSP отключен. Пожалуйста, включите JamesDSP для выполнения скриптов.</string>
+    <string name="editor_save_prompt_title">Сохранить изменения?</string>
+    <string name="editor_save_prompt">Текущий скрипт имеет несохраненные изменения. Сохранить изменения или отменить их?</string>
+    <string name="editor_script_launched">Скрипт запущен</string>
+    <string name="editor_text_size">Размер текста</string>
     <!-- Blocklist -->
     <!-- Compatibility issue activity -->
     <!-- Hints for compatibility issues for individual apps -->
     <!-- Root: Library load failure -->
+    <string name="load_fail_header">Модуль Magisk не установлен</string>
+    <string name="load_fail_card_title">Не удалось загрузить libjamesdsp.so</string>
+    <string name="load_fail_arch_card">Если вы уже установили модуль Magisk, возможно, вы выбрали неправильные настройки во время установки. Попробуйте переустановить модуль и включить совместимость с устройствами Huawei (даже если ваш телефон не произведен компанией Huawei).</string>
     <!-- App list -->
+    <string name="app_list_search">Поиск</string>
+    <string name="app_list_icon_alt">Значок приложения</string>
     <!-- Number box view -->
     <!-- Slider widget -->
     <!-- Revert confirmation -->
+    <string name="revert_confirmation_title">Вы уверены?</string>
+    <string name="revert_confirmation">Вы хотите сбросить текущий пресет JamesDSP к значениям по умолчанию?</string>
     <!-- File intent handler -->
+    <string name="intent_import_error_file_uri">Не удалось импортировать файл. Неподдерживаемый URI-адрес файла.</string>
     <!-- Translation notice box -->
+    <string name="translation_notice_summary">Пожалуйста, помогите нам перевести это приложение на ваш язык! Нажмите здесь, чтобы перейти на сайт проекта на Crowdin.</string>
 </resources>
