@@ -1,6 +1,5 @@
 package me.timschneeberger.rootlessjamesdsp.activity
 
-import CrashlyticsImpl
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.*
@@ -10,7 +9,6 @@ import android.net.Uri
 import android.os.*
 import android.view.HapticFeedbackConstants
 import android.view.Menu
-import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -19,7 +17,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.preference.DialogPreference.TargetFragment
 import androidx.preference.Preference
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
@@ -31,6 +28,7 @@ import me.timschneeberger.rootlessjamesdsp.MainApplication
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.ActivityMainBinding
 import me.timschneeberger.rootlessjamesdsp.databinding.ContentMainBinding
+import me.timschneeberger.rootlessjamesdsp.flavor.CrashlyticsImpl
 import me.timschneeberger.rootlessjamesdsp.fragment.DspFragment
 import me.timschneeberger.rootlessjamesdsp.fragment.FileLibraryDialogFragment
 import me.timschneeberger.rootlessjamesdsp.fragment.LibraryLoadErrorFragment
@@ -58,7 +56,6 @@ import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import me.timschneeberger.rootlessjamesdsp.view.FloatingToggleButton
 import timber.log.Timber
 import java.io.File
-import java.net.URI
 import java.util.*
 import kotlin.concurrent.schedule
 
@@ -158,6 +155,13 @@ class MainActivity : BaseActivity() {
         actionBar?.setDisplayShowTitleEnabled(true)
         binding.appBarLayout.statusBarForeground = MaterialShapeDrawable.createWithElevationOverlay(this)
 
+        if(firstBoot) {
+            // Set timer for translation notice (+30m)
+            prefsVar.edit()
+                .putLong(getString(R.string.key_snooze_translation_notice), (System.currentTimeMillis() / 1000) + 1800)
+                .apply()
+        }
+
         // Load main fragment
         dspFragment = DspFragment.newInstance()
         if(!hasLoadFailed)
@@ -166,13 +170,6 @@ class MainActivity : BaseActivity() {
                 .commit()
         else
             showLibraryLoadError()
-
-        if(firstBoot) {
-            // Set timer for translation notice (+30m)
-            prefsVar.edit()
-                .putLong(getString(R.string.key_snooze_translation_notice), (System.currentTimeMillis() / 1000) + 1800)
-                .apply()
-        }
 
         // Rootless: Check permissions and launch onboarding if required
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q &&

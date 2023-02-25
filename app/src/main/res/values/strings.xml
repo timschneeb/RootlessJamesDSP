@@ -172,11 +172,21 @@
     <string name="onboarding_limitations_unstable">Important! Please read the notes carefully before continuing.</string>
 
     <string name="onboarding_methods_title">Choose setup method</string>
+    <string name="onboarding_methods_root_title">Root</string>
     <string name="onboarding_methods_shizuku_title">Shizuku</string>
     <string name="onboarding_methods_unsupported_append">incompatible</string>
     <string name="onboarding_methods_adb_title">ADB</string>
-    <string name="onboarding_methods_shizuku">\u25CF Recommended\n\u25CF No external computer required\n\u25CF Android 11+ only</string>
-    <string name="onboarding_methods_adb">\u25CF For advanced users\n\u25CF Computer and USB cable required\n\u25CF Android 10+ supported</string>
+    <!-- Rootless flavor -->
+    <string name="onboarding_methods_rootless_shizuku">\u25CF Recommended\n\u25CF No external computer required\n\u25CF Android 11+ only</string>
+    <string name="onboarding_methods_rootless_adb">\u25CF For advanced users\n\u25CF Computer and USB cable required\n\u25CF Android 10+ supported</string>
+    <!-- Root flavor -->
+    <string name="onboarding_methods_root_root">\u25CF Recommended\n\u25CF No external computer required\n\u25CF All Android versions</string>
+    <string name="onboarding_methods_root_shizuku">\u25CF Recommended, if root is not set-up\n\u25CF No external computer required\n\u25CF Android 11+ only</string>
+    <string name="onboarding_methods_root_adb">\u25CF For advanced users\n\u25CF Computer and USB cable required\nAll Android versions</string>
+    <string name="onboarding_root_shell_fail_title">No root access</string>
+    <string name="onboarding_root_shell_fail">No root access available. Please use another setup method.</string>
+    <string name="onboarding_root_shell_fail_unknown">Failed to grant permission via root. Please use another setup method.</string>
+    <string name="onboarding_root_enhanced_processing_setup_success">Enhanced processing is set-up</string>
 
     <string name="onboarding_adb_shizuku_title">Shizuku setup</string>
     <string name="onboarding_adb_adb_title">ADB setup</string>

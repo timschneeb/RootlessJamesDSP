@@ -153,8 +153,8 @@
     <string name="onboarding_methods_shizuku_title">Shizuku</string>
     <string name="onboarding_methods_unsupported_append">inkompatibel</string>
     <string name="onboarding_methods_adb_title">ADB</string>
-    <string name="onboarding_methods_shizuku">\u25CF Empfohlen\n\u25CF Kein externer Computer erforderlich\n\u25CF Nur Android 11+</string>
-    <string name="onboarding_methods_adb">\u25CF Für fortgeschrittene Benutzer\n\u25CF Computer und USB-Kabel erforderlich\n\u25CF Android 10+ unterstützt</string>
+    <string name="onboarding_methods_rootless_shizuku">\u25CF Empfohlen\n\u25CF Kein externer Computer erforderlich\n\u25CF Nur Android 11+</string>
+    <string name="onboarding_methods_rootless_adb">\u25CF Für fortgeschrittene Benutzer\n\u25CF Computer und USB-Kabel erforderlich\n\u25CF Android 10+ unterstützt</string>
     <string name="onboarding_adb_shizuku_title">Shizuku einrichten</string>
     <string name="onboarding_adb_adb_title">ADB einrichten</string>
     <string name="onboarding_adb_caption">Diese App benötigt spezielle Berechtigungen für das Dumping der Audio-Richtlinien Ihres Geräts. Bitte folgen Sie den Anweisungen unten.</string>

@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -22,9 +23,13 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.transition.MaterialSharedAxis
 import me.timschneeberger.hiddenapi_impl.ShizukuSystemServerApi
 import me.timschneeberger.hiddenapi_impl.UserHandle
+import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.activity.MainActivity
+import me.timschneeberger.rootlessjamesdsp.activity.OnboardingActivity
+import me.timschneeberger.rootlessjamesdsp.activity.OnboardingActivity.Companion.EXTRA_ROOT_SETUP_DUMP_PERM
 import me.timschneeberger.rootlessjamesdsp.databinding.OnboardingFragmentBinding
+import me.timschneeberger.rootlessjamesdsp.flavor.RootShellImpl
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.isPackageInstalled
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.launchApp
@@ -37,7 +42,7 @@ import timber.log.Timber
 class OnboardingFragment : Fragment() {
     private lateinit var container: ViewGroup
 
-    private val pageMap = mapOf(
+    private val pageMap = mutableMapOf(
         PAGE_WELCOME                to R.id.onboarding_page1,
         PAGE_LIMITATIONS            to R.id.onboarding_page2,
         PAGE_METHOD_SELECT          to R.id.onboarding_page3,
@@ -60,6 +65,7 @@ class OnboardingFragment : Fragment() {
     private lateinit var nextButton: Button
     private lateinit var runtimePermissionLauncher: ActivityResultLauncher<Array<String>>
 
+    private var useRoot: Boolean = false
     private var shizukuAlive = false
 
     private val binderReceivedListener = Shizuku.OnBinderReceivedListener {
@@ -100,6 +106,7 @@ class OnboardingFragment : Fragment() {
         viewGroup: ViewGroup?,
         bundle: Bundle?
     ): View {
+        useRoot = requireActivity().intent.getBooleanExtra(EXTRA_ROOT_SETUP_DUMP_PERM, false)
         binding = OnboardingFragmentBinding.inflate(layoutInflater, viewGroup, false)
         return binding.root
     }
@@ -112,8 +119,51 @@ class OnboardingFragment : Fragment() {
         backButton.setOnClickListener { changePage(false) }
         nextButton.setOnClickListener { changePage(true) }
 
+        if(useRoot) {
+            pageMap.remove(PAGE_RUNTIME_PERMISSIONS)
+            pageMap.remove(PAGE_READY)
+            goToPage(PAGE_METHOD_SELECT)
+        }
+
         // Method selection page
         val methodPage = binding.methodSelect
+        methodPage.methodsRootCard.isVisible = useRoot
+        methodPage.methodsShizukuBody.text = getString(
+            if(useRoot)
+                R.string.onboarding_methods_root_shizuku
+            else
+                R.string.onboarding_methods_rootless_shizuku
+        )
+        methodPage.methodsAdbBody.text = getString(
+            if(useRoot)
+                R.string.onboarding_methods_root_adb
+            else
+                R.string.onboarding_methods_rootless_adb
+        )
+
+        methodPage.methodsRootCard.setOnClickListener {
+            RootShellImpl.getShell(object : RootShellImpl.OnShellAttachedCallback {
+                override fun onShellAttached(isRoot: Boolean) {
+                    Timber.d("onShellAttached: isRoot=$isRoot")
+                    if(!isRoot) {
+                        requireContext().showAlert(
+                            R.string.onboarding_root_shell_fail_title,
+                            R.string.onboarding_root_shell_fail
+                        )
+                        return
+                    }
+                    val success = RootShellImpl.cmd("pm grant ${BuildConfig.APPLICATION_ID} android.permission.DUMP\n")
+                    if(!success && requireContext().checkSelfPermission(DUMP_PERM) != PERMISSION_GRANTED) {
+                        requireContext().showAlert(
+                            R.string.onboarding_root_shell_fail_title,
+                            R.string.onboarding_root_shell_fail_unknown
+                        )
+                        return
+                    }
+                    finishSetup()
+                }
+            })
+        }
         methodPage.methodsShizukuCard.setOnClickListener {
             selectedSetupMethod = SetupMethods.Shizuku
             changePage(true)
@@ -255,22 +305,32 @@ class OnboardingFragment : Fragment() {
         }
     }
 
-    private fun goToPage(number: Int)
-    {
-        // Check if we're finished
-        if(number > pageMap.count())
-        {
-            val intent = Intent(requireContext(), MainActivity::class.java)
-            intent.putExtra(MainActivity.EXTRA_FORCE_SHOW_CAPTURE_PROMPT, true)
-            startActivity(intent)
-            requireActivity().finish()
-            
-            // Mark setup as done
+    private fun finishSetup() {
+        val intent = Intent(requireContext(), MainActivity::class.java)
+        intent.putExtra(MainActivity.EXTRA_FORCE_SHOW_CAPTURE_PROMPT, true)
+        startActivity(intent)
+        requireActivity().finish()
+
+        // Mark setup as done
+        if(!useRoot) {
             requireContext()
                 .getSharedPreferences(Constants.PREF_VAR, AppCompatActivity.MODE_PRIVATE)
                 .edit()
                 .putBoolean(getString(R.string.key_firstboot), false)
                 .apply()
+        }
+        // Root: we skip last page, so show small success toast instead
+        else {
+            Toast.makeText(requireContext(), getString(R.string.onboarding_root_enhanced_processing_setup_success), Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun goToPage(number: Int)
+    {
+        // Check if we're finished
+        if(number > pageMap.count())
+        {
+            finishSetup()
             return
         }
 
@@ -327,6 +387,12 @@ class OnboardingFragment : Fragment() {
 
         if(forward && !canAccessNextPage(currentPage) && !ignoreConditions) {
             Timber.d("Next page not ready; instructions not yet fulfilled by the user")
+            return
+        }
+
+        // Root setup; cut-off first two pages
+        if(useRoot && !forward && (currentPage - 1) <= PAGE_LIMITATIONS) {
+            requireActivity().finish()
             return
         }
 

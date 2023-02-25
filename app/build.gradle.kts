@@ -213,6 +213,9 @@ dependencies {
     implementation("dev.rikka.shizuku:api:${AndroidConfig.shizukuVersion}")
     implementation("dev.rikka.shizuku:provider:${AndroidConfig.shizukuVersion}")
 
+    // Root APIs
+    "rootImplementation"("com.github.topjohnwu.libsu:core:5.0.4")
+
     // Hidden APIs
     implementation("dev.rikka.tools.refine:runtime:${AndroidConfig.rikkaRefineVersion}")
     implementation("org.lsposed.hiddenapibypass:hiddenapibypass:4.3")

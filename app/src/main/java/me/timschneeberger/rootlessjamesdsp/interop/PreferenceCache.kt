@@ -1,8 +1,8 @@
 package me.timschneeberger.rootlessjamesdsp.interop
 
-import CrashlyticsImpl
 import android.content.Context
 import androidx.annotation.StringRes
+import me.timschneeberger.rootlessjamesdsp.flavor.CrashlyticsImpl
 
 class PreferenceCache(val context: Context) {
     val changedNamespaces = ArrayList<String>()
