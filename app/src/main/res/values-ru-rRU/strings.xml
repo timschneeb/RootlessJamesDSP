@@ -3,25 +3,46 @@
     <!-- Main menu bar -->
     <string name="action_settings">Настройки</string>
     <string name="action_presets">Пресеты</string>
+    <string name="action_revert">Сброс к значениям по умолчанию</string>
+    <string name="action_blocked_apps">Исключенные приложения</string>
     <!-- Notification channels -->
     <!-- Service notifications -->
+    <string name="notification_processing_legacy">Нажмите, чтобы открыть JamesDSP manager</string>
     <!-- Permission request notifications -->
+    <string name="notification_request_permission_title">Для запуска JamesDSP необходимо действие пользователя</string>
     <!-- Session control loss notifications -->
+    <string name="session_control_loss_notification_title">Обработка аудио остановлена. Другое приложение мешает работе JamesDSP.</string>
+    <string name="session_control_loss_notification">Пожалуйста, отключите все другие приложения, которые предоставляют глобальные аудиоэффекты перед повторным включением JamesDSP.</string>
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_notification_title">Обработка аудио остановлена. Другое приложение мешает работе JamesDSP.</string>
+    <string name="session_app_compat_notification">Коснитесь этого уведомления, чтобы решить проблему.</string>
     <!-- Capture permission revoked notifications -->
+    <string name="capture_permission_revoked_toast">JamesDSP был остановлен, так как разрешение на захват аудио было отозвано.</string>
     <!-- General purpose -->
     <!-- Main screen -->
+    <string name="ddc_enable">ViPER-DDC</string>
+    <string name="ddc_file">Файл DDC</string>
     <string name="liveprog_additional_params_not_supported">Выбранный скрипт не имеет настраиваемых параметров</string>
+    <string name="liveprog_not_found">Скрипт не найден</string>
+    <string name="tube_enable">Аналоговое моделирование</string>
     <!-- Onboarding -->
+    <string name="onboarding_greeting">Добро пожаловать в RootlessJamesDSP!</string>
+    <string name="onboarding_caption">Этот помощник поможет вам настроить приложение.</string>
+    <string name="onboarding_fix_permissions">Одно или несколько разрешений были отозваны вами или системой.\nЧтобы убедиться, что приложение работает корректно, необходимо предоставить эти разрешения снова.\n\nПожалуйста, перезапустите мастер настройки для повторного предоставления этих разрешений.</string>
+    <string name="onboarding_limitations_title">Ограничения</string>
     <string name="onboarding_methods_shizuku_title">Shizuku</string>
     <string name="onboarding_methods_adb_title">ADB</string>
+    <string name="onboarding_adb_shizuku_title">Настройка Shizuku</string>
+    <string name="onboarding_adb_adb_title">Настройка ADB</string>
     <string name="onboarding_adb_shizuku_install_instruction">Установить \'Shizuku\' из Google Play.</string>
     <string name="onboarding_adb_shizuku_open_button">Запустить Shizuku</string>
+    <string name="onboarding_adb_shizuku_grant_instruction">Нажмите кнопку и предоставьте этому приложению доступ к Shizuku.</string>
     <string name="onboarding_adb_shizuku_grant_fail_server_dead_title">Сервер Shizuku не запущен</string>
     <string name="onboarding_adb_shizuku_grant_fail_version">Это приложение требует Shizuku версии 11 или выше. Пожалуйста, обновите Shizuku до последней версии.</string>
     <string name="onboarding_adb_shizuku_grant_fail_version_title">Неподдерживаемая версия Shizuku</string>
     <string name="onboarding_adb_manual_step2">Откройте https://app.webadb.com в веб-браузере на вашем компьютере (рекомендуется использовать Google Chrome) и подключите ваше устройство к компьютеру с помощью USB.</string>
     <string name="onboarding_perm_title">Другие разрешения</string>
+    <string name="onboarding_perm_cast_caption">Вы должны явно предоставить этому приложению разрешение на запись аудио-контента при каждом запуске.</string>
     <string name="limit_tested_devices_title">Протестированные устройства</string>
     <string name="limit_tested_devices">Изменения, внесенные производителем вашего устройства в аудио-подсистему Android, могут легко нарушить работу этого приложения, поскольку оно использует несколько не задокументированных API.\nОно было протестировано на следующих устройствах:\n• Samsung S20+ (Android 12)\n• Эмулятор AOSP (Android 10–13)\n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
@@ -64,7 +85,9 @@
     <!-- Theme names -->
     <!-- File library preference -->
     <string name="filelibrary_hint_tap_and_hold">Коснитесь и удерживайте любой элемент для дополнительных опций</string>
+    <string name="filelibrary_context_new_preset_long">Новый пресет</string>
     <string name="filelibrary_corrupted_title">Файл не поддерживается или повреждён</string>
+    <string name="filelibrary_file_exists">Файл уже существует</string>
     <string name="filelibrary_preset_save_failed">Не удалось сохранить пресет</string>
     <string name="filelibrary_no_presets">Нет сохраненных пресетов. Нажмите \'Добавить\', чтобы создать новый.</string>
     <!-- JamesDSP engine messages -->
@@ -87,12 +110,13 @@
     <string name="editor_find_previous_match">Найти предыдущее совпадение</string>
     <string name="editor_search_keyword">Поиск</string>
     <string name="editor_engine_down_title">JamesDSP не активен</string>
-    <string name="editor_engine_down">Невозможно запустить скрипт, потому что JamesDSP отключен. Пожалуйста, включите JamesDSP для выполнения скриптов.</string>
+    <string name="editor_engine_down">Невозможно запустить скрипт, потому что JamesDSP не активен. Пожалуйста, активируйте JamesDSP для выполнения скриптов.</string>
     <string name="editor_save_prompt_title">Сохранить изменения?</string>
     <string name="editor_save_prompt">Текущий скрипт имеет несохраненные изменения. Сохранить изменения или отменить их?</string>
     <string name="editor_script_launched">Скрипт запущен</string>
     <string name="editor_text_size">Размер текста</string>
     <!-- Blocklist -->
+    <string name="title_activity_blocklist">Исключенные приложения</string>
     <!-- Compatibility issue activity -->
     <!-- Hints for compatibility issues for individual apps -->
     <!-- Root: Library load failure -->
