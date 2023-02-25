@@ -32,6 +32,8 @@
     <string name="onboarding_limitations_title">Ограничения</string>
     <string name="onboarding_methods_shizuku_title">Shizuku</string>
     <string name="onboarding_methods_adb_title">ADB</string>
+    <!-- Rootless flavor -->
+    <!-- Root flavor -->
     <string name="onboarding_adb_shizuku_title">Настройка Shizuku</string>
     <string name="onboarding_adb_adb_title">Настройка ADB</string>
     <string name="onboarding_adb_shizuku_install_instruction">Установить \'Shizuku\' из Google Play.</string>
