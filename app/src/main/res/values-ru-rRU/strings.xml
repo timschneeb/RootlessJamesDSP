@@ -30,10 +30,19 @@
     <string name="onboarding_caption">Этот помощник поможет вам настроить приложение.</string>
     <string name="onboarding_fix_permissions">Одно или несколько разрешений были отозваны вами или системой.\nЧтобы убедиться, что приложение работает корректно, необходимо предоставить эти разрешения снова.\n\nПожалуйста, перезапустите мастер настройки для повторного предоставления этих разрешений.</string>
     <string name="onboarding_limitations_title">Ограничения</string>
+    <string name="onboarding_methods_root_title">Root-доступ</string>
     <string name="onboarding_methods_shizuku_title">Shizuku</string>
     <string name="onboarding_methods_adb_title">ADB</string>
     <!-- Rootless flavor -->
+    <string name="onboarding_methods_rootless_shizuku">\u25CF Рекомендуется\n\u25CF Не требуется компьютер\n\u25CF Только для Android 11+</string>
+    <string name="onboarding_methods_rootless_adb">\u25CF Для опытных пользователей\n\u25CF Требуется компьютер и USB-кабель\n\u25CF Поддерживается Android 10+</string>
     <!-- Root flavor -->
+    <string name="onboarding_methods_root_root">\u25CF Рекомендуется\n\u25CF Не требуется компьютер\n\u25CF Подходит для всех версий Android</string>
+    <string name="onboarding_methods_root_shizuku">\u25CF Рекомендуется, если root-доступ не настроен\n\u25CF Не требуется компьютер\n\u25CF Только для Android 11+</string>
+    <string name="onboarding_root_shell_fail_title">Root-права отсутствуют</string>
+    <string name="onboarding_root_shell_fail">Root-права недоступны. Пожалуйста, воспользуйтесь другим методом установки.</string>
+    <string name="onboarding_root_shell_fail_unknown">Не удалось предоставить разрешение через root. Пожалуйста, используйте другой метод установки.</string>
+    <string name="onboarding_root_enhanced_processing_setup_success">Улучшенная обработка настроена</string>
     <string name="onboarding_adb_shizuku_title">Настройка Shizuku</string>
     <string name="onboarding_adb_adb_title">Настройка ADB</string>
     <string name="onboarding_adb_shizuku_install_instruction">Установить \'Shizuku\' из Google Play.</string>
