@@ -1,0 +1,2 @@
+* Added link to the Crowdin translation project site
+* Added unfinished translations for more languages

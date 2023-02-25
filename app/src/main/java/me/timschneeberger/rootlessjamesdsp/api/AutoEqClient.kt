@@ -3,6 +3,7 @@ package me.timschneeberger.rootlessjamesdsp.api
 import android.content.Context
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
+import me.timschneeberger.rootlessjamesdsp.flavor.CrashlyticsImpl
 import me.timschneeberger.rootlessjamesdsp.model.api.AeqSearchResult
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import okhttp3.OkHttpClient

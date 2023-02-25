@@ -28,13 +28,15 @@ class OnboardingActivity : BaseActivity(){
         binding = ActivityOnboardingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        fragment
+
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.onboarding_fragment_container, fragment)
             .commit()
 
-        // Root: onboarding currently not required
-        if(!BuildConfig.ROOTLESS) {
+        // Root: onboarding currently not required, except when setting up DUMP permission for enhanced processing
+        if(!BuildConfig.ROOTLESS && !intent.getBooleanExtra(EXTRA_ROOT_SETUP_DUMP_PERM, false)) {
             this.finish()
             return
         }
@@ -72,5 +74,6 @@ class OnboardingActivity : BaseActivity(){
     companion object
     {
         const val EXTRA_FIX_PERMS = "FixPermissions"
+        const val EXTRA_ROOT_SETUP_DUMP_PERM = "RootSetupDumpPerm"
     }
 }

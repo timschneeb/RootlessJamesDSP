@@ -1,6 +1,5 @@
 package me.timschneeberger.rootlessjamesdsp.fragment
 
-import CrashlyticsImpl
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
@@ -15,6 +14,7 @@ import androidx.preference.*
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.api.AutoEqClient
+import me.timschneeberger.rootlessjamesdsp.flavor.CrashlyticsImpl
 import me.timschneeberger.rootlessjamesdsp.utils.AssetManagerExtensions.installPrivateAssets
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert

@@ -1,5 +1,7 @@
 @file:Suppress("UNUSED_PARAMETER")
 
+package me.timschneeberger.rootlessjamesdsp.flavor
+
 // Stubbed
 object CrashlyticsImpl {
     fun setCollectionEnabled(on: Boolean) {}

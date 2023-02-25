@@ -1,6 +1,5 @@
 package me.timschneeberger.rootlessjamesdsp
 
-import CrashlyticsImpl
 import android.app.Application
 import android.content.*
 import android.os.Build
@@ -14,8 +13,7 @@ import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistDatabase
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistRepository
 import me.timschneeberger.rootlessjamesdsp.session.dump.DumpManager
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
-import me.timschneeberger.rootlessjamesdsp.BuildConfig
-import me.timschneeberger.rootlessjamesdsp.R
+import me.timschneeberger.rootlessjamesdsp.flavor.CrashlyticsImpl
 import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.session.root.EffectSessionManager
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocalReceiver

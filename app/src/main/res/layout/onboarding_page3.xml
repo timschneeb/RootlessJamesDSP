@@ -38,6 +38,36 @@
             android:orientation="vertical">
             <com.google.android.material.card.MaterialCardView
                 style="?attr/materialCardViewStyle"
+                android:id="@+id/methods_root_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="?attr/colorSecondaryContainer"
+                app:contentPadding="16dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/methods_root_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:text="@string/onboarding_methods_root_title"
+                        android:textAppearance="?attr/textAppearanceTitleLarge" />
+                    <TextView
+                        android:id="@+id/methods_root_body"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/onboarding_methods_root_root"
+                        android:textAppearance="?attr/textAppearanceBody1" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                style="?attr/materialCardViewStyle"
                 android:id="@+id/methods_shizuku_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -60,7 +90,7 @@
                         android:id="@+id/methods_shizuku_body"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/onboarding_methods_shizuku"
+                        android:text="@string/onboarding_methods_rootless_shizuku"
                         android:textAppearance="?attr/textAppearanceBody1" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -85,9 +115,10 @@
                         android:text="@string/onboarding_methods_adb_title"
                         android:textAppearance="?attr/textAppearanceTitleLarge" />
                     <TextView
+                        android:id="@+id/methods_adb_body"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/onboarding_methods_adb"
+                        android:text="@string/onboarding_methods_rootless_adb"
                         android:textAppearance="?attr/textAppearanceBody1" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
