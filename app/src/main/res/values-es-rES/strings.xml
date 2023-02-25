@@ -101,6 +101,8 @@
     <string name="convolver_enable">Convolver</string>
     <string name="convolver_impulse">Respuesta de Impulso</string>
     <!-- Onboarding -->
+    <!-- Rootless flavor -->
+    <!-- Root flavor -->
     <!-- Settings -->
     <string name="title_activity_settings">Settings</string>
     <!-- Theme names -->
