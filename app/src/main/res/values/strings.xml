@@ -182,7 +182,7 @@
     <!-- Root flavor -->
     <string name="onboarding_methods_root_root">\u25CF Recommended\n\u25CF No external computer required\n\u25CF All Android versions</string>
     <string name="onboarding_methods_root_shizuku">\u25CF Recommended, if root is not set-up\n\u25CF No external computer required\n\u25CF Android 11+ only</string>
-    <string name="onboarding_methods_root_adb">\u25CF For advanced users\n\u25CF Computer and USB cable required\nAll Android versions</string>
+    <string name="onboarding_methods_root_adb">\u25CF For advanced users\n\u25CF Computer and USB cable required\n\u25CFAll Android versions</string>
     <string name="onboarding_root_shell_fail_title">No root access</string>
     <string name="onboarding_root_shell_fail">No root access available. Please use another setup method.</string>
     <string name="onboarding_root_shell_fail_unknown">Failed to grant permission via root. Please use another setup method.</string>
