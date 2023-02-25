@@ -90,6 +90,9 @@
     <string name="credits_app">Приложение и rootless версия</string>
     <string name="credits_dsp">Библиотека алгоритмов ядра JamesDSP</string>
     <string name="credits_project_page">Страница проекта на GitHub</string>
+    <string name="credits_project_page_summary">Сообщайте о проблемах, следите за обновлениями и читайте исходный код</string>
+    <string name="credits_version">Версия приложения</string>
+    <string name="credits_build_info">Информация о сборке</string>
     <string name="appearance_title">Тема оформления</string>
     <string name="appearance_theme_mode">Тёмный режим</string>
     <string name="appearance_theme_mode_light">Выкл</string>
