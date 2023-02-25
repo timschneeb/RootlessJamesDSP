@@ -138,7 +138,7 @@ class MainActivity : BaseActivity() {
         if(check != 0) {
             Toast.makeText(
                 this,
-                "($check) Cannot launch application. Please re-download the latest version from the official GitHub project site.",
+                "($check) Cannot launch application. Please re-download the latest version from the Google Play or the official GitHub project site.",
                 Toast.LENGTH_LONG
             ).show()
             Timber.wtf(UnsupportedOperationException("Launch error $check; ${ApplicationUtils.describe(this)}"))
