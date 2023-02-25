@@ -1,8 +1,8 @@
-Use JamesDSP as a system-wide audio processing engine without any root access.
+Используйте JamesDSP в качестве общесистемного механизма обработки звука без какого-либо root-доступа.
 
-This app has several limitations that may be deal-breaking to some people; please read this whole document before using the app. Shizuku (Android 11+) or ADB access via a computer is required for the initial setup.
+Данное приложение имеет ряд ограничений, которые могут оказаться критичными для некоторых людей; пожалуйста, прочитайте этот документ до конца перед использованием приложения. Для первоначальной настройки требуется Shizuku (Android 11+) или доступ к ADB через компьютер.
 
-JamesDSP supports the following audio effects:
+JamesDSP поддерживает следующие аудио эффекты:
 * Limiter control
 * Output gain control
 * Auto dynamic range compressor
@@ -19,13 +19,13 @@ JamesDSP supports the following audio effects:
 
 Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration, you can search and import frequency responses that aim to correct your headphone to a neutral sound. Go to 'Arbitrary response equalizer > Magnitude response > AutoEQ profiles' to get started.
 
---- Limitations
+--- Ограничения
 * Apps blocking internal audio capture remain unprocessed (e.g., Spotify, Google Chrome)
 * Apps using some types of HW-accelerated playback may cause issues and need to be manually excluded (e.g., some Unity games)
 * Cannot coexist with (some) other audio effect apps (e.g., Wavelet and other apps that make use of the `DynamicsProcessing` Android API)
 
 
-- Apps confirmed working:
+- Работа приложений подтверждена:
 * YouTube
 * YouTube Music
 * Amazon Music
@@ -41,6 +41,6 @@ Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration
 * SoundCloud
 * ...
 
---- Translation
-Please help us translate this app here: https://crowdin.com/project/rootlessjamesdsp
-To request a new language that isn't enabled on Crowdin yet, please open an issue here on GitHub and I will turn it on.
+--- Перевод
+Пожалуйста, помогите нам перевести это приложение здесь: https://crowdin.com/project/rootlessjamesdsp
+Чтобы запросить новый язык, который еще не включен в Crowdin, создайте запрос на GitHub, и я добавлю его.
