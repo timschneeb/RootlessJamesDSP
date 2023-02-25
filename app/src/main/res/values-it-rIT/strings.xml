@@ -28,6 +28,8 @@
     <!-- General purpose -->
     <!-- Main screen -->
     <!-- Onboarding -->
+    <!-- Rootless flavor -->
+    <!-- Root flavor -->
     <!-- Settings -->
     <string name="title_activity_settings">Impostazioni</string>
     <!-- Theme names -->
