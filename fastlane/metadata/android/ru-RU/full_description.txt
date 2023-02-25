@@ -1,28 +1,28 @@
-Используйте JamesDSP в качестве общесистемного механизма обработки звука без какого-либо root-доступа.
+Вы можете использовать JamesDSP в качестве общесистемного механизма обработки звука без какого-либо root-доступа.
 
-Данное приложение имеет ряд ограничений, которые могут оказаться критичными для некоторых людей; пожалуйста, прочитайте этот документ до конца перед использованием приложения. Для первоначальной настройки требуется Shizuku (Android 11+) или доступ к ADB через компьютер.
+Пожалуйста, прочтите этот документ перед использованием приложения, так как оно имеет некоторые ограничения, которые могут быть проблемными для некоторых пользователей. Для первоначальной настройки требуется Shizuku (Android 11+) или доступ к ADB через компьютер.
 
 JamesDSP поддерживает следующие аудио эффекты:
-* Limiter control
-* Output gain control
+* Лимитер (Limiter control)
+* Управление выходной громкостью (Output gain control)
 * Auto dynamic range compressor
-* Dynamic bass boost
-* Interpolating FIR equalizer
+* Динамическая подстройка баса (Dynamic bass boost)
+* Интерполирующий FIR-эквалайзер (Interpolating FIR equalizer)
 * Arbitrary response equalizer (Graphic EQ)
 * ViPER-DDC
-* Convolver
-* Live-programmable DSP (scripting engine for audio effects)
-* Analog modelling
-* Soundstage wideness
-* Crossfeed
-* Virtual room effect (reverb)
+* Конвольвер (Convolver)
+* Live-programmable DSP (скриптовый движок для аудио эффектов)
+* Аналоговое моделирование (Analog modelling)
+* Ширина звуковой сцены (Soundstage wideness)
+* Кроссфидер (Crossfeed)
+* Эффект виртуальной комнаты (Reverb)
 
-Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration, you can search and import frequency responses that aim to correct your headphone to a neutral sound. Go to 'Arbitrary response equalizer > Magnitude response > AutoEQ profiles' to get started.
+Кроме того, это приложение напрямую интегрируется с AutoEQ. Используя интеграцию AutoEQ, вы можете искать и импортировать частотные характеристики, которые направлены на коррекцию звучания наушников до нейтрального звука. Для начала перейдите в раздел 'Arbitrary response equalizer > Magnitude response > AutoEQ profiles'.
 
 --- Ограничения
-* Apps blocking internal audio capture remain unprocessed (e.g., Spotify, Google Chrome)
-* Apps using some types of HW-accelerated playback may cause issues and need to be manually excluded (e.g., some Unity games)
-* Cannot coexist with (some) other audio effect apps (e.g., Wavelet and other apps that make use of the `DynamicsProcessing` Android API)
+* Приложения, которые блокируют запись внутреннего аудио, не будут обработаны (например, Spotify, Google Chrome)
+* Некоторые приложения, которые используют аппаратное ускорение при воспроизведении, могут вызывать проблемы и требовать ручного исключения (например, некоторые игры, созданные на платформе Unity)
+* Не может быть запущено параллельно с (некоторыми) другими приложениями для аудиоэффектов (например, Wavelet и другие приложения, использующие Android API `DynamicsProcessing`)
 
 
 - Работа приложений подтверждена:
@@ -35,8 +35,8 @@ Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration
 * Twitch
 * ...
 
-- Unsupported apps include:
-* Spotify (Note: Spotify ReVanced patch is required to support Spotify)
+- Неподдерживаемые приложения:
+* Spotify (Примечание: для поддержки Spotify требуется патч Spotify ReVanced)
 * Google Chrome
 * SoundCloud
 * ...
