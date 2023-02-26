@@ -52,9 +52,50 @@
     <string name="compressor_max_attack">Maksimum saldırı</string>
     <string name="compressor_adapt_speed">Agresiflik</string>
     <string name="eq_filter_type">Filtre türü</string>
+    <string name="eq_preset_acoustic">Akustik</string>
+    <string name="eq_preset_bass">Bass</string>
+    <string name="eq_preset_beats">Ritimler</string>
+    <string name="eq_preset_classic">Klasik</string>
+    <string name="eq_preset_clear">Temizle</string>
+    <string name="eq_preset_deep">Derin</string>
+    <string name="eq_preset_electronic">Elektronik</string>
+    <string name="eq_preset_flat">Düz</string>
+    <string name="eq_preset_hiphop">Hip-Hop</string>
+    <string name="eq_preset_jazz">Caz</string>
+    <string name="eq_preset_metal">Metal</string>
+    <string name="eq_preset_movie">Film</string>
+    <string name="eq_preset_pop">Pop</string>
+    <string name="eq_preset_rb">R&amp;B</string>
+    <string name="eq_preset_rock">Rock</string>
+    <string name="eq_preset_vocal">Ses Yükseltici</string>
+    <string name="output_control_header">Çıkış kontrolü</string>
+    <string name="stereowide_level">Genişlik</string>
+    <string name="stereowide_level_none">Hiçbiri</string>
+    <string name="stereowide_level_very_wide">Aşırı geniş</string>
+    <string name="stereowide_level_wide">Geniş</string>
+    <string name="stereowide_level_very_narrow">Aşırı dar</string>
+    <string name="stereowide_level_narrow">Dar</string>
+    <string name="crossfeed_preset">Hazır ayar</string>
     <!-- Onboarding -->
+    <string name="onboarding_back">Geri</string>
+    <string name="onboarding_next">İleri</string>
+    <string name="onboarding_finish">Bitir</string>
+    <string name="onboarding_greeting">RootlessJamesDSP\'ye hoşgeldiniz!</string>
+    <string name="onboarding_caption">Asistan bu uygulamayı ayarlamanıza yardımcı olacaktır.</string>
+    <string name="onboarding_warning">Şimdilik bu uygulama bitirilmemiştir ve stabil değildir. Lütfen bilin ki üçüncü partiler için yapılmayan Android API\'ları kullanıldığı için bazı cihazlarda çalışmayabilir.</string>
+    <string name="onboarding_fix_permissions_title">Kullanıcı eylemi gerekli</string>
+    <string name="onboarding_fix_permissions">Bir ve ya daha fazla izin sisteminiz tarafından geri alınmış.\nBu uygulamanın düzgün çalıştığından emin olmak için izinleri yeniden vermeniz gerekiyor.\n\nLütfen bu izinleri yeniden vermek için kuruluş asistanını yeniden kullanın.</string>
+    <string name="onboarding_limitations_title">Sınırlar</string>
+    <string name="onboarding_limitations_unstable">Önemli! Lütfen ilerlemeden önce dikkatli bir şekilde notları okuyunuz.</string>
+    <string name="onboarding_methods_title">Kuruluş yöntemini seçin</string>
+    <string name="onboarding_methods_root_title">Root</string>
+    <string name="onboarding_methods_shizuku_title">Shizuku</string>
+    <string name="onboarding_methods_unsupported_append">uyumsuz</string>
+    <string name="onboarding_methods_adb_title">ADB</string>
     <!-- Rootless flavor -->
+    <string name="onboarding_methods_rootless_adb">\u25CF Gelişmiş kullanıcılar için\n\u25CFBilgisayar ve USB kablosu gereklidir\n\u25CFAndroid 10+ desteği var</string>
     <!-- Root flavor -->
+    <string name="onboarding_methods_root_root">\u25CFÖnerilir\n\u25CFHarici bilgisayar gerekli değil\n\u25CFTüm android sürümleri</string>
     <!-- Settings -->
     <string name="title_activity_settings">Ayarlar</string>
     <!-- Theme names -->
