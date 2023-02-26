@@ -1,27 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
+    <string name="action_settings">Ayarlar</string>
+    <string name="action_presets">Ön Ayarlar</string>
+    <string name="action_revert">Varsayılanlara sıfırla</string>
+    <string name="action_blocked_apps">Hariç tutulan uygulamalar</string>
     <!-- Notification channels -->
+    <string name="notification_channel_service">Servis bildirimleri</string>
+    <string name="notification_channel_session_loss_alert">Oturum kaybı uyarısı</string>
+    <string name="notification_channel_permission_prompt">İzin isteği</string>
+    <string name="notification_channel_app_compat_alert">Uyumsuz uygulama uyarısı</string>
     <!-- Service notifications -->
+    <string name="action_retry">Yeniden dene</string>
+    <string name="action_fix">Sorunu çöz</string>
+    <string name="action_stop">Dur</string>
+    <string name="notification_waiting">Kullanıcı eylemi bekleniyor…</string>
+    <string name="notification_processing">Aktif uygulamalar: %1$s</string>
+    <string name="notification_idle">Ses işleme durduruldu</string>
+    <string name="notification_processing_title">Ses işleme aktif</string>
+    <string name="notification_processing_disabled_title">Ses işleme kapalı</string>
+    <string name="notification_processing_legacy">JamesDSP yöneticisini açmak için dokunun</string>
     <!-- Permission request notifications -->
+    <string name="notification_request_permission_title">JamesDSP\'yi çalıştırmak için kullanıcı eylemi gerekmektedir</string>
+    <string name="notification_request_permission">JamesDSP\'nin ses işlemesini aktif etmek için dokunarak yakalama izinlerini verin</string>
     <!-- Session control loss notifications -->
+    <string name="session_control_loss_toast">JamesDSP ses oturumu kontrolü kaybı yüzünden durduruldu. Lütfen başka ses efekti uygulamalarını kapatın.</string>
+    <string name="session_control_loss_notification_title">Ses işleme durduruldu. Başka bir uygulama JamesDSP\'nin çalışmasını engelliyor.</string>
+    <string name="session_control_loss_notification">Lütfen JamesDSP\'yi yeniden aktif etmeden önce global ses efekti veren diğer tüm uygulamaları kapatın.</string>
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_toast">JamesDSP bozuk/eksik medya uygulaması yüzünden durduruldu. Lütfen bu sorunu çözmek için bildirimi kontrol edin.</string>
+    <string name="session_app_compat_notification_title">Ses işleme durduruldu. Başka bir uygulama JamesDSP\'nin çalışmasını engelliyor.</string>
+    <string name="session_app_compat_notification">Sorunu çözmek için bu bildirime dokunun.</string>
     <!-- Capture permission revoked notifications -->
+    <string name="capture_permission_revoked_toast">JamesDSP ses yakalama izni geri alındığı için durduruldu.</string>
     <!-- General purpose -->
+    <string name="install">Yükle</string>
+    <string name="update">Güncelle</string>
+    <string name="details">Detaylar</string>
+    <string name="warning">Uyarı</string>
+    <string name="success">Başarılı</string>
+    <string name="open">Aç</string>
+    <string name="close">Kapat</string>
+    <string name="add">Ekle</string>
+    <string name="yes">Evet</string>
+    <string name="no">Hayır</string>
+    <string name="value_not_set">Ayarlanmamış</string>
+    <string name="undo">Geri al</string>
+    <string name="redo">Yinele</string>
     <!-- Main screen -->
+    <string name="power_button_alt">Ses işlemeyi aç/kapat</string>
+    <string name="compressor_max_attack">Maksimum saldırı</string>
+    <string name="compressor_adapt_speed">Agresiflik</string>
+    <string name="eq_filter_type">Filtre türü</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
     <!-- Settings -->
+    <string name="title_activity_settings">Ayarlar</string>
     <!-- Theme names -->
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="gep_add_node">Ekle</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
     <!-- Blocklist -->
+    <string name="title_activity_blocklist">Hariç tutulan uygulamalar</string>
     <!-- Compatibility issue activity -->
+    <string name="app_compat_retry">Yeniden dene</string>
     <!-- Hints for compatibility issues for individual apps -->
     <!-- Root: Library load failure -->
     <!-- App list -->
