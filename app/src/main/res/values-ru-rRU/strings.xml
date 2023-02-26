@@ -102,14 +102,28 @@
     <string name="onboarding_adb_adb_title">Настройка ADB</string>
     <string name="onboarding_adb_caption">Это приложение требует специальных разрешений для выгрузки аудио-политики вашего устройства. Пожалуйста, следуйте инструкциям ниже.</string>
     <string name="onboarding_adb_shizuku_install_instruction">Установить \'Shizuku\' из Google Play.</string>
+    <string name="onboarding_adb_shizuku_open_instruction">Запустите \'Shizuku\' и найдите \'<b>Запуск через отладку по Wi-Fi</b>\'. Нажмите кнопку \'Подключение\' и следуйте инструкциям в приложении. После сопряжения Shizuku с вашим устройством, запустите сервер Shizuku, нажав кнопку \'Запустить\' в их приложении. Если возникнут проблемы при настройке Shizuku, обратитесь к руководству по установке, ссылка на который приведена в их приложении.</string>
     <string name="onboarding_adb_shizuku_open_button">Запустить Shizuku</string>
     <string name="onboarding_adb_shizuku_grant_instruction">Нажмите кнопку и предоставьте этому приложению доступ к Shizuku.</string>
+    <string name="onboarding_adb_shizuku_not_installed_title">Shizuku еще не установлен</string>
     <string name="onboarding_adb_shizuku_grant_fail_server_dead_title">Сервер Shizuku не запущен</string>
     <string name="onboarding_adb_shizuku_grant_fail_version">Это приложение требует Shizuku версии 11 или выше. Пожалуйста, обновите Shizuku до последней версии.</string>
     <string name="onboarding_adb_shizuku_grant_fail_version_title">Неподдерживаемая версия Shizuku</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied">Пожалуйста, предоставьте этому приложению доступ к Shizuku. Если вы ранее отказали в разрешении и всплывающее окно больше не появляется, вам может потребоваться открыть менеджер разрешений Shizuku и предоставить доступ вручную.</string>
+    <string name="onboarding_adb_shizuku_no_dump_perm_title">Shizuku не удалось предоставить разрешения ADB</string>
+    <string name="onboarding_adb_shizuku_no_dump_perm">Пожалуйста, подождите несколько секунд и попробуйте ещё раз. Если это не сработает, попробуйте альтернативный метод.</string>
+    <string name="onboarding_adb_dump_not_granted_title">Разрешение еще не предоставлено</string>
+    <string name="onboarding_adb_dump_not_granted">Пожалуйста, сначала выполните инструкции и повторите попытку. Доступ ADB еще не настроен правильно.</string>
+    <string name="onboarding_adb_manual_step1">Перейдите в скрытые настройки Android «Для разработчиков» и включите параметр «Отладка по USB». Для разблокировки этих настроек необходимо несколько раз нажать на номер сборки в настройках системы.</string>
     <string name="onboarding_adb_manual_step2">Откройте https://app.webadb.com в веб-браузере на вашем компьютере (рекомендуется использовать Google Chrome) и подключите ваше устройство к компьютеру с помощью USB.</string>
+    <string name="onboarding_adb_manual_step3">Добавьте и подключите USB-устройство в WebADB.</string>
+    <string name="onboarding_adb_manual_step4">Перейдите в \'Interactive Shell\' и выполните следующую команду в оболочке: \'pm grant %s android.permission.DUMP\'</string>
     <string name="onboarding_perm_title">Другие разрешения</string>
+    <string name="onboarding_perm_microphone_caption">Требуется для записи внутреннего звука. Аппаратный микрофон не активирован.</string>
+    <string name="onboarding_perm_notification_caption">Требуется для получения важных обновлений статуса и информации о состоянии обработки JamesDSP.</string>
     <string name="onboarding_perm_cast_caption">Вы должны явно предоставить этому приложению разрешение на запись аудио-контента при каждом запуске.</string>
+    <string name="onboarding_perm_missing">Пожалуйста, предоставьте все запрошенные разрешения во время выполнения, чтобы продолжить.\nЕсли вы несколько раз отказали в предоставлении разрешений, вам нужно предоставить их вручную в настройках системы.</string>
+    <string name="onboarding_finish_caption">Если у вас возникли какие-либо проблемы, пожалуйста, посетите раздел настроек «Устранение неисправностей».</string>
     <string name="limit_unsupported_apps">Приложения, которые блокируют запись внутреннего аудио, не будут обработаны (например, Spotify, Google Chrome).</string>
     <string name="limit_tested_devices_title">Проверенные устройства</string>
     <string name="limit_tested_devices">Изменения, внесенные производителем вашего устройства в аудио-подсистему Android, могут легко нарушить работу этого приложения, поскольку оно использует несколько не задокументированных API.\nОно было протестировано на следующих устройствах:\n• Samsung S20+ (Android 12)\n• Эмулятор AOSP (Android 10–13)\n• Google Pixel 6 Pro (Android 13)</string>
@@ -140,6 +154,11 @@
     <string name="troubleshooting_actions">Прочие действия</string>
     <string name="troubleshooting_dump">Экспортировать дамп аудио сессии</string>
     <string name="troubleshooting_dump_summary">Сбор и сохранение данных для устранения неполадок</string>
+    <string name="troubleshooting_dump_share_title">Экспортировать дамп аудио сессии</string>
+    <string name="troubleshooting_view_limitations">Технические ограничения</string>
+    <string name="troubleshooting_view_limitations_summary">Показать информацию об ограничениях этого приложения</string>
+    <string name="troubleshooting_notification_access">Разрешить доступ к уведомлениям</string>
+    <string name="troubleshooting_notification_access_summary">Обеспечивает более надежное обнаружение аудио сессий</string>
     <string name="troubleshooting_repair_assets">Восстановить стандартные IR, DDC и скрипты</string>
     <string name="misc_settings">Прочее</string>
     <string name="misc_settings_summary">Отчёты об ошибках, другие действия</string>
@@ -175,6 +194,7 @@
     <string name="appearance_theme_mode_default">Использовать настройки системы</string>
     <string name="appearance_theme_mode_light">Выкл.</string>
     <string name="appearance_theme_mode_dark">Вкл.</string>
+    <string name="appearance_pure_black_mode">Черная тема (глубокий черный цвет фона)</string>
     <string name="appearance_app_theme">Тема приложения</string>
     <string name="appearance_navigation_title">Навигация</string>
     <string name="appearance_nav_hide">Скрывать панель навигации при прокрутке</string>
@@ -245,18 +265,27 @@
     <string name="editor_text_size">Размер текста</string>
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Исключенные приложения</string>
+    <string name="blocklist_no_exclusions">Исключенные приложения отсутствуют</string>
     <string name="blocklist_unsupported_apps">Неподдерживаемые приложения</string>
     <string name="blocklist_unsupported_apps_message"><![CDATA[<p>Это приложение не поддерживает обработку звука приложений, которые блокируют запись их аудиовыхода третьими лицами. Чтобы предотвратить отключение звука таких приложений из-за ограничений на их захват, они автоматически исключаются из обработки звука и не перенаправляются.</p><p><u>Затронутые приложения:</u><br/>%s</p>]]></string>
     <!-- Compatibility issue activity -->
+    <string name="title_activity_app_compat">Проблема совместимости</string>
+    <string name="app_compat_retry">Повторить</string>
+    <string name="app_compat_exclude">Исключить</string>
+    <string name="app_compat_title">Обработка аудио была приостановлена для предотвращения дублирования звука</string>
     <string name="app_compat_explanation">Данное приложение не поддерживается, так как оно приводит к потере RootlessJamesDSP контроля над маршрутизацией звука:</string>
+    <string name="app_compat_instruction">Пожалуйста, проверьте настройки приложения, чтобы выключить аппаратное ускорение или другие настройки, которые могут помешать RootlessJamesDSP, а затем нажмите «Повторить».</string>
+    <string name="app_compat_instruction_exclude">В качестве альтернативы, выберите «Исключить», чтобы обойти эту проблему, исключив несовместимое приложение из обработки звука.</string>
     <string name="app_compat_unknown_pkg_name">Неизвестное имя пакета</string>
     <!-- Hints for compatibility issues for individual apps -->
+    <string name="app_compat_quirk_voice_search">Голосовой поиск и распознавание голоса могут вызвать проблемы с этим приложением. Если проблема сохраняется, попробуйте избежать использования этих функций и отозвать разрешение на использование микрофона для проблемных приложений.</string>
     <!-- Root: Library load failure -->
     <string name="load_fail_header">Модуль Magisk не установлен</string>
     <string name="load_fail_card_title">Не удалось загрузить libjamesdsp.so</string>
     <string name="load_fail_card">Пожалуйста, установите модуль JamesDSP для Magisk и перезагрузите ваше Android-устройство для использования приложения. Вам также может потребоваться переустановить это приложение после перезагрузки.</string>
     <string name="load_fail_rootless_card_title">Ищете альтернативу без рут-доступа?</string>
     <string name="load_fail_rootless_card">Эта версия JamesDSP предназначена для использования на устройствах с root-доступом. Для устройств без root-доступа также доступна альтернатива, но с некоторыми ограничениями. Нажмите здесь, чтобы получить дополнительную информацию.</string>
+    <string name="load_fail_arch_card_title">Модуль уже установлен?</string>
     <string name="load_fail_arch_card">Если вы уже установили модуль Magisk, возможно, вы выбрали неправильные настройки во время установки. Попробуйте переустановить модуль и включить совместимость с устройствами Huawei (даже если ваш телефон не произведен компанией Huawei).</string>
     <!-- App list -->
     <string name="app_list_search">Поиск</string>
