@@ -7,14 +7,19 @@
     <string name="action_blocked_apps">Исключенные приложения</string>
     <!-- Notification channels -->
     <!-- Service notifications -->
+    <string name="notification_idle">Обработка аудио в режиме ожидания</string>
+    <string name="notification_processing_title">Обработка аудио активна</string>
     <string name="notification_processing_disabled_title">Обработка аудио отключена</string>
     <string name="notification_processing_legacy">Нажмите, чтобы открыть JamesDSP manager</string>
     <!-- Permission request notifications -->
     <string name="notification_request_permission_title">Для запуска JamesDSP необходимо действие пользователя</string>
+    <string name="notification_request_permission">Коснитесь, чтобы предоставить разрешение на захват и включить обработку аудио в JamesDSP</string>
     <!-- Session control loss notifications -->
+    <string name="session_control_loss_toast">JamesDSP остановлен из-за потери контроля над аудиосессией. Пожалуйста, отключите другие приложения для обработки аудиоэффектов.</string>
     <string name="session_control_loss_notification_title">Обработка аудио остановлена. Другое приложение мешает работе JamesDSP.</string>
     <string name="session_control_loss_notification">Пожалуйста, отключите все другие приложения, которые предоставляют глобальные аудиоэффекты перед повторным включением JamesDSP.</string>
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_toast">JamesDSP остановлен из-за несовместимого медиа-приложения. Пожалуйста, проверьте уведомление, чтобы решить эту проблему.</string>
     <string name="session_app_compat_notification_title">Обработка аудио остановлена. Другое приложение мешает работе JamesDSP.</string>
     <string name="session_app_compat_notification">Коснитесь этого уведомления, чтобы решить проблему.</string>
     <!-- Capture permission revoked notifications -->
@@ -29,6 +34,7 @@
     <!-- Main screen -->
     <string name="compressor_max_attack">Время атаки</string>
     <string name="compressor_max_release">Время релиза</string>
+    <string name="compressor_adapt_speed">Агрессивность</string>
     <string name="eq_enable">Интерполирующий FIR-эквалайзер</string>
     <string name="eq_filter_type">Тип фильтра</string>
     <string name="eq_interpolator">Интерполятор</string>
@@ -36,14 +42,20 @@
     <string name="eq_filter_type_linear">Линейная фаза</string>
     <string name="eq_interpolator_mha">Модифицированный сплайн Хироши Акимы</string>
     <string name="eq_preset_acoustic">Акустика</string>
+    <string name="convolver_enable">Конвольвер</string>
     <string name="ddc_enable">ViPER-DDC</string>
     <string name="ddc_file">Файл DDC</string>
     <string name="liveprog_additional_params_not_supported">Выбранный скрипт не имеет настраиваемых параметров</string>
     <string name="liveprog_not_found">Скрипт не найден</string>
     <string name="tube_enable">Аналоговое моделирование</string>
+    <string name="tube_drive">Преамп</string>
+    <string name="output_control_header">Управление выводом</string>
     <!-- Onboarding -->
+    <string name="onboarding_back">Назад</string>
+    <string name="onboarding_next">Следующий</string>
     <string name="onboarding_greeting">Добро пожаловать в RootlessJamesDSP!</string>
     <string name="onboarding_caption">Этот помощник поможет вам настроить приложение.</string>
+    <string name="onboarding_warning">В данный момент приложение не завершено и нестабильно. Обратите внимание, что на некоторых устройствах оно может не работать как ожидается, так как использует Android API, не предназначенные для использования третьими лицами.</string>
     <string name="onboarding_fix_permissions">Одно или несколько разрешений были отозваны вами или системой.\nЧтобы убедиться, что приложение работает корректно, необходимо предоставить эти разрешения снова.\n\nПожалуйста, перезапустите мастер настройки для повторного предоставления этих разрешений.</string>
     <string name="onboarding_limitations_title">Ограничения</string>
     <string name="onboarding_methods_root_title">Root-доступ</string>
@@ -55,12 +67,14 @@
     <!-- Root flavor -->
     <string name="onboarding_methods_root_root">\u25CF Рекомендуется\n\u25CF Не требуется компьютер\n\u25CF Подходит для всех версий Android</string>
     <string name="onboarding_methods_root_shizuku">\u25CF Рекомендуется, если root-доступ не настроен\n\u25CF Не требуется компьютер\n\u25CF Только для Android 11+</string>
+    <string name="onboarding_methods_root_adb">\u25CF Для опытных пользователей\n\u25CF Требуется компьютер и USB-кабель\n\u25CFВсе версии Android</string>
     <string name="onboarding_root_shell_fail_title">Root-права отсутствуют</string>
     <string name="onboarding_root_shell_fail">Root-права недоступны. Пожалуйста, воспользуйтесь другим методом установки.</string>
     <string name="onboarding_root_shell_fail_unknown">Не удалось предоставить разрешение через root. Пожалуйста, используйте другой метод установки.</string>
     <string name="onboarding_root_enhanced_processing_setup_success">Улучшенная обработка настроена</string>
     <string name="onboarding_adb_shizuku_title">Настройка Shizuku</string>
     <string name="onboarding_adb_adb_title">Настройка ADB</string>
+    <string name="onboarding_adb_caption">Это приложение требует специальных разрешений для выгрузки аудио-политики вашего устройства. Пожалуйста, следуйте инструкциям ниже.</string>
     <string name="onboarding_adb_shizuku_install_instruction">Установить \'Shizuku\' из Google Play.</string>
     <string name="onboarding_adb_shizuku_open_button">Запустить Shizuku</string>
     <string name="onboarding_adb_shizuku_grant_instruction">Нажмите кнопку и предоставьте этому приложению доступ к Shizuku.</string>
@@ -106,12 +120,16 @@
     <string name="credits_dsp">Библиотека алгоритмов ядра JamesDSP</string>
     <string name="credits_project_page">Страница проекта на GitHub</string>
     <string name="credits_project_page_summary">Сообщайте о проблемах, следите за обновлениями и читайте исходный код</string>
+    <string name="credits_project_translate_summary">Помогите нам перевести приложение на ваш язык</string>
     <string name="credits_version">Версия приложения</string>
     <string name="credits_build_info">Информация о сборке</string>
     <string name="appearance_title">Тема оформления</string>
     <string name="appearance_theme_mode">Тёмный режим</string>
-    <string name="appearance_theme_mode_light">Выкл</string>
-    <string name="appearance_theme_mode_dark">Вкл</string>
+    <string name="appearance_theme_mode_default">Использовать настройки системы</string>
+    <string name="appearance_theme_mode_light">Выкл.</string>
+    <string name="appearance_theme_mode_dark">Вкл.</string>
+    <string name="appearance_navigation_title">Навигация</string>
+    <string name="appearance_nav_hide">Скрывать панель навигации при прокрутке</string>
     <!-- Theme names -->
     <!-- File library preference -->
     <string name="filelibrary_hint_tap_and_hold">Коснитесь и удерживайте любой элемент для дополнительных опций</string>
@@ -133,6 +151,7 @@
     <string name="autoeq_search">Поиск AutoEQ</string>
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
+    <string name="editor_docs">Справка</string>
     <string name="editor_open_fail">Файл скрипта не существует или не может быть открыт.</string>
     <string name="editor_save">Сохранить</string>
     <string name="editor_replace_all">Заменить всё</string>
@@ -167,4 +186,5 @@
     <string name="intent_import_error_file_uri">Не удалось импортировать файл. Неподдерживаемый URI-адрес файла.</string>
     <!-- Translation notice box -->
     <string name="translation_notice_summary">Пожалуйста, помогите нам перевести это приложение на ваш язык! Нажмите здесь, чтобы перейти на сайт проекта на Crowdin.</string>
+    <string name="translation_notice">Помочь с переводами</string>
 </resources>
