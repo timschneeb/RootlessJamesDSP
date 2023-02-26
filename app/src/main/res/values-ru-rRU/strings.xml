@@ -20,7 +20,22 @@
     <!-- Capture permission revoked notifications -->
     <string name="capture_permission_revoked_toast">JamesDSP был остановлен, так как разрешение на захват аудио было отозвано.</string>
     <!-- General purpose -->
+    <string name="warning">Внимание</string>
+    <string name="open">Открыть</string>
+    <string name="close">Закрыть</string>
+    <string name="add">Добавить</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
     <!-- Main screen -->
+    <string name="compressor_max_attack">Время атаки</string>
+    <string name="compressor_max_release">Время релиза</string>
+    <string name="eq_enable">Интерполирующий FIR-эквалайзер</string>
+    <string name="eq_filter_type">Тип фильтра</string>
+    <string name="eq_interpolator">Интерполятор</string>
+    <string name="eq_filter_type_minimum">Минимальная фаза</string>
+    <string name="eq_filter_type_linear">Линейная фаза</string>
+    <string name="eq_interpolator_mha">Модифицированный сплайн Хироши Акимы</string>
+    <string name="eq_preset_acoustic">Акустика</string>
     <string name="ddc_enable">ViPER-DDC</string>
     <string name="ddc_file">Файл DDC</string>
     <string name="liveprog_additional_params_not_supported">Выбранный скрипт не имеет настраиваемых параметров</string>
