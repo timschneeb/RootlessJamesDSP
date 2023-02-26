@@ -42,6 +42,12 @@
     <!-- Onboarding -->
     <string name="onboarding_greeting">Ласкаво просимо до RootlessJamesDSP!</string>
     <string name="onboarding_caption">Цей помічник допоможе вам налаштувати застосунок.</string>
+    <string name="onboarding_warning">Наразі цей застосунок є незавершеним та нестабільним. Зверніть увагу, що він може не працювати на деяких пристроях так, як очікувалося, оскільки використовує API Android, які не призначені для використання третіми сторонами.</string>
+    <string name="onboarding_fix_permissions_title">Потрібна дія користувача</string>
+    <string name="onboarding_fix_permissions">Один або кілька дозволів було відкликано вами або системою.\nЩоб забезпечити правильну роботу застосунку, вам потрібно надати ці дозволи знову.\n\nБудь ласка, перезапустіть майстер налаштування для повторного надання цих дозволів.</string>
+    <string name="onboarding_limitations_title">Обмеження</string>
+    <string name="onboarding_methods_shizuku_title">Shizuku</string>
+    <string name="onboarding_methods_adb_title">ADB</string>
     <!-- Rootless flavor -->
     <!-- Root flavor -->
     <!-- Settings -->
