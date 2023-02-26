@@ -18,23 +18,29 @@
     <string name="notification_request_permission_title">Для запуска JamesDSP необходимо действие пользователя</string>
     <string name="notification_request_permission">Коснитесь, чтобы предоставить разрешение на захват и включить обработку аудио в JamesDSP</string>
     <!-- Session control loss notifications -->
-    <string name="session_control_loss_toast">JamesDSP остановлен из-за потери контроля над аудиосессией. Пожалуйста, отключите другие приложения для обработки аудиоэффектов.</string>
+    <string name="session_control_loss_toast">JamesDSP остановлен из-за потери контроля над аудио сессией. Пожалуйста, отключите другие приложения для обработки аудио эффектов.</string>
     <string name="session_control_loss_notification_title">Обработка аудио остановлена. Другое приложение мешает работе JamesDSP.</string>
-    <string name="session_control_loss_notification">Пожалуйста, отключите все другие приложения, которые предоставляют глобальные аудиоэффекты перед повторным включением JamesDSP.</string>
+    <string name="session_control_loss_notification">Пожалуйста, отключите другие приложения, которые предоставляют глобальные аудио эффекты перед повторным включением JamesDSP.</string>
     <!-- App compatibility issue notifications -->
-    <string name="session_app_compat_toast">JamesDSP остановлен из-за несовместимого медиа-приложения. Пожалуйста, проверьте уведомление, чтобы решить эту проблему.</string>
+    <string name="session_app_compat_toast">JamesDSP остановлен из-за несовместимого медиа приложения. Пожалуйста, проверьте уведомление, чтобы решить эту проблему.</string>
     <string name="session_app_compat_notification_title">Обработка аудио остановлена. Другое приложение мешает работе JamesDSP.</string>
     <string name="session_app_compat_notification">Коснитесь этого уведомления, чтобы решить проблему.</string>
     <!-- Capture permission revoked notifications -->
     <string name="capture_permission_revoked_toast">JamesDSP был остановлен, так как разрешение на захват аудио было отозвано.</string>
     <!-- General purpose -->
+    <string name="details">Подробнее</string>
     <string name="warning">Внимание</string>
     <string name="open">Открыть</string>
     <string name="close">Закрыть</string>
     <string name="add">Добавить</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
+    <string name="value_not_set">Не задано</string>
+    <string name="undo">Отменить</string>
+    <string name="redo">Повторить</string>
     <!-- Main screen -->
+    <string name="power_button_alt">Переключить обработку аудио</string>
+    <string name="compressor_enable">Авто компрессор динамического диапазона</string>
     <string name="compressor_max_attack">Время атаки</string>
     <string name="compressor_max_release">Время релиза</string>
     <string name="compressor_adapt_speed">Агрессивность</string>
@@ -43,16 +49,29 @@
     <string name="eq_interpolator">Интерполятор</string>
     <string name="eq_filter_type_minimum">Минимальная фаза</string>
     <string name="eq_filter_type_linear">Линейная фаза</string>
+    <string name="eq_interpolator_chip">Кусочно-кубический интерполяционный полином Эрмита</string>
     <string name="eq_interpolator_mha">Модифицированный сплайн Хироши Акимы</string>
-    <string name="eq_preset_acoustic">Акустика</string>
+    <string name="bass_enable">Динамическое усиление баса</string>
+    <string name="bass_max_gain">Максимальное усиление</string>
+    <string name="reverb_enable">Эффект виртуальной комнаты</string>
     <string name="convolver_enable">Конвольвер</string>
     <string name="ddc_enable">ViPER-DDC</string>
-    <string name="ddc_file">Файл DDC</string>
+    <string name="ddc_file">DDC файл</string>
+    <string name="liveprog_additional_params">Дополнительные параметры скрипта</string>
     <string name="liveprog_additional_params_not_supported">Выбранный скрипт не имеет настраиваемых параметров</string>
     <string name="liveprog_not_found">Скрипт не найден</string>
+    <string name="liveprog_no_script_selected">Скрипт не выбран</string>
+    <string name="liveprog_edit_header">Редактировать выбранный скрипт</string>
+    <string name="liveprog_edit">Открыть активный скрипт во встроенном редакторе</string>
+    <string name="liveprog_edit_error">Открыть активный скрипт во встроенном liveprog редакторе</string>
     <string name="tube_enable">Аналоговое моделирование</string>
     <string name="tube_drive">Преамп</string>
     <string name="output_control_header">Управление выводом</string>
+    <string name="output_limiter_threshold">Порог лимитера</string>
+    <string name="output_limiter_release">Время релиза</string>
+    <string name="stereowide_enable">Ширина звуковой сцены</string>
+    <string name="crossfeed_enable">Кроссфид</string>
+    <string name="crossfeed_preset">Пресет</string>
     <!-- Onboarding -->
     <string name="onboarding_back">Назад</string>
     <string name="onboarding_next">Следующий</string>
@@ -61,6 +80,7 @@
     <string name="onboarding_warning">В данный момент приложение не завершено и нестабильно. Обратите внимание, что на некоторых устройствах оно может не работать как ожидается, так как использует Android API, не предназначенные для использования третьими лицами.</string>
     <string name="onboarding_fix_permissions">Одно или несколько разрешений были отозваны вами или системой.\nЧтобы убедиться, что приложение работает корректно, необходимо предоставить эти разрешения снова.\n\nПожалуйста, перезапустите мастер настройки для повторного предоставления этих разрешений.</string>
     <string name="onboarding_limitations_title">Ограничения</string>
+    <string name="onboarding_limitations_unstable">Важно! Пожалуйста, внимательно прочтите заметки перед продолжением.</string>
     <string name="onboarding_methods_root_title">Root-доступ</string>
     <string name="onboarding_methods_shizuku_title">Shizuku</string>
     <string name="onboarding_methods_adb_title">ADB</string>
@@ -103,14 +123,20 @@
     <string name="audio_format_summary_root">Legacy режим</string>
     <string name="audio_format_buffer_size">Размер буфера</string>
     <string name="audio_format_buffer_size_warning_low_value">Внимание: низкие размеры буфера могут вызвать проблемы с аудио, такие как клиппинг!</string>
+    <string name="autostart_prompt_at_boot_off">Не показывать уведомление после загрузки</string>
+    <string name="autostart_prompt_at_boot_on">Показывать уведомление после загрузки</string>
     <string name="powersave">Энергосбережение</string>
     <string name="powersave_suspend">Приостанавливать аудиопоток во время простоя</string>
     <string name="powersave_suspend_off">Продолжать обработку, даже если контент не воспроизводится</string>
     <string name="powersave_suspend_on">Приостановить обработку аудиопотока для экономии энергии</string>
     <string name="troubleshooting_dump">Экспорт дампа аудио сессии…</string>
     <string name="troubleshooting_dump_summary">Сбор и сохранение данных для устранения неполадок</string>
+    <string name="troubleshooting_repair_assets">Восстановить стандартные IR, DDC и скрипты</string>
     <string name="autostart">Автозапуск</string>
+    <string name="network_autoeq_api_url">URL-адрес API-бэкенда AutoEQ</string>
+    <string name="network_autoeq_conntest_running">Проверка соединения с сервером…</string>
     <string name="network_autoeq_conntest_done">Соединение успешно установлено</string>
+    <string name="network_autoeq_conntest_fail">Проверка соединения не удалась</string>
     <string name="network_autoeq_conntest_fail_summary">Сервер не дал правильного ответа. Убедитесь, что программное обеспечение https://github.com/ThePBone/AutoEqApi настроено правильно на сервере.\n\nОшибка сети: %1$s\n\nВосстановить значение по умолчанию?</string>
     <string name="about_settings">О приложении</string>
     <string name="about_settings_summary">Авторы, поддержка, обновления</string>
@@ -144,14 +170,27 @@
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">Выбранный файл VDC поврежден. Пожалуйста, выберите другой файл.</string>
     <string name="message_irs_corrupt">Выбранный IR поврежден. Пожалуйста, выберите другой.</string>
+    <string name="message_convolver_advimp_invalid">Конвольвер: Расширенное редактирование волновой формы содержит недопустимые значения.</string>
     <!-- GraphicEQ editor -->
+    <string name="geq_autoeq">Профили AutoEQ</string>
     <string name="gep_add_node">Добавить</string>
     <string name="geq_preview">Предварительный просмотр</string>
     <string name="geq_preview_collapsed">Предпросмотр (нажмите, чтобы развернуть)</string>
+    <string name="geq_reset">Сбросить</string>
+    <string name="geq_reset_confirm">Вы хотите сбросить настройки GraphicEQ?</string>
     <string name="geq_done">Выполнено</string>
+    <string name="geq_cancel_spaced">&#160;&#160;Отменить&#160;</string>
+    <string name="geq_cancel">Отменить</string>
+    <string name="geq_discard_changes_title">Отменить изменения и выйти?</string>
+    <string name="geq_discard_changes">Значения недействительны или пусты. Ваши изменения не могут быть сохранены.\nВы хотите отменить изменения и выйти?</string>
+    <string name="geq_frequeny_range">Значение между 1Hz и 24000Hz</string>
     <string name="geq_gain_range">Значение между -32dB и 32dB</string>
     <!-- AutoEQ GraphicEQ selector -->
-    <string name="autoeq_search">Поиск AutoEQ</string>
+    <string name="geq_api_network_error">Не удалось подключиться к серверу. %1$s</string>
+    <string name="autoeq_search">Поиск профилей AutoEQ</string>
+    <string name="autoeq_enter_model">Введите модель наушников…</string>
+    <string name="autoeq_partial_results_warning">Показаны первые %1$d результатов. Пожалуйста, настройте ваш поиск, чтобы получить более релевантные результаты.</string>
+    <string name="autoeq_no_results">Результатов не найдено</string>
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
     <string name="editor_docs">Справка</string>
@@ -169,6 +208,7 @@
     <string name="editor_text_size">Размер текста</string>
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Исключенные приложения</string>
+    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>Это приложение не поддерживает обработку звука приложений, которые блокируют запись их аудиовыхода третьими лицами. Чтобы предотвратить отключение звука таких приложений из-за ограничений на их захват, они автоматически исключаются из обработки звука и не перенаправляются.</p><p><u>Затронутые приложения:</u><br/>%s</p>]]></string>
     <!-- Compatibility issue activity -->
     <!-- Hints for compatibility issues for individual apps -->
     <!-- Root: Library load failure -->
@@ -182,6 +222,7 @@
     <!-- Number box view -->
     <!-- Slider widget -->
     <string name="slider_dialog_title">Изменить значение</string>
+    <string name="slider_dialog_step_error">Значение должно быть кратно %1$d. Изменения не применяются.</string>
     <!-- Revert confirmation -->
     <string name="revert_confirmation_title">Вы уверены?</string>
     <string name="revert_confirmation">Вы хотите сбросить текущий пресет JamesDSP к значениям по умолчанию?</string>
