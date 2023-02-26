@@ -125,8 +125,9 @@
     <string name="onboarding_perm_missing">Пожалуйста, предоставьте все запрошенные разрешения во время выполнения, чтобы продолжить.\nЕсли вы несколько раз отказали в предоставлении разрешений, вам нужно предоставить их вручную в настройках системы.</string>
     <string name="onboarding_finish_caption">Если у вас возникли какие-либо проблемы, пожалуйста, посетите раздел настроек «Устранение неисправностей».</string>
     <string name="limit_unsupported_apps">Приложения, которые блокируют запись внутреннего аудио, не будут обработаны (например, Spotify, Google Chrome).</string>
+    <string name="limit_latency_title">Увеличение задержки</string>
     <string name="limit_tested_devices_title">Проверенные устройства</string>
-    <string name="limit_tested_devices">Изменения, внесенные производителем вашего устройства в аудио-подсистему Android, могут легко нарушить работу этого приложения, поскольку оно использует несколько не задокументированных API.\nОно было протестировано на следующих устройствах:\n• Samsung S20+ (Android 12)\n• Эмулятор AOSP (Android 10–13)\n• Google Pixel 6 Pro (Android 13)</string>
+    <string name="limit_tested_devices">Производитель вашего устройства мог внести изменения в аудио-подсистему Android, которые могут нарушить работу приложения из-за использования не задокументированных API.\nПриложение тестировалось на устройствах:\n• Samsung S20+ (Android 12)\n• Эмулятор AOSP (Android 10–13)\n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
     <string name="title_activity_settings">Настройки</string>
     <string name="session_exclude_restricted">Исключить неподдерживаемые приложения</string>
