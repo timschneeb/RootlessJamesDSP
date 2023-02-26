@@ -9,7 +9,9 @@
     <string name="notification_channel_permission_prompt">Запрос на получение разрешений</string>
     <string name="notification_channel_app_compat_alert">Оповещение о несовместимом приложении</string>
     <!-- Service notifications -->
+    <string name="action_stop">Остановить</string>
     <string name="notification_waiting">Ожидание действий пользователя…</string>
+    <string name="notification_processing">Активные приложения: %1$s</string>
     <string name="notification_idle">Обработка аудио в режиме ожидания</string>
     <string name="notification_processing_title">Обработка аудио активна</string>
     <string name="notification_processing_disabled_title">Обработка аудио отключена</string>
@@ -54,6 +56,7 @@
     <string name="bass_enable">Динамическое усиление баса</string>
     <string name="bass_max_gain">Максимальное усиление</string>
     <string name="reverb_enable">Эффект виртуальной комнаты</string>
+    <string name="reverb_preset_default">По умолчанию</string>
     <string name="convolver_enable">Конвольвер</string>
     <string name="ddc_enable">ViPER-DDC</string>
     <string name="ddc_file">DDC файл</string>
@@ -107,11 +110,13 @@
     <string name="onboarding_adb_manual_step2">Откройте https://app.webadb.com в веб-браузере на вашем компьютере (рекомендуется использовать Google Chrome) и подключите ваше устройство к компьютеру с помощью USB.</string>
     <string name="onboarding_perm_title">Другие разрешения</string>
     <string name="onboarding_perm_cast_caption">Вы должны явно предоставить этому приложению разрешение на запись аудио-контента при каждом запуске.</string>
-    <string name="limit_tested_devices_title">Протестированные устройства</string>
+    <string name="limit_unsupported_apps">Приложения, которые блокируют запись внутреннего аудио, не будут обработаны (например, Spotify, Google Chrome).</string>
+    <string name="limit_tested_devices_title">Проверенные устройства</string>
     <string name="limit_tested_devices">Изменения, внесенные производителем вашего устройства в аудио-подсистему Android, могут легко нарушить работу этого приложения, поскольку оно использует несколько не задокументированных API.\nОно было протестировано на следующих устройствах:\n• Samsung S20+ (Android 12)\n• Эмулятор AOSP (Android 10–13)\n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
     <string name="title_activity_settings">Настройки</string>
     <string name="session_exclude_restricted">Исключить неподдерживаемые приложения</string>
+    <string name="session_exclude_restricted_off">Приложения, блокирующие захват звука, остаются выключенными (поведение Android по умолчанию)</string>
     <string name="session_exclude_restricted_on">Приложения, которые блокируют захват звука, исключаются и остаются без обработки (рекомендуется)</string>
     <string name="session_continuous_polling_rate">Интервал опроса (ms)</string>
     <string name="session_detection_method_audiopolicyservice">AudioPolicyService dump</string>
@@ -129,11 +134,19 @@
     <string name="powersave_suspend">Приостанавливать аудиопоток во время простоя</string>
     <string name="powersave_suspend_off">Продолжать обработку, даже если контент не воспроизводится</string>
     <string name="powersave_suspend_on">Приостановить обработку аудиопотока для экономии энергии</string>
-    <string name="troubleshooting_dump">Экспорт дампа аудио сессии…</string>
+    <string name="troubleshooting">Устранение неисправностей</string>
+    <string name="troubleshooting_summary">Дополнительные параметры, документация, диагностика</string>
+    <string name="troubleshooting_docs">Документация</string>
+    <string name="troubleshooting_actions">Прочие действия</string>
+    <string name="troubleshooting_dump">Экспортировать дамп аудио сессии</string>
     <string name="troubleshooting_dump_summary">Сбор и сохранение данных для устранения неполадок</string>
     <string name="troubleshooting_repair_assets">Восстановить стандартные IR, DDC и скрипты</string>
+    <string name="misc_settings">Прочее</string>
+    <string name="misc_settings_summary">Отчёты об ошибках, другие действия</string>
     <string name="autostart">Автозапуск</string>
+    <string name="network_services">Сетевые сервисы</string>
     <string name="network_autoeq_api_url">URL-адрес API-бэкенда AutoEQ</string>
+    <string name="network_invalid_url">Неверный формат URL-адреса</string>
     <string name="network_autoeq_conntest_running">Проверка соединения с сервером…</string>
     <string name="network_autoeq_conntest_done">Соединение успешно установлено</string>
     <string name="network_autoeq_conntest_fail">Проверка соединения не удалась</string>
@@ -141,7 +154,7 @@
     <string name="about_settings">О приложении</string>
     <string name="about_settings_summary">Авторы, поддержка, обновления</string>
     <string name="privacy">Конфиденциальность</string>
-    <string name="privacy_share_crash_reports">Поделиться отчётами о сбоях приложения</string>
+    <string name="privacy_share_crash_reports">Поделиться информацией о сбоях приложения</string>
     <string name="privacy_share_crash_reports_on">Отправлять отчёты о сбоях разработчику</string>
     <string name="privacy_share_crash_reports_off">Не отправлять отчёты о сбоях разработчику</string>
     <string name="credits">Авторы</string>
@@ -149,22 +162,41 @@
     <string name="credits_dsp">Библиотека алгоритмов ядра JamesDSP</string>
     <string name="credits_project_page">Страница проекта на GitHub</string>
     <string name="credits_project_page_summary">Сообщайте о проблемах, следите за обновлениями и читайте исходный код</string>
+    <string name="credits_project_play_page">Посетите RootlessJamesDSP на Google Play</string>
+    <string name="credits_project_play_page_summary">Поиск обновлений</string>
+    <string name="credits_project_translate">Помочь с переводами</string>
     <string name="credits_project_translate_summary">Помогите нам перевести приложение на ваш язык</string>
     <string name="credits_version">Версия приложения</string>
     <string name="credits_build_info">Информация о сборке</string>
-    <string name="appearance_title">Тема оформления</string>
-    <string name="appearance_theme_mode">Тёмный режим</string>
+    <string name="appearance_section_header">Внешний вид</string>
+    <string name="appearance_summary">Тема приложения, темный режим</string>
+    <string name="appearance_title">Тема</string>
+    <string name="appearance_theme_mode">Темный режим</string>
     <string name="appearance_theme_mode_default">Использовать настройки системы</string>
     <string name="appearance_theme_mode_light">Выкл.</string>
     <string name="appearance_theme_mode_dark">Вкл.</string>
+    <string name="appearance_app_theme">Тема приложения</string>
     <string name="appearance_navigation_title">Навигация</string>
     <string name="appearance_nav_hide">Скрывать панель навигации при прокрутке</string>
     <!-- Theme names -->
+    <string name="theme_default">По умолчанию</string>
     <!-- File library preference -->
+    <string name="action_import">Импорт</string>
     <string name="filelibrary_hint_tap_and_hold">Коснитесь и удерживайте любой элемент для дополнительных опций</string>
+    <string name="filelibrary_context_load">Загрузить</string>
+    <string name="filelibrary_context_edit">Правка</string>
+    <string name="filelibrary_context_overwrite">Перезаписать</string>
+    <string name="filelibrary_context_rename">Переименовать</string>
+    <string name="filelibrary_context_share">Поделиться</string>
+    <string name="filelibrary_context_duplicate">Дублировать</string>
+    <string name="filelibrary_context_delete">Удалить</string>
+    <string name="filelibrary_context_new_preset">Новый</string>
     <string name="filelibrary_context_new_preset_long">Новый пресет</string>
+    <string name="filelibrary_unsupported_format_title">Неподдерживаемый тип файла</string>
     <string name="filelibrary_corrupted_title">Файл не поддерживается или повреждён</string>
+    <string name="filelibrary_no_file_selected">Файл не выбран</string>
     <string name="filelibrary_file_exists">Файл уже существует</string>
+    <string name="filelibrary_preset_created">Пресет \'%1$s\' создан</string>
     <string name="filelibrary_preset_save_failed">Не удалось сохранить пресет</string>
     <string name="filelibrary_no_presets">Нет сохраненных пресетов. Нажмите \'Добавить\', чтобы создать новый.</string>
     <!-- JamesDSP engine messages -->
@@ -175,8 +207,9 @@
     <string name="geq_autoeq">Профили AutoEQ</string>
     <string name="gep_add_node">Добавить</string>
     <string name="geq_preview">Предварительный просмотр</string>
-    <string name="geq_preview_collapsed">Предпросмотр (нажмите, чтобы развернуть)</string>
+    <string name="geq_preview_collapsed">Предварительный просмотр (нажмите, чтобы развернуть)</string>
     <string name="geq_reset">Сбросить</string>
+    <string name="geq_reset_confirm_title">Вы уверены?</string>
     <string name="geq_reset_confirm">Вы хотите сбросить настройки GraphicEQ?</string>
     <string name="geq_done">Выполнено</string>
     <string name="geq_cancel_spaced">&#160;&#160;Отменить&#160;</string>
@@ -187,14 +220,18 @@
     <string name="geq_gain_range">Значение между -32dB и 32dB</string>
     <!-- AutoEQ GraphicEQ selector -->
     <string name="geq_api_network_error">Не удалось подключиться к серверу. %1$s</string>
+    <string name="geq_api_network_error_details_code">Ошибка сервера: %1$d</string>
     <string name="autoeq_search">Поиск профилей AutoEQ</string>
     <string name="autoeq_enter_model">Введите модель наушников…</string>
     <string name="autoeq_partial_results_warning">Показаны первые %1$d результатов. Пожалуйста, настройте ваш поиск, чтобы получить более релевантные результаты.</string>
     <string name="autoeq_no_results">Результатов не найдено</string>
     <!-- Customizable liveprog script parameters -->
+    <string name="action_restore_defaults">Восстановить настройки по умолчанию</string>
     <!-- Liveprog script editor -->
+    <string name="editor_find_and_replace">Найти/Заменить…</string>
     <string name="editor_docs">Справка</string>
     <string name="editor_open_fail">Файл скрипта не существует или не может быть открыт.</string>
+    <string name="editor_run">Сохранить и запустить</string>
     <string name="editor_save">Сохранить</string>
     <string name="editor_replace_all">Заменить всё</string>
     <string name="editor_find_next_match">Найти следующее совпадение</string>
@@ -208,12 +245,17 @@
     <string name="editor_text_size">Размер текста</string>
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Исключенные приложения</string>
+    <string name="blocklist_unsupported_apps">Неподдерживаемые приложения</string>
     <string name="blocklist_unsupported_apps_message"><![CDATA[<p>Это приложение не поддерживает обработку звука приложений, которые блокируют запись их аудиовыхода третьими лицами. Чтобы предотвратить отключение звука таких приложений из-за ограничений на их захват, они автоматически исключаются из обработки звука и не перенаправляются.</p><p><u>Затронутые приложения:</u><br/>%s</p>]]></string>
     <!-- Compatibility issue activity -->
+    <string name="app_compat_explanation">Данное приложение не поддерживается, так как оно приводит к потере RootlessJamesDSP контроля над маршрутизацией звука:</string>
+    <string name="app_compat_unknown_pkg_name">Неизвестное имя пакета</string>
     <!-- Hints for compatibility issues for individual apps -->
     <!-- Root: Library load failure -->
     <string name="load_fail_header">Модуль Magisk не установлен</string>
     <string name="load_fail_card_title">Не удалось загрузить libjamesdsp.so</string>
+    <string name="load_fail_card">Пожалуйста, установите модуль JamesDSP для Magisk и перезагрузите ваше Android-устройство для использования приложения. Вам также может потребоваться переустановить это приложение после перезагрузки.</string>
+    <string name="load_fail_rootless_card_title">Ищете альтернативу без рут-доступа?</string>
     <string name="load_fail_rootless_card">Эта версия JamesDSP предназначена для использования на устройствах с root-доступом. Для устройств без root-доступа также доступна альтернатива, но с некоторыми ограничениями. Нажмите здесь, чтобы получить дополнительную информацию.</string>
     <string name="load_fail_arch_card">Если вы уже установили модуль Magisk, возможно, вы выбрали неправильные настройки во время установки. Попробуйте переустановить модуль и включить совместимость с устройствами Huawei (даже если ваш телефон не произведен компанией Huawei).</string>
     <!-- App list -->
@@ -222,11 +264,15 @@
     <!-- Number box view -->
     <!-- Slider widget -->
     <string name="slider_dialog_title">Изменить значение</string>
+    <string name="slider_dialog_format_error">Неверный формат числа. Изменения не применены.</string>
     <string name="slider_dialog_step_error">Значение должно быть кратно %1$d. Изменения не применяются.</string>
     <!-- Revert confirmation -->
     <string name="revert_confirmation_title">Вы уверены?</string>
     <string name="revert_confirmation">Вы хотите сбросить текущий пресет JamesDSP к значениям по умолчанию?</string>
     <!-- File intent handler -->
+    <string name="intent_import_fail">Не удалось импортировать файл \'%1$s\'</string>
+    <string name="intent_import_success">Файл \'%1$s\' импортирован</string>
+    <string name="intent_import_select_success">Файл \'%1$s\' импортирован и активирован</string>
     <string name="intent_import_error_file_uri">Не удалось импортировать файл. Неподдерживаемый URI-адрес файла.</string>
     <!-- Translation notice box -->
     <string name="translation_notice_summary">Пожалуйста, помогите нам перевести это приложение на ваш язык! Нажмите здесь, чтобы перейти на сайт проекта на Crowdin.</string>
