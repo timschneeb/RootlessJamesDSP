@@ -120,7 +120,7 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
 
                             CoroutineScope(Dispatchers.IO).launch {
                                 val newName = JdspImpResToolbox.OfflineAudioResample(
-                                    (selectedFile.absoluteFile.parentFile?.absolutePath + "/") ?: "",
+                                    (selectedFile.absoluteFile.parentFile?.absolutePath + "/"),
                                     selectedFile.name,
                                     targetRate
                                 )
@@ -269,8 +269,8 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
 
         val selectedIndex = fileLibPreference.entryValues.indexOf(fileLibPreference.value)
         if (selectedIndex >= 0) {
-            dialog.listView.setItemChecked(selectedIndex, true);
-            dialog.listView.setSelection(selectedIndex);
+            dialog.listView.setItemChecked(selectedIndex, true)
+            dialog.listView.setSelection(selectedIndex)
         }
     }
 

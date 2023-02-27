@@ -196,7 +196,7 @@ class EelParser {
                     return count
             }
         }
-        return -1;
+        return -1
     }
 
     fun refresh(): Boolean {

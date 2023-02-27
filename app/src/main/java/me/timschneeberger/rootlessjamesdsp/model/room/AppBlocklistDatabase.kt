@@ -14,7 +14,7 @@ abstract class AppBlocklistDatabase : RoomDatabase() {
 
     private class AppBlocklistDatabaseCallback(
         private val scope: CoroutineScope
-    ) : RoomDatabase.Callback()
+    ) : Callback()
 
     companion object {
         // Singleton prevents multiple instances of database opening at the

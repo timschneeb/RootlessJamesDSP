@@ -24,7 +24,7 @@ open class EelNumberRangeProperty<T:Number>(
     }
 
     @Suppress("UNCHECKED_CAST")
-    public fun validateRange(input: T): T {
+    fun validateRange(input: T): T {
         return when (input) {
             is Double -> min(max(minimum.toDouble(), input.toDouble()), maximum.toDouble()) as T
             is Int -> min(max(minimum.toInt(), input.toInt()), maximum.toInt()) as T

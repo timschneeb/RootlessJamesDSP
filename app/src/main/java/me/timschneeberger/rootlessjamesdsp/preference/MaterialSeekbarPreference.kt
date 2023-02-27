@@ -99,7 +99,7 @@ class MaterialSeekbarPreference : Preference {
                 Timber.e("SeekBar view is null and hence cannot be adjusted.")
                 return@OnKeyListener false
             }
-            mSeekBar!!.onKeyDown(keyCode, event)
+            mSeekBar.onKeyDown(keyCode, event)
         }
 
     constructor(

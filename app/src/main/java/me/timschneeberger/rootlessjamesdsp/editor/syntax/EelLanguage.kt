@@ -39,7 +39,7 @@ class EelLanguage(private val context: Context, private val codeView: CodeView) 
     }
 
     private fun applyTheme() {
-        fun col(@ColorRes resId: Int) = ContextCompat.getColor(context, resId);
+        fun col(@ColorRes resId: Int) = ContextCompat.getColor(context, resId)
 
         codeView.resetSyntaxPatternList()
         codeView.resetHighlighter()

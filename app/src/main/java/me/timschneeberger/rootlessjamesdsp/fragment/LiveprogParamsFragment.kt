@@ -60,7 +60,7 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
 
         val baseProp = eelParser.properties.find { it.key == key }
         if(baseProp is EelListProperty)
-            return;
+            return
 
         val prop = baseProp as? EelNumberRangeProperty<Float>
         prop ?: return
@@ -85,7 +85,7 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
                 preference.entries = prop.options.toTypedArray()
                 preference.entryValues = (0 until(prop.options.size)).toList().map { it.toString() }.toTypedArray()
                 preference.setValueIndex(prop.validateRange(prop.value))
-                preference.setOnPreferenceChangeListener { preference, newValue ->
+                preference.setOnPreferenceChangeListener { _, newValue ->
                     if(!isCreated) {
                         Timber.d("onPreferenceChangeListener not yet ready")
                         return@setOnPreferenceChangeListener false

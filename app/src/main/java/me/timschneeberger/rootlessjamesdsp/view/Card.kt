@@ -91,7 +91,7 @@ class Card @JvmOverloads constructor(
     init {
         val a = context.obtainStyledAttributes(attrs, R.styleable.Card, defStyleAttr, defStyleRes)
         binding = ViewCardBinding.inflate(LayoutInflater.from(context), this, true)
-        cardBackground = a.getColor(R.styleable.Card_cardBackground, 0);
+        cardBackground = a.getColor(R.styleable.Card_cardBackground, 0)
         titleText = a.getString(R.styleable.Card_titleText)
         bodyText = a.getString(R.styleable.Card_bodyText)
         closeButtonVisible = a.getBoolean(R.styleable.Card_closeButtonVisible, false)

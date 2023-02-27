@@ -66,7 +66,7 @@ class LiveprogEditorActivity : BaseActivity() {
 
     private var processorMessageReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            handleProcessorMessage(intent);
+            handleProcessorMessage(intent)
         }
     }
 
@@ -202,7 +202,7 @@ class LiveprogEditorActivity : BaseActivity() {
         if(content == null) {
             Toast.makeText(this, getString(R.string.editor_open_fail), Toast.LENGTH_LONG).show()
             finish()
-            return;
+            return
         }
 
         updateName()
@@ -404,7 +404,7 @@ class LiveprogEditorActivity : BaseActivity() {
             try {
                 val value = it.toFloat()
                 if(value < 1)
-                    throw NumberFormatException();
+                    throw NumberFormatException()
 
                 codeView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, value)
                 appPref.edit().putFloat(getString(R.string.key_editor_font_size), value).apply()

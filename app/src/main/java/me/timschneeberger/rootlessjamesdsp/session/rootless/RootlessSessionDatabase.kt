@@ -45,9 +45,6 @@ class RootlessSessionDatabase(context: Context) : BaseSessionDatabase(context) {
             appProblemListener?.onAppProblemDetected(uid)
             return null
         }
-
-        muteEffect ?: return null
-
         return MutedEffectSession(uid, packageName, muteEffect)
     }
 

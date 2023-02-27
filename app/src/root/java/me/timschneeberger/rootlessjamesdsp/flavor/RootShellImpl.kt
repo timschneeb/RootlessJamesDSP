@@ -6,11 +6,11 @@ import timber.log.Timber
 
 object RootShellImpl {
     init {
-        Shell.enableVerboseLogging = BuildConfig.DEBUG;
+        Shell.enableVerboseLogging = BuildConfig.DEBUG
         Shell.setDefaultBuilder(Shell.Builder.create()
             .setFlags(Shell.FLAG_REDIRECT_STDERR)
             .setTimeout(10)
-        );
+        )
     }
 
     interface OnShellAttachedCallback {
