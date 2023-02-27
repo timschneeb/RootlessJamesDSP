@@ -244,7 +244,7 @@
     <string name="assets">Ресурсы</string>
     <string name="network_services">Сетевые сервисы</string>
     <string name="network_autoeq_api_url">URL-адрес API-бэкенда AutoEQ</string>
-    <string name="network_invalid_url">Неверный формат URL-адреса</string>
+    <string name="network_invalid_url">Неправильный формат URL-адреса</string>
     <string name="network_autoeq_conntest_running">Проверка соединения с сервером…</string>
     <string name="network_autoeq_conntest_done">Соединение успешно установлено</string>
     <string name="network_autoeq_conntest_fail">Проверка соединения не удалась</string>
