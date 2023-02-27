@@ -168,6 +168,45 @@
     <string name="onboarding_adb_shizuku_install_button">安装 Shizuku</string>
     <string name="onboarding_adb_shizuku_install_button_done">已经安装</string>
     <string name="onboarding_adb_shizuku_install_instruction">从 Google Play 安装 Shizuku。</string>
+    <string name="onboarding_adb_shizuku_open_instruction">启动 Shizuku 并寻找<b>通过无线调试</b>开始。点击\"配对\"按钮，然后按照应用内的说明操作。 在将 Shizuku 与您的设备配对后，通过在 Shizuku 应用中点击“开始”按钮来启动 Shizuku 服务。 如果您在设置 Shizuku 时遇到问题，请参考 Shizuku 应用中提供的设置教程。</string>
+    <string name="onboarding_adb_shizuku_open_button">启动 Shizuku</string>
+    <string name="onboarding_adb_shizuku_open_button_done">已经激活</string>
+    <string name="onboarding_adb_shizuku_grant_instruction">点击按钮并允许此应用访问 Shizuku。</string>
+    <string name="onboarding_adb_shizuku_grant_button">授予访问权限</string>
+    <string name="onboarding_adb_shizuku_not_installed">未安装 Shizuku，请先从 Google Play 下载并安装。</string>
+    <string name="onboarding_adb_shizuku_not_installed_title">未安装 Shizuku</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead">请在请求权限之前启动 Shizuku 服务。请回到指令步骤 2。</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead_title">Shizuku 服务没有运行</string>
+    <string name="onboarding_adb_shizuku_grant_fail_version">此应用需要 Shizuku 版本 11 或更高，请更新 Shizuku 到最新版本。</string>
+    <string name="onboarding_adb_shizuku_grant_fail_version_title">不支持的 Shizuku 版本</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied_title">权限被拒绝</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied">请授予此应用访问 Shizuku 的权限，如果不起作用，您可能需要打开 Shizuku 并手动授予权限。</string>
+    <string name="onboarding_adb_shizuku_no_dump_perm_title">Shizuku 未授予 ADB 权限</string>
+    <string name="onboarding_adb_shizuku_no_dump_perm">请等待几秒钟，然后再试一次。如果它仍然不能工作，请尝试替代方法。</string>
+    <string name="onboarding_adb_dump_not_granted_title">尚未授予权限</string>
+    <string name="onboarding_adb_dump_not_granted">请先按照说明再试一次，ADB 访问尚未正确设置。</string>
+    <string name="onboarding_adb_manual_step1">转到 Android 的隐藏开发设置并启用 USB 调试，您需要通过多次点击系统设置中的版本号来解锁这些设置。</string>
+    <string name="onboarding_adb_manual_step2">在您的电脑浏览器中打开 https://app.webadb.com (推荐使用 Chrome)，并将您的设备使用 USB 连接到计算机。</string>
+    <string name="onboarding_adb_manual_step3">在 WebADB 中添加并连接 USB 设备。</string>
+    <string name="onboarding_adb_manual_step4">导航到“Interactive Shell”并在 shell 中执行此命令：“pm grant %s android.permission.DUMP”</string>
+    <string name="onboarding_adb_manual_step5">点击此应用中的“下一步”以继续。</string>
+    <string name="onboarding_adb_manual_step1_button">打开开发者设置</string>
+    <string name="onboarding_perm_title">其它权限</string>
+    <string name="onboarding_perm_caption">使用此应用需要额外的权限。请检查它们并点击“下一步”来授予它们。</string>
+    <string name="onboarding_perm_microphone_title">音频录制权限</string>
+    <string name="onboarding_perm_microphone_caption">需要录制内部音频，硬件麦克风未激活。</string>
+    <string name="onboarding_perm_notification_title">通知权限</string>
+    <string name="onboarding_perm_notification_caption">需要获取重要的状态更新和关于 JamesDSP 处理状态的信息。</string>
+    <string name="onboarding_perm_cast_title">音频录制权限</string>
+    <string name="onboarding_perm_cast_caption">您需要明确授予此应用权限以便每次启动时录制音频内容。</string>
+    <string name="onboarding_perm_missing_title">未授予运行时权限</string>
+    <string name="onboarding_perm_missing">请授予所有请求的运行时权限以继续。\n如果您一再拒绝权限，您需要在系统设置中手动授予这些权限。</string>
+    <string name="onboarding_finish_header">JamesDSP 已设置完毕！</string>
+    <string name="onboarding_finish_caption">如果您遇到任何问题，请访问故障排查选项。</string>
+    <string name="limit_session_control_conflict_title">禁用其它音频特效应用</string>
+    <string name="limit_session_control_conflict">使用 Android 内置动态处理效果应用干扰此应用。</string>
+    <string name="limit_unsupported_apps_title">不支持的媒体应用</string>
+    <string name="limit_unsupported_apps">阻止内部音频捕获的应用程序仍未处理 (例如Spotify、Google Chrome)。</string>
     <string name="limit_hw_accel_title">HW 加速音频播放问题</string>
     <string name="limit_hw_accel">硬件加速音频回放 (快速音轨) 有时会导致重复音频或在某些情况下杀死 JamesDS。 请将受影响的音乐播放器添加到被排除的应用列表中，以防止 JamesDSP 重新连接。</string>
     <string name="limit_detect_delay_title">音频会话检测延迟</string>
@@ -270,6 +309,7 @@
     <string name="appearance_theme_mode">夜间模式</string>
     <string name="appearance_theme_mode_default">跟随系统主题</string>
     <string name="appearance_theme_mode_light">关闭</string>
+    <string name="appearance_theme_mode_dark">开</string>
     <string name="appearance_pure_black_mode">纯黑夜间模式</string>
     <string name="appearance_app_theme">应用主题</string>
     <string name="appearance_navigation_title">导航栏</string>
@@ -319,12 +359,15 @@
     <string name="message_vdc_corrupt">选择的 VDC 文件已损坏，请重新选择其它文件。</string>
     <string name="message_irs_corrupt">选择的脉冲响应已损坏，请重新选择其它文件。</string>
     <string name="message_convolver_advimp_invalid">脉冲反馈：高级波形编辑包含无效值。</string>
+    <string name="message_liveprog_compile_fail">Liveprog 执行失败。选定的脚本已损坏。请使用脚本编辑器进行调试。</string>
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">强度响应</string>
     <string name="gep_add_node">添加</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
+    <string name="editor_engine_down_title">JamesDSP 未激活</string>
+    <string name="editor_engine_down">无法运行脚本，因为 JamesDSP 已禁用。请打开 JamesDSP 再执行脚本。</string>
     <string name="editor_save_prompt_title">是否保存更改？</string>
     <string name="editor_save_prompt">当前操作包含尚未保存的更改。
 您想要应用还是放弃这些更改？</string>
@@ -389,5 +432,6 @@
     <string name="intent_import_select_success">文件“%1$s”已导入并激活</string>
     <string name="intent_import_error_file_uri">导入文件失败，不支持的文件 URI。</string>
     <!-- Translation notice box -->
+    <string name="translation_notice_summary">请帮助我们将此应用翻译成您的语言！点击这里访问 Crowdin 的项目网站。</string>
     <string name="translation_notice">贡献翻译</string>
 </resources>
