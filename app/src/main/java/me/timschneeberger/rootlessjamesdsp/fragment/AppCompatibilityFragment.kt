@@ -11,6 +11,7 @@ import androidx.annotation.StringRes
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.MainApplication
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.activity.MainActivity
@@ -86,7 +87,7 @@ class AppCompatibilityFragment : Fragment() {
             Timber.d("Requesting retry")
 
             projectIntent?.let {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+                if (BuildConfig.ROOTLESS && Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
                     RootlessAudioProcessorService.start(requireContext(), it)
             }
 
@@ -106,7 +107,7 @@ class AppCompatibilityFragment : Fragment() {
 
             Timer("Reboot", false).schedule(100L) {
                 projectIntent?.let {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+                    if (BuildConfig.ROOTLESS && Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
                         RootlessAudioProcessorService.start(requireContext(), it)
                 }
 

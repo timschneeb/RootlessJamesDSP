@@ -291,7 +291,7 @@ class MainActivity : BaseActivity() {
             capturePermissionLauncher = registerForActivityResult(
                 ActivityResultContracts.StartActivityForResult()
             ) { result ->
-                if (result.resultCode == RESULT_OK) {
+                if (result.resultCode == RESULT_OK && BuildConfig.ROOTLESS) {
                     mediaProjectionStartIntent = result.data
                     binding.powerToggle.isToggled = true
                     RootlessAudioProcessorService.start(this, result.data)
@@ -468,7 +468,7 @@ class MainActivity : BaseActivity() {
 
     @RequiresApi(Build.VERSION_CODES.Q)
     fun requestCapturePermission() {
-        if(mediaProjectionStartIntent != null) {
+        if(mediaProjectionStartIntent != null && BuildConfig.ROOTLESS) {
             binding.powerToggle.isToggled = true
             RootlessAudioProcessorService.start(this, mediaProjectionStartIntent)
             return
