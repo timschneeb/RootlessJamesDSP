@@ -114,7 +114,6 @@
     <string name="liveprog_no_script_selected">No se ha seleccionado ningún script</string>
     <string name="liveprog_edit_header">Editar script seleccionado</string>
     <string name="liveprog_edit">Abrir script activo en el editor integrado</string>
-    <string name="liveprog_edit_error">Abre el script activo en el editor integrado de programación en vivo</string>
     <string name="tube_enable">Modelado analógico</string>
     <string name="tube_drive">Preamplificador</string>
     <string name="output_control_header">Control de la salida</string>
