@@ -65,6 +65,7 @@
     <string name="bass_enable">Динамическое усиление баса</string>
     <string name="bass_max_gain">Максимальное усиление</string>
     <string name="reverb_enable">Эффект виртуальной комнаты</string>
+    <string name="reverb_room_type">Тип комнаты</string>
     <string name="reverb_preset_default">По умолчанию</string>
     <string name="convolver_enable">Конвольвер</string>
     <string name="ddc_enable">ViPER-DDC</string>
@@ -340,7 +341,7 @@
     <string name="blocklist_add_exclusion_alt">Добавить приложение в исключения</string>
     <string name="blocklist_delete_title">Удалить выбранное приложение?</string>
     <string name="blocklist_delete">Удалить это приложение из списка исключений?</string>
-    <string name="blocklist_no_exclusions">Исключенные приложения отсутствуют</string>
+    <string name="blocklist_no_exclusions">Нет исключенных приложений</string>
     <string name="blocklist_unsupported_apps">Неподдерживаемые приложения</string>
     <string name="blocklist_unsupported_apps_message"><![CDATA[<p>Это приложение не поддерживает обработку звука приложений, которые блокируют запись их аудиовыхода третьими лицами. Чтобы предотвратить отключение звука таких приложений из-за ограничений на их захват, они автоматически исключаются из обработки звука и не перенаправляются.</p><p><u>Затронутые приложения:</u><br/>%s</p>]]></string>
     <!-- Compatibility issue activity -->
@@ -363,7 +364,7 @@
     <string name="load_fail_arch_card_title">Модуль уже установлен?</string>
     <string name="load_fail_arch_card">Если вы уже установили модуль Magisk, возможно, вы выбрали неправильные настройки во время установки. Попробуйте переустановить модуль и включить совместимость с устройствами Huawei (даже если ваш телефон не произведен компанией Huawei).</string>
     <!-- App list -->
-    <string name="app_list_loading">Загрузка приложений…</string>
+    <string name="app_list_loading">Загрузка списка приложений…</string>
     <string name="app_list_search">Поиск</string>
     <string name="app_list_icon_alt">Значок приложения</string>
     <!-- Number box view -->
