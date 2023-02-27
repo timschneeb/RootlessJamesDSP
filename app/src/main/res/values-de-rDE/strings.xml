@@ -14,7 +14,6 @@
     <string name="action_retry">Erneut versuchen</string>
     <string name="action_fix">Problem beheben</string>
     <string name="action_stop">Stopp</string>
-    <string name="notification_waiting">Warten auf Benutzeraktion…</string>
     <string name="notification_processing">Aktive Apps: %1$s</string>
     <string name="notification_idle">Audioverarbeitung inaktiv</string>
     <string name="notification_processing_title">Audioverarbeitung aktiv</string>
@@ -241,9 +240,7 @@
     <string name="audio_format_processing_header">Audioverarbeitungsoptionen</string>
     <string name="audio_format_processing_legacy">Legacymodus</string>
     <string name="audio_format_processing_legacy_on">Globale Sitzung 0 anhängen (veraltet)</string>
-    <string name="audio_format_processing_legacy_off">An jede App einzeln anhängen (manche Apps werden nicht unterstützt)</string>
     <string name="audio_format_summary">Bevorzugte Audio-Kodierung, Puffergröße</string>
-    <string name="audio_format_summary_root">Legacymodus</string>
     <string name="audio_format_encoding">Audio-Kodierung</string>
     <string name="audio_format_encoding_int16">16-Bit Ganzzahl PCM</string>
     <string name="audio_format_encoding_float">32-Bit Gleitkommazahl PCM</string>
@@ -443,6 +440,7 @@
     <string name="load_fail_rootless_card">Diese Variante von JamesDSP wurde entwickelt, um mit einem gerooteten/modifizierten Gerät verwendet zu werden. Eine Nicht-Root-Alternative mit einigen Einschränkungen ist ebenfalls verfügbar. Tippen Sie hier für Details.</string>
     <string name="load_fail_arch_card_title">Modul bereits installiert?</string>
     <string name="load_fail_arch_card">Wenn Sie das Magisk-Modul bereits installiert haben, haben Sie möglicherweise während der Installation die falschen Einstellungen ausgewählt. Bitte installieren Sie erneut und versuchen Sie die Huawei-Kompatibilität zu aktivieren (auch wenn Ihr Telefon nicht von diesem Hersteller ist).</string>
+    <!-- Enhanced processing -->
     <!-- App list -->
     <string name="app_list_loading">Apps werden geladen…</string>
     <string name="app_list_search">Suche</string>

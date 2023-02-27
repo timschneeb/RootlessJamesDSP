@@ -1,32 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
+    <string name="action_settings">Параметри</string>
+    <string name="action_presets">Пресети</string>
+    <string name="action_revert">Відновити типові налаштування</string>
+    <string name="action_blocked_apps">Виключені додатки</string>
     <!-- Notification channels -->
+    <string name="notification_channel_service">Повідомлення про роботу сервісу</string>
+    <string name="notification_channel_session_loss_alert">Сповіщення про втрату сесії</string>
+    <string name="notification_channel_permission_prompt">Запит на отримання дозволів</string>
+    <string name="notification_channel_app_compat_alert">Сповіщення про несумісний додаток</string>
     <!-- Service notifications -->
+    <string name="action_retry">Повторити</string>
+    <string name="action_fix">Виправити проблему</string>
+    <string name="action_stop">Зупинити</string>
+    <string name="notification_processing">Активні програми: %1$s</string>
+    <string name="notification_idle">Обробка аудіо в режимі очікування</string>
+    <string name="notification_processing_title">Обробка аудіо активна</string>
+    <string name="notification_processing_disabled_title">Обробку аудіо вимкнено</string>
+    <string name="notification_processing_legacy">Натисніть, щоб відкрити JamesDSP manager</string>
     <!-- Permission request notifications -->
+    <string name="notification_request_permission_title">Для запуску JamesDSP потрібна дія користувача</string>
+    <string name="notification_request_permission">Натисніть, щоб надати дозвіл на захоплення і ввімкнути обробку аудіо в JamesDSP</string>
     <!-- Session control loss notifications -->
+    <string name="session_control_loss_toast">JamesDSP зупинено через втрату контролю над аудіо сесією. Будь ласка, вимкніть інші програми для обробки аудіо ефектів.</string>
+    <string name="session_control_loss_notification_title">Обробку аудіо зупинено. Інша програма заважає роботі JamesDSP.</string>
+    <string name="session_control_loss_notification">Будь ласка, вимкніть всі інші застосунки, що надають глобальні звукові ефекти перед повторним включенням JamesDSP.</string>
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_toast">JamesDSP зупинено через несумісний медіа-додаток. Будь ласка, перевірте повідомлення, щоб вирішити цю проблему.</string>
+    <string name="session_app_compat_notification_title">Обробку аудіо зупинено. Інша програма заважає роботі JamesDSP.</string>
+    <string name="session_app_compat_notification">Натисніть на це сповіщення, щоб вирішити проблему.</string>
     <!-- Capture permission revoked notifications -->
+    <string name="capture_permission_revoked_toast">JamesDSP було зупинено, оскільки дозвіл на захоплення звуку був відкликаний.</string>
     <!-- General purpose -->
+    <string name="install">Встановити</string>
+    <string name="update">Оновити</string>
+    <string name="details">Детальніше</string>
+    <string name="warning">Увага</string>
+    <string name="success">Виконано</string>
+    <string name="open">Відкрити</string>
+    <string name="close">Закрити</string>
+    <string name="add">Додати</string>
+    <string name="yes">Так</string>
+    <string name="no">Ні</string>
+    <string name="value_not_set">Не задано</string>
+    <string name="undo">Відмінити</string>
+    <string name="redo">Повторити</string>
+    <string name="no_activity_found">Не знайдено жодного активіті для обробки цієї дії</string>
     <!-- Main screen -->
+    <string name="power_button_alt">Перемкнути обробку аудіо</string>
+    <string name="compressor_enable">Автоматичний компресор динамічного діапазону</string>
+    <string name="compressor_max_attack">Час атаки</string>
+    <string name="compressor_max_release">Час релізу</string>
+    <string name="compressor_adapt_speed">Агресивність</string>
+    <string name="eq_enable">Інтерполюючий FIR-еквалайзер</string>
+    <string name="eq_filter_type">Тип фільтра</string>
+    <string name="eq_interpolator">Інтерполятор</string>
+    <string name="eq_filter_type_minimum">Мінімальна фаза</string>
+    <string name="eq_filter_type_linear">Лінійна фаза</string>
+    <string name="eq_interpolator_chip">Кусочно-кубічний інтерполяційний поліном Ерміта</string>
+    <string name="eq_interpolator_mha">Модифікований сплайн Хіросі Акіма</string>
+    <string name="geq_enable">Графічний еквалайзер</string>
+    <string name="geq_nodes">Амплітудна характеристика</string>
+    <string name="bass_enable">Динамічне підсилення басів</string>
+    <string name="bass_max_gain">Рівень підсилення</string>
+    <string name="reverb_enable">Ефект віртуальної кімнати</string>
+    <string name="reverb_room_type">Тип приміщення</string>
+    <string name="reverb_preset_default">Типові налаштування</string>
+    <string name="convolver_enable">Конвольвер</string>
+    <string name="convolver_impulse">Імпульсний відгук</string>
+    <string name="convolver_advanced_editing">Редагування форми сигналу</string>
+    <string name="convolver_convolution_mode">Оптимізація імпульсного відгуку</string>
+    <string name="convolver_convolution_mode_original">Початковий</string>
+    <string name="convolver_convolution_mode_shrink">Стиснення</string>
+    <string name="convolver_convolution_mode_minimum_phase_shrink">Мінімальне фазове перетворення і стиснення</string>
+    <string name="ddc_enable">ViPER-DDC</string>
+    <string name="ddc_file">Профіль DDC</string>
+    <string name="liveprog_enable">Liveprog DSP</string>
+    <string name="liveprog_file">Liveprog скрипт</string>
+    <string name="liveprog_additional_params">Додаткові параметри скрипта</string>
+    <string name="liveprog_not_found">Скрипт не знайдено</string>
+    <string name="liveprog_no_script_selected">Скрипт не вибрано</string>
+    <string name="liveprog_edit_header">Редагувати вибраний скрипт</string>
+    <string name="liveprog_edit">Відкрити активний скрипт у вбудованому редакторі</string>
+    <string name="liveprog_edit_error">Відкрити активний скрипт у вбудованому редакторі liveprog</string>
+    <string name="tube_enable">Аналогове моделювання</string>
+    <string name="tube_drive">Передпідсилювач</string>
+    <string name="output_control_header">Контроль виводу звуку</string>
+    <string name="output_limiter_threshold">Поріг лімітера</string>
+    <string name="output_limiter_release">Час релізу</string>
+    <string name="output_control_postgain">Рівень вихідного підсилення</string>
+    <string name="stereowide_enable">Ширина звукової сцени</string>
+    <string name="stereowide_level">Просторова ширина звуку</string>
+    <string name="stereowide_level_none">Відсутня</string>
+    <string name="stereowide_level_very_wide">Дуже велика</string>
+    <string name="stereowide_level_wide">Велика</string>
+    <string name="stereowide_level_very_narrow">Дуже маленька</string>
+    <string name="stereowide_level_narrow">Маленька</string>
+    <string name="crossfeed_enable">Кросфідер</string>
+    <string name="crossfeed_preset">Пресет</string>
     <!-- Onboarding -->
+    <string name="title_activity_onboarding">Онбордінг</string>
+    <string name="onboarding_back">Назад</string>
+    <string name="onboarding_next">Далі</string>
+    <string name="onboarding_finish">Завершити</string>
+    <string name="onboarding_greeting">Ласкаво просимо до RootlessJamesDSP!</string>
+    <string name="onboarding_caption">Цей помічник допоможе вам налаштувати додаток.</string>
+    <string name="onboarding_warning">Наразі додаток не завершений і нестабільний. Зверніть увагу, що на деяких пристроях він може не працювати так, як очікується, оскільки використовує Android API, не призначені для використання третіми особами.</string>
+    <string name="onboarding_fix_permissions_title">Потрібна дія користувача</string>
+    <string name="onboarding_fix_permissions">Один або кілька дозволів було відкликано вами або системою.\nЩоб забезпечити правильну роботу додатку, вам потрібно надати ці дозволи знову.\n\nБудь ласка, перезапустіть майстер налаштування для повторного надання цих дозволів.</string>
+    <string name="onboarding_limitations_title">Обмеження</string>
+    <string name="onboarding_limitations_unstable">Важливо! Будь ласка, уважно прочитайте нотатки перед тим, як продовжити.</string>
+    <string name="onboarding_methods_title">Оберіть метод налаштування</string>
+    <string name="onboarding_methods_root_title">Root</string>
+    <string name="onboarding_methods_shizuku_title">Shizuku</string>
+    <string name="onboarding_methods_unsupported_append">несумісно</string>
+    <string name="onboarding_methods_adb_title">ADB</string>
     <!-- Rootless flavor -->
+    <string name="onboarding_methods_rootless_shizuku">\u25CF Рекомендується\n\u25CF Не потрібен комп\'ютер\n\u25CF Тільки для Android 11+</string>
+    <string name="onboarding_methods_rootless_adb">\u25CF Для досвідчених користувачів\n\u25CF Потрібен комп\'ютер та USB-кабель\n\u25CF Підтримується Android 10+</string>
     <!-- Root flavor -->
+    <string name="onboarding_methods_root_root">\u25CF Рекомендується\n\u25CF Не потрібен комп\'ютер\n\u25CF Підходить для всіх версій Android</string>
+    <string name="onboarding_methods_root_shizuku">\u25CF Рекомендується, якщо root-доступ відсутній\n\u25CF Не потрібен комп\'ютер\n\u25CF Тільки для Android 11+</string>
+    <string name="onboarding_methods_root_adb">\u25CF Для досвідчених користувачів\n\u25CF Потрібен комп\'ютер та USB-кабель\n\u25CFВсі версії Android</string>
+    <string name="onboarding_root_shell_fail_title">Немає root-доступу</string>
+    <string name="onboarding_root_shell_fail">Немає root-доступу. Будь ласка, скористайтеся іншим методом налаштування.</string>
+    <string name="onboarding_root_shell_fail_unknown">Не вдалося надати дозвіл через root. Будь ласка, використовуйте інший метод налаштування.</string>
+    <string name="onboarding_root_enhanced_processing_setup_success">Покращена обробка налаштована</string>
+    <string name="onboarding_adb_shizuku_title">Налаштування Shizuku</string>
+    <string name="onboarding_adb_adb_title">Налаштування ADB</string>
+    <string name="onboarding_adb_caption">Ця програма вимагає спеціальних дозволів для вивантаження аудіо-політики вашого пристрою. Будь ласка, дотримуйтесь інструкцій нижче.</string>
     <!-- Settings -->
+    <string name="title_activity_settings">Параметри</string>
     <!-- Theme names -->
+    <string name="theme_default">Типові налаштування</string>
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="title_activity_geq">Амплітудна характеристика</string>
+    <string name="gep_add_node">Додати</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
     <!-- Blocklist -->
+    <string name="title_activity_blocklist">Виключені додатки</string>
     <!-- Compatibility issue activity -->
+    <string name="app_compat_retry">Повторити</string>
     <!-- Hints for compatibility issues for individual apps -->
     <!-- Root: Library load failure -->
+    <!-- Enhanced processing -->
     <!-- App list -->
     <!-- Number box view -->
     <!-- Slider widget -->
+    <string name="slider_dialog_title">Редагувати значення</string>
     <!-- Revert confirmation -->
     <!-- File intent handler -->
     <!-- Translation notice box -->

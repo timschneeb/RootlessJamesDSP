@@ -14,7 +14,6 @@
     <string name="action_retry">Riprova</string>
     <string name="action_fix">Aggiorna</string>
     <string name="action_stop">Interrompi</string>
-    <string name="notification_waiting">In attesa dell\'azione utente…</string>
     <string name="notification_processing">App attive: %1$s</string>
     <string name="notification_idle">Elaborazione audio inattiva</string>
     <string name="notification_processing_title">Elaborazione audio attiva</string>
@@ -45,6 +44,7 @@
     <string name="app_compat_retry">Riprova</string>
     <!-- Hints for compatibility issues for individual apps -->
     <!-- Root: Library load failure -->
+    <!-- Enhanced processing -->
     <!-- App list -->
     <!-- Number box view -->
     <!-- Slider widget -->
