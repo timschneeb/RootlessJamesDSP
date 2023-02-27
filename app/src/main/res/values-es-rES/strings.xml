@@ -100,27 +100,61 @@
     <string name="convolver_enable">Convolver</string>
     <string name="convolver_impulse">Respuesta de Impulso</string>
     <!-- Onboarding -->
+    <string name="onboarding_methods_title">Seleccionar método de configuración</string>
+    <string name="onboarding_methods_root_title">Root</string>
+    <string name="onboarding_methods_unsupported_append">incompatible</string>
+    <string name="onboarding_methods_adb_title">ADB</string>
     <!-- Rootless flavor -->
+    <string name="onboarding_methods_rootless_adb">\u25CF Para usuarios avanzados\n\u25CF Se requiere una computadora y un cable USB\n\u25CF Compatible con Android 10+</string>
     <!-- Root flavor -->
+    <string name="onboarding_root_shell_fail_title">Sin acceso root</string>
+    <string name="onboarding_root_shell_fail">Acceso a root no disponible. Por favor, utilice otro método de configuración.</string>
+    <string name="onboarding_finish_caption">Si encuentras algún problema, por favor visita las opciones de solución de problemas.</string>
     <!-- Settings -->
     <string name="title_activity_settings">Settings</string>
+    <string name="autostart_prompt_at_boot_off">No mostrar notificación después del arranque</string>
+    <string name="appearance_theme_mode">Modo oscuro</string>
     <!-- Theme names -->
     <string name="theme_default">Defecto</string>
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">Respuesta de magnitud</string>
+    <string name="geq_autoeq">Perfiles de AutoEQ</string>
     <string name="gep_add_node">Agregar</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
+    <string name="editor_cannot_redo">Nada que rehacer.</string>
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Apps excluidas</string>
+    <string name="blocklist_add_exclusion_alt">Añadir aplicación para excluir</string>
+    <string name="blocklist_delete_title">¿Eliminar la aplicación seleccionada?</string>
+    <string name="blocklist_delete">¿Quieres eliminar esta aplicación de la lista de exclusión?</string>
+    <string name="blocklist_no_exclusions">No hay aplicaciones excluidas</string>
+    <string name="blocklist_unsupported_apps">Aplicaciones no compatibles</string>
+    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>Esta aplicación no admite el procesamiento de aplicaciones que bloquean a terceros de grabar su salida de audio. Para evitar que estas aplicaciones se silencien debido a sus restricciones de captura, se excluyen automáticamente del procesamiento de audio y no se redirigen. </p><p><u>Aplicaciones afectadas:</u><br/>%s</p>]]></string>
     <!-- Compatibility issue activity -->
+    <string name="title_activity_app_compat">Problema de compatibilidad</string>
     <string name="app_compat_retry">Reintentarlo</string>
+    <string name="app_compat_exclude">Excluir</string>
+    <string name="app_compat_title">El procesamiento de audio ha sido suspendido para evitar el audio duplicado</string>
+    <string name="app_compat_explanation">La siguiente aplicación no es compatible porque hace que RootlessJamesDSP pierda el control sobre su enrutamiento de audio:</string>
+    <string name="app_compat_instruction">Por favor, verifica las configuraciones de las aplicaciones para ver si puedes desactivar la aceleración de hardware u otras configuraciones que podrían interferir con RootlessJamesDSP y toca \'Reintentar\'.</string>
+    <string name="app_compat_instruction_exclude">Alternativamente, selecciona \'Excluir\' para pasar por alto este problema excluyendo la aplicación incompatible del procesamiento de audio.</string>
+    <string name="app_compat_unknown_pkg_name">Nombre de paquete desconocido</string>
     <!-- Hints for compatibility issues for individual apps -->
+    <string name="app_compat_quirk_voice_search">La búsqueda y reconocimiento de voz se sabe que causan este problema con esta aplicación. Trata de evitar usar estas funciones y revoca el permiso del micrófono para las aplicaciones problemáticas si el problema persiste.</string>
     <!-- Root: Library load failure -->
+    <string name="load_fail_header">Módulo de Magisk no instalado</string>
+    <string name="load_fail_card_title">Error al cargar libjamesdsp.so</string>
+    <string name="load_fail_card">Por favor, instale el módulo de JamesDSP para Magisk y reinicie su dispositivo Android para utilizar esta aplicación. Es posible que también deba reinstalar esta aplicación después de reiniciar.</string>
+    <string name="load_fail_rootless_card_title">¿Buscas una alternativa sin root?</string>
+    <string name="load_fail_rootless_card">Esta versión de JamesDSP fue diseñada para ser utilizada con un dispositivo rooteado/modificado. También hay disponible una alternativa sin root con algunas limitaciones. Toca aquí para más detalles.</string>
+    <string name="load_fail_arch_card_title">¿Módulo ya instalado?</string>
+    <string name="load_fail_arch_card">Si ya has instalado el módulo Magisk, es posible que hayas seleccionado la configuración incorrecta durante la instalación. Por favor, reinstala el módulo y trata de habilitar la compatibilidad con Huawei (aunque tu teléfono no sea de ese fabricante).</string>
     <!-- Enhanced processing -->
+    <string name="enhanced_processing_feature_unavailable">Función no disponible</string>
     <!-- App list -->
     <!-- Number box view -->
     <!-- Slider widget -->
