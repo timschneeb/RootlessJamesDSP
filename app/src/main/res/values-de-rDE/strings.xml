@@ -114,7 +114,6 @@
     <string name="liveprog_no_script_selected">Kein Skript ausgewählt</string>
     <string name="liveprog_edit_header">Script editieren</string>
     <string name="liveprog_edit">Öffne aktives Skript in eingebauten Editor</string>
-    <string name="liveprog_edit_error">Öffne aktives Skript in eingebauten Editor</string>
     <string name="tube_enable">Analoge Modellierung</string>
     <string name="tube_drive">Vorverstärkung</string>
     <string name="output_control_header">Ausgabesteuerung</string>
