@@ -202,11 +202,12 @@
     <string name="audio_format_header">Обработка аудио</string>
     <string name="audio_format_section_header">Предпочтительный аудиоформат</string>
     <string name="audio_format_processing_header">Параметры обработки аудио</string>
-    <string name="audio_format_processing_legacy">Legacy режим</string>
+    <string name="audio_format_processing_legacy">Режим совместимости</string>
     <string name="audio_format_processing_legacy_on">Присоединить глобально к сессии 0 (устаревшее)</string>
     <string name="audio_format_processing_legacy_off">Прикреплять к каждому приложению отдельно</string>
     <string name="audio_format_enhanced_processing">Улучшенная обработка</string>
     <string name="audio_format_summary">Кодирование аудио, размер буфера</string>
+    <string name="audio_format_summary_root">Режим совместимости, расширенная обработка</string>
     <string name="audio_format_encoding">Кодирование аудио</string>
     <string name="audio_format_buffer_size">Размер буфера</string>
     <string name="audio_format_buffer_size_warning_low_value">Внимание: низкие размеры буфера могут вызвать проблемы с аудио, такие как клиппинг!</string>
@@ -396,6 +397,7 @@
     <string name="load_fail_arch_card_title">Модуль уже установлен?</string>
     <string name="load_fail_arch_card">Если вы уже установили модуль Magisk, возможно, вы выбрали неправильные настройки во время установки. Попробуйте переустановить модуль и включить совместимость с устройствами Huawei (даже если ваш телефон не произведен компанией Huawei).</string>
     <!-- Enhanced processing -->
+    <string name="enhanced_processing_feature_unavailable_content">Функция доступна только при включенной опции «Расширенная обработка» в настройках. Пожалуйста, включите эту опцию в Настройки &gt; Обработка аудио &gt; Расширенная обработка, чтобы получить доступ к этому меню.\n\nПримечание: Опция «Расширенная обработка» недоступна если включен «Режим совместимости».</string>
     <!-- App list -->
     <string name="app_list_loading">Загрузка списка приложений…</string>
     <string name="app_list_search">Поиск</string>
