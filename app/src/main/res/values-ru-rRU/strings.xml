@@ -72,11 +72,12 @@
     <string name="convolver_impulse">Импульсный отклик</string>
     <string name="convolver_advanced_editing">Редактирование формы сигнала</string>
     <string name="convolver_convolution_mode">Оптимизация импульсного отклика</string>
-    <string name="convolver_convolution_mode_original">Оригинал</string>
+    <string name="convolver_convolution_mode_original">Исходная</string>
     <string name="convolver_convolution_mode_shrink">Сжатие</string>
     <string name="convolver_convolution_mode_minimum_phase_shrink">Минимальное фазовое преобразование и сжатие</string>
     <string name="ddc_enable">ViPER-DDC</string>
     <string name="ddc_file">Профиль DDC</string>
+    <string name="liveprog_enable">Liveprog DSP</string>
     <string name="liveprog_file">Liveprog скрипт</string>
     <string name="liveprog_additional_params">Дополнительные параметры скрипта</string>
     <string name="liveprog_additional_params_not_supported">Выбранный скрипт не имеет настраиваемых параметров</string>
@@ -90,7 +91,7 @@
     <string name="output_control_header">Контроль вывода звука</string>
     <string name="output_limiter_threshold">Порог лимитера</string>
     <string name="output_limiter_release">Время релиза</string>
-    <string name="output_control_postgain">Пост-усиление</string>
+    <string name="output_control_postgain">Уровень выходного усиления</string>
     <string name="stereowide_enable">Ширина звуковой сцены</string>
     <string name="stereowide_level">Пространственная ширина звука</string>
     <string name="stereowide_level_none">Отсутствует</string>
@@ -159,11 +160,11 @@
     <string name="onboarding_adb_manual_step1_button">Открыть «Для разработчиков»</string>
     <string name="onboarding_perm_title">Другие разрешения</string>
     <string name="onboarding_perm_caption">Для использования этого приложения необходимы дополнительные разрешения. Пожалуйста, ознакомьтесь с ними и нажмите «Далее» чтобы предоставить их.</string>
-    <string name="onboarding_perm_microphone_title">Разрешение на запись аудио</string>
+    <string name="onboarding_perm_microphone_title">Запись аудио</string>
     <string name="onboarding_perm_microphone_caption">Требуется для записи внутреннего аудио. Аппаратный микрофон устройства не будет использоваться.</string>
     <string name="onboarding_perm_notification_title">Разрешение на отображение уведомлений</string>
     <string name="onboarding_perm_notification_caption">Требуется для получения важных обновлений статуса и информации о состоянии обработки JamesDSP.</string>
-    <string name="onboarding_perm_cast_title">Разрешение на трансляцию/запись</string>
+    <string name="onboarding_perm_cast_title">Трансляция/запись</string>
     <string name="onboarding_perm_cast_caption">Вы должны предоставить этому приложению разрешение на запись аудио контента при каждом запуске.</string>
     <string name="onboarding_perm_missing_title">Разрешения на выполнение не предоставлены</string>
     <string name="onboarding_perm_missing">Пожалуйста, предоставьте все запрошенные разрешения на выполнение, чтобы продолжить.\nЕсли вы несколько раз отказали в предоставлении разрешений, вам нужно предоставить их вручную в настройках системы.</string>
@@ -180,7 +181,7 @@
     <string name="limit_latency_title">Увеличение задержки</string>
     <string name="limit_latency">Это приложение может добавлять некоторую задержку в аудио поток. Вы можете добавить приложения для просмотра фильмов/видео в список исключений, чтобы не обрабатывать их и избежать сбоев в синхронизации звука и видео.</string>
     <string name="limit_tested_devices_title">Проверенные устройства</string>
-    <string name="limit_tested_devices">Производитель вашего устройства мог внести изменения в аудио-подсистему Android, которые могут нарушить работу приложения из-за использования не задокументированных API.\nПриложение тестировалось на устройствах: \n\n• Samsung S20+ (Android 12) \n• Эмулятор AOSP (Android 10–13) \n• Google Pixel 6 Pro (Android 13)</string>
+    <string name="limit_tested_devices">Производитель вашего устройства мог внести изменения в аудио-подсистему Android, которые могут нарушить работу приложения из-за использования не задокументированных API.\nПриложение тестировалось на устройствах:\n• Samsung S20+ (Android 12)\n• Эмулятор AOSP (Android 10–13)\n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
     <string name="title_activity_settings">Настройки</string>
     <string name="session_exclude_restricted">Исключить неподдерживаемые приложения</string>
@@ -403,7 +404,7 @@
     <string name="number_box_decrement">Уменьшение</string>
     <string name="number_box_increment">Увеличение</string>
     <!-- Slider widget -->
-    <string name="slider_dialog_title">Изменить значение</string>
+    <string name="slider_dialog_title">Редактировать значение</string>
     <string name="slider_dialog_format_error">Неверный формат числа. Изменения не применены.</string>
     <string name="slider_dialog_step_error">Значение должно быть кратно %1$d. Изменения не применяются.</string>
     <!-- Revert confirmation -->
