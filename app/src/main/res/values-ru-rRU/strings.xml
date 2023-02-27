@@ -53,6 +53,7 @@
     <string name="eq_filter_type_linear">Линейная фаза</string>
     <string name="eq_interpolator_chip">Кусочно-кубический интерполяционный полином Эрмита</string>
     <string name="eq_interpolator_mha">Модифицированный сплайн Хироши Акимы</string>
+    <string name="geq_enable">Графический эквалайзер</string>
     <string name="bass_enable">Динамическое усиление баса</string>
     <string name="bass_max_gain">Максимальное усиление</string>
     <string name="reverb_enable">Эффект виртуальной комнаты</string>
@@ -81,7 +82,7 @@
     <string name="onboarding_greeting">Добро пожаловать в RootlessJamesDSP!</string>
     <string name="onboarding_caption">Это руководство поможет вам выполнить настройку приложения.</string>
     <string name="onboarding_warning">В данный момент приложение не завершено и нестабильно. Обратите внимание, что на некоторых устройствах оно может не работать как ожидается, так как использует Android API, не предназначенные для использования третьими лицами.</string>
-    <string name="onboarding_fix_permissions">Одно или несколько разрешений были отозваны вами или системой.\nЧтобы убедиться, что приложение работает корректно, необходимо предоставить эти разрешения снова.\n\nПожалуйста, перезапустите мастер настройки для повторного предоставления этих разрешений.</string>
+    <string name="onboarding_fix_permissions">Одно или несколько разрешений были отозваны вами или системой.\n Чтобы убедиться, что приложение работает корректно, необходимо предоставить эти разрешения снова.\n\n Пожалуйста, перезапустите мастер настройки для повторного предоставления этих разрешений.</string>
     <string name="onboarding_limitations_title">Ограничения</string>
     <string name="onboarding_limitations_unstable">Важно! Пожалуйста, внимательно прочтите заметки перед продолжением.</string>
     <string name="onboarding_methods_title">Выберите метод настройки</string>
@@ -102,14 +103,18 @@
     <string name="onboarding_adb_shizuku_title">Настройка Shizuku</string>
     <string name="onboarding_adb_adb_title">Настройка ADB</string>
     <string name="onboarding_adb_caption">Это приложение требует специальных разрешений для выгрузки аудио-политики вашего устройства. Пожалуйста, следуйте инструкциям ниже.</string>
+    <string name="onboarding_adb_shizuku_install_button_done">Уже установлено</string>
     <string name="onboarding_adb_shizuku_install_instruction">Установить Shizuku из Google Play.</string>
     <string name="onboarding_adb_shizuku_open_instruction">Запустите Shizuku и найдите параметр «<b>Запуск через отладку по Wi-Fi</b>». Нажмите кнопку «Подключение» и следуйте инструкциям в приложении. После сопряжения Shizuku с вашим устройством, запустите сервер Shizuku, нажав кнопку «Запустить». Если у вас возникли проблемы при настройке Shizuku, обратитесь к руководству по установке, ссылка на который приведена в их приложении.</string>
     <string name="onboarding_adb_shizuku_open_button">Запустить Shizuku</string>
-    <string name="onboarding_adb_shizuku_grant_instruction">Нажмите кнопку и предоставьте этому приложению доступ к Shizuku.</string>
+    <string name="onboarding_adb_shizuku_grant_instruction">Предоставьте доступ к Shizuku, нажав на кнопку.</string>
+    <string name="onboarding_adb_shizuku_grant_button">Предоставить доступ</string>
     <string name="onboarding_adb_shizuku_not_installed_title">Shizuku еще не установлен</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead">Перед запросом разрешения необходимо запустить сервер Shizuku. Пожалуйста, вернитесь к инструкции на шаг 2.</string>
     <string name="onboarding_adb_shizuku_grant_fail_server_dead_title">Сервер Shizuku не запущен</string>
     <string name="onboarding_adb_shizuku_grant_fail_version">Это приложение требует Shizuku версии 11 или выше. Пожалуйста, обновите Shizuku до последней версии.</string>
     <string name="onboarding_adb_shizuku_grant_fail_version_title">Неподдерживаемая версия Shizuku</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied_title">Разрешение отклонено</string>
     <string name="onboarding_adb_shizuku_grant_fail_denied">Пожалуйста, предоставьте этому приложению доступ к Shizuku. Если вы ранее отказали в разрешении и всплывающее окно больше не появляется, вам может потребоваться открыть менеджер разрешений Shizuku, и предоставить доступ вручную.</string>
     <string name="onboarding_adb_shizuku_no_dump_perm_title">Shizuku не удалось предоставить разрешения ADB</string>
     <string name="onboarding_adb_shizuku_no_dump_perm">Пожалуйста, подождите несколько секунд и попробуйте ещё раз. Если это не сработает, попробуйте альтернативный метод.</string>
@@ -125,8 +130,10 @@
     <string name="onboarding_perm_caption">Для использования этого приложения необходимы дополнительные разрешения. Пожалуйста, ознакомьтесь с ними и нажмите «Далее» чтобы предоставить их.</string>
     <string name="onboarding_perm_microphone_caption">Требуется для записи внутреннего аудио. Аппаратный микрофон устройства не будет использоваться.</string>
     <string name="onboarding_perm_notification_caption">Требуется для получения важных обновлений статуса и информации о состоянии обработки JamesDSP.</string>
+    <string name="onboarding_perm_cast_title">Разрешение на трансляцию/запись</string>
     <string name="onboarding_perm_cast_caption">Вы должны предоставить этому приложению разрешение на запись аудио контента при каждом запуске.</string>
-    <string name="onboarding_perm_missing">Пожалуйста, предоставьте все запрошенные разрешения во время выполнения, чтобы продолжить.\nЕсли вы несколько раз отказали в предоставлении разрешений, вам нужно предоставить их вручную в настройках системы.</string>
+    <string name="onboarding_perm_missing_title">Разрешения на выполнение не предоставлены</string>
+    <string name="onboarding_perm_missing">Пожалуйста, предоставьте все запрошенные разрешения на выполнение, чтобы продолжить.\nЕсли вы несколько раз отказали в предоставлении разрешений, вам нужно предоставить их вручную в настройках системы.</string>
     <string name="onboarding_finish_header">JamesDSP настроен!</string>
     <string name="onboarding_finish_caption">Если у вас возникли какие-либо проблемы, пожалуйста, посетите раздел настроек «Устранение неисправностей».</string>
     <string name="limit_unsupported_apps">Приложения, которые блокируют запись внутреннего аудио, не будут обработаны (например, Spotify, Google Chrome).</string>
@@ -135,7 +142,7 @@
     <string name="limit_detect_delay"><![CDATA[После того как приложение открывает новую мультимедийную сессию для воспроизведения звука, вы можете услышать повторяющийся или обрывистый звук на очень короткий период (примерно &lt;250 мс).]]></string>
     <string name="limit_latency_title">Увеличение задержки</string>
     <string name="limit_tested_devices_title">Проверенные устройства</string>
-    <string name="limit_tested_devices">Производитель вашего устройства мог внести изменения в аудио-подсистему Android, которые могут нарушить работу приложения из-за использования не задокументированных API.\nПриложение тестировалось на устройствах:\n• Samsung S20+ (Android 12)\n• Эмулятор AOSP (Android 10–13)\n• Google Pixel 6 Pro (Android 13)</string>
+    <string name="limit_tested_devices">Производитель вашего устройства мог внести изменения в аудио-подсистему Android, которые могут нарушить работу приложения из-за использования не задокументированных API.\nПриложение тестировалось на устройствах: \n• Samsung S20+ (Android 12) \n• Эмулятор AOSP (Android 10–13) \n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
     <string name="title_activity_settings">Настройки</string>
     <string name="session_exclude_restricted">Исключить неподдерживаемые приложения</string>
@@ -144,7 +151,11 @@
     <string name="session_continuous_polling_rate">Интервал опроса (мс)</string>
     <string name="session_detection_method_audiopolicyservice">AudioPolicyService dump</string>
     <string name="session_detection_method_audioservice">AudioService dump (рекомендуется)</string>
+    <string name="session_app_problem_ignore">Игнорировать проблемы совместимости приложений</string>
+    <string name="session_loss_ignore">Игнорировать потерю контроля сеанса</string>
+    <string name="session_loss_ignore_off">Отключено, стандартное поведение (рекомендуется)</string>
     <string name="session_loss_ignore_on">Не предпринимать никаких действий (может вызвать дублирование звука)</string>
+    <string name="session_loss_ignore_warning">Включение этой настройки может привести к дублированию звука, когда другое приложение для обработки звука получает контроль над сеансом аудио. \nРекомендуем оставить эту настройку выключенной, если у вас нет проблем с ложноположительными событиями потери сессии.</string>
     <string name="audio_format_processing_header">Параметры обработки аудио</string>
     <string name="audio_format_processing_legacy">Legacy режим</string>
     <string name="audio_format_processing_legacy_on">Присоединить глобально к сессии 0 (устаревшее)</string>
@@ -153,7 +164,7 @@
     <string name="audio_format_buffer_size_warning_low_value">Внимание: низкие размеры буфера могут вызвать проблемы с аудио, такие как клиппинг!</string>
     <string name="autostart_prompt_at_boot_off">Не показывать уведомление после загрузки</string>
     <string name="autostart_prompt_at_boot_on">Показывать уведомление после загрузки</string>
-    <string name="powersave">Энергосбережение</string>
+    <string name="powersave">Экономия энергии</string>
     <string name="powersave_suspend">Приостанавливать аудиопоток во время простоя</string>
     <string name="powersave_suspend_off">Продолжать обработку, даже если контент не воспроизводится</string>
     <string name="powersave_suspend_on">Приостановить обработку аудиопотока для экономии энергии</string>
@@ -178,7 +189,7 @@
     <string name="network_autoeq_conntest_running">Проверка соединения с сервером…</string>
     <string name="network_autoeq_conntest_done">Соединение успешно установлено</string>
     <string name="network_autoeq_conntest_fail">Проверка соединения не удалась</string>
-    <string name="network_autoeq_conntest_fail_summary">Сервер не дал правильного ответа. Убедитесь, что программное обеспечение https://github.com/ThePBone/AutoEqApi настроено правильно на сервере.\n\nОшибка сети: %1$s\n\nВосстановить значение по умолчанию?</string>
+    <string name="network_autoeq_conntest_fail_summary">Сервер не дал правильного ответа. Убедитесь, что программное обеспечение https://github.com/ThePBone/AutoEqApi настроено правильно на сервере. \n\nОшибка сети: %1$s\n\nВосстановить значения по умолчанию?</string>
     <string name="about_settings">О приложении</string>
     <string name="about_settings_summary">Авторы, поддержка, обновления</string>
     <string name="privacy">Конфиденциальность</string>
@@ -203,7 +214,7 @@
     <string name="appearance_theme_mode_default">Использовать настройки системы</string>
     <string name="appearance_theme_mode_light">Выкл.</string>
     <string name="appearance_theme_mode_dark">Вкл.</string>
-    <string name="appearance_pure_black_mode">Черная тема (глубокий черный цвет фона)</string>
+    <string name="appearance_pure_black_mode">Черная тема (полностью черный цвет фона)</string>
     <string name="appearance_app_theme">Тема приложения</string>
     <string name="appearance_navigation_title">Навигация</string>
     <string name="appearance_nav_hide">Скрывать панель навигации при прокрутке</string>
@@ -244,7 +255,7 @@
     <string name="geq_cancel_spaced">&#160;&#160;Отменить&#160;</string>
     <string name="geq_cancel">Отменить</string>
     <string name="geq_discard_changes_title">Отменить изменения и выйти?</string>
-    <string name="geq_discard_changes">Значения недействительны или пусты. Ваши изменения не могут быть сохранены.\nВы хотите отменить изменения и выйти?</string>
+    <string name="geq_discard_changes">Значения недействительны или пусты. Ваши изменения не могут быть сохранены. \nОтменить изменения и выйти?</string>
     <string name="geq_frequeny_range">Значение между 1Hz и 24000Hz</string>
     <string name="geq_gain_range">Значение между -32dB и 32dB</string>
     <!-- AutoEQ GraphicEQ selector -->
