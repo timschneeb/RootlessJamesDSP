@@ -84,7 +84,6 @@
     <string name="liveprog_no_script_selected">Скрипт не вибрано</string>
     <string name="liveprog_edit_header">Редагувати вибраний скрипт</string>
     <string name="liveprog_edit">Відкрити активний скрипт у вбудованому редакторі</string>
-    <string name="liveprog_edit_error">Відкрити активний скрипт у вбудованому редакторі liveprog</string>
     <string name="tube_enable">Аналогове моделювання</string>
     <string name="tube_drive">Передпідсилювач</string>
     <string name="output_control_header">Контроль виводу звуку</string>
