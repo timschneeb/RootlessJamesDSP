@@ -168,7 +168,7 @@
     <string name="onboarding_perm_missing_title">Разрешения на выполнение не предоставлены</string>
     <string name="onboarding_perm_missing">Пожалуйста, предоставьте все запрошенные разрешения на выполнение, чтобы продолжить.\nЕсли вы несколько раз отказали в предоставлении разрешений, вам нужно предоставить их вручную в настройках системы.</string>
     <string name="onboarding_finish_header">JamesDSP настроен!</string>
-    <string name="onboarding_finish_caption">Если у вас возникли какие-либо проблемы, пожалуйста, посетите раздел настроек «Устранение неполадок».</string>
+    <string name="onboarding_finish_caption">Если у вас возникли какие-либо проблемы, пожалуйста, посетите раздел настроек «Устранение неисправностей».</string>
     <string name="limit_session_control_conflict_title">Отключение других приложений для обработки звука</string>
     <string name="limit_session_control_conflict">Приложения для обработки звука, использующие встроенный в Android эффект динамической обработки, мешают работе этого приложения.</string>
     <string name="limit_unsupported_apps_title">Неподдерживаемые приложения</string>
@@ -194,16 +194,16 @@
     <string name="session_detection_method">Предпочтительный метод обнаружения</string>
     <string name="session_detection_method_audiopolicyservice">AudioPolicyService dump</string>
     <string name="session_detection_method_audioservice">AudioService dump (рекомендуется)</string>
-    <string name="session_app_problem_ignore">Игнорировать проблемы совместимости приложения</string>
-    <string name="session_loss_ignore">Игнорировать потерю контроля сессии</string>
+    <string name="session_app_problem_ignore">Игнорировать проблемы совместимости приложений</string>
+    <string name="session_loss_ignore">Игнорировать потерю контроля сеанса</string>
     <string name="session_loss_ignore_off">Отключено, стандартное поведение (рекомендуется)</string>
     <string name="session_loss_ignore_on">Не предпринимать никаких действий (может вызвать дублирование звука)</string>
     <string name="session_loss_ignore_warning">Включение этой настройки может привести к дублированию звука, когда другое приложение для обработки звука получает контроль над сеансом аудио. \nРекомендуем оставить эту настройку выключенной, если у вас нет проблем с ложноположительными событиями потери сессии.</string>
     <string name="audio_format_header">Обработка аудио</string>
     <string name="audio_format_section_header">Предпочтительный аудиоформат</string>
     <string name="audio_format_processing_header">Параметры обработки аудио</string>
-    <string name="audio_format_processing_legacy">Режим совместимости</string>
-    <string name="audio_format_processing_legacy_on">Присоединить глобально к сессии 0 (устарело)</string>
+    <string name="audio_format_processing_legacy">Legacy режим</string>
+    <string name="audio_format_processing_legacy_on">Присоединить глобально к сессии 0 (устаревшее)</string>
     <string name="audio_format_processing_legacy_off">Прикреплять к каждому приложению отдельно</string>
     <string name="audio_format_enhanced_processing">Улучшенная обработка</string>
     <string name="audio_format_enhanced_processing_on">Управление и расширенная поддержка для приложений включены</string>
@@ -224,7 +224,7 @@
     <string name="powersave_suspend">Приостанавливать аудиопоток во время простоя</string>
     <string name="powersave_suspend_off">Продолжать обработку, даже если контент не воспроизводится</string>
     <string name="powersave_suspend_on">Приостановить обработку аудиопотока для экономии энергии</string>
-    <string name="troubleshooting">Устранение неполадок</string>
+    <string name="troubleshooting">Устранение неисправностей</string>
     <string name="troubleshooting_summary">Дополнительные параметры, документация, диагностика</string>
     <string name="troubleshooting_docs">Документация</string>
     <string name="troubleshooting_actions">Прочие действия</string>
@@ -244,7 +244,7 @@
     <string name="assets">Ресурсы</string>
     <string name="network_services">Сетевые сервисы</string>
     <string name="network_autoeq_api_url">URL-адрес API-бэкенда AutoEQ</string>
-    <string name="network_invalid_url">Неправильный формат URL-адреса</string>
+    <string name="network_invalid_url">Неверный формат URL-адреса</string>
     <string name="network_autoeq_conntest_running">Проверка соединения с сервером…</string>
     <string name="network_autoeq_conntest_done">Соединение успешно установлено</string>
     <string name="network_autoeq_conntest_fail">Проверка соединения не удалась</string>
@@ -252,7 +252,7 @@
     <string name="about_settings">О приложении</string>
     <string name="about_settings_summary">Авторы, поддержка, обновления</string>
     <string name="privacy">Конфиденциальность</string>
-    <string name="privacy_share_crash_reports">Поделиться информацией о сбоях</string>
+    <string name="privacy_share_crash_reports">Поделиться информацией о сбоях приложения</string>
     <string name="privacy_share_crash_reports_on">Отправлять отчёты о сбоях разработчику</string>
     <string name="privacy_share_crash_reports_off">Не отправлять отчёты о сбоях разработчику</string>
     <string name="credits">Авторы</string>
@@ -260,9 +260,9 @@
     <string name="credits_dsp">Библиотека алгоритмов ядра JamesDSP</string>
     <string name="credits_project_page">Страница проекта на GitHub</string>
     <string name="credits_project_page_summary">Сообщайте о проблемах, следите за обновлениями и читайте исходный код</string>
-    <string name="credits_project_play_page">RootlessJamesDSP на Google Play</string>
+    <string name="credits_project_play_page">Посетить RootlessJamesDSP на Google Play</string>
     <string name="credits_project_play_page_summary">Поиск новых обновлений</string>
-    <string name="credits_project_translate">Внести свой вклад в перевод</string>
+    <string name="credits_project_translate">Помочь с переводами</string>
     <string name="credits_project_translate_summary">Помогите нам перевести приложение на ваш язык</string>
     <string name="credits_version">Версия приложения</string>
     <string name="credits_build_info">Информация о сборке</string>
@@ -433,5 +433,5 @@
     <string name="intent_import_error_file_uri">Не удалось импортировать файл. Неподдерживаемый URI-адрес файла.</string>
     <!-- Translation notice box -->
     <string name="translation_notice_summary">Помогите нам перевести это приложение на ваш язык! Нажмите здесь, чтобы перейти на сайт проекта на Crowdin.</string>
-    <string name="translation_notice">Внести вклад в перевод</string>
+    <string name="translation_notice">Помочь с переводами</string>
 </resources>
