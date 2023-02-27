@@ -90,6 +90,7 @@ class AppsListAdapter: RecyclerView.Adapter<AppsListAdapter.ViewHolder>(), Filte
                 return FilterResults().apply { values = filteredDataList }
             }
 
+            @SuppressLint("NotifyDataSetChanged")
             @Suppress("UNCHECKED_CAST")
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
 

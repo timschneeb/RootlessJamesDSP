@@ -129,7 +129,6 @@
     <string name="liveprog_no_script_selected">No script selected</string>
     <string name="liveprog_edit_header">Edit selected script</string>
     <string name="liveprog_edit">Open active script in built-in editor</string>
-    <string name="liveprog_edit_error">Open active script in built-in liveprog editor</string>
 
     <string name="tube_enable">Analog modelling</string>
     <string name="tube_drive">Preamp</string>
