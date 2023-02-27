@@ -14,7 +14,6 @@
     <string name="action_retry">Yeniden dene</string>
     <string name="action_fix">Sorunu çöz</string>
     <string name="action_stop">Dur</string>
-    <string name="notification_waiting">Kullanıcı eylemi bekleniyor…</string>
     <string name="notification_processing">Aktif uygulamalar: %1$s</string>
     <string name="notification_idle">Ses işleme durduruldu</string>
     <string name="notification_processing_title">Ses işleme aktif</string>
@@ -112,6 +111,7 @@
     <string name="app_compat_retry">Yeniden dene</string>
     <!-- Hints for compatibility issues for individual apps -->
     <!-- Root: Library load failure -->
+    <!-- Enhanced processing -->
     <!-- App list -->
     <!-- Number box view -->
     <!-- Slider widget -->
