@@ -212,7 +212,7 @@
     <string name="troubleshooting_actions">Прочие действия</string>
     <string name="troubleshooting_dump">Экспортировать дамп аудио сессии</string>
     <string name="troubleshooting_dump_summary">Сбор и сохранение данных для устранения неполадок</string>
-    <string name="troubleshooting_dump_share_title">Экспортировать дамп аудио сессии</string>
+    <string name="troubleshooting_dump_share_title">Поделиться дампом аудио сессии</string>
     <string name="troubleshooting_view_limitations">Технические ограничения</string>
     <string name="troubleshooting_view_limitations_summary">Показать информацию об ограничениях этого приложения</string>
     <string name="troubleshooting_notification_access">Разрешить доступ к уведомлениям</string>
@@ -266,6 +266,7 @@
     <string name="filelibrary_context_overwrite">Перезаписать</string>
     <string name="filelibrary_context_rename">Переименовать</string>
     <string name="filelibrary_context_share">Поделиться</string>
+    <string name="filelibrary_context_resample">Офлайн ресемплинг</string>
     <string name="filelibrary_context_duplicate">Дублировать</string>
     <string name="filelibrary_context_delete">Удалить</string>
     <string name="filelibrary_context_new_preset">Новый</string>
