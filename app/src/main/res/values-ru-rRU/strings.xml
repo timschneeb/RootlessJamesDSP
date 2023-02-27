@@ -14,7 +14,6 @@
     <string name="action_retry">Повторить</string>
     <string name="action_fix">Исправить проблему</string>
     <string name="action_stop">Остановить</string>
-    <string name="notification_waiting">Ожидание действий пользователя…</string>
     <string name="notification_processing">Активные приложения: %1$s</string>
     <string name="notification_idle">Обработка аудио в режиме ожидания</string>
     <string name="notification_processing_title">Обработка аудио активна</string>
@@ -205,9 +204,7 @@
     <string name="audio_format_processing_header">Параметры обработки аудио</string>
     <string name="audio_format_processing_legacy">Legacy режим</string>
     <string name="audio_format_processing_legacy_on">Присоединить глобально к сессии 0 (устаревшее)</string>
-    <string name="audio_format_processing_legacy_off">Подключаться к каждому приложению индивидуально (некоторые приложения не поддерживаются)</string>
     <string name="audio_format_summary">Кодирование аудио, размер буфера</string>
-    <string name="audio_format_summary_root">Legacy режим</string>
     <string name="audio_format_encoding">Кодирование аудио</string>
     <string name="audio_format_buffer_size">Размер буфера</string>
     <string name="audio_format_buffer_size_warning_low_value">Внимание: низкие размеры буфера могут вызвать проблемы с аудио, такие как клиппинг!</string>
@@ -396,6 +393,7 @@
     <string name="load_fail_rootless_card">Эта версия JamesDSP предназначена для использования на устройствах с root-доступом. Для устройств без root-доступа также доступна альтернатива, но с некоторыми ограничениями. Нажмите здесь, чтобы получить дополнительную информацию.</string>
     <string name="load_fail_arch_card_title">Модуль уже установлен?</string>
     <string name="load_fail_arch_card">Если вы уже установили модуль Magisk, возможно, вы выбрали неправильные настройки во время установки. Попробуйте переустановить модуль и включить совместимость с устройствами Huawei (даже если ваш телефон не произведен компанией Huawei).</string>
+    <!-- Enhanced processing -->
     <!-- App list -->
     <string name="app_list_loading">Загрузка списка приложений…</string>
     <string name="app_list_search">Поиск</string>
