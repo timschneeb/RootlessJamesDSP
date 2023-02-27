@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
-    <string name="action_settings">Параметри</string>
+    <string name="action_settings">Налаштування</string>
     <string name="action_presets">Пресети</string>
     <string name="action_revert">Відновити типові налаштування</string>
     <string name="action_blocked_apps">Виключені додатки</string>
@@ -79,6 +79,7 @@
     <string name="liveprog_enable">Liveprog DSP</string>
     <string name="liveprog_file">Liveprog скрипт</string>
     <string name="liveprog_additional_params">Додаткові параметри скрипта</string>
+    <string name="liveprog_additional_params_not_supported">Обраний скрипт не має параметрів, які можна налаштувати</string>
     <string name="liveprog_not_found">Скрипт не знайдено</string>
     <string name="liveprog_no_script_selected">Скрипт не вибрано</string>
     <string name="liveprog_edit_header">Редагувати вибраний скрипт</string>
@@ -179,22 +180,48 @@
     <string name="limit_tested_devices_title">Протестовані пристрої</string>
     <string name="limit_tested_devices">Виробник вашого пристрою міг внести зміни до аудіопідсистеми Android, які можуть порушити роботу застосунку через використання не задокументованих API.\nДодаток тестувався на пристроях:\n• Samsung S20+ (Android 12)\n• Емулятор AOSP (Android 10-13)\n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
-    <string name="title_activity_settings">Параметри</string>
+    <string name="title_activity_settings">Налаштування</string>
     <string name="session_exclude_restricted">Виключити непідтримувані додатки</string>
     <string name="session_exclude_restricted_off">Додатки, що блокують захоплення звуку, залишаються приглушеними (типова поведінка Android)</string>
     <string name="session_exclude_restricted_on">Додатки, які блокують захоплення звуку, виключаються і залишаються без обробки (рекомендується)</string>
     <string name="session_detection_header">Виявлення аудіо сесій</string>
     <string name="session_continuous_polling">Безперервне опитування</string>
+    <string name="session_loss_ignore_off">Вимкнено, типові налаштування (рекомендується)</string>
+    <string name="session_loss_ignore_warning">Увімкнення цього параметру може призвести до дублювання звуку, коли інша програма для обробки звуку отримує контроль над аудіосесією. \nРекомендуємо залишити цю опцію вимкненою, якщо ви не маєте проблем з помилковою втратою сесій.</string>
+    <string name="audio_format_processing_header">Параметри обробки аудіо</string>
+    <string name="audio_format_processing_legacy">Режим сумісності</string>
+    <string name="audio_format_enhanced_processing">Покращена обробка</string>
+    <string name="audio_format_enhanced_processing_off">Покращена обробка вимкнена</string>
+    <string name="audio_format_enhanced_processing_info">Натисніть, щоб переглянути документацію</string>
     <string name="audio_format_encoding">Кодування аудіо</string>
+    <string name="audio_format_buffer_size">Розмір буфера</string>
     <string name="audio_format_buffer_size_warning_low_value">Увага: низькі розміри буфера можуть спричинити проблеми з аудіо, як-от кліппінг!</string>
+    <string name="autostart_prompt_at_boot_off">Не показувати сповіщення після завантаження</string>
     <string name="powersave_suspend_off">Продовжувати обробку навіть коли контент не відтворюється</string>
+    <string name="troubleshooting_summary">Додаткові параметри, документація, діагностика</string>
+    <string name="troubleshooting_docs">Документація</string>
+    <string name="troubleshooting_dump">Експортувати дамп аудіо сесії</string>
+    <string name="troubleshooting_dump_share_title">Поділитися дампом аудіо сесії</string>
+    <string name="misc_settings_summary">Звіти про помилки, інші дії</string>
+    <string name="about_settings">Про програму</string>
+    <string name="about_settings_summary">Автори, підтримка, оновлення</string>
+    <string name="privacy_share_crash_reports">Поділитися інформацією про збої</string>
+    <string name="privacy_share_crash_reports_off">Не надсилати звіти про збої розробнику</string>
+    <string name="credits_app">Додаток та rootless версія</string>
+    <string name="credits_project_page">Сторінка проекту на GitHub</string>
+    <string name="credits_project_play_page">RootlessJamesDSP в Google Play</string>
+    <string name="credits_project_translate">Підтримати переклади</string>
+    <string name="appearance_theme_mode_dark">Увімк.</string>
+    <string name="appearance_nav_hide">Приховувати панель навігації під час прокрутки</string>
     <!-- Theme names -->
     <string name="theme_default">Типові налаштування</string>
     <!-- File library preference -->
+    <string name="filelibrary_hint_tap_and_hold">Торкніться й утримуйте будь-який елемент для додаткових опцій</string>
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">Амплітудна характеристика</string>
     <string name="gep_add_node">Додати</string>
+    <string name="geq_done">Готово</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
@@ -206,10 +233,13 @@
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
     <!-- App list -->
+    <string name="app_list_icon_alt">Значок програми</string>
     <!-- Number box view -->
     <!-- Slider widget -->
     <string name="slider_dialog_title">Редагувати значення</string>
     <!-- Revert confirmation -->
     <!-- File intent handler -->
     <!-- Translation notice box -->
+    <string name="translation_notice_summary">Допоможіть нам перекласти цей додаток вашою мовою! Натисніть тут, щоб перейти на сайт проекту на Crowdin.</string>
+    <string name="translation_notice">Підтримати переклади</string>
 </resources>
