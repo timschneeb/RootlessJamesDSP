@@ -116,6 +116,19 @@
     <string name="onboarding_methods_root_root">\u25CFÖnerilir\n\u25CFHarici bilgisayar gerekli değil\n\u25CFTüm android sürümleri</string>
     <string name="onboarding_adb_caption">Bu uygulama cihazınızın ses politikasını çöpe boşaltmak için özel izinler gerektirir. Lütfen aşağıdaki talimatları takip edin.</string>
     <string name="onboarding_adb_shizuku_install_button">Shizuku Yükle</string>
+    <string name="onboarding_adb_shizuku_install_button_done">Zaten yüklenmiş</string>
+    <string name="onboarding_adb_shizuku_install_instruction">Google Play Store\'dan \'Shizuku\' yükle.</string>
+    <string name="onboarding_adb_shizuku_open_button">Shizuku\'yu başlat</string>
+    <string name="onboarding_adb_shizuku_open_button_done">Zaten aktifleştirilmiş</string>
+    <string name="onboarding_adb_shizuku_grant_instruction">Düğmeye dokunun ve bu uygulamaya Shizuku için erişim verin.</string>
+    <string name="onboarding_adb_shizuku_grant_button">Erişime izin ver</string>
+    <string name="onboarding_adb_shizuku_not_installed">Shizuku şu anda yüklü değil. Lütfen ilk önce Google Play Store\'dan yükleyin.</string>
+    <string name="onboarding_adb_shizuku_not_installed_title">Shizuku şu anda yüklü değil</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead">Lütfen izin istemeden önce Shizuku sunucusunu başlatın. Talimat\'da 2. aşamaya geri dönün.</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead_title">Shizuku sunucusu çalışır durumda değil</string>
+    <string name="onboarding_adb_shizuku_grant_fail_version">Bu uygulama Shizuku sürüm 11 veya sonrasını gerektirir. Lütfen Shizuku\'yu en son sürüme güncelleyin.</string>
+    <string name="onboarding_adb_shizuku_grant_fail_version_title">Desteklenmeyen Shizuku sürümü</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied_title">İzin reddedildi</string>
     <!-- Settings -->
     <string name="title_activity_settings">Ayarlar</string>
     <!-- Theme names -->
