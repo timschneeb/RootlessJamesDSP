@@ -1,7 +1,11 @@
 package me.timschneeberger.rootlessjamesdsp.view
 
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.LinearGradient
+import android.graphics.Paint
+import android.graphics.Path
+import android.graphics.Shader
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.AttributeSet
@@ -9,11 +13,13 @@ import android.util.TypedValue
 import android.view.View
 import androidx.core.content.withStyledAttributes
 import androidx.core.os.bundleOf
-import com.google.android.material.color.MaterialColors
 import me.timschneeberger.rootlessjamesdsp.interop.JdspImpResToolbox
 import me.timschneeberger.rootlessjamesdsp.utils.prettyNumberFormat
-import java.util.*
-import kotlin.math.*
+import java.util.Locale
+import kotlin.math.abs
+import kotlin.math.exp
+import kotlin.math.ln
+import kotlin.math.pow
 
 class EqualizerSurface(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
 

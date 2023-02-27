@@ -3,7 +3,6 @@ package me.timschneeberger.rootlessjamesdsp.model.room
 import androidx.annotation.WorkerThread
 import kotlinx.coroutines.flow.Flow
 
-@Suppress("RedundantSuspendModifier")
 // Declares the DAO as a private property in the constructor. Pass in the DAO
 // instead of the whole database, because you only need access to the DAO
 class AppBlocklistRepository(private val appBlocklistDao: AppBlocklistDao) {
