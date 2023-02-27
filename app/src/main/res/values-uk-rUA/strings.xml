@@ -130,6 +130,21 @@
     <string name="onboarding_adb_shizuku_title">Налаштування Shizuku</string>
     <string name="onboarding_adb_adb_title">Налаштування ADB</string>
     <string name="onboarding_adb_caption">Ця програма вимагає спеціальних дозволів для вивантаження аудіо-політики вашого пристрою. Будь ласка, дотримуйтесь інструкцій нижче.</string>
+    <string name="onboarding_adb_shizuku_install_button">Встановити Shizuku</string>
+    <string name="onboarding_adb_shizuku_install_button_done">Вже інстальовано</string>
+    <string name="onboarding_adb_shizuku_install_instruction">Встановити Shizuku з Google Play.</string>
+    <string name="onboarding_adb_shizuku_open_instruction">Запустіть Shizuku і знайдіть параметр \"<b>Запуск через налагодження по Wi-Fi</b>\". Натисніть кнопку \"Підключення\" і дотримуйтесь інструкцій у застосунку. Після сполучення Shizuku з вашим пристроєм, запустіть сервер Shizuku, натиснувши кнопку \"Запустити\". Якщо у вас виникли проблеми під час налаштування Shizuku, зверніться до інструкції, посилання на яку наведено в їхньому застосунку.</string>
+    <string name="onboarding_adb_shizuku_open_button">Запустити Shizuku</string>
+    <string name="onboarding_adb_shizuku_open_button_done">Вже активовано</string>
+    <string name="onboarding_adb_shizuku_grant_instruction">Надайте доступ до Shizuku, натиснувши на кнопку.</string>
+    <string name="onboarding_adb_shizuku_grant_button">Надати доступ</string>
+    <string name="onboarding_adb_shizuku_not_installed">Shizuku ще не встановлено. Будь ласка, спочатку завантажте та встановіть його з Google Play.</string>
+    <string name="onboarding_adb_shizuku_not_installed_title">Shizuku ще не встановлено</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead">Перед запитом дозволу необхідно запустити сервер Shizuku. Будь ласка, поверніться до кроку 2 цієї інструкції.</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead_title">Сервер Shizuku не запущено</string>
+    <string name="onboarding_adb_shizuku_grant_fail_version">Для роботи цієї програми потрібен Shizuku версії 11 або вище. Будь ласка, оновіть Shizuku до останньої версії.</string>
+    <string name="onboarding_adb_shizuku_grant_fail_version_title">Непідтримувана версія Shizuku</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied_title">Дозвіл відхилено</string>
     <!-- Settings -->
     <string name="title_activity_settings">Параметри</string>
     <!-- Theme names -->
