@@ -186,25 +186,55 @@
     <string name="session_exclude_restricted_on">Додатки, які блокують захоплення звуку, виключаються і залишаються без обробки (рекомендується)</string>
     <string name="session_detection_header">Виявлення аудіо сесій</string>
     <string name="session_continuous_polling">Безперервне опитування</string>
+    <string name="session_detection_method_audioservice">AudioService dump (рекомендується)</string>
+    <string name="session_app_problem_ignore">Ігнорувати проблеми сумісності додатка</string>
+    <string name="session_loss_ignore">Ігнорувати втрату контролю сесії</string>
     <string name="session_loss_ignore_off">Вимкнено, типові налаштування (рекомендується)</string>
+    <string name="session_loss_ignore_on">Не робити жодних дій (може спричинити дублювання звуку)</string>
     <string name="session_loss_ignore_warning">Увімкнення цього параметру може призвести до дублювання звуку, коли інша програма для обробки звуку отримує контроль над аудіосесією. \nРекомендуємо залишити цю опцію вимкненою, якщо ви не маєте проблем з помилковою втратою сесій.</string>
+    <string name="audio_format_header">Обробка аудіо</string>
+    <string name="audio_format_section_header">Бажаний аудіоформат</string>
     <string name="audio_format_processing_header">Параметри обробки аудіо</string>
     <string name="audio_format_processing_legacy">Режим сумісності</string>
+    <string name="audio_format_processing_legacy_on">Приєднати глобально до сесії 0 (застаріло)</string>
     <string name="audio_format_enhanced_processing">Покращена обробка</string>
     <string name="audio_format_enhanced_processing_off">Покращена обробка вимкнена</string>
+    <string name="audio_format_enhanced_processing_info_title">Що таке покращена обробка?</string>
     <string name="audio_format_enhanced_processing_info">Натисніть, щоб переглянути документацію</string>
+    <string name="audio_format_summary_root">Режим сумісності, покращена обробка</string>
     <string name="audio_format_encoding">Кодування аудіо</string>
     <string name="audio_format_buffer_size">Розмір буфера</string>
     <string name="audio_format_buffer_size_warning_low_value">Увага: низькі розміри буфера можуть спричинити проблеми з аудіо, як-от кліппінг!</string>
+    <string name="autostart_prompt_at_boot">Запитувати дозвіл на захоплення після завантаження</string>
     <string name="autostart_prompt_at_boot_off">Не показувати сповіщення після завантаження</string>
+    <string name="autostart_prompt_at_boot_on">Показувати сповіщення після завантаження</string>
+    <string name="powersave">Економія енергії</string>
+    <string name="powersave_suspend">Призупиняти аудіопотік під час простою</string>
     <string name="powersave_suspend_off">Продовжувати обробку навіть коли контент не відтворюється</string>
+    <string name="powersave_suspend_on">Призупинити обробку аудіопотоку для економії енергії</string>
+    <string name="troubleshooting">Усунення неполадок</string>
     <string name="troubleshooting_summary">Додаткові параметри, документація, діагностика</string>
     <string name="troubleshooting_docs">Документація</string>
+    <string name="troubleshooting_actions">Інші дії</string>
     <string name="troubleshooting_dump">Експортувати дамп аудіо сесії</string>
+    <string name="troubleshooting_dump_summary">Збір та збереження даних для усунення неполадок</string>
     <string name="troubleshooting_dump_share_title">Поділитися дампом аудіо сесії</string>
+    <string name="troubleshooting_view_limitations">Технічні обмеження</string>
+    <string name="troubleshooting_view_limitations_summary">Показати подробиці про обмеження цього додатка</string>
+    <string name="troubleshooting_notification_access">Дозволити доступ до сповіщень</string>
+    <string name="troubleshooting_notification_access_summary">Забезпечує надійнішу детекцію аудіо сесії</string>
+    <string name="troubleshooting_repair_assets">Відновити стандартні IR, DDC та скрипти</string>
+    <string name="troubleshooting_repair_assets_summary">Якщо ви втратили або видалили попередньо встановлені ресурси, ви можете їх відновити</string>
+    <string name="troubleshooting_repair_assets_success">Попередньо встановлені ресурси було відновлено</string>
+    <string name="misc_settings">Інше</string>
     <string name="misc_settings_summary">Звіти про помилки, інші дії</string>
+    <string name="autostart">Автозапуск</string>
+    <string name="assets">Ресурси</string>
+    <string name="network_services">Мережеві сервіси</string>
+    <string name="network_autoeq_api_url">URL-адреса API-бекенду AutoEQ</string>
     <string name="about_settings">Про програму</string>
     <string name="about_settings_summary">Автори, підтримка, оновлення</string>
+    <string name="privacy">Конфіденційність</string>
     <string name="privacy_share_crash_reports">Поділитися інформацією про збої</string>
     <string name="privacy_share_crash_reports_off">Не надсилати звіти про збої розробнику</string>
     <string name="credits_app">Додаток та rootless версія</string>
@@ -232,6 +262,8 @@
     <!-- Hints for compatibility issues for individual apps -->
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
+    <string name="enhanced_processing_feature_unavailable_content">Функція доступна лише при увімкненій опції \"Покращена обробка\" в налаштуваннях. Будь ласка, увімкніть цю опцію в \"Налаштування &gt; Обробка аудіо &gt; Покращена обробка\", щоб отримати доступ до цього меню. \n\nПримітка: Опція \"Покращена обробка\" недоступна, якщо ввімкнено режим сумісності.</string>
+    <string name="enhanced_processing_missing_perm">Покращену обробку було вимкнено через відсутність необхідних дозволів. Будь ласка, встановіть їх заново в налаштуваннях.</string>
     <!-- App list -->
     <string name="app_list_icon_alt">Значок програми</string>
     <!-- Number box view -->
