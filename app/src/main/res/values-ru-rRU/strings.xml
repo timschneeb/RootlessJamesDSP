@@ -6,10 +6,13 @@
     <string name="action_revert">Сброс к значениям по умолчанию</string>
     <string name="action_blocked_apps">Исключенные приложения</string>
     <!-- Notification channels -->
+    <string name="notification_channel_service">Уведомление о работе сервиса</string>
+    <string name="notification_channel_session_loss_alert">Оповещение о потере сессии</string>
     <string name="notification_channel_permission_prompt">Запрос на получение разрешений</string>
     <string name="notification_channel_app_compat_alert">Оповещение о несовместимом приложении</string>
     <!-- Service notifications -->
     <string name="action_retry">Повторить</string>
+    <string name="action_fix">Исправить проблему</string>
     <string name="action_stop">Остановить</string>
     <string name="notification_waiting">Ожидание действий пользователя…</string>
     <string name="notification_processing">Активные приложения: %1$s</string>
@@ -35,6 +38,7 @@
     <string name="update">Обновить</string>
     <string name="details">Подробнее</string>
     <string name="warning">Внимание</string>
+    <string name="success">Успешно</string>
     <string name="open">Открыть</string>
     <string name="close">Закрыть</string>
     <string name="add">Добавить</string>
@@ -43,6 +47,7 @@
     <string name="value_not_set">Не задано</string>
     <string name="undo">Отменить</string>
     <string name="redo">Повторить</string>
+    <string name="no_activity_found">Не найдено ни одного активити для обработки данного действия</string>
     <!-- Main screen -->
     <string name="power_button_alt">Переключить обработку аудио</string>
     <string name="compressor_enable">Авто компрессор динамического диапазона</string>
@@ -83,17 +88,21 @@
     <string name="crossfeed_enable">Кроссфид</string>
     <string name="crossfeed_preset">Пресет</string>
     <!-- Onboarding -->
+    <string name="title_activity_onboarding">Онбординг</string>
     <string name="onboarding_back">Вернуться</string>
     <string name="onboarding_next">Далее</string>
+    <string name="onboarding_finish">Завершить</string>
     <string name="onboarding_greeting">Добро пожаловать в RootlessJamesDSP!</string>
     <string name="onboarding_caption">Это руководство поможет вам выполнить настройку приложения.</string>
     <string name="onboarding_warning">В данный момент приложение не завершено и нестабильно. Обратите внимание, что на некоторых устройствах оно может не работать как ожидается, так как использует Android API, не предназначенные для использования третьими лицами.</string>
+    <string name="onboarding_fix_permissions_title">Требуется действие пользователя</string>
     <string name="onboarding_fix_permissions">Одно или несколько разрешений были отозваны вами или системой. \nЧтобы убедиться, что приложение работает корректно, необходимо предоставить эти разрешения снова. \n\nПожалуйста, перезапустите мастер настройки для повторного предоставления этих разрешений.</string>
     <string name="onboarding_limitations_title">Ограничения</string>
     <string name="onboarding_limitations_unstable">Важно! Пожалуйста, внимательно прочтите заметки перед продолжением.</string>
     <string name="onboarding_methods_title">Выберите метод настройки</string>
     <string name="onboarding_methods_root_title">Root-доступ</string>
     <string name="onboarding_methods_shizuku_title">Shizuku</string>
+    <string name="onboarding_methods_unsupported_append">несовместимо</string>
     <string name="onboarding_methods_adb_title">ADB</string>
     <!-- Rootless flavor -->
     <string name="onboarding_methods_rootless_shizuku">\u25CF Рекомендуется\n\u25CF Не требуется компьютер\n\u25CF Только для Android 11+</string>
@@ -119,7 +128,7 @@
     <string name="onboarding_adb_shizuku_grant_button">Предоставить доступ</string>
     <string name="onboarding_adb_shizuku_not_installed">Shizuku ещё не установлен. Пожалуйста, сначала скачайте и установите его из Google Play.</string>
     <string name="onboarding_adb_shizuku_not_installed_title">Shizuku еще не установлен</string>
-    <string name="onboarding_adb_shizuku_grant_fail_server_dead">Перед запросом разрешения необходимо запустить сервер Shizuku. Пожалуйста, вернитесь к инструкции на шаг 2.</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead">Перед запросом разрешения необходимо запустить сервер Shizuku. Пожалуйста, вернитесь к шагу 2 этой инструкции.</string>
     <string name="onboarding_adb_shizuku_grant_fail_server_dead_title">Сервер Shizuku не запущен</string>
     <string name="onboarding_adb_shizuku_grant_fail_version">Это приложение требует Shizuku версии 11 или выше. Пожалуйста, обновите Shizuku до последней версии.</string>
     <string name="onboarding_adb_shizuku_grant_fail_version_title">Неподдерживаемая версия Shizuku</string>
@@ -182,9 +191,15 @@
     <string name="audio_format_processing_header">Параметры обработки аудио</string>
     <string name="audio_format_processing_legacy">Legacy режим</string>
     <string name="audio_format_processing_legacy_on">Присоединить глобально к сессии 0 (устаревшее)</string>
+    <string name="audio_format_processing_legacy_off">Подключаться к каждому приложению индивидуально (некоторые приложения не поддерживаются)</string>
+    <string name="audio_format_summary">Кодирование аудио, размер буфера</string>
     <string name="audio_format_summary_root">Legacy режим</string>
+    <string name="audio_format_encoding">Кодирование аудио</string>
+    <string name="audio_format_encoding_int16">16-bit integer PCM</string>
+    <string name="audio_format_encoding_float">32-bit float PCM</string>
     <string name="audio_format_buffer_size">Размер буфера</string>
     <string name="audio_format_buffer_size_warning_low_value">Внимание: низкие размеры буфера могут вызвать проблемы с аудио, такие как клиппинг!</string>
+    <string name="autostart_prompt_at_boot">Запрашивать разрешение на захват после загрузки</string>
     <string name="autostart_prompt_at_boot_off">Не показывать уведомление после загрузки</string>
     <string name="autostart_prompt_at_boot_on">Показывать уведомление после загрузки</string>
     <string name="powersave">Экономия энергии</string>
@@ -257,10 +272,14 @@
     <string name="filelibrary_context_new_preset_long">Новый пресет</string>
     <string name="filelibrary_unsupported_format_title">Неподдерживаемый тип файла</string>
     <string name="filelibrary_corrupted_title">Файл не поддерживается или повреждён</string>
+    <string name="filelibrary_corrupted">Выбранный файл не содержит пригодных для использования данных или поврежден.</string>
+    <string name="filelibrary_access_fail">Не удалось получить доступ к каталогу</string>
     <string name="filelibrary_no_file_selected">Файл не выбран</string>
+    <string name="filelibrary_new_file_name">Новое имя файла</string>
     <string name="filelibrary_file_exists">Файл уже существует</string>
     <string name="filelibrary_preset_created">Пресет \'%1$s\' создан</string>
     <string name="filelibrary_preset_save_failed">Не удалось сохранить пресет</string>
+    <string name="filelibrary_deleted">%1$s удален</string>
     <string name="filelibrary_no_presets">Нет сохраненных пресетов. Нажмите \'Добавить\', чтобы создать новый.</string>
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">Выбранный файл VDC поврежден. Пожалуйста, выберите другой файл.</string>
@@ -295,12 +314,15 @@
     <string name="title_activity_liveprog_params">Настраиваемые параметры скрипта</string>
     <string name="action_restore_defaults">Восстановить настройки по умолчанию</string>
     <!-- Liveprog script editor -->
+    <string name="title_activity_liveprog_editor">Редактор скриптов</string>
     <string name="editor_find_and_replace">Найти/Заменить…</string>
     <string name="editor_docs">Справка</string>
     <string name="editor_open_fail">Файл скрипта не существует или не может быть открыт.</string>
     <string name="editor_run">Сохранить и запустить</string>
     <string name="editor_save">Сохранить</string>
+    <string name="editor_liveprog_enabled">Liveprog был автоматически включен.</string>
     <string name="editor_replace_all">Заменить всё</string>
+    <string name="editor_replacement">Замена</string>
     <string name="editor_find_next_match">Найти следующее совпадение</string>
     <string name="editor_find_previous_match">Найти предыдущее совпадение</string>
     <string name="editor_search_keyword">Поиск</string>
@@ -309,9 +331,13 @@
     <string name="editor_save_prompt_title">Сохранить изменения?</string>
     <string name="editor_save_prompt">Текущий скрипт имеет несохраненные изменения. Сохранить изменения или отменить их?</string>
     <string name="editor_script_launched">Скрипт запущен</string>
+    <string name="editor_cannot_undo">Нет действий для отмены.</string>
+    <string name="editor_cannot_redo">Нет действий для повтора.</string>
     <string name="editor_text_size">Размер текста</string>
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Исключенные приложения</string>
+    <string name="blocklist_add_exclusion_alt">Добавить приложение в исключения</string>
+    <string name="blocklist_delete_title">Удалить выбранное приложение?</string>
     <string name="blocklist_delete">Удалить это приложение из списка исключений?</string>
     <string name="blocklist_no_exclusions">Исключенные приложения отсутствуют</string>
     <string name="blocklist_unsupported_apps">Неподдерживаемые приложения</string>
@@ -336,6 +362,7 @@
     <string name="load_fail_arch_card_title">Модуль уже установлен?</string>
     <string name="load_fail_arch_card">Если вы уже установили модуль Magisk, возможно, вы выбрали неправильные настройки во время установки. Попробуйте переустановить модуль и включить совместимость с устройствами Huawei (даже если ваш телефон не произведен компанией Huawei).</string>
     <!-- App list -->
+    <string name="app_list_loading">Загрузка приложений…</string>
     <string name="app_list_search">Поиск</string>
     <string name="app_list_icon_alt">Значок приложения</string>
     <!-- Number box view -->
@@ -347,6 +374,11 @@
     <string name="revert_confirmation_title">Вы уверены?</string>
     <string name="revert_confirmation">Сбросить текущий пресет JamesDSP к значениям по умолчанию?</string>
     <!-- File intent handler -->
+    <string name="intent_import_preset">Импорт пресета</string>
+    <string name="intent_import_vdc">Импорт файла VDC</string>
+    <string name="intent_import_liveprog">Импорт скрипта Liveprog</string>
+    <string name="intent_import_mode_add">Только импортировать</string>
+    <string name="intent_import_mode_select">Импорт и активация</string>
     <string name="intent_import_fail">Не удалось импортировать файл \'%1$s\'</string>
     <string name="intent_import_success">Файл \'%1$s\' импортирован</string>
     <string name="intent_import_select_success">Файл \'%1$s\' импортирован и активирован</string>
