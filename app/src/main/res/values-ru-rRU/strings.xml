@@ -66,18 +66,17 @@
     <string name="bass_enable">Динамическое усиление баса</string>
     <string name="bass_max_gain">Уровень усиления</string>
     <string name="reverb_enable">Эффект виртуальной комнаты</string>
-    <string name="reverb_room_type">Тип комнаты</string>
+    <string name="reverb_room_type">Тип помещения</string>
     <string name="reverb_preset_default">По умолчанию</string>
     <string name="convolver_enable">Конвольвер</string>
     <string name="convolver_impulse">Импульсный отклик</string>
-    <string name="convolver_advanced_editing">Расширенное редактирование формы сигнала</string>
+    <string name="convolver_advanced_editing">Редактирование формы сигнала</string>
     <string name="convolver_convolution_mode">Оптимизация импульсного отклика</string>
     <string name="convolver_convolution_mode_original">Оригинал</string>
     <string name="convolver_convolution_mode_shrink">Сжатие</string>
     <string name="convolver_convolution_mode_minimum_phase_shrink">Минимальное фазовое преобразование и сжатие</string>
     <string name="ddc_enable">ViPER-DDC</string>
     <string name="ddc_file">Профиль DDC</string>
-    <string name="liveprog_enable">Liveprog DSP</string>
     <string name="liveprog_file">Liveprog скрипт</string>
     <string name="liveprog_additional_params">Дополнительные параметры скрипта</string>
     <string name="liveprog_additional_params_not_supported">Выбранный скрипт не имеет настраиваемых параметров</string>
@@ -88,14 +87,18 @@
     <string name="liveprog_edit_error">Открыть активный скрипт во встроенном liveprog редакторе</string>
     <string name="tube_enable">Аналоговое моделирование</string>
     <string name="tube_drive">Предусилитель</string>
-    <string name="output_control_header">Управление выводом</string>
+    <string name="output_control_header">Контроль вывода звука</string>
     <string name="output_limiter_threshold">Порог лимитера</string>
     <string name="output_limiter_release">Время релиза</string>
     <string name="output_control_postgain">Пост-усиление</string>
     <string name="stereowide_enable">Ширина звуковой сцены</string>
     <string name="stereowide_level">Пространственная ширина звука</string>
     <string name="stereowide_level_none">Отсутствует</string>
-    <string name="crossfeed_enable">Кроссфид</string>
+    <string name="stereowide_level_very_wide">Очень большая</string>
+    <string name="stereowide_level_wide">Большая</string>
+    <string name="stereowide_level_very_narrow">Очень маленькая</string>
+    <string name="stereowide_level_narrow">Маленькая</string>
+    <string name="crossfeed_enable">Кроссфидер</string>
     <string name="crossfeed_preset">Пресет</string>
     <!-- Onboarding -->
     <string name="title_activity_onboarding">Онбординг</string>
@@ -177,7 +180,7 @@
     <string name="limit_latency_title">Увеличение задержки</string>
     <string name="limit_latency">Это приложение может добавлять некоторую задержку в аудио поток. Вы можете добавить приложения для просмотра фильмов/видео в список исключений, чтобы не обрабатывать их и избежать сбоев в синхронизации звука и видео.</string>
     <string name="limit_tested_devices_title">Проверенные устройства</string>
-    <string name="limit_tested_devices">Производитель вашего устройства мог внести изменения в аудио-подсистему Android, которые могут нарушить работу приложения из-за использования не задокументированных API.\nПриложение тестировалось на устройствах: \n• Samsung S20+ (Android 12) \n• Эмулятор AOSP (Android 10–13) \n• Google Pixel 6 Pro (Android 13)</string>
+    <string name="limit_tested_devices">Производитель вашего устройства мог внести изменения в аудио-подсистему Android, которые могут нарушить работу приложения из-за использования не задокументированных API.\nПриложение тестировалось на устройствах: \n\n• Samsung S20+ (Android 12) \n• Эмулятор AOSP (Android 10–13) \n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
     <string name="title_activity_settings">Настройки</string>
     <string name="session_exclude_restricted">Исключить неподдерживаемые приложения</string>
@@ -313,11 +316,13 @@
     <string name="gep_add_node">Добавить</string>
     <string name="geq_preview">Предпросмотр</string>
     <string name="geq_preview_collapsed">Предпросмотр (нажмите, чтобы развернуть)</string>
+    <string name="geq_edit_hint">Узлы GraphicEQ</string>
     <string name="geq_reset">Сбросить</string>
     <string name="geq_reset_confirm_title">Вы уверены?</string>
     <string name="geq_reset_confirm">Сбросить настройки GraphicEQ?</string>
     <string name="geq_node_editor">Редактор узлов</string>
     <string name="geq_node_list">Список узлов</string>
+    <string name="geq_no_nodes_defined">Не задано ни одного узла</string>
     <string name="geq_delete_node">Удалить узел</string>
     <string name="geq_go_back_to_node_list">Вернуться к списку узлов</string>
     <string name="geq_next_node">Следующий узел</string>
@@ -328,8 +333,8 @@
     <string name="geq_cancel">Отменить</string>
     <string name="geq_discard_changes_title">Отменить изменения и выйти?</string>
     <string name="geq_discard_changes">Значения недействительны или пусты. Внесенные изменения не могут быть сохранены. \nОтменить изменения и выйти?</string>
-    <string name="geq_frequeny_range">Значение между 1 Hz и 24000 Hz</string>
-    <string name="geq_gain_range">Значение между -32 dB и 32 dB</string>
+    <string name="geq_frequeny_range">Значение между 1Hz и 24000Hz</string>
+    <string name="geq_gain_range">Значение между -32dB и 32dB</string>
     <string name="geq_gain">Усиление</string>
     <string name="geq_frequency">Частота</string>
     <!-- AutoEQ GraphicEQ selector -->
