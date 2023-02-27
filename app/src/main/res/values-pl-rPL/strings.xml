@@ -12,7 +12,6 @@
     <!-- Service notifications -->
     <string name="action_retry">Spróbuj ponownie</string>
     <string name="action_fix">Rozwiąż problem</string>
-    <string name="notification_waiting">Oczekiwanie na czynność użytkownika…</string>
     <string name="notification_processing">Aktywne aplikacje: %1$s</string>
     <string name="notification_processing_legacy">Dotknij, aby otworzyć menedżera JamesDSP</string>
     <!-- Permission request notifications -->
@@ -92,6 +91,7 @@
     <!-- Root: Library load failure -->
     <string name="load_fail_header">Moduł Magisk nie jest zainstalowany</string>
     <string name="load_fail_card_title">Nie udało się załadować libjamesdsp.so</string>
+    <!-- Enhanced processing -->
     <!-- App list -->
     <!-- Number box view -->
     <!-- Slider widget -->
