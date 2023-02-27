@@ -58,6 +58,7 @@
     <string name="eq_interpolator">插值器</string>
     <string name="eq_filter_type_minimum">最小阶段</string>
     <string name="eq_filter_type_linear">线性阶段</string>
+    <string name="eq_interpolator_chip">像素三次曲线内插化 Polynomial</string>
     <string name="eq_interpolator_mha">修改的 Hiroshi Akima 样条</string>
     <string name="eq_preset_acoustic">原声</string>
     <string name="eq_preset_bass">低音</string>
@@ -113,7 +114,6 @@
     <string name="liveprog_no_script_selected">未选择脚本</string>
     <string name="liveprog_edit_header">编辑选中的脚本</string>
     <string name="liveprog_edit">在内置编辑器中打开活动脚本</string>
-    <string name="liveprog_edit_error">在内置 liveprog 编辑器中打开活动脚本</string>
     <string name="tube_enable">模拟模型</string>
     <string name="tube_drive">前置放大器</string>
     <string name="output_control_header">输出控制器</string>
@@ -136,6 +136,7 @@
     <string name="crossfeed_preset_surround2">环绕声 2</string>
     <string name="crossfeed_preset_realistic_surround">Joe0Blogs 现实环绕模式</string>
     <!-- Onboarding -->
+    <string name="title_activity_onboarding">启动向导</string>
     <string name="onboarding_back">后退</string>
     <string name="onboarding_next">下一个</string>
     <string name="onboarding_finish">完成</string>
@@ -309,7 +310,7 @@
     <string name="appearance_theme_mode">夜间模式</string>
     <string name="appearance_theme_mode_default">跟随系统主题</string>
     <string name="appearance_theme_mode_light">关闭</string>
-    <string name="appearance_theme_mode_dark">开</string>
+    <string name="appearance_theme_mode_dark">打开</string>
     <string name="appearance_pure_black_mode">纯黑夜间模式</string>
     <string name="appearance_app_theme">应用主题</string>
     <string name="appearance_navigation_title">导航栏</string>
@@ -359,13 +360,59 @@
     <string name="message_vdc_corrupt">选择的 VDC 文件已损坏，请重新选择其它文件。</string>
     <string name="message_irs_corrupt">选择的脉冲响应已损坏，请重新选择其它文件。</string>
     <string name="message_convolver_advimp_invalid">脉冲反馈：高级波形编辑包含无效值。</string>
-    <string name="message_liveprog_compile_fail">Liveprog 执行失败。选定的脚本已损坏。请使用脚本编辑器进行调试。</string>
+    <string name="message_liveprog_compile_fail">Liveprog 执行失败，选定的脚本已损坏，请使用脚本编辑器进行调试。</string>
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">强度响应</string>
+    <string name="geq_edit_as_string">编辑为字符串</string>
+    <string name="geq_autoeq">AutoEQ 简介</string>
     <string name="gep_add_node">添加</string>
+    <string name="geq_preview">预览</string>
+    <string name="geq_preview_collapsed">预览 (点击以展开)</string>
+    <string name="geq_edit_hint">GraphicEQ 节点</string>
+    <string name="geq_reset">重置</string>
+    <string name="geq_reset_confirm_title">您确定吗？</string>
+    <string name="geq_reset_confirm">确定要重置你的 GraphicEQ 设置吗？</string>
+    <string name="geq_node_editor">节点编辑器</string>
+    <string name="geq_node_list">节点列表</string>
+    <string name="geq_no_nodes_defined">没有节点被定义</string>
+    <string name="geq_delete_node">删除节点</string>
+    <string name="geq_go_back_to_node_list">返回节点列表</string>
+    <string name="geq_next_node">下一个节点</string>
+    <string name="geq_previous_node">上一个节点</string>
+    <string name="geq_done_spaced">&#160;&#160;完成&#160;</string>
+    <string name="geq_done">完成</string>
+    <string name="geq_cancel_spaced">&#160;&#160;舍弃&#160;</string>
+    <string name="geq_cancel">舍弃</string>
+    <string name="geq_discard_changes_title">舍弃更改并退出吗？</string>
+    <string name="geq_discard_changes">值无效或为空。您的更改无法保存。\n您想要舍弃您的更改并退出吗？</string>
+    <string name="geq_frequeny_range">值介于 1 Hz 与 24000 Hz 之间</string>
+    <string name="geq_gain_range">值介于 -32 dB 与 32 dB 之间</string>
+    <string name="geq_gain">增益</string>
+    <string name="geq_frequency">频率</string>
     <!-- AutoEQ GraphicEQ selector -->
+    <string name="geq_api_network_error">无法连接到服务器 %1$s</string>
+    <string name="geq_api_network_error_details_code">服务器响应错误代码：%1$d</string>
+    <string name="autoeq_search">AutoEQ 搜索</string>
+    <string name="autoeq_enter_model">输入您的耳机型号…</string>
+    <string name="autoeq_partial_results_warning">显示前 %1$d 个结果，请微调您的搜索以获得更多相关的结果。</string>
+    <string name="autoeq_no_results">未找到结果</string>
     <!-- Customizable liveprog script parameters -->
+    <string name="title_activity_liveprog_params">可自定义脚本参数</string>
+    <string name="action_restore_defaults">重置为默认</string>
     <!-- Liveprog script editor -->
+    <string name="title_activity_liveprog_editor">脚本编辑器</string>
+    <string name="editor_find_and_replace">查找/替换…</string>
+    <string name="editor_docs">帮助</string>
+    <string name="editor_open_fail">脚本文件不存在或无法打开。</string>
+    <string name="editor_run">保存并运行</string>
+    <string name="editor_save">保存</string>
+    <string name="editor_liveprog_enabled">Liveprog 已自动开启。</string>
+    <string name="editor_replace_all">全部替换</string>
+    <string name="editor_replacement">替换项</string>
+    <string name="editor_find_next_match">匹配下一个</string>
+    <string name="editor_find_previous_match">匹配上一个</string>
+    <string name="editor_search_keyword">查找</string>
+    <string name="editor_source_position">%1$d:%2$d</string>
     <string name="editor_engine_down_title">JamesDSP 未激活</string>
     <string name="editor_engine_down">无法运行脚本，因为 JamesDSP 已禁用。请打开 JamesDSP 再执行脚本。</string>
     <string name="editor_save_prompt_title">是否保存更改？</string>
