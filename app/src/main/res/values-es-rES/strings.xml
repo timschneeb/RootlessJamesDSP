@@ -137,11 +137,24 @@
     <string name="crossfeed_preset_surround2">Sonido envolvente 2</string>
     <string name="crossfeed_preset_realistic_surround">Joe0Bloggs Sonido envolvente realista</string>
     <!-- Onboarding -->
+    <string name="title_activity_onboarding">Primeros pasos</string>
+    <string name="onboarding_back">Atrás</string>
+    <string name="onboarding_next">Siguiente</string>
+    <string name="onboarding_finish">Finalizar</string>
+    <string name="onboarding_greeting">¡Bienvenido a RootlessJamesDSP!</string>
+    <string name="onboarding_caption">Este asistente te ayudará a configurar esta aplicación.</string>
+    <string name="onboarding_warning">Actualmente, esta aplicación no está acabada y es inestable. Tenga en cuenta que puede no funcionar en algunos dispositivos como se esperaba, ya que utiliza las API de Android no diseñadas para su uso por terceros.</string>
+    <string name="onboarding_fix_permissions_title">Acción de usuario requerida</string>
+    <string name="onboarding_fix_permissions">Uno o más permisos fueron revocados por usted o el sistema.\nPara asegurar que esta aplicación se comporta correctamente, necesitas conceder estos permisos de nuevo.\n\nPor favor, vuelva a hacer el asistente de configuración para volver a conceder estos permisos.</string>
+    <string name="onboarding_limitations_title">Limitaciones</string>
+    <string name="onboarding_limitations_unstable">¡Importante! Por favor, lea las notas cuidadosamente antes de continuar.</string>
     <string name="onboarding_methods_title">Seleccionar método de configuración</string>
     <string name="onboarding_methods_root_title">Root</string>
+    <string name="onboarding_methods_shizuku_title">Shizuku</string>
     <string name="onboarding_methods_unsupported_append">incompatible</string>
     <string name="onboarding_methods_adb_title">ADB</string>
     <!-- Rootless flavor -->
+    <string name="onboarding_methods_rootless_shizuku">\u25CF Recomendado\n\u25CF No requiere una computadora\n\u25CF Android 11+ solamente</string>
     <string name="onboarding_methods_rootless_adb">\u25CF Para usuarios avanzados\n\u25CF Se requiere una computadora y un cable USB\n\u25CF Compatible con Android 10+</string>
     <!-- Root flavor -->
     <string name="onboarding_methods_root_root">\u25CF Recomendado\n\u25CF No requiere una computadora\n\u25CF Para todas las versiones de Android</string>
