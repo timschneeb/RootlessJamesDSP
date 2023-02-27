@@ -7,7 +7,7 @@ import android.content.Intent
 import android.media.audiofx.AudioEffect
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
-import me.timschneeberger.rootlessjamesdsp.session.rootless.MutedSessionManager
+import me.timschneeberger.rootlessjamesdsp.session.rootless.RootlessSessionDatabase
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
 import timber.log.Timber
@@ -20,7 +20,7 @@ class SessionReceiver : BroadcastReceiver() {
             return
         }
 
-        if(intent.getIntExtra(MutedSessionManager.EXTRA_IGNORE, 0) == 1) {
+        if(intent.getIntExtra(RootlessSessionDatabase.EXTRA_IGNORE, 0) == 1) {
             Timber.d("Control close intent ignored")
             return
         }

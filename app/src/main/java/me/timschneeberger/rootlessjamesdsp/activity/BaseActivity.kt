@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import me.timschneeberger.rootlessjamesdsp.MainApplication
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.delegates.ThemingDelegate
 import me.timschneeberger.rootlessjamesdsp.delegates.ThemingDelegateImpl
@@ -18,6 +19,9 @@ open class BaseActivity :
     protected val appPref: SharedPreferences by lazy {
         getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
     }
+
+    protected val app
+        get() = application as MainApplication
 
     override fun onCreate(savedInstanceState: Bundle?) {
         applyAppTheme(this)

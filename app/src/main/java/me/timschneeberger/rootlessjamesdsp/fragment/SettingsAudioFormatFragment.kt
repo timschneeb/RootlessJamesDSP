@@ -1,6 +1,8 @@
 package me.timschneeberger.rootlessjamesdsp.fragment
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.util.TypedValue
@@ -12,18 +14,23 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.preference.*
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
+import me.timschneeberger.rootlessjamesdsp.activity.OnboardingActivity
 import me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
 import me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
 import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.requestIgnoreBatteryOptimizations
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
+import timber.log.Timber
 
 class SettingsAudioFormatFragment : PreferenceFragmentCompat() {
 
     private val encoding by lazy { findPreference<ListPreference>(getString(R.string.key_audioformat_encoding)) }
     private val bufferSize by lazy { findPreference<MaterialSeekbarPreference>(getString(R.string.key_audioformat_buffersize)) }
     private val legacyMode by lazy { findPreference<MaterialSwitchPreference>(getString(R.string.key_audioformat_legacymode)) }
+    private val enhancedMode by lazy { findPreference<MaterialSwitchPreference>(getString(R.string.key_audioformat_enhancedprocessing)) }
+    private val enhancedModeInfo by lazy { findPreference<Preference>(getString(R.string.key_audioformat_enhancedprocessing_info)) }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceManager.sharedPreferencesName = Constants.PREF_APP
@@ -37,7 +44,39 @@ class SettingsAudioFormatFragment : PreferenceFragmentCompat() {
         legacyMode?.setOnPreferenceChangeListener { _, newValue ->
             if (!(newValue as Boolean))
                 requireContext().requestIgnoreBatteryOptimizations()
+            else
+                enhancedMode?.isChecked = false
+
             RootAudioProcessorService.updateLegacyMode(requireContext(), newValue)
+            true
+        }
+        enhancedMode?.setOnPreferenceChangeListener { _, newValue ->
+            if (newValue as Boolean) {
+                // Check DUMP permissions
+                if(requireContext().checkSelfPermission(Manifest.permission.DUMP) == PackageManager.PERMISSION_DENIED) {
+                    Timber.i("Launching enhanced processing onboarding")
+
+                    Intent(requireContext(), OnboardingActivity::class.java).let {
+                        it.putExtra(OnboardingActivity.EXTRA_ROOT_SETUP_DUMP_PERM, true)
+                        startActivity(it)
+                    }
+                    return@setOnPreferenceChangeListener false
+                }
+
+                RootAudioProcessorService.startServiceEnhanced(requireContext())
+            }
+            else {
+                Toast.makeText(requireContext(),
+                    getString(R.string.audio_format_media_apps_need_restart), Toast.LENGTH_LONG).show()
+                RootAudioProcessorService.stopService(requireContext())
+            }
+            true
+        }
+        enhancedModeInfo?.setOnPreferenceClickListener {
+            context?.showAlert(
+                R.string.audio_format_enhanced_processing_info_title,
+                R.string.audio_format_enhanced_processing_info_content
+            )
             true
         }
 

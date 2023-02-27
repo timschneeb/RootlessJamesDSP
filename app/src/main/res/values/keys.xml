@@ -35,6 +35,7 @@
     <string name="key_audioformat_encoding" translatable="false">audioformat_encoding</string>
     <string name="key_audioformat_buffersize" translatable="false">audioformat_buffersize</string>
     <string name="key_audioformat_legacymode" translatable="false">audioformat_processing</string>
+    <string name="key_audioformat_enhancedprocessing" translatable="false">audioformat_enhanced_processing</string>
 
     <!-- Appearance -->
     <string name="key_appearance_theme_mode" translatable="false">appearance_theme_mode</string>
@@ -46,6 +47,7 @@
     <string name="key_credits_version" translatable="false">credits_version</string>
     <string name="key_credits_build_info" translatable="false">credits_build_info</string>
     <string name="key_debug_database" translatable="false">debug_database</string>
+    <string name="key_audioformat_enhancedprocessing_info" translatable="false">audioformat_enhanced_processing_info</string>
 
     <!-- Script editor -->
     <string name="key_editor_font_size" translatable="false">editor_font_size</string>

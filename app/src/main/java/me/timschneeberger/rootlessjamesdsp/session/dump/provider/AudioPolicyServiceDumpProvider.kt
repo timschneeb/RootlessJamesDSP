@@ -1,10 +1,11 @@
 package me.timschneeberger.rootlessjamesdsp.session.dump.provider
 
 import android.content.Context
+import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.AudioPolicyServiceDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.utils.DumpUtils
-import me.timschneeberger.rootlessjamesdsp.model.rootless.AudioSessionEntry
+import me.timschneeberger.rootlessjamesdsp.model.AudioSessionDumpEntry
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getPackageNameFromUid
 import timber.log.Timber
 import java.util.*
@@ -26,7 +27,7 @@ class AudioPolicyServiceDumpProvider : ISessionDumpProvider {
         // General
         val captureAllowedRegex = """allowPlaybackCapture=(\S+)(?:\s*,).+packageName=(\S+)""".toRegex()
 
-        val sessions = hashMapOf<Int, AudioSessionEntry>()
+        val sessions = hashMapOf<Int, AudioSessionDumpEntry>()
 
         var matches = sessionRegex.findAll(dump)
         if(matches.count() <= 0)
@@ -47,7 +48,7 @@ class AudioPolicyServiceDumpProvider : ISessionDumpProvider {
                 }
 
                 val pkg = context.getPackageNameFromUid(uid) ?: uid.toString()
-                sessions[sid] = AudioSessionEntry(uid, pkg, usage, content)
+                sessions[sid] = AudioSessionDumpEntry(uid, pkg, usage, content)
                 Timber.v("Found session id $sid (uid $uid; usage $usage; content $content; pkg $pkg)")
 
             } catch (ex: NumberFormatException) {
@@ -62,7 +63,7 @@ class AudioPolicyServiceDumpProvider : ISessionDumpProvider {
             val pkgName = it2.groups[2]?.value?.replace("shared:", "") ?: return@regexLoop
             val allowed = it2.groups[1]?.value?.trim()?.lowercase(Locale.ROOT) == "true"
             captureAllowLog[pkgName] = allowed
-            if (!allowed) {
+            if (!allowed && BuildConfig.ROOTLESS) {
                 Timber.v("Playback capture restricted by $pkgName")
             }
         }

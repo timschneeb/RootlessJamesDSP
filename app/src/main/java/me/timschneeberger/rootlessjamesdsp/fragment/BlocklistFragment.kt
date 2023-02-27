@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.*
+import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.MainApplication
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.adapter.AppBlocklistAdapter
@@ -72,6 +73,7 @@ class BlocklistFragment : Fragment() {
         binding.recyclerview.adapter = adapter
         binding.recyclerview.layoutManager = LinearLayoutManager(requireContext())
 
+        binding.notice.isVisible = BuildConfig.ROOTLESS
         binding.notice.setOnClickListener {
             requireContext().showAlert(
                 getString(R.string.blocklist_unsupported_apps),
@@ -122,30 +124,33 @@ class BlocklistFragment : Fragment() {
     }
 
     private fun updateUnsupportedApps() {
-        policyPollingScope.launch {
-            val isAllowed = requireContext().getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
-                .getBoolean(getString(R.string.key_session_exclude_restricted), true)
+        if(BuildConfig.ROOTLESS) {
+            policyPollingScope.launch {
+                val isAllowed =
+                    requireContext().getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
+                        .getBoolean(getString(R.string.key_session_exclude_restricted), true)
 
-            restrictedApps = if(!isAllowed) {
-                arrayOf()
-            } else {
-                dumpManager.dumpCaptureAllowlistLog()?.let {
-                    sessionRecordingPolicyManager.update(it)
+                restrictedApps = if (!isAllowed) {
+                    arrayOf()
+                } else {
+                    dumpManager.dumpCaptureAllowlistLog()?.let {
+                        sessionRecordingPolicyManager.update(it)
+                    }
+
+                    sessionRecordingPolicyManager
+                        .getRestrictedUids()
+                        .map { """${requireContext().getAppNameFromUidSafe(it)} (UID $it)""" }
+                        .toTypedArray()
                 }
 
-                sessionRecordingPolicyManager
-                    .getRestrictedUids()
-                    .map { """${requireContext().getAppNameFromUidSafe(it)} (UID $it)""" }
-                    .toTypedArray()
+                this@BlocklistFragment.binding.notice.isVisible = restrictedApps.isNotEmpty()
+                this@BlocklistFragment.binding.noticeLabel.text =
+                    requireContext().resources.getQuantityString(
+                        R.plurals.unsupported_apps,
+                        restrictedApps.size,
+                        restrictedApps.size
+                    )
             }
-
-            this@BlocklistFragment.binding.notice.isVisible = restrictedApps.isNotEmpty()
-            this@BlocklistFragment.binding.noticeLabel.text =
-                requireContext().resources.getQuantityString(
-                    R.plurals.unsupported_apps,
-                    restrictedApps.size,
-                    restrictedApps.size
-                )
         }
     }
 

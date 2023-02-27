@@ -73,6 +73,15 @@ class Card @JvmOverloads constructor(
             field = value
             binding.icon.imageTintList = value
         }
+    var cardBackground: Int? = null
+        set(value) {
+            field = value
+            value?.let {
+                if(it != 0) {
+                    binding.root.setCardBackgroundColor(it)
+                }
+            }
+        }
 
     override fun setClickable(clickable: Boolean) {
         updateForeground()
@@ -82,10 +91,7 @@ class Card @JvmOverloads constructor(
     init {
         val a = context.obtainStyledAttributes(attrs, R.styleable.Card, defStyleAttr, defStyleRes)
         binding = ViewCardBinding.inflate(LayoutInflater.from(context), this, true)
-        val background = a.getColor(R.styleable.Card_cardBackground, 0);
-        if(background != 0) {
-            binding.root.setCardBackgroundColor(background)
-        }
+        cardBackground = a.getColor(R.styleable.Card_cardBackground, 0);
         titleText = a.getString(R.styleable.Card_titleText)
         bodyText = a.getString(R.styleable.Card_bodyText)
         closeButtonVisible = a.getBoolean(R.styleable.Card_closeButtonVisible, false)

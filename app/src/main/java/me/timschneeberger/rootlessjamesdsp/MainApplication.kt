@@ -15,7 +15,7 @@ import me.timschneeberger.rootlessjamesdsp.session.dump.DumpManager
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.flavor.CrashlyticsImpl
 import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
-import me.timschneeberger.rootlessjamesdsp.session.root.EffectSessionManager
+import me.timschneeberger.rootlessjamesdsp.session.root.RootSessionDatabase
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocalReceiver
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -38,9 +38,12 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
     }
 
     val prefs: SharedPreferences by lazy { getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE) }
-    val rootSessionManager by lazy { EffectSessionManager(this) }
+    val rootSessionDatabase by lazy { RootSessionDatabase(this) }
     val isLegacyMode
         get() = prefs.getBoolean(getString(R.string.key_audioformat_legacymode), true)
+    val isEnhancedProcessing
+        get() = !isLegacyMode &&
+                prefs.getBoolean(getString(R.string.key_audioformat_enhancedprocessing), false)
 
     val applicationScope = CoroutineScope(SupervisorJob())
     val blockedAppDatabase by lazy { AppBlocklistDatabase.getDatabase(this, applicationScope) }

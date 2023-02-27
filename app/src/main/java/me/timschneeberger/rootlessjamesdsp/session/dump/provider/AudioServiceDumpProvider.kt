@@ -5,7 +5,7 @@ import me.timschneeberger.rootlessjamesdsp.session.dump.data.AudioServiceDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.utils.AudioFlingerServiceDumpUtils
 import me.timschneeberger.rootlessjamesdsp.session.dump.utils.DumpUtils
-import me.timschneeberger.rootlessjamesdsp.model.rootless.AudioSessionEntry
+import me.timschneeberger.rootlessjamesdsp.model.AudioSessionDumpEntry
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getPackageNameFromUid
 import timber.log.Timber
 import java.lang.Exception
@@ -43,7 +43,7 @@ class AudioServiceDumpProvider : ISessionDumpProvider {
             sidPidLookupMap[it.pid] = it.sid
         }
 
-        val sessions = hashMapOf<Int, AudioSessionEntry>()
+        val sessions = hashMapOf<Int, AudioSessionDumpEntry>()
 
         var matches = playbackConfRegex31.findAll(dump)
         // Fallbacks
@@ -96,7 +96,7 @@ class AudioServiceDumpProvider : ISessionDumpProvider {
                 }
 
                 val pkg = context.getPackageNameFromUid(uid) ?: uid.toString()
-                sessions[sid] = AudioSessionEntry(uid, pkg, usage, content)
+                sessions[sid] = AudioSessionDumpEntry(uid, pkg, usage, content)
             } catch (ex: NumberFormatException) {
                 Timber.e("Failed to parse match")
                 Timber.e(ex)

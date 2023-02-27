@@ -6,37 +6,34 @@ import android.content.pm.ServiceInfo
 import android.media.*
 import android.media.audiofx.AudioEffect
 import android.os.*
-import android.util.SparseArray
-import androidx.core.util.forEach
-import androidx.core.util.isEmpty
+import androidx.lifecycle.Observer
+import androidx.lifecycle.asLiveData
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.MainApplication
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.ServiceNotificationHelper
-import me.timschneeberger.rootlessjamesdsp.interop.JamesDspLocalEngine
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspRemoteEngine
-import me.timschneeberger.rootlessjamesdsp.interop.ProcessorMessageHandler
-import me.timschneeberger.rootlessjamesdsp.model.root.EffectSessionEntry
-import me.timschneeberger.rootlessjamesdsp.session.root.EffectSessionManager
+import me.timschneeberger.rootlessjamesdsp.model.IEffectSession
+import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistDatabase
+import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistRepository
+import me.timschneeberger.rootlessjamesdsp.model.room.BlockedApp
+import me.timschneeberger.rootlessjamesdsp.model.root.RemoteEffectSession
+import me.timschneeberger.rootlessjamesdsp.session.root.OnRootSessionChangeListener
+import me.timschneeberger.rootlessjamesdsp.session.root.RootSessionDumpManager
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
-import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_HARD_REBOOT_CORE
-import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_RELOAD_LIVEPROG
-import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_SOFT_REBOOT_CORE
-import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_PREFERENCES_UPDATED
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.CHANNEL_ID_SERVICE
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.NOTIFICATION_ID_SERVICE
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.unregisterLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import timber.log.Timber
 
 class RootAudioProcessorService : BaseAudioProcessorService(),
-    SharedPreferences.OnSharedPreferenceChangeListener,
-    EffectSessionManager.OnSessionChangeListener {
+    SharedPreferences.OnSharedPreferenceChangeListener, OnRootSessionChangeListener {
 
     // System services
     private lateinit var notificationManager: NotificationManager
@@ -44,6 +41,27 @@ class RootAudioProcessorService : BaseAudioProcessorService(),
 
     // Termination flags
     private var isServiceDisposing = false
+
+    // Enhanced processing
+    private var sessionDumpManager: RootSessionDumpManager? = null
+
+    // Room databases
+    private val applicationScope = CoroutineScope(SupervisorJob())
+    private val blockedAppDatabase by lazy { AppBlocklistDatabase.getDatabase(this, applicationScope) }
+    private val blockedAppRepository by lazy { AppBlocklistRepository(blockedAppDatabase.appBlocklistDao()) }
+    private val blockedApps by lazy { blockedAppRepository.blocklist.asLiveData() }
+    private val blockedAppObserver = Observer<List<BlockedApp>?> { apps ->
+        if(!app.isEnhancedProcessing)
+            return@Observer
+
+        apps?.map { it.uid }?.let { uids ->
+            Timber.d("blockedAppObserver: Excluded UIDs: ${uids.joinToString("; ")}")
+
+            app.rootSessionDatabase.setExcludedUids(uids.toTypedArray())
+            sessionDumpManager?.pollOnce(false)
+        }
+    }
+
 
     // App object
     private val app
@@ -54,11 +72,14 @@ class RootAudioProcessorService : BaseAudioProcessorService(),
 
         // Register shared preferences listener
         app.prefs.registerOnSharedPreferenceChangeListener(this)
-        app.rootSessionManager.registerOnSessionChangeListener(this)
+        app.rootSessionDatabase.registerOnSessionChangeListener(this)
 
         // Get reference to system services
         audioManager = SystemServices.get(this, AudioManager::class.java)
         notificationManager = SystemServices.get(this, NotificationManager::class.java)
+
+        // Setup database observer
+        blockedApps.observeForever(blockedAppObserver)
 
         // Register notification channels
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -89,7 +110,9 @@ class RootAudioProcessorService : BaseAudioProcessorService(),
         }
 
         // Initialize shared preferences manually
-        onSharedPreferenceChanged(app.prefs, getString(R.string.key_powered_on))
+        arrayOf(R.string.key_powered_on, R.string.key_audioformat_enhancedprocessing).forEach {
+            onSharedPreferenceChanged(app.prefs, getString(it))
+        }
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -97,28 +120,40 @@ class RootAudioProcessorService : BaseAudioProcessorService(),
         if (intent == null)
             return START_STICKY
 
+        if(!JamesDspRemoteEngine.isPluginInstalled()) {
+            Timber.e("onStartCommand: Ignoring command because plugin is not installed")
+            stopSelf()
+            return START_NOT_STICKY
+        }
+
         // Handle intent action
         when (intent.action) {
             null -> {
                 Timber.wtf("onStartCommand: intent.action is null")
             }
-            AudioEffect.ACTION_OPEN_AUDIO_EFFECT_CONTROL_SESSION -> {
-                if(!JamesDspRemoteEngine.isPluginInstalled()) {
-                    Timber.e("onStartCommand: Ignoring open request because plugin is not installed")
-                    stopSelf()
-                    return START_NOT_STICKY
+            ACTION_START_ENHANCED_PROCESSING -> {
+                if(!app.isEnhancedProcessing) {
+                    Timber.e("onStartCommand: ACTION_START_ENHANCED_PROCESSING received, but isEnhancedProcessing is false")
                 }
-
-                app.rootSessionManager.addSession(intent)
+            }
+            ACTION_STOP -> {
+                stopSelf()
+                return START_NOT_STICKY
+            }
+            AudioEffect.ACTION_OPEN_AUDIO_EFFECT_CONTROL_SESSION -> {
+                if(!isServiceDisposing && !app.isEnhancedProcessing)
+                    app.rootSessionDatabase.addSessionByIntent(intent)
             }
             AudioEffect.ACTION_CLOSE_AUDIO_EFFECT_CONTROL_SESSION -> {
-                val sessionId = intent.getIntExtra(AudioEffect.EXTRA_AUDIO_SESSION, -1)
-                MainScope().launch {
-                    if (sessionId != 0)
-                        delay(800)
-                    app.rootSessionManager.removeSession(intent)
-                    if (app.rootSessionManager.sessionList.isEmpty()) {
-                        stopSelf()
+                if(!app.isEnhancedProcessing) {
+                    val sessionId = intent.getIntExtra(AudioEffect.EXTRA_AUDIO_SESSION, -1)
+                    MainScope().launch {
+                        if (sessionId != 0)
+                            delay(800)
+                        app.rootSessionDatabase.removeSessionByIntent(intent)
+                        if (app.rootSessionDatabase.sessionList.isEmpty()) {
+                            stopSelf()
+                        }
                     }
                 }
             }
@@ -132,17 +167,18 @@ class RootAudioProcessorService : BaseAudioProcessorService(),
         isServiceDisposing = true
 
         // Stop foreground service
-        @Suppress("DEPRECATION")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
-            stopForeground(STOP_FOREGROUND_REMOVE)
-        else
-            stopForeground(true)
+        stopForeground(STOP_FOREGROUND_REMOVE)
+
+        // Unregister database observer
+        blockedApps.removeObserver(blockedAppObserver)
 
         // Notify app about service termination and unregister
         sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_STOPPED))
 
+        app.rootSessionDatabase.clearSessions()
+
         app.prefs.unregisterOnSharedPreferenceChangeListener(this)
-        app.rootSessionManager.unregisterOnSessionChangeListener(this)
+        app.rootSessionDatabase.unregisterOnSessionChangeListener(this)
 
         notificationManager.cancel(NOTIFICATION_ID_SERVICE)
     }
@@ -151,13 +187,34 @@ class RootAudioProcessorService : BaseAudioProcessorService(),
         when (key) {
             getString(R.string.key_audioformat_legacymode) -> { updateServiceNotification() }
             getString(R.string.key_powered_on) -> {
-                app.rootSessionManager.enabled = sharedPreferences?.getBoolean(key, true) ?: true
+                app.rootSessionDatabase.enabled = sharedPreferences?.getBoolean(key, true) ?: true
                 updateServiceNotification()
+            }
+            getString(R.string.key_audioformat_enhancedprocessing) -> {
+                // If switched to enhanced processing while the service was already active...
+                if(app.isEnhancedProcessing) {
+                    setupEnhancedProcessing()
+                }
+                else {
+                    sessionDumpManager?.destroy()
+                    sessionDumpManager = null
+                    app.rootSessionDatabase.setExcludedUids(arrayOf())
+                    app.rootSessionDatabase.clearSessions()
+                }
             }
         }
     }
 
-    override fun onSessionChanged(sessionList: SparseArray<EffectSessionEntry>) {
+    private fun setupEnhancedProcessing() {
+        app.rootSessionDatabase.clearSessions()
+
+        sessionDumpManager = RootSessionDumpManager(this)
+        sessionDumpManager?.setOnSessionDump(app.rootSessionDatabase::update)
+        sessionDumpManager?.setOnDumpMethodChanged(app.rootSessionDatabase::clearSessions)
+        sessionDumpManager?.pollOnce(false)
+    }
+
+    override fun onSessionChanged(sessionList: HashMap<Int, IEffectSession>) {
         updateServiceNotification()
     }
 
@@ -165,10 +222,13 @@ class RootAudioProcessorService : BaseAudioProcessorService(),
         if(app.prefs.getBoolean(getString(R.string.key_audioformat_legacymode), true))
             ServiceNotificationHelper.pushServiceNotificationLegacy(this)
         else
-            ServiceNotificationHelper.pushServiceNotificationRoot(this, app.rootSessionManager.sessionList)
+            ServiceNotificationHelper.pushServiceNotification(this, app.rootSessionDatabase.sessionList.values.toTypedArray())
     }
 
     companion object {
+        const val ACTION_START_ENHANCED_PROCESSING = BuildConfig.APPLICATION_ID + ".root.service.START_ENHANCED"
+        const val ACTION_STOP = BuildConfig.APPLICATION_ID + ".root.service.STOP"
+
         fun startService(context: Context, intent: Intent) {
             Timber.d("startService: intent=$intent")
 
@@ -182,6 +242,18 @@ class RootAudioProcessorService : BaseAudioProcessorService(),
                 context.startForegroundService(intent)
             else
                 context.startService(intent)
+        }
+
+        fun startServiceEnhanced(context: Context) {
+            Intent(context, RootAudioProcessorService::class.java)
+                .apply { this.action = ACTION_START_ENHANCED_PROCESSING }
+                .run { startService(context, this) }
+        }
+
+        fun stopService(context: Context) {
+            Intent(context, RootAudioProcessorService::class.java)
+                .apply { this.action = ACTION_STOP }
+                .run { startService(context, this) }
         }
 
         fun updateLegacyMode(context: Context, enable: Boolean) {

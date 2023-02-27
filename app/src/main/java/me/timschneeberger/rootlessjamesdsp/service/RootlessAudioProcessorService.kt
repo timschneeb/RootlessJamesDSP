@@ -26,11 +26,13 @@ import me.timschneeberger.rootlessjamesdsp.model.preference.AudioEncoding
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistDatabase
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistRepository
 import me.timschneeberger.rootlessjamesdsp.model.room.BlockedApp
-import me.timschneeberger.rootlessjamesdsp.model.rootless.AudioSessionEntry
-import me.timschneeberger.rootlessjamesdsp.model.rootless.MutedSessionEntry
+import me.timschneeberger.rootlessjamesdsp.model.AudioSessionDumpEntry
+import me.timschneeberger.rootlessjamesdsp.model.IEffectSession
+import me.timschneeberger.rootlessjamesdsp.model.rootless.MutedEffectSession
 import me.timschneeberger.rootlessjamesdsp.model.rootless.SessionRecordingPolicyEntry
-import me.timschneeberger.rootlessjamesdsp.session.rootless.AudioSessionManager
-import me.timschneeberger.rootlessjamesdsp.session.rootless.MutedSessionManager
+import me.timschneeberger.rootlessjamesdsp.session.rootless.OnRootlessSessionChangeListener
+import me.timschneeberger.rootlessjamesdsp.session.rootless.RootlessSessionManager
+import me.timschneeberger.rootlessjamesdsp.session.rootless.RootlessSessionDatabase
 import me.timschneeberger.rootlessjamesdsp.session.rootless.SessionRecordingPolicyManager
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_PREFERENCES_UPDATED
@@ -53,7 +55,6 @@ import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import me.timschneeberger.rootlessjamesdsp.utils.concatenate
 import timber.log.Timber
 import java.io.IOException
-import kotlin.math.roundToInt
 
 
 @RequiresApi(Build.VERSION_CODES.Q)
@@ -75,7 +76,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         get() = recorderThread != null
 
     // Session management
-    private lateinit var audioSessionManager: AudioSessionManager
+    private lateinit var sessionManager: RootlessSessionManager
     private var sessionLossRetryCount = 0
 
     // Idle detection
@@ -112,11 +113,11 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         notificationManager = SystemServices.get(this, NotificationManager::class.java)
 
         // Setup session manager
-        audioSessionManager = AudioSessionManager(this)
-        audioSessionManager.sessionDatabase.setOnSessionLossListener(onSessionLossListener)
-        audioSessionManager.sessionDatabase.setOnAppProblemListener(onAppProblemListener)
-        audioSessionManager.sessionDatabase.registerOnSessionChangeListener(onSessionChangeListener)
-        audioSessionManager.sessionPolicyDatabase.registerOnRestrictedSessionChangeListener(onSessionPolicyChangeListener)
+        sessionManager = RootlessSessionManager(this)
+        sessionManager.sessionDatabase.setOnSessionLossListener(onSessionLossListener)
+        sessionManager.sessionDatabase.setOnAppProblemListener(onAppProblemListener)
+        sessionManager.sessionDatabase.registerOnSessionChangeListener(onSessionChangeListener)
+        sessionManager.sessionPolicyDatabase.registerOnRestrictedSessionChangeListener(onSessionPolicyChangeListener)
 
         // Setup core engine
         engine = JamesDspLocalEngine(this, ProcessorMessageHandler())
@@ -168,7 +169,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         // Launch foreground service
         startForeground(
             NOTIFICATION_ID_SERVICE,
-            ServiceNotificationHelper.createServiceNotification(this, null),
+            ServiceNotificationHelper.createServiceNotification(this, arrayOf()),
             ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION
         )
     }
@@ -249,9 +250,9 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         mediaProjection?.unregisterCallback(projectionCallback)
         mediaProjection = null
 
-        audioSessionManager.sessionPolicyDatabase.unregisterOnRestrictedSessionChangeListener(onSessionPolicyChangeListener)
-        audioSessionManager.sessionDatabase.unregisterOnSessionChangeListener(onSessionChangeListener)
-        audioSessionManager.destroy()
+        sessionManager.sessionPolicyDatabase.unregisterOnRestrictedSessionChangeListener(onSessionPolicyChangeListener)
+        sessionManager.sessionDatabase.unregisterOnSessionChangeListener(onSessionChangeListener)
+        sessionManager.destroy()
 
         sharedPreferences.unregisterOnSharedPreferenceChangeListener(preferencesListener)
         notificationManager.cancel(NOTIFICATION_ID_SERVICE)
@@ -305,7 +306,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
     }
 
     // Session loss listener
-    private val onSessionLossListener = object: MutedSessionManager.OnSessionLossListener {
+    private val onSessionLossListener = object: RootlessSessionDatabase.OnSessionLossListener {
         override fun onSessionLost(sid: Int) {
             // Push notification if enabled
             val ignore = sharedPreferences.getBoolean(getString(R.string.key_session_loss_ignore), false)
@@ -315,7 +316,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
                     // Retry
                     sessionLossRetryCount++
                     Timber.d("Session lost. Retry count: $sessionLossRetryCount/$SESSION_LOSS_MAX_RETRIES")
-                    audioSessionManager.pollOnce(false)
+                    sessionManager.pollOnce(false)
                     restartRecording()
                     return
                 }
@@ -335,21 +336,21 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
     }
 
     // Session change listener
-    private val onSessionChangeListener = object : MutedSessionManager.OnSessionChangeListener {
-        override fun onSessionChanged(sessionList: HashMap<Int, MutedSessionEntry>) {
+    private val onSessionChangeListener = object : OnRootlessSessionChangeListener {
+        override fun onSessionChanged(sessionList: HashMap<Int, IEffectSession>) {
             isProcessorIdle = sessionList.size == 0
             Timber.d("onSessionChanged: isProcessorIdle=$isProcessorIdle")
 
             ServiceNotificationHelper.pushServiceNotification(
                 this@RootlessAudioProcessorService,
-                sessionList.map { it.value.audioSession }.toTypedArray()
+                sessionList.map { it.value }.toTypedArray()
             )
         }
     }
 
     // App problem listener
-    private val onAppProblemListener = object : MutedSessionManager.OnAppProblemListener {
-        override fun onAppProblemDetected(data: AudioSessionEntry) {
+    private val onAppProblemListener = object : RootlessSessionDatabase.OnAppProblemListener {
+        override fun onAppProblemDetected(uid: Int) {
             // Push notification if enabled
             val ignore = sharedPreferences.getBoolean(getString(R.string.key_session_app_problem_ignore), false)
             if(!ignore) {
@@ -364,14 +365,14 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
                         ServiceNotificationHelper.createAppTroubleshootIntent(
                             this@RootlessAudioProcessorService,
                             mediaProjectionStartIntent,
-                            data,
+                            uid,
                             directLaunch = true
                         )
                     )
                     notificationManager.cancel(NOTIFICATION_ID_APP_INCOMPATIBILITY)
                 }
                 else
-                    ServiceNotificationHelper.pushAppIssueNotification(this@RootlessAudioProcessorService, mediaProjectionStartIntent, data)
+                    ServiceNotificationHelper.pushAppIssueNotification(this@RootlessAudioProcessorService, mediaProjectionStartIntent, uid)
 
                 Toast.makeText(this@RootlessAudioProcessorService, getString(R.string.session_app_compat_toast), Toast.LENGTH_SHORT).show()
                 Timber.w("Terminating service due to app incompatibility; redirect user to troubleshooting options")
@@ -632,9 +633,9 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
             .addMatchingUsage(AudioAttributes.USAGE_UNKNOWN)
 
         var excluded = if(excludeRestrictedSessions)
-            audioSessionManager.sessionPolicyDatabase.getRestrictedUids().toList()
+            sessionManager.sessionPolicyDatabase.getRestrictedUids().toList()
         else {
-            audioSessionManager.pollOnce(false)
+            sessionManager.pollOnce(false)
             emptyList()
         }
 
@@ -643,8 +644,8 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         }
 
         excluded.forEach { configBuilder.excludeUid(it) }
-        audioSessionManager.sessionDatabase.setExcludedUids(excluded.toTypedArray())
-        audioSessionManager.pollOnce(false)
+        sessionManager.sessionDatabase.setExcludedUids(excluded.toTypedArray())
+        sessionManager.pollOnce(false)
 
         Timber.d("buildAudioRecord: Excluded UIDs: ${excluded.joinToString("; ")}")
 

@@ -6,15 +6,13 @@ import android.media.audiofx.DynamicsProcessing
 import android.os.Build
 import android.os.Build.VERSION_CODES
 import dev.rikka.tools.refine.Refine
-import me.timschneeberger.rootlessjamesdsp.model.rootless.AudioSessionEntry
 import timber.log.Timber
 import java.util.*
 
-class AudioEffectFactory {
-    var sessionLossListener: ((sid: Int, data: AudioSessionEntry) -> Unit)? = null
+class MutedAudioEffectFactory {
+    var sessionLossListener: ((sid: Int, packageName: String) -> Unit)? = null
 
-    // TODO allow automatic fallback to other methods on session loss
-    fun make(sid: Int, data: AudioSessionEntry): AudioEffect? {
+    fun make(sid: Int, packageName: String): AudioEffect? {
         if(!isDeviceCompatible())
             return null
 
@@ -23,16 +21,16 @@ class AudioEffectFactory {
                 continue
 
             try {
-                return make(name, sid, data)
+                return make(name, sid, packageName)
             }
             catch (ex: Exception) {
-                Timber.e("Failed to attach $name effect to session $sid (data: $data; message: ${ex.message})")
+                Timber.e("Failed to attach $name effect to session $sid (pkg: $packageName; message: ${ex.message})")
             }
         }
         return null
     }
 
-    fun make(type: MuteEffects, sid: Int, data: AudioSessionEntry): AudioEffect? {
+    fun make(type: MuteEffects, sid: Int, packageName: String): AudioEffect? {
         val name = type.name
         Timber.d("make: Creating $name effect instance")
 
@@ -97,14 +95,14 @@ class AudioEffectFactory {
                     /* Triggered if another app takes full control over effect */
                     Timber.w("Failed to re-enable $name effect (session $sid)")
                     Timber.w(ex)
-                    sessionLossListener?.invoke(sid, data)
+                    sessionLossListener?.invoke(sid, packageName)
                 }
             }
         }
         muteEffect.setControlStatusListener { effect, controlGranted ->
             if(!controlGranted)
             {
-                sessionLossListener?.invoke(sid, data)
+                sessionLossListener?.invoke(sid, packageName)
             }
             else {
                 try {
@@ -117,7 +115,7 @@ class AudioEffectFactory {
                 {
                     Timber.w("Failed to regain control over $name effect (session $sid)")
                     Timber.w(ex)
-                    sessionLossListener?.invoke(sid, data)
+                    sessionLossListener?.invoke(sid, packageName)
                 }
             }
             Timber.d(

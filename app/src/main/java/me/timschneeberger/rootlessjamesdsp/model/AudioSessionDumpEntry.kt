@@ -1,6 +1,6 @@
-package me.timschneeberger.rootlessjamesdsp.model.rootless
+package me.timschneeberger.rootlessjamesdsp.model
 
-data class AudioSessionEntry(val uid: Int, val packageName: String, val usage: String, val content: String)
+data class AudioSessionDumpEntry(val uid: Int, val packageName: String, val usage: String, val content: String)
 {
     override fun toString(): String {
         return "uid=$uid; package=$packageName; usage=$usage; content=$content; isUsageRecordable=${isUsageRecordable(usage)}"
@@ -13,9 +13,9 @@ data class AudioSessionEntry(val uid: Int, val packageName: String, val usage: S
 
     companion object
     {
-        const val USAGE_UNKNOWN = "USAGE_UNKNOWN"
-        const val USAGE_MEDIA = "USAGE_MEDIA"
-        const val USAGE_GAME = "USAGE_GAME"
+        private const val USAGE_UNKNOWN = "USAGE_UNKNOWN"
+        private const val USAGE_MEDIA = "USAGE_MEDIA"
+        private const val USAGE_GAME = "USAGE_GAME"
 
         fun isUsageRecordable(usage: String): Boolean
         {

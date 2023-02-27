@@ -1,8 +1,8 @@
 package me.timschneeberger.rootlessjamesdsp.session.dump.data
 
-import me.timschneeberger.rootlessjamesdsp.model.rootless.AudioSessionEntry
+import me.timschneeberger.rootlessjamesdsp.model.AudioSessionDumpEntry
 
-data class AudioServiceDump(override val sessions: HashMap<Int /* sid */, AudioSessionEntry>) :
+data class AudioServiceDump(override val sessions: HashMap<Int /* sid */, AudioSessionDumpEntry>) :
     ISessionInfoDump
 {
     override fun toString(): String {

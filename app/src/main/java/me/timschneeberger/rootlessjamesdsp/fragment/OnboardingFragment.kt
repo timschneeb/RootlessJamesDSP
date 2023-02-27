@@ -30,6 +30,7 @@ import me.timschneeberger.rootlessjamesdsp.activity.OnboardingActivity
 import me.timschneeberger.rootlessjamesdsp.activity.OnboardingActivity.Companion.EXTRA_ROOT_SETUP_DUMP_PERM
 import me.timschneeberger.rootlessjamesdsp.databinding.OnboardingFragmentBinding
 import me.timschneeberger.rootlessjamesdsp.flavor.RootShellImpl
+import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.isPackageInstalled
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.launchApp
@@ -305,6 +306,7 @@ class OnboardingFragment : Fragment() {
         }
     }
 
+    @SuppressLint("ApplySharedPref")
     private fun finishSetup() {
         val intent = Intent(requireContext(), MainActivity::class.java)
         intent.putExtra(MainActivity.EXTRA_FORCE_SHOW_CAPTURE_PROMPT, true)
@@ -319,8 +321,14 @@ class OnboardingFragment : Fragment() {
                 .putBoolean(getString(R.string.key_firstboot), false)
                 .apply()
         }
-        // Root: we skip last page, so show small success toast instead
+        // Root: enable enhanced processing
         else {
+            requireContext()
+                .getSharedPreferences(Constants.PREF_APP, AppCompatActivity.MODE_PRIVATE)
+                .edit()
+                .putBoolean(getString(R.string.key_audioformat_enhancedprocessing), true)
+                .commit()
+            RootAudioProcessorService.startServiceEnhanced(requireContext())
             Toast.makeText(requireContext(), getString(R.string.onboarding_root_enhanced_processing_setup_success), Toast.LENGTH_LONG).show()
         }
     }

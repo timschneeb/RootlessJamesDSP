@@ -92,6 +92,7 @@ object ContextExtensions {
         }
     }
 
+    @Suppress("DEPRECATION")
     fun Context.isPackageInstalled(packageName: String): Boolean {
         return try {
             packageManager.getPackageInfo(packageName, 0)
@@ -262,6 +263,7 @@ object ContextExtensions {
 
     fun Context.getAppName(): String = applicationInfo.loadLabel(packageManager).toString()
 
+    @Suppress("DEPRECATION")
     fun Context.getAppName(packageName: String): CharSequence? {
         return try {
             packageManager.getApplicationInfo(packageName, 0)
@@ -291,6 +293,16 @@ object ContextExtensions {
             return name
 
         return "UID $uid"
+    }
+
+    @Suppress("DEPRECATION")
+    fun Context.getUidFromPackage(packageName: String): Int {
+        return try {
+            packageManager.getApplicationInfo(packageName, 0).uid
+        } catch (e: PackageManager.NameNotFoundException) {
+            Timber.e("Cannot get UID. Package not found: $packageName")
+            -1
+        }
     }
 
     fun Context.getPackageNameFromUid(uid: Int): String? {
@@ -327,6 +339,4 @@ object ContextExtensions {
         val imm = SystemServices.get(this, InputMethodManager::class.java)
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
-
-    const val TAG = "ContextExtensions"
 }

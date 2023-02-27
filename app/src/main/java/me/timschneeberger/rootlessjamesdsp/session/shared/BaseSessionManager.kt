@@ -1,4 +1,4 @@
-package me.timschneeberger.rootlessjamesdsp.session.rootless
+package me.timschneeberger.rootlessjamesdsp.session.shared
 
 import android.annotation.SuppressLint
 import android.content.*
@@ -9,8 +9,7 @@ import android.media.session.MediaController
 import android.media.session.MediaSessionHidden
 import android.media.session.MediaSessionManager
 import android.os.*
-import android.os.Build.VERSION_CODES
-import androidx.annotation.RequiresApi
+import androidx.annotation.CallSuper
 import androidx.core.app.NotificationManagerCompat
 import dev.rikka.tools.refine.Refine
 import kotlinx.coroutines.*
@@ -20,7 +19,7 @@ import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.session.dump.DumpManager
 import me.timschneeberger.rootlessjamesdsp.model.preference.SessionUpdateMode
 import me.timschneeberger.rootlessjamesdsp.service.NotificationListenerService
-import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionPolicyInfoDump
+import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.unregisterLocalReceiver
@@ -30,7 +29,7 @@ import org.koin.core.component.inject
 import timber.log.Timber
 
 
-class AudioSessionManager(val context: Context) : DumpManager.OnDumpMethodChangeListener,
+abstract class BaseSessionManager(protected val context: Context) : DumpManager.OnDumpMethodChangeListener,
     BroadcastReceiver(), MediaSessionManager.OnActiveSessionsChangedListener, KoinComponent
 {
     // System services
@@ -38,7 +37,7 @@ class AudioSessionManager(val context: Context) : DumpManager.OnDumpMethodChange
     private val sessionManager = SystemServices.get(context, MediaSessionManager::class.java)
 
     // Session dump manager
-    private val dumpManager: DumpManager by inject()
+    protected val dumpManager: DumpManager by inject()
 
     // Session polling settings
     private var sessionUpdateMode: SessionUpdateMode = SessionUpdateMode.Listener
@@ -54,7 +53,6 @@ class AudioSessionManager(val context: Context) : DumpManager.OnDumpMethodChange
     private var continuousPollingJob: Job? = null
 
     // Callbacks
-    @RequiresApi(VERSION_CODES.O)
     private var audioPlaybackCallback: AudioManager.AudioPlaybackCallback? = null
 
     // Preferences
@@ -62,24 +60,22 @@ class AudioSessionManager(val context: Context) : DumpManager.OnDumpMethodChange
     private val sharedPreferences: SharedPreferences =
         context.getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
 
-    // Session database
-    val sessionDatabase: MutedSessionManager = MutedSessionManager(context)
-    // Session policy database
-    val sessionPolicyDatabase: SessionRecordingPolicyManager = SessionRecordingPolicyManager(context)
+    protected abstract fun handleSessionDump(sessionDump: ISessionInfoDump?)
 
     init {
-        // Notify on playback changes
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            audioPlaybackCallback = object : AudioManager.AudioPlaybackCallback() {
-                override fun onPlaybackConfigChanged(configs: MutableList<AudioPlaybackConfiguration>?) {
-                    super.onPlaybackConfigChanged(configs)
+        Timber.d("Initializing SessionDumpManager")
 
-                    Timber.d("Playback config changed")
-                    pollOnce(false)
-                }
+        // Notify on playback changes
+        audioPlaybackCallback = object : AudioManager.AudioPlaybackCallback() {
+            override fun onPlaybackConfigChanged(configs: MutableList<AudioPlaybackConfiguration>?) {
+                super.onPlaybackConfigChanged(configs)
+
+                Timber.d("Playback config changed")
+                pollOnce(false)
             }
-            audioManager.registerAudioPlaybackCallback(audioPlaybackCallback!!, Handler(Looper.getMainLooper()))
         }
+        audioManager.registerAudioPlaybackCallback(audioPlaybackCallback!!, Handler(Looper.getMainLooper()))
+
 
         // Register callbacks
         dumpManager.registerOnDumpMethodChangeListener(this)
@@ -96,21 +92,17 @@ class AudioSessionManager(val context: Context) : DumpManager.OnDumpMethodChange
         sharedPreferences.registerOnSharedPreferenceChangeListener(preferencesListener)
     }
 
-    fun destroy()
+    @CallSuper
+    open fun destroy()
     {
+        Timber.d("Destroying SessionDumpManager")
+
         dumpManager.unregisterOnDumpMethodChangeListener(this)
 
-        if (Build.VERSION.SDK_INT >= VERSION_CODES.O) {
-            audioPlaybackCallback?.let { audioManager.unregisterAudioPlaybackCallback(it) }
-        }
+        audioPlaybackCallback?.let { audioManager.unregisterAudioPlaybackCallback(it) }
 
         sessionManager.removeOnActiveSessionsChangedListener(this)
         context.unregisterLocalReceiver(this)
-
-        sharedPreferences.unregisterOnSharedPreferenceChangeListener(preferencesListener)
-
-        sessionDatabase.destroy()
-        sessionPolicyDatabase.destroy()
     }
 
     private fun loadFromPreferences(key: String){
@@ -177,15 +169,7 @@ class AudioSessionManager(val context: Context) : DumpManager.OnDumpMethodChange
         }
 
         pollingMutex.withLock {
-            val sessions = dumpManager.dumpSessions()
-            if(sessions is ISessionPolicyInfoDump) {
-                sessionPolicyDatabase.update(sessions)
-            }
-            else {
-                dumpManager.dumpCaptureAllowlistLog()?.let { sessionPolicyDatabase.update(it) }
-            }
-
-            sessions?.let { sessionDatabase.update(it) }
+            handleSessionDump(dumpManager.dumpSessions())
         }
     }
 
@@ -196,9 +180,8 @@ class AudioSessionManager(val context: Context) : DumpManager.OnDumpMethodChange
         }
     }
 
+    @CallSuper
     override fun onDumpMethodChange(method: DumpManager.Method) {
-        sessionDatabase.clearSessions()
-        sessionPolicyDatabase.clearSessions()
         pollOnce(true)
     }
 

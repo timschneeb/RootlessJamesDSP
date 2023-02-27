@@ -1,9 +1,5 @@
 package me.timschneeberger.rootlessjamesdsp.utils
 
-import android.app.Activity
-import android.content.Context
-import android.content.res.Configuration
-import android.media.audiofx.AudioEffect
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
@@ -21,14 +17,7 @@ fun <T> concatenate(vararg lists: List<T>): List<T> {
     return listOf(*lists).flatten()
 }
 
-@Suppress("DEPRECATION")
-fun loadHtml(html: String): Spanned {
-    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY)
-    } else {
-        Html.fromHtml(html)
-    }
-}
+fun loadHtml(html: String): Spanned = Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY)
 
 fun prettyNumberFormat(input: Double): String {
     if( input == 0.0 ) return "0"
@@ -65,15 +54,16 @@ fun <T : Serializable> Bundle.getSerializableAs(key: String, clazz: Class<T>): T
     return (if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
         this.getSerializable(key, clazz)
     } else {
+        @Suppress("DEPRECATION")
         this.getSerializable(key)
     }) as? T
 }
 
-@Suppress("UNCHECKED_CAST")
 inline fun <reified T : Parcelable> Bundle.getParcelableAs(key: String): T? {
     return (if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
         this.getParcelable(key, T::class.java)
     } else {
+        @Suppress("DEPRECATION")
         this.getParcelable(key)
     })
 }

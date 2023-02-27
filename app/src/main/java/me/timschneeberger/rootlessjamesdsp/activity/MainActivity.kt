@@ -199,13 +199,17 @@ class MainActivity : BaseActivity() {
         // Inflate bottom right menu
         binding.bar.inflateMenu(R.menu.menu_main_bottom)
 
-        // only rootless version has support for app exclusion list
-        binding.bar.menu.findItem(R.id.action_blocklist).isVisible = BuildConfig.ROOTLESS
-
         binding.bar.setOnMenuItemClickListener { arg0 ->
             when (arg0.itemId) {
                 R.id.action_blocklist -> {
-                    startActivity(Intent(this, BlocklistActivity::class.java))
+                    if(!app.isEnhancedProcessing) {
+                        showAlert(
+                            R.string.enhanced_processing_feature_unavailable,
+                            R.string.enhanced_processing_feature_unavailable_content
+                        )
+                    }
+                    else
+                        startActivity(Intent(this, BlocklistActivity::class.java))
                     true
                 }
                 R.id.action_presets -> {
@@ -332,6 +336,22 @@ class MainActivity : BaseActivity() {
             this.onSharedPreferenceChanged(appPref, getString(pref))
 
         sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
+
+        if(!BuildConfig.ROOTLESS && app.isEnhancedProcessing) {
+            if(checkSelfPermission(Manifest.permission.DUMP) == PackageManager.PERMISSION_DENIED) {
+                Timber.e("Dump permission for enhanced processing lost")
+                Toast.makeText(this,
+                    getString(R.string.enhanced_processing_missing_perm), Toast.LENGTH_LONG).show()
+                appPref
+                    .edit()
+                    .putBoolean(getString(R.string.key_audioformat_enhancedprocessing), false)
+                    .apply()
+            }
+            else {
+                Timber.d("Launching service due to enhanced processing")
+                RootAudioProcessorService.startServiceEnhanced(this)
+            }
+        }
 
         // Handle potential incoming file intent
         if(intent?.action == Intent.ACTION_VIEW) {
