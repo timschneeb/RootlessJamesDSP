@@ -61,15 +61,40 @@
     <string name="eq_filter_type_linear">Линейная фаза</string>
     <string name="eq_interpolator_chip">Кусочно-кубический интерполяционный полином Эрмита</string>
     <string name="eq_interpolator_mha">Модифицированный сплайн Хироши Акимы</string>
+    <string name="eq_preset_acoustic">Акустика</string>
+    <string name="eq_preset_bass">Басы</string>
+    <string name="eq_preset_beats">Биты</string>
+    <string name="eq_preset_classic">Классика</string>
+    <string name="eq_preset_clear">Чистый</string>
+    <string name="eq_preset_deep">Глубокий</string>
+    <string name="eq_preset_dubstep">Дабстеп</string>
+    <string name="eq_preset_electronic">Электронная музыка</string>
+    <string name="eq_preset_flat">Плоский</string>
+    <string name="eq_preset_hardstyle">Хардстайл</string>
+    <string name="eq_preset_hiphop">Хип-хоп</string>
+    <string name="eq_preset_jazz">Джаз</string>
+    <string name="eq_preset_metal">Металл</string>
+    <string name="eq_preset_movie">Фильм</string>
+    <string name="eq_preset_pop">Поп</string>
+    <string name="eq_preset_rb">R&amp;B</string>
+    <string name="eq_preset_rock">Рок</string>
+    <string name="eq_preset_vocal">Усиление вокала</string>
     <string name="geq_enable">Графический эквалайзер</string>
+    <string name="geq_nodes">Амплитудная характеристика</string>
     <string name="bass_enable">Динамическое усиление баса</string>
     <string name="bass_max_gain">Максимальное усиление</string>
     <string name="reverb_enable">Эффект виртуальной комнаты</string>
     <string name="reverb_room_type">Тип комнаты</string>
     <string name="reverb_preset_default">По умолчанию</string>
     <string name="convolver_enable">Конвольвер</string>
+    <string name="convolver_impulse">Импульсный отклик</string>
+    <string name="convolver_advanced_editing">Расширенное редактирование формы сигнала</string>
+    <string name="convolver_convolution_mode">Оптимизация импульсного отклика</string>
+    <string name="convolver_convolution_mode_original">Оригинал</string>
+    <string name="convolver_convolution_mode_shrink">Сжать</string>
+    <string name="convolver_convolution_mode_minimum_phase_shrink">Минимальное фазовое преобразование и сжатие</string>
     <string name="ddc_enable">ViPER-DDC</string>
-    <string name="ddc_file">DDC файл</string>
+    <string name="ddc_file">Профиль DDC</string>
     <string name="liveprog_file">Liveprog скрипт</string>
     <string name="liveprog_additional_params">Дополнительные параметры скрипта</string>
     <string name="liveprog_additional_params_not_supported">Выбранный скрипт не имеет настраиваемых параметров</string>
@@ -197,8 +222,6 @@
     <string name="audio_format_summary">Кодирование аудио, размер буфера</string>
     <string name="audio_format_summary_root">Legacy режим</string>
     <string name="audio_format_encoding">Кодирование аудио</string>
-    <string name="audio_format_encoding_int16">16-bit integer PCM</string>
-    <string name="audio_format_encoding_float">32-bit float PCM</string>
     <string name="audio_format_buffer_size">Размер буфера</string>
     <string name="audio_format_buffer_size_warning_low_value">Внимание: низкие размеры буфера могут вызвать проблемы с аудио, такие как клиппинг!</string>
     <string name="autostart_prompt_at_boot">Запрашивать разрешение на захват после загрузки</string>
@@ -223,6 +246,7 @@
     <string name="misc_settings">Прочее</string>
     <string name="misc_settings_summary">Отчёты об ошибках, другие действия</string>
     <string name="autostart">Автозапуск</string>
+    <string name="assets">Ресурсы</string>
     <string name="network_services">Сетевые сервисы</string>
     <string name="network_autoeq_api_url">URL-адрес API-бэкенда AutoEQ</string>
     <string name="network_invalid_url">Неверный формат URL-адреса</string>
@@ -249,17 +273,18 @@
     <string name="credits_build_info">Информация о сборке</string>
     <string name="appearance_section_header">Внешний вид</string>
     <string name="appearance_summary">Тема приложения, темный режим</string>
-    <string name="appearance_title">Тема</string>
+    <string name="appearance_title">Тема приложения</string>
     <string name="appearance_theme_mode">Темный режим</string>
     <string name="appearance_theme_mode_default">Использовать настройки системы</string>
     <string name="appearance_theme_mode_light">Выкл.</string>
     <string name="appearance_theme_mode_dark">Вкл.</string>
-    <string name="appearance_pure_black_mode">Черная тема (полностью черный цвет фона)</string>
-    <string name="appearance_app_theme">Тема приложения</string>
+    <string name="appearance_pure_black_mode">Черная тема (черный цвет фона)</string>
+    <string name="appearance_app_theme">Цветовой акцент темы</string>
     <string name="appearance_navigation_title">Навигация</string>
     <string name="appearance_nav_hide">Скрывать панель навигации при прокрутке</string>
     <!-- Theme names -->
     <string name="theme_default">По умолчанию</string>
+    <string name="theme_monet">Динамический</string>
     <!-- File library preference -->
     <string name="action_import">Импорт</string>
     <string name="filelibrary_hint_tap_and_hold">Коснитесь и удерживайте любой элемент для дополнительных опций</string>
@@ -281,20 +306,28 @@
     <string name="filelibrary_no_file_selected">Файл не выбран</string>
     <string name="filelibrary_new_file_name">Новое имя файла</string>
     <string name="filelibrary_file_exists">Файл уже существует</string>
+    <string name="filelibrary_resample_complete">Ресемплировано до %1$dHz</string>
+    <string name="filelibrary_resample_failed">Ошибка ресемплинга. Поврежденный входной файл?</string>
+    <string name="filelibrary_preset_overwritten">Пресет \'%1$s\' перезаписан</string>
     <string name="filelibrary_preset_created">Пресет \'%1$s\' создан</string>
     <string name="filelibrary_preset_save_failed">Не удалось сохранить пресет</string>
+    <string name="filelibrary_renamed">Переименовано в \'%1$s\'</string>
     <string name="filelibrary_deleted">%1$s удален</string>
+    <string name="filelibrary_preset_loaded">Пресет \'%1$s\' загружен</string>
+    <string name="filelibrary_preset_load_failed">Файл \'%1$s\' не совместим с данным приложением</string>
     <string name="filelibrary_no_presets">Нет сохраненных пресетов. Нажмите \'Добавить\', чтобы создать новый.</string>
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">Выбранный файл VDC поврежден. Пожалуйста, выберите другой файл.</string>
     <string name="message_irs_corrupt">Выбранный IR поврежден. Пожалуйста, выберите другой.</string>
-    <string name="message_convolver_advimp_invalid">Конвольвер: Расширенное редактирование волновой формы содержит недопустимые значения.</string>
+    <string name="message_convolver_advimp_invalid">Конвольвер: Расширенное редактирование формы сигнала содержит недопустимые значения.</string>
     <string name="message_liveprog_compile_fail">Ошибка выполнения Liveprog. Выбранный скрипт поврежден. Используйте редактор скриптов для отладки.</string>
     <!-- GraphicEQ editor -->
+    <string name="title_activity_geq">Амплитудная характеристика</string>
+    <string name="geq_edit_as_string">Редактировать как строку</string>
     <string name="geq_autoeq">Профили AutoEQ</string>
     <string name="gep_add_node">Добавить</string>
-    <string name="geq_preview">Предварительный просмотр</string>
-    <string name="geq_preview_collapsed">Предварительный просмотр (нажмите, чтобы развернуть)</string>
+    <string name="geq_preview">Предпросмотр</string>
+    <string name="geq_preview_collapsed">Предпросмотр (нажмите, чтобы развернуть)</string>
     <string name="geq_reset">Сбросить</string>
     <string name="geq_reset_confirm_title">Вы уверены?</string>
     <string name="geq_reset_confirm">Сбросить настройки GraphicEQ?</string>
@@ -371,6 +404,8 @@
     <string name="app_list_search">Поиск</string>
     <string name="app_list_icon_alt">Значок приложения</string>
     <!-- Number box view -->
+    <string name="number_box_decrement">Уменьшение</string>
+    <string name="number_box_increment">Увеличение</string>
     <!-- Slider widget -->
     <string name="slider_dialog_title">Изменить значение</string>
     <string name="slider_dialog_format_error">Неверный формат числа. Изменения не применены.</string>
@@ -380,6 +415,7 @@
     <string name="revert_confirmation">Сбросить текущий пресет JamesDSP к значениям по умолчанию?</string>
     <!-- File intent handler -->
     <string name="intent_import_preset">Импорт пресета</string>
+    <string name="intent_import_irs">Импорт импульсного отклика</string>
     <string name="intent_import_vdc">Импорт файла VDC</string>
     <string name="intent_import_liveprog">Импорт скрипта Liveprog</string>
     <string name="intent_import_mode_add">Только импортировать</string>
@@ -389,6 +425,6 @@
     <string name="intent_import_select_success">Файл \'%1$s\' импортирован и активирован</string>
     <string name="intent_import_error_file_uri">Не удалось импортировать файл. Неподдерживаемый URI-адрес файла.</string>
     <!-- Translation notice box -->
-    <string name="translation_notice_summary">Пожалуйста, помогите нам перевести это приложение на ваш язык! Нажмите здесь, чтобы перейти на сайт проекта на Crowdin.</string>
+    <string name="translation_notice_summary">Помогите нам перевести это приложение на ваш язык! Нажмите здесь, чтобы перейти на сайт проекта на Crowdin.</string>
     <string name="translation_notice">Помочь с переводами</string>
 </resources>
