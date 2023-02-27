@@ -10,7 +10,7 @@ JamesDSP supports the following audio effects:
 * Interpolating FIR equalizer
 * Arbitrary response equalizer (Graphic EQ)
 * ViPER-DDC
-* Convolver
+* 脉冲反馈
 * Live-programmable DSP (scripting engine for audio effects)
 * Analog modelling
 * Soundstage wideness
