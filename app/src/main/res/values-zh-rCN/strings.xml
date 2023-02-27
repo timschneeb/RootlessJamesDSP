@@ -1,27 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
+    <string name="action_settings">设置</string>
+    <string name="action_presets">预设</string>
+    <string name="action_revert">重置为默认</string>
+    <string name="action_blocked_apps">排除的应用</string>
     <!-- Notification channels -->
+    <string name="notification_channel_service">服务通知</string>
+    <string name="notification_channel_session_loss_alert">会话丢失警告</string>
+    <string name="notification_channel_permission_prompt">权限请求</string>
+    <string name="notification_channel_app_compat_alert">不兼容的应用警告</string>
     <!-- Service notifications -->
+    <string name="action_retry">重试</string>
+    <string name="action_fix">修复问题</string>
+    <string name="action_stop">停止</string>
+    <string name="notification_processing">活动的应用： %1$s</string>
+    <string name="notification_idle">音频处理闲置</string>
+    <string name="notification_processing_title">音频处理活动中</string>
+    <string name="notification_processing_disabled_title">音频处理已禁用</string>
+    <string name="notification_processing_legacy">点击打开JamesDSP 管理器</string>
     <!-- Permission request notifications -->
+    <string name="notification_request_permission_title">启动 JamesDSP 需要用户操作</string>
+    <string name="notification_request_permission">点击授予捕获权限并启用 JamesDSP 音频处理</string>
     <!-- Session control loss notifications -->
+    <string name="session_control_loss_toast">JamesDSP 因音频会话控制丢失而停止，请禁用其它同类型的音效处理应用。</string>
+    <string name="session_control_loss_notification_title">由于存在其它正在干扰 JamesDSP 的应用，音频处理已停止。</string>
+    <string name="session_control_loss_notification">请在重新启用 JamesDSP 之前禁用其它提供全局音效的所有应用。</string>
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_toast">JamesDSP 因媒体应用不兼容而停止，请查看通知以解决此问题。</string>
+    <string name="session_app_compat_notification_title">由于存在其它正在干扰 JamesDSP 的应用，音频处理已停止。</string>
+    <string name="session_app_compat_notification">点击此通知以解决这个问题。</string>
     <!-- Capture permission revoked notifications -->
+    <string name="capture_permission_revoked_toast">JamesDSP 已被停止，因为音频捕获权限已被撤销。</string>
     <!-- General purpose -->
+    <string name="install">安装</string>
+    <string name="update">更新</string>
+    <string name="details">详情</string>
+    <string name="warning">警告</string>
+    <string name="success">成功</string>
+    <string name="open">打开</string>
+    <string name="close">关闭</string>
+    <string name="add">添加</string>
+    <string name="yes">确定</string>
+    <string name="no">取消</string>
+    <string name="value_not_set">未设置</string>
+    <string name="undo">撤销</string>
+    <string name="redo">重做</string>
+    <string name="no_activity_found">没有找到处理此 URL 的活动</string>
     <!-- Main screen -->
+    <string name="power_button_alt">切换音频处理</string>
+    <string name="compressor_enable">动态压缩范围</string>
+    <string name="compressor_max_attack">最大注入数量</string>
+    <string name="compressor_max_release">最大输出数量</string>
+    <string name="compressor_adapt_speed">注入强度</string>
+    <string name="eq_enable">内置 FIR 均衡器</string>
+    <string name="eq_filter_type">过滤类型</string>
+    <string name="eq_interpolator">插值器</string>
+    <string name="eq_filter_type_minimum">最小阶段</string>
+    <string name="eq_filter_type_linear">线性阶段</string>
+    <string name="liveprog_additional_params">附加脚本参数</string>
+    <string name="liveprog_additional_params_not_supported">所选脚本没有可自定义的参数</string>
+    <string name="liveprog_not_found">未找到脚本</string>
+    <string name="liveprog_no_script_selected">未选择脚本</string>
+    <string name="liveprog_edit_header">编辑选中的脚本</string>
+    <string name="liveprog_edit">在内置编辑器中打开活动脚本</string>
+    <string name="liveprog_edit_error">在内置 liveprog 编辑器中打开活动脚本</string>
+    <string name="tube_enable">模拟模型</string>
+    <string name="tube_drive">前置放大器</string>
+    <string name="output_control_header">输出控制器</string>
+    <string name="output_limiter_threshold">限制器阈值</string>
+    <string name="output_limiter_release">限制器输出量</string>
+    <string name="output_control_postgain">回放增益</string>
+    <string name="stereowide_enable">音阶宽度</string>
+    <string name="stereowide_level">广域度</string>
+    <string name="stereowide_level_none">无</string>
+    <string name="stereowide_level_very_wide">特殊宽度</string>
+    <string name="stereowide_level_wide">宽度</string>
+    <string name="stereowide_level_very_narrow">极窄</string>
+    <string name="stereowide_level_narrow">较窄</string>
+    <string name="crossfeed_enable">通道交叉</string>
+    <string name="crossfeed_preset">预设</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
     <!-- Settings -->
+    <string name="title_activity_settings">设置</string>
     <!-- Theme names -->
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="gep_add_node">添加</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
     <!-- Blocklist -->
+    <string name="title_activity_blocklist">排除的应用</string>
     <!-- Compatibility issue activity -->
+    <string name="app_compat_retry">重试</string>
     <!-- Hints for compatibility issues for individual apps -->
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
