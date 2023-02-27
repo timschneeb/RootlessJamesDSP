@@ -3,7 +3,6 @@ package me.timschneeberger.rootlessjamesdsp.activity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.ActivityLiveprogParamsBinding
 import me.timschneeberger.rootlessjamesdsp.fragment.LiveprogParamsFragment

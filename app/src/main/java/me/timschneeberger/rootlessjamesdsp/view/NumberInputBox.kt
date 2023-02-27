@@ -58,9 +58,7 @@ class NumberInputBox @JvmOverloads constructor(
             onValueChangedListener?.invoke(newValue)
         }
         get() {
-            val str = binding.input.text.toString()
-            val f = str.toFloatOrNull() ?: 0f
-            return f
+            return binding.input.text.toString().toFloatOrNull() ?: 0f
         }
     var suffixText: String = ""
         set(value) {

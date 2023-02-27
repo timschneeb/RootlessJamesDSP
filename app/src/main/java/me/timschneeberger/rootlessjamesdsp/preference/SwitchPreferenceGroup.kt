@@ -3,21 +3,16 @@ package me.timschneeberger.rootlessjamesdsp.preference
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.TypedArray
-import android.graphics.drawable.LayerDrawable
-import android.graphics.drawable.RippleDrawable
 import android.graphics.drawable.TransitionDrawable
 import android.util.AttributeSet
-import android.util.TypedValue
 import android.view.View
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.content.ContextCompat
 import androidx.preference.Preference
 import androidx.preference.PreferenceGroup
 import androidx.preference.PreferenceViewHolder
 import androidx.preference.children
 import com.google.android.material.materialswitch.MaterialSwitch
 import me.timschneeberger.rootlessjamesdsp.R
-import timber.log.Timber
 
 
 @SuppressLint("PrivateResource")

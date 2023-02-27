@@ -219,12 +219,8 @@ class MaterialSeekbarPreference : Preference {
         }
     }
 
-    override fun onSetInitialValue(_defaultValue: Any?) {
-        var defaultValue = _defaultValue
-        if (defaultValue == null) {
-            defaultValue = 0f
-        }
-        setValue(getPersistedFloat((defaultValue as Float?)!!))
+    override fun onSetInitialValue(defaultValue: Any?) {
+        setValue(getPersistedFloat((defaultValue as? Float ?: 0f)))
     }
 
     override fun onGetDefaultValue(a: TypedArray, index: Int): Any {

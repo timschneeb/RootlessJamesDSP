@@ -95,7 +95,7 @@ abstract class BaseSessionDatabase(protected val context: Context) {
     }
 
     fun removeSession(sid: Int) {
-        sessionList[sid]?.let {
+        sessionList[sid]?.let { it ->
             Timber.d("Removed session: session ${sid}; data: $it")
             onSessionRemoved(it)
             sessionList.remove(sid)

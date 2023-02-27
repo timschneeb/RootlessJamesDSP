@@ -223,7 +223,7 @@ class Preset(val name: String): KoinComponent {
             val metadata = mutableMapOf<String, String>()
             metadataBytes.toString().lines().forEach {
                 val args = it.split("=")
-                if(args.count() < 2)
+                if(args.size < 2)
                     return@forEach
                 metadata[args[0]] = args[1].trim()
             }

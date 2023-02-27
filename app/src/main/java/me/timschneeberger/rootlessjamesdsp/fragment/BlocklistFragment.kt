@@ -57,9 +57,9 @@ class BlocklistFragment : Fragment() {
         sessionRecordingPolicyManager = SessionRecordingPolicyManager(requireContext())
 
         appsListFragment = AppsListFragment()
-        appListViewModel.selectedItem.observe(viewLifecycleOwner) { item ->
+        appListViewModel.selectedItem.observe(viewLifecycleOwner) { (appName, packageName, _, _, uid) ->
             // TODO merge BlockedApp and AppInfo?
-            viewModel.insert(BlockedApp(item.uid, item.packageName, item.appName))
+            viewModel.insert(BlockedApp(uid, packageName, appName))
         }
 
         adapter = AppBlocklistAdapter()

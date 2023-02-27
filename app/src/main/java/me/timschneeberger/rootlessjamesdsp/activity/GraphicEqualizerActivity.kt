@@ -1,7 +1,6 @@
 package me.timschneeberger.rootlessjamesdsp.activity
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.ActivityGraphicEqBinding
 import me.timschneeberger.rootlessjamesdsp.fragment.GraphicEqualizerFragment

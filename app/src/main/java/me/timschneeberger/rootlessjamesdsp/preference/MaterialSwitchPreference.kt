@@ -1,11 +1,6 @@
 package me.timschneeberger.rootlessjamesdsp.preference
 import android.content.Context
 import android.util.AttributeSet
-import android.util.TypedValue
-import android.view.Gravity
-import android.view.ViewGroup
-import android.widget.TextView
-import androidx.preference.PreferenceViewHolder
 import androidx.preference.SwitchPreferenceCompat
 import me.timschneeberger.rootlessjamesdsp.R
 

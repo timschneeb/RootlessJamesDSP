@@ -56,13 +56,8 @@ class GraphicEqualizerPreference : Preference {
         super.onDetached()
     }
 
-    override fun onSetInitialValue(_defaultValue: Any?) {
-        var defaultValue = _defaultValue
-        if (defaultValue == null) {
-            defaultValue = ""
-        }
-
-        initialValue = getPersistedString(defaultValue as? String)
+    override fun onSetInitialValue(defaultValue: Any?) {
+        initialValue = getPersistedString(defaultValue as? String ?: "")
     }
 
     override fun onGetDefaultValue(a: TypedArray, index: Int): Any {

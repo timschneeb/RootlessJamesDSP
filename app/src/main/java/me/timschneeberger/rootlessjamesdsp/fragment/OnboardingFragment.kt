@@ -336,7 +336,7 @@ class OnboardingFragment : Fragment() {
     private fun goToPage(number: Int)
     {
         // Check if we're finished
-        if(number > pageMap.count())
+        if(number > pageMap.size)
         {
             finishSetup()
             return
@@ -592,7 +592,7 @@ class OnboardingFragment : Fragment() {
     private val isFirstPage: Boolean
         get() = currentPage == 1
     private val isLastPage: Boolean
-        get() = currentPage == pageMap.count()
+        get() = currentPage == pageMap.size
 
     companion object
     {

@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.view.Card
-import timber.log.Timber
 
 class DspFragment : Fragment() {
     private val prefsVar by lazy { requireContext().getSharedPreferences(Constants.PREF_VAR, Context.MODE_PRIVATE) }

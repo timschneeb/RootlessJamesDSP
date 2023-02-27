@@ -2,7 +2,6 @@ package me.timschneeberger.rootlessjamesdsp.view
 
 import android.animation.AnimatorInflater
 import android.content.Context
-import android.graphics.PorterDuff
 import android.util.AttributeSet
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import me.timschneeberger.rootlessjamesdsp.R

@@ -4,11 +4,9 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.preference.ListPreference
 import androidx.preference.Preference.SummaryProvider
 import me.timschneeberger.rootlessjamesdsp.R
-import me.timschneeberger.rootlessjamesdsp.fragment.FileLibraryDialogFragment
 import me.timschneeberger.rootlessjamesdsp.model.Preset
 import java.io.File
 import java.io.InputStream

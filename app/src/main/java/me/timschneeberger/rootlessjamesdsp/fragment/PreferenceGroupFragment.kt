@@ -77,7 +77,7 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
 
                 fun updateLiveprog(newValue: String) {
                     eelParser.load(newValue)
-                    val count = eelParser.properties.count()
+                    val count = eelParser.properties.size
                     val filePresent = eelParser.contents != null
                     val uiUpdate = {
                         liveprogEdit?.isEnabled = filePresent

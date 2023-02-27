@@ -11,7 +11,7 @@ import me.timschneeberger.rootlessjamesdsp.databinding.PreferenceEqualizerBindin
 
 class EqualizerPreference : DialogPreference {
 
-    var equalizerView: EqualizerSurface? = null
+    private var equalizerView: EqualizerSurface? = null
     var initialValue: String = ""
 
     var entries = arrayOf<CharSequence>()
@@ -49,13 +49,8 @@ class EqualizerPreference : DialogPreference {
         a.recycle()
     }
 
-    override fun onSetInitialValue(_defaultValue: Any?) {
-        var defaultValue = _defaultValue
-        if (defaultValue == null) {
-            defaultValue = ""
-        }
-
-        initialValue = getPersistedString(defaultValue as? String)
+    override fun onSetInitialValue(defaultValue: Any?) {
+        initialValue = getPersistedString(defaultValue as? String ?: "")
     }
 
     override fun onGetDefaultValue(a: TypedArray, index: Int): Any {

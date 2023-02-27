@@ -1,8 +1,6 @@
 package me.timschneeberger.rootlessjamesdsp.session.dump.provider
 
 import android.content.Context
-import me.timschneeberger.rootlessjamesdsp.session.dump.data.IDump
-import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
 
 interface IDumpProvider {
     /**

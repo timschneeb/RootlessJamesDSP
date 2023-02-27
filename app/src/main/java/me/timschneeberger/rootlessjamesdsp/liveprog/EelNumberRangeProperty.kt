@@ -1,6 +1,5 @@
 package me.timschneeberger.rootlessjamesdsp.liveprog
 
-import timber.log.Timber
 import kotlin.math.abs
 import kotlin.math.floor
 import kotlin.math.max
