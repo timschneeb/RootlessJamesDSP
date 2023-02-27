@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="nodes">
+        <item quantity="other">%d 个节点</item>
+    </plurals>
+    <plurals name="custom_parameters">
+        <item quantity="other">%d 个自定义参数</item>
+    </plurals>
+    <plurals name="unsupported_apps">
+        <item quantity="other">%d 个不支持的应用已被自动排除，点击查看详情。</item>
+    </plurals>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="nodes">
+        <item quantity="one">%d Knote</item>
+        <item quantity="other">%d Knoten</item>
+    </plurals>
+    <plurals name="custom_parameters">
+        <item quantity="one">%d anpassbarer Parameter</item>
+        <item quantity="other">%d anpassbare Parameter</item>
+    </plurals>
+    <plurals name="unsupported_apps">
+        <item quantity="one">%d nicht unterstützte App wurde automatisch ausgeschlossen. Tippen für Details.</item>
+        <item quantity="other">%d nicht unterstützte Apps wurden automatisch ausgeschlossen. Tippen für Details.</item>
+    </plurals>
+</resources>

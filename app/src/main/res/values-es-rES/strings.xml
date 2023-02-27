@@ -99,28 +99,158 @@
     <string name="reverb_preset_long_reverb2">Reverberación larga 2</string>
     <string name="convolver_enable">Convolver</string>
     <string name="convolver_impulse">Respuesta de Impulso</string>
+    <string name="convolver_advanced_editing">Edición avanzada de onda</string>
+    <string name="convolver_convolution_mode">Optimización de la respuesta de impulso</string>
+    <string name="convolver_convolution_mode_original">Original</string>
+    <string name="convolver_convolution_mode_shrink">Disminuir</string>
+    <string name="convolver_convolution_mode_minimum_phase_shrink">Transformación y reducción mínima de la fase</string>
+    <string name="ddc_enable">ViPER-DDC</string>
+    <string name="ddc_file">Archivo DDC</string>
+    <string name="liveprog_enable">DSP programable en vivo</string>
+    <string name="liveprog_file">Script de programación en vivo</string>
+    <string name="liveprog_additional_params">Parámetros adicionales del script</string>
+    <string name="liveprog_additional_params_not_supported">El script seleccionado no tiene parámetros personalizables</string>
+    <string name="liveprog_not_found">Script no encontrado</string>
+    <string name="liveprog_no_script_selected">No se ha seleccionado ningún script</string>
+    <string name="liveprog_edit_header">Editar script seleccionado</string>
+    <string name="liveprog_edit">Abrir script activo en el editor integrado</string>
+    <string name="tube_enable">Modelado analógico</string>
+    <string name="tube_drive">Preamplificador</string>
+    <string name="output_control_header">Control de la salida</string>
+    <string name="output_limiter_threshold">Límite de umbral</string>
+    <string name="output_limiter_release">Liberación del limitador</string>
+    <string name="output_control_postgain">Ganancia post</string>
+    <string name="stereowide_enable">Amplitud de la escena sonora</string>
+    <string name="stereowide_level">Amplitud</string>
+    <string name="stereowide_level_none">Ninguna</string>
+    <string name="stereowide_level_very_wide">Muy amplio</string>
+    <string name="stereowide_level_wide">Amplio</string>
+    <string name="stereowide_level_very_narrow">Muy estrecho</string>
+    <string name="stereowide_level_narrow">Estrecho</string>
+    <string name="crossfeed_enable">Alimentación cruzada</string>
+    <string name="crossfeed_preset">Preajuste</string>
+    <string name="crossfeed_preset_bs2b_weak">BS2B Débil</string>
+    <string name="crossfeed_preset_bs2b_strong">BS2B Fuerte</string>
+    <string name="crossfeed_preset_out_of_head">Fuera de la cabeza</string>
+    <string name="crossfeed_preset_surround1">Sonido envolvente 1</string>
+    <string name="crossfeed_preset_surround2">Sonido envolvente 2</string>
+    <string name="crossfeed_preset_realistic_surround">Joe0Bloggs Sonido envolvente realista</string>
     <!-- Onboarding -->
+    <string name="title_activity_onboarding">Primeros pasos</string>
+    <string name="onboarding_back">Atrás</string>
+    <string name="onboarding_next">Siguiente</string>
+    <string name="onboarding_finish">Finalizar</string>
+    <string name="onboarding_greeting">¡Bienvenido a RootlessJamesDSP!</string>
+    <string name="onboarding_caption">Este asistente te ayudará a configurar esta aplicación.</string>
+    <string name="onboarding_warning">Actualmente, esta aplicación no está acabada y es inestable. Tenga en cuenta que puede no funcionar en algunos dispositivos como se esperaba, ya que utiliza las API de Android no diseñadas para su uso por terceros.</string>
+    <string name="onboarding_fix_permissions_title">Acción de usuario requerida</string>
+    <string name="onboarding_fix_permissions">Uno o más permisos fueron revocados por usted o el sistema.\nPara asegurar que esta aplicación se comporta correctamente, necesitas conceder estos permisos de nuevo.\n\nPor favor, vuelva a hacer el asistente de configuración para volver a conceder estos permisos.</string>
+    <string name="onboarding_limitations_title">Limitaciones</string>
+    <string name="onboarding_limitations_unstable">¡Importante! Por favor, lea las notas cuidadosamente antes de continuar.</string>
+    <string name="onboarding_methods_title">Seleccionar método de configuración</string>
+    <string name="onboarding_methods_root_title">Root</string>
+    <string name="onboarding_methods_shizuku_title">Shizuku</string>
+    <string name="onboarding_methods_unsupported_append">incompatible</string>
+    <string name="onboarding_methods_adb_title">ADB</string>
     <!-- Rootless flavor -->
+    <string name="onboarding_methods_rootless_shizuku">\u25CF Recomendado\n\u25CF No requiere una computadora\n\u25CF Android 11+ solamente</string>
+    <string name="onboarding_methods_rootless_adb">\u25CF Para usuarios avanzados\n\u25CF Se requiere una computadora y un cable USB\n\u25CF Compatible con Android 10+</string>
     <!-- Root flavor -->
+    <string name="onboarding_methods_root_root">\u25CF Recomendado\n\u25CF No requiere una computadora\n\u25CF Para todas las versiones de Android</string>
+    <string name="onboarding_methods_root_shizuku">\u25CF Recomendado, si el root no está configurado\n\u25CF No requiere una computadora\n\u25CF Android 11+ solamente</string>
+    <string name="onboarding_methods_root_adb">\u25CF Para usuarios avanzados\n\u25CF Se requiere una computadora y un cable USB\n\u25CF Para toda versión de Android</string>
+    <string name="onboarding_root_shell_fail_title">Sin acceso root</string>
+    <string name="onboarding_root_shell_fail">Acceso a root no disponible. Por favor, utilice otro método de configuración.</string>
+    <string name="onboarding_root_shell_fail_unknown">Error al conceder el permiso vía root. Por favor use otro método de configuración.</string>
+    <string name="onboarding_root_enhanced_processing_setup_success">El procesamiento mejorado está configurado</string>
+    <string name="onboarding_adb_shizuku_title">Configuración de Shizuku</string>
+    <string name="onboarding_adb_adb_title">Configuración de ADB</string>
+    <string name="onboarding_adb_caption">Esta aplicación requiere permisos especiales para extraer la política de audio de su dispositivo. Por favor, siga las siguientes instrucciones.</string>
+    <string name="onboarding_adb_shizuku_install_button">Instalar Shizuku</string>
+    <string name="onboarding_adb_shizuku_install_button_done">Ya está instalado</string>
+    <string name="onboarding_adb_shizuku_install_instruction">Instalar \'Shizuku\' desde la Google Play.</string>
+    <string name="onboarding_adb_shizuku_open_instruction">Abra \'Shizuku\' y busca \'<b>Iniciar a través de la depuración inalámbrica</b>\'. Toca el botón de \'Emparejamiento\' y sigue las instrucciones en la aplicación. Después de emparejar Shizuku con tu dispositivo, inicia el servidor Shizuku presionando el botón \'Iniciar\' en la aplicación. Si encuentras problemas mientras configuras Shizuku, por favor vea el tutorial de configuración vinculado en su aplicación.</string>
+    <string name="onboarding_adb_shizuku_open_button">Ejecutar Shizuku</string>
+    <string name="onboarding_adb_shizuku_open_button_done">Ya está activo</string>
+    <string name="onboarding_adb_shizuku_grant_instruction">Toca el botón y concede los permisos a Shizuku.</string>
+    <string name="onboarding_adb_shizuku_grant_button">Conceder acceso</string>
+    <string name="onboarding_adb_shizuku_not_installed">Shizuku no está instalado. Por favor descarga e instálalo desde Google Play primero.</string>
+    <string name="onboarding_adb_shizuku_not_installed_title">Shizuku no está instalado</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead">Por favor inicia el servidor Shizuku antes de solicitar permisos. Vuelva al la instrucción del paso 2.</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead_title">El servidor Shizuku no está ejecutado</string>
+    <string name="onboarding_adb_shizuku_grant_fail_version">Esta aplicación requiere de Shizuku versión 11 o posterior. Por favor actualice Shizuku a su última versión.</string>
+    <string name="onboarding_adb_shizuku_grant_fail_version_title">Versión de Shizuku no soportada</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied_title">Permiso denegado</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied">Por favor, conceda acceso a Shizuku. Puede que necesites abrir el administrador de permisos de Shizuku y otorgar el permiso manualmente si lo denegaste previamente y ya no aparece la ventana emergente.</string>
+    <string name="onboarding_adb_shizuku_no_dump_perm_title">Shizuku no pudo conceder permisos ADB</string>
+    <string name="onboarding_adb_shizuku_no_dump_perm">Por favor, espere unos segundos e intente de nuevo. Si todavía no funciona, pruebe el método alternativo.</string>
+    <string name="onboarding_adb_dump_not_granted_title">Permiso no concedido</string>
+    <string name="onboarding_adb_dump_not_granted">Por favor, siga las instrucciones primero e intente de nuevo. El acceso ADB no está configurado correctamente.</string>
+    <string name="onboarding_adb_manual_step1">Ve a las configuraciones de desarrollo ocultas de Android y habilita la depuración USB. Necesitas desbloquear estas configuraciones tocando varias veces el número de compilación en las configuraciones del sistema.</string>
+    <string name="onboarding_adb_manual_step2">Abra https://app.webadb.com en el buscador de su computadora (funciona mejor en Chrome) y conecte su dispositivo usando cable USB a la computadora.</string>
+    <string name="onboarding_adb_manual_step3">Agregue y conecte el dispositivo USB en WebADB.</string>
+    <string name="onboarding_adb_manual_step4">Navegue hasta la \'Shell Interactivo\' y ejecute el siguiente comando en la shell: \'pm grant %s android.permission.DUMP\'</string>
+    <string name="onboarding_adb_manual_step5">Toque \'Siguiente\' en esta aplicación para continuar.</string>
+    <string name="onboarding_adb_manual_step1_button">Abra las configuraciones de desarrollador</string>
+    <string name="onboarding_perm_title">Otros permisos</string>
+    <string name="onboarding_perm_caption">Se requieren permisos adicionales para usar esta aplicación. Por favor revíselos y toque \'Siguiente\' para otorgarlos.</string>
+    <string name="onboarding_perm_microphone_title">Permiso de grabación de audio</string>
+    <string name="onboarding_perm_microphone_caption">Requerido para grabar audio interno. El micrófono de hardware no se está activado.</string>
+    <string name="onboarding_perm_notification_title">Permiso de notificaciones</string>
+    <string name="onboarding_perm_notification_caption">Requerido para recibir estado de actualizaciones importantes e información sobre el estado de procesamiento de JamesDSP.</string>
+    <string name="onboarding_perm_cast_title">Permiso de transmisión/grabación</string>
+    <string name="onboarding_perm_cast_caption">Debes otorgar explícitamente permiso a esta aplicación para grabar contenido de audio cada vez que se inicie.</string>
+    <string name="onboarding_perm_missing_title">Permisos de ejecución no concedido</string>
+    <string name="onboarding_perm_missing">Por favor otorgue todos los permisos solicitados de ejecución para continuar.\nSi ha denegado repetidamente los permisos, debe otorgarlos manualmente en la configuración del sistema.</string>
+    <string name="onboarding_finish_header">JamesDSP está configurado!</string>
+    <string name="onboarding_finish_caption">Si encuentras algún problema, por favor visita las opciones de solución de problemas.</string>
+    <string name="limit_session_control_conflict_title">Desactive otras aplicaciones de efectos de audio</string>
+    <string name="limit_session_control_conflict">Las aplicaciones de efectos de audio que utilizan el efecto de procesamiento dinámico incorporado en Android interfieren con esta aplicación.</string>
     <!-- Settings -->
     <string name="title_activity_settings">Settings</string>
+    <string name="autostart_prompt_at_boot_off">No mostrar notificación después del arranque</string>
+    <string name="appearance_theme_mode">Modo oscuro</string>
     <!-- Theme names -->
     <string name="theme_default">Defecto</string>
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">Respuesta de magnitud</string>
+    <string name="geq_autoeq">Perfiles de AutoEQ</string>
     <string name="gep_add_node">Agregar</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
+    <string name="editor_cannot_redo">Nada que rehacer.</string>
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Apps excluidas</string>
+    <string name="blocklist_add_exclusion_alt">Añadir aplicación para excluir</string>
+    <string name="blocklist_delete_title">¿Eliminar la aplicación seleccionada?</string>
+    <string name="blocklist_delete">¿Quieres eliminar esta aplicación de la lista de exclusión?</string>
+    <string name="blocklist_no_exclusions">No hay aplicaciones excluidas</string>
+    <string name="blocklist_unsupported_apps">Aplicaciones no compatibles</string>
+    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>Esta aplicación no admite el procesamiento de aplicaciones que bloquean a terceros de grabar su salida de audio. Para evitar que estas aplicaciones se silencien debido a sus restricciones de captura, se excluyen automáticamente del procesamiento de audio y no se redirigen. </p><p><u>Aplicaciones afectadas:</u><br/>%s</p>]]></string>
     <!-- Compatibility issue activity -->
+    <string name="title_activity_app_compat">Problema de compatibilidad</string>
     <string name="app_compat_retry">Reintentarlo</string>
+    <string name="app_compat_exclude">Excluir</string>
+    <string name="app_compat_title">El procesamiento de audio ha sido suspendido para evitar el audio duplicado</string>
+    <string name="app_compat_explanation">La siguiente aplicación no es compatible porque hace que RootlessJamesDSP pierda el control sobre su enrutamiento de audio:</string>
+    <string name="app_compat_instruction">Por favor, verifica las configuraciones de las aplicaciones para ver si puedes desactivar la aceleración de hardware u otras configuraciones que podrían interferir con RootlessJamesDSP y toca \'Reintentar\'.</string>
+    <string name="app_compat_instruction_exclude">Alternativamente, selecciona \'Excluir\' para pasar por alto este problema excluyendo la aplicación incompatible del procesamiento de audio.</string>
+    <string name="app_compat_unknown_pkg_name">Nombre de paquete desconocido</string>
     <!-- Hints for compatibility issues for individual apps -->
+    <string name="app_compat_quirk_voice_search">La búsqueda y reconocimiento de voz se sabe que causan este problema con esta aplicación. Trata de evitar usar estas funciones y revoca el permiso del micrófono para las aplicaciones problemáticas si el problema persiste.</string>
     <!-- Root: Library load failure -->
+    <string name="load_fail_header">Módulo de Magisk no instalado</string>
+    <string name="load_fail_card_title">Error al cargar libjamesdsp.so</string>
+    <string name="load_fail_card">Por favor, instale el módulo de JamesDSP para Magisk y reinicie su dispositivo Android para utilizar esta aplicación. Es posible que también deba reinstalar esta aplicación después de reiniciar.</string>
+    <string name="load_fail_rootless_card_title">¿Buscas una alternativa sin root?</string>
+    <string name="load_fail_rootless_card">Esta versión de JamesDSP fue diseñada para ser utilizada con un dispositivo rooteado/modificado. También hay disponible una alternativa sin root con algunas limitaciones. Toca aquí para más detalles.</string>
+    <string name="load_fail_arch_card_title">¿Módulo ya instalado?</string>
+    <string name="load_fail_arch_card">Si ya has instalado el módulo Magisk, es posible que hayas seleccionado la configuración incorrecta durante la instalación. Por favor, reinstala el módulo y trata de habilitar la compatibilidad con Huawei (aunque tu teléfono no sea de ese fabricante).</string>
     <!-- Enhanced processing -->
+    <string name="enhanced_processing_feature_unavailable">Función no disponible</string>
     <!-- App list -->
     <!-- Number box view -->
     <!-- Slider widget -->

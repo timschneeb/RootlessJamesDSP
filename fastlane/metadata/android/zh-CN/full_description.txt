@@ -1,31 +1,30 @@
-Use JamesDSP as a system-wide audio processing engine without any root access.
+使用 JamesDSP 作为系统范围的音频处理引擎，无需任何 Root 权限。
 
-This app has several limitations that may be deal-breaking to some people; please read this whole document before using the app. Shizuku (Android 11+) or ADB access via a computer is required for the initial setup.
+请在使用该应用程序之前阅读整篇文档。 初始设置需要通过电脑访问 Shizuku（Android 11+）或 ADB。
 
-JamesDSP supports the following audio effects:
-* Limiter control
-* Output gain control
-* Auto dynamic range compressor
-* Dynamic bass boost
-* Interpolating FIR equalizer
-* Arbitrary response equalizer (Graphic EQ)
+JamesDSP 支持以下音效：
+* 限制器控制
+* 输出增益控制
+* 自动动态范围压缩器
+* 动态低音增强
+* 内置 FIR 均衡器
+* 任意响应均衡器（Graphic EQ）
 * ViPER-DDC
-* Convolver
-* Live-programmable DSP (scripting engine for audio effects)
-* Analog modelling
-* Soundstage wideness
-* Crossfeed
-* Virtual room effect (reverb)
+* 脉冲反馈
+* 实时可编程 DSP（音频效果脚本引擎）
+* 模拟建模
+* 声场广度
+* 交叉反馈
+* 虚拟场效果（混响）
 
-Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration, you can search and import frequency responses that aim to correct your headphone to a neutral sound. Go to 'Arbitrary response equalizer > Magnitude response > AutoEQ profiles' to get started.
+此外，此应用直接与 AutoEQ 集成。 使用 AutoEQ 集成，您可以搜索并导入旨在将耳机校正为中性声音的频率响应。 转到“任意响应均衡器 > 幅度响应 > AutoEQ 配置文件”开始。
 
---- Limitations
-* Apps blocking internal audio capture remain unprocessed (e.g., Spotify, Google Chrome)
-* Apps using some types of HW-accelerated playback may cause issues and need to be manually excluded (e.g., some Unity games)
-* Cannot coexist with (some) other audio effect apps (e.g., Wavelet and other apps that make use of the `DynamicsProcessing` Android API)
+--- 局限性
+* 阻止内部音频捕获的应用程序仍未处理（例如 Spotify、Google Chrome）
+* 使用某些类型的 HW 加速播放的应用程序可能会导致问题，需要手动排除（例如，某些 Unity 游戏）
+* 不能与（某些）其它音频效果应用共存（例如，Wavelet 和其它使用“DynamicsProcessing”Android API 的应用）
 
-
-- Apps confirmed working:
+- 确认工作的应用：
 * YouTube
 * YouTube Music
 * Amazon Music
@@ -35,12 +34,57 @@ Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration
 * Twitch
 * ...
 
-- Unsupported apps include:
-* Spotify (Note: Spotify ReVanced patch is required to support Spotify)
+- 不支持的应用包括：
+* Spotify（注意：Spotify ReVanced 补丁需要支持 Spotify）
 * Google Chrome
 * SoundCloud
 * ...
 
---- Translation
-Please help us translate this app here: https://crowdin.com/project/rootlessjamesdsp
-To request a new language that isn't enabled on Crowdin yet, please open an issue here on GitHub and I will turn it on.
+ - - 翻译
+请帮助我们在这里翻译这个应用：https://crowdin.com/project/rootlessjamesdsp
+要请求一种尚未在 Crowdin 上启用的新语言，请在 GitHub 上打开一个问题，我会打开它。
+
+这个应用有几个限制，请在使用应用之前阅读整个文档。 初始设置需要通过电脑访问 Shizuku (Android 11+) 或 ADB 。
+
+JamesDSP 支持以下音频效果：
+* 限制器控制
+* 输出控制器
+* 动态压缩范围
+* 动态低音提升
+* 内置 FIR 均衡器
+* 任意响应均衡器
+* ViPER-DDC
+* 脉冲反馈
+* Live-programable DSP (音频效果的脚本引擎)
+* 模拟模型
+* 音阶宽度
+* 通道交叉
+* 虚拟场效果
+
+此外，此应用直接与 AutoEQ 集成。 使用 AutoEQ 集成，您可以搜索并导入频率响应，目的是将您的耳机改正为中性声音。 转到“任意响应均衡器 > 大规模响应> AutoEQ 配置文件”开始操作。
+
+--- 局限性
+阻止内部音频捕获的应用程序仍未处理 (例如Spotify、Google Chrome)。
+* 使用某些类型的硬件加速播放的应用程序可能会导致问题，需要手动排除(如某些Unity 游戏)
+* 无法与 (有些) 其他音频特效应用程序共存(例如，Wavelet 和其他应用使用了 `DynamicsProcessing` Android API)
+
+
+- 应用程序确认正常工作:
+* YouTube
+* YouTube Music
+* Amazon Music
+* Deezer
+* Poweramp
+* Substreamer
+* Twitch
+* ...
+
+- 不支持的应用包括：
+* Spotify (注意：支持Spotify需要Spotify补丁)
+* Google Chrome
+* SoundCloud
+* ...
+
+--- 翻译
+请帮助我们在这里翻译这个应用： https://crowdin.com/project/rootlessjamesdsp
+若要在 Crowdin 上请求一种尚未启用的新语言，请在 GitHub 上打开一个问题，我将打开它。
