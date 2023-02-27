@@ -1,5 +1,6 @@
 package me.timschneeberger.rootlessjamesdsp.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,6 +45,7 @@ class AppBlocklistAdapter : ListAdapter<BlockedApp, AppBlocklistAdapter.AppBlock
             itemView.setOnClickListener(this)
         }
 
+        @SuppressLint("SetTextI18n")
         fun bind(app: BlockedApp) {
             this.app = app
             this.titleTextView.text = app.appName
