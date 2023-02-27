@@ -263,15 +263,15 @@ class GraphicEqualizerSurface(context: Context?, attrs: AttributeSet?) : View(co
         postInvalidate()
     }
 
+    private var MIN_DB = -15
+    private var MAX_DB = 15
+
     companion object {
         private const val STATE_FREQ = "freq"
         private const val STATE_GAIN = "gain"
 
         private const val MIN_FREQ = 20.0
         private const val MAX_FREQ = 20000.0
-
-        private const var MIN_DB = -15
-        private const var MAX_DB = 15
 
         private val FreqScale = doubleArrayOf(
             25.0,
