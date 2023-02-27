@@ -4,3 +4,6 @@ files:
     translate_attributes: 0
   - source: /fastlane/metadata/android/en-US/*_description.txt
     translation: /fastlane/metadata/android/%locale%/%original_file_name%
+  - source: /app/src/main/res/values/plurals.xml
+    translation: /app/src/main/res/values-%android_code%/plurals.xml
+    translate_attributes: 0
