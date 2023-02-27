@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <plurals name="nodes">
+        <item quantity="one">%d узел</item>
+        <item quantity="few">%d узла</item>
+        <item quantity="many">%d узлов</item>
+        <item quantity="other">%d узлов</item>
+    </plurals>
+    <plurals name="custom_parameters">
+        <item quantity="one">%d настраиваемый параметр</item>
+        <item quantity="few">%d настраиваемых параметра</item>
+        <item quantity="many">%d настраиваемых параметров</item>
+        <item quantity="other">%d настраиваемых параметров</item>
+    </plurals>
+</resources>
