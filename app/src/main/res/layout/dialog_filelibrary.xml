@@ -62,7 +62,8 @@
             android:layout_gravity="bottom"
             android:background="#1f000000"
             app:backgroundTint="?android:attr/colorForeground"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:importantForAccessibility="no" />
     </FrameLayout>
     <include layout="@layout/abc_alert_dialog_button_bar_material"
         android:layout_width="match_parent"

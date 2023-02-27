@@ -19,7 +19,8 @@
             android:src="@drawable/ic_twotone_chevron_right_24dp"
             android:textSize="20sp"
             android:textStyle="bold"
-            tools:text="K" />
+            tools:text="K"
+            android:importantForAccessibility="no" />
     </RelativeLayout>
 
     <TextView

@@ -20,7 +20,8 @@
 
             android:alpha="0.8"
             app:srcCompat="@drawable/ic_twotone_check_circle_24dp"
-            app:tint="?attr/colorOnSurface" />
+            app:tint="?attr/colorOnSurface"
+            android:importantForAccessibility="no" />
 
         <TextView
             android:layout_width="wrap_content"

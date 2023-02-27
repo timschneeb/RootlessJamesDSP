@@ -18,7 +18,8 @@
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_margin="8dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:importantForAccessibility="no" />
         <TextView
             android:id="@+id/title"
             android:layout_width="match_parent"

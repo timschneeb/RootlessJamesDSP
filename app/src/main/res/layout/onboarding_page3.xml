@@ -17,7 +17,8 @@
             android:layout_marginBottom="8dp"
             android:alpha="0.8"
             app:srcCompat="@drawable/ic_twotone_auto_fix_high_24"
-            app:tint="?attr/colorOnSurface" />
+            app:tint="?attr/colorOnSurface"
+            android:importantForAccessibility="no" />
 
         <TextView
             android:layout_width="wrap_content"
