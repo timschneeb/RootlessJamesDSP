@@ -1,2 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <plurals name="nodes">
+        <item quantity="one">%d вузол</item>
+        <item quantity="few">%d вузли</item>
+        <item quantity="many">%d вузлів</item>
+        <item quantity="other">%d вузлів</item>
+    </plurals>
+    <plurals name="custom_parameters">
+        <item quantity="one">%d настроюваний параметр</item>
+        <item quantity="few">%d настроювані параметри</item>
+        <item quantity="many">%d настроюваних параметрів</item>
+        <item quantity="other">%d настроюваних параметрів</item>
+    </plurals>
+    <plurals name="unsupported_apps">
+        <item quantity="one">%d непідтримуваний додаток було автоматично виключено. Натисніть, щоб дізнатися більше.</item>
+        <item quantity="few">%d непідтримувані додатки було автоматично виключено. Натисніть, щоб дізнатися більше.</item>
+        <item quantity="many">%d непідтримуваних додатків було автоматично виключено. Натисніть, щоб дізнатися більше.</item>
+        <item quantity="other">%d непідтримуваних додатків було автоматично виключено. Натисніть, щоб дізнатися більше.</item>
+    </plurals>
+</resources>
