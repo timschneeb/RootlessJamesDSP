@@ -46,11 +46,15 @@
     <string name="value_not_set">Ayarlanmamış</string>
     <string name="undo">Geri al</string>
     <string name="redo">Yinele</string>
+    <string name="no_activity_found">Etkileşimi işleyecek aktivite bulunamadı</string>
     <!-- Main screen -->
     <string name="power_button_alt">Ses işlemeyi aç/kapat</string>
     <string name="compressor_max_attack">Maksimum saldırı</string>
+    <string name="compressor_max_release">Maksimum yayınlama</string>
     <string name="compressor_adapt_speed">Agresiflik</string>
     <string name="eq_filter_type">Filtre türü</string>
+    <string name="eq_filter_type_minimum">Minimum faz</string>
+    <string name="eq_filter_type_linear">Çizgisel faz</string>
     <string name="eq_preset_acoustic">Akustik</string>
     <string name="eq_preset_bass">Bass</string>
     <string name="eq_preset_beats">Ritimler</string>
@@ -67,6 +71,21 @@
     <string name="eq_preset_rb">R&amp;B</string>
     <string name="eq_preset_rock">Rock</string>
     <string name="eq_preset_vocal">Ses Yükseltici</string>
+    <string name="bass_enable">Dinamik bass arttırıcısı</string>
+    <string name="reverb_enable">Sanal oda efekti</string>
+    <string name="reverb_room_type">Oda türü</string>
+    <string name="reverb_preset_default">Varsayılan</string>
+    <string name="reverb_preset_small_hall1">Küçük salon 1</string>
+    <string name="reverb_preset_small_hall2">Küçük salon 2</string>
+    <string name="reverb_preset_medium_hall2">Orta boyutta salon</string>
+    <string name="reverb_preset_large_hall1">Büyük salon</string>
+    <string name="reverb_preset_small_room1">Küçük oda 1</string>
+    <string name="reverb_preset_small_room2">Küçük oda 2</string>
+    <string name="reverb_preset_medium_room1">Orta boyutta oda</string>
+    <string name="reverb_preset_large_room1">Büyük oda</string>
+    <string name="convolver_convolution_mode_original">Orjinal</string>
+    <string name="liveprog_not_found">Komut bulunamadı</string>
+    <string name="tube_enable">Analog modelleme</string>
     <string name="output_control_header">Çıkış kontrolü</string>
     <string name="stereowide_level">Genişlik</string>
     <string name="stereowide_level_none">Hiçbiri</string>
@@ -95,9 +114,12 @@
     <string name="onboarding_methods_rootless_adb">\u25CF Gelişmiş kullanıcılar için\n\u25CFBilgisayar ve USB kablosu gereklidir\n\u25CFAndroid 10+ desteği var</string>
     <!-- Root flavor -->
     <string name="onboarding_methods_root_root">\u25CFÖnerilir\n\u25CFHarici bilgisayar gerekli değil\n\u25CFTüm android sürümleri</string>
+    <string name="onboarding_adb_caption">Bu uygulama cihazınızın ses politikasını çöpe boşaltmak için özel izinler gerektirir. Lütfen aşağıdaki talimatları takip edin.</string>
+    <string name="onboarding_adb_shizuku_install_button">Shizuku Yükle</string>
     <!-- Settings -->
     <string name="title_activity_settings">Ayarlar</string>
     <!-- Theme names -->
+    <string name="theme_default">Varsayılan</string>
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
