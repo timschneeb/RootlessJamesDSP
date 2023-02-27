@@ -1,3 +1,10 @@
+commit_message: "l10n: updated %original_file_name% translation (%language%)"
+append_commit_message: false
+pull_request_title: "l10n: New Crowdin updates"
+pull_request_labels:
+  - "crowdin"
+  - "l10n"
+
 files:
   - source: /app/src/main/res/values/strings.xml
     translation: /app/src/main/res/values-%android_code%/%original_file_name%
