@@ -14,14 +14,14 @@
     <string name="action_retry">Повторити</string>
     <string name="action_fix">Виправити проблему</string>
     <string name="action_stop">Зупинити</string>
-    <string name="notification_processing">Активні програми: %1$s</string>
+    <string name="notification_processing">Активні додатки: %1$s</string>
     <string name="notification_idle">Обробка аудіо в режимі очікування</string>
     <string name="notification_processing_title">Обробка аудіо активна</string>
     <string name="notification_processing_disabled_title">Обробку аудіо вимкнено</string>
     <string name="notification_processing_legacy">Натисніть, щоб відкрити JamesDSP manager</string>
     <!-- Permission request notifications -->
     <string name="notification_request_permission_title">Для запуску JamesDSP потрібна дія користувача</string>
-    <string name="notification_request_permission">Натисніть, щоб надати дозвіл на захоплення і ввімкнути обробку аудіо в JamesDSP</string>
+    <string name="notification_request_permission">Натисніть, щоб надати дозвіл на захоплення та увімкнути обробку аудіо в JamesDSP</string>
     <!-- Session control loss notifications -->
     <string name="session_control_loss_toast">JamesDSP зупинено через втрату контролю над аудіосесією. Будь ласка, вимкніть інші програми для обробки аудіо ефектів.</string>
     <string name="session_control_loss_notification_title">Обробку аудіо зупинено. Інша програма заважає роботі JamesDSP.</string>
@@ -36,7 +36,7 @@
     <string name="install">Встановити</string>
     <string name="update">Оновити</string>
     <string name="details">Детальніше</string>
-    <string name="warning">Увага</string>
+    <string name="warning">Попередження</string>
     <string name="success">Виконано</string>
     <string name="open">Відкрити</string>
     <string name="close">Закрити</string>
@@ -46,7 +46,7 @@
     <string name="value_not_set">Не задано</string>
     <string name="undo">Відмінити</string>
     <string name="redo">Повторити</string>
-    <string name="no_activity_found">Не знайдено жодного активіті для обробки цієї дії</string>
+    <string name="no_activity_found">Не знайдено жодного Активіті для обробки цієї дії</string>
     <!-- Main screen -->
     <string name="power_button_alt">Перемкнути обробку аудіо</string>
     <string name="compressor_enable">Автоматичний компресор динамічного діапазону</string>
@@ -58,7 +58,7 @@
     <string name="eq_interpolator">Інтерполятор</string>
     <string name="eq_filter_type_minimum">Мінімальна фаза</string>
     <string name="eq_filter_type_linear">Лінійна фаза</string>
-    <string name="eq_interpolator_chip">Кусочно-кубічний інтерполяційний поліном Ерміта</string>
+    <string name="eq_interpolator_chip">Кусково-кубічний інтерполяційний поліном Ерміта</string>
     <string name="eq_interpolator_mha">Модифікований сплайн Хіросі Акіма</string>
     <string name="eq_preset_acoustic">Acoustic</string>
     <string name="eq_preset_bass">Bass</string>
@@ -84,7 +84,7 @@
     <string name="bass_max_gain">Рівень підсилення</string>
     <string name="reverb_enable">Ефект віртуальної кімнати</string>
     <string name="reverb_room_type">Тип приміщення</string>
-    <string name="reverb_preset_default">Типові налаштування</string>
+    <string name="reverb_preset_default">За замовчуванням</string>
     <string name="reverb_preset_small_hall1">Small hall 1</string>
     <string name="reverb_preset_small_hall2">Small hall 2</string>
     <string name="reverb_preset_medium_hall2">Medium hall</string>
@@ -101,7 +101,7 @@
     <string name="convolver_impulse">Імпульсний відгук</string>
     <string name="convolver_advanced_editing">Редагування форми сигналу</string>
     <string name="convolver_convolution_mode">Оптимізація імпульсного відгуку</string>
-    <string name="convolver_convolution_mode_original">Початковий</string>
+    <string name="convolver_convolution_mode_original">Оригінал</string>
     <string name="convolver_convolution_mode_shrink">Стиснення</string>
     <string name="convolver_convolution_mode_minimum_phase_shrink">Мінімальне фазове перетворення і стиснення</string>
     <string name="ddc_enable">ViPER-DDC</string>
@@ -141,7 +141,7 @@
     <string name="onboarding_next">Далі</string>
     <string name="onboarding_finish">Завершити</string>
     <string name="onboarding_greeting">Ласкаво просимо до RootlessJamesDSP!</string>
-    <string name="onboarding_caption">Цей помічник допоможе вам налаштувати додаток.</string>
+    <string name="onboarding_caption">Цей асистент допоможе вам виконати налаштування додатку.</string>
     <string name="onboarding_warning">Наразі додаток не завершений та нестабільний. Зверніть увагу, що на деяких пристроях він може не працювати так, як очікується, оскільки використовує Android API, не призначені для використання третіми особами.</string>
     <string name="onboarding_fix_permissions_title">Потрібна дія користувача</string>
     <string name="onboarding_fix_permissions">Один або кілька дозволів було відкликано вами або системою.\nЩоб забезпечити правильну роботу додатку, вам потрібно надати ці дозволи знову.\n\nБудь ласка, перезапустіть майстер налаштування для повторного надання цих дозволів.</string>
@@ -159,9 +159,9 @@
     <string name="onboarding_methods_root_root">\u25CF Рекомендується\n\u25CF Не потрібен комп\'ютер\n\u25CF Підходить для всіх версій Android</string>
     <string name="onboarding_methods_root_shizuku">\u25CF Рекомендується, якщо root-доступ відсутній\n\u25CF Не потрібен комп\'ютер\n\u25CF Тільки для Android 11+</string>
     <string name="onboarding_methods_root_adb">\u25CF Для досвідчених користувачів\n\u25CF Потрібен комп\'ютер та USB-кабель\n\u25CFВсі версії Android</string>
-    <string name="onboarding_root_shell_fail_title">Немає root-доступу</string>
-    <string name="onboarding_root_shell_fail">Немає root-доступу. Будь ласка, скористайтеся іншим методом налаштування.</string>
-    <string name="onboarding_root_shell_fail_unknown">Не вдалося надати дозвіл через root. Будь ласка, використовуйте інший метод налаштування.</string>
+    <string name="onboarding_root_shell_fail_title">Root-доступ відсутній</string>
+    <string name="onboarding_root_shell_fail">Root-доступ відсутній. Будь ласка, скористайтеся іншим методом налаштування.</string>
+    <string name="onboarding_root_shell_fail_unknown">Не вдалося надати дозвіл через root. Будь ласка, скористайтеся іншим методом налаштування.</string>
     <string name="onboarding_root_enhanced_processing_setup_success">Покращена обробка налаштована</string>
     <string name="onboarding_adb_shizuku_title">Налаштування Shizuku</string>
     <string name="onboarding_adb_adb_title">Налаштування ADB</string>
@@ -185,7 +185,7 @@
     <string name="onboarding_adb_shizuku_no_dump_perm_title">Shizuku не вдалося надати дозволи ADB</string>
     <string name="onboarding_adb_shizuku_no_dump_perm">Будь ласка, зачекайте кілька секунд і спробуйте ще раз. Якщо це не спрацює, спробуйте альтернативний метод.</string>
     <string name="onboarding_adb_dump_not_granted_title">Дозвіл ще не надано</string>
-    <string name="onboarding_adb_dump_not_granted">Будь ласка, спочатку виконайте інструкції та повторіть спробу. Доступ ADB ще не налаштовано правильно.</string>
+    <string name="onboarding_adb_dump_not_granted">Будь ласка, спочатку дотримайтесь інструкцій та повторіть спробу. Доступ ADB ще не налаштовано належним чином.</string>
     <string name="onboarding_adb_manual_step1">Перейдіть у приховані налаштування Android \"Для розробників\" і увімкніть параметр \"USB-налагодження\". Для розблокування цих налаштувань необхідно кілька разів натиснути на номер збірки в налаштуваннях системи.</string>
     <string name="onboarding_adb_manual_step2">Перейдіть на сайт https://app.webadb.com у веб-браузері на вашому комп\'ютері (рекомендується використовувати Google Chrome) і підключіть ваш пристрій до комп\'ютера за допомогою USB.</string>
     <string name="onboarding_adb_manual_step3">Додайте та підключіть USB-пристрій у WebADB.</string>
@@ -211,7 +211,7 @@
     <string name="limit_hw_accel_title">Проблеми з апаратним прискоренням відтворення звуку</string>
     <string name="limit_hw_accel">HW-прискорене відтворення аудіо іноді може призводити до дублювання звуку або зупинки JamesDSP. Додайте проблемний музичний плеєр до списку виключених додатків, щоб запобігти повторній маршрутизації JamesDSP.</string>
     <string name="limit_detect_delay_title">Затримка визначення аудіосесії</string>
-    <string name="limit_detect_delay"><![CDATA[Після того як додаток відкриває нову мультимедійну сесію для відтворення звуку, ви можете почути повторюваний або обривистий звук на дуже короткий період (приблизно &lt;250 мс).]]></string>
+    <string name="limit_detect_delay"><![CDATA[Після того як додаток відкриває нову медіа-сесію для відтворення звуку, ви можете почути повторюваний або обривистий звук на дуже короткий період (приблизно 250 мс).]]></string>
     <string name="limit_latency_title">Збільшення затримки</string>
     <string name="limit_latency">Ця програма може додавати деяку затримку в аудіопотік. Ви можете додати застосунки для перегляду фільмів/відео до списку винятків, щоб не обробляти їх і уникнути збоїв у синхронізації звуку та відео.</string>
     <string name="limit_tested_devices_title">Протестовані пристрої</string>
