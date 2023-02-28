@@ -187,7 +187,7 @@
     <string name="onboarding_adb_dump_not_granted_title">Разрешение еще не предоставлено</string>
     <string name="onboarding_adb_dump_not_granted">Пожалуйста, вначале выполните инструкции и повторите попытку. Доступ ADB еще не настроен правильно.</string>
     <string name="onboarding_adb_manual_step1">Перейдите в скрытые настройки Android «Для разработчиков» и включите параметр «Отладка по USB». Для разблокировки этих настроек необходимо несколько раз нажать на номер сборки в настройках системы.</string>
-    <string name="onboarding_adb_manual_step2">Перейдите на сайт https://app.webadb.com в веб-браузере на вашем компьютере (рекомендуется использовать Google Chrome) и подключите ваше устройство к компьютеру с помощью USB.</string>
+    <string name="onboarding_adb_manual_step2">Перейдите на сайт https://app.webadb.com в веб-браузере на вашем компьютере (рекомендуется использовать Google Chrome) и подключите ваше устройство к компьютеру с помощью USB-кабеля.</string>
     <string name="onboarding_adb_manual_step3">Добавьте и подключите USB-устройство в WebADB.</string>
     <string name="onboarding_adb_manual_step4">Перейдите в раздел «Interactive Shell» и выполните в терминале следующую команду: pm grant %s android.permission.DUMP</string>
     <string name="onboarding_adb_manual_step5">Нажмите «Далее» в этом приложении, чтобы продолжить.</string>
@@ -203,17 +203,17 @@
     <string name="onboarding_perm_missing_title">Разрешения на выполнение не предоставлены</string>
     <string name="onboarding_perm_missing">Пожалуйста, предоставьте все запрошенные разрешения на выполнение, чтобы продолжить.\nЕсли вы несколько раз отказали в предоставлении разрешений, вам нужно предоставить их вручную в настройках системы.</string>
     <string name="onboarding_finish_header">JamesDSP настроен!</string>
-    <string name="onboarding_finish_caption">Если у вас возникли какие-либо проблемы, посетите раздел настроек «Устранение неполадок».</string>
+    <string name="onboarding_finish_caption">Если у вас возникли какие-либо проблемы, пожалуйста, посетите раздел настроек «Устранение неисправностей».</string>
     <string name="limit_session_control_conflict_title">Отключение других приложений для обработки звука</string>
     <string name="limit_session_control_conflict">Приложения для обработки звука, использующие встроенный в Android эффект динамической обработки, мешают работе этого приложения.</string>
     <string name="limit_unsupported_apps_title">Неподдерживаемые приложения</string>
     <string name="limit_unsupported_apps">Приложения, которые блокируют запись внутреннего аудио, не будут обработаны (например, Spotify, Google Chrome).</string>
-    <string name="limit_hw_accel_title">Проблемы с аппаратным ускорением воспроизведения звука</string>
+    <string name="limit_hw_accel_title">Проблемы с HW-ускорением воспроизведения звука</string>
     <string name="limit_hw_accel">HW-ускоренное воспроизведение аудио иногда может приводить к дублированию звука или остановке JamesDSP. Добавьте затронутый музыкальный плеер в список исключенных приложений, чтобы предотвратить повторную маршрутизацию JamesDSP.</string>
     <string name="limit_detect_delay_title">Задержка определения аудиосессии</string>
     <string name="limit_detect_delay"><![CDATA[После того как приложение открывает новую медиа-сессию для воспроизведения звука, вы можете услышать повторяющийся или обрывистый звук на очень короткий период (примерно 250 мс).]]></string>
-    <string name="limit_latency_title">Увеличение задержки</string>
-    <string name="limit_latency">Это приложение может добавлять некоторую задержку в аудио поток. Вы можете добавить приложения для просмотра фильмов/видео в список исключений, чтобы не обрабатывать их и избежать сбоев в синхронизации звука и видео.</string>
+    <string name="limit_latency_title">Повышенная задержка</string>
+    <string name="limit_latency">Это приложение может добавлять некоторую задержку в аудио поток. Вы можете внести приложения для просмотра фильмов/видео в список исключений, чтобы не обрабатывать их и избежать сбоев в синхронизации звука и видео.</string>
     <string name="limit_tested_devices_title">Проверенные устройства</string>
     <string name="limit_tested_devices">Производитель вашего устройства мог внести изменения в аудио-подсистему Android, которые могут нарушить работу приложения из-за использования не задокументированных API.\nПриложение тестировалось на устройствах:\n• Samsung S20+ (Android 12)\n• Эмулятор AOSP (Android 10–13)\n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
@@ -254,7 +254,7 @@
     <string name="audio_format_encoding_float">32-bit float PCM</string>
     <string name="audio_format_buffer_size">Размер буфера</string>
     <string name="audio_format_buffer_size_unit">&#xa0;samples</string>
-    <string name="audio_format_buffer_size_warning_low_value">Низкие размеры буфера могут вызвать проблемы с аудио, такие как клиппинг!</string>
+    <string name="audio_format_buffer_size_warning_low_value">Предупреждение: Низкие размеры буфера могут вызвать проблемы с аудио, такие как клиппинг!</string>
     <string name="autostart_prompt_at_boot">Запрашивать разрешение на захват после загрузки</string>
     <string name="autostart_prompt_at_boot_off">Не показывать уведомление после загрузки</string>
     <string name="autostart_prompt_at_boot_on">Показывать уведомление после загрузки</string>
@@ -329,7 +329,7 @@
     <string name="action_import">Импорт</string>
     <string name="filelibrary_hint_tap_and_hold">Коснитесь и удерживайте любой элемент для дополнительных опций</string>
     <string name="filelibrary_context_load">Загрузить</string>
-    <string name="filelibrary_context_edit">Правка</string>
+    <string name="filelibrary_context_edit">Редактировать</string>
     <string name="filelibrary_context_overwrite">Перезаписать</string>
     <string name="filelibrary_context_rename">Переименовать</string>
     <string name="filelibrary_context_share">Поделиться</string>
@@ -355,7 +355,7 @@
     <string name="filelibrary_deleted">%1$s удален</string>
     <string name="filelibrary_preset_loaded">Пресет \'%1$s\' загружен</string>
     <string name="filelibrary_preset_load_failed">Файл \'%1$s\' не совместим с данным приложением</string>
-    <string name="filelibrary_no_presets">Нет сохраненных пресетов. Нажмите \'Добавить\', чтобы создать новый.</string>
+    <string name="filelibrary_no_presets">Нет сохраненных пресетов. Нажмите «Добавить», чтобы создать новый.</string>
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">Выбранный файл VDC поврежден. Пожалуйста, выберите другой файл.</string>
     <string name="message_irs_corrupt">Выбранный импульсный отклик поврежден. Пожалуйста, выберите другой.</string>
@@ -435,7 +435,7 @@
     <string name="app_compat_exclude">Исключить</string>
     <string name="app_compat_title">Обработка аудио была приостановлена для предотвращения дублирования звука</string>
     <string name="app_compat_explanation">Данное приложение не поддерживается, так как оно приводит к потере RootlessJamesDSP контроля над маршрутизацией звука:</string>
-    <string name="app_compat_instruction">Пожалуйста, проверьте настройки приложения, чтобы выключить аппаратное ускорение или другие настройки, которые могут помешать RootlessJamesDSP, а затем нажмите «Повторить».</string>
+    <string name="app_compat_instruction">Пожалуйста, проверьте настройки приложения, чтобы выключить аппаратное ускорение или другие настройки, которые могут помешать RootlessJamesDSP и затем нажмите «Повторить».</string>
     <string name="app_compat_instruction_exclude">В качестве альтернативы, выберите «Исключить», чтобы обойти эту проблему, исключив несовместимое приложение из обработки звука.</string>
     <string name="app_compat_unknown_pkg_name">Неизвестное имя пакета</string>
     <!-- Hints for compatibility issues for individual apps -->
