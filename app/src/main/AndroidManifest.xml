@@ -46,6 +46,10 @@
             </intent-filter>
 
             <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES" />
+            </intent-filter>
+
+            <intent-filter>
                 <action android:name="android.media.action.DISPLAY_AUDIO_EFFECT_CONTROL_PANEL" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.CATEGORY_CONTENT_MUSIC" />
