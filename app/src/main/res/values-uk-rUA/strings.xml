@@ -173,6 +173,7 @@
     <string name="limit_unsupported_apps_title">Непідтримувані додатки</string>
     <string name="limit_unsupported_apps">Додатки, які блокують запис внутрішнього аудіо, не будуть оброблені (наприклад, Spotify, Google Chrome).</string>
     <string name="limit_hw_accel_title">Проблеми з апаратним прискоренням відтворення звуку</string>
+    <string name="limit_hw_accel">HW-прискорене відтворення аудіо іноді може призводити до дублювання звуку або зупинки JamesDSP. Додайте проблемний музичний плеєр до списку виключених додатків, щоб запобігти повторній маршрутизації JamesDSP.</string>
     <string name="limit_detect_delay_title">Затримка визначення аудіо сесії</string>
     <string name="limit_detect_delay"><![CDATA[Після того як додаток відкриває нову мультимедійну сесію для відтворення звуку, ви можете почути повторюваний або обривистий звук на дуже короткий період (приблизно &lt;250 мс).]]></string>
     <string name="limit_latency_title">Збільшення затримки</string>
@@ -186,6 +187,10 @@
     <string name="session_exclude_restricted_on">Додатки, які блокують захоплення звуку, виключаються і залишаються без обробки (рекомендується)</string>
     <string name="session_detection_header">Виявлення аудіо сесій</string>
     <string name="session_continuous_polling">Безперервне опитування</string>
+    <string name="session_continuous_polling_off">Прослуховувати лише події сесії від системи</string>
+    <string name="session_continuous_polling_rate">Інтервал опитування (ms)</string>
+    <string name="session_detection_method">Бажаний метод виявлення сесії</string>
+    <string name="session_detection_method_audiopolicyservice">AudioPolicyService dump</string>
     <string name="session_detection_method_audioservice">AudioService dump (рекомендується)</string>
     <string name="session_app_problem_ignore">Ігнорувати проблеми сумісності додатка</string>
     <string name="session_loss_ignore">Ігнорувати втрату контролю сесії</string>
@@ -197,10 +202,14 @@
     <string name="audio_format_processing_header">Параметри обробки аудіо</string>
     <string name="audio_format_processing_legacy">Режим сумісності</string>
     <string name="audio_format_processing_legacy_on">Приєднати глобально до сесії 0 (застаріло)</string>
+    <string name="audio_format_processing_legacy_off">Прикріплювати до кожного додатка окремо</string>
     <string name="audio_format_enhanced_processing">Покращена обробка</string>
+    <string name="audio_format_enhanced_processing_on">Керування та розширена підтримка додатків увімкнені</string>
     <string name="audio_format_enhanced_processing_off">Покращена обробка вимкнена</string>
     <string name="audio_format_enhanced_processing_info_title">Що таке покращена обробка?</string>
     <string name="audio_format_enhanced_processing_info">Натисніть, щоб переглянути документацію</string>
+    <string name="audio_format_enhanced_processing_info_content">У разі ввімкненої опції \"Покращена обробка\" можна обирати, які додатки виключити з обробки JamesDSP через меню з трьома крапками в правому нижньому кутку та обравши \"Виключені додатки\". Вимкнення режиму сумісності дає змогу кожному застосунку використовувати свій власний механізм ефектів JamesDSP для більш тонкого контролю. В іншому випадку, всі програми будуть використовувати один механізм обробки, який в Android застарів і більше не повинен використовуватися. \n\nЯкщо режим сумісності вимкнений, не всі мультимедійні додатки працюватимуть правильно, тому ввімкніть опцію \"Покращена обробка\", щоб JamesDSP міг самостійно сканувати медіа-сесії, не покладаючись на системні повідомлення і забезпечувати правильну підтримку небажаних медіа-додатків.</string>
+    <string name="audio_format_summary">Бажане кодування звуку, розмір буфера</string>
     <string name="audio_format_summary_root">Режим сумісності, покращена обробка</string>
     <string name="audio_format_encoding">Кодування аудіо</string>
     <string name="audio_format_buffer_size">Розмір буфера</string>
@@ -261,12 +270,21 @@
     <string name="appearance_theme_mode_default">Використовувати налаштування системи</string>
     <string name="appearance_theme_mode_light">Вимк.</string>
     <string name="appearance_theme_mode_dark">Увімк.</string>
+    <string name="appearance_pure_black_mode">Чорний режим (чорний колір фону)</string>
     <string name="appearance_app_theme">Колірний акцент теми</string>
+    <string name="appearance_navigation_title">Навігація</string>
     <string name="appearance_nav_hide">Приховувати панель навігації під час прокрутки</string>
     <!-- Theme names -->
     <string name="theme_default">Типові налаштування</string>
+    <string name="theme_monet">Динамічний</string>
     <!-- File library preference -->
     <string name="filelibrary_hint_tap_and_hold">Торкніться й утримуйте будь-який елемент для додаткових опцій</string>
+    <string name="filelibrary_context_load">Завантажити</string>
+    <string name="filelibrary_context_edit">Редагувати</string>
+    <string name="filelibrary_context_overwrite">Перезаписати</string>
+    <string name="filelibrary_context_rename">Перейменувати</string>
+    <string name="filelibrary_context_share">Поділитися</string>
+    <string name="filelibrary_context_resample">Офлайн ресемплінг</string>
     <string name="filelibrary_context_duplicate">Створити копію</string>
     <string name="filelibrary_context_delete">Видалити</string>
     <string name="filelibrary_context_new_preset">Новий</string>
@@ -281,8 +299,14 @@
     <string name="filelibrary_file_exists">Файл вже існує</string>
     <string name="filelibrary_resample_complete">Ресемпльовано до %1$dHz</string>
     <string name="filelibrary_resample_failed">Помилка ресемплінгу. Пошкоджений вхідний файл?</string>
+    <string name="filelibrary_preset_overwritten">Пресет \'%1$s\' перезаписано</string>
+    <string name="filelibrary_preset_created">Пресет \'%1$s\' створено</string>
     <string name="filelibrary_preset_save_failed">Не вдалося зберегти пресет</string>
+    <string name="filelibrary_renamed">Перейменовано на \'%1$s\'</string>
     <string name="filelibrary_deleted">\'%1$s\' видалено</string>
+    <string name="filelibrary_preset_loaded">Пресет \'%1$s\' завантажено</string>
+    <string name="filelibrary_preset_load_failed">Файл \'%1$s\' несумісний з цим додатком</string>
+    <string name="filelibrary_no_presets">Немає збережених пресетів. Натисніть \"Додати\" для створення нового.</string>
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">Обраний файл VDC пошкоджений. Будь ласка, виберіть інший файл.</string>
     <string name="message_irs_corrupt">Обраний файл імпульсного відгуку пошкоджений. Будь ласка, виберіть інший.</string>
@@ -297,7 +321,24 @@
     <string name="geq_preview_collapsed">Перегляд (натисніть, щоб розгорнути)</string>
     <string name="geq_edit_hint">Вузли GraphicEQ</string>
     <string name="geq_reset">Скинути</string>
+    <string name="geq_reset_confirm_title">Ви впевнені?</string>
+    <string name="geq_reset_confirm">Скинути налаштування GraphicEQ?</string>
+    <string name="geq_node_editor">Редактор вузлів</string>
+    <string name="geq_node_list">Список вузлів</string>
+    <string name="geq_no_nodes_defined">Не задано жодного вузла</string>
+    <string name="geq_delete_node">Видалити вузол</string>
+    <string name="geq_go_back_to_node_list">Повернутися до списку вузлів</string>
+    <string name="geq_next_node">Наступний вузол</string>
+    <string name="geq_previous_node">Попередній вузол</string>
+    <string name="geq_done_spaced">&#160;&#160;Готово&#160;</string>
     <string name="geq_done">Готово</string>
+    <string name="geq_cancel_spaced">&#160;&#160;Скасувати&#160;</string>
+    <string name="geq_cancel">Скасувати</string>
+    <string name="geq_discard_changes_title">Скасувати зміни та вийти?</string>
+    <string name="geq_discard_changes">Значення не дійсні або порожні. Внесені зміни не можуть бути збережені.\nСкасувати зміни та вийти?</string>
+    <string name="geq_frequeny_range">Значення між 1Hz і 24000Hz</string>
+    <string name="geq_gain_range">Значення між -32dB і 32dB</string>
+    <string name="geq_frequency">Частота</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
@@ -333,6 +374,7 @@
     <!-- Slider widget -->
     <string name="slider_dialog_title">Редагувати значення</string>
     <!-- Revert confirmation -->
+    <string name="revert_confirmation_title">Ви впевнені?</string>
     <!-- File intent handler -->
     <!-- Translation notice box -->
     <string name="translation_notice_summary">Допоможіть нам перекласти цей додаток вашою мовою! Натисніть тут, щоб перейти на сайт проекту на Crowdin.</string>
