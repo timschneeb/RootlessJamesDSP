@@ -167,6 +167,7 @@
     <string name="onboarding_perm_missing_title">Дозволи на виконання не надані</string>
     <string name="onboarding_perm_missing">Будь ласка, надайте всі запитані дозволи на виконання, щоб продовжити.\nЯкщо ви кілька разів відмовили в наданні дозволів, вам потрібно надати їх вручну в налаштуваннях системи.</string>
     <string name="onboarding_finish_header">JamesDSP налаштовано!</string>
+    <string name="onboarding_finish_caption">Якщо у вас виникли будь-які проблеми, будь ласка, відвідайте розділ налаштувань \"Усунення неполадок\".</string>
     <string name="limit_session_control_conflict_title">Вимкнення інших додатків для обробки звуку</string>
     <string name="limit_session_control_conflict">Додатки для обробки звуку, що використовують вбудований в Android ефект динамічної обробки, заважають роботі цього додатка.</string>
     <string name="limit_unsupported_apps_title">Непідтримувані додатки</string>
