@@ -84,9 +84,14 @@
     <string name="reverb_preset_medium_room1">Orta boyutta oda</string>
     <string name="reverb_preset_large_room1">Büyük oda</string>
     <string name="convolver_convolution_mode_original">Orjinal</string>
+    <string name="convolver_convolution_mode_shrink">Küçült</string>
+    <string name="ddc_file">DDC dosyası</string>
+    <string name="liveprog_enable">Canlı programlanabilir DSP</string>
     <string name="liveprog_not_found">Komut bulunamadı</string>
     <string name="tube_enable">Analog modelleme</string>
     <string name="output_control_header">Çıkış kontrolü</string>
+    <string name="output_limiter_threshold">Sınırlayıcı eşiği</string>
+    <string name="output_limiter_release">Sınırlayıcı salma</string>
     <string name="stereowide_level">Genişlik</string>
     <string name="stereowide_level_none">Hiçbiri</string>
     <string name="stereowide_level_very_wide">Aşırı geniş</string>
@@ -94,6 +99,11 @@
     <string name="stereowide_level_very_narrow">Aşırı dar</string>
     <string name="stereowide_level_narrow">Dar</string>
     <string name="crossfeed_preset">Hazır ayar</string>
+    <string name="crossfeed_preset_bs2b_weak">BS2B Zayıf</string>
+    <string name="crossfeed_preset_bs2b_strong">BS2B Güçlü</string>
+    <string name="crossfeed_preset_surround1">Surround 1</string>
+    <string name="crossfeed_preset_surround2">Surround 2</string>
+    <string name="crossfeed_preset_realistic_surround">Joe0Bloggs Gerçekçi surround</string>
     <!-- Onboarding -->
     <string name="onboarding_back">Geri</string>
     <string name="onboarding_next">İleri</string>
