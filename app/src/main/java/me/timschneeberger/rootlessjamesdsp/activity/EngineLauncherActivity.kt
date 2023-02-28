@@ -4,12 +4,9 @@ import android.content.Intent
 import android.media.projection.MediaProjectionManager
 import android.os.Build
 import android.os.Bundle
-import android.view.Window
-import android.view.WindowManager
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
-import me.timschneeberger.rootlessjamesdsp.databinding.ActivityEnginelauncherBinding
 import me.timschneeberger.rootlessjamesdsp.service.RootlessAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 
@@ -33,10 +30,7 @@ class EngineLauncherActivity : BaseActivity() {
 
         mediaProjectionManager = SystemServices.get(this, MediaProjectionManager::class.java)
 
-        val binding = ActivityEnginelauncherBinding.inflate(layoutInflater)
-
         setFinishOnTouchOutside(false)
-        //setContentView(binding.root)
 
         capturePermissionLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
