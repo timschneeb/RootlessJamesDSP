@@ -294,7 +294,7 @@
     <string name="filelibrary_context_new_preset_long">Новый пресет</string>
     <string name="filelibrary_unsupported_format_title">Неподдерживаемый тип файла</string>
     <string name="filelibrary_unsupported_format">Выбранный файл имеет неправильное расширение.</string>
-    <string name="filelibrary_corrupted_title">Файл не поддерживается или повреждён</string>
+    <string name="filelibrary_corrupted_title">Файл не поддерживается или поврежден</string>
     <string name="filelibrary_corrupted">Выбранный файл не содержит пригодных для использования данных или поврежден.</string>
     <string name="filelibrary_access_fail">Не удалось получить доступ к каталогу</string>
     <string name="filelibrary_no_file_selected">Файл не выбран</string>
