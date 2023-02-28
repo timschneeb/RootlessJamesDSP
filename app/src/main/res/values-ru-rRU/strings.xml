@@ -190,7 +190,7 @@
     <string name="session_continuous_polling_off">Только прослушивать события сеанса от системы</string>
     <string name="session_continuous_polling_on">Непрерывно перечислять аудио сессии</string>
     <string name="session_continuous_polling_rate">Интервал опроса (ms)</string>
-    <string name="session_detection_method">Предпочтительный метод обнаружения</string>
+    <string name="session_detection_method">Предпочтительный метод обнаружения сессии</string>
     <string name="session_detection_method_audiopolicyservice">AudioPolicyService dump</string>
     <string name="session_detection_method_audioservice">AudioService dump (рекомендуется)</string>
     <string name="session_app_problem_ignore">Игнорировать проблемы совместимости приложений</string>
@@ -272,7 +272,7 @@
     <string name="appearance_theme_mode_default">Использовать настройки системы</string>
     <string name="appearance_theme_mode_light">Выкл.</string>
     <string name="appearance_theme_mode_dark">Вкл.</string>
-    <string name="appearance_pure_black_mode">Черная тема (черный цвет фона)</string>
+    <string name="appearance_pure_black_mode">Черный режим (черный цвет фона)</string>
     <string name="appearance_app_theme">Цветовой акцент темы</string>
     <string name="appearance_navigation_title">Навигация</string>
     <string name="appearance_nav_hide">Скрывать панель навигации при прокрутке</string>
