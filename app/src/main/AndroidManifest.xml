@@ -182,6 +182,12 @@
             android:label="@string/title_activity_onboarding"
             android:theme="@style/Theme.RootlessJamesDSP" />
 
+        <activity
+            android:name=".activity.EngineLauncherActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:theme="@style/Theme.Transparent" />
+
         <!-- Services -->
         <service
             android:name=".service.RootlessAudioProcessorService"
@@ -211,6 +217,19 @@
             <meta-data
                 android:name="android.service.notification.disabled_filter_types"
                 android:value="ongoing|silent" />
+        </service>
+
+        <service
+            android:name=".service.QuickTileService"
+            android:label="@string/quicktile_enable_processing"
+            android:icon="@drawable/ic_tune_vertical_variant_24dp"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+            <meta-data android:name="android.service.quicksettings.TOGGLEABLE_TILE"
+                android:value="true" />
         </service>
 
         <!-- Receivers -->

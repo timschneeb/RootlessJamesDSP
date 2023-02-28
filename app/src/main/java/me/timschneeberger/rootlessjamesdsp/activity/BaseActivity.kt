@@ -20,11 +20,14 @@ open class BaseActivity :
         getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
     }
 
+    protected open val disableAppTheme = false
+
     protected val app
         get() = application as MainApplication
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        applyAppTheme(this)
+        if(!disableAppTheme)
+            applyAppTheme(this)
         appPref.registerOnSharedPreferenceChangeListener(this)
         super.onCreate(savedInstanceState)
     }
@@ -37,7 +40,8 @@ open class BaseActivity :
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
         if(key == getString(R.string.key_appearance_pure_black) ||
             key == getString(R.string.key_appearance_app_theme)) {
-            ActivityCompat.recreate(this)
+            if(!disableAppTheme)
+                ActivityCompat.recreate(this)
         }
     }
 }
