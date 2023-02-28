@@ -187,7 +187,7 @@
     <string name="onboarding_adb_dump_not_granted_title">Дозвіл ще не надано</string>
     <string name="onboarding_adb_dump_not_granted">Будь ласка, спочатку дотримайтесь інструкцій та повторіть спробу. Доступ ADB ще не налаштовано належним чином.</string>
     <string name="onboarding_adb_manual_step1">Перейдіть у приховані налаштування Android \"Для розробників\" і увімкніть параметр \"USB-налагодження\". Для розблокування цих налаштувань необхідно кілька разів натиснути на номер збірки в налаштуваннях системи.</string>
-    <string name="onboarding_adb_manual_step2">Перейдіть на сайт https://app.webadb.com у веб-браузері на вашому комп\'ютері (рекомендується використовувати Google Chrome) і підключіть ваш пристрій до комп\'ютера за допомогою USB.</string>
+    <string name="onboarding_adb_manual_step2">Перейдіть на сайт https://app.webadb.com у веб-браузері на вашому комп\'ютері (рекомендується використовувати Google Chrome) та під\'єднайте ваш пристрій до комп\'ютера за допомогою USB-кабелю.</string>
     <string name="onboarding_adb_manual_step3">Додайте та підключіть USB-пристрій у WebADB.</string>
     <string name="onboarding_adb_manual_step4">Перейдіть у розділ \"Interactive Shell\" і виконайте в терміналі таку команду: pm grant %s android.permission.DUMP</string>
     <string name="onboarding_adb_manual_step5">Натисніть \"Далі\" в цьому додатку, щоб продовжити.</string>
@@ -203,17 +203,17 @@
     <string name="onboarding_perm_missing_title">Дозволи на виконання не надані</string>
     <string name="onboarding_perm_missing">Будь ласка, надайте всі запитані дозволи на виконання, щоб продовжити.\nЯкщо ви кілька разів відмовили в наданні дозволів, вам потрібно надати їх вручну в налаштуваннях системи.</string>
     <string name="onboarding_finish_header">JamesDSP налаштовано!</string>
-    <string name="onboarding_finish_caption">Якщо у вас виникли будь-які проблеми, відвідайте розділ налаштувань \"Усунення неполадок\".</string>
+    <string name="onboarding_finish_caption">Якщо у вас виникли будь-які проблеми, будь ласка, відвідайте розділ налаштувань \"Усунення неполадок\".</string>
     <string name="limit_session_control_conflict_title">Вимкнення інших додатків для обробки звуку</string>
     <string name="limit_session_control_conflict">Додатки для обробки звуку, що використовують вбудований в Android ефект динамічної обробки, заважають роботі цього додатка.</string>
     <string name="limit_unsupported_apps_title">Непідтримувані додатки</string>
     <string name="limit_unsupported_apps">Додатки, які блокують запис внутрішнього аудіо, не будуть оброблені (наприклад, Spotify, Google Chrome).</string>
-    <string name="limit_hw_accel_title">Проблеми з апаратним прискоренням відтворення звуку</string>
+    <string name="limit_hw_accel_title">Проблеми HW-прискоренням відтворення звуку</string>
     <string name="limit_hw_accel">HW-прискорене відтворення аудіо іноді може призводити до дублювання звуку або зупинки JamesDSP. Додайте проблемний музичний плеєр до списку виключених додатків, щоб запобігти повторній маршрутизації JamesDSP.</string>
     <string name="limit_detect_delay_title">Затримка визначення аудіосесії</string>
-    <string name="limit_detect_delay"><![CDATA[Після того як додаток відкриває нову медіа-сесію для відтворення звуку, ви можете почути повторюваний або обривистий звук на дуже короткий період (приблизно 250 мс).]]></string>
-    <string name="limit_latency_title">Збільшення затримки</string>
-    <string name="limit_latency">Ця програма може додавати деяку затримку в аудіопотік. Ви можете додати застосунки для перегляду фільмів/відео до списку винятків, щоб не обробляти їх і уникнути збоїв у синхронізації звуку та відео.</string>
+    <string name="limit_detect_delay"><![CDATA[Після того як додаток відкриває нову медіа-сесію для відтворення звуку, ви можете почути повторюваний або уривчастий звук на дуже короткий період (приблизно 250 мс).]]></string>
+    <string name="limit_latency_title">Підвищена затримка</string>
+    <string name="limit_latency">Ця програма може додавати деяку затримку в аудіопотік. Ви можете внести додатки для перегляду фільмів/відео до списку винятків, щоб не обробляти їх та уникнути збоїв у синхронізації звуку та відео.</string>
     <string name="limit_tested_devices_title">Протестовані пристрої</string>
     <string name="limit_tested_devices">Виробник вашого пристрою міг внести зміни до аудіопідсистеми Android, які можуть порушити роботу додатку через використання не задокументованих API.\nДодаток тестувався на пристроях:\n• Samsung S20+ (Android 12)\n• Емулятор AOSP (Android 10-13)\n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
@@ -254,13 +254,13 @@
     <string name="audio_format_encoding_float">32-bit float PCM</string>
     <string name="audio_format_buffer_size">Розмір буфера</string>
     <string name="audio_format_buffer_size_unit">&#xa0;samples</string>
-    <string name="audio_format_buffer_size_warning_low_value">Низькі розміри буфера можуть спричинити проблеми з аудіо, як-от кліппінг!</string>
+    <string name="audio_format_buffer_size_warning_low_value">Попередження: Низькі розміри буфера можуть спричинити проблеми з аудіо, як-от кліппінг!</string>
     <string name="autostart_prompt_at_boot">Запитувати дозвіл на захоплення після завантаження</string>
     <string name="autostart_prompt_at_boot_off">Не показувати сповіщення після завантаження</string>
     <string name="autostart_prompt_at_boot_on">Показувати сповіщення після завантаження</string>
     <string name="powersave">Економія енергії</string>
     <string name="powersave_suspend">Призупиняти аудіопотік під час простою</string>
-    <string name="powersave_suspend_off">Продовжувати обробку навіть коли контент не відтворюється</string>
+    <string name="powersave_suspend_off">Продовжувати обробку, навіть коли контент не відтворюється</string>
     <string name="powersave_suspend_on">Призупинити обробку аудіопотоку для економії енергії</string>
     <string name="troubleshooting">Усунення неполадок</string>
     <string name="troubleshooting_summary">Додаткові параметри, документація, діагностика</string>
@@ -290,7 +290,7 @@
     <string name="about_settings">Про програму</string>
     <string name="about_settings_summary">Автори, підтримка, оновлення</string>
     <string name="privacy">Конфіденційність</string>
-    <string name="privacy_share_crash_reports">Поділитися інформацією про збої</string>
+    <string name="privacy_share_crash_reports">Поділитися інформацією про збої в додатку</string>
     <string name="privacy_share_crash_reports_on">Надсилати звіти про збої розробнику</string>
     <string name="privacy_share_crash_reports_off">Не надсилати звіти про збої розробнику</string>
     <string name="credits">Автори</string>
@@ -298,11 +298,11 @@
     <string name="credits_dsp">Бібліотека алгоритмів ядра JamesDSP</string>
     <string name="credits_project_page">Сторінка проекту на GitHub</string>
     <string name="credits_project_page_summary">Повідомляйте про проблеми, стежте за оновленнями та читайте програмний код</string>
-    <string name="credits_project_play_page">RootlessJamesDSP в Google Play</string>
+    <string name="credits_project_play_page">Відвідати RootlessJamesDSP в Google Play</string>
     <string name="credits_project_play_page_summary">Пошук нових оновлень</string>
     <string name="credits_project_translate">Підтримати переклади</string>
     <string name="credits_project_translate_summary">Допоможіть нам перекласти додаток вашою мовою</string>
-    <string name="credits_version">Версія програми</string>
+    <string name="credits_version">Версія додатку</string>
     <string name="credits_build_info">Інформація про збірку</string>
     <string name="appearance_section_header">Зовнішній вигляд</string>
     <string name="appearance_summary">Тема додатку, темний режим</string>
@@ -316,7 +316,7 @@
     <string name="appearance_navigation_title">Навігація</string>
     <string name="appearance_nav_hide">Приховувати панель навігації під час прокрутки</string>
     <!-- Theme names -->
-    <string name="theme_default">Типові налаштування</string>
+    <string name="theme_default">За замовчуванням</string>
     <string name="theme_monet">Динамічний</string>
     <string name="theme_greenapple">Green Apple</string>
     <string name="theme_strawberrydaiquiri">Strawberry Daiquiri</string>
@@ -435,7 +435,7 @@
     <string name="app_compat_exclude">Виключити</string>
     <string name="app_compat_title">Обробку аудіо було призупинено для запобігання дублювання звуку</string>
     <string name="app_compat_explanation">Цей додаток не підтримується, оскільки він призводить до втрати RootlessJamesDSP контролю над маршрутизацією звуку:</string>
-    <string name="app_compat_instruction">Будь ласка, перевірте налаштування програми, щоб вимкнути апаратне прискорення або інші налаштування, які можуть перешкодити RootlessJamesDSP, а потім натисніть \"Повторити\".</string>
+    <string name="app_compat_instruction">Будь ласка, перевірте налаштування програми, щоб вимкнути апаратне прискорення або інші налаштування, які можуть перешкодити RootlessJamesDSP і потім натисніть \"Повторити\".</string>
     <string name="app_compat_instruction_exclude">Як альтернативу, виберіть \"Виключити\", щоб обійти цю проблему, виключивши несумісну програму з обробки звуку.</string>
     <string name="app_compat_unknown_pkg_name">Невідоме ім\'я пакету</string>
     <!-- Hints for compatibility issues for individual apps -->
@@ -450,8 +450,8 @@
     <string name="load_fail_arch_card">Якщо ви вже встановили модуль Magisk, можливо, ви вибрали неправильні налаштування під час встановлення. Спробуйте перевстановити модуль і ввімкнути сумісність із пристроями Huawei (навіть якщо ваш телефон не вироблений компанією Huawei).</string>
     <!-- Enhanced processing -->
     <string name="enhanced_processing_feature_unavailable">Функція недоступна</string>
-    <string name="enhanced_processing_feature_unavailable_content">Функція доступна лише при увімкненій опції \"Покращена обробка\" в налаштуваннях. Будь ласка, увімкніть цю опцію в \"Налаштування &gt; Обробка аудіо &gt; Покращена обробка\", щоб отримати доступ до цього меню. \n\nПримітка: Опція \"Покращена обробка\" недоступна, якщо ввімкнено режим сумісності.</string>
-    <string name="enhanced_processing_missing_perm">Покращену обробку було вимкнено через відсутність необхідних дозволів. Будь ласка, встановіть їх заново в налаштуваннях.</string>
+    <string name="enhanced_processing_feature_unavailable_content">Функція доступна лише при увімкненій опції \"Покращена обробка\" в налаштуваннях. Будь ласка, увімкніть цю опцію в \"Параметри &gt; Обробка аудіо &gt; Покращена обробка\", щоб отримати доступ до цього меню. \n\nПримітка: Опція \"Покращена обробка\" недоступна, якщо ввімкнено режим сумісності.</string>
+    <string name="enhanced_processing_missing_perm">Покращену обробку було вимкнено через відсутність необхідних дозволів. Будь ласка, повторно налаштуйте їх в параметрах.</string>
     <!-- App list -->
     <string name="app_list_loading">Завантаження списку додатків…</string>
     <string name="app_list_search">Пошук</string>
