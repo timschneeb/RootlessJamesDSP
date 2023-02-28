@@ -23,7 +23,7 @@
     <string name="notification_request_permission_title">Для запуска JamesDSP необходимо действие пользователя</string>
     <string name="notification_request_permission">Коснитесь, чтобы предоставить разрешение на захват и включить обработку аудио в JamesDSP</string>
     <!-- Session control loss notifications -->
-    <string name="session_control_loss_toast">JamesDSP остановлен из-за потери контроля над аудио сессией. Пожалуйста, отключите другие приложения для обработки аудио эффектов.</string>
+    <string name="session_control_loss_toast">JamesDSP остановлен из-за потери контроля над аудиосессией. Пожалуйста, отключите другие приложения для обработки аудио эффектов.</string>
     <string name="session_control_loss_notification_title">Обработка аудио остановлена. Другое приложение мешает работе JamesDSP.</string>
     <string name="session_control_loss_notification">Пожалуйста, отключите другие приложения, которые предоставляют глобальные аудио эффекты перед повторным включением JamesDSP.</string>
     <!-- App compatibility issue notifications -->
@@ -174,7 +174,7 @@
     <string name="limit_unsupported_apps">Приложения, которые блокируют запись внутреннего аудио, не будут обработаны (например, Spotify, Google Chrome).</string>
     <string name="limit_hw_accel_title">Проблемы с аппаратным ускорением воспроизведения звука</string>
     <string name="limit_hw_accel">HW-ускоренное воспроизведение аудио иногда может приводить к дублированию звука или остановке JamesDSP. Добавьте затронутый музыкальный плеер в список исключенных приложений, чтобы предотвратить повторную маршрутизацию JamesDSP.</string>
-    <string name="limit_detect_delay_title">Задержка определения аудио сессии</string>
+    <string name="limit_detect_delay_title">Задержка определения аудиосессии</string>
     <string name="limit_detect_delay"><![CDATA[После того как приложение открывает новую мультимедийную сессию для воспроизведения звука, вы можете услышать повторяющийся или обрывистый звук на очень короткий период (примерно &lt;250 мс).]]></string>
     <string name="limit_latency_title">Увеличение задержки</string>
     <string name="limit_latency">Это приложение может добавлять некоторую задержку в аудио поток. Вы можете добавить приложения для просмотра фильмов/видео в список исключений, чтобы не обрабатывать их и избежать сбоев в синхронизации звука и видео.</string>
@@ -185,10 +185,10 @@
     <string name="session_exclude_restricted">Исключить неподдерживаемые приложения</string>
     <string name="session_exclude_restricted_off">Приложения, блокирующие захват звука, остаются выключенными (поведение Android по умолчанию)</string>
     <string name="session_exclude_restricted_on">Приложения, которые блокируют захват звука, исключаются и остаются без обработки (рекомендуется)</string>
-    <string name="session_detection_header">Обнаружение аудио сессий</string>
+    <string name="session_detection_header">Обнаружение аудиосессий</string>
     <string name="session_continuous_polling">Непрерывный опрос</string>
     <string name="session_continuous_polling_off">Только прослушивать события сеанса от системы</string>
-    <string name="session_continuous_polling_on">Непрерывно перечислять аудио сессии</string>
+    <string name="session_continuous_polling_on">Непрерывно перечислять аудиосессии</string>
     <string name="session_continuous_polling_rate">Интервал опроса (ms)</string>
     <string name="session_detection_method">Предпочтительный метод обнаружения сессии</string>
     <string name="session_detection_method_audiopolicyservice">AudioPolicyService dump</string>
@@ -211,7 +211,7 @@
     <string name="audio_format_enhanced_processing_info">Нажмите для просмотра документации</string>
     <string name="audio_format_enhanced_processing_info_content">При включенной опции «Улучшенная обработка» можно выбирать, какие приложения исключить из обработки JamesDSP через меню с тремя точками в правом нижнем углу и выбрав «Исключенные приложения». Отключение режима совместимости позволяет каждому приложению использовать свой собственный движок эффектов JamesDSP для более тонкого контроля. В противном случае, все приложения будут использовать один механизм обработки, который в Android устарел и больше не должен использоваться. \n\nЕсли режим совместимости выключен, не все мультимедийные приложения будут работать правильно, поэтому включите опцию «Улучшенная обработка», чтобы JamesDSP мог самостоятельно сканировать медиа-сессии не полагаясь на системные сообщения и обеспечивать правильную поддержку нежелательных медиа-приложений.</string>
     <string name="audio_format_media_apps_need_restart">После изменения этого параметра необходимо перезапустить все активные мультимедийные приложения, чтобы возобновить обработку звука.</string>
-    <string name="audio_format_summary">Кодирование аудио, размер буфера</string>
+    <string name="audio_format_summary">Предпочтительное кодирование аудио, размер буфера</string>
     <string name="audio_format_summary_root">Режим совместимости, улучшенная обработка</string>
     <string name="audio_format_encoding">Кодирование аудио</string>
     <string name="audio_format_buffer_size">Размер буфера</string>
@@ -227,13 +227,13 @@
     <string name="troubleshooting_summary">Дополнительные параметры, документация, диагностика</string>
     <string name="troubleshooting_docs">Документация</string>
     <string name="troubleshooting_actions">Прочие действия</string>
-    <string name="troubleshooting_dump">Экспортировать дамп аудио сессии</string>
+    <string name="troubleshooting_dump">Экспортировать дамп аудиосессии</string>
     <string name="troubleshooting_dump_summary">Сбор и сохранение данных для устранения неполадок</string>
-    <string name="troubleshooting_dump_share_title">Поделиться дампом аудио сессии</string>
+    <string name="troubleshooting_dump_share_title">Поделиться дампом аудиосессии</string>
     <string name="troubleshooting_view_limitations">Технические ограничения</string>
     <string name="troubleshooting_view_limitations_summary">Показать информацию об ограничениях этого приложения</string>
     <string name="troubleshooting_notification_access">Разрешить доступ к уведомлениям</string>
-    <string name="troubleshooting_notification_access_summary">Обеспечивает более надежное обнаружение аудио сессий</string>
+    <string name="troubleshooting_notification_access_summary">Обеспечивает более надежное обнаружение аудиосессий</string>
     <string name="troubleshooting_repair_assets">Восстановить стандартные IR, DDC и скрипты</string>
     <string name="troubleshooting_repair_assets_summary">Если вы потеряли или удалили предустановленные ресурсы, вы можете их восстановить</string>
     <string name="troubleshooting_repair_assets_success">Предустановленные ресурсы были восстановлены</string>
