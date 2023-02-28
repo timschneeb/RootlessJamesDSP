@@ -245,10 +245,10 @@
     <string name="audio_format_enhanced_processing_off">Улучшенная обработка отключена</string>
     <string name="audio_format_enhanced_processing_info_title">Что такое улучшенная обработка?</string>
     <string name="audio_format_enhanced_processing_info">Нажмите для просмотра документации</string>
-    <string name="audio_format_enhanced_processing_info_content">При включенной опции «Улучшенная обработка» можно выбирать, какие приложения исключить из обработки JamesDSP через меню с тремя точками в правом нижнем углу и выбрав «Исключенные приложения». Отключение режима совместимости позволяет каждому приложению использовать свой собственный движок эффектов JamesDSP для более тонкого контроля. В противном случае, все приложения будут использовать один механизм обработки, который в Android устарел и больше не должен использоваться. \n\nЕсли режим совместимости выключен, не все мультимедийные приложения будут работать правильно, поэтому включите опцию «Улучшенная обработка», чтобы JamesDSP мог самостоятельно сканировать медиа-сессии не полагаясь на системные сообщения и обеспечивать правильную поддержку нежелательных медиа-приложений.</string>
+    <string name="audio_format_enhanced_processing_info_content">При включенной опции «Улучшенная обработка» можно выбирать, какие приложения исключить из обработки JamesDSP через меню с тремя точками в правом нижнем углу и выбрав «Исключенные приложения». Отключение Legacy режима позволяет каждому приложению использовать свой собственный движок эффектов JamesDSP для более тонкого контроля. В противном случае, все приложения будут использовать один механизм обработки, который в Android устарел и больше не должен использоваться. \n\nЕсли Legacy режим выключен, не все мультимедийные приложения будут работать правильно, поэтому включите опцию «Улучшенная обработка», чтобы JamesDSP мог самостоятельно сканировать медиа-сессии не полагаясь на системные сообщения и обеспечивать правильную поддержку нежелательных медиа-приложений.</string>
     <string name="audio_format_media_apps_need_restart">После изменения этого параметра необходимо перезапустить все активные мультимедийные приложения, чтобы возобновить обработку звука.</string>
     <string name="audio_format_summary">Предпочтительное кодирование аудио, размер буфера</string>
-    <string name="audio_format_summary_root">Режим совместимости, улучшенная обработка</string>
+    <string name="audio_format_summary_root">Legacy режим, улучшенная обработка</string>
     <string name="audio_format_encoding">Кодирование аудио</string>
     <string name="audio_format_encoding_int16">16-bit integer PCM</string>
     <string name="audio_format_encoding_float">32-bit float PCM</string>
@@ -348,13 +348,13 @@
     <string name="filelibrary_file_exists">Файл уже существует</string>
     <string name="filelibrary_resample_complete">Ресемплировано до %1$dHz</string>
     <string name="filelibrary_resample_failed">Ошибка ресемплинга. Поврежденный входной файл?</string>
-    <string name="filelibrary_preset_overwritten">Пресет \'%1$s\' перезаписан</string>
-    <string name="filelibrary_preset_created">Пресет \'%1$s\' создан</string>
+    <string name="filelibrary_preset_overwritten">Пресет \"%1$s\" перезаписан</string>
+    <string name="filelibrary_preset_created">Пресет \"%1$s\" создан</string>
     <string name="filelibrary_preset_save_failed">Не удалось сохранить пресет</string>
-    <string name="filelibrary_renamed">Переименовано в \'%1$s\'</string>
-    <string name="filelibrary_deleted">%1$s удален</string>
-    <string name="filelibrary_preset_loaded">Пресет \'%1$s\' загружен</string>
-    <string name="filelibrary_preset_load_failed">Файл \'%1$s\' не совместим с данным приложением</string>
+    <string name="filelibrary_renamed">Переименовано в \"%1$s\"</string>
+    <string name="filelibrary_deleted">\"%1$s\" удален</string>
+    <string name="filelibrary_preset_loaded">Пресет \"%1$s\" загружен</string>
+    <string name="filelibrary_preset_load_failed">Файл \"%1$s\" не совместим с данным приложением</string>
     <string name="filelibrary_no_presets">Нет сохраненных пресетов. Нажмите «Добавить», чтобы создать новый.</string>
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">Выбранный файл VDC поврежден. Пожалуйста, выберите другой файл.</string>
@@ -402,7 +402,7 @@
     <!-- Liveprog script editor -->
     <string name="title_activity_liveprog_editor">Редактор скриптов</string>
     <string name="editor_find_and_replace">Найти/Заменить…</string>
-    <string name="editor_docs">Справка</string>
+    <string name="editor_docs">Помощь</string>
     <string name="editor_open_fail">Файл скрипта не существует или не может быть открыт.</string>
     <string name="editor_run">Сохранить и запустить</string>
     <string name="editor_save">Сохранить</string>
@@ -450,7 +450,7 @@
     <string name="load_fail_arch_card">Если вы уже установили модуль Magisk, возможно, вы выбрали неправильные настройки во время установки. Попробуйте переустановить модуль и включить совместимость с устройствами Huawei (даже если ваш телефон не произведен компанией Huawei).</string>
     <!-- Enhanced processing -->
     <string name="enhanced_processing_feature_unavailable">Функция недоступна</string>
-    <string name="enhanced_processing_feature_unavailable_content">Функция доступна только при включенной опции «Улучшенная обработка» в настройках. Пожалуйста, включите эту опцию в «Настройки &gt; Обработка аудио &gt; Улучшенная обработка», чтобы получить доступ к этому меню. \n\nПримечание: Опция «Улучшенная обработка» недоступна если включен режим совместимости.</string>
+    <string name="enhanced_processing_feature_unavailable_content">Функция доступна только при включенной опции «Улучшенная обработка» в настройках. Пожалуйста, включите эту опцию в «Настройки &gt; Обработка аудио &gt; Улучшенная обработка», чтобы получить доступ к этому меню. \n\nПримечание: Опция «Улучшенная обработка» недоступна если включен Legacy режим.</string>
     <string name="enhanced_processing_missing_perm">Улучшенная обработка была отключена из-за отсутствия необходимых разрешений. Пожалуйста, установите их заново в настройках.</string>
     <!-- App list -->
     <string name="app_list_loading">Загрузка списка приложений…</string>
@@ -467,15 +467,15 @@
     <string name="revert_confirmation_title">Вы уверены?</string>
     <string name="revert_confirmation">Сбросить текущий пресет JamesDSP к значениям по умолчанию?</string>
     <!-- File intent handler -->
-    <string name="intent_import_preset">Импорт пресета</string>
-    <string name="intent_import_irs">Импорт импульсного отклика</string>
-    <string name="intent_import_vdc">Импорт файла VDC</string>
-    <string name="intent_import_liveprog">Импорт скрипта Liveprog</string>
+    <string name="intent_import_preset">Импортировать пресет</string>
+    <string name="intent_import_irs">Импортировать импульсный отклик</string>
+    <string name="intent_import_vdc">Импортировать VDC файл</string>
+    <string name="intent_import_liveprog">Импортировать Liveprog скрипт</string>
     <string name="intent_import_mode_add">Только импортировать</string>
-    <string name="intent_import_mode_select">Импорт и активация</string>
-    <string name="intent_import_fail">Не удалось импортировать файл \'%1$s\'</string>
-    <string name="intent_import_success">Файл \'%1$s\' импортирован</string>
-    <string name="intent_import_select_success">Файл \'%1$s\' импортирован и активирован</string>
+    <string name="intent_import_mode_select">Импортировать и активировать</string>
+    <string name="intent_import_fail">Не удалось импортировать файл \"%1$s\"</string>
+    <string name="intent_import_success">Файл \"%1$s\" импортирован</string>
+    <string name="intent_import_select_success">Файл \"%1$s\" импортирован и активирован</string>
     <string name="intent_import_error_file_uri">Не удалось импортировать файл. Неподдерживаемый URI-адрес файла.</string>
     <!-- Translation notice box -->
     <string name="translation_notice_summary">Помогите нам перевести это приложение на ваш язык! Нажмите здесь, чтобы перейти на сайт проекта на Crowdin.</string>
