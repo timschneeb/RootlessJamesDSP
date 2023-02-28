@@ -129,7 +129,7 @@
     <string name="onboarding_root_enhanced_processing_setup_success">Покращена обробка налаштована</string>
     <string name="onboarding_adb_shizuku_title">Налаштування Shizuku</string>
     <string name="onboarding_adb_adb_title">Налаштування ADB</string>
-    <string name="onboarding_adb_caption">Ця програма вимагає спеціальних дозволів для вивантаження аудіо-політики вашого пристрою. Будь ласка, дотримуйтесь інструкцій нижче.</string>
+    <string name="onboarding_adb_caption">Ця програма вимагає спеціальних дозволів для вивантаження аудіополітики вашого пристрою. Будь ласка, дотримуйтесь інструкцій нижче.</string>
     <string name="onboarding_adb_shizuku_install_button">Встановити Shizuku</string>
     <string name="onboarding_adb_shizuku_install_button_done">Вже інстальовано</string>
     <string name="onboarding_adb_shizuku_install_instruction">Встановити Shizuku з Google Play.</string>
@@ -382,27 +382,55 @@
     <string name="blocklist_delete">Видалити цей додаток зі списку виключень?</string>
     <string name="blocklist_no_exclusions">Немає виключених додатків</string>
     <string name="blocklist_unsupported_apps">Непідтримувані додатки</string>
+    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>Ця програма не підтримує обробку звуку деяких додатків, які блокують запис їхнього аудіовиходу третіми особами. Щоб не вимикати звук цих додатків через обмеження на їхнє захоплення, вони автоматично виключаються з обробки.</p><p><u>Проблемні додатки:</u><br/>%s</p>]]></string>
     <!-- Compatibility issue activity -->
+    <string name="title_activity_app_compat">Проблеми сумісності</string>
     <string name="app_compat_retry">Повторити</string>
+    <string name="app_compat_exclude">Виключити</string>
+    <string name="app_compat_title">Обробку аудіо було призупинено для запобігання дублювання звуку</string>
     <string name="app_compat_explanation">Цей додаток не підтримується, оскільки він призводить до втрати RootlessJamesDSP контролю над маршрутизацією звуку:</string>
     <string name="app_compat_instruction">Будь ласка, перевірте налаштування програми, щоб вимкнути апаратне прискорення або інші налаштування, які можуть перешкодити RootlessJamesDSP, а потім натисніть \"Повторити\".</string>
     <string name="app_compat_instruction_exclude">Як альтернативу, виберіть \"Виключити\", щоб обійти цю проблему, виключивши несумісну програму з обробки звуку.</string>
     <string name="app_compat_unknown_pkg_name">Невідоме ім\'я пакету</string>
     <!-- Hints for compatibility issues for individual apps -->
+    <string name="app_compat_quirk_voice_search">Голосовий пошук і розпізнавання голосу можуть викликати проблеми з цим додатком. Якщо проблема зберігається, спробуйте уникнути використання цих функцій і відкликати дозвіл на використання мікрофона для проблемних додатків.</string>
     <!-- Root: Library load failure -->
+    <string name="load_fail_header">Модуль Magisk не встановлений</string>
+    <string name="load_fail_card_title">Не вдалося завантажити libjamesdsp.so</string>
     <string name="load_fail_card">Будь ласка, встановіть модуль JamesDSP для Magisk і перезавантажте ваш Android-пристрій для використання програми. Вам також може знадобитися перевстановити цю програму після перезавантаження.</string>
+    <string name="load_fail_rootless_card_title">Шукаєте альтернативу без root-доступу?</string>
+    <string name="load_fail_rootless_card">Ця версія JamesDSP призначена для використання на пристроях з root-доступом. Для пристроїв без root-доступу також доступна альтернатива, але з деякими обмеженнями. Натисніть тут, щоб отримати додаткову інформацію.</string>
+    <string name="load_fail_arch_card_title">Модуль вже встановлений?</string>
+    <string name="load_fail_arch_card">Якщо ви вже встановили модуль Magisk, можливо, ви вибрали неправильні налаштування під час встановлення. Спробуйте перевстановити модуль і ввімкнути сумісність із пристроями Huawei (навіть якщо ваш телефон не вироблений компанією Huawei).</string>
     <!-- Enhanced processing -->
+    <string name="enhanced_processing_feature_unavailable">Функція недоступна</string>
     <string name="enhanced_processing_feature_unavailable_content">Функція доступна лише при увімкненій опції \"Покращена обробка\" в налаштуваннях. Будь ласка, увімкніть цю опцію в \"Налаштування &gt; Обробка аудіо &gt; Покращена обробка\", щоб отримати доступ до цього меню. \n\nПримітка: Опція \"Покращена обробка\" недоступна, якщо ввімкнено режим сумісності.</string>
     <string name="enhanced_processing_missing_perm">Покращену обробку було вимкнено через відсутність необхідних дозволів. Будь ласка, встановіть їх заново в налаштуваннях.</string>
     <!-- App list -->
+    <string name="app_list_loading">Завантаження списку додатків…</string>
     <string name="app_list_search">Пошук</string>
     <string name="app_list_icon_alt">Значок програми</string>
     <!-- Number box view -->
+    <string name="number_box_decrement">Зменшення</string>
+    <string name="number_box_increment">Збільшення</string>
     <!-- Slider widget -->
     <string name="slider_dialog_title">Редагувати значення</string>
+    <string name="slider_dialog_format_error">Неправильний формат числа. Зміни не застосовано.</string>
+    <string name="slider_dialog_step_error">Значення має бути кратним %1$d. Зміни не застосовано.</string>
     <!-- Revert confirmation -->
     <string name="revert_confirmation_title">Ви впевнені?</string>
+    <string name="revert_confirmation">Скинути поточний пресет JamesDSP до типових значень?</string>
     <!-- File intent handler -->
+    <string name="intent_import_preset">Імпортувати пресет</string>
+    <string name="intent_import_irs">Імпортувати імпульсний відгук</string>
+    <string name="intent_import_vdc">Імпорт файлу VDC</string>
+    <string name="intent_import_liveprog">Імпорт скрипта Liveprog</string>
+    <string name="intent_import_mode_add">Лише імпортувати</string>
+    <string name="intent_import_mode_select">Імпортувати та активувати</string>
+    <string name="intent_import_fail">Не вдалось імпортувати файл \'%1$s\'</string>
+    <string name="intent_import_success">Файл \'%1$s\' імпортовано</string>
+    <string name="intent_import_select_success">Файл \'%1$s\' імпортовано та активовано</string>
+    <string name="intent_import_error_file_uri">Не вдалося імпортувати файл. Непідтримувана URI-адреса файлу.</string>
     <!-- Translation notice box -->
     <string name="translation_notice_summary">Допоможіть нам перекласти цей додаток вашою мовою! Натисніть тут, щоб перейти на сайт проекту на Crowdin.</string>
     <string name="translation_notice">Підтримати переклади</string>
