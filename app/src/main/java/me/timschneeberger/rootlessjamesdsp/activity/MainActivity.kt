@@ -67,7 +67,6 @@ class MainActivity : BaseActivity() {
     private lateinit var dspFragment: DspFragment
 
     /* Rootless version */
-    private var mediaProjectionStartIntent: Intent? = null
     private lateinit var mediaProjectionManager: MediaProjectionManager
     private lateinit var capturePermissionLauncher: ActivityResultLauncher<Intent>
 
@@ -105,12 +104,6 @@ class MainActivity : BaseActivity() {
     private var broadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             when (intent.action) {
-                Constants.ACTION_DISCARD_AUTHORIZATION -> {
-                    if(BuildConfig.ROOTLESS) {
-                        Timber.i("mediaProjectionStartIntent discarded")
-                        mediaProjectionStartIntent = null
-                    }
-                }
                 Constants.ACTION_SERVICE_STOPPED -> {
                     if(BuildConfig.ROOTLESS)
                         binding.powerToggle.isToggled = false
@@ -257,7 +250,6 @@ class MainActivity : BaseActivity() {
 
         IntentFilter(Constants.ACTION_SERVICE_STOPPED).apply {
             addAction(Constants.ACTION_SERVICE_STARTED)
-            addAction(Constants.ACTION_DISCARD_AUTHORIZATION)
             addAction(Constants.ACTION_PRESET_LOADED)
             registerLocalReceiver(broadcastReceiver, this)
         }
@@ -298,7 +290,7 @@ class MainActivity : BaseActivity() {
                 ActivityResultContracts.StartActivityForResult()
             ) { result ->
                 if (result.resultCode == RESULT_OK && BuildConfig.ROOTLESS) {
-                    mediaProjectionStartIntent = result.data
+                    app.mediaProjectionStartIntent = result.data
                     binding.powerToggle.isToggled = true
                     RootlessAudioProcessorService.start(this, result.data)
                 } else {
@@ -475,9 +467,9 @@ class MainActivity : BaseActivity() {
 
     @RequiresApi(Build.VERSION_CODES.Q)
     fun requestCapturePermission() {
-        if(mediaProjectionStartIntent != null && BuildConfig.ROOTLESS) {
+        if(app.mediaProjectionStartIntent != null && BuildConfig.ROOTLESS) {
             binding.powerToggle.isToggled = true
-            RootlessAudioProcessorService.start(this, mediaProjectionStartIntent)
+            RootlessAudioProcessorService.start(this, app.mediaProjectionStartIntent)
             return
         }
         capturePermissionLauncher.launch(mediaProjectionManager.createScreenCaptureIntent())

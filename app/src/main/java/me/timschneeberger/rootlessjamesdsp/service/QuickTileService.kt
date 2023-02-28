@@ -74,7 +74,8 @@ class QuickTileService : TileService(), SharedPreferences.OnSharedPreferenceChan
                 addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
             }
             .let {
-                if(BuildConfig.ROOTLESS)
+                // If projection permission request needs to be shown, collapse status bar
+                if(BuildConfig.ROOTLESS && app.mediaProjectionStartIntent == null)
                     startActivityAndCollapse(it)
                 else
                     startActivity(it)

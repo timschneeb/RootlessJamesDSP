@@ -10,14 +10,13 @@ import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.service.RootlessAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
+import timber.log.Timber
 
 /**
  * Helper activity to launch the rootless foreground service
  * from the TileService
  */
 class EngineLauncherActivity : BaseActivity() {
-    private var mediaProjectionStartIntent: Intent? = null
-    private lateinit var mediaProjectionManager: MediaProjectionManager
     private lateinit var capturePermissionLauncher: ActivityResultLauncher<Intent>
 
     override val disableAppTheme: Boolean = true
@@ -31,7 +30,12 @@ class EngineLauncherActivity : BaseActivity() {
             return
         }
 
-        mediaProjectionManager = SystemServices.get(this, MediaProjectionManager::class.java)
+        // If projection token available, start immediately
+        if(app.mediaProjectionStartIntent != null) {
+            Timber.d("Reusing old projection token to start service")
+            RootlessAudioProcessorService.start(this, app.mediaProjectionStartIntent)
+            return
+        }
 
         setFinishOnTouchOutside(false)
 
@@ -39,15 +43,18 @@ class EngineLauncherActivity : BaseActivity() {
             ActivityResultContracts.StartActivityForResult()
         ) { result ->
             if (result.resultCode == RESULT_OK) {
-                mediaProjectionStartIntent = result.data
+                app.mediaProjectionStartIntent = result.data
+                Timber.d("Using new projection token to start service")
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                     RootlessAudioProcessorService.start(this, result.data)
                 }
             }
-            this.finish()
+            finish()
         }
 
-        capturePermissionLauncher.launch(mediaProjectionManager.createScreenCaptureIntent())
+        SystemServices.get(this, MediaProjectionManager::class.java)
+            .createScreenCaptureIntent()
+            .let(capturePermissionLauncher::launch)
     }
 }
