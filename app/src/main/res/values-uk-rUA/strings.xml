@@ -203,7 +203,7 @@
     <string name="audio_format_summary_root">Режим сумісності, покращена обробка</string>
     <string name="audio_format_encoding">Кодування аудіо</string>
     <string name="audio_format_buffer_size">Розмір буфера</string>
-    <string name="audio_format_buffer_size_warning_low_value">Увага: низькі розміри буфера можуть спричинити проблеми з аудіо, як-от кліппінг!</string>
+    <string name="audio_format_buffer_size_warning_low_value">Низькі розміри буфера можуть спричинити проблеми з аудіо, як-от кліппінг!</string>
     <string name="autostart_prompt_at_boot">Запитувати дозвіл на захоплення після завантаження</string>
     <string name="autostart_prompt_at_boot_off">Не показувати сповіщення після завантаження</string>
     <string name="autostart_prompt_at_boot_on">Показувати сповіщення після завантаження</string>
@@ -240,7 +240,7 @@
     <string name="about_settings_summary">Автори, підтримка, оновлення</string>
     <string name="privacy">Конфіденційність</string>
     <string name="privacy_share_crash_reports">Поділитися інформацією про збої</string>
-    <string name="privacy_share_crash_reports_on">Надсилати інформацію про збої розробнику</string>
+    <string name="privacy_share_crash_reports_on">Надсилати звіти про збої розробнику</string>
     <string name="privacy_share_crash_reports_off">Не надсилати звіти про збої розробнику</string>
     <string name="credits">Автори</string>
     <string name="credits_app">Додаток та rootless версія</string>
@@ -293,10 +293,27 @@
     <string name="geq_autoeq">Профілі AutoEQ</string>
     <string name="gep_add_node">Додати</string>
     <string name="geq_preview">Перегляд</string>
+    <string name="geq_preview_collapsed">Перегляд (натисніть, щоб розгорнути)</string>
+    <string name="geq_edit_hint">Вузли GraphicEQ</string>
+    <string name="geq_reset">Скинути</string>
     <string name="geq_done">Готово</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
+    <string name="title_activity_liveprog_editor">Редактор скриптів</string>
+    <string name="editor_find_and_replace">Знайти/Замінити…</string>
+    <string name="editor_docs">Довідка</string>
+    <string name="editor_open_fail">Файл скрипта не існує або не може бути відкритий.</string>
+    <string name="editor_run">Зберегти та запустити</string>
+    <string name="editor_save">Зберегти</string>
+    <string name="editor_liveprog_enabled">Liveprog було автоматично ввімкнено.</string>
+    <string name="editor_replace_all">Замінити все</string>
+    <string name="editor_replacement">Заміна</string>
+    <string name="editor_find_next_match">Шукати наступний збіг</string>
+    <string name="editor_find_previous_match">Знайти попередній збіг</string>
+    <string name="editor_search_keyword">Пошук</string>
+    <string name="editor_source_position">%1$d:%2$d</string>
+    <string name="editor_engine_down_title">JamesDSP не активний</string>
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Виключені додатки</string>
     <string name="blocklist_delete">Видалити цей додаток зі списку виключень?</string>
@@ -309,6 +326,7 @@
     <string name="enhanced_processing_feature_unavailable_content">Функція доступна лише при увімкненій опції \"Покращена обробка\" в налаштуваннях. Будь ласка, увімкніть цю опцію в \"Налаштування &gt; Обробка аудіо &gt; Покращена обробка\", щоб отримати доступ до цього меню. \n\nПримітка: Опція \"Покращена обробка\" недоступна, якщо ввімкнено режим сумісності.</string>
     <string name="enhanced_processing_missing_perm">Покращену обробку було вимкнено через відсутність необхідних дозволів. Будь ласка, встановіть їх заново в налаштуваннях.</string>
     <!-- App list -->
+    <string name="app_list_search">Пошук</string>
     <string name="app_list_icon_alt">Значок програми</string>
     <!-- Number box view -->
     <!-- Slider widget -->
