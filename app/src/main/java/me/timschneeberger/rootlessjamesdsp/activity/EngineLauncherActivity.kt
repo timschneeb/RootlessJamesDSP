@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
+import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.service.RootlessAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 
@@ -23,7 +24,9 @@ class EngineLauncherActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q || !BuildConfig.ROOTLESS) {
+        if (!BuildConfig.ROOTLESS) {
+            // Root
+            RootAudioProcessorService.startServiceEnhanced(this)
             finish()
             return
         }
@@ -35,10 +38,12 @@ class EngineLauncherActivity : BaseActivity() {
         capturePermissionLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) { result ->
-            if (result.resultCode == RESULT_OK && BuildConfig.ROOTLESS) {
+            if (result.resultCode == RESULT_OK) {
                 mediaProjectionStartIntent = result.data
 
-                RootlessAudioProcessorService.start(this, result.data)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    RootlessAudioProcessorService.start(this, result.data)
+                }
             }
             this.finish()
         }

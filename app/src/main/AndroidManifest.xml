@@ -186,6 +186,7 @@
             android:name=".activity.EngineLauncherActivity"
             android:exported="false"
             android:excludeFromRecents="true"
+            android:label=""
             android:theme="@style/Theme.Transparent" />
 
         <!-- Services -->

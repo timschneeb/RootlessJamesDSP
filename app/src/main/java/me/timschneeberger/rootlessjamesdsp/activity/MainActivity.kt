@@ -115,6 +115,10 @@ class MainActivity : BaseActivity() {
                     if(BuildConfig.ROOTLESS)
                         binding.powerToggle.isToggled = false
                 }
+                Constants.ACTION_SERVICE_STARTED -> {
+                    if(BuildConfig.ROOTLESS)
+                        binding.powerToggle.isToggled = true
+                }
             }
         }
     }
@@ -178,9 +182,9 @@ class MainActivity : BaseActivity() {
                     checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_DENIED)) {
             Timber.i("Launching onboarding (first boot: $firstBoot)")
 
-            val onboarding = Intent(this, OnboardingActivity::class.java)
-            onboarding.putExtra(OnboardingActivity.EXTRA_FIX_PERMS, !firstBoot)
-            startActivity(onboarding)
+            startActivity(Intent(this, OnboardingActivity::class.java).apply {
+                putExtra(OnboardingActivity.EXTRA_FIX_PERMS, !firstBoot)
+            })
             this.finish()
             return
         }
@@ -251,10 +255,12 @@ class MainActivity : BaseActivity() {
             }
         }
 
-        val filter = IntentFilter(Constants.ACTION_SERVICE_STOPPED)
-        filter.addAction(Constants.ACTION_DISCARD_AUTHORIZATION)
-        filter.addAction(Constants.ACTION_PRESET_LOADED)
-        registerLocalReceiver(broadcastReceiver, filter)
+        IntentFilter(Constants.ACTION_SERVICE_STOPPED).apply {
+            addAction(Constants.ACTION_SERVICE_STARTED)
+            addAction(Constants.ACTION_DISCARD_AUTHORIZATION)
+            addAction(Constants.ACTION_PRESET_LOADED)
+            registerLocalReceiver(broadcastReceiver, this)
+        }
         registerLocalReceiver(processorMessageReceiver, IntentFilter(Constants.ACTION_PROCESSOR_MESSAGE))
 
         // Rootless: don't toggle on click, we handle that in the onClickListener
