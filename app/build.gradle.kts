@@ -118,6 +118,7 @@ android {
     lint {
         abortOnError = false
         checkReleaseBuilds = false
+        disable += "ObsoleteSdkInt"
     }
 
     compileOptions {
