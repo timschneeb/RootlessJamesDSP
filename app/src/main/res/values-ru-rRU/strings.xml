@@ -215,7 +215,7 @@
     <string name="audio_format_summary_root">Режим совместимости, улучшенная обработка</string>
     <string name="audio_format_encoding">Кодирование аудио</string>
     <string name="audio_format_buffer_size">Размер буфера</string>
-    <string name="audio_format_buffer_size_warning_low_value">Внимание: низкие размеры буфера могут вызвать проблемы с аудио, такие как клиппинг!</string>
+    <string name="audio_format_buffer_size_warning_low_value">Низкие размеры буфера могут вызвать проблемы с аудио, такие как клиппинг!</string>
     <string name="autostart_prompt_at_boot">Запрашивать разрешение на захват после загрузки</string>
     <string name="autostart_prompt_at_boot_off">Не показывать уведомление после загрузки</string>
     <string name="autostart_prompt_at_boot_on">Показывать уведомление после загрузки</string>
@@ -312,7 +312,7 @@
     <string name="filelibrary_no_presets">Нет сохраненных пресетов. Нажмите \'Добавить\', чтобы создать новый.</string>
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">Выбранный файл VDC поврежден. Пожалуйста, выберите другой файл.</string>
-    <string name="message_irs_corrupt">Выбранный IR поврежден. Пожалуйста, выберите другой.</string>
+    <string name="message_irs_corrupt">Выбранный импульсный отклик поврежден. Пожалуйста, выберите другой.</string>
     <string name="message_convolver_advimp_invalid">Конвольвер: Расширенное редактирование формы сигнала содержит недопустимые значения.</string>
     <string name="message_liveprog_compile_fail">Ошибка выполнения Liveprog. Выбранный скрипт поврежден. Используйте редактор скриптов для отладки.</string>
     <!-- GraphicEQ editor -->
@@ -366,6 +366,7 @@
     <string name="editor_find_next_match">Найти следующее совпадение</string>
     <string name="editor_find_previous_match">Найти предыдущее совпадение</string>
     <string name="editor_search_keyword">Поиск</string>
+    <string name="editor_source_position">%1$d:%2$d</string>
     <string name="editor_engine_down_title">JamesDSP не активен</string>
     <string name="editor_engine_down">Невозможно запустить скрипт, потому что JamesDSP не активен. Пожалуйста, активируйте JamesDSP для выполнения скриптов.</string>
     <string name="editor_save_prompt_title">Сохранить изменения?</string>
