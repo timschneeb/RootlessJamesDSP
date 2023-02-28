@@ -60,6 +60,24 @@
     <string name="eq_filter_type_linear">Лінійна фаза</string>
     <string name="eq_interpolator_chip">Кусочно-кубічний інтерполяційний поліном Ерміта</string>
     <string name="eq_interpolator_mha">Модифікований сплайн Хіросі Акіма</string>
+    <string name="eq_preset_acoustic">Acoustic</string>
+    <string name="eq_preset_bass">Bass</string>
+    <string name="eq_preset_beats">Beats</string>
+    <string name="eq_preset_classic">Classic</string>
+    <string name="eq_preset_clear">Clear</string>
+    <string name="eq_preset_deep">Deep</string>
+    <string name="eq_preset_dubstep">Dubstep</string>
+    <string name="eq_preset_electronic">Electronic</string>
+    <string name="eq_preset_flat">Flat</string>
+    <string name="eq_preset_hardstyle">Hardstyle</string>
+    <string name="eq_preset_hiphop">Hip-Hop</string>
+    <string name="eq_preset_jazz">Jazz</string>
+    <string name="eq_preset_metal">Metal</string>
+    <string name="eq_preset_movie">Movie</string>
+    <string name="eq_preset_pop">Pop</string>
+    <string name="eq_preset_rb">R&amp;B</string>
+    <string name="eq_preset_rock">Rock</string>
+    <string name="eq_preset_vocal">Vocal Booster</string>
     <string name="geq_enable">Графічний еквалайзер</string>
     <string name="geq_nodes">Амплітудна характеристика</string>
     <string name="bass_enable">Динамічне підсилення басів</string>
@@ -67,6 +85,18 @@
     <string name="reverb_enable">Ефект віртуальної кімнати</string>
     <string name="reverb_room_type">Тип приміщення</string>
     <string name="reverb_preset_default">Типові налаштування</string>
+    <string name="reverb_preset_small_hall1">Small hall 1</string>
+    <string name="reverb_preset_small_hall2">Small hall 2</string>
+    <string name="reverb_preset_medium_hall2">Medium hall</string>
+    <string name="reverb_preset_large_hall1">Large hall</string>
+    <string name="reverb_preset_small_room1">Small room 1</string>
+    <string name="reverb_preset_small_room2">Small room 2</string>
+    <string name="reverb_preset_medium_room1">Medium room</string>
+    <string name="reverb_preset_large_room1">Large room</string>
+    <string name="reverb_preset_plate_high">Plate high</string>
+    <string name="reverb_preset_plate_low">Plate low</string>
+    <string name="reverb_preset_long_reverb1">Long reverb 1</string>
+    <string name="reverb_preset_long_reverb2">Long reverb 2</string>
     <string name="convolver_enable">Конвольвер</string>
     <string name="convolver_impulse">Імпульсний відгук</string>
     <string name="convolver_advanced_editing">Редагування форми сигналу</string>
@@ -99,6 +129,12 @@
     <string name="stereowide_level_narrow">Маленька</string>
     <string name="crossfeed_enable">Кросфідер</string>
     <string name="crossfeed_preset">Пресет</string>
+    <string name="crossfeed_preset_bs2b_weak">BS2B Weak</string>
+    <string name="crossfeed_preset_bs2b_strong">BS2B Strong</string>
+    <string name="crossfeed_preset_out_of_head">Out of head</string>
+    <string name="crossfeed_preset_surround1">Surround 1</string>
+    <string name="crossfeed_preset_surround2">Surround 2</string>
+    <string name="crossfeed_preset_realistic_surround">Joe0Bloggs Realistic surround</string>
     <!-- Onboarding -->
     <string name="title_activity_onboarding">Онбордінг</string>
     <string name="onboarding_back">Назад</string>
@@ -167,7 +203,7 @@
     <string name="onboarding_perm_missing_title">Дозволи на виконання не надані</string>
     <string name="onboarding_perm_missing">Будь ласка, надайте всі запитані дозволи на виконання, щоб продовжити.\nЯкщо ви кілька разів відмовили в наданні дозволів, вам потрібно надати їх вручну в налаштуваннях системи.</string>
     <string name="onboarding_finish_header">JamesDSP налаштовано!</string>
-    <string name="onboarding_finish_caption">Якщо у вас виникли будь-які проблеми, будь ласка, відвідайте розділ налаштувань \"Усунення неполадок\".</string>
+    <string name="onboarding_finish_caption">Якщо у вас виникли будь-які проблеми, відвідайте розділ налаштувань \"Усунення неполадок\".</string>
     <string name="limit_session_control_conflict_title">Вимкнення інших додатків для обробки звуку</string>
     <string name="limit_session_control_conflict">Додатки для обробки звуку, що використовують вбудований в Android ефект динамічної обробки, заважають роботі цього додатка.</string>
     <string name="limit_unsupported_apps_title">Непідтримувані додатки</string>
@@ -214,7 +250,10 @@
     <string name="audio_format_summary">Бажане кодування звуку, розмір буфера</string>
     <string name="audio_format_summary_root">Режим сумісності, покращена обробка</string>
     <string name="audio_format_encoding">Кодування аудіо</string>
+    <string name="audio_format_encoding_int16">16-bit integer PCM</string>
+    <string name="audio_format_encoding_float">32-bit float PCM</string>
     <string name="audio_format_buffer_size">Розмір буфера</string>
+    <string name="audio_format_buffer_size_unit">&#xa0;samples</string>
     <string name="audio_format_buffer_size_warning_low_value">Низькі розміри буфера можуть спричинити проблеми з аудіо, як-от кліппінг!</string>
     <string name="autostart_prompt_at_boot">Запитувати дозвіл на захоплення після завантаження</string>
     <string name="autostart_prompt_at_boot_off">Не показувати сповіщення після завантаження</string>
@@ -279,6 +318,13 @@
     <!-- Theme names -->
     <string name="theme_default">Типові налаштування</string>
     <string name="theme_monet">Динамічний</string>
+    <string name="theme_greenapple">Green Apple</string>
+    <string name="theme_strawberrydaiquiri">Strawberry Daiquiri</string>
+    <string name="theme_honey">Honey</string>
+    <string name="theme_tealturquoise">Teal &amp; Turquoise</string>
+    <string name="theme_yinyang">Yin &amp; Yang</string>
+    <string name="theme_yotsuba">Yotsuba</string>
+    <string name="theme_tidalwave">Tidal Wave</string>
     <!-- File library preference -->
     <string name="action_import">Імпорт</string>
     <string name="filelibrary_hint_tap_and_hold">Торкніться й утримуйте будь-який елемент для додаткових опцій</string>
