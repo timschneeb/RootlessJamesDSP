@@ -121,9 +121,17 @@
     <string name="onboarding_methods_unsupported_append">uyumsuz</string>
     <string name="onboarding_methods_adb_title">ADB</string>
     <!-- Rootless flavor -->
+    <string name="onboarding_methods_rootless_shizuku">\u25CF Önerilir\n\u25CF Harici bilgisayara gerek yok\n\u25CF Sadece Android 11 ve üstü</string>
     <string name="onboarding_methods_rootless_adb">\u25CF Gelişmiş kullanıcılar için\n\u25CFBilgisayar ve USB kablosu gereklidir\n\u25CFAndroid 10+ desteği var</string>
     <!-- Root flavor -->
     <string name="onboarding_methods_root_root">\u25CFÖnerilir\n\u25CFHarici bilgisayar gerekli değil\n\u25CFTüm android sürümleri</string>
+    <string name="onboarding_methods_root_shizuku">\u25CF Eğer cihaz rootlu değil ise önerilir\n\u25CF Harici bilgisayara gerek yok\n\u25CF Sadece Android 11 ve üstü</string>
+    <string name="onboarding_methods_root_adb">\u25CF Gelişmiş kullanıcılar için\n\u25CF Bilgisayar ve UDB kablosu gerekli\n\u25CFTüm Android sürümleri</string>
+    <string name="onboarding_root_shell_fail_title">Root erişimi yok</string>
+    <string name="onboarding_root_shell_fail">Root erişimi bulunmuyor. Lütfen başka bir kurulum yöntemi deneyin.</string>
+    <string name="onboarding_root_shell_fail_unknown">Root ile izin verilemedi. Lütfen başka bir kurulum yöntemi deneyin.</string>
+    <string name="onboarding_root_enhanced_processing_setup_success">Gelişmiş işleme kurulu</string>
+    <string name="onboarding_adb_shizuku_title">Shizuku kurulumu</string>
     <string name="onboarding_adb_caption">Bu uygulama cihazınızın ses politikasını çöpe boşaltmak için özel izinler gerektirir. Lütfen aşağıdaki talimatları takip edin.</string>
     <string name="onboarding_adb_shizuku_install_button">Shizuku Yükle</string>
     <string name="onboarding_adb_shizuku_install_button_done">Zaten yüklenmiş</string>
@@ -139,8 +147,17 @@
     <string name="onboarding_adb_shizuku_grant_fail_version">Bu uygulama Shizuku sürüm 11 veya sonrasını gerektirir. Lütfen Shizuku\'yu en son sürüme güncelleyin.</string>
     <string name="onboarding_adb_shizuku_grant_fail_version_title">Desteklenmeyen Shizuku sürümü</string>
     <string name="onboarding_adb_shizuku_grant_fail_denied_title">İzin reddedildi</string>
+    <string name="onboarding_perm_notification_caption">JamesDSP\'nin işlemesi hakkında önemli durum güncellemesi ve bilgi almak için gereklidir.</string>
+    <string name="onboarding_finish_header">JamesDSP kuruldu!</string>
+    <string name="onboarding_finish_caption">Eğer bir hatayla karşılaşırsanız, lütfen sorun giderme ayarlarını kullanınız.</string>
+    <string name="limit_session_control_conflict_title">Diğer ses efekti uygulamalarını devre dışı bırakın</string>
     <!-- Settings -->
     <string name="title_activity_settings">Ayarlar</string>
+    <string name="audio_format_enhanced_processing">Geliştirilmiş işleme</string>
+    <string name="audio_format_enhanced_processing_on">Uygulama başı kontrol ve uygulamalar için gelişmiş destek etkin</string>
+    <string name="audio_format_enhanced_processing_off">Gelişmiş işleme devre dışı</string>
+    <string name="audio_format_enhanced_processing_info_title">Gelişmiş işleme nedir?</string>
+    <string name="audio_format_enhanced_processing_info">Dokümentasyona bakmak için tıklayın</string>
     <!-- Theme names -->
     <string name="theme_default">Varsayılan</string>
     <!-- File library preference -->
