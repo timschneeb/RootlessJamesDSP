@@ -387,6 +387,7 @@
     <string name="app_compat_explanation">Цей додаток не підтримується, оскільки він призводить до втрати RootlessJamesDSP контролю над маршрутизацією звуку:</string>
     <string name="app_compat_instruction">Будь ласка, перевірте налаштування програми, щоб вимкнути апаратне прискорення або інші налаштування, які можуть перешкодити RootlessJamesDSP, а потім натисніть \"Повторити\".</string>
     <string name="app_compat_instruction_exclude">Як альтернативу, виберіть \"Виключити\", щоб обійти цю проблему, виключивши несумісну програму з обробки звуку.</string>
+    <string name="app_compat_unknown_pkg_name">Невідоме ім\'я пакету</string>
     <!-- Hints for compatibility issues for individual apps -->
     <!-- Root: Library load failure -->
     <string name="load_fail_card">Будь ласка, встановіть модуль JamesDSP для Magisk і перезавантажте ваш Android-пристрій для використання програми. Вам також може знадобитися перевстановити цю програму після перезавантаження.</string>
