@@ -23,7 +23,7 @@
     <string name="notification_request_permission_title">Для запуску JamesDSP потрібна дія користувача</string>
     <string name="notification_request_permission">Натисніть, щоб надати дозвіл на захоплення та увімкнути обробку аудіо в JamesDSP</string>
     <!-- Session control loss notifications -->
-    <string name="session_control_loss_toast">JamesDSP зупинено через втрату контролю над аудіосесією. Будь ласка, вимкніть інші програми для обробки аудіо ефектів.</string>
+    <string name="session_control_loss_toast">JamesDSP зупинено через втрату контролю над аудіосесією. Будь ласка, вимкніть інші додатки для обробки аудіо ефектів.</string>
     <string name="session_control_loss_notification_title">Обробку аудіо зупинено. Інша програма заважає роботі JamesDSP.</string>
     <string name="session_control_loss_notification">Будь ласка, вимкніть всі інші додатки, що надають глобальні звукові ефекти перед повторним включенням JamesDSP.</string>
     <!-- App compatibility issue notifications -->
@@ -237,7 +237,7 @@
     <string name="audio_format_header">Обробка аудіо</string>
     <string name="audio_format_section_header">Бажаний аудіоформат</string>
     <string name="audio_format_processing_header">Параметри обробки аудіо</string>
-    <string name="audio_format_processing_legacy">Режим сумісності</string>
+    <string name="audio_format_processing_legacy">Legacy режим</string>
     <string name="audio_format_processing_legacy_on">Приєднати глобально до сесії 0 (застаріло)</string>
     <string name="audio_format_processing_legacy_off">Прикріплювати до кожного додатка окремо</string>
     <string name="audio_format_enhanced_processing">Покращена обробка</string>
@@ -245,10 +245,10 @@
     <string name="audio_format_enhanced_processing_off">Покращена обробка вимкнена</string>
     <string name="audio_format_enhanced_processing_info_title">Що таке покращена обробка?</string>
     <string name="audio_format_enhanced_processing_info">Натисніть, щоб переглянути документацію</string>
-    <string name="audio_format_enhanced_processing_info_content">У разі ввімкненої опції \"Покращена обробка\" можна обирати, які додатки виключити з обробки JamesDSP через меню з трьома крапками в правому нижньому кутку та обравши \"Виключені додатки\". Вимкнення режиму сумісності дає змогу кожному застосунку використовувати свій власний механізм ефектів JamesDSP для більш тонкого контролю. В іншому випадку, всі програми будуть використовувати один механізм обробки, який в Android застарів і більше не повинен використовуватися. \n\nЯкщо режим сумісності вимкнений, не всі мультимедійні додатки працюватимуть правильно, тому ввімкніть опцію \"Покращена обробка\", щоб JamesDSP міг самостійно сканувати медіа-сесії, не покладаючись на системні повідомлення і забезпечувати правильну підтримку небажаних медіа-додатків.</string>
+    <string name="audio_format_enhanced_processing_info_content">У разі ввімкненої опції \"Покращена обробка\" можна обирати, які додатки виключити з обробки JamesDSP через меню з трьома крапками в правому нижньому кутку та обравши \"Виключені додатки\". Вимкнення Legacy режиму дає змогу кожному застосунку використовувати свій власний механізм ефектів JamesDSP для більш тонкого контролю. В іншому випадку, всі програми будуть використовувати один механізм обробки, який в Android застарів і більше не повинен використовуватися. \n\nЯкщо Legacy режим вимкнений, не всі мультимедійні додатки працюватимуть правильно, тому ввімкніть опцію \"Покращена обробка\", щоб JamesDSP міг самостійно сканувати медіа-сесії, не покладаючись на системні повідомлення і забезпечувати правильну підтримку небажаних медіа-додатків.</string>
     <string name="audio_format_media_apps_need_restart">Після зміни цього параметра необхідно перезапустити всі активні мультимедійні додатки, щоб відновити обробку звуку.</string>
     <string name="audio_format_summary">Бажане кодування звуку, розмір буфера</string>
-    <string name="audio_format_summary_root">Режим сумісності, покращена обробка</string>
+    <string name="audio_format_summary_root">Legacy режим, покращена обробка</string>
     <string name="audio_format_encoding">Кодування аудіо</string>
     <string name="audio_format_encoding_int16">16-bit integer PCM</string>
     <string name="audio_format_encoding_float">32-bit float PCM</string>
@@ -348,13 +348,13 @@
     <string name="filelibrary_file_exists">Файл вже існує</string>
     <string name="filelibrary_resample_complete">Ресемпльовано до %1$dHz</string>
     <string name="filelibrary_resample_failed">Помилка ресемплінгу. Пошкоджений вхідний файл?</string>
-    <string name="filelibrary_preset_overwritten">Пресет \'%1$s\' перезаписано</string>
-    <string name="filelibrary_preset_created">Пресет \'%1$s\' створено</string>
+    <string name="filelibrary_preset_overwritten">Пресет \"%1$s\" перезаписано</string>
+    <string name="filelibrary_preset_created">Пресет \"%1$s\" створено</string>
     <string name="filelibrary_preset_save_failed">Не вдалося зберегти пресет</string>
-    <string name="filelibrary_renamed">Перейменовано на \'%1$s\'</string>
-    <string name="filelibrary_deleted">\'%1$s\' видалено</string>
-    <string name="filelibrary_preset_loaded">Пресет \'%1$s\' завантажено</string>
-    <string name="filelibrary_preset_load_failed">Файл \'%1$s\' несумісний з цим додатком</string>
+    <string name="filelibrary_renamed">Перейменовано на \"%1$s\"</string>
+    <string name="filelibrary_deleted">\"%1$s\" видалено</string>
+    <string name="filelibrary_preset_loaded">Пресет \"%1$s\" завантажено</string>
+    <string name="filelibrary_preset_load_failed">Файл \"%1$s\" несумісний з цим додатком</string>
     <string name="filelibrary_no_presets">Немає збережених пресетів. Натисніть \"Додати\" для створення нового.</string>
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">Обраний файл VDC пошкоджений. Будь ласка, виберіть інший файл.</string>
@@ -402,14 +402,14 @@
     <!-- Liveprog script editor -->
     <string name="title_activity_liveprog_editor">Редактор скриптів</string>
     <string name="editor_find_and_replace">Знайти/Замінити…</string>
-    <string name="editor_docs">Довідка</string>
+    <string name="editor_docs">Допомога</string>
     <string name="editor_open_fail">Файл скрипта не існує або не може бути відкритий.</string>
     <string name="editor_run">Зберегти та запустити</string>
     <string name="editor_save">Зберегти</string>
     <string name="editor_liveprog_enabled">Liveprog було автоматично ввімкнено.</string>
     <string name="editor_replace_all">Замінити все</string>
     <string name="editor_replacement">Заміна</string>
-    <string name="editor_find_next_match">Шукати наступний збіг</string>
+    <string name="editor_find_next_match">Знайти наступний збіг</string>
     <string name="editor_find_previous_match">Знайти попередній збіг</string>
     <string name="editor_search_keyword">Пошук</string>
     <string name="editor_source_position">%1$d:%2$d</string>
@@ -450,7 +450,7 @@
     <string name="load_fail_arch_card">Якщо ви вже встановили модуль Magisk, можливо, ви вибрали неправильні налаштування під час встановлення. Спробуйте перевстановити модуль і ввімкнути сумісність із пристроями Huawei (навіть якщо ваш телефон не вироблений компанією Huawei).</string>
     <!-- Enhanced processing -->
     <string name="enhanced_processing_feature_unavailable">Функція недоступна</string>
-    <string name="enhanced_processing_feature_unavailable_content">Функція доступна лише при увімкненій опції \"Покращена обробка\" в налаштуваннях. Будь ласка, увімкніть цю опцію в \"Параметри &gt; Обробка аудіо &gt; Покращена обробка\", щоб отримати доступ до цього меню. \n\nПримітка: Опція \"Покращена обробка\" недоступна, якщо ввімкнено режим сумісності.</string>
+    <string name="enhanced_processing_feature_unavailable_content">Функція доступна лише при увімкненій опції \"Покращена обробка\" в налаштуваннях. Будь ласка, увімкніть цю опцію в \"Параметри &gt; Обробка аудіо &gt; Покращена обробка\", щоб отримати доступ до цього меню. \n\nПримітка: Опція \"Покращена обробка\" недоступна, якщо ввімкнено Legacy режим.</string>
     <string name="enhanced_processing_missing_perm">Покращену обробку було вимкнено через відсутність необхідних дозволів. Будь ласка, повторно налаштуйте їх в параметрах.</string>
     <!-- App list -->
     <string name="app_list_loading">Завантаження списку додатків…</string>
@@ -469,13 +469,13 @@
     <!-- File intent handler -->
     <string name="intent_import_preset">Імпортувати пресет</string>
     <string name="intent_import_irs">Імпортувати імпульсний відгук</string>
-    <string name="intent_import_vdc">Імпорт файлу VDC</string>
-    <string name="intent_import_liveprog">Імпорт скрипта Liveprog</string>
+    <string name="intent_import_vdc">Імпортувати VDC файл</string>
+    <string name="intent_import_liveprog">Імпортувати Liveprog скрипт</string>
     <string name="intent_import_mode_add">Лише імпортувати</string>
     <string name="intent_import_mode_select">Імпортувати та активувати</string>
-    <string name="intent_import_fail">Не вдалось імпортувати файл \'%1$s\'</string>
-    <string name="intent_import_success">Файл \'%1$s\' імпортовано</string>
-    <string name="intent_import_select_success">Файл \'%1$s\' імпортовано та активовано</string>
+    <string name="intent_import_fail">Не вдалось імпортувати файл \"%1$s\"</string>
+    <string name="intent_import_success">Файл \"%1$s\" імпортовано</string>
+    <string name="intent_import_select_success">Файл \"%1$s\" імпортовано та активовано</string>
     <string name="intent_import_error_file_uri">Не вдалося імпортувати файл. Непідтримувана URI-адреса файлу.</string>
     <!-- Translation notice box -->
     <string name="translation_notice_summary">Допоможіть нам перекласти цей додаток вашою мовою! Натисніть тут, щоб перейти на сайт проекту на Crowdin.</string>
