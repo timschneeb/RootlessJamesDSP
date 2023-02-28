@@ -25,7 +25,7 @@
     <!-- Session control loss notifications -->
     <string name="session_control_loss_toast">JamesDSP зупинено через втрату контролю над аудіо сесією. Будь ласка, вимкніть інші програми для обробки аудіо ефектів.</string>
     <string name="session_control_loss_notification_title">Обробку аудіо зупинено. Інша програма заважає роботі JamesDSP.</string>
-    <string name="session_control_loss_notification">Будь ласка, вимкніть всі інші застосунки, що надають глобальні звукові ефекти перед повторним включенням JamesDSP.</string>
+    <string name="session_control_loss_notification">Будь ласка, вимкніть всі інші додатки, що надають глобальні звукові ефекти перед повторним включенням JamesDSP.</string>
     <!-- App compatibility issue notifications -->
     <string name="session_app_compat_toast">JamesDSP зупинено через несумісний медіа-додаток. Будь ласка, перевірте повідомлення, щоб вирішити цю проблему.</string>
     <string name="session_app_compat_notification_title">Обробку аудіо зупинено. Інша програма заважає роботі JamesDSP.</string>
@@ -106,7 +106,7 @@
     <string name="onboarding_finish">Завершити</string>
     <string name="onboarding_greeting">Ласкаво просимо до RootlessJamesDSP!</string>
     <string name="onboarding_caption">Цей помічник допоможе вам налаштувати додаток.</string>
-    <string name="onboarding_warning">Наразі додаток не завершений і нестабільний. Зверніть увагу, що на деяких пристроях він може не працювати так, як очікується, оскільки використовує Android API, не призначені для використання третіми особами.</string>
+    <string name="onboarding_warning">Наразі додаток не завершений та нестабільний. Зверніть увагу, що на деяких пристроях він може не працювати так, як очікується, оскільки використовує Android API, не призначені для використання третіми особами.</string>
     <string name="onboarding_fix_permissions_title">Потрібна дія користувача</string>
     <string name="onboarding_fix_permissions">Один або кілька дозволів було відкликано вами або системою.\nЩоб забезпечити правильну роботу додатку, вам потрібно надати ці дозволи знову.\n\nБудь ласка, перезапустіть майстер налаштування для повторного надання цих дозволів.</string>
     <string name="onboarding_limitations_title">Обмеження</string>
@@ -133,7 +133,7 @@
     <string name="onboarding_adb_shizuku_install_button">Встановити Shizuku</string>
     <string name="onboarding_adb_shizuku_install_button_done">Вже інстальовано</string>
     <string name="onboarding_adb_shizuku_install_instruction">Встановити Shizuku з Google Play.</string>
-    <string name="onboarding_adb_shizuku_open_instruction">Запустіть Shizuku і знайдіть параметр \"<b>Запуск через налагодження по Wi-Fi</b>\". Натисніть кнопку \"Підключення\" і дотримуйтесь інструкцій у застосунку. Після сполучення Shizuku з вашим пристроєм, запустіть сервер Shizuku, натиснувши кнопку \"Запустити\". Якщо у вас виникли проблеми під час налаштування Shizuku, зверніться до інструкції, посилання на яку наведено в їхньому застосунку.</string>
+    <string name="onboarding_adb_shizuku_open_instruction">Запустіть Shizuku і знайдіть параметр \"<b>Запуск через налагодження по Wi-Fi</b>\". Натисніть кнопку \"Підключення\" і дотримуйтесь інструкцій у додатку. Після сполучення Shizuku з вашим пристроєм, запустіть сервер Shizuku, натиснувши кнопку \"Запустити\". Якщо у вас виникли проблеми під час налаштування Shizuku, зверніться до інструкції, посилання на яку наведено в їхньому додатку.</string>
     <string name="onboarding_adb_shizuku_open_button">Запустити Shizuku</string>
     <string name="onboarding_adb_shizuku_open_button_done">Вже активовано</string>
     <string name="onboarding_adb_shizuku_grant_instruction">Надайте доступ до Shizuku, натиснувши на кнопку.</string>
@@ -177,7 +177,7 @@
     <string name="limit_latency_title">Збільшення затримки</string>
     <string name="limit_latency">Ця програма може додавати деяку затримку в аудіопотік. Ви можете додати додатки для перегляду фільмів/відео до списку винятків, щоб не обробляти їх і уникнути збоїв у синхронізації звуку та відео.</string>
     <string name="limit_tested_devices_title">Протестовані пристрої</string>
-    <string name="limit_tested_devices">Виробник вашого пристрою міг внести зміни до аудіопідсистеми Android, які можуть порушити роботу застосунку через використання не задокументованих API.\nДодаток тестувався на пристроях:\n• Samsung S20+ (Android 12)\n• Емулятор AOSP (Android 10-13)\n• Google Pixel 6 Pro (Android 13)</string>
+    <string name="limit_tested_devices">Виробник вашого пристрою міг внести зміни до аудіопідсистеми Android, які можуть порушити роботу додатку через використання не задокументованих API.\nДодаток тестувався на пристроях:\n• Samsung S20+ (Android 12)\n• Емулятор AOSP (Android 10-13)\n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
     <string name="title_activity_settings">Параметри</string>
     <string name="session_exclude_restricted">Виключити непідтримувані додатки</string>
@@ -257,26 +257,54 @@
     <string name="appearance_summary">Тема додатку, темний режим</string>
     <string name="appearance_title">Тема додатку</string>
     <string name="appearance_theme_mode">Темний режим</string>
+    <string name="appearance_theme_mode_default">Використовувати налаштування системи</string>
+    <string name="appearance_theme_mode_light">Вимк.</string>
     <string name="appearance_theme_mode_dark">Увімк.</string>
+    <string name="appearance_app_theme">Колірний акцент теми</string>
     <string name="appearance_nav_hide">Приховувати панель навігації під час прокрутки</string>
     <!-- Theme names -->
     <string name="theme_default">Типові налаштування</string>
     <!-- File library preference -->
     <string name="filelibrary_hint_tap_and_hold">Торкніться й утримуйте будь-який елемент для додаткових опцій</string>
+    <string name="filelibrary_context_duplicate">Створити копію</string>
+    <string name="filelibrary_context_delete">Видалити</string>
+    <string name="filelibrary_context_new_preset">Новий</string>
+    <string name="filelibrary_context_new_preset_long">Новий пресет</string>
+    <string name="filelibrary_unsupported_format_title">Непідтримуваний тип файлу</string>
+    <string name="filelibrary_unsupported_format">Обраний файл має неправильне розширення.</string>
+    <string name="filelibrary_corrupted_title">Непідтримуваний або пошкоджений файл</string>
+    <string name="filelibrary_corrupted">Обраний файл не містить придатних для використання даних або пошкоджений.</string>
+    <string name="filelibrary_access_fail">Не вдалося отримати доступ до каталогу</string>
+    <string name="filelibrary_no_file_selected">Файл не вибрано</string>
+    <string name="filelibrary_new_file_name">Нова назва файлу</string>
+    <string name="filelibrary_file_exists">Файл вже існує</string>
+    <string name="filelibrary_resample_complete">Ресемпльовано до %1$dHz</string>
+    <string name="filelibrary_resample_failed">Помилка ресемплінгу. Пошкоджений вхідний файл?</string>
+    <string name="filelibrary_preset_save_failed">Не вдалося зберегти пресет</string>
+    <string name="filelibrary_deleted">\'%1$s\' видалено</string>
     <!-- JamesDSP engine messages -->
+    <string name="message_vdc_corrupt">Обраний файл VDC пошкоджений. Будь ласка, виберіть інший файл.</string>
+    <string name="message_irs_corrupt">Обраний файл імпульсного відгуку пошкоджений. Будь ласка, виберіть інший.</string>
+    <string name="message_convolver_advimp_invalid">Конвольвер: Розширене редагування форми сигналу містить неприпустимі значення.</string>
+    <string name="message_liveprog_compile_fail">Помилка виконання Liveprog. Обраний скрипт пошкоджений. Використовуйте редактор скриптів для налагодження.</string>
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">Амплітудна характеристика</string>
+    <string name="geq_edit_as_string">Редагувати як рядок</string>
+    <string name="geq_autoeq">Профілі AutoEQ</string>
     <string name="gep_add_node">Додати</string>
+    <string name="geq_preview">Перегляд</string>
     <string name="geq_done">Готово</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Виключені додатки</string>
+    <string name="blocklist_delete">Видалити цей додаток зі списку виключень?</string>
     <!-- Compatibility issue activity -->
     <string name="app_compat_retry">Повторити</string>
     <!-- Hints for compatibility issues for individual apps -->
     <!-- Root: Library load failure -->
+    <string name="load_fail_card">Будь ласка, встановіть модуль JamesDSP для Magisk і перезавантажте ваш Android-пристрій для використання програми. Вам також може знадобитися перевстановити цю програму після перезавантаження.</string>
     <!-- Enhanced processing -->
     <string name="enhanced_processing_feature_unavailable_content">Функція доступна лише при увімкненій опції \"Покращена обробка\" в налаштуваннях. Будь ласка, увімкніть цю опцію в \"Налаштування &gt; Обробка аудіо &gt; Покращена обробка\", щоб отримати доступ до цього меню. \n\nПримітка: Опція \"Покращена обробка\" недоступна, якщо ввімкнено режим сумісності.</string>
     <string name="enhanced_processing_missing_perm">Покращену обробку було вимкнено через відсутність необхідних дозволів. Будь ласка, встановіть їх заново в налаштуваннях.</string>
