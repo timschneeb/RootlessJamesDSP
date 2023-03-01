@@ -21,7 +21,7 @@ jobs:
     - name: Generate Crowdin Contributors table
       uses: andrii-bodnar/action-crowdin-contributors@0.2.0
       with:
-        contributors_per_line: 8
+        contributors_per_line: 6
         max_contributors: 32
         image_size: 64
         min_words_contributed: 1
