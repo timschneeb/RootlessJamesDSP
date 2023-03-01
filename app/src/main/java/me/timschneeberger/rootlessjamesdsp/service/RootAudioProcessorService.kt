@@ -135,12 +135,16 @@ class RootAudioProcessorService : BaseAudioProcessorService(),
                 if(!app.isEnhancedProcessing) {
                     Timber.e("onStartCommand: ACTION_START_ENHANCED_PROCESSING received, but isEnhancedProcessing is false")
                 }
+                sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_STARTED))
             }
             ACTION_STOP -> {
                 stopSelf()
                 return START_NOT_STICKY
             }
             AudioEffect.ACTION_OPEN_AUDIO_EFFECT_CONTROL_SESSION -> {
+                if(app.rootSessionDatabase.sessionList.isEmpty())
+                    sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_STARTED))
+
                 if(!isServiceDisposing && !app.isEnhancedProcessing)
                     app.rootSessionDatabase.addSessionByIntent(intent)
             }

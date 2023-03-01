@@ -49,14 +49,25 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
     val blockedAppDatabase by lazy { AppBlocklistDatabase.getDatabase(this, applicationScope) }
     val blockedAppRepository by lazy { AppBlocklistRepository(blockedAppDatabase.appBlocklistDao()) }
 
+    /* Rootless: Media projection auth token */
+    var mediaProjectionStartIntent: Intent? = null
+
     var engineSampleRate = 0f
         private set
 
     private val receiver by lazy {
         object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
-                if (intent?.action == Constants.ACTION_REPORT_SAMPLE_RATE) {
-                    engineSampleRate = intent.getFloatExtra(Constants.EXTRA_SAMPLE_RATE, 0f)
+                when(intent?.action) {
+                    Constants.ACTION_REPORT_SAMPLE_RATE -> {
+                        engineSampleRate = intent.getFloatExtra(Constants.EXTRA_SAMPLE_RATE, 0f)
+                    }
+                    Constants.ACTION_DISCARD_AUTHORIZATION -> {
+                        if(BuildConfig.ROOTLESS) {
+                            Timber.i("mediaProjectionStartIntent discarded")
+                            mediaProjectionStartIntent = null
+                        }
+                    }
                 }
             }
         }
@@ -133,7 +144,10 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
             modules(appModule)
         }
 
-        registerLocalReceiver(receiver, IntentFilter(Constants.ACTION_REPORT_SAMPLE_RATE))
+        registerLocalReceiver(receiver, IntentFilter().apply {
+            addAction(Constants.ACTION_REPORT_SAMPLE_RATE)
+            addAction(Constants.ACTION_DISCARD_AUTHORIZATION)
+        })
 
         if (!BuildConfig.ROOTLESS && isLegacyMode)
             RootAudioProcessorService.updateLegacyMode(applicationContext, true)

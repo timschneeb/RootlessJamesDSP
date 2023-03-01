@@ -221,6 +221,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
 
         if (mediaProjection != null) {
             startRecording()
+            sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_STARTED))
         } else {
             Timber.w("Failed to capture audio")
             stopSelf()
