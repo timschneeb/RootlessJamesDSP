@@ -54,7 +54,7 @@ JamesDSP 支持以下音频效果：
 * 内置 FIR 均衡器
 * 任意响应均衡器(图形EQ)
 * ViPER-DDC
-* 卷积混响
+* 卷积混响器
 * Live-programable DSP (音频效果的脚本引擎)
 * 模拟模型
 * 音阶宽度
