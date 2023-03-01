@@ -224,7 +224,7 @@
     <string name="session_detection_header">Виявлення аудіосесій</string>
     <string name="session_continuous_polling">Безперервне опитування</string>
     <string name="session_continuous_polling_off">Прослуховувати лише події сеансу від системи</string>
-    <string name="session_continuous_polling_on">Постійно перераховувати аудіосесії</string>
+    <string name="session_continuous_polling_on">Постійно сканувати аудіосесії</string>
     <string name="session_continuous_polling_rate">Інтервал опитування (ms)</string>
     <string name="session_detection_method">Бажаний метод виявлення сесії</string>
     <string name="session_detection_method_audiopolicyservice">AudioPolicyService dump</string>
