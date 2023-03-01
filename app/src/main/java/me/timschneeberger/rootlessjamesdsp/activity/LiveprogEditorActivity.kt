@@ -247,7 +247,7 @@ class LiveprogEditorActivity : BaseActivity() {
         }
 
         // If service down or in case of root, if engine disabled, show warning message
-        if(BaseAudioProcessorService.activeServices <= 0 || (!BuildConfig.ROOTLESS && appPref.getBoolean(getString(R.string.key_powered_on), false))) {
+        if(BaseAudioProcessorService.activeServices <= 0 || (!BuildConfig.ROOTLESS && prefsApp.getBoolean(getString(R.string.key_powered_on), false))) {
             this.showAlert(R.string.editor_engine_down_title, R.string.editor_engine_down)
         }
         else {
@@ -269,7 +269,7 @@ class LiveprogEditorActivity : BaseActivity() {
         // Change default font to JetBrains Mono font
         val jetBrainsMono = ResourcesCompat.getFont(this, R.font.jetbrainsmono)
         codeView.typeface = jetBrainsMono
-        val fontSize = appPref.getFloat(getString(R.string.key_editor_font_size), 13f)
+        val fontSize = prefsApp.getFloat(getString(R.string.key_editor_font_size), 13f)
         codeView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, fontSize)
 
         // Add input view
@@ -396,7 +396,7 @@ class LiveprogEditorActivity : BaseActivity() {
             LayoutInflater.from(this),
             R.string.editor_text_size,
             R.string.editor_text_size,
-            "%.1f".format(Locale.ROOT, appPref.getFloat(getString(R.string.key_editor_font_size), 13f)),
+            "%.1f".format(Locale.ROOT, prefsApp.getFloat(getString(R.string.key_editor_font_size), 13f)),
             true,
             "dp"
         ) {
@@ -407,7 +407,7 @@ class LiveprogEditorActivity : BaseActivity() {
                     throw NumberFormatException()
 
                 codeView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, value)
-                appPref.edit().putFloat(getString(R.string.key_editor_font_size), value).apply()
+                prefsApp.edit().putFloat(getString(R.string.key_editor_font_size), value).apply()
             }
             catch (ex: Exception) {
                 Timber.e("Failed to parse number input")

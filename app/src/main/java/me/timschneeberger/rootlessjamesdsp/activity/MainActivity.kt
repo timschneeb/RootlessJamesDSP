@@ -76,12 +76,6 @@ class MainActivity : BaseActivity() {
     private var hasLoadFailed = false
     private lateinit var runtimePermissionLauncher: ActivityResultLauncher<Array<String>>
 
-    /* General */
-    private val prefsVar by lazy { getSharedPreferences(Constants.PREF_VAR, Context.MODE_PRIVATE) }
-
-    /* App */
-    private val prefsApp by lazy { getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE) }
-
     private var processorService: BaseAudioProcessorService? = null
     private var processorServiceBound: Boolean = false
 
@@ -282,7 +276,7 @@ class MainActivity : BaseActivity() {
                 }
                 else if (!BuildConfig.ROOTLESS && JamesDspRemoteEngine.isPluginInstalled()) {
                     binding.powerToggle.isToggled = !binding.powerToggle.isToggled
-                    appPref
+                    prefsApp
                         .edit()
                         .putBoolean(getString(R.string.key_powered_on), binding.powerToggle.isToggled)
                         .apply()
@@ -336,7 +330,7 @@ class MainActivity : BaseActivity() {
         // Load initial preference states
         val initialPrefList = arrayOf(R.string.key_appearance_nav_hide, R.string.key_powered_on)
         for (pref in initialPrefList)
-            this.onSharedPreferenceChanged(appPref, getString(pref))
+            this.onSharedPreferenceChanged(prefsApp, getString(pref))
 
         sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
 
@@ -345,7 +339,7 @@ class MainActivity : BaseActivity() {
                 Timber.e("Dump permission for enhanced processing lost")
                 Toast.makeText(this,
                     getString(R.string.enhanced_processing_missing_perm), Toast.LENGTH_LONG).show()
-                appPref
+                prefsApp
                     .edit()
                     .putBoolean(getString(R.string.key_audioformat_enhancedprocessing), false)
                     .apply()

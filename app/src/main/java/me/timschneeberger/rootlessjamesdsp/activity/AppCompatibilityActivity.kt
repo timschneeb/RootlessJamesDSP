@@ -13,12 +13,9 @@ import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.getParcelableAs
 
 class AppCompatibilityActivity : BaseActivity() {
-    private lateinit var prefsVar: SharedPreferences
-
     @SuppressLint("InlinedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        prefsVar = getSharedPreferences(Constants.PREF_VAR, Context.MODE_PRIVATE)
 
         val binding = ActivityAppCompatibilityBinding.inflate(layoutInflater)
 

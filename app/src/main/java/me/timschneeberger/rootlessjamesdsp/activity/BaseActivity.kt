@@ -16,9 +16,10 @@ open class BaseActivity :
     SharedPreferences.OnSharedPreferenceChangeListener,
     ThemingDelegate by ThemingDelegateImpl() {
 
-    protected val appPref: SharedPreferences by lazy {
-        getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
-    }
+    /* App */
+    protected val prefsApp by lazy { getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE) }
+    /* General */
+    protected val prefsVar by lazy { getSharedPreferences(Constants.PREF_VAR, Context.MODE_PRIVATE) }
 
     protected open val disableAppTheme = false
 
@@ -28,12 +29,12 @@ open class BaseActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         if(!disableAppTheme)
             applyAppTheme(this)
-        appPref.registerOnSharedPreferenceChangeListener(this)
+        prefsApp.registerOnSharedPreferenceChangeListener(this)
         super.onCreate(savedInstanceState)
     }
 
     override fun onDestroy() {
-        appPref.unregisterOnSharedPreferenceChangeListener(this)
+        prefsApp.unregisterOnSharedPreferenceChangeListener(this)
         super.onDestroy()
     }
 
