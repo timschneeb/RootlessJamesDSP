@@ -1,8 +1,8 @@
-Use JamesDSP as a system-wide audio processing engine without any root access.
+Utilizați JamesDSP ca motor de procesare audio la nivelul întregului sistem fără acces root.
 
-This app has several limitations that may be deal-breaking to some people; please read this whole document before using the app. Shizuku (Android 11+) or ADB access via a computer is required for the initial setup.
+Această aplicație are mai multe limitări pe care anumite persoane nu le vor aprecia; vă rugăm să citiți întregul document înainte de a utiliza aplicația. Pentru configurarea inițială este necesar accesul Shizuku (Android 11+) sau ADB prin intermediul unui calculator.
 
-JamesDSP supports the following audio effects:
+JamesDSP suportă următoarele efecte audio:
 * Limiter control
 * Output gain control
 * Auto dynamic range compressor
@@ -19,13 +19,13 @@ JamesDSP supports the following audio effects:
 
 Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration, you can search and import frequency responses that aim to correct your headphone to a neutral sound. Go to 'Arbitrary response equalizer > Magnitude response > AutoEQ profiles' to get started.
 
---- Limitations
-* Apps blocking internal audio capture remain unprocessed (e.g., Spotify, Google Chrome)
-* Apps using some types of HW-accelerated playback may cause issues and need to be manually excluded (e.g., some Unity games)
-* Cannot coexist with (some) other audio effect apps (e.g., Wavelet and other apps that make use of the `DynamicsProcessing` Android API)
+--- Limitări
+* Aplicațiile care blochează capturarea audio internă rămân neprocesate (de exemplu, Spotify, Google Chrome)
+* Aplicațiile care folosesc unele tipuri de redare accelerată cu HW pot provoca probleme și trebuie excluse manual (de exemplu, unele jocuri Unity)
+* Nu se poate coexista cu (câteva) alte aplicații cu efect audio (de exemplu, Wavelet și alte aplicații care folosesc API-ul 'DynamicsProcessing' Android)
 
 
-- Apps confirmed working:
+- Aplicații confirmate că funcționează:
 * YouTube
 * YouTube Music
 * Amazon Music
@@ -35,12 +35,12 @@ Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration
 * Twitch
 * ...
 
-- Unsupported apps include:
-* Spotify (Note: Spotify ReVanced patch is required to support Spotify)
+- Aplicațiile neacceptate includ:
+* Spotify (Notă: Spotify Revanced patch este necesar pentru a susține Spotify)
 * Google Chrome
 * SoundCloud
 * ...
 
---- Translation
-Please help us translate this app here: https://crowdin.com/project/rootlessjamesdsp
-To request a new language that isn't enabled on Crowdin yet, please open an issue here on GitHub and I will turn it on.
+--- Traducere
+Te rugăm să ne ajuți să traducem această aplicație aici: https://crowdin.com/project/rootlessjamesdsp
+Pentru a solicita o nouă limbă care nu este activată încă pe Crowdin, vă rugăm să deschideți un issue aici pe GitHub și o voi activa.
