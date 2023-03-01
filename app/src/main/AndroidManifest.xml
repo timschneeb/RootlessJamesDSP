@@ -226,7 +226,7 @@
 
         <service
             android:name=".service.QuickTileService"
-            android:label="@string/quicktile_enable_processing"
+            android:label="@string/jamesdsp"
             android:icon="@drawable/ic_tune_vertical_variant_24dp"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
             android:exported="true">
