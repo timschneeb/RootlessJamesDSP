@@ -225,7 +225,6 @@ dependencies {
 
     // Debug utilities
     debugImplementation("com.squareup.leakcanary:leakcanary-android:2.10")
-    debugImplementation("com.github.amitshekhariitbhu.Android-Debug-Database:debug-db:v1.0.6")
 
     // Unit tests
     testImplementation("junit:junit:4.13.2")

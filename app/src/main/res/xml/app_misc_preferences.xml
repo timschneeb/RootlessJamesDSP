@@ -9,10 +9,6 @@
             app:summaryOff="@string/exclude_app_from_recents_off"
             app:summaryOn="@string/exclude_app_from_recents_on"
             app:iconSpaceReserved="false" />
-    </PreferenceCategory>
-
-    <PreferenceCategory app:title="@string/autostart"
-        app:iconSpaceReserved="false">
         <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
             app:key="@string/key_autostart_prompt_at_boot"
             app:title="@string/autostart_prompt_at_boot"

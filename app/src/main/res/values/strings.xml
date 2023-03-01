@@ -310,7 +310,6 @@
     <string name="troubleshooting_repair_assets_success">Bundled assets have been restored</string>
     <string name="misc_settings">Miscellaneous</string>
     <string name="misc_settings_summary">Crash reports, other actions</string>
-    <string name="autostart">Auto-start</string>
     <string name="assets">Assets</string>
     <string name="network_services">Network services</string>
     <string name="network_autoeq_api_url">AutoEQ API backend URL</string>
