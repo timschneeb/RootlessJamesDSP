@@ -24,11 +24,14 @@ import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showInputAlert
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showYesNoAlert
+import me.timschneeberger.rootlessjamesdsp.utils.Preferences
+import org.koin.android.ext.android.inject
 import timber.log.Timber
 import java.util.UUID
 
 class GraphicEqualizerFragment : Fragment() {
     private lateinit var binding: FragmentGraphicEqBinding
+
     private val adapter: GraphicEqNodeAdapter
         get() = binding.nodeList.adapter as GraphicEqNodeAdapter
 

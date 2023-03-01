@@ -26,9 +26,7 @@ import me.timschneeberger.rootlessjamesdsp.model.preference.AudioEncoding
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistDatabase
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistRepository
 import me.timschneeberger.rootlessjamesdsp.model.room.BlockedApp
-import me.timschneeberger.rootlessjamesdsp.model.AudioSessionDumpEntry
 import me.timschneeberger.rootlessjamesdsp.model.IEffectSession
-import me.timschneeberger.rootlessjamesdsp.model.rootless.MutedEffectSession
 import me.timschneeberger.rootlessjamesdsp.model.rootless.SessionRecordingPolicyEntry
 import me.timschneeberger.rootlessjamesdsp.session.rootless.OnRootlessSessionChangeListener
 import me.timschneeberger.rootlessjamesdsp.session.rootless.RootlessSessionManager
@@ -50,9 +48,11 @@ import me.timschneeberger.rootlessjamesdsp.utils.Constants.NOTIFICATION_ID_SESSI
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.unregisterLocalReceiver
+import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import me.timschneeberger.rootlessjamesdsp.utils.ServiceNotificationHelper
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import me.timschneeberger.rootlessjamesdsp.utils.concatenate
+import org.koin.android.ext.android.inject
 import timber.log.Timber
 import java.io.IOException
 
@@ -91,7 +91,8 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
     private var isServiceDisposing = false
 
     // Shared preferences
-    private lateinit var sharedPreferences: SharedPreferences
+    private val preferences: Preferences.App by inject()
+    private val preferencesVar: Preferences.Var by inject()
 
     // Room databases
     private val applicationScope = CoroutineScope(SupervisorJob())
@@ -133,8 +134,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         registerLocalReceiver(broadcastReceiver, filter)
 
         // Setup shared preferences
-        sharedPreferences = getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
-        sharedPreferences.registerOnSharedPreferenceChangeListener(preferencesListener)
+        preferences.registerOnSharedPreferenceChangeListener(preferencesListener)
         loadFromPreferences(getString(R.string.key_powersave_suspend))
         loadFromPreferences(getString(R.string.key_session_exclude_restricted))
 
@@ -255,7 +255,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         sessionManager.sessionDatabase.unregisterOnSessionChangeListener(onSessionChangeListener)
         sessionManager.destroy()
 
-        sharedPreferences.unregisterOnSharedPreferenceChangeListener(preferencesListener)
+        preferences.unregisterOnSharedPreferenceChangeListener(preferencesListener)
         notificationManager.cancel(NOTIFICATION_ID_SERVICE)
 
         stopSelf()
@@ -276,8 +276,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
                 return
             }
 
-            if(getSharedPreferences(Constants.PREF_VAR, Context.MODE_PRIVATE)
-                    .getBoolean(getString(R.string.key_is_activity_active), false)) {
+            if(preferencesVar.get<Boolean>(R.string.key_is_activity_active)) {
                 // Activity in foreground, toast too disruptive
                 return
             }
@@ -310,8 +309,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
     private val onSessionLossListener = object: RootlessSessionDatabase.OnSessionLossListener {
         override fun onSessionLost(sid: Int) {
             // Push notification if enabled
-            val ignore = sharedPreferences.getBoolean(getString(R.string.key_session_loss_ignore), false)
-            if(!ignore) {
+            if(!preferences.get<Boolean>(R.string.key_session_loss_ignore)) {
                 // Check if retry count exceeded
                 if(sessionLossRetryCount < SESSION_LOSS_MAX_RETRIES) {
                     // Retry
@@ -353,15 +351,13 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
     private val onAppProblemListener = object : RootlessSessionDatabase.OnAppProblemListener {
         override fun onAppProblemDetected(uid: Int) {
             // Push notification if enabled
-            val ignore = sharedPreferences.getBoolean(getString(R.string.key_session_app_problem_ignore), false)
-            if(!ignore) {
+            if(!preferences.get<Boolean>(R.string.key_session_app_problem_ignore)) {
                 // Request users attention
                 notificationManager.cancel(NOTIFICATION_ID_SERVICE)
 
                 // Determine if we should redirect instantly, or push a non-intrusive notification
-                val prefsVar = this@RootlessAudioProcessorService.getSharedPreferences(Constants.PREF_VAR, Context.MODE_PRIVATE)
-                if(prefsVar.getBoolean(getString(R.string.key_is_activity_active), false) ||
-                    prefsVar.getBoolean(getString(R.string.key_is_app_compat_activity_active), false)) {
+                if(preferencesVar.get<Boolean>(R.string.key_is_activity_active) ||
+                    preferencesVar.get<Boolean>(R.string.key_is_app_compat_activity_active)) {
                     startActivity(
                         ServiceNotificationHelper.createAppTroubleshootIntent(
                             this@RootlessAudioProcessorService,
@@ -403,11 +399,11 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
     private fun loadFromPreferences(key: String){
         when (key) {
             getString(R.string.key_powersave_suspend) -> {
-                suspendOnIdle = sharedPreferences.getBoolean(key, true)
+                suspendOnIdle = preferences.get<Boolean>(R.string.key_powersave_suspend)
                 Timber.d("Suspend on idle set to $suspendOnIdle")
             }
             getString(R.string.key_session_exclude_restricted) -> {
-                excludeRestrictedSessions = sharedPreferences.getBoolean(key, true)
+                excludeRestrictedSessions = preferences.get<Boolean>(R.string.key_session_exclude_restricted)
                 Timber.d("Exclude restricted set to $excludeRestrictedSessions")
 
                 requestAudioRecordRecreation()
@@ -437,10 +433,9 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
 
         // Load preferences
         val encoding = AudioEncoding.fromInt(
-            sharedPreferences.getString(getString(R.string.key_audioformat_encoding), "1")
-                ?.toIntOrNull() ?: 1
+            preferences.get<String>(R.string.key_audioformat_encoding).toIntOrNull() ?: 1
         )
-        val bufferSize = sharedPreferences.getFloat(getString(R.string.key_audioformat_buffersize), 2048f).toInt()
+        val bufferSize = preferences.get<Float>(R.string.key_audioformat_buffersize).toInt()
         val bufferSizeBytes = when (encoding) {
             AudioEncoding.PcmFloat -> bufferSize * Float.SIZE_BYTES
             else -> bufferSize * Short.SIZE_BYTES

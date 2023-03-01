@@ -6,7 +6,10 @@ import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.flavor.CrashlyticsImpl
 import me.timschneeberger.rootlessjamesdsp.model.api.AeqSearchResult
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import okhttp3.OkHttpClient
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -16,7 +19,9 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
-class AutoEqClient(val context: Context, callTimeout: Long = 10, customBaseUrl: String? = null) {
+class AutoEqClient(val context: Context, callTimeout: Long = 10, customBaseUrl: String? = null): KoinComponent {
+
+    private val preferences: Preferences.App by inject()
 
     private val http = OkHttpClient
         .Builder()
@@ -28,8 +33,7 @@ class AutoEqClient(val context: Context, callTimeout: Long = 10, customBaseUrl: 
     private val service: AutoEqService
 
     init {
-        val apiUrl = customBaseUrl ?: context.getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
-            .getString(context.getString(R.string.key_network_autoeq_api_url), DEFAULT_API_URL) ?: DEFAULT_API_URL
+        val apiUrl = customBaseUrl ?: preferences.get<String>(R.string.key_network_autoeq_api_url)
         Timber.i("Using API url: $apiUrl")
         CrashlyticsImpl.setCustomKey("aeq_api_url", apiUrl)
 
@@ -95,7 +99,6 @@ class AutoEqClient(val context: Context, callTimeout: Long = 10, customBaseUrl: 
     }
 
     companion object {
-        const val DEFAULT_API_URL = "https://aeq.timschneeberger.me/"
         private const val HEADER_PARTIAL_RESULT = "X-Partial-Result"
         private const val HEADER_PROFILE_ID = "X-Profile-Id"
         private const val HEADER_PROFILE_NAME = "X-Profile-Name"

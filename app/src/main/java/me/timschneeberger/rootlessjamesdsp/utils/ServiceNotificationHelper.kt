@@ -16,9 +16,13 @@ import me.timschneeberger.rootlessjamesdsp.model.IEffectSession
 import me.timschneeberger.rootlessjamesdsp.service.RootlessAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppName
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppNameFromUid
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 
-object ServiceNotificationHelper {
+object ServiceNotificationHelper: KoinComponent {
+    private val preferences: Preferences.App by inject()
+
     private fun createNotificationBuilder(context: Context, channel: String): Notification.Builder {
         @Suppress("DEPRECATION")
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
@@ -58,13 +62,10 @@ object ServiceNotificationHelper {
     }
 
     fun createServiceNotificationLegacy(context: Context): Notification {
-        val enabled = context
-            .getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
-            .getBoolean(context.getString(R.string.key_powered_on), true)
         return createServiceNotification(
             context,
             context.getString(
-                if(enabled) R.string.notification_processing_title
+                if(preferences.get<Boolean>(R.string.key_powered_on)) R.string.notification_processing_title
                 else R.string.notification_processing_disabled_title
             ),
             context.getString(R.string.notification_processing_legacy)
@@ -86,9 +87,7 @@ object ServiceNotificationHelper {
         }
 
         // Rootless: if service active it is always processing audio
-        val enabled = BuildConfig.ROOTLESS || context
-            .getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
-            .getBoolean(context.getString(R.string.key_powered_on), true)
+        val enabled = BuildConfig.ROOTLESS || preferences.get<Boolean>(R.string.key_powered_on)
 
         return createServiceNotification(context,
             context.getString(

@@ -42,22 +42,16 @@ class AppCompatibilityActivity : BaseActivity() {
 
     override fun onPause() {
         super.onPause()
-        prefsVar
-            .edit()
-            .putBoolean(getString(R.string.key_is_app_compat_activity_active), false)
-            .apply()
+        prefsVar.set(R.string.key_is_app_compat_activity_active, false)
     }
 
     override fun onDestroy() {
-        prefsVar.edit().putBoolean(getString(R.string.key_is_app_compat_activity_active), false)
-            .apply()
+        prefsVar.set(R.string.key_is_app_compat_activity_active, false)
         super.onDestroy()
     }
 
     override fun onResume() {
         super.onResume()
-        prefsVar.edit()
-            .putBoolean(getString(R.string.key_is_app_compat_activity_active), true)
-            .apply()
+        prefsVar.set(R.string.key_is_app_compat_activity_active, true)
     }
 }

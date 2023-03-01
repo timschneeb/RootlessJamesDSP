@@ -13,18 +13,20 @@ import me.timschneeberger.rootlessjamesdsp.delegates.ThemingDelegate
 import me.timschneeberger.rootlessjamesdsp.model.preference.AppTheme
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getResourceColor
+import me.timschneeberger.rootlessjamesdsp.utils.Preferences
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-class ThemesPreferenceAdapter(private val context: Context,
-                              private val clickListener: OnItemClickListener) :
-    RecyclerView.Adapter<ThemesPreferenceAdapter.ThemeViewHolder>() {
+class ThemesPreferenceAdapter(private val clickListener: OnItemClickListener) :
+    RecyclerView.Adapter<ThemesPreferenceAdapter.ThemeViewHolder>(), KoinComponent {
 
     private var themes = emptyList<AppTheme>()
-    private val preferences by lazy { context.getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE) }
+    private val preferences: Preferences.App by inject()
 
     private lateinit var binding: PreferenceThemeItemBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ThemeViewHolder {
-        val isAmoled = preferences.getBoolean(context.getString(R.string.key_appearance_pure_black), false)
+        val isAmoled = preferences.get<Boolean>(R.string.key_appearance_pure_black)
         val themeResIds = ThemingDelegate.getThemeResIds(themes[viewType], isAmoled)
         val themedContext = themeResIds.fold(parent.context) {
                 context, themeResId ->
@@ -60,7 +62,7 @@ class ThemesPreferenceAdapter(private val context: Context,
             // For rounded corners
             binding.badges.clipToOutline = true
 
-            val storedAppTheme = AppTheme.valueOf(preferences.getString(context.getString(R.string.key_appearance_app_theme), AppTheme.DEFAULT.name) ?: AppTheme.DEFAULT.name)
+            val storedAppTheme = AppTheme.valueOf(preferences.get(R.string.key_appearance_app_theme))
             val isSelected = storedAppTheme == appTheme
             binding.themeCard.isChecked = isSelected
             binding.themeCard.strokeColor = if (isSelected) selectedColor else unselectedColor

@@ -15,11 +15,17 @@ import me.timschneeberger.rootlessjamesdsp.activity.EngineLauncherActivity
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.unregisterLocalReceiver
+import me.timschneeberger.rootlessjamesdsp.utils.Preferences
+import org.koin.android.ext.android.inject
+import org.koin.core.component.KoinComponent
 
-class QuickTileService : TileService(), SharedPreferences.OnSharedPreferenceChangeListener {
+class QuickTileService : TileService(),
+    SharedPreferences.OnSharedPreferenceChangeListener, KoinComponent {
 
     private val app
         get() = application as MainApplication
+
+    private val preferences: Preferences.App by inject()
 
     private val broadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
@@ -44,22 +50,21 @@ class QuickTileService : TileService(), SharedPreferences.OnSharedPreferenceChan
         filter.addAction(Constants.ACTION_SERVICE_STARTED)
         filter.addAction(Constants.ACTION_SERVICE_STOPPED)
         registerLocalReceiver(broadcastReceiver, filter)
-        app.prefs.registerOnSharedPreferenceChangeListener(this)
+        preferences.registerOnSharedPreferenceChangeListener(this)
 
         super.onStartListening()
     }
 
     // Called when your app can no longer update your tile.
     override fun onStopListening() {
-        app.prefs.unregisterOnSharedPreferenceChangeListener(this)
+        preferences.unregisterOnSharedPreferenceChangeListener(this)
         unregisterLocalReceiver(broadcastReceiver)
         super.onStopListening()
     }
 
     private fun isEffectEnabled(): Boolean {
         return (BuildConfig.ROOTLESS && BaseAudioProcessorService.activeServices > 0) ||
-                (!BuildConfig.ROOTLESS && getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
-                    .getBoolean(getString(R.string.key_powered_on), true))
+                (!BuildConfig.ROOTLESS && preferences.get<Boolean>(R.string.key_powered_on))
     }
 
     private fun updateState() {
@@ -94,10 +99,7 @@ class QuickTileService : TileService(), SharedPreferences.OnSharedPreferenceChan
             if(BaseAudioProcessorService.activeServices <= 0) {
                 launchService()
             }
-            getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
-                .edit()
-                .putBoolean(getString(R.string.key_powered_on), toggled)
-                .apply()
+            preferences.set(R.string.key_powered_on, toggled)
             return
         }
 

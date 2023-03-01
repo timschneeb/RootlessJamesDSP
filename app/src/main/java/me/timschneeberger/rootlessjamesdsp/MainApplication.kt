@@ -17,6 +17,8 @@ import me.timschneeberger.rootlessjamesdsp.flavor.CrashlyticsImpl
 import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.session.root.RootSessionDatabase
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocalReceiver
+import me.timschneeberger.rootlessjamesdsp.utils.Preferences
+import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext.startKoin
@@ -37,16 +39,17 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
         }
     }
 
-    val prefs: SharedPreferences by lazy { getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE) }
+    private val prefs: Preferences.App by inject()
+
     val rootSessionDatabase by lazy { RootSessionDatabase(this) }
     val isLegacyMode
-        get() = prefs.getBoolean(getString(R.string.key_audioformat_legacymode), true)
+        get() = prefs.get<Boolean>(R.string.key_audioformat_processing)
     val isEnhancedProcessing
         get() = !isLegacyMode &&
-                prefs.getBoolean(getString(R.string.key_audioformat_enhancedprocessing), false)
+                prefs.get<Boolean>(R.string.key_audioformat_enhanced_processing)
 
-    val applicationScope = CoroutineScope(SupervisorJob())
-    val blockedAppDatabase by lazy { AppBlocklistDatabase.getDatabase(this, applicationScope) }
+    private val applicationScope = CoroutineScope(SupervisorJob())
+    private val blockedAppDatabase by lazy { AppBlocklistDatabase.getDatabase(this, applicationScope) }
     val blockedAppRepository by lazy { AppBlocklistRepository(blockedAppDatabase.appBlocklistDao()) }
 
     /* Rootless: Media projection auth token */
@@ -75,8 +78,10 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
 
     override fun onCreate() {
         Timber.plant(DebugTree())
+
         if(!BuildConfig.FOSS_ONLY)
             Timber.plant(CrashReportingTree())
+
         Timber.plant(FileLoggerTree.Builder()
             .withFileName("application.log")
             .withDirName(this.cacheDir.absolutePath)
@@ -93,16 +98,26 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
             dumpFile.delete()
         }
 
+        val appModule = module {
+            single { DumpManager(androidContext()) }
+            single { Preferences(androidContext()).App() }
+            single { Preferences(androidContext()).Var() }
+        }
+
+        startKoin {
+            androidLogger()
+            androidContext(this@MainApplication)
+            modules(appModule)
+        }
+
         if(!BuildConfig.FOSS_ONLY) {
             // Soft-disable crashlytics in debug mode by default on each launch
             if (BuildConfig.DEBUG) {
-                prefs
-                    .edit()
-                    .putBoolean(getString(R.string.key_share_crash_reports), false)
-                    .apply()
+                prefs.set(R.string.key_share_crash_reports, false)
             }
 
-            val crashlytics = prefs.getBoolean(getString(R.string.key_share_crash_reports), true) && (!BuildConfig.DEBUG || BuildConfig.PREVIEW)
+            val crashlytics = prefs.get(R.string.key_share_crash_reports) &&
+                    (!BuildConfig.DEBUG || BuildConfig.PREVIEW)
             Timber.d("Crashlytics enabled? $crashlytics")
             CrashlyticsImpl.setCollectionEnabled(crashlytics)
 
@@ -118,31 +133,15 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
          *         between input and output streams and causes false compat alerts when attaching
          *         to a input SID.
          */
-        if(!prefs.getBoolean(getString(R.string.key_reset_proc_mode_fix_applied), false)) {
+        if(!prefs.get<Boolean>(R.string.key_reset_proc_mode_fix_applied)) {
             Timber.i("Applying service dump mode fix once")
 
-            prefs.edit()
-                .putString(getString(R.string.key_session_detection_method), DumpManager.Method.AudioService.value.toString())
-                .putBoolean(getString(R.string.key_reset_proc_mode_fix_applied), true)
-                .apply()
+            prefs.set(R.string.key_session_detection_method, DumpManager.Method.AudioService.value.toString())
+            prefs.set(R.string.key_reset_proc_mode_fix_applied, true)
         }
 
-        val initialPrefList = arrayOf(
-            R.string.key_appearance_theme_mode
-        )
-        for (pref in initialPrefList)
-            this.onSharedPreferenceChanged(prefs, getString(pref))
+        onSharedPreferenceChanged(prefs.preferences, getString(R.string.key_appearance_theme_mode))
         prefs.registerOnSharedPreferenceChangeListener(this)
-
-        val appModule = module {
-            single { DumpManager(androidContext()) }
-        }
-
-        startKoin {
-            androidLogger()
-            androidContext(this@MainApplication)
-            modules(appModule)
-        }
 
         registerLocalReceiver(receiver, IntentFilter().apply {
             addAction(Constants.ACTION_REPORT_SAMPLE_RATE)
@@ -167,20 +166,10 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
         super.onLowMemory()
     }
 
-    override fun onTrimMemory(level: Int) {
-        if (level >= 60)
-            Timber.w("onTrimMemory: Memory trim at level $level requested")
-        CrashlyticsImpl.setCustomKey("last_memory_trim_event", SimpleDateFormat("yyyyMMdd HHmmss z", Locale.US).format(Date()))
-        CrashlyticsImpl.setCustomKey("last_memory_trim_level", level)
-        super.onTrimMemory(level)
-    }
-
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
-        sharedPreferences ?: return
-
         if(key == getString(R.string.key_appearance_theme_mode)) {
             AppCompatDelegate.setDefaultNightMode(
-                when (ThemeMode.fromInt(sharedPreferences.getString(key, "0")?.toIntOrNull() ?: 0)) {
+                when (ThemeMode.fromInt(prefs.get<String>(R.string.key_appearance_theme_mode).toIntOrNull() ?: 0)) {
                     ThemeMode.Light -> AppCompatDelegate.MODE_NIGHT_NO
                     ThemeMode.Dark -> AppCompatDelegate.MODE_NIGHT_YES
                     ThemeMode.FollowSystem -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM

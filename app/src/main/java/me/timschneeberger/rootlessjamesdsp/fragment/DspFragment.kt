@@ -12,10 +12,12 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import me.timschneeberger.rootlessjamesdsp.view.Card
+import org.koin.android.ext.android.inject
 
 class DspFragment : Fragment() {
-    private val prefsVar by lazy { requireContext().getSharedPreferences(Constants.PREF_VAR, Context.MODE_PRIVATE) }
+    private val prefsVar: Preferences.Var by inject()
 
     private var translateNotice: Card? = null
 
@@ -34,7 +36,7 @@ class DspFragment : Fragment() {
 
         // Should show translation notice?
         translateNotice?.isVisible =
-            prefsVar.getLong(getString(R.string.key_snooze_translation_notice), 0L) < (System.currentTimeMillis() / 1000)
+            prefsVar.get<Long>(R.string.key_snooze_translation_notice) < (System.currentTimeMillis() / 1000L)
 
         val transition = LayoutTransition()
         transition.enableTransitionType(LayoutTransition.CHANGING)
@@ -96,9 +98,7 @@ class DspFragment : Fragment() {
     private fun hideTranslationNotice() {
         translateNotice?.isVisible = false
         // Set timer +1y
-        prefsVar.edit()
-            .putLong(getString(R.string.key_snooze_translation_notice), (System.currentTimeMillis() / 1000) + 31536000)
-            .apply()
+        prefsVar.set<Long>(R.string.key_snooze_translation_notice, (System.currentTimeMillis() / 1000L) + 31536000L)
     }
 
     fun restartFragment(id: Int, newFragment: Fragment) {

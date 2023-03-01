@@ -9,19 +9,19 @@
             app:entries="@array/theme_modes"
             app:entryValues="@array/theme_modes_values"
             app:useSimpleSummaryProvider="true"
-            app:defaultValue="0"
+            app:defaultValue="@string/default_appearance_theme_mode"
             app:iconSpaceReserved="false" />
 
         <me.timschneeberger.rootlessjamesdsp.preference.ThemesPreference
             android:key="@string/key_appearance_app_theme"
             android:title="@string/appearance_app_theme"
-            android:defaultValue="DEFAULT"
+            android:defaultValue="@string/default_appearance_app_theme"
             app:singleLineTitle="false"
             app:iconSpaceReserved="false" />
 
         <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
             android:key="@string/key_appearance_pure_black"
-            android:defaultValue="false"
+            android:defaultValue="@bool/default_appearance_pure_black"
             android:title="@string/appearance_pure_black_mode"
             app:iconSpaceReserved="false" />
 
@@ -33,7 +33,7 @@
 
         <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
             android:key="@string/key_appearance_nav_hide"
-            android:defaultValue="false"
+            android:defaultValue="@bool/default_appearance_nav_hide"
             android:title="@string/appearance_nav_hide"
             app:iconSpaceReserved="false" />
 

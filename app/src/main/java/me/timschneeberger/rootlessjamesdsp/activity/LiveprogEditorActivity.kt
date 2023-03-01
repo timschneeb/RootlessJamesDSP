@@ -247,7 +247,7 @@ class LiveprogEditorActivity : BaseActivity() {
         }
 
         // If service down or in case of root, if engine disabled, show warning message
-        if(BaseAudioProcessorService.activeServices <= 0 || (!BuildConfig.ROOTLESS && prefsApp.getBoolean(getString(R.string.key_powered_on), false))) {
+        if(BaseAudioProcessorService.activeServices <= 0 || (!BuildConfig.ROOTLESS && prefsApp.get<Boolean>(R.string.key_powered_on))) {
             this.showAlert(R.string.editor_engine_down_title, R.string.editor_engine_down)
         }
         else {
@@ -269,8 +269,7 @@ class LiveprogEditorActivity : BaseActivity() {
         // Change default font to JetBrains Mono font
         val jetBrainsMono = ResourcesCompat.getFont(this, R.font.jetbrainsmono)
         codeView.typeface = jetBrainsMono
-        val fontSize = prefsApp.getFloat(getString(R.string.key_editor_font_size), 13f)
-        codeView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, fontSize)
+        codeView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, prefsApp.get(R.string.key_editor_font_size))
 
         // Add input view
         binding.symbolInput.bindEditor(codeView)
@@ -396,7 +395,7 @@ class LiveprogEditorActivity : BaseActivity() {
             LayoutInflater.from(this),
             R.string.editor_text_size,
             R.string.editor_text_size,
-            "%.1f".format(Locale.ROOT, prefsApp.getFloat(getString(R.string.key_editor_font_size), 13f)),
+            "%.1f".format(Locale.ROOT, prefsApp.get<Float>(R.string.key_editor_font_size)),
             true,
             "dp"
         ) {
@@ -407,7 +406,7 @@ class LiveprogEditorActivity : BaseActivity() {
                     throw NumberFormatException()
 
                 codeView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, value)
-                prefsApp.edit().putFloat(getString(R.string.key_editor_font_size), value).apply()
+                prefsApp.set(R.string.key_editor_font_size, value)
             }
             catch (ex: Exception) {
                 Timber.e("Failed to parse number input")

@@ -13,7 +13,6 @@
         <me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
             android:key="@string/key_audioformat_buffersize"
             android:title="@string/audio_format_buffer_size"
-            android:defaultValue="2048"
             app:seekBarIncrement="128"
             app:precision="0"
             app:unit="@string/audio_format_buffer_size_unit"
@@ -30,8 +29,8 @@
         app:title="@string/audio_format_processing_header"
         app:iconSpaceReserved="false">
         <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
-            android:key="@string/key_audioformat_legacymode"
-            android:defaultValue="true"
+            android:key="@string/key_audioformat_processing"
+            android:defaultValue="@bool/default_audioformat_processing"
             android:title="@string/audio_format_processing_legacy"
             android:summaryOff="@string/audio_format_processing_legacy_off"
             android:summaryOn="@string/audio_format_processing_legacy_on"
@@ -39,16 +38,16 @@
             app:iconSpaceReserved="false" />
 
         <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
-            android:key="@string/key_audioformat_enhancedprocessing"
-            android:defaultValue="false"
+            android:key="@string/key_audioformat_enhanced_processing"
+            android:defaultValue="@bool/default_audioformat_enhanced_processing"
             android:title="@string/audio_format_enhanced_processing"
             android:summaryOff="@string/audio_format_enhanced_processing_off"
             android:summaryOn="@string/audio_format_enhanced_processing_on"
-            android:dependency="@string/key_audioformat_legacymode"
+            android:dependency="@string/key_audioformat_processing"
             app:iconSpaceReserved="false" />
 
         <Preference
-            android:key="@string/key_audioformat_enhancedprocessing_info"
+            android:key="@string/key_audioformat_enhanced_processing_info"
             android:title="@string/audio_format_enhanced_processing_info_title"
             android:summary="@string/audio_format_enhanced_processing_info"
             app:iconSpaceReserved="false"/>

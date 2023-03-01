@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Internal -->
-    <string name="key_firstboot" translatable="false">first_boot</string>
+    <string name="key_first_boot" translatable="false">first_boot</string>
     <string name="key_snooze_translation_notice" translatable="false">snooze_translation_notice</string>
     <string name="key_reset_proc_mode_fix_applied" translatable="false">reset_proc_mode_fix_applied</string>
     <string name="key_is_activity_active" translatable="false">is_activity_active</string>
@@ -20,10 +20,6 @@
     <!-- Settings -->
     <string name="key_share_crash_reports" translatable="false">share_crash_reports</string>
     <string name="key_network_autoeq_api_url" translatable="false">network_autoeq_api_url</string>
-    <string name="key_troubleshooting_dump" translatable="false">troubleshooting_dump</string>
-    <string name="key_troubleshooting_notification_access" translatable="false">troubleshooting_notification_access</string>
-    <string name="key_troubleshooting_repair_assets" translatable="false">troubleshooting_repair_assets</string>
-    <string name="key_troubleshooting_view_limitations" translatable="false">troubleshooting_view_limitations</string>
     <string name="key_session_exclude_restricted">session_exclude_restricted</string>
     <string name="key_session_detection_method" translatable="false">session_detection_method</string>
     <string name="key_session_continuous_polling_rate" translatable="false">session_continuous_polling_rate</string>
@@ -35,8 +31,8 @@
     <string name="key_powersave_suspend" translatable="false">powersave_suspend</string>
     <string name="key_audioformat_encoding" translatable="false">audioformat_encoding</string>
     <string name="key_audioformat_buffersize" translatable="false">audioformat_buffersize</string>
-    <string name="key_audioformat_legacymode" translatable="false">audioformat_processing</string>
-    <string name="key_audioformat_enhancedprocessing" translatable="false">audioformat_enhanced_processing</string>
+    <string name="key_audioformat_processing" translatable="false">audioformat_processing</string>
+    <string name="key_audioformat_enhanced_processing" translatable="false">audioformat_enhanced_processing</string>
 
     <!-- Appearance -->
     <string name="key_appearance_theme_mode" translatable="false">appearance_theme_mode</string>
@@ -45,13 +41,19 @@
     <string name="key_appearance_nav_hide" translatable="false">appearance_nav_hide</string>
 
     <!-- Settings (static) -->
+    <string name="key_troubleshooting_dump" translatable="false">troubleshooting_dump</string>
+    <string name="key_troubleshooting_notification_access" translatable="false">troubleshooting_notification_access</string>
+    <string name="key_troubleshooting_repair_assets" translatable="false">troubleshooting_repair_assets</string>
+    <string name="key_troubleshooting_view_limitations" translatable="false">troubleshooting_view_limitations</string>
     <string name="key_credits_version" translatable="false">credits_version</string>
     <string name="key_credits_build_info" translatable="false">credits_build_info</string>
-    <string name="key_debug_database" translatable="false">debug_database</string>
-    <string name="key_audioformat_enhancedprocessing_info" translatable="false">audioformat_enhanced_processing_info</string>
+    <string name="key_audioformat_enhanced_processing_info" translatable="false">audioformat_enhanced_processing_info</string>
 
     <!-- Script editor -->
     <string name="key_editor_font_size" translatable="false">editor_font_size</string>
+
+    <!-- Deprecated -->
+    <string name="key_debug_database" translatable="false">debug_database</string>
 
     <!-- DSP -->
     <string name="key_compression_enable" translatable="false">compression_enable</string>

@@ -10,16 +10,20 @@ import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import me.timschneeberger.rootlessjamesdsp.utils.ServiceNotificationHelper
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
+import org.koin.core.Koin
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 
-class BootCompletedReceiver : BroadcastReceiver() {
+class BootCompletedReceiver : BroadcastReceiver(), KoinComponent {
+    private val preferences: Preferences.App by inject()
+
     override fun onReceive(context: Context, intent: Intent) {
         if (intent.action != Intent.ACTION_BOOT_COMPLETED)
             return
-
-        val pref = context.getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
 
         if(BuildConfig.ROOTLESS) {
             val notificationManager = SystemServices.get(context, NotificationManager::class.java)
@@ -34,13 +38,13 @@ class BootCompletedReceiver : BroadcastReceiver() {
                 notificationManager.createNotificationChannel(channel)
             }
 
-            if (pref.getBoolean(context.getString(R.string.key_autostart_prompt_at_boot), true))
+            if (preferences.get<Boolean>(R.string.key_autostart_prompt_at_boot))
                 ServiceNotificationHelper.pushPermissionPromptNotification(context)
         }
         else {
             // Root version: if enhanced processing mode is on, we need to start the service manually
-            if(pref.getBoolean(context.getString(R.string.key_audioformat_enhancedprocessing), false) &&
-                !pref.getBoolean(context.getString(R.string.key_audioformat_legacymode), true)) {
+            if(preferences.get<Boolean>(R.string.key_audioformat_enhanced_processing) &&
+                !preferences.get<Boolean>(R.string.key_audioformat_processing)) {
                 RootAudioProcessorService.startServiceEnhanced(context)
             }
         }
