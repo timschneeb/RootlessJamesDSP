@@ -8,6 +8,7 @@ import androidx.preference.ListPreference
 import androidx.preference.Preference.SummaryProvider
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.model.Preset
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
 import java.io.File
 import java.io.InputStream
 
@@ -64,7 +65,7 @@ class FileLibraryPreference(context: Context, attrs: AttributeSet?) :
     fun refresh() {
         if(directory == null)
         {
-            Toast.makeText(context, context.getString(R.string.filelibrary_access_fail), Toast.LENGTH_SHORT).show()
+            context.toast(context.getString(R.string.filelibrary_access_fail), false)
             return
         }
 

@@ -47,6 +47,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.Constants.NOTIFICATION_ID_SERVI
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.NOTIFICATION_ID_SESSION_LOSS
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.unregisterLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import me.timschneeberger.rootlessjamesdsp.utils.ServiceNotificationHelper
@@ -285,8 +286,8 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
 
             sendLocalBroadcast(Intent(Constants.ACTION_DISCARD_AUTHORIZATION))
 
-            Toast.makeText(this@RootlessAudioProcessorService,
-                getString(R.string.capture_permission_revoked_toast), Toast.LENGTH_LONG).show()
+            this@RootlessAudioProcessorService.toast(getString(R.string.capture_permission_revoked_toast))
+
             notificationManager.cancel(NOTIFICATION_ID_SERVICE)
             stopSelf()
         }
@@ -327,7 +328,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
                 // Request users attention
                 notificationManager.cancel(NOTIFICATION_ID_SERVICE)
                 ServiceNotificationHelper.pushSessionLossNotification(this@RootlessAudioProcessorService, mediaProjectionStartIntent)
-                Toast.makeText(this@RootlessAudioProcessorService, getString(R.string.session_control_loss_toast), Toast.LENGTH_SHORT).show()
+                this@RootlessAudioProcessorService.toast(getString(R.string.session_control_loss_toast), false)
                 Timber.w("Terminating service due to session loss")
                 stopSelf()
             }
@@ -371,7 +372,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
                 else
                     ServiceNotificationHelper.pushAppIssueNotification(this@RootlessAudioProcessorService, mediaProjectionStartIntent, uid)
 
-                Toast.makeText(this@RootlessAudioProcessorService, getString(R.string.session_app_compat_toast), Toast.LENGTH_SHORT).show()
+                this@RootlessAudioProcessorService.toast(getString(R.string.session_app_compat_toast), false)
                 Timber.w("Terminating service due to app incompatibility; redirect user to troubleshooting options")
                 stopSelf()
             }

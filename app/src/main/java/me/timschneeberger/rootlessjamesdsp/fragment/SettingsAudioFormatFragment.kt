@@ -22,6 +22,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.requestIgnoreBatteryOptimizations
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
 import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import org.koin.android.ext.android.inject
 import timber.log.Timber
@@ -70,8 +71,7 @@ class SettingsAudioFormatFragment : PreferenceFragmentCompat() {
                 RootAudioProcessorService.startServiceEnhanced(requireContext())
             }
             else {
-                Toast.makeText(requireContext(),
-                    getString(R.string.audio_format_media_apps_need_restart), Toast.LENGTH_LONG).show()
+                requireContext().toast(R.string.audio_format_media_apps_need_restart)
                 RootAudioProcessorService.stopService(requireContext())
             }
             true
@@ -87,7 +87,7 @@ class SettingsAudioFormatFragment : PreferenceFragmentCompat() {
         bufferSize?.setDefaultValue(preferences.getDefault<Float>(R.string.key_audioformat_buffersize))
         bufferSize?.setOnPreferenceChangeListener { _, newValue ->
             if((newValue as Float) <= 1024){
-                Toast.makeText(requireContext(), getString(R.string.audio_format_buffer_size_warning_low_value), Toast.LENGTH_SHORT).show()
+                requireContext().toast(R.string.audio_format_buffer_size_warning_low_value, false)
             }
             context?.sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_HARD_REBOOT_CORE))
             true

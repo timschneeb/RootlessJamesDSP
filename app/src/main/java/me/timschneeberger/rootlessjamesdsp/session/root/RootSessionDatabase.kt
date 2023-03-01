@@ -13,6 +13,7 @@ import me.timschneeberger.rootlessjamesdsp.model.AudioSessionDumpEntry
 import me.timschneeberger.rootlessjamesdsp.model.IEffectSession
 import me.timschneeberger.rootlessjamesdsp.session.shared.BaseSessionDatabase
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getUidFromPackage
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
 import timber.log.Timber
 
 
@@ -41,7 +42,7 @@ class RootSessionDatabase(context: Context) : BaseSessionDatabase(context) {
                 Timber.e(ex.cause)
 
                 // Debug toast
-                Toast.makeText(context, "JDSP load fail (session=$id): " + ex.message, Toast.LENGTH_LONG).show()
+                context.toast("JDSP load fail (session=$id): " + ex.message)
                 return null
             }
 

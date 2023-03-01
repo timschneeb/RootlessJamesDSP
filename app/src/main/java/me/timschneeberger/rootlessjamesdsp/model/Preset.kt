@@ -12,6 +12,7 @@ import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
 import org.kamranzafar.jtar.TarEntry
 import org.kamranzafar.jtar.TarInputStream
 import org.kamranzafar.jtar.TarOutputStream
@@ -116,9 +117,7 @@ class Preset(val name: String): KoinComponent {
         }
         catch (ex: ErrnoException) {
             Timber.d(ex)
-            ex.localizedMessage?.let {
-                Toast.makeText(ctx, it, Toast.LENGTH_LONG)
-            }
+            ex.localizedMessage?.let { ctx.toast(it) }
             return false
         }
         catch (ex: Exception) {

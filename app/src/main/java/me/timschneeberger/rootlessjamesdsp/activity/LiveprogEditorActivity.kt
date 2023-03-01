@@ -42,6 +42,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroa
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showInputAlert
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showYesNoAlert
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.unregisterLocalReceiver
 import timber.log.Timber
 import java.util.Locale
@@ -200,7 +201,7 @@ class LiveprogEditorActivity : BaseActivity() {
         parser.load(path)
         val content = parser.contents
         if(content == null) {
-            Toast.makeText(this, getString(R.string.editor_open_fail), Toast.LENGTH_LONG).show()
+            toast(getString(R.string.editor_open_fail))
             finish()
             return
         }
@@ -236,7 +237,7 @@ class LiveprogEditorActivity : BaseActivity() {
         var key = getString(R.string.key_liveprog_enable)
         // Make sure liveprog is enabled
         if(!liveprog.getBoolean(key, false)) {
-            Toast.makeText(this, getString(R.string.editor_liveprog_enabled), Toast.LENGTH_SHORT).show()
+            toast(getString(R.string.editor_liveprog_enabled), false)
             liveprog.edit().putBoolean(key, true).commit()
         }
 
@@ -251,7 +252,7 @@ class LiveprogEditorActivity : BaseActivity() {
             this.showAlert(R.string.editor_engine_down_title, R.string.editor_engine_down)
         }
         else {
-            Toast.makeText(this, getString(R.string.editor_script_launched), Toast.LENGTH_SHORT).show()
+            toast(getString(R.string.editor_script_launched), false)
         }
 
         sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_RELOAD_LIVEPROG))
@@ -374,13 +375,13 @@ class LiveprogEditorActivity : BaseActivity() {
                 if(undoRedoManager.canUndo())
                     undoRedoManager.undo()
                 else
-                    Toast.makeText(this, getString(R.string.editor_cannot_undo), Toast.LENGTH_SHORT).show()
+                    toast(getString(R.string.editor_cannot_undo))
             }
             R.id.text_redo -> {
                 if(undoRedoManager.canRedo())
                     undoRedoManager.redo()
                 else
-                    Toast.makeText(this, getString(R.string.editor_cannot_redo), Toast.LENGTH_SHORT).show()
+                    toast(getString(R.string.editor_cannot_redo))
             }
             R.id.text_run -> run()
             R.id.text_save -> save()
@@ -411,11 +412,7 @@ class LiveprogEditorActivity : BaseActivity() {
             catch (ex: Exception) {
                 Timber.e("Failed to parse number input")
                 Timber.d(ex)
-                Toast.makeText(
-                    this,
-                    getString(R.string.slider_dialog_format_error),
-                    Toast.LENGTH_SHORT
-                ).show()
+                toast(getString(R.string.slider_dialog_format_error), false)
             }
         }
     }

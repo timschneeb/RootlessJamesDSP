@@ -28,6 +28,7 @@ import me.timschneeberger.rootlessjamesdsp.model.Preset
 import me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showInputAlert
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
 import me.timschneeberger.rootlessjamesdsp.utils.StorageUtils
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import timber.log.Timber
@@ -49,7 +50,7 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
         // Workaround to prevent the button from closing the dialog
         dialog.setOnShowListener {
             if(fileLibPreference.isPreset() && dialog.listView.adapter.isEmpty) {
-                showMessage(getString(R.string.filelibrary_no_presets))
+                requireContext().toast(getString(R.string.filelibrary_no_presets))
             }
 
             dialog.getButton(AlertDialog.BUTTON_NEUTRAL)?.setOnClickListener {
@@ -70,11 +71,11 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
                                     val overwritten = file.exists()
                                     val success = Preset(file.name).save()
                                     if(overwritten && success)
-                                        showMessage(getString(R.string.filelibrary_preset_overwritten, file.nameWithoutExtension))
+                                        requireContext().toast(getString(R.string.filelibrary_preset_overwritten, file.nameWithoutExtension))
                                     else if(!overwritten && success)
-                                        showMessage(getString(R.string.filelibrary_preset_created, file.nameWithoutExtension))
+                                        requireContext().toast(getString(R.string.filelibrary_preset_created, file.nameWithoutExtension))
                                     else
-                                        showMessage(getString(R.string.filelibrary_preset_save_failed))
+                                        requireContext().toast(getString(R.string.filelibrary_preset_save_failed))
 
                                     refresh()
                                 }
@@ -128,9 +129,9 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
                                 withContext(Dispatchers.Main) {
                                     try {
                                         if (newName == "Invalid")
-                                            showMessage(getString(R.string.filelibrary_resample_failed))
+                                            requireContext().toast(getString(R.string.filelibrary_resample_failed))
                                         else
-                                            showMessage(getString(R.string.filelibrary_resample_complete,
+                                            requireContext().toast(getString(R.string.filelibrary_resample_complete,
                                                 targetRate))
                                         refresh()
                                     }
@@ -145,9 +146,9 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
                     R.id.overwrite_selection -> {
                         if(fileLibPreference.isPreset()) {
                             if(Preset(selectedFile.name).save())
-                                showMessage(getString(R.string.filelibrary_preset_overwritten, name))
+                                requireContext().toast(getString(R.string.filelibrary_preset_overwritten, name))
                             else
-                                showMessage(getString(R.string.filelibrary_preset_save_failed))
+                                requireContext().toast(getString(R.string.filelibrary_preset_save_failed))
                         }
                         refresh()
                     }
@@ -167,13 +168,13 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
                             allowOverwrite = false
                         ) {
                             selectedFile.renameTo(it)
-                            showMessage(getString(R.string.filelibrary_renamed, it.nameWithoutExtension))
+                            requireContext().toast(getString(R.string.filelibrary_renamed, it.nameWithoutExtension))
                             refresh()
                         }
                     }
                     R.id.delete_selection -> {
                         selectedFile.delete()
-                        showMessage(getString(R.string.filelibrary_deleted, name))
+                        requireContext().toast(getString(R.string.filelibrary_deleted, name))
                         refresh()
 
                         // If this file was active, we need to reset the selection to null
@@ -226,10 +227,6 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
         }
     }
 
-    private fun showMessage(text: String) {
-        Toast.makeText(requireContext(), text, Toast.LENGTH_SHORT).show()
-    }
-
     private fun showFileNamePrompt(
         @StringRes title: Int,
         selectedFile: File,
@@ -249,7 +246,7 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
                 val newFile =
                     File(selectedFile.absoluteFile.parentFile!!.absolutePath + File.separator + it + "." + selectedFile.extension)
                 if (newFile.exists() && !allowOverwrite) {
-                    showMessage(getString(R.string.filelibrary_file_exists))
+                    requireContext().toast(getString(R.string.filelibrary_file_exists))
                     return@showInputAlert
                 }
                 callback.invoke(newFile)
@@ -310,9 +307,9 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
             if(fileLibPreference.isPreset()) {
                 val result = Preset(File(value.toString()).name).load() != null
                 if(result)
-                    showMessage(getString(R.string.filelibrary_preset_loaded, name))
+                    requireContext().toast(getString(R.string.filelibrary_preset_loaded, name))
                 else
-                    showMessage(getString(R.string.filelibrary_preset_load_failed, name))
+                    requireContext().toast(getString(R.string.filelibrary_preset_load_failed, name))
             }
 
             clickedEntryValue = value
@@ -333,7 +330,7 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
             startActivityForResult(intent, IMPORT_FILE)
         }
         catch(_: Exception) {
-            Toast.makeText(requireContext(), R.string.no_activity_found, Toast.LENGTH_LONG).show()
+            requireContext().toast(R.string.no_activity_found)
         }
     }
 

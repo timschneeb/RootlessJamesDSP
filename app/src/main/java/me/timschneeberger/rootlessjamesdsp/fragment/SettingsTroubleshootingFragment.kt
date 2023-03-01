@@ -22,6 +22,7 @@ import me.timschneeberger.rootlessjamesdsp.session.dump.DumpManager
 import me.timschneeberger.rootlessjamesdsp.utils.ApplicationUtils
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
 import org.koin.android.ext.android.inject
 import java.io.File
 import java.io.FileOutputStream
@@ -84,7 +85,7 @@ class SettingsTroubleshootingFragment : PreferenceFragmentCompat() {
                 requireActivity().startActivity(intent)
             }
             catch(_: Exception) {
-                Toast.makeText(requireContext(), R.string.no_activity_found, Toast.LENGTH_LONG).show()
+                requireContext().toast(R.string.no_activity_found)
             }
             true
         }

@@ -15,6 +15,7 @@ import androidx.preference.SeekBarPreference
 import com.google.android.material.slider.Slider
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showInputAlert
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
 import timber.log.Timber
 import java.math.BigDecimal
 import java.math.MathContext
@@ -198,21 +199,19 @@ class MaterialSeekbarPreference : Preference {
                         setValue(it.toFloat())
                     }
                     else {
-                        Toast.makeText(
-                            context,
+                        context.toast(
                             context.getString(R.string.slider_dialog_step_error, mSeekBar.stepSize.roundToInt()),
-                            Toast.LENGTH_SHORT
-                        ).show()
+                            false
+                        )
                     }
                 }
                 catch (ex: Exception) {
                     Timber.e("Failed to parse number input")
                     Timber.d(ex)
-                    Toast.makeText(
-                        context,
+                    context.toast(
                         context.getString(R.string.slider_dialog_format_error),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                        false
+                    )
                 }
             }
             true

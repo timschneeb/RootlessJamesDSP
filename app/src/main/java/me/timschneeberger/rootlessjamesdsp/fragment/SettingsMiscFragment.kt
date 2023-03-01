@@ -19,6 +19,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.AssetManagerExtensions.installP
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showYesNoAlert
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
 import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import org.koin.android.ext.android.inject
 import java.util.Locale
@@ -50,31 +51,20 @@ class SettingsMiscFragment : PreferenceFragmentCompat() {
 
         aeqApiUrl?.setOnPreferenceChangeListener { _, newValue ->
             if (!Patterns.WEB_URL.matcher(newValue.toString().lowercase(Locale.ROOT)).matches()) {
-                Toast.makeText(
-                    requireContext(),
-                    getString(R.string.network_invalid_url),
-                    Toast.LENGTH_LONG
-                ).show()
+                requireContext().toast(R.string.network_invalid_url)
                 return@setOnPreferenceChangeListener false
             }
 
             // Verify URL by performing a connection test
             try {
                 val client = AutoEqClient(requireContext(), 5, newValue.toString())
-                Toast.makeText(
-                    requireContext(),
-                    R.string.network_autoeq_conntest_running,
-                    Toast.LENGTH_SHORT
-                ).show()
+                requireContext().toast(R.string.network_autoeq_conntest_running)
 
                 client.queryProfiles(
                     "conntest",
                     onResponse = { _, _ ->
                         context?.let {
-                            Toast.makeText(it,
-                                R.string.network_autoeq_conntest_done,
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            it.toast(R.string.network_autoeq_conntest_done, false)
                         }
                     },
                     onFailure = { error ->
@@ -93,11 +83,7 @@ class SettingsMiscFragment : PreferenceFragmentCompat() {
             }
             catch(ex: IllegalArgumentException) {
                 // Handle invalid base url argument in retrofit
-                Toast.makeText(
-                    requireContext(),
-                    getString(R.string.network_invalid_url),
-                    Toast.LENGTH_LONG
-                ).show()
+                requireContext().toast(R.string.network_invalid_url)
                 return@setOnPreferenceChangeListener false
             }
 

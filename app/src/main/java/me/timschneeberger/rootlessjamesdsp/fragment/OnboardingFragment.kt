@@ -36,6 +36,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.isPackageInst
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.launchApp
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.openPlayStoreApp
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
 import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import org.koin.android.ext.android.inject
 import rikka.shizuku.Shizuku
@@ -326,7 +327,7 @@ class OnboardingFragment : Fragment() {
         else {
             prefsApp.set(R.string.key_audioformat_enhanced_processing, true, async = false)
             RootAudioProcessorService.startServiceEnhanced(requireContext())
-            Toast.makeText(requireContext(), getString(R.string.onboarding_root_enhanced_processing_setup_success), Toast.LENGTH_LONG).show()
+            requireContext().toast(R.string.onboarding_root_enhanced_processing_setup_success)
         }
     }
 

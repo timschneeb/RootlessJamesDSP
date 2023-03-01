@@ -52,6 +52,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroa
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showSingleChoiceAlert
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showYesNoAlert
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.unregisterLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.StorageUtils
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
@@ -132,11 +133,7 @@ class MainActivity : BaseActivity() {
 
         val check = applicationContext.check()
         if(check != 0) {
-            Toast.makeText(
-                this,
-                "($check) Cannot launch application. Please re-download the latest version from the Google Play or the official GitHub project site.",
-                Toast.LENGTH_LONG
-            ).show()
+            toast("($check) Cannot launch application. Please re-download the latest version from the Google Play or the official GitHub project site.")
             Timber.wtf(UnsupportedOperationException("Launch error $check; ${ApplicationUtils.describe(this)}"))
             quitGracefully()
             return
@@ -332,8 +329,7 @@ class MainActivity : BaseActivity() {
         if(!BuildConfig.ROOTLESS && app.isEnhancedProcessing) {
             if(checkSelfPermission(Manifest.permission.DUMP) == PackageManager.PERMISSION_DENIED) {
                 Timber.e("Dump permission for enhanced processing lost")
-                Toast.makeText(this,
-                    getString(R.string.enhanced_processing_missing_perm), Toast.LENGTH_LONG).show()
+                toast(getString(R.string.enhanced_processing_missing_perm))
                 prefsApp.set(R.string.key_audioformat_enhanced_processing, false)
             }
             else {
@@ -503,7 +499,7 @@ class MainActivity : BaseActivity() {
     private fun handleFileIntent(uri: Uri) {
         val name = StorageUtils.queryName(this, uri)
         if (name == null) {
-            Toast.makeText(this, getString(R.string.intent_import_error_file_uri), Toast.LENGTH_LONG).show()
+            toast(getString(R.string.intent_import_error_file_uri))
             return
         }
 

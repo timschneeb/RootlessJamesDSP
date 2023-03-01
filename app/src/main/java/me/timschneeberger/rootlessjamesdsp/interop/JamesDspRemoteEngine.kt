@@ -15,6 +15,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.AudioEffectExtensions.setParame
 import me.timschneeberger.rootlessjamesdsp.utils.AudioEffectExtensions.setParameterImpulseResponseBuffer
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocalReceiver
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.unregisterLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.toShort
 import timber.log.Timber
@@ -78,13 +79,13 @@ class JamesDspRemoteEngine(
     private fun checkEngine() {
         if (!isPidValid) {
             Timber.e("PID ($pid) for session $sessionId invalid. Engine probably crashed or detached.")
-            Toast.makeText(context, "Engine crashed. Rebooting JamesDSP.", Toast.LENGTH_SHORT).show()
+            context.toast("Engine crashed. Rebooting JamesDSP.", false)
             rebootEngine()
         }
 
         if (isSampleRateAbnormal) {
             Timber.e("PID ($pid) for session $sessionId invalid. Engine crashed.")
-            Toast.makeText(context, "Abnormal sampling rate. Rebooting JamesDSP.", Toast.LENGTH_SHORT).show()
+            context.toast("Abnormal sampling rate. Rebooting JamesDSP.", false)
             rebootEngine()
         }
     }

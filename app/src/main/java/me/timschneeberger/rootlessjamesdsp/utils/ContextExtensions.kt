@@ -18,6 +18,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
@@ -247,6 +248,10 @@ object ContextExtensions {
             .create()
             .show()
     }
+
+    fun Context.toast(message: String, long: Boolean = true) = Toast.makeText(this, message,
+        if(long) Toast.LENGTH_LONG else Toast.LENGTH_SHORT).show()
+    fun Context.toast(@StringRes message: Int, long: Boolean = true) = toast(getString(message), long)
 
     fun resolveReservedUid(uid: Int): String? {
         return when (uid) {

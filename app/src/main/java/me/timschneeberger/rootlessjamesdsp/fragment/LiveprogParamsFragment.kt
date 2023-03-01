@@ -19,6 +19,7 @@ import me.timschneeberger.rootlessjamesdsp.preference.DropDownPreference
 import me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
 import me.timschneeberger.rootlessjamesdsp.utils.NonPersistentDatastore
 import timber.log.Timber
 
@@ -31,7 +32,7 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
         val args = requireArguments()
         args.getString(BUNDLE_TARGET_FILE)?.let { eelParser.load(it) }
         if(!eelParser.isFileLoaded) {
-            Toast.makeText(requireContext(), getString(R.string.liveprog_not_found), Toast.LENGTH_LONG).show()
+            requireContext().toast(R.string.liveprog_not_found)
             return
         }
 
