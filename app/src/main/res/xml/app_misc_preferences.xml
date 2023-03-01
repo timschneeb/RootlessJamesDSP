@@ -49,20 +49,4 @@
             android:summaryOff="@string/privacy_share_crash_reports_off"
             app:iconSpaceReserved="false" />
     </PreferenceCategory>
-
-
-    <!-- This category is only available in debug builds. No translation required. -->
-    <PreferenceCategory
-        app:title="Debug"
-        app:iconSpaceReserved="false">
-        <Preference
-            android:key="@string/key_debug_database"
-            android:title="Open database debugger"
-            android:summary="http://localhost:8080"
-            app:iconSpaceReserved="false">
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="http://localhost:8080" />
-        </Preference>
-    </PreferenceCategory>
 </PreferenceScreen>
