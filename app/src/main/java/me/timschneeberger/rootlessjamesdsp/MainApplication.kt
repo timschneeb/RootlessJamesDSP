@@ -17,6 +17,7 @@ import me.timschneeberger.rootlessjamesdsp.flavor.CrashlyticsImpl
 import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.session.root.RootSessionDatabase
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocalReceiver
+import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext.startKoin
@@ -136,6 +137,8 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
 
         val appModule = module {
             single { DumpManager(androidContext()) }
+            single { Preferences(androidContext()).App() }
+            single { Preferences(androidContext()).Var() }
         }
 
         startKoin {

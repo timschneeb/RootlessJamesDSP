@@ -10,14 +10,19 @@ import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.delegates.ThemingDelegate
 import me.timschneeberger.rootlessjamesdsp.delegates.ThemingDelegateImpl
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.Preferences
+import org.koin.android.ext.android.inject
+import org.koin.core.component.KoinComponent
 
 open class BaseActivity :
     AppCompatActivity(),
     SharedPreferences.OnSharedPreferenceChangeListener,
+    KoinComponent,
     ThemingDelegate by ThemingDelegateImpl() {
 
     /* App */
-    protected val prefsApp by lazy { getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE) }
+    protected val prefsApp: Preferences.App by inject()
+
     /* General */
     protected val prefsVar by lazy { getSharedPreferences(Constants.PREF_VAR, Context.MODE_PRIVATE) }
 
@@ -28,6 +33,7 @@ open class BaseActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if(!disableAppTheme)
+
             applyAppTheme(this)
         prefsApp.registerOnSharedPreferenceChangeListener(this)
         super.onCreate(savedInstanceState)
