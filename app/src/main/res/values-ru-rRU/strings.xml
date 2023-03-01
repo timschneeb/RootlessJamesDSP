@@ -431,7 +431,7 @@
     <string name="blocklist_delete">Удалить это приложение из списка исключений?</string>
     <string name="blocklist_no_exclusions">Нет исключенных приложений</string>
     <string name="blocklist_unsupported_apps">Неподдерживаемые приложения</string>
-    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>Это приложение не поддерживает обработку звука некоторых приложений, блокирующих запись их аудиовыхода третьими лицами. Чтобы не отключать звук этих приложений из-за ограничений на их захват, они автоматически исключаются из обработки.</p><p><u>Затронутые приложения:</u><br/>%s</p>]]></string>
+    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>Это программа не поддерживает обработку звука некоторых приложений, блокирующих запись их аудиовыхода сторонними приложениями. Чтобы не отключать звук этих приложений из-за ограничений на их захват, они автоматически исключаются из обработки.</p><p><u>Затронутые приложения:</u><br/>%s</p>]]></string>
     <!-- Compatibility issue activity -->
     <string name="title_activity_app_compat">Проблемы совместимости</string>
     <string name="app_compat_retry">Повторить</string>
