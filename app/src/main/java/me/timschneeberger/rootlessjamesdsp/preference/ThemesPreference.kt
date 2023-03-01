@@ -16,7 +16,7 @@ class ThemesPreference @JvmOverloads constructor(context: Context, attrs: Attrib
     ThemesPreferenceAdapter.OnItemClickListener {
 
     private var recycler: RecyclerView? = null
-    private val adapter = ThemesPreferenceAdapter(context, this)
+    private val adapter = ThemesPreferenceAdapter(this)
 
     var lastScrollPosition: Int? = null
 

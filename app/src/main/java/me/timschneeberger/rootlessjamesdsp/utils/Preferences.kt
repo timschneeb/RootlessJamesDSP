@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import androidx.annotation.StringRes
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.flavor.CrashlyticsImpl
+import kotlin.reflect.KClass
 
 class Preferences(val context: Context) {
 
@@ -20,11 +21,11 @@ class Preferences(val context: Context) {
     abstract class AbstractPreferences(val context: Context) {
         abstract fun namespace(): String
 
-        val prefs: SharedPreferences by lazy {
+        val preferences: SharedPreferences by lazy {
             context.getSharedPreferences(namespace(), Context.MODE_PRIVATE)
         }
 
-        val defaultCache: HashMap<String, Any> = hashMapOf()
+        private val defaultCache: HashMap<String, Any> = hashMapOf()
 
         /**
          * @remarks This function takes a StringRes pointing to a preference key.
@@ -33,58 +34,85 @@ class Preferences(val context: Context) {
          *
          * @return Returns the current value of the preference or the default value if none is set
          */
-        inline fun <reified T> get(@StringRes nameRes: Int): T {
-
+        @Suppress("UNCHECKED_CAST")
+        fun <T : Any> get(@StringRes nameRes: Int, default: T? = null, type: KClass<T>): T {
             val key = context.getString(nameRes)
-            val default = if(defaultCache.containsKey(key)) {
-                defaultCache[key] as T
-            }
-            else {
-                @SuppressLint("DiscouragedApi")
-                val defaultRes = context.resources.getIdentifier(
-                    key,
-                    when(T::class)
-                    {
-                        Boolean::class -> "bool"
-                        String::class -> "string"
-                        Int::class -> "integer"
-                        Float::class -> "float"
-                        else -> throw IllegalArgumentException("Unknown type")
-                    },
-                    BuildConfig.APPLICATION_ID
-                )
-                (when(T::class) {
-                    Boolean::class -> context.resources.getBoolean(defaultRes)
-                    String::class -> context.resources.getString(defaultRes)
-                    Int::class -> context.resources.getInteger(defaultRes)
-                    Float::class -> context.resources.getFloat(defaultRes)
-                    else -> throw IllegalArgumentException("Unknown type")
-                } as T).also {
-                    defaultCache[key] = it as Any
-                }
-            }
+            val defValue = default ?: getDefault(nameRes, type)
 
-            return when(T::class) {
-                Boolean::class -> prefs.getBoolean(key, default as Boolean) as T
-                String::class -> prefs.getString(key, default as String) as T
-                Int::class -> prefs.getInt(key, default as Int) as T
-                Float::class -> prefs.getFloat(key, default as Float) as T
+            return when(type::class) {
+                Boolean::class -> preferences.getBoolean(key, defValue as Boolean) as T
+                String::class -> preferences.getString(key, defValue as String) as T
+                Int::class -> preferences.getInt(key, defValue as Int) as T
+                Long::class -> preferences.getLong(key, defValue as Long) as T
+                Float::class -> preferences.getFloat(key, defValue as Float) as T
                 else -> throw IllegalArgumentException("Unknown type")
             }.also {
                 CrashlyticsImpl.setCustomKey("${namespace()}_$key", it.toString())
             }
         }
 
-        @SuppressLint("ApplySharedPref")
-        inline fun <reified T> set(@StringRes nameRes: Int, value: T, async: Boolean = true) {
+        inline fun <reified T : Any> get(@StringRes nameRes: Int): T {
+            return get(nameRes, null, T::class)
+        }
+
+        @Suppress("UNCHECKED_CAST")
+        fun <T : Any> getDefault(@StringRes nameRes: Int, type: KClass<T>): T {
             val key = context.getString(nameRes)
-            val edit = prefs.edit()
+            return if(defaultCache.containsKey(key)) {
+                defaultCache[key] as T
+            }
+            else {
+                @SuppressLint("DiscouragedApi")
+                val defaultRes = context.resources.getIdentifier(
+                    "default_$key",
+                    when(type::class)
+                    {
+                        Boolean::class -> "bool"
+                        String::class -> "string"
+                        Int::class -> "integer"
+                        Long::class -> "integer"
+                        Float::class -> "integer"
+                        else -> throw IllegalArgumentException("Unknown type")
+                    },
+                    BuildConfig.APPLICATION_ID
+                )
+                (when(type::class) {
+                    Boolean::class -> context.resources.getBoolean(defaultRes)
+                    String::class -> context.resources.getString(defaultRes)
+                    Int::class -> context.resources.getInteger(defaultRes)
+                    Long::class -> context.resources.getInteger(defaultRes).toLong()
+                    Float::class -> context.resources.getInteger(defaultRes).toFloat()
+                    else -> throw IllegalArgumentException("Unknown type")
+                } as T).also {
+                    defaultCache[key] = it as Any
+                }
+            }
+        }
+
+        inline fun <reified T : Any> getDefault(@StringRes nameRes: Int): T {
+            return getDefault(nameRes, T::class)
+        }
+
+        @SuppressLint("ApplySharedPref")
+        fun <T : Any> reset(@StringRes nameRes: Int, async: Boolean = true, type: KClass<T>) {
+            set(nameRes, getDefault(nameRes, type), async, type)
+        }
+
+        inline fun <reified T : Any> reset(@StringRes nameRes: Int, async: Boolean = true) {
+            return reset(nameRes, async, T::class)
+        }
+
+        @SuppressLint("ApplySharedPref")
+        fun <T : Any> set(@StringRes nameRes: Int, value: T, async: Boolean = true, type: KClass<T>) {
+            val key = context.getString(nameRes)
+            val edit = preferences.edit()
             CrashlyticsImpl.setCustomKey("${namespace()}_$key", value.toString())
 
-            when(T::class) {
+            when(type::class) {
                 Boolean::class -> edit.putBoolean(key, value as Boolean)
                 String::class -> edit.putString(key, value as String)
                 Int::class -> edit.putInt(key, value as Int)
+                Long::class -> edit.putLong(key, value as Long)
                 Float::class -> edit.putFloat(key, value as Float)
                 else -> throw IllegalArgumentException("Unknown type")
             }.run {
@@ -95,12 +123,16 @@ class Preferences(val context: Context) {
             }
         }
 
+        inline fun <reified T : Any> set(@StringRes nameRes: Int, value: T, async: Boolean = true) {
+            set(nameRes, value, async, T::class)
+        }
+
         open fun registerOnSharedPreferenceChangeListener(listener: SharedPreferences.OnSharedPreferenceChangeListener?) {
-            prefs.registerOnSharedPreferenceChangeListener(listener)
+            preferences.registerOnSharedPreferenceChangeListener(listener)
         }
 
         open fun unregisterOnSharedPreferenceChangeListener(listener: SharedPreferences.OnSharedPreferenceChangeListener?) {
-            prefs.unregisterOnSharedPreferenceChangeListener(listener)
+            preferences.unregisterOnSharedPreferenceChangeListener(listener)
         }
     }
 }

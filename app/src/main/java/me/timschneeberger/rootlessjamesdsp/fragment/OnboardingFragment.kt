@@ -36,6 +36,8 @@ import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.isPackageInst
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.launchApp
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.openPlayStoreApp
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
+import me.timschneeberger.rootlessjamesdsp.utils.Preferences
+import org.koin.android.ext.android.inject
 import rikka.shizuku.Shizuku
 import timber.log.Timber
 
@@ -68,6 +70,9 @@ class OnboardingFragment : Fragment() {
 
     private var useRoot: Boolean = false
     private var shizukuAlive = false
+
+    private val prefsApp: Preferences.App by inject()
+    private val prefsVar: Preferences.Var by inject()
 
     private val binderReceivedListener = Shizuku.OnBinderReceivedListener {
         Timber.d("Shizuku binder received")
@@ -315,19 +320,11 @@ class OnboardingFragment : Fragment() {
 
         // Mark setup as done
         if(!useRoot) {
-            requireContext()
-                .getSharedPreferences(Constants.PREF_VAR, AppCompatActivity.MODE_PRIVATE)
-                .edit()
-                .putBoolean(getString(R.string.key_firstboot), false)
-                .apply()
+            prefsVar.set(R.string.key_first_boot, false)
         }
         // Root: enable enhanced processing
         else {
-            requireContext()
-                .getSharedPreferences(Constants.PREF_APP, AppCompatActivity.MODE_PRIVATE)
-                .edit()
-                .putBoolean(getString(R.string.key_audioformat_enhancedprocessing), true)
-                .commit()
+            prefsApp.set(R.string.key_audioformat_enhanced_processing, true, async = false)
             RootAudioProcessorService.startServiceEnhanced(requireContext())
             Toast.makeText(requireContext(), getString(R.string.onboarding_root_enhanced_processing_setup_success), Toast.LENGTH_LONG).show()
         }

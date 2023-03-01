@@ -5,6 +5,9 @@ import android.content.Context
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.model.preference.AppTheme
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.Preferences
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 interface ThemingDelegate {
     fun applyAppTheme(activity: Activity)
@@ -12,34 +15,16 @@ interface ThemingDelegate {
     companion object {
         fun getThemeResIds(appTheme: AppTheme, isAmoled: Boolean): List<Int> {
             val resIds = mutableListOf<Int>()
-            when (appTheme) {
-                AppTheme.MONET -> {
-                    resIds += R.style.Theme_RootlessJamesDSP_Monet
-                }
-                AppTheme.GREEN_APPLE -> {
-                    resIds += R.style.Theme_RootlessJamesDSP_GreenApple
-                }
-                AppTheme.STRAWBERRY_DAIQUIRI -> {
-                    resIds += R.style.Theme_RootlessJamesDSP_StrawberryDaiquiri
-                }
-                AppTheme.HONEY -> {
-                    resIds += R.style.Theme_RootlessJamesDSP_Honey
-                }
-                AppTheme.TEALTURQUOISE -> {
-                    resIds += R.style.Theme_RootlessJamesDSP_TealTurquoise
-                }
-                AppTheme.YINYANG -> {
-                    resIds += R.style.Theme_RootlessJamesDSP_YinYang
-                }
-                AppTheme.YOTSUBA -> {
-                    resIds += R.style.Theme_RootlessJamesDSP_Yotsuba
-                }
-                AppTheme.TIDAL_WAVE -> {
-                    resIds += R.style.Theme_RootlessJamesDSP_TidalWave
-                }
-                else -> {
-                    resIds += R.style.Theme_RootlessJamesDSP
-                }
+            resIds += when (appTheme) {
+                AppTheme.MONET -> R.style.Theme_RootlessJamesDSP_Monet
+                AppTheme.GREEN_APPLE -> R.style.Theme_RootlessJamesDSP_GreenApple
+                AppTheme.STRAWBERRY_DAIQUIRI -> R.style.Theme_RootlessJamesDSP_StrawberryDaiquiri
+                AppTheme.HONEY -> R.style.Theme_RootlessJamesDSP_Honey
+                AppTheme.TEALTURQUOISE -> R.style.Theme_RootlessJamesDSP_TealTurquoise
+                AppTheme.YINYANG -> R.style.Theme_RootlessJamesDSP_YinYang
+                AppTheme.YOTSUBA -> R.style.Theme_RootlessJamesDSP_Yotsuba
+                AppTheme.TIDAL_WAVE -> R.style.Theme_RootlessJamesDSP_TidalWave
+                else -> R.style.Theme_RootlessJamesDSP
             }
 
             if (isAmoled) {
@@ -51,13 +36,12 @@ interface ThemingDelegate {
     }
 }
 
-// TODO centralize preferences
-class ThemingDelegateImpl : ThemingDelegate {
+class ThemingDelegateImpl : ThemingDelegate, KoinComponent {
+    private val preferences: Preferences.App by inject()
+
     override fun applyAppTheme(activity: Activity) {
-        val preferences = activity.getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
-        val isAmoled = preferences.getBoolean(activity.getString(R.string.key_appearance_pure_black), false)
-        val appTheme = AppTheme.valueOf(preferences.getString(activity.getString(R.string.key_appearance_app_theme), AppTheme.DEFAULT.name) ?: AppTheme.DEFAULT.name)
-        ThemingDelegate.getThemeResIds(appTheme, isAmoled)
-            .forEach { activity.setTheme(it) }
+        val isAmoled = preferences.get<Boolean>(R.string.key_appearance_pure_black)
+        val appTheme = AppTheme.valueOf(preferences.get((R.string.key_appearance_app_theme)))
+        ThemingDelegate.getThemeResIds(appTheme, isAmoled).forEach { activity.setTheme(it) }
     }
 }

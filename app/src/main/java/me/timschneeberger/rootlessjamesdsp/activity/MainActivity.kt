@@ -123,7 +123,7 @@ class MainActivity : BaseActivity() {
             hasLoadFailed = it.getBoolean(STATE_LOAD_FAILED)
         }
 
-        val firstBoot = prefsVar.getBoolean(getString(R.string.key_firstboot), true)
+        val firstBoot = prefsVar.get<Boolean>(R.string.key_first_boot)
         assets.installPrivateAssets(this, force = firstBoot)
 
         mediaProjectionManager = SystemServices.get(this, MediaProjectionManager::class.java)
@@ -153,9 +153,7 @@ class MainActivity : BaseActivity() {
 
         if(firstBoot) {
             // Set timer for translation notice (+30m)
-            prefsVar.edit()
-                .putLong(getString(R.string.key_snooze_translation_notice), (System.currentTimeMillis() / 1000) + 1800)
-                .apply()
+            prefsVar.set(R.string.key_snooze_translation_notice, (System.currentTimeMillis() / 1000L) + 1800L)
         }
 
         // Load main fragment
@@ -276,10 +274,7 @@ class MainActivity : BaseActivity() {
                 }
                 else if (!BuildConfig.ROOTLESS && JamesDspRemoteEngine.isPluginInstalled()) {
                     binding.powerToggle.isToggled = !binding.powerToggle.isToggled
-                    prefsApp
-                        .edit()
-                        .putBoolean(getString(R.string.key_powered_on), binding.powerToggle.isToggled)
-                        .apply()
+                    prefsApp.set(R.string.key_powered_on, binding.powerToggle.isToggled)
                 }
             }
         })
@@ -330,7 +325,7 @@ class MainActivity : BaseActivity() {
         // Load initial preference states
         val initialPrefList = arrayOf(R.string.key_appearance_nav_hide, R.string.key_powered_on)
         for (pref in initialPrefList)
-            this.onSharedPreferenceChanged(prefsApp, getString(pref))
+            this.onSharedPreferenceChanged(prefsApp.preferences, getString(pref))
 
         sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
 
@@ -339,10 +334,7 @@ class MainActivity : BaseActivity() {
                 Timber.e("Dump permission for enhanced processing lost")
                 Toast.makeText(this,
                     getString(R.string.enhanced_processing_missing_perm), Toast.LENGTH_LONG).show()
-                prefsApp
-                    .edit()
-                    .putBoolean(getString(R.string.key_audioformat_enhancedprocessing), false)
-                    .apply()
+                prefsApp.set(R.string.key_audioformat_enhanced_processing, false)
             }
             else {
                 Timber.d("Launching service due to enhanced processing")
@@ -357,14 +349,13 @@ class MainActivity : BaseActivity() {
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
-        sharedPreferences ?: return
-
         if(key == getString(R.string.key_appearance_nav_hide)) {
-            binding.bar.hideOnScroll = sharedPreferences.getBoolean(key, false)
+            binding.bar.hideOnScroll = prefsApp.get(R.string.key_appearance_nav_hide)
         }
         else if(key == getString(R.string.key_powered_on) && !hasLoadFailed && !BuildConfig.ROOTLESS) {
-            binding.powerToggle.isToggled = sharedPreferences.getBoolean(key, true)
+            binding.powerToggle.isToggled = prefsApp.get(R.string.key_powered_on)
         }
+
         super.onSharedPreferenceChanged(sharedPreferences, key)
     }
 
@@ -386,10 +377,7 @@ class MainActivity : BaseActivity() {
 
     override fun onPause() {
         super.onPause()
-        prefsVar
-            .edit()
-            .putBoolean(getString(R.string.key_is_activity_active), false)
-            .apply()
+        prefsVar.set(R.string.key_is_activity_active, false)
     }
 
     override fun onDestroy() {
@@ -405,16 +393,13 @@ class MainActivity : BaseActivity() {
         processorService = null
         processorServiceBound = false
 
-        prefsVar.edit().putBoolean(getString(R.string.key_is_activity_active), false)
-            .apply()
+        prefsVar.set(R.string.key_is_activity_active, false)
         super.onDestroy()
     }
 
     override fun onResume() {
         super.onResume()
-        prefsVar.edit()
-            .putBoolean(getString(R.string.key_is_activity_active), true)
-            .apply()
+        prefsVar.set(R.string.key_is_activity_active, true)
 
         if(BuildConfig.ROOTLESS)
             binding.powerToggle.isToggled = processorService != null
@@ -424,7 +409,7 @@ class MainActivity : BaseActivity() {
 
     private fun excludeAppFromRecents() {
         getSystemService<ActivityManager>()?.appTasks?.takeIf { it.isNotEmpty() }?.forEach {
-            it.setExcludeFromRecents(prefsApp.getBoolean(getString(R.string.key_exclude_app_from_recents), false))
+            it.setExcludeFromRecents(prefsApp.get(R.string.key_exclude_app_from_recents))
         }
     }
 

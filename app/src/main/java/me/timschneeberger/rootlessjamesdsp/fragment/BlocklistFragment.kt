@@ -26,6 +26,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppIcon
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppNameFromUidSafe
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showYesNoAlert
+import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import me.timschneeberger.rootlessjamesdsp.utils.loadHtml
 import org.koin.android.ext.android.inject
 
@@ -34,7 +35,9 @@ class BlocklistFragment : Fragment() {
     private lateinit var binding: FragmentBlocklistBinding
     private lateinit var appsListFragment: AppsListFragment
     private lateinit var adapter: AppBlocklistAdapter
+
     private val dumpManager: DumpManager by inject()
+    private val preferences: Preferences.App by inject()
 
     private val viewModel: AppBlocklistViewModel by viewModels {
         AppBlocklistViewModelFactory((requireActivity().application as MainApplication).blockedAppRepository)
@@ -126,9 +129,7 @@ class BlocklistFragment : Fragment() {
     private fun updateUnsupportedApps() {
         if(BuildConfig.ROOTLESS) {
             policyPollingScope.launch {
-                val isAllowed =
-                    requireContext().getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
-                        .getBoolean(getString(R.string.key_session_exclude_restricted), true)
+                val isAllowed = preferences.get<Boolean>(R.string.key_session_exclude_restricted)
 
                 restrictedApps = if (!isAllowed) {
                     arrayOf()

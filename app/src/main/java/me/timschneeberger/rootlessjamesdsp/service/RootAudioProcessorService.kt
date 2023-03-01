@@ -29,10 +29,13 @@ import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.CHANNEL_ID_SERVICE
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.NOTIFICATION_ID_SERVICE
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
+import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
+import org.koin.android.ext.android.inject
+import org.koin.core.component.KoinComponent
 import timber.log.Timber
 
-class RootAudioProcessorService : BaseAudioProcessorService(),
+class RootAudioProcessorService : BaseAudioProcessorService(), KoinComponent,
     SharedPreferences.OnSharedPreferenceChangeListener, OnRootSessionChangeListener {
 
     // System services
@@ -44,6 +47,9 @@ class RootAudioProcessorService : BaseAudioProcessorService(),
 
     // Enhanced processing
     private var sessionDumpManager: RootSessionDumpManager? = null
+
+    // Preferences
+    private val preferences: Preferences.App by inject()
 
     // Room databases
     private val applicationScope = CoroutineScope(SupervisorJob())
@@ -71,7 +77,7 @@ class RootAudioProcessorService : BaseAudioProcessorService(),
         super.onCreate()
 
         // Register shared preferences listener
-        app.prefs.registerOnSharedPreferenceChangeListener(this)
+        preferences.registerOnSharedPreferenceChangeListener(this)
         app.rootSessionDatabase.registerOnSessionChangeListener(this)
 
         // Get reference to system services
@@ -110,8 +116,8 @@ class RootAudioProcessorService : BaseAudioProcessorService(),
         }
 
         // Initialize shared preferences manually
-        arrayOf(R.string.key_powered_on, R.string.key_audioformat_enhancedprocessing).forEach {
-            onSharedPreferenceChanged(app.prefs, getString(it))
+        arrayOf(R.string.key_powered_on, R.string.key_audioformat_enhanced_processing).forEach {
+            onSharedPreferenceChanged(preferences.preferences, getString(it))
         }
     }
 
@@ -181,7 +187,7 @@ class RootAudioProcessorService : BaseAudioProcessorService(),
 
         app.rootSessionDatabase.clearSessions()
 
-        app.prefs.unregisterOnSharedPreferenceChangeListener(this)
+        preferences.unregisterOnSharedPreferenceChangeListener(this)
         app.rootSessionDatabase.unregisterOnSessionChangeListener(this)
 
         notificationManager.cancel(NOTIFICATION_ID_SERVICE)
@@ -189,12 +195,12 @@ class RootAudioProcessorService : BaseAudioProcessorService(),
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
         when (key) {
-            getString(R.string.key_audioformat_legacymode) -> { updateServiceNotification() }
+            getString(R.string.key_audioformat_processing) -> { updateServiceNotification() }
             getString(R.string.key_powered_on) -> {
                 app.rootSessionDatabase.enabled = sharedPreferences?.getBoolean(key, true) ?: true
                 updateServiceNotification()
             }
-            getString(R.string.key_audioformat_enhancedprocessing) -> {
+            getString(R.string.key_audioformat_enhanced_processing) -> {
                 // If switched to enhanced processing while the service was already active...
                 if(app.isEnhancedProcessing) {
                     setupEnhancedProcessing()
@@ -223,7 +229,7 @@ class RootAudioProcessorService : BaseAudioProcessorService(),
     }
 
     private fun updateServiceNotification() {
-        if(app.prefs.getBoolean(getString(R.string.key_audioformat_legacymode), true))
+        if(preferences.get<Boolean>(R.string.key_audioformat_processing))
             ServiceNotificationHelper.pushServiceNotificationLegacy(this)
         else
             ServiceNotificationHelper.pushServiceNotification(this, app.rootSessionDatabase.sessionList.values.toTypedArray())

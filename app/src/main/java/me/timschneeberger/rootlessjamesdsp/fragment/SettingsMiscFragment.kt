@@ -19,6 +19,8 @@ import me.timschneeberger.rootlessjamesdsp.utils.AssetManagerExtensions.installP
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showYesNoAlert
+import me.timschneeberger.rootlessjamesdsp.utils.Preferences
+import org.koin.android.ext.android.inject
 import java.util.Locale
 
 class SettingsMiscFragment : PreferenceFragmentCompat() {
@@ -28,6 +30,8 @@ class SettingsMiscFragment : PreferenceFragmentCompat() {
     private val crashReports by lazy { findPreference<Preference>(getString(R.string.key_share_crash_reports)) }
     private val aeqApiUrl by lazy { findPreference<EditTextPreference>(getString(R.string.key_network_autoeq_api_url)) }
     private val debugDatabase by lazy { findPreference<Preference>(getString(R.string.key_debug_database)) }
+
+    private val preferences: Preferences.App by inject()
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceManager.sharedPreferencesName = Constants.PREF_APP
@@ -80,16 +84,8 @@ class SettingsMiscFragment : PreferenceFragmentCompat() {
                         ) {
                             if (it) {
                                 // Restore default URL if requested
-                                context
-                                    ?.getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
-                                    ?.edit()
-                                    ?.putString(
-                                        getString(R.string.key_network_autoeq_api_url),
-                                        AutoEqClient.DEFAULT_API_URL
-                                    )
-                                    ?.apply()
-
-                                aeqApiUrl?.text = AutoEqClient.DEFAULT_API_URL
+                                preferences.reset<String>(R.string.key_network_autoeq_api_url)
+                                aeqApiUrl?.text = preferences.getDefault(R.string.key_network_autoeq_api_url)
                             }
                         }
                     }

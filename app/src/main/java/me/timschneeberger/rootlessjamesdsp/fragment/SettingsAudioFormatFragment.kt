@@ -22,15 +22,19 @@ import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.requestIgnoreBatteryOptimizations
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
+import me.timschneeberger.rootlessjamesdsp.utils.Preferences
+import org.koin.android.ext.android.inject
 import timber.log.Timber
 
 class SettingsAudioFormatFragment : PreferenceFragmentCompat() {
 
     private val encoding by lazy { findPreference<ListPreference>(getString(R.string.key_audioformat_encoding)) }
     private val bufferSize by lazy { findPreference<MaterialSeekbarPreference>(getString(R.string.key_audioformat_buffersize)) }
-    private val legacyMode by lazy { findPreference<MaterialSwitchPreference>(getString(R.string.key_audioformat_legacymode)) }
-    private val enhancedMode by lazy { findPreference<MaterialSwitchPreference>(getString(R.string.key_audioformat_enhancedprocessing)) }
-    private val enhancedModeInfo by lazy { findPreference<Preference>(getString(R.string.key_audioformat_enhancedprocessing_info)) }
+    private val legacyMode by lazy { findPreference<MaterialSwitchPreference>(getString(R.string.key_audioformat_processing)) }
+    private val enhancedMode by lazy { findPreference<MaterialSwitchPreference>(getString(R.string.key_audioformat_enhanced_processing)) }
+    private val enhancedModeInfo by lazy { findPreference<Preference>(getString(R.string.key_audioformat_enhanced_processing_info)) }
+
+    private val preferences: Preferences.App by inject()
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         preferenceManager.sharedPreferencesName = Constants.PREF_APP
@@ -80,6 +84,7 @@ class SettingsAudioFormatFragment : PreferenceFragmentCompat() {
             true
         }
 
+        bufferSize?.setDefaultValue(preferences.getDefault(R.string.key_audioformat_buffersize))
         bufferSize?.setOnPreferenceChangeListener { _, newValue ->
             if((newValue as Float) <= 1024){
                 Toast.makeText(requireContext(), getString(R.string.audio_format_buffer_size_warning_low_value), Toast.LENGTH_SHORT).show()

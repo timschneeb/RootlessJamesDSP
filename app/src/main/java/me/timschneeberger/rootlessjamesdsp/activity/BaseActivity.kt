@@ -1,6 +1,5 @@
 package me.timschneeberger.rootlessjamesdsp.activity
 
-import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +8,6 @@ import me.timschneeberger.rootlessjamesdsp.MainApplication
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.delegates.ThemingDelegate
 import me.timschneeberger.rootlessjamesdsp.delegates.ThemingDelegateImpl
-import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import org.koin.android.ext.android.inject
 import org.koin.core.component.KoinComponent
@@ -20,11 +18,9 @@ open class BaseActivity :
     KoinComponent,
     ThemingDelegate by ThemingDelegateImpl() {
 
-    /* App */
+    /* Preferences */
     protected val prefsApp: Preferences.App by inject()
-
-    /* General */
-    protected val prefsVar by lazy { getSharedPreferences(Constants.PREF_VAR, Context.MODE_PRIVATE) }
+    protected val prefsVar: Preferences.Var by inject()
 
     protected open val disableAppTheme = false
 
@@ -33,7 +29,6 @@ open class BaseActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if(!disableAppTheme)
-
             applyAppTheme(this)
         prefsApp.registerOnSharedPreferenceChangeListener(this)
         super.onCreate(savedInstanceState)

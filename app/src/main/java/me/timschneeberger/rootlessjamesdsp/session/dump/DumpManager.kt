@@ -8,10 +8,12 @@ import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionPolicyInfoDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.provider.*
-import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.Preferences
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 import timber.log.Timber
 
-class DumpManager constructor(val context: Context) {
+class DumpManager constructor(val context: Context): KoinComponent {
     enum class Method (val value: Int) {
         AudioPolicyService(0),
         AudioService(1),
@@ -22,8 +24,7 @@ class DumpManager constructor(val context: Context) {
         }
     }
 
-    private val sharedPreferences: SharedPreferences =
-        context.getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
+    private val preferences: Preferences.App by inject()
     private val preferencesListener: SharedPreferences.OnSharedPreferenceChangeListener
 
     private val dumpChangeCallbacks = mutableListOf<OnDumpMethodChangeListener>()
@@ -45,7 +46,7 @@ class DumpManager constructor(val context: Context) {
         preferencesListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
             loadFromPreferences(key)
         }
-        sharedPreferences.registerOnSharedPreferenceChangeListener(preferencesListener)
+        preferences.registerOnSharedPreferenceChangeListener(preferencesListener)
     }
 
     fun dumpSessions(): ISessionInfoDump? {
@@ -96,8 +97,10 @@ class DumpManager constructor(val context: Context) {
     private fun loadFromPreferences(key: String){
         when (key) {
             context.getString(R.string.key_session_detection_method) -> {
-                val method =
-                    Method.fromInt(sharedPreferences.getString(key, "0")?.toIntOrNull() ?: 0)
+                val method = R.string.key_session_detection_method.let {
+                    Method.fromInt(preferences.get<String>(it).toIntOrNull()
+                        ?: preferences.getDefault<String>(it).toInt())
+                }
                 activeDumpMethod = method
                 Timber.d("Session detection method set to ${method.name}")
             }

@@ -23,6 +23,7 @@ import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.unregisterLocalReceiver
+import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -57,8 +58,7 @@ abstract class BaseSessionManager(protected val context: Context) : DumpManager.
 
     // Preferences
     private val preferencesListener: SharedPreferences.OnSharedPreferenceChangeListener
-    private val sharedPreferences: SharedPreferences =
-        context.getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE)
+    private val preferences: Preferences.App by inject()
 
     protected abstract fun handleSessionDump(sessionDump: ISessionInfoDump?)
 
@@ -89,7 +89,7 @@ abstract class BaseSessionManager(protected val context: Context) : DumpManager.
         }
         loadFromPreferences(context.getString(R.string.key_session_continuous_polling))
         loadFromPreferences(context.getString(R.string.key_session_continuous_polling_rate))
-        sharedPreferences.registerOnSharedPreferenceChangeListener(preferencesListener)
+        preferences.registerOnSharedPreferenceChangeListener(preferencesListener)
     }
 
     @CallSuper
@@ -109,14 +109,18 @@ abstract class BaseSessionManager(protected val context: Context) : DumpManager.
         when (key) {
             context.getString(R.string.key_session_continuous_polling) -> {
                 sessionUpdateMode =
-                    if (sharedPreferences.getBoolean(key, false))
+                    if (preferences.get<Boolean>(R.string.key_session_continuous_polling))
                         SessionUpdateMode.ContinuousPolling
                     else
                         SessionUpdateMode.Listener
                 Timber.d("Session update mode set to ${sessionUpdateMode.name}")
             }
             context.getString(R.string.key_session_continuous_polling_rate) -> {
-                pollingTimeout = sharedPreferences.getString(key, "3000")?.toLongOrNull() ?: 3000L
+                pollingTimeout = R.string.key_session_continuous_polling_rate.let {
+                    preferences.get<String>(it).toLongOrNull()
+                        ?: preferences.getDefault<String>(it).toLong()
+                }
+
                 continuousPollingJob?.cancel()
                 updatePollingMode()
                 Timber.d("Session polling interval set to ${pollingTimeout}ms")
