@@ -158,7 +158,7 @@
     <!-- Root flavor -->
     <string name="onboarding_methods_root_root">\u25CF Рекомендуется\n\u25CF Не требуется компьютер\n\u25CF Подходит для всех версий Android</string>
     <string name="onboarding_methods_root_shizuku">\u25CF Рекомендуется, если root-доступ не настроен\n\u25CF Не требуется компьютер\n\u25CF Только для Android 11+</string>
-    <string name="onboarding_methods_root_adb">\u25CF Для опытных пользователей\n\u25CF Требуется компьютер и USB-кабель\n\u25CFВсе версии Android</string>
+    <string name="onboarding_methods_root_adb">\u25CF Для опытных пользователей\n\u25CF Требуется компьютер и USB-кабель\n\u25CF Все версии Android</string>
     <string name="onboarding_root_shell_fail_title">Root-права отсутствуют</string>
     <string name="onboarding_root_shell_fail">Root-права недоступны. Пожалуйста, воспользуйтесь другим методом установки.</string>
     <string name="onboarding_root_shell_fail_unknown">Не удалось предоставить разрешение через root. Пожалуйста, используйте другой метод установки.</string>
