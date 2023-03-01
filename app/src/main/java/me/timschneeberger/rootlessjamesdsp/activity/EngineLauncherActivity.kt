@@ -30,6 +30,9 @@ class EngineLauncherActivity : BaseActivity() {
             return
         }
 
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)
+            return
+
         // If projection token available, start immediately
         if(app.mediaProjectionStartIntent != null) {
             Timber.d("Reusing old projection token to start service")
@@ -46,9 +49,7 @@ class EngineLauncherActivity : BaseActivity() {
                 app.mediaProjectionStartIntent = result.data
                 Timber.d("Using new projection token to start service")
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    RootlessAudioProcessorService.start(this, result.data)
-                }
+                RootlessAudioProcessorService.start(this, result.data)
             }
             finish()
         }
