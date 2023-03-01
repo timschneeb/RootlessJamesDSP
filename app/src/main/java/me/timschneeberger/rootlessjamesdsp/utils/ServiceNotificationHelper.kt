@@ -45,19 +45,19 @@ object ServiceNotificationHelper: KoinComponent {
             .setContentIntent(contentIntent)
             .build()
 
-        SystemServices.get(context, NotificationManager::class.java)
+        SystemServices.get<NotificationManager>(context)
             .notify(Constants.NOTIFICATION_ID_PERMISSION_PROMPT, notification)
     }
 
     fun pushServiceNotification(context: Context, sessions: Array<IEffectSession>) {
         val notification = createServiceNotification(context, sessions)
-        SystemServices.get(context, NotificationManager::class.java)
+        SystemServices.get<NotificationManager>(context)
             .notify(Constants.NOTIFICATION_ID_SERVICE, notification)
     }
 
     fun pushServiceNotificationLegacy(context: Context) {
         val notification = createServiceNotificationLegacy(context)
-        SystemServices.get(context, NotificationManager::class.java)
+        SystemServices.get<NotificationManager>(context)
             .notify(Constants.NOTIFICATION_ID_SERVICE, notification)
     }
 
@@ -136,7 +136,7 @@ object ServiceNotificationHelper: KoinComponent {
             .setContentIntent(contentIntent)
             .build()
 
-        SystemServices.get(context, NotificationManager::class.java)
+        SystemServices.get<NotificationManager>(context)
             .notify(Constants.NOTIFICATION_ID_SESSION_LOSS, notification)
     }
 
@@ -153,7 +153,7 @@ object ServiceNotificationHelper: KoinComponent {
             .setContentIntent(contentIntent)
             .build()
 
-        SystemServices.get(context, NotificationManager::class.java)
+        SystemServices.get<NotificationManager>(context)
             .notify(Constants.NOTIFICATION_ID_APP_INCOMPATIBILITY, notification)
     }
 

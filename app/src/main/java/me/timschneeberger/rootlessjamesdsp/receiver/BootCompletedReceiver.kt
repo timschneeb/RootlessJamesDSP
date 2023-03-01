@@ -26,7 +26,7 @@ class BootCompletedReceiver : BroadcastReceiver(), KoinComponent {
             return
 
         if(BuildConfig.ROOTLESS) {
-            val notificationManager = SystemServices.get(context, NotificationManager::class.java)
+            val notificationManager = SystemServices.get<NotificationManager>(context)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 val channel = NotificationChannel(
                     Constants.CHANNEL_ID_PERMISSION_PROMPT,

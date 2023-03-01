@@ -50,7 +50,7 @@ class AppCompatibilityFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        SystemServices.get(requireContext(), NotificationManager::class.java)
+        SystemServices.get<NotificationManager>(requireContext())
             .cancel(Constants.NOTIFICATION_ID_APP_INCOMPATIBILITY)
 
         val args = requireArguments()

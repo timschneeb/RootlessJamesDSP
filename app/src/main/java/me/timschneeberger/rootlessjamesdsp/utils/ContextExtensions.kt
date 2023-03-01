@@ -120,7 +120,7 @@ object ContextExtensions {
 
     @SuppressLint("BatteryLife")
     fun Context.requestIgnoreBatteryOptimizations() {
-        if (!BuildConfig.ROOTLESS && !SystemServices.get(this, PowerManager::class.java).isIgnoringBatteryOptimizations(packageName)) {
+        if (!BuildConfig.ROOTLESS && !SystemServices.get<PowerManager>(this).isIgnoringBatteryOptimizations(packageName)) {
             startActivity(Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS,
                 Uri.parse("package:$packageName")))
         }
@@ -335,7 +335,7 @@ object ContextExtensions {
     }
 
     fun Context.hideKeyboardFrom(view: View) {
-        val imm = SystemServices.get(this, InputMethodManager::class.java)
+        val imm = SystemServices.get<InputMethodManager>(this)
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }

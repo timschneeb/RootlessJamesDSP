@@ -34,8 +34,8 @@ abstract class BaseSessionManager(protected val context: Context) : DumpManager.
     BroadcastReceiver(), MediaSessionManager.OnActiveSessionsChangedListener, KoinComponent
 {
     // System services
-    private val audioManager = SystemServices.get(context, AudioManager::class.java)
-    private val sessionManager = SystemServices.get(context, MediaSessionManager::class.java)
+    private val audioManager = SystemServices.get<AudioManager>(context)
+    private val sessionManager = SystemServices.get<MediaSessionManager>(context)
 
     // Session dump manager
     protected val dumpManager: DumpManager by inject()

@@ -54,7 +54,7 @@ class EngineLauncherActivity : BaseActivity() {
             finish()
         }
 
-        SystemServices.get(this, MediaProjectionManager::class.java)
+        SystemServices.get<MediaProjectionManager>(this)
             .createScreenCaptureIntent()
             .let(capturePermissionLauncher::launch)
     }

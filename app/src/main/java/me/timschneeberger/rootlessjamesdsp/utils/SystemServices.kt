@@ -4,9 +4,8 @@ import android.content.Context
 
 object SystemServices
 {
-    // TODO use reified inlined function and omit Class<T>
-    fun <T> get(context: Context, cls: Class<T>): T
+    inline fun <reified T> get(context: Context): T
     {
-        return context.getSystemService(cls) as T
+        return context.getSystemService(T::class.java) as T
     }
 }

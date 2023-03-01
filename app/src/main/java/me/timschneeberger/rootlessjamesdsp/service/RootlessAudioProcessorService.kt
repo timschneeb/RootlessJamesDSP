@@ -109,9 +109,9 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         super.onCreate()
 
         // Get reference to system services
-        audioManager = SystemServices.get(this, AudioManager::class.java)
-        mediaProjectionManager = SystemServices.get(this, MediaProjectionManager::class.java)
-        notificationManager = SystemServices.get(this, NotificationManager::class.java)
+        audioManager = SystemServices.get<AudioManager>(this)
+        mediaProjectionManager = SystemServices.get<MediaProjectionManager>(this)
+        notificationManager = SystemServices.get<NotificationManager>(this)
 
         // Setup session manager
         sessionManager = RootlessSessionManager(this)

@@ -110,7 +110,7 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
                         if(fileLibPreference.isIrs()) {
                             var targetRate = (requireActivity().application as MainApplication).engineSampleRate.roundToInt()
                             if (targetRate <= 0) {
-                                targetRate = SystemServices.get(requireContext(), AudioManager::class.java)
+                                targetRate = SystemServices.get<AudioManager>(requireContext())
                                     .getProperty(AudioManager.PROPERTY_OUTPUT_SAMPLE_RATE)
                                     ?.let { str -> Integer.parseInt(str).takeUnless { it == 0 } } ?: 48000
                                 Timber.w("resample: engine sample rate is zero, using HAL rate instead")

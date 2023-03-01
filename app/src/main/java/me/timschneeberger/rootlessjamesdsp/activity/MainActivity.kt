@@ -126,7 +126,7 @@ class MainActivity : BaseActivity() {
         val firstBoot = prefsVar.get<Boolean>(R.string.key_first_boot)
         assets.installPrivateAssets(this, force = firstBoot)
 
-        mediaProjectionManager = SystemServices.get(this, MediaProjectionManager::class.java)
+        mediaProjectionManager = SystemServices.get<MediaProjectionManager>(this)
         binding = ActivityMainBinding.inflate(layoutInflater)
         bindingContent = ContentMainBinding.inflate(layoutInflater)
 

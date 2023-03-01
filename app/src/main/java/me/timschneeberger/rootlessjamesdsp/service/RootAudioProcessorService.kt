@@ -81,8 +81,8 @@ class RootAudioProcessorService : BaseAudioProcessorService(), KoinComponent,
         app.rootSessionDatabase.registerOnSessionChangeListener(this)
 
         // Get reference to system services
-        audioManager = SystemServices.get(this, AudioManager::class.java)
-        notificationManager = SystemServices.get(this, NotificationManager::class.java)
+        audioManager = SystemServices.get<AudioManager>(this)
+        notificationManager = SystemServices.get<NotificationManager>(this)
 
         // Setup database observer
         blockedApps.observeForever(blockedAppObserver)
