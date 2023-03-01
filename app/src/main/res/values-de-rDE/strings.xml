@@ -278,7 +278,6 @@
     <string name="troubleshooting_repair_assets_success">Gebündelte Dateien wurden wiederhergestellt</string>
     <string name="misc_settings">Verschiedenes</string>
     <string name="misc_settings_summary">Absturzberichte, andere Aktionen</string>
-    <string name="autostart">Autostart</string>
     <string name="assets">Assets</string>
     <string name="network_services">Netzwerkdienste</string>
     <string name="network_autoeq_api_url">AutoEQ API Backend-URL</string>
