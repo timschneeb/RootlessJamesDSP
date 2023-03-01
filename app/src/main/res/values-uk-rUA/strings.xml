@@ -84,7 +84,7 @@
     <string name="bass_max_gain">Рівень підсилення</string>
     <string name="reverb_enable">Ефект віртуальної кімнати</string>
     <string name="reverb_room_type">Тип приміщення</string>
-    <string name="reverb_preset_default">За замовчуванням</string>
+    <string name="reverb_preset_default">Типові налаштування</string>
     <string name="reverb_preset_small_hall1">Small hall 1</string>
     <string name="reverb_preset_small_hall2">Small hall 2</string>
     <string name="reverb_preset_medium_hall2">Medium hall</string>
@@ -121,13 +121,13 @@
     <string name="output_limiter_release">Час релізу</string>
     <string name="output_control_postgain">Рівень вихідного підсилення</string>
     <string name="stereowide_enable">Ширина звукової сцени</string>
-    <string name="stereowide_level">Просторова ширина звуку</string>
+    <string name="stereowide_level">Просторова широта звуку</string>
     <string name="stereowide_level_none">Відсутня</string>
     <string name="stereowide_level_very_wide">Дуже велика</string>
     <string name="stereowide_level_wide">Велика</string>
     <string name="stereowide_level_very_narrow">Дуже маленька</string>
     <string name="stereowide_level_narrow">Маленька</string>
-    <string name="crossfeed_enable">Кросфідер</string>
+    <string name="crossfeed_enable">Кроссфід</string>
     <string name="crossfeed_preset">Пресет</string>
     <string name="crossfeed_preset_bs2b_weak">BS2B Weak</string>
     <string name="crossfeed_preset_bs2b_strong">BS2B Strong</string>
@@ -169,7 +169,7 @@
     <string name="onboarding_adb_shizuku_install_button">Встановити Shizuku</string>
     <string name="onboarding_adb_shizuku_install_button_done">Вже інстальовано</string>
     <string name="onboarding_adb_shizuku_install_instruction">Встановити Shizuku з Google Play.</string>
-    <string name="onboarding_adb_shizuku_open_instruction">Запустіть Shizuku і знайдіть параметр \"<b>Запуск через налагодження по Wi-Fi</b>\". Натисніть кнопку \"Підключення\" і дотримуйтесь інструкцій у додатку. Після сполучення Shizuku з вашим пристроєм, запустіть сервер Shizuku, натиснувши кнопку \"Запустити\". Якщо у вас виникли проблеми під час налаштування Shizuku, зверніться до інструкції, посилання на яку наведено в їхньому додатку.</string>
+    <string name="onboarding_adb_shizuku_open_instruction">Запустіть Shizuku і знайдіть параметр «<b>Запуск через налагодження по Wi-Fi</b>». Натисніть кнопку «Підключення» і дотримуйтесь інструкцій у додатку. Після сполучення Shizuku з вашим пристроєм, запустіть сервер Shizuku, натиснувши кнопку «Запустити». Якщо у вас виникли проблеми під час налаштування Shizuku, зверніться до інструкції, посилання на яку наведено в їхньому додатку.</string>
     <string name="onboarding_adb_shizuku_open_button">Запустити Shizuku</string>
     <string name="onboarding_adb_shizuku_open_button_done">Вже активовано</string>
     <string name="onboarding_adb_shizuku_grant_instruction">Надайте доступ до Shizuku, натиснувши на кнопку.</string>
@@ -186,14 +186,14 @@
     <string name="onboarding_adb_shizuku_no_dump_perm">Будь ласка, зачекайте кілька секунд і спробуйте ще раз. Якщо це не спрацює, спробуйте альтернативний метод.</string>
     <string name="onboarding_adb_dump_not_granted_title">Дозвіл ще не надано</string>
     <string name="onboarding_adb_dump_not_granted">Будь ласка, спочатку дотримайтесь інструкцій та повторіть спробу. Доступ ADB ще не налаштовано належним чином.</string>
-    <string name="onboarding_adb_manual_step1">Перейдіть у приховані налаштування Android \"Для розробників\" і увімкніть параметр \"USB-налагодження\". Для розблокування цих налаштувань необхідно кілька разів натиснути на номер збірки в налаштуваннях системи.</string>
+    <string name="onboarding_adb_manual_step1">Перейдіть у приховані налаштування Android «Для розробників» і увімкніть параметр «USB-налагодження». Для розблокування цих налаштувань необхідно кілька разів натиснути на номер збірки в налаштуваннях системи.</string>
     <string name="onboarding_adb_manual_step2">Перейдіть на сайт https://app.webadb.com у веб-браузері на вашому комп\'ютері (рекомендується використовувати Google Chrome) та під\'єднайте ваш пристрій до комп\'ютера за допомогою USB-кабелю.</string>
     <string name="onboarding_adb_manual_step3">Додайте та підключіть USB-пристрій у WebADB.</string>
-    <string name="onboarding_adb_manual_step4">Перейдіть у розділ \"Interactive Shell\" і виконайте в терміналі таку команду: pm grant %s android.permission.DUMP</string>
-    <string name="onboarding_adb_manual_step5">Натисніть \"Далі\" в цьому додатку, щоб продовжити.</string>
-    <string name="onboarding_adb_manual_step1_button">Відкрити \"Для розробників\"</string>
+    <string name="onboarding_adb_manual_step4">Перейдіть у розділ «Interactive Shell» і виконайте в терміналі таку команду: pm grant %s android.permission.DUMP</string>
+    <string name="onboarding_adb_manual_step5">Натисніть «Далі» в цьому додатку, щоб продовжити.</string>
+    <string name="onboarding_adb_manual_step1_button">Відкрити «Для розробників»</string>
     <string name="onboarding_perm_title">Інші дозволи</string>
-    <string name="onboarding_perm_caption">Для використання цієї програми необхідні додаткові дозволи. Будь ласка, ознайомтеся з ними та натисніть \"Далі\" щоб надати їх.</string>
+    <string name="onboarding_perm_caption">Для використання цієї програми необхідні додаткові дозволи. Будь ласка, ознайомтеся з ними та натисніть «Далі» щоб надати їх.</string>
     <string name="onboarding_perm_microphone_title">Дозвіл на запис звуку</string>
     <string name="onboarding_perm_microphone_caption">Потрібен для запису внутрішнього аудіо. Апаратний мікрофон пристрою не буде використовуватися.</string>
     <string name="onboarding_perm_notification_title">Дозвіл на відображення сповіщень</string>
@@ -203,7 +203,7 @@
     <string name="onboarding_perm_missing_title">Дозволи на виконання не надані</string>
     <string name="onboarding_perm_missing">Будь ласка, надайте всі запитані дозволи на виконання, щоб продовжити.\nЯкщо ви кілька разів відмовили в наданні дозволів, вам потрібно надати їх вручну в налаштуваннях системи.</string>
     <string name="onboarding_finish_header">JamesDSP налаштовано!</string>
-    <string name="onboarding_finish_caption">Якщо у вас виникли будь-які проблеми, будь ласка, відвідайте розділ налаштувань \"Усунення неполадок\".</string>
+    <string name="onboarding_finish_caption">Якщо у вас виникли будь-які проблеми, будь ласка, відвідайте розділ налаштувань «Усунення неполадок».</string>
     <string name="limit_session_control_conflict_title">Вимкнення інших додатків для обробки звуку</string>
     <string name="limit_session_control_conflict">Додатки для обробки звуку, що використовують вбудований в Android ефект динамічної обробки, заважають роботі цього додатка.</string>
     <string name="limit_unsupported_apps_title">Непідтримувані додатки</string>
@@ -219,7 +219,7 @@
     <!-- Settings -->
     <string name="title_activity_settings">Параметри</string>
     <string name="session_exclude_restricted">Виключити непідтримувані додатки</string>
-    <string name="session_exclude_restricted_off">Додатки, що блокують захоплення звуку, залишаються приглушеними (типова поведінка Android)</string>
+    <string name="session_exclude_restricted_off">Додатки, які блокують захоплення звуку, залишаються приглушеними (типова поведінка Android)</string>
     <string name="session_exclude_restricted_on">Додатки, які блокують захоплення звуку, виключаються і залишаються без обробки (рекомендується)</string>
     <string name="session_detection_header">Виявлення аудіосесій</string>
     <string name="session_continuous_polling">Безперервне опитування</string>
@@ -245,7 +245,7 @@
     <string name="audio_format_enhanced_processing_off">Покращена обробка вимкнена</string>
     <string name="audio_format_enhanced_processing_info_title">Що таке покращена обробка?</string>
     <string name="audio_format_enhanced_processing_info">Натисніть, щоб переглянути документацію</string>
-    <string name="audio_format_enhanced_processing_info_content">У разі ввімкненої опції \"Покращена обробка\" можна обирати, які додатки виключити з обробки JamesDSP через меню з трьома крапками в правому нижньому кутку та обравши \"Виключені додатки\". Вимкнення Legacy режиму дає змогу кожному застосунку використовувати свій власний механізм ефектів JamesDSP для більш тонкого контролю. В іншому випадку, всі програми будуть використовувати один механізм обробки, який в Android застарів і більше не повинен використовуватися. \n\nЯкщо Legacy режим вимкнений, не всі мультимедійні додатки працюватимуть правильно, тому ввімкніть опцію \"Покращена обробка\", щоб JamesDSP міг самостійно сканувати медіа-сесії, не покладаючись на системні повідомлення і забезпечувати правильну підтримку небажаних медіа-додатків.</string>
+    <string name="audio_format_enhanced_processing_info_content">У разі ввімкненої опції «Покращена обробка» можна обирати, які додатки виключити з обробки JamesDSP через меню з трьома крапками в правому нижньому кутку та обравши «Виключені додатки». Вимкнення Legacy режиму дає змогу кожному застосунку використовувати свій власний механізм ефектів JamesDSP для більш тонкого контролю. В іншому випадку, всі програми будуть використовувати один механізм обробки, який в Android застарів і більше не повинен використовуватися. \n\nЯкщо Legacy режим вимкнений, не всі мультимедійні додатки працюватимуть правильно, тому ввімкніть опцію «Покращена обробка», щоб JamesDSP міг самостійно сканувати медіа-сесії, не покладаючись на системні повідомлення і забезпечувати правильну підтримку небажаних медіа-додатків.</string>
     <string name="audio_format_media_apps_need_restart">Після зміни цього параметра необхідно перезапустити всі активні мультимедійні додатки, щоб відновити обробку звуку.</string>
     <string name="audio_format_summary">Бажане кодування звуку, розмір буфера</string>
     <string name="audio_format_summary_root">Legacy режим, покращена обробка</string>
@@ -316,7 +316,7 @@
     <string name="appearance_navigation_title">Навігація</string>
     <string name="appearance_nav_hide">Приховувати панель навігації під час прокрутки</string>
     <!-- Theme names -->
-    <string name="theme_default">За замовчуванням</string>
+    <string name="theme_default">Типові налаштування</string>
     <string name="theme_monet">Динамічний</string>
     <string name="theme_greenapple">Green Apple</string>
     <string name="theme_strawberrydaiquiri">Strawberry Daiquiri</string>
@@ -326,7 +326,7 @@
     <string name="theme_yotsuba">Yotsuba</string>
     <string name="theme_tidalwave">Tidal Wave</string>
     <!-- File library preference -->
-    <string name="action_import">Імпорт</string>
+    <string name="action_import">Імпортувати</string>
     <string name="filelibrary_hint_tap_and_hold">Торкніться й утримуйте будь-який елемент для додаткових опцій</string>
     <string name="filelibrary_context_load">Завантажити</string>
     <string name="filelibrary_context_edit">Редагувати</string>
@@ -348,14 +348,14 @@
     <string name="filelibrary_file_exists">Файл вже існує</string>
     <string name="filelibrary_resample_complete">Ресемпльовано до %1$dHz</string>
     <string name="filelibrary_resample_failed">Помилка ресемплінгу. Пошкоджений вхідний файл?</string>
-    <string name="filelibrary_preset_overwritten">Пресет \"%1$s\" перезаписано</string>
-    <string name="filelibrary_preset_created">Пресет \"%1$s\" створено</string>
+    <string name="filelibrary_preset_overwritten">Пресет %1$s перезаписано</string>
+    <string name="filelibrary_preset_created">Пресет %1$s створено</string>
     <string name="filelibrary_preset_save_failed">Не вдалося зберегти пресет</string>
-    <string name="filelibrary_renamed">Перейменовано на \"%1$s\"</string>
-    <string name="filelibrary_deleted">\"%1$s\" видалено</string>
-    <string name="filelibrary_preset_loaded">Пресет \"%1$s\" завантажено</string>
-    <string name="filelibrary_preset_load_failed">Файл \"%1$s\" несумісний з цим додатком</string>
-    <string name="filelibrary_no_presets">Немає збережених пресетів. Натисніть \"Додати\" для створення нового.</string>
+    <string name="filelibrary_renamed">Перейменовано на %1$s</string>
+    <string name="filelibrary_deleted">%1$s видалено</string>
+    <string name="filelibrary_preset_loaded">Пресет %1$s завантажено</string>
+    <string name="filelibrary_preset_load_failed">Файл %1$s несумісний з цим додатком</string>
+    <string name="filelibrary_no_presets">Немає збережених пресетів. Натисніть «Додати» для створення нового.</string>
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">Обраний файл VDC пошкоджений. Будь ласка, виберіть інший файл.</string>
     <string name="message_irs_corrupt">Обраний файл імпульсного відгуку пошкоджений. Будь ласка, виберіть інший.</string>
@@ -435,8 +435,8 @@
     <string name="app_compat_exclude">Виключити</string>
     <string name="app_compat_title">Обробку аудіо було призупинено для запобігання дублювання звуку</string>
     <string name="app_compat_explanation">Цей додаток не підтримується, оскільки він призводить до втрати RootlessJamesDSP контролю над маршрутизацією звуку:</string>
-    <string name="app_compat_instruction">Будь ласка, перевірте налаштування програми, щоб вимкнути апаратне прискорення або інші налаштування, які можуть перешкодити RootlessJamesDSP і потім натисніть \"Повторити\".</string>
-    <string name="app_compat_instruction_exclude">Як альтернативу, виберіть \"Виключити\", щоб обійти цю проблему, виключивши несумісну програму з обробки звуку.</string>
+    <string name="app_compat_instruction">Будь ласка, перевірте налаштування програми, щоб вимкнути апаратне прискорення або інші налаштування, які можуть перешкодити RootlessJamesDSP і потім натисніть «Повторити».</string>
+    <string name="app_compat_instruction_exclude">Як альтернативу, виберіть «Виключити», щоб обійти цю проблему, виключивши несумісну програму з обробки звуку.</string>
     <string name="app_compat_unknown_pkg_name">Невідоме ім\'я пакету</string>
     <!-- Hints for compatibility issues for individual apps -->
     <string name="app_compat_quirk_voice_search">Голосовий пошук і розпізнавання голосу можуть викликати проблеми з цим додатком. Якщо проблема зберігається, спробуйте уникнути використання цих функцій і відкликати дозвіл на використання мікрофона для проблемних додатків.</string>
@@ -450,7 +450,7 @@
     <string name="load_fail_arch_card">Якщо ви вже встановили модуль Magisk, можливо, ви вибрали неправильні налаштування під час встановлення. Спробуйте перевстановити модуль і ввімкнути сумісність із пристроями Huawei (навіть якщо ваш телефон не вироблений компанією Huawei).</string>
     <!-- Enhanced processing -->
     <string name="enhanced_processing_feature_unavailable">Функція недоступна</string>
-    <string name="enhanced_processing_feature_unavailable_content">Функція доступна лише при увімкненій опції \"Покращена обробка\" в налаштуваннях. Будь ласка, увімкніть цю опцію в \"Параметри &gt; Обробка аудіо &gt; Покращена обробка\", щоб отримати доступ до цього меню. \n\nПримітка: Опція \"Покращена обробка\" недоступна, якщо ввімкнено Legacy режим.</string>
+    <string name="enhanced_processing_feature_unavailable_content">Функція доступна лише при увімкненій опції «Покращена обробка» в налаштуваннях. Будь ласка, увімкніть цю опцію в «Параметри &gt; Обробка аудіо &gt; Покращена обробка», щоб отримати доступ до цього меню. \n\nПримітка: Опція «Покращена обробка» недоступна, якщо ввімкнено Legacy режим.</string>
     <string name="enhanced_processing_missing_perm">Покращену обробку було вимкнено через відсутність необхідних дозволів. Будь ласка, повторно налаштуйте їх в параметрах.</string>
     <!-- App list -->
     <string name="app_list_loading">Завантаження списку додатків…</string>
@@ -473,9 +473,9 @@
     <string name="intent_import_liveprog">Імпортувати Liveprog скрипт</string>
     <string name="intent_import_mode_add">Лише імпортувати</string>
     <string name="intent_import_mode_select">Імпортувати та активувати</string>
-    <string name="intent_import_fail">Не вдалось імпортувати файл \"%1$s\"</string>
-    <string name="intent_import_success">Файл \"%1$s\" імпортовано</string>
-    <string name="intent_import_select_success">Файл \"%1$s\" імпортовано та активовано</string>
+    <string name="intent_import_fail">Не вдалось імпортувати файл %1$s</string>
+    <string name="intent_import_success">Файл %1$s імпортовано</string>
+    <string name="intent_import_select_success">Файл %1$s імпортовано та активовано</string>
     <string name="intent_import_error_file_uri">Не вдалося імпортувати файл. Непідтримувана URI-адреса файлу.</string>
     <!-- Translation notice box -->
     <string name="translation_notice_summary">Допоможіть нам перекласти цей додаток вашою мовою! Натисніть тут, щоб перейти на сайт проекту на Crowdin.</string>
