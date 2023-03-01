@@ -39,20 +39,20 @@ class Preferences(val context: Context) {
             val key = context.getString(nameRes)
             val defValue = default ?: getDefault(nameRes, type)
 
-            return when(type::class) {
+            return when(type) {
                 Boolean::class -> preferences.getBoolean(key, defValue as Boolean) as T
                 String::class -> preferences.getString(key, defValue as String) as T
                 Int::class -> preferences.getInt(key, defValue as Int) as T
                 Long::class -> preferences.getLong(key, defValue as Long) as T
                 Float::class -> preferences.getFloat(key, defValue as Float) as T
-                else -> throw IllegalArgumentException("Unknown type")
+                else -> throw IllegalArgumentException("Unknown type ${type::class.qualifiedName}")
             }.also {
                 CrashlyticsImpl.setCustomKey("${namespace()}_$key", it.toString())
             }
         }
 
         inline fun <reified T : Any> get(@StringRes nameRes: Int): T {
-            return get(nameRes, null, T::class)
+            return get<T>(nameRes, null, T::class)
         }
 
         @Suppress("UNCHECKED_CAST")
@@ -65,18 +65,18 @@ class Preferences(val context: Context) {
                 @SuppressLint("DiscouragedApi")
                 val defaultRes = context.resources.getIdentifier(
                     "default_$key",
-                    when(type::class)
+                    when(type)
                     {
                         Boolean::class -> "bool"
                         String::class -> "string"
                         Int::class -> "integer"
                         Long::class -> "integer"
                         Float::class -> "integer"
-                        else -> throw IllegalArgumentException("Unknown type")
+                        else -> throw IllegalArgumentException("Unknown type ${type::class.qualifiedName}")
                     },
                     BuildConfig.APPLICATION_ID
                 )
-                (when(type::class) {
+                (when(type) {
                     Boolean::class -> context.resources.getBoolean(defaultRes)
                     String::class -> context.resources.getString(defaultRes)
                     Int::class -> context.resources.getInteger(defaultRes)
@@ -108,13 +108,13 @@ class Preferences(val context: Context) {
             val edit = preferences.edit()
             CrashlyticsImpl.setCustomKey("${namespace()}_$key", value.toString())
 
-            when(type::class) {
+            when(type) {
                 Boolean::class -> edit.putBoolean(key, value as Boolean)
                 String::class -> edit.putString(key, value as String)
                 Int::class -> edit.putInt(key, value as Int)
                 Long::class -> edit.putLong(key, value as Long)
                 Float::class -> edit.putFloat(key, value as Float)
-                else -> throw IllegalArgumentException("Unknown type")
+                else -> throw IllegalArgumentException("Unknown type ${type::class.qualifiedName}")
             }.run {
                 if(async)
                     apply()
