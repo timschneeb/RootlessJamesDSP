@@ -326,7 +326,7 @@
     <string name="theme_yotsuba">Yotsuba</string>
     <string name="theme_tidalwave">Tidal Wave</string>
     <!-- File library preference -->
-    <string name="action_import">Импорт</string>
+    <string name="action_import">Импортировать</string>
     <string name="filelibrary_hint_tap_and_hold">Коснитесь и удерживайте любой элемент для дополнительных опций</string>
     <string name="filelibrary_context_load">Загрузить</string>
     <string name="filelibrary_context_edit">Редактировать</string>
@@ -348,13 +348,13 @@
     <string name="filelibrary_file_exists">Файл уже существует</string>
     <string name="filelibrary_resample_complete">Ресемплировано до %1$dHz</string>
     <string name="filelibrary_resample_failed">Ошибка ресемплинга. Поврежденный входной файл?</string>
-    <string name="filelibrary_preset_overwritten">Пресет \"%1$s\" перезаписан</string>
-    <string name="filelibrary_preset_created">Пресет \"%1$s\" создан</string>
+    <string name="filelibrary_preset_overwritten">Пресет %1$s перезаписан</string>
+    <string name="filelibrary_preset_created">Пресет %1$s создан</string>
     <string name="filelibrary_preset_save_failed">Не удалось сохранить пресет</string>
-    <string name="filelibrary_renamed">Переименовано в \"%1$s\"</string>
-    <string name="filelibrary_deleted">\"%1$s\" удален</string>
-    <string name="filelibrary_preset_loaded">Пресет \"%1$s\" загружен</string>
-    <string name="filelibrary_preset_load_failed">Файл \"%1$s\" не совместим с данным приложением</string>
+    <string name="filelibrary_renamed">Переименовано в %1$s</string>
+    <string name="filelibrary_deleted">%1$s удален</string>
+    <string name="filelibrary_preset_loaded">Пресет %1$s загружен</string>
+    <string name="filelibrary_preset_load_failed">Файл %1$s не совместим с данным приложением</string>
     <string name="filelibrary_no_presets">Нет сохраненных пресетов. Нажмите «Добавить», чтобы создать новый.</string>
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">Выбранный файл VDC поврежден. Пожалуйста, выберите другой файл.</string>
@@ -473,9 +473,9 @@
     <string name="intent_import_liveprog">Импортировать Liveprog скрипт</string>
     <string name="intent_import_mode_add">Только импортировать</string>
     <string name="intent_import_mode_select">Импортировать и активировать</string>
-    <string name="intent_import_fail">Не удалось импортировать файл \"%1$s\"</string>
-    <string name="intent_import_success">Файл \"%1$s\" импортирован</string>
-    <string name="intent_import_select_success">Файл \"%1$s\" импортирован и активирован</string>
+    <string name="intent_import_fail">Не удалось импортировать файл %1$s</string>
+    <string name="intent_import_success">Файл %1$s импортирован</string>
+    <string name="intent_import_select_success">Файл %1$s импортирован и активирован</string>
     <string name="intent_import_error_file_uri">Не удалось импортировать файл. Неподдерживаемый URI-адрес файла.</string>
     <!-- Translation notice box -->
     <string name="translation_notice_summary">Помогите нам перевести это приложение на ваш язык! Нажмите здесь, чтобы перейти на сайт проекта на Crowdin.</string>
