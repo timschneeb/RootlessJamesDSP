@@ -29,7 +29,7 @@ class PreferenceCache(val context: Context) {
         val name = context.getString(nameRes)
         @Suppress("DEPRECATION")
         val prefs = context.getSharedPreferences(selectedNamespace, Context.MODE_MULTI_PROCESS)
-        val current: T = when(type::class) {
+        val current: T = when(type) {
             Boolean::class -> prefs.getBoolean(name, default as Boolean) as T
             String::class -> prefs.getString(name, default as String) as T
             Int::class -> prefs.getInt(name, default as Int) as T
