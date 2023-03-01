@@ -223,7 +223,7 @@
     <string name="session_exclude_restricted_on">Приложения, которые блокируют захват звука, исключаются и остаются без обработки (рекомендуется)</string>
     <string name="session_detection_header">Обнаружение аудиосессий</string>
     <string name="session_continuous_polling">Непрерывный опрос</string>
-    <string name="session_continuous_polling_off">Только прослушивать события сеанса от системы</string>
+    <string name="session_continuous_polling_off">Прослушивать только события сеанса от системы</string>
     <string name="session_continuous_polling_on">Постоянно перечислять аудиосессии</string>
     <string name="session_continuous_polling_rate">Интервал опроса (ms)</string>
     <string name="session_detection_method">Предпочтительный метод обнаружения сессии</string>
