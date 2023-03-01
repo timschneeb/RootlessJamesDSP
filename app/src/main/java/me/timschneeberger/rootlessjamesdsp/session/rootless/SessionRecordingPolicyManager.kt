@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import me.timschneeberger.rootlessjamesdsp.model.rootless.SessionRecordingPolicyEntry
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionPolicyInfoDump
+import me.timschneeberger.rootlessjamesdsp.utils.getApplicationInfoCompat
 import timber.log.Timber
 
 
@@ -76,7 +77,7 @@ class SessionRecordingPolicyManager(private val context: Context) {
         }
 
         val uid: Int = try {
-            context.packageManager.getApplicationInfo(packageName, 0).uid
+            context.packageManager.getApplicationInfoCompat(packageName, 0).uid
         } catch (e: PackageManager.NameNotFoundException) {
             Timber.e("addSessionPolicy: Package not found: $packageName")
             -1

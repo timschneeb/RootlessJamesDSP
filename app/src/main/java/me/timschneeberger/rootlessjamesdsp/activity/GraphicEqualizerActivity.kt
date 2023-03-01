@@ -20,6 +20,6 @@ class GraphicEqualizerActivity : BaseActivity() {
                 .commit()
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
+        binding.toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
     }
 }

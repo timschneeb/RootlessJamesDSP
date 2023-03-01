@@ -14,6 +14,7 @@ import android.view.View
 import androidx.core.content.withStyledAttributes
 import androidx.core.os.bundleOf
 import me.timschneeberger.rootlessjamesdsp.interop.JdspImpResToolbox
+import me.timschneeberger.rootlessjamesdsp.utils.getParcelableAs
 import me.timschneeberger.rootlessjamesdsp.utils.prettyNumberFormat
 import java.util.Locale
 import kotlin.math.abs
@@ -99,7 +100,7 @@ class EqualizerSurface(context: Context?, attrs: AttributeSet?) : View(context, 
         bundleOf("super" to super.onSaveInstanceState(), "levels" to mLevels)
 
     override fun onRestoreInstanceState(state: Parcelable?) {
-        super.onRestoreInstanceState((state as Bundle).getParcelable("super"))
+        super.onRestoreInstanceState((state as Bundle).getParcelableAs("super"))
         mLevels = state.getDoubleArray("levels") ?: DoubleArray(15)
     }
 

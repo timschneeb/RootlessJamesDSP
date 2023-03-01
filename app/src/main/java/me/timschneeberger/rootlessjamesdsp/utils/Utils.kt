@@ -1,5 +1,9 @@
 package me.timschneeberger.rootlessjamesdsp.utils
 
+import android.content.Intent
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
@@ -66,6 +70,22 @@ inline fun <reified T : Parcelable> Bundle.getParcelableAs(key: String): T? {
         @Suppress("DEPRECATION")
         this.getParcelable(key)
     })
+}
+
+fun PackageManager.getApplicationInfoCompat(packageName: String, flags: Int = 0): ApplicationInfo {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        getApplicationInfo(packageName, PackageManager.ApplicationInfoFlags.of(flags.toLong()))
+    } else {
+        @Suppress("DEPRECATION") getApplicationInfo(packageName, flags)
+    }
+}
+
+fun PackageManager.getInstalledApplicationsCompat(flags: Int = 0): List<ApplicationInfo> {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        getInstalledApplications(PackageManager.ApplicationInfoFlags.of(flags.toLong()))
+    } else {
+        @Suppress("DEPRECATION") getInstalledApplications(flags)
+    }
 }
 
 fun Boolean.toShort() = (if (this) 1 else 0).toShort()

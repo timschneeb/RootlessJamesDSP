@@ -16,6 +16,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -79,7 +80,7 @@ class LiveprogEditorActivity : BaseActivity() {
         setSupportActionBar(binding.toolbar)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
+        binding.toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
 
         registerLocalReceiver(processorMessageReceiver, IntentFilter(Constants.ACTION_PROCESSOR_MESSAGE))
 
@@ -94,6 +95,25 @@ class LiveprogEditorActivity : BaseActivity() {
 
         // Only load if path not is cached
         savedPath ?: intent.getStringExtra(EXTRA_TARGET_FILE)?.let { load(it) }
+
+        onBackPressedDispatcher.addCallback(this /* lifecycle owner */, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if(isDirty) {
+                    this@LiveprogEditorActivity.showYesNoAlert(R.string.editor_save_prompt_title, R.string.editor_save_prompt) {
+                        if(it)
+                            save()
+                        sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_RELOAD_LIVEPROG))
+                        finish()
+                        return@showYesNoAlert
+                    }
+                }
+                else {
+                    sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_RELOAD_LIVEPROG))
+                    finish()
+                }
+            }
+        })
+
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -112,26 +132,6 @@ class LiveprogEditorActivity : BaseActivity() {
     override fun onDestroy() {
         unregisterLocalReceiver(processorMessageReceiver)
         super.onDestroy()
-    }
-
-    override fun onBackPressed() {
-        if(isDirty) {
-            this.showYesNoAlert(R.string.editor_save_prompt_title, R.string.editor_save_prompt) {
-                if(it) {
-                    save()
-                    onBackPressed()
-                    return@showYesNoAlert
-                }
-                else {
-                    sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_RELOAD_LIVEPROG))
-                    super.onBackPressed()
-                }
-            }
-        }
-        else {
-            sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_RELOAD_LIVEPROG))
-            super.onBackPressed()
-        }
     }
 
     private fun handleProcessorMessage(intent: Intent) {
@@ -233,6 +233,7 @@ class LiveprogEditorActivity : BaseActivity() {
         val path = parser.path
         path ?: return
 
+        @Suppress("DEPRECATION")
         val liveprog = getSharedPreferences(Constants.PREF_LIVEPROG, Context.MODE_MULTI_PROCESS)
         var key = getString(R.string.key_liveprog_enable)
         // Make sure liveprog is enabled

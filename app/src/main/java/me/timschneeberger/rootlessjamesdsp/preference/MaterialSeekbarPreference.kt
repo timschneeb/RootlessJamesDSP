@@ -96,10 +96,6 @@ class MaterialSeekbarPreference : Preference {
             if (keyCode == KeyEvent.KEYCODE_DPAD_CENTER || keyCode == KeyEvent.KEYCODE_ENTER) {
                 return@OnKeyListener false
             }
-            if (mSeekBar == null) {
-                Timber.e("SeekBar view is null and hence cannot be adjusted.")
-                return@OnKeyListener false
-            }
             mSeekBar.onKeyDown(keyCode, event)
         }
 
@@ -147,9 +143,10 @@ class MaterialSeekbarPreference : Preference {
 
     override fun onBindViewHolder(holder: PreferenceViewHolder) {
         super.onBindViewHolder(holder)
-        holder.itemView.setOnKeyListener(mSeekBarKeyListener)
         mSeekBar = holder.findViewById(R.id.seekbar) as Slider
         mSeekBarValueTextView = holder.findViewById(R.id.seekbar_value) as TextView
+        holder.itemView.setOnKeyListener(mSeekBarKeyListener)
+
         if(mLabelMinWidth > 0) {
             mSeekBarValueTextView!!.minWidth = mLabelMinWidth
         }
@@ -159,10 +156,6 @@ class MaterialSeekbarPreference : Preference {
         } else {
             mSeekBarValueTextView!!.visibility = View.GONE
             mSeekBarValueTextView = null
-        }
-        if (mSeekBar == null) {
-            Timber.e("SeekBar view is null in onBindViewHolder.")
-            return
         }
 
         mSeekBar.clearOnChangeListeners()

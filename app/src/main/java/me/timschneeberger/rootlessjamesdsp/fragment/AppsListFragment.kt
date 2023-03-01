@@ -18,6 +18,7 @@ import me.timschneeberger.rootlessjamesdsp.adapter.AppsListAdapter
 import me.timschneeberger.rootlessjamesdsp.databinding.FragmentApplistSheetBinding
 import me.timschneeberger.rootlessjamesdsp.model.AppInfo
 import me.timschneeberger.rootlessjamesdsp.model.ItemViewModel
+import me.timschneeberger.rootlessjamesdsp.utils.getInstalledApplicationsCompat
 
 class AppsListFragment : BottomSheetDialogFragment() {
 
@@ -63,7 +64,7 @@ class AppsListFragment : BottomSheetDialogFragment() {
 
             val packageManager = requireContext().packageManager
             val appsData = withContext(Dispatchers.IO) {
-                packageManager.getInstalledApplications(0)
+                packageManager.getInstalledApplicationsCompat(0)
                     .filterNot { (it.flags and ApplicationInfo.FLAG_INSTALLED) == 0 }
                     .mapIndexed { idx, it ->
                         if (idx % 5 == 0) yield()

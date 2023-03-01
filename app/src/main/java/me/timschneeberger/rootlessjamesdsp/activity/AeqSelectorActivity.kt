@@ -35,7 +35,7 @@ class AeqSelectorActivity : BaseActivity() {
         setSupportActionBar(binding.toolbar)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
+        binding.toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
 
         binding.searchView.isSubmitButtonEnabled = true
         binding.searchView.isIconified = false

@@ -28,6 +28,6 @@ class BlocklistActivity : BaseActivity() {
         }
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
+        binding.toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
     }
 }

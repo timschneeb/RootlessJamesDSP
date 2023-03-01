@@ -37,7 +37,7 @@ class AppCompatibilityActivity : BaseActivity() {
                 .commit()
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
+        binding.toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
     }
 
     override fun onPause() {

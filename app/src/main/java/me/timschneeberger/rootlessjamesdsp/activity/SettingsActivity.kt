@@ -38,7 +38,7 @@ class SettingsActivity : BaseActivity(),
         }
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        binding.settingsToolbar.setNavigationOnClickListener { onBackPressed() }
+        binding.settingsToolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

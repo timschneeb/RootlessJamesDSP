@@ -26,7 +26,7 @@ class LiveprogParamsActivity : BaseActivity() {
                 .commit()
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
+        binding.toolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

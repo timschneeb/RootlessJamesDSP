@@ -10,6 +10,7 @@ import android.view.View
 import androidx.core.content.withStyledAttributes
 import androidx.core.os.bundleOf
 import me.timschneeberger.rootlessjamesdsp.model.GraphicEqNodeList
+import me.timschneeberger.rootlessjamesdsp.utils.getParcelableAs
 import me.timschneeberger.rootlessjamesdsp.utils.prettyNumberFormat
 import java.util.*
 import kotlin.math.*
@@ -90,7 +91,7 @@ class GraphicEqualizerSurface(context: Context?, attrs: AttributeSet?) : View(co
         bundleOf("super" to super.onSaveInstanceState(), STATE_GAIN to mGains, STATE_FREQ to mFreqs)
 
     override fun onRestoreInstanceState(state: Parcelable?) {
-        super.onRestoreInstanceState((state as Bundle).getParcelable("super"))
+        super.onRestoreInstanceState((state as Bundle).getParcelableAs("super"))
         mFreqs = state.getDoubleArray(STATE_FREQ) ?: DoubleArray(0)
         mGains = state.getDoubleArray(STATE_GAIN) ?: DoubleArray(0)
     }
@@ -167,7 +168,7 @@ class GraphicEqualizerSurface(context: Context?, attrs: AttributeSet?) : View(co
             val gain = mGains.firstOrNull() ?: 0.0
             for (scale in FreqScale) {
                 x = projectX(scale) * mWidth
-                y = projectY(gain.toFloat()) * mHeight
+                // UNUSED: y = projectY(gain.toFloat()) * mHeight
 
                 val freqText = prettyNumberFormat(scale)
                 val gainText = String.format(Locale.ROOT, "%.1f", gain)

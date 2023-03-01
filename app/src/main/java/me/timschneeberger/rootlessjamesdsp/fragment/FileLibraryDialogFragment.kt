@@ -8,9 +8,13 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.media.AudioManager
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListAdapter
-import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.PopupMenu
@@ -22,7 +26,6 @@ import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.MainApplication
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.activity.LiveprogEditorActivity
-import me.timschneeberger.rootlessjamesdsp.activity.SettingsActivity
 import me.timschneeberger.rootlessjamesdsp.interop.JdspImpResToolbox
 import me.timschneeberger.rootlessjamesdsp.model.Preset
 import me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
@@ -44,6 +47,7 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
 
     private var clickedEntryValue: CharSequence? = null
     private lateinit var dialog: AlertDialog
+    private lateinit var importLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         dialog = super.onCreateDialog(savedInstanceState) as AlertDialog
@@ -217,6 +221,56 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
         return dialog
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        importLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode != Activity.RESULT_OK)
+                return@registerForActivityResult
+
+            result?.data?.data?.let { uri ->
+                val correctType = fileLibPreference.hasCorrectExtension(
+                    StorageUtils.queryName(
+                        requireContext(),
+                        uri
+                    ) ?: "INVALID"
+                )
+                if(!correctType)
+                {
+                    requireContext().showAlert(R.string.filelibrary_unsupported_format_title,
+                        R.string.filelibrary_unsupported_format)
+                    return@let
+                }
+
+                StorageUtils.openInputStreamSafe(requireContext(), uri)?.use {
+                    if(!fileLibPreference.hasValidContent(it)) {
+                        Timber.e("File rejected due to invalid content")
+                        requireContext().showAlert(R.string.filelibrary_corrupted_title,
+                            R.string.filelibrary_corrupted)
+                        return@let
+                    }
+                }
+
+                val file = StorageUtils.importFile(requireContext(),
+                    fileLibPreference.directory?.absolutePath ?: "", uri)
+                if(file == null)
+                {
+                    Timber.e("Failed to import file")
+                    return@let
+                }
+
+                CoroutineScope(Dispatchers.Main).launch {
+                    delay(150L)
+                    refresh()
+                }
+            }
+        }
+
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
+
     override fun onDialogClosed(positiveResult: Boolean) {
         if (positiveResult && !clickedEntryValue.isNullOrEmpty()) {
             val value = clickedEntryValue.toString()
@@ -321,61 +375,16 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
     }
 
     private fun import() {
-        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
-            addCategory(Intent.CATEGORY_OPENABLE)
-            type = "*/*"
-        }
-
         try {
-            startActivityForResult(intent, IMPORT_FILE)
+            importLauncher.launch(Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+                addCategory(Intent.CATEGORY_OPENABLE)
+                type = "*/*"
+            })
         }
-        catch(_: Exception) {
+        catch(ex: Exception) {
+            Timber.e("No activity found")
+            Timber.i(ex)
             requireContext().toast(R.string.no_activity_found)
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if(requestCode == IMPORT_FILE && resultCode == Activity.RESULT_OK)
-        {
-            data?.data?.also { uri ->
-
-                val correctType = fileLibPreference.hasCorrectExtension(
-                    StorageUtils.queryName(
-                        requireContext(),
-                        uri
-                    ) ?: "INVALID"
-                )
-                if(!correctType)
-                {
-                    requireContext().showAlert(R.string.filelibrary_unsupported_format_title,
-                        R.string.filelibrary_unsupported_format)
-                    return
-                }
-
-                StorageUtils.openInputStreamSafe(requireContext(), uri)?.use {
-                    if(!fileLibPreference.hasValidContent(it)) {
-                        Timber.e("File rejected due to invalid content")
-                        requireContext().showAlert(R.string.filelibrary_corrupted_title,
-                            R.string.filelibrary_corrupted)
-                        return@also
-                    }
-                }
-
-                val file = StorageUtils.importFile(requireContext(),
-                    fileLibPreference.directory?.absolutePath ?: "", uri)
-                if(file == null)
-                {
-                    Timber.e("Failed to import file")
-                    return
-                }
-
-                CoroutineScope(Dispatchers.Main).launch {
-                    delay(150L)
-                    refresh()
-                }
-            }
         }
     }
 
@@ -394,7 +403,6 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
     }
 
     companion object {
-        private const val IMPORT_FILE = 0x200
         private const val BUNDLE_KEY = "key"
 
         fun newInstance(key: String): FileLibraryDialogFragment {

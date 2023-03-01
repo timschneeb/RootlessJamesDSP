@@ -87,6 +87,7 @@ class EelParser {
         return false
     }
 
+    @Suppress("UNUSED_VARIABLE")
     fun parse(silent: Boolean) {
         fun d(s: String) { if(silent) Timber.d(s) }
         fun e(s: String) { if(silent) Timber.e(s) }
