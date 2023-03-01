@@ -127,7 +127,7 @@
     <string name="stereowide_level_wide">Большая</string>
     <string name="stereowide_level_very_narrow">Очень маленькая</string>
     <string name="stereowide_level_narrow">Маленькая</string>
-    <string name="crossfeed_enable">Кроссфидер</string>
+    <string name="crossfeed_enable">Кроссфид</string>
     <string name="crossfeed_preset">Пресет</string>
     <string name="crossfeed_preset_bs2b_weak">BS2B Weak</string>
     <string name="crossfeed_preset_bs2b_strong">BS2B Strong</string>
@@ -224,7 +224,7 @@
     <string name="session_detection_header">Обнаружение аудиосессий</string>
     <string name="session_continuous_polling">Непрерывный опрос</string>
     <string name="session_continuous_polling_off">Прослушивать только события сеанса от системы</string>
-    <string name="session_continuous_polling_on">Постоянно перечислять аудиосессии</string>
+    <string name="session_continuous_polling_on">Постоянно сканировать аудиосессии</string>
     <string name="session_continuous_polling_rate">Интервал опроса (ms)</string>
     <string name="session_detection_method">Предпочтительный метод обнаружения сессии</string>
     <string name="session_detection_method_audiopolicyservice">AudioPolicyService dump</string>
