@@ -1,6 +1,6 @@
 name: Build signed app
 on:
-  pullrequest:
+  pullr_equest:
     branches:
       - master
   push:
