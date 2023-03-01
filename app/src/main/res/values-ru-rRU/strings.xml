@@ -255,8 +255,10 @@
     <string name="audio_format_buffer_size">Размер буфера</string>
     <string name="audio_format_buffer_size_unit">&#xa0;samples</string>
     <string name="audio_format_buffer_size_warning_low_value">Предупреждение: Низкие размеры буфера могут вызвать проблемы с аудио, такие как клиппинг!</string>
-    <string name="app_behavior">Режим приложения</string>
-    <string name="exclude_app_from_recents">Exclude app from recents</string>
+    <string name="app_behavior">Работа приложения</string>
+    <string name="exclude_app_from_recents">Исключить приложение из недавних</string>
+    <string name="exclude_app_from_recents_off">Не убирать приложение из списка недавних задач</string>
+    <string name="exclude_app_from_recents_on">Убрать приложение из списка недавних задач</string>
     <string name="autostart_prompt_at_boot">Запрашивать разрешение на захват после загрузки</string>
     <string name="autostart_prompt_at_boot_off">Не показывать уведомление после загрузки</string>
     <string name="autostart_prompt_at_boot_on">Показывать уведомление после загрузки</string>
