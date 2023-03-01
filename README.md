@@ -134,7 +134,7 @@ This app focuses on a rootless implementation, but it can be made to work with t
         <br />
         <sub><b>Oleksandr Tkachenko (netrunner-exe)</b></sub></a>
       <br />
-      <sub><b>5576 words</b></sub>
+      <sub><b>5735 words</b></sub>
     </td>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/fankesyooni"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15676501/medium/6ee6d7e4c63bfb0f90dc5088a5ff0efd.jpg" />
@@ -151,18 +151,18 @@ This app focuses on a rootless implementation, but it can be made to work with t
       <sub><b>1030 words</b></sub>
     </td>
     <td align="center" valign="top">
+      <a href="https://crowdin.com/profile/pizzawithdirt"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15711961/medium/e6c27e5ff36a68db03f9b786007b9cbd.png" />
+        <br />
+        <sub><b>Ali Yuruk (pizzawithdirt)</b></sub></a>
+      <br />
+      <sub><b>606 words</b></sub>
+    </td>
+    <td align="center" valign="top">
       <a href="https://crowdin.com/profile/ianpok17"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15647373/medium/daf979a91f0a64b448cf88a954d45e2b.jpeg" />
         <br />
         <sub><b>Criss Santiesteban (ianpok17)</b></sub></a>
       <br />
       <sub><b>470 words</b></sub>
-    </td>
-    <td align="center" valign="top">
-      <a href="https://crowdin.com/profile/pizzawithdirt"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15711961/medium/e6c27e5ff36a68db03f9b786007b9cbd.png" />
-        <br />
-        <sub><b>Ali Yuruk (pizzawithdirt)</b></sub></a>
-      <br />
-      <sub><b>456 words</b></sub>
     </td>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/Tymwitko"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15706765/medium/a2288209d82b78b8e8d959c009382086_default.png" />
@@ -193,6 +193,13 @@ This app focuses on a rootless implementation, but it can be made to work with t
         <sub><b>Namphong Nguyen (nnamphong0709)</b></sub></a>
       <br />
       <sub><b>2 words</b></sub>
+    </td>
+    <td align="center" valign="top">
+      <a href="https://crowdin.com/profile/mekyson"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15715699/medium/3445884a2b6cf411305a730e29cb9d72.jpeg" />
+        <br />
+        <sub><b>Mekyson Makys (mekyson)</b></sub></a>
+      <br />
+      <sub><b>1 words</b></sub>
     </td>
   </tr>
 </table><a href="https://crowdin.com/project/rootlessjamesdsp" target="_blank">Translate in Crowdin 🚀</a>
