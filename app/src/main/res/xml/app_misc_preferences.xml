@@ -1,5 +1,16 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory app:title="@string/app_behavior"
+        app:iconSpaceReserved="false">
+        <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
+            app:key="@string/key_exclude_app_from_recents"
+            app:title="@string/exclude_app_from_recents"
+            app:defaultValue="false"
+            app:summaryOff="@string/exclude_app_from_recents_off"
+            app:summaryOn="@string/exclude_app_from_recents_on"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
     <PreferenceCategory app:title="@string/autostart"
         app:iconSpaceReserved="false">
         <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference

@@ -2,6 +2,7 @@ package me.timschneeberger.rootlessjamesdsp.activity
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.ActivityManager
 import android.content.*
 import android.content.pm.PackageManager
 import android.media.projection.MediaProjectionManager
@@ -13,6 +14,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.core.content.getSystemService
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.preference.DialogPreference.TargetFragment
@@ -76,6 +78,9 @@ class MainActivity : BaseActivity() {
 
     /* General */
     private val prefsVar by lazy { getSharedPreferences(Constants.PREF_VAR, Context.MODE_PRIVATE) }
+
+    /* App */
+    private val prefsApp by lazy { getSharedPreferences(Constants.PREF_APP, Context.MODE_PRIVATE) }
 
     private var processorService: BaseAudioProcessorService? = null
     private var processorServiceBound: Boolean = false
@@ -419,6 +424,14 @@ class MainActivity : BaseActivity() {
 
         if(BuildConfig.ROOTLESS)
             binding.powerToggle.isToggled = processorService != null
+
+        excludeAppFromRecents()
+    }
+
+    private fun excludeAppFromRecents() {
+        getSystemService<ActivityManager>()?.appTasks?.takeIf { it.isNotEmpty() }?.forEach {
+            it.setExcludeFromRecents(prefsApp.getBoolean(getString(R.string.key_exclude_app_from_recents), false))
+        }
     }
 
     private fun showLibraryLoadError() {
