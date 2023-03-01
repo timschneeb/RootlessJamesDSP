@@ -142,7 +142,7 @@
     <string name="onboarding_finish">Завершити</string>
     <string name="onboarding_greeting">Ласкаво просимо до RootlessJamesDSP!</string>
     <string name="onboarding_caption">Цей асистент допоможе вам виконати налаштування додатку.</string>
-    <string name="onboarding_warning">Наразі додаток не завершений та нестабільний. Зверніть увагу, що на деяких пристроях він може не працювати так, як очікується, оскільки використовує Android API, не призначені для використання третіми особами.</string>
+    <string name="onboarding_warning">Наразі додаток не завершений та нестабільний. Зверніть увагу, що на деяких пристроях він може не працювати так, як очікується, оскільки використовує Android API, не призначені для використання сторонніми додатками.</string>
     <string name="onboarding_fix_permissions_title">Потрібна дія користувача</string>
     <string name="onboarding_fix_permissions">Один або кілька дозволів було відкликано вами або системою.\nЩоб забезпечити правильну роботу додатку, вам потрібно надати ці дозволи знову.\n\nБудь ласка, перезапустіть майстер налаштування для повторного надання цих дозволів.</string>
     <string name="onboarding_limitations_title">Обмеження</string>
@@ -431,7 +431,7 @@
     <string name="blocklist_delete">Видалити цей додаток зі списку виключень?</string>
     <string name="blocklist_no_exclusions">Немає виключених додатків</string>
     <string name="blocklist_unsupported_apps">Непідтримувані додатки</string>
-    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>Ця програма не підтримує обробку звуку деяких додатків, які блокують запис їхнього аудіовиходу третіми особами. Щоб не вимикати звук цих додатків через обмеження на їхнє захоплення, вони автоматично виключаються з обробки.</p><p><u>Проблемні додатки:</u><br/>%s</p>]]></string>
+    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>Ця програма не підтримує обробку звуку деяких додатків, які блокують запис їхнього аудіовиходу сторонніми додатками. Щоб уникнути вимикання звуку цих додатків через обмеження їхнього захоплення, вони автоматично виключаються з обробки.</p><p><u>Зачеплені додатки:</u><br/>%s</p>]]></string>
     <!-- Compatibility issue activity -->
     <string name="title_activity_app_compat">Проблеми сумісності</string>
     <string name="app_compat_retry">Повторити</string>
