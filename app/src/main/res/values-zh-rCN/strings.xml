@@ -14,10 +14,10 @@
     <string name="action_retry">重试</string>
     <string name="action_fix">修复问题</string>
     <string name="action_stop">停止</string>
-    <string name="notification_processing">活动的应用： %1$s</string>
-    <string name="notification_idle">音频处理闲置</string>
-    <string name="notification_processing_title">音频处理活动中</string>
-    <string name="notification_processing_disabled_title">音频处理已禁用</string>
+    <string name="notification_processing">活跃的应用：%1$s</string>
+    <string name="notification_idle">没有需要处理的音频流</string>
+    <string name="notification_processing_title">正在处理音频流</string>
+    <string name="notification_processing_disabled_title">音频流未在处理或被禁用</string>
     <string name="notification_processing_legacy">点击打开 JamesDSP 管理器</string>
     <!-- Permission request notifications -->
     <string name="notification_request_permission_title">启动 JamesDSP 需要用户操作</string>
@@ -50,13 +50,13 @@
     <!-- Main screen -->
     <string name="power_button_alt">切换音频处理</string>
     <string name="compressor_enable">动态压缩范围</string>
-    <string name="compressor_max_attack">最大注入数量</string>
-    <string name="compressor_max_release">最大输出数量</string>
-    <string name="compressor_adapt_speed">注入强度</string>
+    <string name="compressor_max_attack">最大侵入</string>
+    <string name="compressor_max_release">最大释放</string>
+    <string name="compressor_adapt_speed">释放强度</string>
     <string name="eq_enable">内置 FIR 均衡器</string>
     <string name="eq_filter_type">过滤类型</string>
     <string name="eq_interpolator">插值器</string>
-    <string name="eq_filter_type_minimum">最小化段</string>
+    <string name="eq_filter_type_minimum">最小段落</string>
     <string name="eq_filter_type_linear">线性段落</string>
     <string name="eq_interpolator_chip">Piecewise Cubic Hermite Interpolating Polynomial</string>
     <string name="eq_interpolator_mha">Modified Hiroshi Akima spline</string>
@@ -103,7 +103,7 @@
     <string name="convolver_convolution_mode">脉冲反馈优化</string>
     <string name="convolver_convolution_mode_original">原始</string>
     <string name="convolver_convolution_mode_shrink">缩放</string>
-    <string name="convolver_convolution_mode_minimum_phase_shrink">最小阶段变换和缩进</string>
+    <string name="convolver_convolution_mode_minimum_phase_shrink">最小段落转换与收缩</string>
     <string name="ddc_enable">ViPER-DDC</string>
     <string name="ddc_file">DDC 文件</string>
     <string name="liveprog_enable">实时编程 DSP</string>
@@ -118,13 +118,13 @@
     <string name="tube_drive">前置放大器</string>
     <string name="output_control_header">输出控制器</string>
     <string name="output_limiter_threshold">限制器阈值</string>
-    <string name="output_limiter_release">限制器输出量</string>
+    <string name="output_limiter_release">限制器释放量</string>
     <string name="output_control_postgain">回放增益</string>
     <string name="stereowide_enable">音阶宽度</string>
-    <string name="stereowide_level">广域度</string>
-    <string name="stereowide_level_none">无</string>
+    <string name="stereowide_level">宽度</string>
+    <string name="stereowide_level_none">常规</string>
     <string name="stereowide_level_very_wide">非常宽</string>
-    <string name="stereowide_level_wide">宽度</string>
+    <string name="stereowide_level_wide">较宽</string>
     <string name="stereowide_level_very_narrow">极窄</string>
     <string name="stereowide_level_narrow">较窄</string>
     <string name="crossfeed_enable">通道交叉</string>
@@ -222,10 +222,10 @@
     <string name="session_exclude_restricted_off">阻止音频捕获的应用保持静音 (默认 Android 行为)</string>
     <string name="session_exclude_restricted_on">阻止音频捕获的应用被排除并保持未处理 (推荐)</string>
     <string name="session_detection_header">音频会话检测延迟</string>
-    <string name="session_continuous_polling">强制连续轮询</string>
+    <string name="session_continuous_polling">强制持续性监听</string>
     <string name="session_continuous_polling_off">仅从系统监听会话事件</string>
-    <string name="session_continuous_polling_on">连续重新排列音频会话</string>
-    <string name="session_continuous_polling_rate">轮询间隔 (ms)</string>
+    <string name="session_continuous_polling_on">持续性重新排列音频会话</string>
+    <string name="session_continuous_polling_rate">监听间隔 (ms)</string>
     <string name="session_detection_method">首选会话检测方法</string>
     <string name="session_detection_method_audiopolicyservice">AudioPolicyService 转储</string>
     <string name="session_detection_method_audioservice">AudioService 转储 (推荐)</string>
@@ -233,7 +233,7 @@
     <string name="session_loss_ignore">忽略会话控制丢失</string>
     <string name="session_loss_ignore_off">禁用，通常句柄 (推荐)</string>
     <string name="session_loss_ignore_on">不要采取任何行动 (可能导致重复的音频)</string>
-    <string name="session_loss_ignore_warning">启用此设置可能会在另一个音频特效应用控制音频会话时导致重复音频。\n请禁用此设置，除非您遇到伪正面会话丢失事件。</string>
+    <string name="session_loss_ignore_warning">启用此设置可能会在另一个音频特效应用控制音频会话时导致重复的音频。\n除非您遇到假阳性会话丢失事件，否则请禁用此设置。</string>
     <string name="audio_format_header">音频处理</string>
     <string name="audio_format_section_header">首选音频格式</string>
     <string name="audio_format_processing_header">音频处理选项</string>
@@ -265,18 +265,18 @@
     <string name="troubleshooting">故障排查</string>
     <string name="troubleshooting_summary">高级选项、文档、诊断信息</string>
     <string name="troubleshooting_docs">文档</string>
-    <string name="troubleshooting_actions">杂项</string>
+    <string name="troubleshooting_actions">更多选项</string>
     <string name="troubleshooting_dump">导出音频会话转储…</string>
     <string name="troubleshooting_dump_summary">收集故障排查数据</string>
     <string name="troubleshooting_dump_share_title">导出音频会话转储…..</string>
-    <string name="troubleshooting_view_limitations">技术限制</string>
-    <string name="troubleshooting_view_limitations_summary">显示此应用限制的详细信息</string>
-    <string name="troubleshooting_notification_access">允许通知访问以更好地会话检测</string>
+    <string name="troubleshooting_view_limitations">技术局限性</string>
+    <string name="troubleshooting_view_limitations_summary">显示此应用技术局限性的详细信息</string>
+    <string name="troubleshooting_notification_access">授予通知使用权以更好地使用会话检测功能</string>
     <string name="troubleshooting_notification_access_summary">启用更可靠的音频会话检测</string>
     <string name="troubleshooting_repair_assets">还原捆绑的 IRS、DDC 和脚本</string>
     <string name="troubleshooting_repair_assets_summary">解包预加载 (如果已丢失)</string>
     <string name="troubleshooting_repair_assets_success">捆绑资源已恢复</string>
-    <string name="misc_settings">杂项</string>
+    <string name="misc_settings">更多选项</string>
     <string name="misc_settings_summary">崩溃报告，其它操作</string>
     <string name="autostart">自动启动</string>
     <string name="assets">资源</string>
@@ -299,7 +299,7 @@
     <string name="credits_project_page">在 GitHub 上查看项目主页</string>
     <string name="credits_project_page_summary">报告问题、保持更新并查看源码</string>
     <string name="credits_project_play_page">在 Google Play 上查看 RootlessJamesDSP</string>
-    <string name="credits_project_play_page_summary">查找新的更新</string>
+    <string name="credits_project_play_page_summary">检查更新</string>
     <string name="credits_project_translate">贡献翻译</string>
     <string name="credits_project_translate_summary">帮我们翻译应用为您的语言</string>
     <string name="credits_version">应用版本</string>
@@ -313,8 +313,8 @@
     <string name="appearance_theme_mode_dark">打开</string>
     <string name="appearance_pure_black_mode">纯黑夜间模式</string>
     <string name="appearance_app_theme">应用主题</string>
-    <string name="appearance_navigation_title">导航栏</string>
-    <string name="appearance_nav_hide">滚动时隐藏导航栏</string>
+    <string name="appearance_navigation_title">底部导航栏</string>
+    <string name="appearance_nav_hide">滚动时隐藏底部导航栏</string>
     <!-- Theme names -->
     <string name="theme_default">默认</string>
     <string name="theme_monet">动态</string>
@@ -363,8 +363,8 @@
     <string name="message_liveprog_compile_fail">Liveprog 执行失败，选定的脚本已损坏，请使用脚本编辑器进行调试。</string>
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">强度响应</string>
-    <string name="geq_edit_as_string">编辑为字符串</string>
-    <string name="geq_autoeq">AutoEQ 简介</string>
+    <string name="geq_edit_as_string">作为字符串编辑</string>
+    <string name="geq_autoeq">AutoEQ 配置</string>
     <string name="gep_add_node">添加</string>
     <string name="geq_preview">预览</string>
     <string name="geq_preview_collapsed">预览 (点击以展开)</string>
