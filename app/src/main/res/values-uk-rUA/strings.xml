@@ -15,7 +15,7 @@
     <string name="action_fix">Виправити проблему</string>
     <string name="action_stop">Зупинити</string>
     <string name="notification_processing">Активні додатки: %1$s</string>
-    <string name="notification_idle">Обробка аудіо в режимі очікування</string>
+    <string name="notification_idle">Очікування аудіосесії</string>
     <string name="notification_processing_title">Обробка аудіо активна</string>
     <string name="notification_processing_disabled_title">Обробку аудіо вимкнено</string>
     <string name="notification_processing_legacy">Натисніть, щоб відкрити JamesDSP manager</string>
@@ -120,7 +120,7 @@
     <string name="output_limiter_threshold">Поріг лімітера</string>
     <string name="output_limiter_release">Час релізу</string>
     <string name="output_control_postgain">Рівень вихідного підсилення</string>
-    <string name="stereowide_enable">Ширина звукової сцени</string>
+    <string name="stereowide_enable">Широта звукової сцени</string>
     <string name="stereowide_level">Просторова широта звуку</string>
     <string name="stereowide_level_none">Відсутня</string>
     <string name="stereowide_level_very_wide">Дуже велика</string>
@@ -311,10 +311,10 @@
     <string name="appearance_theme_mode_default">Використовувати налаштування системи</string>
     <string name="appearance_theme_mode_light">Вимк.</string>
     <string name="appearance_theme_mode_dark">Увімк.</string>
-    <string name="appearance_pure_black_mode">Чорний режим (чорний колір фону)</string>
+    <string name="appearance_pure_black_mode">Режим чистого чорного кольору</string>
     <string name="appearance_app_theme">Колірний акцент теми</string>
     <string name="appearance_navigation_title">Навігація</string>
-    <string name="appearance_nav_hide">Приховувати панель навігації під час прокрутки</string>
+    <string name="appearance_nav_hide">Приховати панель навігації під час прокрутки</string>
     <!-- Theme names -->
     <string name="theme_default">Типові налаштування</string>
     <string name="theme_monet">Динамічний</string>
