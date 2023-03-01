@@ -198,7 +198,7 @@ class MainActivity : BaseActivity() {
         binding.bar.setOnMenuItemClickListener { arg0 ->
             when (arg0.itemId) {
                 R.id.action_blocklist -> {
-                    if(!app.isEnhancedProcessing) {
+                    if(!app.isEnhancedProcessing && !BuildConfig.ROOTLESS) {
                         showAlert(
                             R.string.enhanced_processing_feature_unavailable,
                             R.string.enhanced_processing_feature_unavailable_content
