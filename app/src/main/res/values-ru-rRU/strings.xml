@@ -278,7 +278,6 @@
     <string name="troubleshooting_repair_assets_success">Предустановленные ресурсы были восстановлены</string>
     <string name="misc_settings">Прочее</string>
     <string name="misc_settings_summary">Отчёты об ошибках, другие действия</string>
-    <string name="autostart">Автозапуск</string>
     <string name="assets">Ресурсы</string>
     <string name="network_services">Сетевые сервисы</string>
     <string name="network_autoeq_api_url">URL-адрес API-бэкенда AutoEQ</string>
