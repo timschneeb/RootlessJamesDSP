@@ -15,7 +15,7 @@
     <string name="action_fix">Виправити проблему</string>
     <string name="action_stop">Зупинити</string>
     <string name="notification_processing">Активні додатки: %1$s</string>
-    <string name="notification_idle">Обробка аудіо в режимі очікування</string>
+    <string name="notification_idle">Очікування аудіосесії</string>
     <string name="notification_processing_title">Обробка аудіо активна</string>
     <string name="notification_processing_disabled_title">Обробку аудіо вимкнено</string>
     <string name="notification_processing_legacy">Натисніть, щоб відкрити JamesDSP manager</string>
@@ -120,7 +120,7 @@
     <string name="output_limiter_threshold">Поріг лімітера</string>
     <string name="output_limiter_release">Час релізу</string>
     <string name="output_control_postgain">Рівень вихідного підсилення</string>
-    <string name="stereowide_enable">Ширина звукової сцени</string>
+    <string name="stereowide_enable">Широта звукової сцени</string>
     <string name="stereowide_level">Просторова широта звуку</string>
     <string name="stereowide_level_none">Відсутня</string>
     <string name="stereowide_level_very_wide">Дуже велика</string>
@@ -224,7 +224,7 @@
     <string name="session_detection_header">Виявлення аудіосесій</string>
     <string name="session_continuous_polling">Безперервне опитування</string>
     <string name="session_continuous_polling_off">Прослуховувати лише події сесії від системи</string>
-    <string name="session_continuous_polling_on">Безперервно перераховувати аудіосесії</string>
+    <string name="session_continuous_polling_on">Постійно перераховувати аудіосесії</string>
     <string name="session_continuous_polling_rate">Інтервал опитування (ms)</string>
     <string name="session_detection_method">Бажаний метод виявлення сесії</string>
     <string name="session_detection_method_audiopolicyservice">AudioPolicyService dump</string>
@@ -258,10 +258,10 @@
     <string name="autostart_prompt_at_boot">Запитувати дозвіл на захоплення після завантаження</string>
     <string name="autostart_prompt_at_boot_off">Не показувати сповіщення після завантаження</string>
     <string name="autostart_prompt_at_boot_on">Показувати сповіщення після завантаження</string>
-    <string name="powersave">Економія енергії</string>
+    <string name="powersave">Енергозбереження</string>
     <string name="powersave_suspend">Призупиняти аудіопотік під час простою</string>
     <string name="powersave_suspend_off">Продовжувати обробку, навіть коли контент не відтворюється</string>
-    <string name="powersave_suspend_on">Призупинити обробку аудіопотоку для економії енергії</string>
+    <string name="powersave_suspend_on">Ставити на паузу обробку аудіопотоку для економії енергії</string>
     <string name="troubleshooting">Усунення неполадок</string>
     <string name="troubleshooting_summary">Додаткові параметри, документація, діагностика</string>
     <string name="troubleshooting_docs">Документація</string>
@@ -273,12 +273,11 @@
     <string name="troubleshooting_view_limitations_summary">Показати подробиці про обмеження цього додатка</string>
     <string name="troubleshooting_notification_access">Дозволити доступ до сповіщень</string>
     <string name="troubleshooting_notification_access_summary">Забезпечує надійнішу детекцію аудіосесії</string>
-    <string name="troubleshooting_repair_assets">Відновити стандартні IR, DDC та скрипти</string>
-    <string name="troubleshooting_repair_assets_summary">Якщо ви втратили або видалили попередньо встановлені ресурси, ви можете їх відновити</string>
+    <string name="troubleshooting_repair_assets">Відновити вбудовані IR, DDC та скрипти</string>
+    <string name="troubleshooting_repair_assets_summary">Якщо ви втратили або видалили попередньо встановлені ресурси, ви можете їх відновити. Ресурси, які були імпортовані або створені вами, залишаться без змін</string>
     <string name="troubleshooting_repair_assets_success">Попередньо встановлені ресурси було відновлено</string>
     <string name="misc_settings">Інше</string>
     <string name="misc_settings_summary">Звіти про помилки, інші дії</string>
-    <string name="autostart">Автозапуск</string>
     <string name="assets">Ресурси</string>
     <string name="network_services">Мережеві сервіси</string>
     <string name="network_autoeq_api_url">URL-адреса API-бекенду AutoEQ</string>
@@ -300,7 +299,7 @@
     <string name="credits_project_page_summary">Повідомляйте про проблеми, стежте за оновленнями та читайте програмний код</string>
     <string name="credits_project_play_page">Відвідати RootlessJamesDSP в Google Play</string>
     <string name="credits_project_play_page_summary">Пошук нових оновлень</string>
-    <string name="credits_project_translate">Підтримати переклади</string>
+    <string name="credits_project_translate">Допомога з перекладом</string>
     <string name="credits_project_translate_summary">Допоможіть нам перекласти додаток вашою мовою</string>
     <string name="credits_version">Версія додатку</string>
     <string name="credits_build_info">Інформація про збірку</string>
@@ -311,10 +310,10 @@
     <string name="appearance_theme_mode_default">Використовувати налаштування системи</string>
     <string name="appearance_theme_mode_light">Вимк.</string>
     <string name="appearance_theme_mode_dark">Увімк.</string>
-    <string name="appearance_pure_black_mode">Чорний режим (чорний колір фону)</string>
+    <string name="appearance_pure_black_mode">Режим чистого чорного кольору</string>
     <string name="appearance_app_theme">Колірний акцент теми</string>
     <string name="appearance_navigation_title">Навігація</string>
-    <string name="appearance_nav_hide">Приховувати панель навігації під час прокрутки</string>
+    <string name="appearance_nav_hide">Приховати панель навігації під час прокрутки</string>
     <!-- Theme names -->
     <string name="theme_default">Типові налаштування</string>
     <string name="theme_monet">Динамічний</string>
@@ -479,5 +478,5 @@
     <string name="intent_import_error_file_uri">Не вдалося імпортувати файл. Непідтримувана URI-адреса файлу.</string>
     <!-- Translation notice box -->
     <string name="translation_notice_summary">Допоможіть нам перекласти цей додаток вашою мовою! Натисніть тут, щоб перейти на сайт проекту на Crowdin.</string>
-    <string name="translation_notice">Підтримати переклади</string>
+    <string name="translation_notice">Допомога з перекладом</string>
 </resources>

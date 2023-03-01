@@ -15,7 +15,7 @@
     <string name="action_fix">Исправить проблему</string>
     <string name="action_stop">Остановить</string>
     <string name="notification_processing">Активные приложения: %1$s</string>
-    <string name="notification_idle">Обработка аудио в режиме ожидания</string>
+    <string name="notification_idle">В ожидании аудиосессии</string>
     <string name="notification_processing_title">Обработка аудио активна</string>
     <string name="notification_processing_disabled_title">Обработка аудио отключена</string>
     <string name="notification_processing_legacy">Нажмите, чтобы открыть JamesDSP manager</string>
@@ -224,7 +224,7 @@
     <string name="session_detection_header">Обнаружение аудиосессий</string>
     <string name="session_continuous_polling">Непрерывный опрос</string>
     <string name="session_continuous_polling_off">Только прослушивать события сеанса от системы</string>
-    <string name="session_continuous_polling_on">Непрерывно перечислять аудиосессии</string>
+    <string name="session_continuous_polling_on">Постоянно перечислять аудиосессии</string>
     <string name="session_continuous_polling_rate">Интервал опроса (ms)</string>
     <string name="session_detection_method">Предпочтительный метод обнаружения сессии</string>
     <string name="session_detection_method_audiopolicyservice">AudioPolicyService dump</string>
@@ -258,10 +258,10 @@
     <string name="autostart_prompt_at_boot">Запрашивать разрешение на захват после загрузки</string>
     <string name="autostart_prompt_at_boot_off">Не показывать уведомление после загрузки</string>
     <string name="autostart_prompt_at_boot_on">Показывать уведомление после загрузки</string>
-    <string name="powersave">Экономия энергии</string>
+    <string name="powersave">Энергосбережение</string>
     <string name="powersave_suspend">Приостанавливать аудиопоток во время простоя</string>
     <string name="powersave_suspend_off">Продолжать обработку, даже если контент не воспроизводится</string>
-    <string name="powersave_suspend_on">Приостановить обработку аудиопотока для экономии энергии</string>
+    <string name="powersave_suspend_on">Ставить на паузу обработку аудиопотока для экономии энергии</string>
     <string name="troubleshooting">Устранение неисправностей</string>
     <string name="troubleshooting_summary">Дополнительные параметры, документация, диагностика</string>
     <string name="troubleshooting_docs">Документация</string>
@@ -273,12 +273,11 @@
     <string name="troubleshooting_view_limitations_summary">Показать информацию об ограничениях этого приложения</string>
     <string name="troubleshooting_notification_access">Разрешить доступ к уведомлениям</string>
     <string name="troubleshooting_notification_access_summary">Обеспечивает более надежное обнаружение аудиосессий</string>
-    <string name="troubleshooting_repair_assets">Восстановить стандартные IR, DDC и скрипты</string>
-    <string name="troubleshooting_repair_assets_summary">Если вы потеряли или удалили предустановленные ресурсы, вы можете их восстановить</string>
+    <string name="troubleshooting_repair_assets">Восстановить встроенные IR, DDC и скрипты</string>
+    <string name="troubleshooting_repair_assets_summary">Если вы потеряли или удалили предустановленные ресурсы, вы можете их восстановить. Ресурсы, которые были импортированы или созданы вами, останутся без изменений</string>
     <string name="troubleshooting_repair_assets_success">Предустановленные ресурсы были восстановлены</string>
     <string name="misc_settings">Прочее</string>
     <string name="misc_settings_summary">Отчёты об ошибках, другие действия</string>
-    <string name="autostart">Автозапуск</string>
     <string name="assets">Ресурсы</string>
     <string name="network_services">Сетевые сервисы</string>
     <string name="network_autoeq_api_url">URL-адрес API-бэкенда AutoEQ</string>
@@ -311,7 +310,7 @@
     <string name="appearance_theme_mode_default">Использовать настройки системы</string>
     <string name="appearance_theme_mode_light">Выкл.</string>
     <string name="appearance_theme_mode_dark">Вкл.</string>
-    <string name="appearance_pure_black_mode">Черный режим (черный цвет фона)</string>
+    <string name="appearance_pure_black_mode">Режим чистого черного цвета</string>
     <string name="appearance_app_theme">Цветовой акцент темы</string>
     <string name="appearance_navigation_title">Навигация</string>
     <string name="appearance_nav_hide">Скрывать панель навигации при прокрутке</string>
@@ -366,8 +365,8 @@
     <string name="geq_edit_as_string">Редактировать как строку</string>
     <string name="geq_autoeq">Профили AutoEQ</string>
     <string name="gep_add_node">Добавить</string>
-    <string name="geq_preview">Предпросмотр</string>
-    <string name="geq_preview_collapsed">Предпросмотр (нажмите, чтобы развернуть)</string>
+    <string name="geq_preview">Просмотр</string>
+    <string name="geq_preview_collapsed">Просмотр (нажмите, чтобы развернуть)</string>
     <string name="geq_edit_hint">Узлы GraphicEQ</string>
     <string name="geq_reset">Сбросить</string>
     <string name="geq_reset_confirm_title">Вы уверены?</string>

@@ -255,6 +255,10 @@
     <string name="audio_format_buffer_size">Puffergröße</string>
     <string name="audio_format_buffer_size_unit">&#xa0;Samples</string>
     <string name="audio_format_buffer_size_warning_low_value">Warnung: Niedrige Puffergrößen können Audioprobleme wie Clipping verursachen!</string>
+    <string name="app_behavior">App-Verhalten</string>
+    <string name="exclude_app_from_recents">App von Anwendungsverlauf ausschließen</string>
+    <string name="exclude_app_from_recents_off">App nicht von der Liste der letzten Aufgaben ausschließen</string>
+    <string name="exclude_app_from_recents_on">App von der Liste der letzten Aufgaben ausschließen</string>
     <string name="autostart_prompt_at_boot">Anfrage nach Aufnahmeberechtigung nach dem Booten</string>
     <string name="autostart_prompt_at_boot_off">Keine Benachrichtigung nach dem Booten anzeigen</string>
     <string name="autostart_prompt_at_boot_on">Benachrichtigung nach dem Booten anzeigen</string>
@@ -278,7 +282,6 @@
     <string name="troubleshooting_repair_assets_success">Gebündelte Dateien wurden wiederhergestellt</string>
     <string name="misc_settings">Verschiedenes</string>
     <string name="misc_settings_summary">Absturzberichte, andere Aktionen</string>
-    <string name="autostart">Autostart</string>
     <string name="assets">Assets</string>
     <string name="network_services">Netzwerkdienste</string>
     <string name="network_autoeq_api_url">AutoEQ API Backend-URL</string>
