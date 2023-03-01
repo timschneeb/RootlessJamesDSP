@@ -223,7 +223,7 @@
     <string name="session_exclude_restricted_on">Додатки, які блокують захоплення звуку, виключаються і залишаються без обробки (рекомендується)</string>
     <string name="session_detection_header">Виявлення аудіосесій</string>
     <string name="session_continuous_polling">Безперервне опитування</string>
-    <string name="session_continuous_polling_off">Прослуховувати лише події сесії від системи</string>
+    <string name="session_continuous_polling_off">Прослуховувати лише події сеансу від системи</string>
     <string name="session_continuous_polling_on">Постійно перераховувати аудіосесії</string>
     <string name="session_continuous_polling_rate">Інтервал опитування (ms)</string>
     <string name="session_detection_method">Бажаний метод виявлення сесії</string>
@@ -278,7 +278,7 @@
     <string name="troubleshooting_notification_access">Дозволити доступ до сповіщень</string>
     <string name="troubleshooting_notification_access_summary">Забезпечує надійнішу детекцію аудіосесії</string>
     <string name="troubleshooting_repair_assets">Відновити вбудовані IR, DDC та скрипти</string>
-    <string name="troubleshooting_repair_assets_summary">Якщо ви втратили або видалили попередньо встановлені ресурси, ви можете їх відновити. Ресурси, які були імпортовані або створені вами, залишаться без змін</string>
+    <string name="troubleshooting_repair_assets_summary">Якщо ви втратили або видалили попередньо встановлені ресурси, ви можете їх відновити. Ресурси, імпортовані або створені вами, залишаться без змін</string>
     <string name="troubleshooting_repair_assets_success">Попередньо встановлені ресурси було відновлено</string>
     <string name="misc_settings">Інше</string>
     <string name="misc_settings_summary">Звіти про помилки, інші дії</string>
