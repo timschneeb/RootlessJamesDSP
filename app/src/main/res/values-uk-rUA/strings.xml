@@ -274,7 +274,7 @@
     <string name="troubleshooting_notification_access">Дозволити доступ до сповіщень</string>
     <string name="troubleshooting_notification_access_summary">Забезпечує надійнішу детекцію аудіосесії</string>
     <string name="troubleshooting_repair_assets">Відновити вбудовані IR, DDC та скрипти</string>
-    <string name="troubleshooting_repair_assets_summary">Якщо ви втратили або видалили попередньо встановлені ресурси, ви можете їх відновити. Ресурси, імпортовані або створені користувачем залишаться без змін</string>
+    <string name="troubleshooting_repair_assets_summary">Якщо ви втратили або видалили попередньо встановлені ресурси, ви можете їх відновити. Ресурси, які були імпортовані або створені вами, залишаться без змін</string>
     <string name="troubleshooting_repair_assets_success">Попередньо встановлені ресурси було відновлено</string>
     <string name="misc_settings">Інше</string>
     <string name="misc_settings_summary">Звіти про помилки, інші дії</string>
