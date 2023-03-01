@@ -15,7 +15,7 @@
     <string name="action_fix">Исправить проблему</string>
     <string name="action_stop">Остановить</string>
     <string name="notification_processing">Активные приложения: %1$s</string>
-    <string name="notification_idle">Обработка аудио в режиме ожидания</string>
+    <string name="notification_idle">В ожидании аудиосессии</string>
     <string name="notification_processing_title">Обработка аудио активна</string>
     <string name="notification_processing_disabled_title">Обработка аудио отключена</string>
     <string name="notification_processing_legacy">Нажмите, чтобы открыть JamesDSP manager</string>
@@ -311,7 +311,7 @@
     <string name="appearance_theme_mode_default">Использовать настройки системы</string>
     <string name="appearance_theme_mode_light">Выкл.</string>
     <string name="appearance_theme_mode_dark">Вкл.</string>
-    <string name="appearance_pure_black_mode">Черный режим (черный цвет фона)</string>
+    <string name="appearance_pure_black_mode">Режим чистого черного цвета</string>
     <string name="appearance_app_theme">Цветовой акцент темы</string>
     <string name="appearance_navigation_title">Навигация</string>
     <string name="appearance_nav_hide">Скрывать панель навигации при прокрутке</string>
@@ -366,8 +366,8 @@
     <string name="geq_edit_as_string">Редактировать как строку</string>
     <string name="geq_autoeq">Профили AutoEQ</string>
     <string name="gep_add_node">Добавить</string>
-    <string name="geq_preview">Предпросмотр</string>
-    <string name="geq_preview_collapsed">Предпросмотр (нажмите, чтобы развернуть)</string>
+    <string name="geq_preview">Просмотр</string>
+    <string name="geq_preview_collapsed">Просмотр (нажмите, чтобы развернуть)</string>
     <string name="geq_edit_hint">Узлы GraphicEQ</string>
     <string name="geq_reset">Сбросить</string>
     <string name="geq_reset_confirm_title">Вы уверены?</string>
