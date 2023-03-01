@@ -1,5 +1,8 @@
 name: Build signed app
 on:
+  pullrequest:
+    branches:
+      - master
   push:
     branches:
       - master
