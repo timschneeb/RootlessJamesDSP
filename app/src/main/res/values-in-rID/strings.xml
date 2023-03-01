@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
+    <string name="action_settings">Pengaturan</string>
+    <string name="action_presets">Preset</string>
+    <string name="action_revert">Setel ulang ke bawaan</string>
+    <string name="action_blocked_apps">Aplikasi Pengucualian</string>
     <!-- Notification channels -->
+    <string name="notification_channel_service">Layanan Notifikasi</string>
+    <string name="notification_channel_session_loss_alert">Peringatan kehilangan sesi</string>
+    <string name="notification_channel_permission_prompt">Permintaan izin</string>
+    <string name="notification_channel_app_compat_alert">Aplikasi Tidak Kompatible</string>
     <!-- Service notifications -->
+    <string name="action_retry">Coba Lagi</string>
+    <string name="action_fix">Perbaikan isu</string>
+    <string name="action_stop">Berhenti</string>
+    <string name="notification_processing">Aplikasi Aktif: %1$s</string>
+    <string name="notification_processing_legacy">Tekan untuk buka JamesDSP manager</string>
     <!-- Permission request notifications -->
     <!-- Session control loss notifications -->
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_toast">JamesDSP berhenti karena tidak kompatible media app. Silahkan cek notifikasi untuk menyelesaikan masalah ini.</string>
+    <string name="session_app_compat_notification_title">Pemrosesan audio telah berhenti. Aplikasi lain menganggu JamesDSP.</string>
+    <string name="session_app_compat_notification">Tekan ini untuk menyelesaikan masalah ini.</string>
     <!-- Capture permission revoked notifications -->
     <!-- General purpose -->
     <!-- Main screen -->
@@ -13,6 +29,7 @@
     <!-- Rootless flavor -->
     <!-- Root flavor -->
     <!-- Settings -->
+    <string name="title_activity_settings">Pengaturan</string>
     <!-- Theme names -->
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
@@ -21,7 +38,9 @@
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
     <!-- Blocklist -->
+    <string name="title_activity_blocklist">Aplikasi Pengucualian</string>
     <!-- Compatibility issue activity -->
+    <string name="app_compat_retry">Coba Lagi</string>
     <!-- Hints for compatibility issues for individual apps -->
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
