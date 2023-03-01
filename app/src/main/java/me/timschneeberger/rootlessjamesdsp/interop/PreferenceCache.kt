@@ -3,6 +3,7 @@ package me.timschneeberger.rootlessjamesdsp.interop
 import android.content.Context
 import androidx.annotation.StringRes
 import me.timschneeberger.rootlessjamesdsp.flavor.CrashlyticsImpl
+import kotlin.reflect.KClass
 
 class PreferenceCache(val context: Context) {
     val changedNamespaces = ArrayList<String>()
@@ -20,14 +21,15 @@ class PreferenceCache(val context: Context) {
         catch (_: Exception) {}
     }
 
-    @Suppress("DEPRECATION")
-    inline fun <reified T> get(@StringRes nameRes: Int, default: T): T {
+    @Suppress("UNCHECKED_CAST")
+    fun <T : Any> get(@StringRes nameRes: Int, default: T, type: KClass<T>): T {
         if(selectedNamespace == null)
             throw IllegalStateException("No active namespace selected")
 
         val name = context.getString(nameRes)
+        @Suppress("DEPRECATION")
         val prefs = context.getSharedPreferences(selectedNamespace, Context.MODE_MULTI_PROCESS)
-        val current: T = when(T::class) {
+        val current: T = when(type::class) {
             Boolean::class -> prefs.getBoolean(name, default as Boolean) as T
             String::class -> prefs.getString(name, default as String) as T
             Int::class -> prefs.getInt(name, default as Int) as T
@@ -46,6 +48,9 @@ class PreferenceCache(val context: Context) {
         cache[name] = current as Any
         return current
     }
+
+    inline fun <reified T : Any> get(@StringRes nameRes: Int, default: T) =
+        get(nameRes, default, T::class)
 
     fun markChangesAsCommitted() {
         changedNamespaces.clear()
