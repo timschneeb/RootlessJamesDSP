@@ -224,7 +224,7 @@
     <string name="session_detection_header">Виявлення аудіосесій</string>
     <string name="session_continuous_polling">Безперервне опитування</string>
     <string name="session_continuous_polling_off">Прослуховувати лише події сесії від системи</string>
-    <string name="session_continuous_polling_on">Безперервно перераховувати аудіосесії</string>
+    <string name="session_continuous_polling_on">Постійно перераховувати аудіосесії</string>
     <string name="session_continuous_polling_rate">Інтервал опитування (ms)</string>
     <string name="session_detection_method">Бажаний метод виявлення сесії</string>
     <string name="session_detection_method_audiopolicyservice">AudioPolicyService dump</string>
@@ -258,10 +258,10 @@
     <string name="autostart_prompt_at_boot">Запитувати дозвіл на захоплення після завантаження</string>
     <string name="autostart_prompt_at_boot_off">Не показувати сповіщення після завантаження</string>
     <string name="autostart_prompt_at_boot_on">Показувати сповіщення після завантаження</string>
-    <string name="powersave">Економія енергії</string>
+    <string name="powersave">Енергозбереження</string>
     <string name="powersave_suspend">Призупиняти аудіопотік під час простою</string>
     <string name="powersave_suspend_off">Продовжувати обробку, навіть коли контент не відтворюється</string>
-    <string name="powersave_suspend_on">Призупинити обробку аудіопотоку для економії енергії</string>
+    <string name="powersave_suspend_on">Ставити на паузу обробку аудіопотоку для економії енергії</string>
     <string name="troubleshooting">Усунення неполадок</string>
     <string name="troubleshooting_summary">Додаткові параметри, документація, діагностика</string>
     <string name="troubleshooting_docs">Документація</string>
@@ -273,8 +273,8 @@
     <string name="troubleshooting_view_limitations_summary">Показати подробиці про обмеження цього додатка</string>
     <string name="troubleshooting_notification_access">Дозволити доступ до сповіщень</string>
     <string name="troubleshooting_notification_access_summary">Забезпечує надійнішу детекцію аудіосесії</string>
-    <string name="troubleshooting_repair_assets">Відновити стандартні IR, DDC та скрипти</string>
-    <string name="troubleshooting_repair_assets_summary">Якщо ви втратили або видалили попередньо встановлені ресурси, ви можете їх відновити</string>
+    <string name="troubleshooting_repair_assets">Відновити вбудовані IR, DDC та скрипти</string>
+    <string name="troubleshooting_repair_assets_summary">Якщо ви втратили або видалили попередньо встановлені ресурси, ви можете їх відновити. Ресурси, імпортовані або створені користувачем залишаться без змін</string>
     <string name="troubleshooting_repair_assets_success">Попередньо встановлені ресурси було відновлено</string>
     <string name="misc_settings">Інше</string>
     <string name="misc_settings_summary">Звіти про помилки, інші дії</string>
@@ -300,7 +300,7 @@
     <string name="credits_project_page_summary">Повідомляйте про проблеми, стежте за оновленнями та читайте програмний код</string>
     <string name="credits_project_play_page">Відвідати RootlessJamesDSP в Google Play</string>
     <string name="credits_project_play_page_summary">Пошук нових оновлень</string>
-    <string name="credits_project_translate">Підтримати переклади</string>
+    <string name="credits_project_translate">Допомога з перекладом</string>
     <string name="credits_project_translate_summary">Допоможіть нам перекласти додаток вашою мовою</string>
     <string name="credits_version">Версія додатку</string>
     <string name="credits_build_info">Інформація про збірку</string>
@@ -479,5 +479,5 @@
     <string name="intent_import_error_file_uri">Не вдалося імпортувати файл. Непідтримувана URI-адреса файлу.</string>
     <!-- Translation notice box -->
     <string name="translation_notice_summary">Допоможіть нам перекласти цей додаток вашою мовою! Натисніть тут, щоб перейти на сайт проекту на Crowdin.</string>
-    <string name="translation_notice">Підтримати переклади</string>
+    <string name="translation_notice">Допомога з перекладом</string>
 </resources>
