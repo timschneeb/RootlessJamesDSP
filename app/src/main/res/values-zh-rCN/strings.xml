@@ -278,7 +278,6 @@
     <string name="troubleshooting_repair_assets_success">捆绑资源已恢复</string>
     <string name="misc_settings">更多选项</string>
     <string name="misc_settings_summary">崩溃报告，其它操作</string>
-    <string name="autostart">自动启动</string>
     <string name="assets">资源</string>
     <string name="network_services">网络服务</string>
     <string name="network_autoeq_api_url">AutoEQ API 后端 URL</string>
