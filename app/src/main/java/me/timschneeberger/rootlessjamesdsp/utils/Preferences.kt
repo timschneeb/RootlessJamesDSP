@@ -45,7 +45,7 @@ class Preferences(val context: Context) {
                 Int::class -> preferences.getInt(key, defValue as Int) as T
                 Long::class -> preferences.getLong(key, defValue as Long) as T
                 Float::class -> preferences.getFloat(key, defValue as Float) as T
-                else -> throw IllegalArgumentException("Unknown type ${type::class.qualifiedName}")
+                else -> throw IllegalArgumentException("Unknown type ${type.qualifiedName}")
             }.also {
                 CrashlyticsImpl.setCustomKey("${namespace()}_$key", it.toString())
             }
@@ -72,7 +72,7 @@ class Preferences(val context: Context) {
                         Int::class -> "integer"
                         Long::class -> "integer"
                         Float::class -> "integer"
-                        else -> throw IllegalArgumentException("Unknown type ${type::class.qualifiedName}")
+                        else -> throw IllegalArgumentException("Unknown type ${type.qualifiedName}")
                     },
                     BuildConfig.APPLICATION_ID
                 )
@@ -114,7 +114,7 @@ class Preferences(val context: Context) {
                 Int::class -> edit.putInt(key, value as Int)
                 Long::class -> edit.putLong(key, value as Long)
                 Float::class -> edit.putFloat(key, value as Float)
-                else -> throw IllegalArgumentException("Unknown type ${type::class.qualifiedName}")
+                else -> throw IllegalArgumentException("Unknown type ${type.qualifiedName}")
             }.run {
                 if(async)
                     apply()

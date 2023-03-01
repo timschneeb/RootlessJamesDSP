@@ -84,7 +84,7 @@ class SettingsAudioFormatFragment : PreferenceFragmentCompat() {
             true
         }
 
-        bufferSize?.setDefaultValue(preferences.getDefault(R.string.key_audioformat_buffersize))
+        bufferSize?.setDefaultValue(preferences.getDefault<Float>(R.string.key_audioformat_buffersize))
         bufferSize?.setOnPreferenceChangeListener { _, newValue ->
             if((newValue as Float) <= 1024){
                 Toast.makeText(requireContext(), getString(R.string.audio_format_buffer_size_warning_low_value), Toast.LENGTH_SHORT).show()
