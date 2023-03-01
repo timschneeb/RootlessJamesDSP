@@ -18,7 +18,7 @@
     <bool name="default_share_crash_reports" translatable="false">true</bool>
     <string name="default_network_autoeq_api_url" translatable="false">https://aeq.timschneeberger.me/</string>
     <bool name="default_session_exclude_restricted">true</bool>
-    <string name="default_session_detection_method" translatable="false">0</string>
+    <string name="default_session_detection_method" translatable="false">1</string>
     <string name="default_session_continuous_polling_rate" translatable="false">3000</string>
     <bool name="default_session_continuous_polling" translatable="false">false</bool>
     <bool name="default_session_loss_ignore" translatable="false">false</bool>
