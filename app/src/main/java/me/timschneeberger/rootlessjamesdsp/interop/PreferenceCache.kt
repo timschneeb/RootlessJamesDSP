@@ -44,7 +44,7 @@ class PreferenceCache(val context: Context) {
             }
         }
 
-        CrashlyticsImpl.setCustomKey("pref_$name", current.toString())
+        CrashlyticsImpl.setCustomKey("dsp_$name", current.toString())
         cache[name] = current as Any
         return current
     }
