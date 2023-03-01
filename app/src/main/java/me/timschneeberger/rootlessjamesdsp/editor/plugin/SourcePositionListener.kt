@@ -20,8 +20,8 @@ class SourcePositionListener(private val editText: EditText) {
                 super.sendAccessibilityEvent(host, eventType)
                 if (eventType == AccessibilityEvent.TYPE_VIEW_TEXT_SELECTION_CHANGED && onPositionChanged != null) {
                     val selectionStart = editText.selectionStart
-                    val line = editText.layout.getLineForOffset(selectionStart)
-                    val column = selectionStart - editText.layout.getLineStart(line)
+                    val line = editText.layout?.getLineForOffset(selectionStart) ?: 0
+                    val column = selectionStart - (editText.layout?.getLineStart(line) ?: 0)
                     onPositionChanged?.onPositionChange(line + 1, column + 1)
                 }
             }

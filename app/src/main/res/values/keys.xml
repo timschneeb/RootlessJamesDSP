@@ -30,6 +30,7 @@
     <string name="key_session_continuous_polling" translatable="false">session_continuous_polling</string>
     <string name="key_session_loss_ignore" translatable="false">session_loss_ignore</string>
     <string name="key_session_app_problem_ignore" translatable="false">session_app_problem_ignore</string>
+    <string name="key_exclude_app_from_recents" translatable="false">exclude_app_from_recents</string>
     <string name="key_autostart_prompt_at_boot" translatable="false">autostart_prompt_at_boot</string>
     <string name="key_powersave_suspend" translatable="false">powersave_suspend</string>
     <string name="key_audioformat_encoding" translatable="false">audioformat_encoding</string>

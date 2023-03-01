@@ -283,6 +283,10 @@
     <string name="audio_format_buffer_size">Buffer size</string>
     <string name="audio_format_buffer_size_unit">&#xa0;samples</string>
     <string name="audio_format_buffer_size_warning_low_value">Warning: Low buffer sizes may cause audio issues such as clipping!</string>
+    <string name="app_behavior">App behavior</string>
+    <string name="exclude_app_from_recents">Exclude app from recents</string>
+    <string name="exclude_app_from_recents_off">Don\'t exclude app from recent tasks list</string>
+    <string name="exclude_app_from_recents_on">Exclude app from recent tasks list</string>
     <string name="autostart_prompt_at_boot">Prompt for capture permission after boot</string>
     <string name="autostart_prompt_at_boot_off">Don\'t show notification after boot</string>
     <string name="autostart_prompt_at_boot_on">Show notification after boot</string>
