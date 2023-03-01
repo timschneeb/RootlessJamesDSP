@@ -11,7 +11,16 @@
     <string name="notification_channel_app_compat_alert">Alerta de app incompatível</string>
     <!-- Service notifications -->
     <string name="action_retry">Tente novamente</string>
+    <string name="action_fix">Corrigir erro</string>
+    <string name="action_stop">Interromper</string>
+    <string name="notification_processing">Apps ativos: %1$s</string>
+    <string name="notification_idle">Processamento de Áudio ocioso</string>
+    <string name="notification_processing_title">Processamento de áudio ativo</string>
+    <string name="notification_processing_disabled_title">Processamento de áudio desativado</string>
+    <string name="notification_processing_legacy">Toque para abrir o gerenciador JamesDSP</string>
     <!-- Permission request notifications -->
+    <string name="notification_request_permission_title">Ação do usuário é necessária para iniciar o JamesDSP</string>
+    <string name="notification_request_permission">Toque para conceder permissão de captura e ativar o processamento de áudio do JamesDSP</string>
     <!-- Session control loss notifications -->
     <!-- App compatibility issue notifications -->
     <!-- Capture permission revoked notifications -->
