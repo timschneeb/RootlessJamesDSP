@@ -8,20 +8,20 @@ JamesDSP 支持以下音频效果：
 * 自动动态范围压缩器
 * 动态低音提升
 * 内置 FIR 均衡器
-* 任意响应均衡器（Graphic EQ）
+* 任意响应均衡器(图形EQ)
 * ViPER-DDC
-* 限制器
+* 卷积混响器
 * Live-programable DSP (音频效果的脚本引擎)
 * 模拟模型
 * 音阶宽度
-* 交叉反馈
+* 通道交叉
 * 虚拟场效果(混响)
 
-此外，此应用直接与 AutoEQ 集成。 此外，此应用直接与 AutoEQ 集成。 使用 AutoEQ 集成，您可以搜索并导入频率响应，目的是将您的耳机改正为中性声音。 转到“任意响应均衡器 > 大规模响应> AutoEQ 配置文件”开始操作。 转到“任意响应均衡器 > 大规模响应> AutoEQ 配置文件”开始操作。
+此外，此应用直接与 AutoEQ 集成。 使用 AutoEQ 集成，您可以搜索并导入频率响应，目的是将您的耳机改正为中性声音。 转到“任意响应均衡器 > 大规模响应> AutoEQ 配置文件”开始操作。
 
 --- 局限性
-* 阻止内部音频捕获的应用程序仍未处理（例如 Spotify、Google Chrome）
-* 使用某些类型的 HW 加速播放的应用程序可能会导致问题，需要手动排除（例如，某些 Unity 游戏）
+阻止内部音频捕获的应用程序仍未处理 (例如Spotify、Google Chrome)。
+* 使用某些类型的硬件加速播放的应用程序可能会导致问题，需要手动排除(如某些Unity 游戏)
 * 无法与 (有些) 其他音频特效应用程序共存(例如，Wavelet 和其他应用使用了 `DynamicsProcessing` Android API)
 
 
@@ -36,11 +36,11 @@ JamesDSP 支持以下音频效果：
 * ...
 
 - 不支持的应用包括：
-* Spotify（注意：Spotify ReVanced 补丁需要支持 Spotify）
+* Spotify (注意：支持Spotify需要Spotify补丁)
 * Google Chrome
 * SoundCloud
 * ...
 
 --- 翻译
 请帮助我们在这里翻译这个应用： https://crowdin.com/project/rootlessjamesdsp
-要请求一种尚未在 Crowdin 上启用的新语言，请在 GitHub 上打开一个问题，我会打开它。
+若要在 Crowdin 上请求一种尚未启用的新语言，请在 GitHub 上打开一个问题，我将打开它。
