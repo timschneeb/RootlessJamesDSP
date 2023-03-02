@@ -1,0 +1,1 @@
+Motor de procesare audio JamesDSP pentru dispozitive Android ne-rootate, pentru sistemul întreg.
