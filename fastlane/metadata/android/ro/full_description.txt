@@ -1,0 +1,46 @@
+Utilizați JamesDSP ca motor de procesare audio la nivelul întregului sistem fără acces root.
+
+Această aplicație are mai multe limitări pe care anumite persoane nu le vor aprecia; vă rugăm să citiți întregul document înainte de a utiliza aplicația. Pentru configurarea inițială este necesar accesul Shizuku (Android 11+) sau ADB prin intermediul unui calculator.
+
+JamesDSP suportă următoarele efecte audio:
+* Limiter control
+* Output gain control
+* Auto dynamic range compressor
+* Dynamic bass boost
+* Interpolating FIR equalizer
+* Arbitrary response equalizer (Graphic EQ)
+* ViPER-DDC
+* Convolver
+* Live-programmable DSP (scripting engine for audio effects)
+* Analog modelling
+* Soundstage wideness
+* Crossfeed
+* Virtual room effect (reverb)
+
+Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration, you can search and import frequency responses that aim to correct your headphone to a neutral sound. Go to 'Arbitrary response equalizer > Magnitude response > AutoEQ profiles' to get started.
+
+--- Limitări
+* Aplicațiile care blochează capturarea audio internă rămân neprocesate (de exemplu, Spotify, Google Chrome)
+* Aplicațiile care folosesc unele tipuri de redare accelerată cu HW pot provoca probleme și trebuie excluse manual (de exemplu, unele jocuri Unity)
+* Nu se poate coexista cu (câteva) alte aplicații cu efect audio (de exemplu, Wavelet și alte aplicații care folosesc API-ul 'DynamicsProcessing' Android)
+
+
+- Aplicații confirmate că funcționează:
+* YouTube
+* YouTube Music
+* Amazon Music
+* Deezer
+* Poweramp
+* Substreamer
+* Twitch
+* ...
+
+- Aplicațiile neacceptate includ:
+* Spotify (Notă: Spotify Revanced patch este necesar pentru a susține Spotify)
+* Google Chrome
+* SoundCloud
+* ...
+
+--- Traducere
+Te rugăm să ne ajuți să traducem această aplicație aici: https://crowdin.com/project/rootlessjamesdsp
+Pentru a solicita o nouă limbă care nu este activată încă pe Crowdin, vă rugăm să deschideți un issue aici pe GitHub și o voi activa.
