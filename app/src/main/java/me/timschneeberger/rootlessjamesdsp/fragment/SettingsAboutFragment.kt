@@ -40,26 +40,7 @@ class SettingsAboutFragment : PreferenceFragmentCompat() {
 
         buildInfo?.summary = "$type build @${BuildConfig.COMMIT_SHA} (${BuildConfig.FLAVOR_dependencies}) (compiled at ${BuildConfig.BUILD_TIME})"
 
-        val languageMap = mutableMapOf<String, MutableList<Translator>>()
-        Translator
-            .readAll(requireContext())
-            .sortedByDescending { it.translated }
-            .forEach { tl ->
-            // At least 8 words
-            if(tl.translated < 8)
-                return@forEach
-            tl.languages.forEach next@ { lang ->
-                // Fix: only display my name for German, not all languages
-                if(tl.user == "ThePBone" && lang != "de")
-                    return@next
-
-                if(languageMap[lang] == null)
-                    languageMap[lang] = mutableListOf(tl)
-                else
-                    languageMap[lang]!!.add(tl)
-            }
-        }
-        languageMap.forEach { (cc, tls) ->
+        Translator.readLanguageMap(requireContext()).forEach { (cc, tls) ->
             translatorsGroup?.addPreference(Preference(requireContext()).apply {
                 val language = Locale.forLanguageTag(cc).getDisplayLanguage(requireContext().resources.configuration.locales[0])
                 val region = Locale.forLanguageTag(cc).getDisplayCountry(requireContext().resources.configuration.locales[0])

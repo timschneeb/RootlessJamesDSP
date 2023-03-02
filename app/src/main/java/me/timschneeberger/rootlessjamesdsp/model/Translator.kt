@@ -17,6 +17,28 @@ data class Translator(
     val languages: List<String>
 ) {
     companion object {
+        fun readLanguageMap(context: Context): Map<String, List<Translator>> {
+            val languageMap = mutableMapOf<String, MutableList<Translator>>()
+            readAll(context)
+                .sortedByDescending { it.translated }
+                .forEach { tl ->
+                    // At least 8 words
+                    if (tl.translated < 8)
+                        return@forEach
+                    tl.languages.forEach next@{ lang ->
+                        // Fix: only display my name for German, not all languages
+                        if (tl.user == "ThePBone" && lang != "de")
+                            return@next
+
+                        if (languageMap[lang] == null)
+                            languageMap[lang] = mutableListOf(tl)
+                        else
+                            languageMap[lang]!!.add(tl)
+                    }
+                }
+            return languageMap
+        }
+
         fun readAll(context: Context): List<Translator> {
             return try {
                 Json.decodeFromString<List<Translator>>(
