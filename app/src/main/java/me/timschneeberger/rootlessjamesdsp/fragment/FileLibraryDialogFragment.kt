@@ -361,14 +361,18 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
         scriptScannerScope.launch {
             binding.tags.removeAllViews()
 
+            val untaggedScripts = mutableListOf<String>()
             val foundTags = mutableMapOf<String /* tag */, MutableList<String> /* scripts */>()
 
             fileLibPreference.entryValues.forEach { path ->
                 eelParser.load(path.toString(), skipProperties = true)
+                if(eelParser.tags.isEmpty())
+                    eelParser.fileName?.let(untaggedScripts::add)
                 eelParser.tags.forEach { tag ->
                     val prettyfied = tag.lowercase()
                         .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
                         .run { if(length <= 3) uppercase() else this }
+
 
                     eelParser.fileName?.let {
                         if (foundTags.containsKey(prettyfied))
@@ -378,6 +382,9 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
                     }
                 }
             }
+
+            if(untaggedScripts.isNotEmpty())
+                foundTags["Untagged"] = ((foundTags["Untagged"] ?: listOf()) + untaggedScripts).toMutableList()
 
             withContext(Dispatchers.Main) {
                 val sorted = foundTags.entries
