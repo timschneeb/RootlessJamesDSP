@@ -1,5 +1,6 @@
 package me.timschneeberger.rootlessjamesdsp.fragment
 
+import android.animation.LayoutTransition
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
@@ -12,6 +13,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.ListAdapter
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -21,12 +24,15 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.FileProvider
 import androidx.core.view.isVisible
 import androidx.preference.ListPreferenceDialogFragmentCompat
+import com.google.android.material.chip.Chip
 import kotlinx.coroutines.*
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.MainApplication
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.activity.LiveprogEditorActivity
+import me.timschneeberger.rootlessjamesdsp.databinding.DialogFilelibraryBinding
 import me.timschneeberger.rootlessjamesdsp.interop.JdspImpResToolbox
+import me.timschneeberger.rootlessjamesdsp.liveprog.EelParser
 import me.timschneeberger.rootlessjamesdsp.model.Preset
 import me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
@@ -36,6 +42,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.StorageUtils
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import timber.log.Timber
 import java.io.File
+import java.util.Locale
 import kotlin.math.roundToInt
 
 
@@ -48,6 +55,12 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
     private var clickedEntryValue: CharSequence? = null
     private lateinit var dialog: AlertDialog
     private lateinit var importLauncher: ActivityResultLauncher<Intent>
+    private lateinit var binding: DialogFilelibraryBinding
+
+    private val eelParser = EelParser()
+    private val scriptScannerScope = CoroutineScope(Dispatchers.IO)
+    private var currentTag: String? = null
+    private var currentTagScripts: List<String>? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         dialog = super.onCreateDialog(savedInstanceState) as AlertDialog
@@ -272,6 +285,8 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
     }
 
     override fun onDialogClosed(positiveResult: Boolean) {
+        scriptScannerScope.cancel()
+
         if (positiveResult && !clickedEntryValue.isNullOrEmpty()) {
             val value = clickedEntryValue.toString()
 
@@ -311,6 +326,8 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
     private fun refresh() {
         fileLibPreference.refresh()
         dialog.listView.adapter = createAdapter()
+
+        onTagClicked(currentTag, currentTagScripts)
         refreshSelection()
     }
 
@@ -318,34 +335,100 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
         if (fileLibPreference.isPreset())
             return
 
-        val selectedIndex = fileLibPreference.entryValues.indexOf(fileLibPreference.value)
+        val selectedIndex = (dialog.listView.adapter as? ListItemAdapter)?.indexOf(fileLibPreference.value) ?: -1
         if (selectedIndex >= 0) {
             dialog.listView.setItemChecked(selectedIndex, true)
             dialog.listView.setSelection(selectedIndex)
+        }
+        else {
+            dialog.listView.setItemChecked(-1, true)
+        }
+    }
+
+    private fun onTagClicked(tag: String?, scripts: List<String>?) {
+        currentTag = tag
+        currentTagScripts = scripts
+        Timber.e(tag)
+        Timber.e(scripts?.joinToString(";"))
+
+        (dialog.listView.adapter as Filterable).filter.filter(scripts?.joinToString(";"))
+    }
+
+    private fun scanScriptMetadata() {
+        if(!fileLibPreference.isLiveprog())
+            return
+
+        scriptScannerScope.launch {
+            binding.tags.removeAllViews()
+
+            val foundTags = mutableMapOf<String /* tag */, MutableList<String> /* scripts */>()
+
+            fileLibPreference.entryValues.forEach { path ->
+                eelParser.load(path.toString(), skipProperties = true)
+                eelParser.tags.forEach { tag ->
+                    val prettyfied = tag.lowercase()
+                        .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
+                        .run { if(length <= 3) uppercase() else this }
+
+                    eelParser.fileName?.let {
+                        if (foundTags.containsKey(prettyfied))
+                            foundTags[prettyfied]?.add(it)
+                        else
+                            foundTags[prettyfied] = mutableListOf(it)
+                    }
+                }
+            }
+
+            withContext(Dispatchers.Main) {
+                val sorted = foundTags.entries
+                    .sortedWith(compareByDescending<Map.Entry<String, List<String>>> { it.value.size }
+                        .thenBy { it.key })
+
+                for((tag, scripts) in sorted) {
+                    binding.tags.addView(Chip(dialog.context, null,
+                        com.google.android.material.R.style.Widget_Material3_Chip_Assist_Elevated)
+                        .apply {
+                            text = tag
+                            isCheckable = true
+                            setOnClickListener { if(isChecked) onTagClicked(tag, scripts) }
+                        })
+                }
+                binding.tags.setOnCheckedStateChangeListener { _, checkedIds ->
+                    if(checkedIds.isEmpty())
+                        onTagClicked(null, null)
+                }
+            }
         }
     }
 
     @SuppressLint("PrivateResource")
     private fun createAdapter(): ListAdapter {
-        return if (fileLibPreference.isPreset())
-            ListItemAdapter(
-                requireContext(),
-                R.layout.item_preset_list,
-                android.R.id.text1,
-                fileLibPreference.entries
-            )
-        else
-            return ListItemAdapter(
-                requireContext(),
-                com.google.android.material.R.layout.select_dialog_singlechoice_material,
-                android.R.id.text1,
-                fileLibPreference.entries
-            )
+        return ListItemAdapter(
+            requireContext(),
+            if (fileLibPreference.isPreset()) R.layout.item_preset_list
+            else com.google.android.material.R.layout.select_dialog_singlechoice_material,
+            android.R.id.text1,
+            fileLibPreference.entries.zip(fileLibPreference.entryValues){
+                    a, b -> Entry(a, b)
+            }.toTypedArray(),
+            fileLibPreference.isLiveprog()
+        ) {
+            refreshSelection()
+        }
     }
 
     override fun onPrepareDialogBuilder(builder: AlertDialog.Builder) {
         super.onPrepareDialogBuilder(builder)
-        builder.setView(R.layout.dialog_filelibrary)
+        binding = DialogFilelibraryBinding.inflate(layoutInflater)
+        binding.tags.isSingleSelection = true
+        binding.tags.layoutTransition = LayoutTransition().apply {
+            enableTransitionType(LayoutTransition.CHANGING)
+        }
+        binding.root.layoutTransition = LayoutTransition().apply {
+            enableTransitionType(LayoutTransition.CHANGING)
+        }
+
+        builder.setView(binding.root)
         builder.setNeutralButton(getString(R.string.action_import)) { _, _ -> }
 
         if(fileLibPreference.isPreset()) {
@@ -355,8 +438,9 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
         }
 
         builder.setAdapter(createAdapter()) { _, position ->
-            val name = fileLibPreference.entries[position]
-            val value = fileLibPreference.entryValues[position]
+            val item = dialog.listView.adapter.getItem(position) as Entry
+            val name = item.name
+            val value = item.value
 
             if(fileLibPreference.isPreset()) {
                 val result = Preset(File(value.toString()).name).load() != null
@@ -372,6 +456,8 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
             this.onClick(dialog, DialogInterface.BUTTON_POSITIVE)
             dialog.dismiss()
         }
+
+        scanScriptMetadata()
     }
 
     private fun import() {
@@ -388,17 +474,44 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
         }
     }
 
-    private inner class ListItemAdapter(
-        context: Context, resource: Int, textViewResourceId: Int,
-        objects: Array<CharSequence?>?,
-    ) :
-        ArrayAdapter<CharSequence?>(context, resource, textViewResourceId, objects!!) {
-        override fun hasStableIds(): Boolean {
-            return true
-        }
+    data class Entry(val name: CharSequence, val value: CharSequence) {
+        override fun toString() = name.toString()
+    }
 
-        override fun getItemId(position: Int): Long {
-            return position.toLong()
+    private inner class ListItemAdapter(
+        context: Context, resource: Int, textViewResourceId: Int, val allItems: Array<Entry>,
+        val allowFilter: Boolean = false, val onFiltered: () -> Unit
+    ) : ArrayAdapter<Entry>(context, resource, textViewResourceId, allItems), Filterable {
+        private var items: Array<Entry> = allItems
+
+        fun indexOf(value: String): Int {
+            return items.map { it.value }.indexOf(value)
+        }
+        override fun hasStableIds(): Boolean = true
+        override fun getCount(): Int = items.size
+        override fun getItem(position: Int): Entry = items[position]
+        override fun getItemId(position: Int): Long = position.toLong()
+        override fun getFilter(): Filter {
+            return object : Filter() {
+                override fun publishResults(charSequence: CharSequence?, filterResults: FilterResults) {
+                    items = filterResults.values as Array<Entry>
+                    notifyDataSetChanged()
+                    onFiltered.invoke()
+                }
+
+                override fun performFiltering(charSequence: CharSequence?): FilterResults {
+                    if(!allowFilter)
+                        return FilterResults().apply { values = allItems }
+
+                    val query = charSequence?.toString()?.split(";")
+                    return FilterResults().apply {
+                        values = if (query.isNullOrEmpty())
+                            allItems
+                        else
+                            allItems.filter { query.contains(it.name) }.toTypedArray()
+                    }
+                }
+            }
         }
     }
 

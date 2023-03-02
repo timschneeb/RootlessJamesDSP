@@ -37,7 +37,7 @@ class EelParser {
         lastFileHash = null
     }
 
-    fun load(path: String, force: Boolean = false, skipParse: Boolean = false): Boolean {
+    fun load(path: String, force: Boolean = false, skipParse: Boolean = false, skipProperties: Boolean = false): Boolean {
         if(path.isBlank()) {
             reset()
             return false
@@ -68,7 +68,7 @@ class EelParser {
         lastFileHash = null
 
         if(!skipParse) {
-            parse(false)
+            parse(false, skipProperties)
         }
 
         lastFileHash = contents?.md5
@@ -88,7 +88,7 @@ class EelParser {
     }
 
     @Suppress("UNUSED_VARIABLE")
-    fun parse(silent: Boolean) {
+    fun parse(silent: Boolean, skipProperties: Boolean = false) {
         fun d(s: String) { if(silent) Timber.d(s) }
         fun e(s: String) { if(silent) Timber.e(s) }
         fun e(t: Throwable) { if(silent) Timber.e(t) }
@@ -98,6 +98,9 @@ class EelParser {
         parseTags()
 
         properties = arrayListOf()
+
+        if(skipProperties)
+            return
 
         // Parse number range parameters
         val rangeParamRegex = """(?<var>\w+):(?<def>-?\d+\.?\d*)?<(?<min>-?\d+\.?\d*),(?<max>-?\d+\.?\d*),?(?<step>-?\d+\.?\d*)?>(?<desc>[\s\S][^\n]*)""".toRegex()
