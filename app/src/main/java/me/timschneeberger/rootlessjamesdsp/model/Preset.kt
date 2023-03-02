@@ -5,6 +5,7 @@ import android.content.Intent
 import android.system.ErrnoException
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
+import me.timschneeberger.rootlessjamesdsp.liveprog.EelParser
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
@@ -46,7 +47,7 @@ class Preset(val name: String): KoinComponent {
     fun load(): PresetMetadata? {
         val file = file()
         Timber.d("Loading preset from ${file.path}")
-       return load(ctx, FileInputStream(file))
+        return load(ctx, FileInputStream(file))
     }
 
     fun save(): Boolean {
@@ -228,7 +229,8 @@ class Preset(val name: String): KoinComponent {
                 metadata[args[0]] = args[1].trim()
             }
 
-            Timber.d("Loaded preset file version ${metadata[META_VERSION]}")
+            val version = metadata[META_VERSION]?.toIntOrNull() ?: 2
+            Timber.d("Loaded preset file version $version")
 
             val files = targetFolder.listFiles()
             if(files == null || files.isEmpty()) {
@@ -245,19 +247,30 @@ class Preset(val name: String): KoinComponent {
                 Timber.d("Extracting to ${target.absolutePath}")
             }
 
-            if (files.any {
-                    Timber.e("${it.name} == $FILE_LIVEPROG")
-                    it.name == FILE_LIVEPROG
-            } && metadata[META_LIVEPROG_INCLUDED].toBoolean()) {
+            if (files.any { it.name == FILE_LIVEPROG }) {
                 findLiveprogScriptPath(ctx)?.let {
                     val originalFile = File(it)
                     val targetFile = File("${ctx.getExternalFilesDir(null)!!.path}/Liveprog", originalFile.name)
-                    Timber.d("Restoring included liveprog script state to '${targetFile.absolutePath}'")
                     val tempPath = File(currentPath(ctx), FILE_LIVEPROG)
-                    tempPath.copyTo(targetFile, overwrite = true)
-                    tempPath.delete()
 
-                    ctx.sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_RELOAD_LIVEPROG))
+                    if(metadata[META_LIVEPROG_INCLUDED].toBoolean()) {
+                        if(!targetFile.exists()) {
+                            Timber.d("Extracting embedded liveprog file to '${targetFile.absolutePath}'")
+                            tempPath.copyTo(targetFile, overwrite = true)
+                            tempPath.delete()
+                        }
+                        else {
+                            Timber.d("Copying parameters of embedded liveprog file to '${targetFile.absolutePath}'")
+                            val parser = EelParser()
+                            val parserNew = EelParser()
+                            parser.load(tempPath.absolutePath)
+                            parserNew.load(targetFile.absolutePath)
+                            parser.properties.forEach(parserNew::manipulateProperty)
+                            parserNew.save()
+                            tempPath.delete()
+                        }
+                        ctx.sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_RELOAD_LIVEPROG))
+                    }
                 }
             }
 
@@ -293,7 +306,6 @@ class Preset(val name: String): KoinComponent {
             }
             return null
         }
-
     }
 }
 

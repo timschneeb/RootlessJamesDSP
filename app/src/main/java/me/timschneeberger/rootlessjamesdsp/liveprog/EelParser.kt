@@ -254,6 +254,8 @@ class EelParser {
         return true
     }
 
+    // TODO clean this mess up
+
     fun manipulateProperty(prop: EelBaseProperty): Boolean {
         if(!isFileLoaded)
             return false
