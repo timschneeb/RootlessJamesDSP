@@ -110,8 +110,9 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
 
         dialog.listView.setOnItemLongClickListener {
                 _, view, position, _ ->
-            val name = fileLibPreference.entries[position]
-            val path = fileLibPreference.entryValues[position]
+            val item = dialog.listView.adapter.getItem(position) as Entry
+            val name = item.name
+            val path = item.value
 
             val popupMenu = PopupMenu(requireContext(), view)
             popupMenu.menuInflater.inflate(R.menu.menu_filelibrary_context, popupMenu.menu)
