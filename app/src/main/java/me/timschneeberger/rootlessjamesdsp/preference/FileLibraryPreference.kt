@@ -3,7 +3,6 @@ package me.timschneeberger.rootlessjamesdsp.preference
 import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
-import android.widget.Toast
 import androidx.preference.ListPreference
 import androidx.preference.Preference.SummaryProvider
 import me.timschneeberger.rootlessjamesdsp.R

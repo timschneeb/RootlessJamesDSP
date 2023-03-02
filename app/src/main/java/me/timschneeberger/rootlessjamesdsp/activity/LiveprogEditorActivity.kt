@@ -15,7 +15,6 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.core.content.ContextCompat
@@ -48,7 +47,6 @@ import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.unregisterLoc
 import timber.log.Timber
 import java.util.Locale
 import java.util.regex.Pattern
-import kotlin.math.roundToInt
 
 
 class LiveprogEditorActivity : BaseActivity() {

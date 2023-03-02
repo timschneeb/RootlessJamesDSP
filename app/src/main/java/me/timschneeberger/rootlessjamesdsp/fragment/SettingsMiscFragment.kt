@@ -1,6 +1,5 @@
 package me.timschneeberger.rootlessjamesdsp.fragment
 
-import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.util.Patterns
@@ -8,9 +7,10 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
-import androidx.preference.*
+import androidx.preference.EditTextPreference
+import androidx.preference.Preference
+import androidx.preference.PreferenceFragmentCompat
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.api.AutoEqClient

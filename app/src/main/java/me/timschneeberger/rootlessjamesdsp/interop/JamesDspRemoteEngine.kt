@@ -6,7 +6,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.media.audiofx.AudioEffect
 import android.media.audiofx.AudioEffectHidden
-import android.widget.Toast
 import me.timschneeberger.rootlessjamesdsp.interop.structure.EelVmVariable
 import me.timschneeberger.rootlessjamesdsp.utils.AudioEffectExtensions.getParameterInt
 import me.timschneeberger.rootlessjamesdsp.utils.AudioEffectExtensions.setParameter
@@ -19,7 +18,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.unregisterLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.toShort
 import timber.log.Timber
-import java.util.*
+import java.util.UUID
 import kotlin.math.roundToInt
 
 class JamesDspRemoteEngine(

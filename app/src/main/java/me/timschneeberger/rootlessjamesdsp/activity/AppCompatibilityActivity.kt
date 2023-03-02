@@ -1,15 +1,12 @@
 package me.timschneeberger.rootlessjamesdsp.activity
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.ActivityAppCompatibilityBinding
 import me.timschneeberger.rootlessjamesdsp.fragment.AppCompatibilityFragment
 import me.timschneeberger.rootlessjamesdsp.service.RootlessAudioProcessorService
-import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.getParcelableAs
 
 class AppCompatibilityActivity : BaseActivity() {

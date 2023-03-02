@@ -3,14 +3,13 @@ package me.timschneeberger.rootlessjamesdsp.session.root
 import android.content.Context
 import android.content.Intent
 import android.media.audiofx.AudioEffect
-import android.widget.Toast
 import kotlinx.coroutines.Job
 import me.timschneeberger.rootlessjamesdsp.MainApplication
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspRemoteEngine
 import me.timschneeberger.rootlessjamesdsp.interop.ProcessorMessageHandler
-import me.timschneeberger.rootlessjamesdsp.model.root.RemoteEffectSession
 import me.timschneeberger.rootlessjamesdsp.model.AudioSessionDumpEntry
 import me.timschneeberger.rootlessjamesdsp.model.IEffectSession
+import me.timschneeberger.rootlessjamesdsp.model.root.RemoteEffectSession
 import me.timschneeberger.rootlessjamesdsp.session.shared.BaseSessionDatabase
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getUidFromPackage
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast

@@ -3,11 +3,6 @@ package me.timschneeberger.rootlessjamesdsp.model
 import android.content.Context
 import android.content.Intent
 import android.system.ErrnoException
-import android.widget.Toast
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
@@ -20,9 +15,15 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.xml.sax.SAXException
 import timber.log.Timber
-import java.io.*
+import java.io.BufferedInputStream
+import java.io.BufferedOutputStream
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.InputStream
 import javax.xml.parsers.DocumentBuilderFactory
-import kotlin.io.path.Path
 
 
 typealias PresetMetadata = Map<String, String>

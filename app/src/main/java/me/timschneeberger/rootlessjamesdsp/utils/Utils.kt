@@ -1,8 +1,6 @@
 package me.timschneeberger.rootlessjamesdsp.utils
 
-import android.content.Intent
 import android.content.pm.ApplicationInfo
-import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle

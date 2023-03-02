@@ -1,7 +1,6 @@
 package me.timschneeberger.rootlessjamesdsp.fragment
 
 import android.animation.LayoutTransition
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle

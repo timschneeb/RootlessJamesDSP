@@ -1,10 +1,8 @@
 package me.timschneeberger.rootlessjamesdsp.delegates
 
 import android.app.Activity
-import android.content.Context
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.model.preference.AppTheme
-import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject

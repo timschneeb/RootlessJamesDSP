@@ -13,8 +13,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import me.timschneeberger.rootlessjamesdsp.R
-import me.timschneeberger.rootlessjamesdsp.activity.AeqSelectorActivity
-import me.timschneeberger.rootlessjamesdsp.activity.BlocklistActivity
 import me.timschneeberger.rootlessjamesdsp.adapter.GraphicEqNodeAdapter
 import me.timschneeberger.rootlessjamesdsp.contract.AutoEqSelectorContract
 import me.timschneeberger.rootlessjamesdsp.databinding.FragmentGraphicEqBinding
@@ -24,8 +22,6 @@ import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showInputAlert
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showYesNoAlert
-import me.timschneeberger.rootlessjamesdsp.utils.Preferences
-import org.koin.android.ext.android.inject
 import timber.log.Timber
 import java.util.UUID
 
