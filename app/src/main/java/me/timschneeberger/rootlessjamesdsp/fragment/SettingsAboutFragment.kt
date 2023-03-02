@@ -37,7 +37,7 @@ class SettingsAboutFragment : PreferenceFragmentCompat() {
         else
             "Release"
 
-        buildInfo?.summary = "$type build @${BuildConfig.COMMIT_SHA} (${BuildConfig.FLAVOR_dependencies}) (compiled at ${BuildConfig.BUILD_TIME})"
+        buildInfo?.summary = "$type build (${BuildConfig.FLAVOR_dependencies}) @${BuildConfig.COMMIT_SHA} (compiled at ${BuildConfig.BUILD_TIME})"
 
         Translator.readLanguageMap(requireContext()).forEach { (cc, tls) ->
             translatorsGroup?.addPreference(Preference(requireContext()).apply {
