@@ -134,7 +134,7 @@ This app focuses on a rootless implementation, but it can be made to work with t
         <br />
         <sub><b>Oleksandr Tkachenko (netrunner-exe)</b></sub></a>
       <br />
-      <sub><b>5735 words</b></sub>
+      <sub><b>5773 words</b></sub>
     </td>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/fankesyooni"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15676501/medium/6ee6d7e4c63bfb0f90dc5088a5ff0efd.jpg" />
@@ -174,6 +174,20 @@ This app focuses on a rootless implementation, but it can be made to work with t
       <sub><b>210 words</b></sub>
     </td>
     <td align="center" valign="top">
+      <a href="https://crowdin.com/profile/KnoyanMitsu"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15717417/medium/448273d6a14af20ef27c48850d69fc43.jpeg" />
+        <br />
+        <sub><b>Knoyan Mitsu (KnoyanMitsu)</b></sub></a>
+      <br />
+      <sub><b>61 words</b></sub>
+    </td>
+    <td align="center" valign="top">
+      <a href="https://crowdin.com/profile/jont4"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15464490/medium/bd7f97dff61f637d007652f9947d8f17.jpeg" />
+        <br />
+        <sub><b>Jontix (jont4)</b></sub></a>
+      <br />
+      <sub><b>52 words</b></sub>
+    </td>
+    <td align="center" valign="top">
       <a href="https://crowdin.com/profile/michelequercetti"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15688795/medium/2ca2b8ce17c5319c71579160cd0f7b97.jpeg" />
         <br />
         <sub><b>michele quercetti (michelequercetti)</b></sub></a>
@@ -192,8 +206,10 @@ This app focuses on a rootless implementation, but it can be made to work with t
         <br />
         <sub><b>Валерий Удовенко (redwalery17)</b></sub></a>
       <br />
-      <sub><b>2 words</b></sub>
+      <sub><b>8 words</b></sub>
     </td>
+  </tr>
+  <tr>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/nnamphong0709"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15714167/medium/3a78fdaf3d50a166ee41f3644ef523c8.jpeg" />
         <br />
