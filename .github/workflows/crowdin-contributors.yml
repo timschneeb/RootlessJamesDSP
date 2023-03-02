@@ -18,8 +18,8 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Generate Crowdin Contributors table
-      uses: andrii-bodnar/action-crowdin-contributors@0.2.0
+    - name: Generate Crowdin Contributors data
+      uses: ThePBone/action-crowdin-contributors-fork@v0.1
       with:
         contributors_per_line: 6
         max_contributors: 32
