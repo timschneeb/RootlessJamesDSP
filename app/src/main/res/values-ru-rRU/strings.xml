@@ -297,6 +297,7 @@
     <string name="privacy_share_crash_reports_on">Отправлять отчёты о сбоях разработчику</string>
     <string name="privacy_share_crash_reports_off">Не отправлять отчёты о сбоях разработчику</string>
     <string name="credits">Авторы</string>
+    <string name="translators">Авторы переводов</string>
     <string name="credits_app">Приложение и rootless версия</string>
     <string name="credits_dsp">Библиотека алгоритмов ядра JamesDSP</string>
     <string name="credits_project_page">Страница проекта на GitHub</string>
