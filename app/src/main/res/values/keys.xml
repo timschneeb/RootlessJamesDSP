@@ -16,6 +16,7 @@
     <string name="key_troubleshooting" translatable="false">troubleshooting</string>
     <string name="key_misc" translatable="false">misc</string>
     <string name="key_about" translatable="false">about</string>
+    <string name="key_translators" translatable="false">translators</string>
 
     <!-- Settings -->
     <string name="key_share_crash_reports" translatable="false">share_crash_reports</string>

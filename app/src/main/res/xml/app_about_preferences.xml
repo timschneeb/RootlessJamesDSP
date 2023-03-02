@@ -65,5 +65,11 @@
             android:action="android.intent.action.VIEW"
             android:data="https://github.com/james34602" />
     </Preference>
+
+    <PreferenceCategory
+        android:key="@string/key_translators"
+        app:title="@string/translators"
+        app:iconSpaceReserved="false" />
+
 </PreferenceCategory>
 </PreferenceScreen>
