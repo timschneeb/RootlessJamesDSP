@@ -296,7 +296,7 @@
     <string name="privacy_share_crash_reports">Поделиться информацией о сбоях приложения</string>
     <string name="privacy_share_crash_reports_on">Отправлять отчёты о сбоях разработчику</string>
     <string name="privacy_share_crash_reports_off">Не отправлять отчёты о сбоях разработчику</string>
-    <string name="credits">Авторы</string>
+    <string name="credits">Благодарности</string>
     <string name="translators">Авторы переводов</string>
     <string name="credits_app">Приложение и rootless версия</string>
     <string name="credits_dsp">Библиотека алгоритмов ядра JamesDSP</string>
@@ -321,7 +321,7 @@
     <string name="appearance_nav_hide">Скрывать панель навигации при прокрутке</string>
     <!-- Theme names -->
     <string name="theme_default">По умолчанию</string>
-    <string name="theme_monet">Динамический</string>
+    <string name="theme_monet">Dynamic</string>
     <string name="theme_greenapple">Green Apple</string>
     <string name="theme_strawberrydaiquiri">Strawberry Daiquiri</string>
     <string name="theme_honey">Honey</string>

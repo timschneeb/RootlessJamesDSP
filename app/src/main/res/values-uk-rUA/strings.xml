@@ -115,7 +115,7 @@
     <string name="liveprog_edit_header">Редагувати вибраний скрипт</string>
     <string name="liveprog_edit">Відкрити активний скрипт у вбудованому редакторі</string>
     <string name="tube_enable">Аналогове моделювання</string>
-    <string name="tube_drive">Передпідсилювач</string>
+    <string name="tube_drive">Преамп</string>
     <string name="output_control_header">Контроль виводу звуку</string>
     <string name="output_limiter_threshold">Поріг лімітера</string>
     <string name="output_limiter_release">Час релізу</string>
@@ -296,7 +296,7 @@
     <string name="privacy_share_crash_reports">Поділитися інформацією про збої в додатку</string>
     <string name="privacy_share_crash_reports_on">Надсилати звіти про збої розробнику</string>
     <string name="privacy_share_crash_reports_off">Не надсилати звіти про збої розробнику</string>
-    <string name="credits">Автори</string>
+    <string name="credits">Подяки</string>
     <string name="translators">Автори перекладів</string>
     <string name="credits_app">Додаток та rootless версія</string>
     <string name="credits_dsp">Бібліотека алгоритмів ядра JamesDSP</string>
@@ -321,7 +321,7 @@
     <string name="appearance_nav_hide">Приховати панель навігації під час прокрутки</string>
     <!-- Theme names -->
     <string name="theme_default">Типові налаштування</string>
-    <string name="theme_monet">Динамічний</string>
+    <string name="theme_monet">Dynamic</string>
     <string name="theme_greenapple">Green Apple</string>
     <string name="theme_strawberrydaiquiri">Strawberry Daiquiri</string>
     <string name="theme_honey">Honey</string>
