@@ -2,11 +2,7 @@
 * Added option to exclude app from recents (@fankes)
 * Added credits for translators
 * Filter liveprog by category
-
 * Added full Russian & Ukrainian translation (@netrunner-exe)
 * Added full Chinese translation (@fankes, @O2C14)
 * Added partial Spanish translation (@TheGary, @ianpok17)
 * Added partial Turkish translation (@pizzawithdirt)
-
-* Only copy liveprog parameters instead of overwriting the whole script when loading a preset
-* Many other optimizations & large code rewrite
