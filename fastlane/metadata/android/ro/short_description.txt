@@ -1,1 +1,1 @@
-Motor de procesare audio JamesDSP pentru dispozitive Android ne-rootate, pentru sistemul întreg.
+System-wide JamesDSP audio processing engine for non-rooted Android devices.
