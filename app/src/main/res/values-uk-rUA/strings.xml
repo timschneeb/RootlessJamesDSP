@@ -44,7 +44,7 @@
     <string name="yes">Так</string>
     <string name="no">Ні</string>
     <string name="value_not_set">Не задано</string>
-    <string name="undo">Відмінити</string>
+    <string name="undo">Скасувати</string>
     <string name="redo">Повторити</string>
     <string name="no_activity_found">Не знайдено жодного Активіті для обробки цієї дії</string>
     <!-- Main screen -->
@@ -142,7 +142,7 @@
     <string name="onboarding_finish">Завершити</string>
     <string name="onboarding_greeting">Ласкаво просимо до RootlessJamesDSP!</string>
     <string name="onboarding_caption">Цей асистент допоможе вам виконати налаштування додатку.</string>
-    <string name="onboarding_warning">Наразі додаток не завершений та нестабільний. Зверніть увагу, що на деяких пристроях він може не працювати так, як очікується, оскільки використовує Android API, не призначені для використання третіми особами.</string>
+    <string name="onboarding_warning">Наразі додаток є незавершеним і може бути нестабільним. Зверніть увагу, що на деяких пристроях він може не працювати належним чином, оскільки використовує Android API, які не передбачені для використання сторонніми додатками.</string>
     <string name="onboarding_fix_permissions_title">Потрібна дія користувача</string>
     <string name="onboarding_fix_permissions">Один або кілька дозволів було відкликано вами або системою.\nЩоб забезпечити правильну роботу додатку, вам потрібно надати ці дозволи знову.\n\nБудь ласка, перезапустіть майстер налаштування для повторного надання цих дозволів.</string>
     <string name="onboarding_limitations_title">Обмеження</string>
@@ -209,11 +209,11 @@
     <string name="limit_unsupported_apps_title">Непідтримувані додатки</string>
     <string name="limit_unsupported_apps">Додатки, які блокують запис внутрішнього аудіо, не будуть оброблені (наприклад, Spotify, Google Chrome).</string>
     <string name="limit_hw_accel_title">Проблеми HW-прискоренням відтворення звуку</string>
-    <string name="limit_hw_accel">HW-прискорене відтворення аудіо іноді може призводити до дублювання звуку або зупинки JamesDSP. Додайте проблемний музичний плеєр до списку виключених додатків, щоб запобігти повторній маршрутизації JamesDSP.</string>
+    <string name="limit_hw_accel">HW-прискорене відтворення аудіо іноді може призводити до дублювання звуку або зупинки JamesDSP в деяких випадках. Будь ласка, додайте проблемний музичний плеєр до списку виключених додатків, щоб запобігти маршрутизації його звуку через JamesDSP.</string>
     <string name="limit_detect_delay_title">Затримка визначення аудіосесії</string>
     <string name="limit_detect_delay"><![CDATA[Після того як додаток відкриває нову медіа-сесію для відтворення звуку, ви можете почути повторюваний або уривчастий звук на дуже короткий період (приблизно 250 мс).]]></string>
     <string name="limit_latency_title">Підвищена затримка</string>
-    <string name="limit_latency">Ця програма може додавати деяку затримку в аудіопотік. Ви можете внести додатки для перегляду фільмів/відео до списку винятків, щоб не обробляти їх та уникнути збоїв у синхронізації звуку та відео.</string>
+    <string name="limit_latency">Ця програма може додавати деяку затримку в аудіопотік. Ви можете внести програми для перегляду фільмів/відео до списку виключених додатків, щоб уникнути можливих проблем із синхронізацією звуку та відео.</string>
     <string name="limit_tested_devices_title">Протестовані пристрої</string>
     <string name="limit_tested_devices">Виробник вашого пристрою міг внести зміни до аудіопідсистеми Android, які можуть порушити роботу додатку через використання не задокументованих API.\nДодаток тестувався на пристроях:\n• Samsung S20+ (Android 12)\n• Емулятор AOSP (Android 10-13)\n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
@@ -224,7 +224,7 @@
     <string name="session_detection_header">Виявлення аудіосесій</string>
     <string name="session_continuous_polling">Безперервне опитування</string>
     <string name="session_continuous_polling_off">Прослуховувати лише події сеансу від системи</string>
-    <string name="session_continuous_polling_on">Постійно перераховувати аудіосесії</string>
+    <string name="session_continuous_polling_on">Постійно сканувати аудіосесії</string>
     <string name="session_continuous_polling_rate">Інтервал опитування (ms)</string>
     <string name="session_detection_method">Бажаний метод виявлення сесії</string>
     <string name="session_detection_method_audiopolicyservice">AudioPolicyService dump</string>
@@ -233,7 +233,7 @@
     <string name="session_loss_ignore">Ігнорувати втрату контролю сесії</string>
     <string name="session_loss_ignore_off">Вимкнено, типові налаштування (рекомендується)</string>
     <string name="session_loss_ignore_on">Не робити жодних дій (може спричинити дублювання звуку)</string>
-    <string name="session_loss_ignore_warning">Увімкнення цього параметру може призвести до дублювання звуку, коли інша програма для обробки звуку отримує контроль над аудіосесією. \nРекомендуємо залишити цю опцію вимкненою, якщо ви не маєте проблем з помилковою втратою сесій.</string>
+    <string name="session_loss_ignore_warning">Активація цього параметру може призвести до дублювання звуку, якщо інша програма для обробки звуку отримає контроль над поточною аудіосесією. \nЯкщо у вас немає проблем з помилковою втратою сесій, то рекомендується залишити цю опцію вимкненою.</string>
     <string name="audio_format_header">Обробка аудіо</string>
     <string name="audio_format_section_header">Бажаний аудіоформат</string>
     <string name="audio_format_processing_header">Параметри обробки аудіо</string>
@@ -297,6 +297,7 @@
     <string name="privacy_share_crash_reports_on">Надсилати звіти про збої розробнику</string>
     <string name="privacy_share_crash_reports_off">Не надсилати звіти про збої розробнику</string>
     <string name="credits">Автори</string>
+    <string name="translators">Автори перекладів</string>
     <string name="credits_app">Додаток та rootless версія</string>
     <string name="credits_dsp">Бібліотека алгоритмів ядра JamesDSP</string>
     <string name="credits_project_page">Сторінка проекту на GitHub</string>
@@ -431,7 +432,7 @@
     <string name="blocklist_delete">Видалити цей додаток зі списку виключень?</string>
     <string name="blocklist_no_exclusions">Немає виключених додатків</string>
     <string name="blocklist_unsupported_apps">Непідтримувані додатки</string>
-    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>Ця програма не підтримує обробку звуку деяких додатків, які блокують запис їхнього аудіовиходу третіми особами. Щоб не вимикати звук цих додатків через обмеження на їхнє захоплення, вони автоматично виключаються з обробки.</p><p><u>Проблемні додатки:</u><br/>%s</p>]]></string>
+    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>Ця програма не підтримує обробку звуку деяких додатків, які блокують запис їхнього аудіовиходу сторонніми додатками. Щоб уникнути вимикання звуку цих додатків через обмеження їхнього захоплення, вони автоматично виключаються з обробки.</p><p><u>Зачеплені додатки:</u><br/>%s</p>]]></string>
     <!-- Compatibility issue activity -->
     <string name="title_activity_app_compat">Проблеми сумісності</string>
     <string name="app_compat_retry">Повторити</string>
