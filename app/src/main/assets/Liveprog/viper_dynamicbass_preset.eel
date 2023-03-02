@@ -2,45 +2,148 @@ desc: Dynamic Bass (based on ViperFX)
 author: VipersAudio, thepbone
 tags: bass filter viper
 
-dBassGain:100<0,100,1>Bass strength (%)
-
-dX1:800<0,8000,1>Filter 1 Minimum frequency (Hz)
-dX2:6200<0,8000,1>Filter 1 Maximum frequency (Hz)
-dSideGainX:20<0,100,1>Filter 1 Side gain
-
-dY1:80<0,8000,1>Filter 2 Minimum frequency (Hz)
-dY2:140<0,8000,1>Filter 2 Maximum frequency (Hz)
-dSideGainY:0<0,100,1>Filter 2 Side gain
-
-// DYNSYS PRESET LIST             x1,  x2,  y1,y2, s1,s2
-//("Extreme Headphone (v2)",    ({140 ,6200,40,60 ,10,80}))
-//("High-end Headphone (v2)",   ({180 ,5800,55,80 ,10,70}))
-//("Common Headphone (v2)",     ({300 ,5600,60,105,10,50}))
-//("Low-end Headphone (v2)",    ({600 ,5400,60,105,10,20}))
-//("Common Earphone (v2)",      ({100 ,5600,40,80 ,50,50}))
-//("Extreme Headphone (v1)",    ({1200,6200,40,80 ,0 ,20}))
-//("High-end Headphone (v1)",   ({1000,6200,40,80 ,0 ,10}))
-//("Common Headphone (v1)",     ({800 ,6200,40,80 ,10,0 }))
-//("Common Earphone (v1)",      ({400 ,6200,40,80 ,10,0 }))
-//("Apple Earphone",            ({1200,6200,50,90 ,15,10}))
-//("Monster Earphone",          ({1000,6200,50,90 ,30,10}))
-//("Moto Earphone",             ({1100,6200,60,100,20,0 }))
-//("Philips Earphone",          ({1200,6200,50,100,10,50}))
-//("SHP2000",                   ({1200,6200,60,100,0 ,30}))
-//("SHP9000",                   ({1200,6200,40,80 ,0 ,30}))
-//("Unknown Type I",            ({1000,6200,60,100,0 ,0 }))
-//("Unknown Type II",           ({1000,6200,60,120,0 ,0 }))
-//("Unknown Type III",          ({1000,6200,80,140,0 ,0 }))
-//("Unknown Type IV",           ({800 ,6200,80,140,0 ,0 }))
+dBassGain:60<0,100,1>Bass strength (%)
+dPreset:0<0,18,1{Extreme Headphone (v2),High-end Headphone (v2),Common Headphone (v2),Low-end Headphone (v2),Common Earphone (v2),Extreme Headphone (v1),High-end Headphone (v1),Common Headphone (v1),Common Earphone (v1),Apple Earphone,Monster Earphone,Moto Earphone,Philips Earphone,SHP2000,SHP9000,Unknown Type I,Unknown Type II,Unknown Type III,Unknown Type IV}>Preset
 
 @init
-dBassGain = 100.00;
-dX1 = 800.00;
-dX2 = 6200.00;
-dSideGainX = 20.00;
-dY1 = 80.00;
-dY2 = 140.00;
-dSideGainY = 0.00;
+dBassGain = 100;
+dPreset = 18;
+
+(dPreset == 0) ? (
+    dX1 = 140;
+    dX2 = 6200;
+    dY1 = 40;
+    dY2 = 60;
+    dSideGainX = 10;
+    dSideGainY = 80;
+) : (dPreset == 1) ? (
+    dX1 = 180;
+    dX2 = 5800;
+    dY1 = 55;
+    dY2 = 80;
+    dSideGainX = 10;
+    dSideGainY = 70;
+) : (dPreset == 2) ? (
+    dX1 = 300;
+    dX2 = 5600;
+    dY1 = 60;
+    dY2 = 105;
+    dSideGainX = 10;
+    dSideGainY = 50;
+) : (dPreset == 3) ? (
+    dX1 = 600;
+    dX2 = 5400;
+    dY1 = 60;
+    dY2 = 105;
+    dSideGainX = 10;
+    dSideGainY = 20;
+) : (dPreset == 4) ? (
+    dX1 = 100;
+    dX2 = 5600;
+    dY1 = 40;
+    dY2 = 80;
+    dSideGainX = 50;
+    dSideGainY = 50;
+) : (dPreset == 5) ? (
+    dX1 = 1200;
+    dX2 = 6200;
+    dY1 = 40;
+    dY2 = 80;
+    dSideGainX = 0;
+    dSideGainY = 20;
+) : (dPreset == 6) ? (
+    dX1 = 1000;
+    dX2 = 6200;
+    dY1 = 40;
+    dY2 = 80;
+    dSideGainX = 0;
+    dSideGainY = 10;
+) : (dPreset == 7) ? (
+    dX1 = 800;
+    dX2 = 6200;
+    dY1 = 40;
+    dY2 = 80;
+    dSideGainX = 10;
+    dSideGainY = 0;
+) : (dPreset == 8) ? (
+    dX1 = 400;
+    dX2 = 6200;
+    dY1 = 40;
+    dY2 = 80;
+    dSideGainX = 10;
+    dSideGainY = 0;
+) : (dPreset == 9) ? (
+    dX1 = 1200;
+    dX2 = 6200;
+    dY1 = 50;
+    dY2 = 90;
+    dSideGainX = 15;
+    dSideGainY = 10;
+) : (dPreset == 10) ? (
+    dX1 = 1000;
+    dX2 = 6200;
+    dY1 = 50;
+    dY2 = 90;
+    dSideGainX = 30;
+    dSideGainY = 10;
+) : (dPreset == 11) ? (
+    dX1 = 1100;
+    dX2 = 6200;
+    dY1 = 60;
+    dY2 = 100;
+    dSideGainX = 20;
+    dSideGainY = 0;
+) : (dPreset == 12) ? (
+    dX1 = 1200;
+    dX2 = 6200;
+    dY1 = 50;
+    dY2 = 100;
+    dSideGainX = 10;
+    dSideGainY = 50;
+) : (dPreset == 13) ? (
+    dX1 = 1200;
+    dX2 = 6200;
+    dY1 = 60;
+    dY2 = 100;
+    dSideGainX = 0;
+    dSideGainY = 30;
+) : (dPreset == 14) ? (
+    dX1 = 1200;
+    dX2 = 6200;
+    dY1 = 40;
+    dY2 = 80;
+    dSideGainX = 0;
+    dSideGainY = 30;
+) : (dPreset == 15) ? (
+    dX1 = 1000;
+    dX2 = 6200;
+    dY1 = 60;
+    dY2 = 100;
+    dSideGainX = 0;
+    dSideGainY = 0;
+) : (dPreset == 16) ? (
+    dX1 = 1000;
+    dX2 = 6200;
+    dY1 = 60;
+    dY2 = 120;
+    dSideGainX = 0;
+    dSideGainY = 0;
+) : (dPreset == 17) ? (
+    dX1 = 1000;
+    dX2 = 6200;
+    dY1 = 80;
+    dY2 = 140;
+    dSideGainX = 0;
+    dSideGainY = 0;
+) : (dPreset == 18) ? (
+    dX1 = 800;
+    dX2 = 6200;
+    dY1 = 80;
+    dY2 = 140;
+    dSideGainX = 0;
+    dSideGainY = 0;
+);
+
 
 function LowPassFilter_Set(frequency qFactor)(
     x = (frequency * 2.f * $PI) / srate;

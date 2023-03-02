@@ -17,14 +17,10 @@ object StorageUtils {
             return null
         }
 
-        val destinationFilename = File(
-                    targetDir +
-                    File.separatorChar +
-                    name
-        )
+        val destinationFile = File(targetDir + File.separatorChar + name)
         try {
             context.contentResolver.openInputStream(uri)?.use { ins ->
-                if(!createFileFromStream(ins, destinationFilename))
+                if(!createFileFromStream(ins, destinationFile))
                     return null
             }
         } catch (ex: Exception) {
@@ -32,7 +28,7 @@ object StorageUtils {
             ex.printStackTrace()
             return null
         }
-        return destinationFilename
+        return destinationFile
     }
 
     fun openInputStreamSafe(context: Context, uri: Uri): InputStream? {
