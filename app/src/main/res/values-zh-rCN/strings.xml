@@ -20,7 +20,7 @@
     <string name="notification_processing_disabled_title">音频流未在处理或被禁用</string>
     <string name="notification_processing_legacy">点击打开 JamesDSP 管理器</string>
     <!-- Permission request notifications -->
-    <string name="notification_request_permission_title">启动 JamesDSP 需要用户操作</string>
+    <string name="notification_request_permission_title">需要手动操作才能启动 JamesDSP</string>
     <string name="notification_request_permission">点击授予捕获权限并启用 JamesDSP 音频处理</string>
     <!-- Session control loss notifications -->
     <string name="session_control_loss_toast">JamesDSP 因音频会话控制丢失而停止，请禁用其它同类型的音效处理应用。</string>
@@ -143,7 +143,7 @@
     <string name="onboarding_greeting">欢迎使用 RootlessJamesDSP！</string>
     <string name="onboarding_caption">这个向导将帮助您设置此应用。</string>
     <string name="onboarding_warning">目前这个应用尚未完成，也不稳定，它可能无法在某些设备上运行，因为它使用了 Android API，无法被第三方使用。</string>
-    <string name="onboarding_fix_permissions_title">需要用户操作</string>
+    <string name="onboarding_fix_permissions_title">需要手动操作</string>
     <string name="onboarding_fix_permissions">您或系统取消了一个或多个权限。\n为了确保此应用的行为正确，您需要再次授予这些权限。\n\n请重做设置向导以重新授予这些权限。</string>
     <string name="onboarding_limitations_title">局限性</string>
     <string name="onboarding_limitations_unstable">重要提示：请在继续之前仔细阅读相关说明。</string>
@@ -255,6 +255,10 @@
     <string name="audio_format_buffer_size">缓冲大小</string>
     <string name="audio_format_buffer_size_unit">&#xa0;样本</string>
     <string name="audio_format_buffer_size_warning_low_value">警告：过小的缓冲区大小可能会导致诸如卡顿等音频问题</string>
+    <string name="app_behavior">应用行为</string>
+    <string name="exclude_app_from_recents">在最近任务中隐藏应用</string>
+    <string name="exclude_app_from_recents_off">不在最近任务中隐藏应用</string>
+    <string name="exclude_app_from_recents_on">已在最近任务中隐藏应用</string>
     <string name="autostart_prompt_at_boot">在启动后提示捕获权限</string>
     <string name="autostart_prompt_at_boot_off">在启动后不显示通知</string>
     <string name="autostart_prompt_at_boot_on">在启动后显示通知</string>
@@ -293,6 +297,7 @@
     <string name="privacy_share_crash_reports_on">将崩溃报告发送给开发者</string>
     <string name="privacy_share_crash_reports_off">不将应用崩溃报告发送给开发者</string>
     <string name="credits">鸣谢</string>
+    <string name="translators">译者</string>
     <string name="credits_app">App &amp; rootless 依赖提供</string>
     <string name="credits_dsp">JamesDSP 核心算法库提供</string>
     <string name="credits_project_page">在 GitHub 上查看项目主页</string>
