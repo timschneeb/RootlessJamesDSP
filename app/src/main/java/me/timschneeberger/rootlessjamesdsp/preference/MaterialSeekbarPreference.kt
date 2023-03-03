@@ -140,13 +140,7 @@ class MaterialSeekbarPreference : Preference {
         context: Context,
     ) : this(context, null)
 
-    private fun validateValue(current: Float): Float {
-        val value = when {
-            current < mMin -> mMin
-            current > mMax -> mMax
-            else -> current
-        }
-
+    private fun validateValue(value: Float): Float {
         if (mSeekBarIncrement > 0 && !valueLandsOnTick(value)) {
             val newValue = mSeekBarIncrement * ((value / mSeekBarIncrement).roundToInt())
             Timber.w("setValueInternal: value corrected $value to $newValue")
@@ -373,7 +367,15 @@ class MaterialSeekbarPreference : Preference {
     }
 
     private fun setValueInternal(_seekBarValue: Float, notifyChanged: Boolean) {
-        var seekBarValue = validateValue(_seekBarValue)
+        var seekBarValue = _seekBarValue
+        if (seekBarValue < mMin) {
+            seekBarValue = mMin
+        }
+        if (seekBarValue > mMax) {
+            seekBarValue = mMax
+        }
+
+        seekBarValue = validateValue(seekBarValue)
         if (mSeekBarIncrement > 0 && !valueLandsOnTick(seekBarValue)) {
             seekBarValue = mSeekBarIncrement * ((seekBarValue / mSeekBarIncrement).roundToInt())
             Timber.w("setValueInternal: value corrected $_seekBarValue to $seekBarValue")
