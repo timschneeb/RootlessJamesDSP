@@ -14,7 +14,7 @@
     <string name="action_retry">Повторить</string>
     <string name="action_fix">Исправить проблему</string>
     <string name="action_stop">Остановить</string>
-    <string name="notification_processing">Запущенные приложения: %1$s</string>
+    <string name="notification_processing">Активные приложения: %1$s</string>
     <string name="notification_idle">В ожидании аудиосессии</string>
     <string name="notification_processing_title">Обработка аудио активна</string>
     <string name="notification_processing_disabled_title">Обработка аудио отключена</string>
