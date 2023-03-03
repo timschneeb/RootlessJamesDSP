@@ -14,7 +14,7 @@
     <string name="action_retry">Повторити</string>
     <string name="action_fix">Виправити проблему</string>
     <string name="action_stop">Зупинити</string>
-    <string name="notification_processing">Запущені додатки: %1$s</string>
+    <string name="notification_processing">Активні додатки: %1$s</string>
     <string name="notification_idle">Очікування аудіосесії</string>
     <string name="notification_processing_title">Обробка аудіо активна</string>
     <string name="notification_processing_disabled_title">Обробку аудіо вимкнено</string>
