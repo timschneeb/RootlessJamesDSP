@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <plurals name="nodes">
-        <item quantity="one">%d узел</item>
+        <item quantity="one">%d Узел</item>
         <item quantity="few">%d узла</item>
         <item quantity="many">%d узлов</item>
         <item quantity="other">%d узлов</item>
