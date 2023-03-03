@@ -14,7 +14,7 @@
     <string name="action_retry">重试</string>
     <string name="action_fix">修复问题</string>
     <string name="action_stop">停止</string>
-    <string name="notification_processing">活跃的应用：%1$s</string>
+    <string name="notification_processing">激活的：%1$s</string>
     <string name="notification_idle">没有需要处理的音频流</string>
     <string name="notification_processing_title">正在处理音频流</string>
     <string name="notification_processing_disabled_title">音频流未在处理或被禁用</string>
