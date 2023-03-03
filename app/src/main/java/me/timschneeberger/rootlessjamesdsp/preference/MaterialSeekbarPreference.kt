@@ -140,6 +140,15 @@ class MaterialSeekbarPreference : Preference {
         context: Context,
     ) : this(context, null)
 
+    private fun validateValue(value: Float): Float {
+        if (mSeekBarIncrement > 0 && !valueLandsOnTick(value)) {
+            val newValue = mSeekBarIncrement * ((value / mSeekBarIncrement).roundToInt())
+            Timber.w("setValueInternal: value corrected $value to $newValue")
+            return newValue
+        }
+        return value
+    }
+
     override fun onBindViewHolder(holder: PreferenceViewHolder) {
         super.onBindViewHolder(holder)
         mSeekBar = holder.findViewById(R.id.seekbar) as Slider
@@ -172,7 +181,7 @@ class MaterialSeekbarPreference : Preference {
         } else {
             mSeekBarIncrement = mSeekBar.stepSize
         }
-        mSeekBar.value = mSeekBarValue
+        mSeekBar.value = validateValue(mSeekBarValue)
         updateLabelValue(mSeekBarValue)
         mSeekBar.isEnabled = isEnabled
 
@@ -215,7 +224,7 @@ class MaterialSeekbarPreference : Preference {
     }
 
     override fun onGetDefaultValue(a: TypedArray, index: Int): Any {
-        return a.getFloat(index, 0f)
+        return validateValue(a.getFloat(index, 0f))
     }
 
     /**
@@ -365,6 +374,8 @@ class MaterialSeekbarPreference : Preference {
         if (seekBarValue > mMax) {
             seekBarValue = mMax
         }
+
+        seekBarValue = validateValue(seekBarValue)
         if (mSeekBarIncrement > 0 && !valueLandsOnTick(seekBarValue)) {
             seekBarValue = mSeekBarIncrement * ((seekBarValue / mSeekBarIncrement).roundToInt())
             Timber.w("setValueInternal: value corrected $_seekBarValue to $seekBarValue")
@@ -408,7 +419,7 @@ class MaterialSeekbarPreference : Preference {
             if (callChangeListener(seekBarValue)) {
                 setValueInternal(seekBarValue, false)
             } else {
-                seekBar.value = mSeekBarValue
+                seekBar.value = validateValue(mSeekBarValue)
                 updateLabelValue(mSeekBarValue)
             }
         }

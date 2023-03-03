@@ -8,7 +8,7 @@
             app:entries="@array/audio_format_encodings"
             app:entryValues="@array/audio_format_encodings_values"
             app:useSimpleSummaryProvider="true"
-            app:defaultValue="1"
+            app:defaultValue="@string/default_audioformat_encoding"
             app:iconSpaceReserved="false" />
         <me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
             android:key="@string/key_audioformat_buffersize"
@@ -19,6 +19,7 @@
             app:labelMinWidth="120dp"
             app:minValue="128"
             app:maxValue="16384"
+            app:defaultValue="@integer/default_audioformat_buffersize"
             app:allowDividerAbove="false"
             app:updatesContinuously="false"
             app:showSeekBarValue="true"

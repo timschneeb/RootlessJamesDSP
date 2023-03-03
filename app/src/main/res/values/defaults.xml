@@ -27,7 +27,7 @@
     <bool name="default_autostart_prompt_at_boot" translatable="false">true</bool>
     <bool name="default_powersave_suspend" translatable="false">true</bool>
     <string name="default_audioformat_encoding" translatable="false">1</string>
-    <integer name="default_audioformat_buffersize" translatable="false">2048</integer>
+    <integer name="default_audioformat_buffersize" translatable="false">8192</integer>
     <bool name="default_audioformat_processing" translatable="false">true</bool>
     <bool name="default_audioformat_enhanced_processing" translatable="false">false</bool>
 
