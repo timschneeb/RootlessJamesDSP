@@ -1,0 +1,1 @@
+* Fixed crash when opening audio format settings due to invalid default value
