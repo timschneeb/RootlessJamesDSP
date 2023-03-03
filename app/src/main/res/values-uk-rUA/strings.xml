@@ -115,7 +115,7 @@
     <string name="liveprog_edit_header">Редагувати вибраний скрипт</string>
     <string name="liveprog_edit">Відкрити активний скрипт у вбудованому редакторі</string>
     <string name="tube_enable">Аналогове моделювання</string>
-    <string name="tube_drive">Преамп</string>
+    <string name="tube_drive">Передпідсилювач</string>
     <string name="output_control_header">Контроль виводу звуку</string>
     <string name="output_limiter_threshold">Поріг лімітера</string>
     <string name="output_limiter_release">Час релізу</string>
