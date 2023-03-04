@@ -24,11 +24,11 @@
     <string name="notification_request_permission">Коснитесь, чтобы предоставить разрешение на захват и включить обработку аудио в JamesDSP</string>
     <!-- Session control loss notifications -->
     <string name="session_control_loss_toast">JamesDSP остановлен из-за потери контроля над аудиосессией. Пожалуйста, отключите другие приложения для обработки аудио эффектов.</string>
-    <string name="session_control_loss_notification_title">Обработка аудио остановлена. Другое приложение мешает работе JamesDSP.</string>
+    <string name="session_control_loss_notification_title">Обработка аудио остановлена. Другое приложение препятствует работе JamesDSP.</string>
     <string name="session_control_loss_notification">Пожалуйста, отключите другие приложения, которые предоставляют глобальные аудио эффекты перед повторным включением JamesDSP.</string>
     <!-- App compatibility issue notifications -->
     <string name="session_app_compat_toast">JamesDSP остановлен из-за несовместимого медиа-приложения. Пожалуйста, проверьте уведомление, чтобы решить эту проблему.</string>
-    <string name="session_app_compat_notification_title">Обработка аудио остановлена. Другое приложение мешает работе JamesDSP.</string>
+    <string name="session_app_compat_notification_title">Обработка аудио остановлена. Другое приложение препятствует работе JamesDSP.</string>
     <string name="session_app_compat_notification">Коснитесь этого уведомления, чтобы решить проблему.</string>
     <!-- Capture permission revoked notifications -->
     <string name="capture_permission_revoked_toast">JamesDSP был остановлен, так как разрешение на захват аудио было отозвано.</string>
@@ -204,7 +204,7 @@
     <string name="onboarding_perm_missing">Пожалуйста, предоставьте все запрошенные разрешения на выполнение, чтобы продолжить.\nЕсли вы несколько раз отказали в предоставлении разрешений, вам нужно предоставить их вручную в настройках системы.</string>
     <string name="onboarding_finish_header">JamesDSP настроен!</string>
     <string name="onboarding_finish_caption">Если у вас возникли какие-либо проблемы, пожалуйста, посетите раздел настроек «Устранение неисправностей».</string>
-    <string name="limit_session_control_conflict_title">Отключение других приложений для обработки звука</string>
+    <string name="limit_session_control_conflict_title">Отключить другие приложения для обработки звука</string>
     <string name="limit_session_control_conflict">Приложения для обработки звука, использующие встроенный в Android эффект динамической обработки, мешают работе этого приложения.</string>
     <string name="limit_unsupported_apps_title">Неподдерживаемые приложения</string>
     <string name="limit_unsupported_apps">Приложения, которые блокируют запись внутреннего аудио, не будут обработаны (например, Spotify, Google Chrome).</string>
