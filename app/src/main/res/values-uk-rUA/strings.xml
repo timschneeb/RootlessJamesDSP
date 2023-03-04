@@ -31,7 +31,7 @@
     <string name="session_app_compat_notification_title">Обробка аудіо зупинена. Інший додаток перешкоджає роботі JamesDSP.</string>
     <string name="session_app_compat_notification">Натисніть на це сповіщення, щоб вирішити проблему.</string>
     <!-- Capture permission revoked notifications -->
-    <string name="capture_permission_revoked_toast">JamesDSP було зупинено, оскільки дозвіл на захоплення звуку був відкликаний.</string>
+    <string name="capture_permission_revoked_toast">JamesDSP було зупинено, оскільки дозвіл на захоплення аудіо був відкликаний.</string>
     <!-- General purpose -->
     <string name="install">Встановити</string>
     <string name="update">Оновити</string>
@@ -120,8 +120,8 @@
     <string name="output_limiter_threshold">Поріг лімітера</string>
     <string name="output_limiter_release">Час релізу</string>
     <string name="output_control_postgain">Рівень вихідного підсилення</string>
-    <string name="stereowide_enable">Широта звукової сцени</string>
-    <string name="stereowide_level">Просторова широта звуку</string>
+    <string name="stereowide_enable">Ширина звукової сцени</string>
+    <string name="stereowide_level">Просторова ширина звуку</string>
     <string name="stereowide_level_none">Відсутня</string>
     <string name="stereowide_level_very_wide">Дуже велика</string>
     <string name="stereowide_level_wide">Велика</string>
@@ -208,7 +208,7 @@
     <string name="limit_session_control_conflict">Додатки для обробки звуку, що використовують вбудований в Android ефект динамічної обробки, перешкоджають роботі цього додатка.</string>
     <string name="limit_unsupported_apps_title">Непідтримувані додатки</string>
     <string name="limit_unsupported_apps">Додатки, які блокують запис внутрішнього аудіо, не будуть оброблені (наприклад, Spotify, Google Chrome).</string>
-    <string name="limit_hw_accel_title">Проблеми HW-прискоренням відтворення звуку</string>
+    <string name="limit_hw_accel_title">Проблеми HW-прискореним відтворенням аудіо</string>
     <string name="limit_hw_accel">HW-прискорене відтворення аудіо іноді може призводити до дублювання звуку або зупинки JamesDSP в деяких випадках. Будь ласка, додайте проблемний музичний плеєр до списку виключених додатків, щоб запобігти маршрутизації його звуку через JamesDSP.</string>
     <string name="limit_detect_delay_title">Затримка визначення аудіосесії</string>
     <string name="limit_detect_delay"><![CDATA[Після того як додаток відкриває нову медіа-сесію для відтворення звуку, ви можете почути повторюваний або уривчастий звук на дуже короткий період (приблизно 250 мс).]]></string>
@@ -245,7 +245,7 @@
     <string name="audio_format_enhanced_processing_off">Розширена обробка вимкнена</string>
     <string name="audio_format_enhanced_processing_info_title">Що таке розширена обробка?</string>
     <string name="audio_format_enhanced_processing_info">Натисніть, щоб переглянути документацію</string>
-    <string name="audio_format_enhanced_processing_info_content">У разі ввімкненої опції «Розширена обробка» можна обирати, які додатки виключити з обробки JamesDSP через меню з трьома крапками в правому нижньому кутку та обравши «Виключені додатки». Вимкнення Legacy режиму дає змогу кожному застосунку використовувати свій власний механізм ефектів JamesDSP для більш тонкого контролю. В іншому випадку, всі програми будуть використовувати один механізм обробки, який в Android застарів і більше не повинен використовуватися. \n\nЯкщо Legacy режим вимкнений, не всі мультимедійні додатки працюватимуть правильно, тому ввімкніть опцію «Розширена обробка», щоб JamesDSP міг самостійно сканувати медіа-сесії, не покладаючись на системні повідомлення і забезпечувати правильну підтримку небажаних медіа-додатків.</string>
+    <string name="audio_format_enhanced_processing_info_content">У разі ввімкненої опції «Розширена обробка», ви можете обирати, які додатки виключити з обробки JamesDSP, через меню з трьома крапками в правому нижньому кутку та натиснувши пункт «Виключені додатки». \n\nВимкнення Legacy режиму дає змогу кожному додатку використовувати свій власний механізм ефектів JamesDSP для більш тонкого контролю. В іншому випадку всі програми будуть використовувати один механізм обробки, який в Android застарів і більше не повинен використовуватися. \n\nНа жаль, деякі мультимедійні додатки не виконують цю функцію належним чином, тому є ймовірність, що вони не працюватимуть коректно, якщо Legacy режим вимкнений. Для розв\'язання цієї проблеми можна увімкнути опцію \"Розширена обробка\", щоб JamesDSP міг самостійно сканувати аудіосесії, не покладаючись на системні повідомлення та забезпечувати коректну підтримку таких додатків.</string>
     <string name="audio_format_media_apps_need_restart">Після зміни цього параметра необхідно перезапустити всі активні мультимедійні додатки, щоб відновити обробку звуку.</string>
     <string name="audio_format_summary">Бажане кодування звуку, розмір буфера</string>
     <string name="audio_format_summary_root">Legacy режим, розширена обробка</string>
