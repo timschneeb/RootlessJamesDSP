@@ -16,19 +16,19 @@
     <string name="action_stop">Зупинити</string>
     <string name="notification_processing">Активні додатки: %1$s</string>
     <string name="notification_idle">Очікування аудіосесії</string>
-    <string name="notification_processing_title">Обробка аудіо активна</string>
-    <string name="notification_processing_disabled_title">Обробку аудіо вимкнено</string>
+    <string name="notification_processing_title">Обробка аудіо увімкнена</string>
+    <string name="notification_processing_disabled_title">Обробка аудіо вимкнена</string>
     <string name="notification_processing_legacy">Натисніть, щоб відкрити JamesDSP manager</string>
     <!-- Permission request notifications -->
     <string name="notification_request_permission_title">Для запуску JamesDSP потрібна дія користувача</string>
     <string name="notification_request_permission">Натисніть, щоб надати дозвіл на захоплення та увімкнути обробку аудіо в JamesDSP</string>
     <!-- Session control loss notifications -->
     <string name="session_control_loss_toast">JamesDSP зупинено через втрату контролю над аудіосесією. Будь ласка, вимкніть інші додатки для обробки аудіо ефектів.</string>
-    <string name="session_control_loss_notification_title">Обробку аудіо зупинено. Інша програма заважає роботі JamesDSP.</string>
+    <string name="session_control_loss_notification_title">Обробка аудіо зупинена. Інший додаток перешкоджає роботі JamesDSP.</string>
     <string name="session_control_loss_notification">Будь ласка, вимкніть всі інші додатки, що надають глобальні звукові ефекти перед повторним включенням JamesDSP.</string>
     <!-- App compatibility issue notifications -->
     <string name="session_app_compat_toast">JamesDSP зупинено через несумісний медіа-додаток. Будь ласка, перевірте повідомлення, щоб вирішити цю проблему.</string>
-    <string name="session_app_compat_notification_title">Обробку аудіо зупинено. Інша програма заважає роботі JamesDSP.</string>
+    <string name="session_app_compat_notification_title">Обробка аудіо зупинена. Інший додаток перешкоджає роботі JamesDSP.</string>
     <string name="session_app_compat_notification">Натисніть на це сповіщення, щоб вирішити проблему.</string>
     <!-- Capture permission revoked notifications -->
     <string name="capture_permission_revoked_toast">JamesDSP було зупинено, оскільки дозвіл на захоплення звуку був відкликаний.</string>
@@ -115,7 +115,7 @@
     <string name="liveprog_edit_header">Редагувати вибраний скрипт</string>
     <string name="liveprog_edit">Відкрити активний скрипт у вбудованому редакторі</string>
     <string name="tube_enable">Аналогове моделювання</string>
-    <string name="tube_drive">Преамп</string>
+    <string name="tube_drive">Передпідсилювач</string>
     <string name="output_control_header">Контроль виводу звуку</string>
     <string name="output_limiter_threshold">Поріг лімітера</string>
     <string name="output_limiter_release">Час релізу</string>
@@ -204,8 +204,8 @@
     <string name="onboarding_perm_missing">Будь ласка, надайте всі запитані дозволи на виконання, щоб продовжити.\nЯкщо ви кілька разів відмовили в наданні дозволів, вам потрібно надати їх вручну в налаштуваннях системи.</string>
     <string name="onboarding_finish_header">JamesDSP налаштовано!</string>
     <string name="onboarding_finish_caption">Якщо у вас виникли будь-які проблеми, будь ласка, відвідайте розділ налаштувань «Усунення неполадок».</string>
-    <string name="limit_session_control_conflict_title">Вимкнення інших додатків для обробки звуку</string>
-    <string name="limit_session_control_conflict">Додатки для обробки звуку, що використовують вбудований в Android ефект динамічної обробки, заважають роботі цього додатка.</string>
+    <string name="limit_session_control_conflict_title">Вимкнути інші додатки для обробки звуку</string>
+    <string name="limit_session_control_conflict">Додатки для обробки звуку, що використовують вбудований в Android ефект динамічної обробки, перешкоджають роботі цього додатка.</string>
     <string name="limit_unsupported_apps_title">Непідтримувані додатки</string>
     <string name="limit_unsupported_apps">Додатки, які блокують запис внутрішнього аудіо, не будуть оброблені (наприклад, Spotify, Google Chrome).</string>
     <string name="limit_hw_accel_title">Проблеми HW-прискоренням відтворення звуку</string>
@@ -289,7 +289,7 @@
     <string name="network_autoeq_conntest_running">Перевірка з\'єднання з сервером…</string>
     <string name="network_autoeq_conntest_done">З\'єднання успішно встановлено</string>
     <string name="network_autoeq_conntest_fail">Не вдалося перевірити з\'єднання</string>
-    <string name="network_autoeq_conntest_fail_summary">Сервер не дав правильної відповіді. Переконайтеся, що програмне забезпечення https://github.com/ThePBone/AutoEqApi налаштовано правильно на сервері. \n\nПомилка мережі: %1$s\n\nВідновити типові значення?</string>
+    <string name="network_autoeq_conntest_fail_summary">Сервер не повернув правильну відповідь. Переконайтеся, що програмне забезпечення https://github.com/ThePBone/AutoEqApi налаштовано на сервері правильно.\n\nПомилка мережі: %1$s\n\nВідновити типові значення?</string>
     <string name="about_settings">Про програму</string>
     <string name="about_settings_summary">Автори, підтримка, оновлення</string>
     <string name="privacy">Конфіденційність</string>
