@@ -1,2 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <plurals name="nodes">
+        <item quantity="one">%d vlákno</item>
+        <item quantity="few">%d vlákna</item>
+        <item quantity="many">%d vláken</item>
+        <item quantity="other">%d vláken</item>
+    </plurals>
+    <plurals name="custom_parameters">
+        <item quantity="one">%d přizpůsobitelný parametr</item>
+        <item quantity="few">%d přizpůsobitelné parametry</item>
+        <item quantity="many">%d přizpůsobitelných parametrů</item>
+        <item quantity="other">%d přizpůsobitelných parametrů</item>
+    </plurals>
+    <plurals name="unsupported_apps">
+        <item quantity="one">%d nepodporovaná aplikace byla automaticky vyloučena. Klepněte pro podrobnosti.</item>
+        <item quantity="few">%d nepodporované aplikace byly automaticky vyloučeny. Klepněte pro podrobnosti.</item>
+        <item quantity="many">%d nepodporovaných aplikací bylo automaticky vyloučeno. Klepněte pro podrobnosti.</item>
+        <item quantity="other">%d nepodporovaných aplikací bylo automaticky vyloučeno. Klepněte pro podrobnosti.</item>
+    </plurals>
+</resources>

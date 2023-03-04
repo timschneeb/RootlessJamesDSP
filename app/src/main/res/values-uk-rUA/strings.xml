@@ -18,7 +18,7 @@
     <string name="notification_idle">Очікування аудіосесії</string>
     <string name="notification_processing_title">Обробка аудіо увімкнена</string>
     <string name="notification_processing_disabled_title">Обробка аудіо вимкнена</string>
-    <string name="notification_processing_legacy">Натисніть, щоб відкрити JamesDSP manager</string>
+    <string name="notification_processing_legacy">Натисніть, щоб відкрити менеджер JamesDSP</string>
     <!-- Permission request notifications -->
     <string name="notification_request_permission_title">Для запуску JamesDSP потрібна дія користувача</string>
     <string name="notification_request_permission">Натисніть, щоб надати дозвіл на захоплення та увімкнути обробку аудіо в JamesDSP</string>
@@ -31,7 +31,7 @@
     <string name="session_app_compat_notification_title">Обробка аудіо зупинена. Інший додаток перешкоджає роботі JamesDSP.</string>
     <string name="session_app_compat_notification">Натисніть на це сповіщення, щоб вирішити проблему.</string>
     <!-- Capture permission revoked notifications -->
-    <string name="capture_permission_revoked_toast">JamesDSP було зупинено, оскільки дозвіл на захоплення звуку був відкликаний.</string>
+    <string name="capture_permission_revoked_toast">JamesDSP було зупинено, оскільки дозвіл на захоплення аудіо був відкликаний.</string>
     <!-- General purpose -->
     <string name="install">Встановити</string>
     <string name="update">Оновити</string>
@@ -120,8 +120,8 @@
     <string name="output_limiter_threshold">Поріг лімітера</string>
     <string name="output_limiter_release">Час релізу</string>
     <string name="output_control_postgain">Рівень вихідного підсилення</string>
-    <string name="stereowide_enable">Широта звукової сцени</string>
-    <string name="stereowide_level">Просторова широта звуку</string>
+    <string name="stereowide_enable">Ширина звукової сцени</string>
+    <string name="stereowide_level">Просторова ширина звуку</string>
     <string name="stereowide_level_none">Відсутня</string>
     <string name="stereowide_level_very_wide">Дуже велика</string>
     <string name="stereowide_level_wide">Велика</string>
@@ -162,7 +162,7 @@
     <string name="onboarding_root_shell_fail_title">Root-доступ відсутній</string>
     <string name="onboarding_root_shell_fail">Root-доступ відсутній. Будь ласка, скористайтеся іншим методом налаштування.</string>
     <string name="onboarding_root_shell_fail_unknown">Не вдалося надати дозвіл через root. Будь ласка, скористайтеся іншим методом налаштування.</string>
-    <string name="onboarding_root_enhanced_processing_setup_success">Покращена обробка налаштована</string>
+    <string name="onboarding_root_enhanced_processing_setup_success">Розширена обробка налаштована</string>
     <string name="onboarding_adb_shizuku_title">Налаштування Shizuku</string>
     <string name="onboarding_adb_adb_title">Налаштування ADB</string>
     <string name="onboarding_adb_caption">Ця програма вимагає спеціальних дозволів для вивантаження аудіополітики вашого пристрою. Будь ласка, дотримуйтесь інструкцій нижче.</string>
@@ -208,7 +208,7 @@
     <string name="limit_session_control_conflict">Додатки для обробки звуку, що використовують вбудований в Android ефект динамічної обробки, перешкоджають роботі цього додатка.</string>
     <string name="limit_unsupported_apps_title">Непідтримувані додатки</string>
     <string name="limit_unsupported_apps">Додатки, які блокують запис внутрішнього аудіо, не будуть оброблені (наприклад, Spotify, Google Chrome).</string>
-    <string name="limit_hw_accel_title">Проблеми HW-прискоренням відтворення звуку</string>
+    <string name="limit_hw_accel_title">Проблеми HW-прискореним відтворенням аудіо</string>
     <string name="limit_hw_accel">HW-прискорене відтворення аудіо іноді може призводити до дублювання звуку або зупинки JamesDSP в деяких випадках. Будь ласка, додайте проблемний музичний плеєр до списку виключених додатків, щоб запобігти маршрутизації його звуку через JamesDSP.</string>
     <string name="limit_detect_delay_title">Затримка визначення аудіосесії</string>
     <string name="limit_detect_delay"><![CDATA[Після того як додаток відкриває нову медіа-сесію для відтворення звуку, ви можете почути повторюваний або уривчастий звук на дуже короткий період (приблизно 250 мс).]]></string>
@@ -238,17 +238,17 @@
     <string name="audio_format_section_header">Бажаний аудіоформат</string>
     <string name="audio_format_processing_header">Параметри обробки аудіо</string>
     <string name="audio_format_processing_legacy">Legacy режим</string>
-    <string name="audio_format_processing_legacy_on">Приєднати глобально до сесії 0 (застаріло)</string>
+    <string name="audio_format_processing_legacy_on">Прикріпити глобально до сесії 0 (застаріло)</string>
     <string name="audio_format_processing_legacy_off">Прикріплювати до кожного додатка окремо</string>
-    <string name="audio_format_enhanced_processing">Покращена обробка</string>
-    <string name="audio_format_enhanced_processing_on">Керування та розширена підтримка додатків увімкнені</string>
-    <string name="audio_format_enhanced_processing_off">Покращена обробка вимкнена</string>
-    <string name="audio_format_enhanced_processing_info_title">Що таке покращена обробка?</string>
+    <string name="audio_format_enhanced_processing">Розширена обробка</string>
+    <string name="audio_format_enhanced_processing_on">Керування додатками та розширена обробка увімкнені</string>
+    <string name="audio_format_enhanced_processing_off">Розширена обробка вимкнена</string>
+    <string name="audio_format_enhanced_processing_info_title">Що таке розширена обробка?</string>
     <string name="audio_format_enhanced_processing_info">Натисніть, щоб переглянути документацію</string>
-    <string name="audio_format_enhanced_processing_info_content">У разі ввімкненої опції «Покращена обробка» можна обирати, які додатки виключити з обробки JamesDSP через меню з трьома крапками в правому нижньому кутку та обравши «Виключені додатки». Вимкнення Legacy режиму дає змогу кожному застосунку використовувати свій власний механізм ефектів JamesDSP для більш тонкого контролю. В іншому випадку, всі програми будуть використовувати один механізм обробки, який в Android застарів і більше не повинен використовуватися. \n\nЯкщо Legacy режим вимкнений, не всі мультимедійні додатки працюватимуть правильно, тому ввімкніть опцію «Покращена обробка», щоб JamesDSP міг самостійно сканувати медіа-сесії, не покладаючись на системні повідомлення і забезпечувати правильну підтримку небажаних медіа-додатків.</string>
+    <string name="audio_format_enhanced_processing_info_content">У разі ввімкненої опції «Розширена обробка», ви можете обирати, які додатки виключити з обробки JamesDSP, через меню з трьома крапками в правому нижньому кутку та натиснувши пункт «Виключені додатки». \n\nВимкнення Legacy режиму дає змогу кожному додатку використовувати свій власний механізм ефектів JamesDSP для більш тонкого контролю. В іншому випадку всі програми будуть використовувати один механізм обробки, який в Android застарів і більше не повинен використовуватися. \n\nНа жаль, деякі мультимедійні додатки не виконують цю функцію належним чином, тому є ймовірність, що вони не працюватимуть коректно, якщо Legacy режим вимкнений. Для розв\'язання цієї проблеми можна увімкнути опцію \"Розширена обробка\", щоб JamesDSP міг самостійно сканувати аудіосесії, не покладаючись на системні повідомлення та забезпечувати коректну підтримку таких додатків.</string>
     <string name="audio_format_media_apps_need_restart">Після зміни цього параметра необхідно перезапустити всі активні мультимедійні додатки, щоб відновити обробку звуку.</string>
     <string name="audio_format_summary">Бажане кодування звуку, розмір буфера</string>
-    <string name="audio_format_summary_root">Legacy режим, покращена обробка</string>
+    <string name="audio_format_summary_root">Legacy режим, розширена обробка</string>
     <string name="audio_format_encoding">Кодування аудіо</string>
     <string name="audio_format_encoding_int16">16-bit integer PCM</string>
     <string name="audio_format_encoding_float">32-bit float PCM</string>
@@ -454,7 +454,7 @@
     <string name="load_fail_arch_card">Якщо ви вже встановили модуль Magisk, можливо, ви вибрали неправильні налаштування під час встановлення. Спробуйте перевстановити модуль і ввімкнути сумісність із пристроями Huawei (навіть якщо ваш телефон не вироблений компанією Huawei).</string>
     <!-- Enhanced processing -->
     <string name="enhanced_processing_feature_unavailable">Функція недоступна</string>
-    <string name="enhanced_processing_feature_unavailable_content">Функція доступна лише при увімкненій опції «Покращена обробка» в налаштуваннях. Будь ласка, увімкніть цю опцію в «Параметри &gt; Обробка аудіо &gt; Покращена обробка», щоб отримати доступ до цього меню. \n\nПримітка: Опція «Покращена обробка» недоступна, якщо ввімкнено Legacy режим.</string>
+    <string name="enhanced_processing_feature_unavailable_content">Функція доступна лише при увімкненій опції «Розширена обробка» в налаштуваннях. Будь ласка, увімкніть цю опцію в «Параметри &gt; Обробка аудіо &gt; Розширена обробка», щоб отримати доступ до цього меню. \n\nПримітка: опція «Розширена обробка» недоступна, якщо увімкнено Legacy режим.</string>
     <string name="enhanced_processing_missing_perm">Покращену обробку було вимкнено через відсутність необхідних дозволів. Будь ласка, повторно налаштуйте їх в параметрах.</string>
     <!-- App list -->
     <string name="app_list_loading">Завантаження списку додатків…</string>
