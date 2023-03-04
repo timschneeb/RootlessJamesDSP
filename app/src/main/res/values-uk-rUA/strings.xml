@@ -330,7 +330,7 @@
     <string name="theme_yotsuba">Yotsuba</string>
     <string name="theme_tidalwave">Tidal Wave</string>
     <!-- File library preference -->
-    <string name="action_import">Імпортувати</string>
+    <string name="action_import">Імпорт</string>
     <string name="filelibrary_hint_tap_and_hold">Торкніться й утримуйте будь-який елемент для додаткових опцій</string>
     <string name="filelibrary_context_load">Завантажити</string>
     <string name="filelibrary_context_edit">Редагувати</string>
