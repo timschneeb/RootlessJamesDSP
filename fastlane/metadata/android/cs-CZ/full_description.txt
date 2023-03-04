@@ -1,0 +1,46 @@
+Používejte JamesDSP jako celosystémový nástroj pro zpracování zvuku bez jakéhokoli root přístupu.
+
+Tato aplikace má několik omezení, která mohou být pro některé lidi zásadní a rozhodující; přečtěte si prosím celý tento dokument před použitím aplikace. Pro počáteční nastavení je vyžadován přístup Shizuku (Android 11+) nebo ADB přes počítač.
+
+JamesDSP podporuje následující zvukové efekty:
+* Ovládání omezovače
+* Kontrola zesílení výstupu
+* Automatický kompresor dynamického rozsahu
+* Zesílení dynamických basů
+* Interpolační FIR ekvalizér
+* Grafický ekvalizér s libovolnou odezvou
+ViPER-DDC
+* Konvoluční efekt
+* Živě programovatelný DSP (skriptovací engine pro audio efekty)
+* Analogové modelování
+* Šířka zvukové scény
+* Přeslech
+* Efekt virtuální místnosti (reverb)
+
+Navíc se tato aplikace integruje přímo s AutoEQ. Pomocí integrace AutoEQ můžete hledat a importovat frekvenční odezvy, které slouží k opravě frekvenční křivky vašich sluchátek a nastavení neutrálního zvuku. Jděte do „Ekvalizér s libovolnou kmitočtovou charakteristikou > Magnitudová odezva > AutoEQ profily“, aby jste začali.
+
+--- Omezení
+* Aplikace blokující interní záznam zvuku zůstávají nezpracované (např. Spotify, Google Chrome)
+* Aplikace používající některé typy HW zrychlených přehrávání mohou způsobit problémy a musí být ručně vyloučeny (např. některé hry Unity)
+* Nemůže existovat společně s jinými aplikacemi pro zvukové efekty (např. Wavelet a dalšími aplikacemi, které používají „DynamicsProcessing“ Android API)
+
+
+- Aplikace s potvrzeným fungováním:
+* YouTube
+* YouTube Music
+* Amazon Music
+* Deezer
+* Poweramp
+* Substreamer
+* Twitch
+* ...
+
+- Nepodporované aplikace zahrnují:
+* Spotify (Poznámka: Spotify ReVanced patch je vyžadován pro podporu Spotify)
+* Google Chrome
+* SoundCloud
+* ...
+
+--- Překlad
+Prosím pomozte nám přeložit tuto aplikaci zde: https://crowdin.com/project/rootlessjamesdsp
+Chcete-li požádat o nový jazyk, který zatím není na Crowdinu přidán, vytvořte prosím problém (issue) zde na GitHubu a já ho přidám.
