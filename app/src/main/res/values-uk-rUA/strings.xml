@@ -473,7 +473,7 @@
     <!-- File intent handler -->
     <string name="intent_import_preset">Імпортувати пресет</string>
     <string name="intent_import_irs">Імпортувати імпульсний відгук</string>
-    <string name="intent_import_vdc">Імпортувати VDC файл</string>
+    <string name="intent_import_vdc">Імпортувати файл VDC</string>
     <string name="intent_import_liveprog">Імпортувати Liveprog скрипт</string>
     <string name="intent_import_mode_add">Лише імпортувати</string>
     <string name="intent_import_mode_select">Імпортувати та активувати</string>
