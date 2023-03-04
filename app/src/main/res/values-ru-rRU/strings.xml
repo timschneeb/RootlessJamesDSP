@@ -447,7 +447,7 @@
     <!-- Root: Library load failure -->
     <string name="load_fail_header">Модуль Magisk не установлен</string>
     <string name="load_fail_card_title">Не удалось загрузить libjamesdsp.so</string>
-    <string name="load_fail_card">Пожалуйста, установите модуль JamesDSP для Magisk и перезагрузите ваше Android-устройство для использования приложения. Вам также может потребоваться переустановить это приложение после перезагрузки.</string>
+    <string name="load_fail_card">Пожалуйста, установите модуль JamesDSP для Magisk и перезагрузите ваше устройство Android для использования приложения. Вам также может потребоваться переустановить это приложение после перезагрузки.</string>
     <string name="load_fail_rootless_card_title">Ищете альтернативу без рут-доступа?</string>
     <string name="load_fail_rootless_card">Эта версия JamesDSP предназначена для использования на устройствах с root-доступом. Для устройств без root-доступа также доступна альтернатива, но с некоторыми ограничениями. Нажмите здесь, чтобы получить дополнительную информацию.</string>
     <string name="load_fail_arch_card_title">Модуль уже установлен?</string>
