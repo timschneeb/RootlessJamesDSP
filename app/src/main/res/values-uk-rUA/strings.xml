@@ -18,7 +18,7 @@
     <string name="notification_idle">Очікування аудіосесії</string>
     <string name="notification_processing_title">Обробка аудіо увімкнена</string>
     <string name="notification_processing_disabled_title">Обробка аудіо вимкнена</string>
-    <string name="notification_processing_legacy">Натисніть, щоб відкрити JamesDSP manager</string>
+    <string name="notification_processing_legacy">Натисніть, щоб відкрити менеджер JamesDSP</string>
     <!-- Permission request notifications -->
     <string name="notification_request_permission_title">Для запуску JamesDSP потрібна дія користувача</string>
     <string name="notification_request_permission">Натисніть, щоб надати дозвіл на захоплення та увімкнути обробку аудіо в JamesDSP</string>
@@ -238,7 +238,7 @@
     <string name="audio_format_section_header">Бажаний аудіоформат</string>
     <string name="audio_format_processing_header">Параметри обробки аудіо</string>
     <string name="audio_format_processing_legacy">Legacy режим</string>
-    <string name="audio_format_processing_legacy_on">Приєднати глобально до сесії 0 (застаріло)</string>
+    <string name="audio_format_processing_legacy_on">Прикріпити глобально до сесії 0 (застаріло)</string>
     <string name="audio_format_processing_legacy_off">Прикріплювати до кожного додатка окремо</string>
     <string name="audio_format_enhanced_processing">Розширена обробка</string>
     <string name="audio_format_enhanced_processing_on">Керування додатками та розширена обробка увімкнені</string>
