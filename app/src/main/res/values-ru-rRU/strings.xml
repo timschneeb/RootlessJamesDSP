@@ -162,7 +162,7 @@
     <string name="onboarding_root_shell_fail_title">Root-права отсутствуют</string>
     <string name="onboarding_root_shell_fail">Root-права недоступны. Пожалуйста, воспользуйтесь другим методом установки.</string>
     <string name="onboarding_root_shell_fail_unknown">Не удалось предоставить разрешение через root. Пожалуйста, используйте другой метод установки.</string>
-    <string name="onboarding_root_enhanced_processing_setup_success">Улучшенная обработка настроена</string>
+    <string name="onboarding_root_enhanced_processing_setup_success">Расширенная обработка настроена</string>
     <string name="onboarding_adb_shizuku_title">Настройка Shizuku</string>
     <string name="onboarding_adb_adb_title">Настройка ADB</string>
     <string name="onboarding_adb_caption">Это приложение требует специальных разрешений для выгрузки аудио-политики вашего устройства. Пожалуйста, следуйте инструкциям ниже.</string>
@@ -240,15 +240,15 @@
     <string name="audio_format_processing_legacy">Legacy режим</string>
     <string name="audio_format_processing_legacy_on">Присоединить глобально к сессии 0 (устаревшее)</string>
     <string name="audio_format_processing_legacy_off">Прикреплять к каждому приложению отдельно</string>
-    <string name="audio_format_enhanced_processing">Улучшенная обработка</string>
-    <string name="audio_format_enhanced_processing_on">Управление и расширенная поддержка для приложений включены</string>
-    <string name="audio_format_enhanced_processing_off">Улучшенная обработка отключена</string>
-    <string name="audio_format_enhanced_processing_info_title">Что такое улучшенная обработка?</string>
+    <string name="audio_format_enhanced_processing">Расширенная обработка</string>
+    <string name="audio_format_enhanced_processing_on">Управление приложениями и расширенная обработка включены</string>
+    <string name="audio_format_enhanced_processing_off">Расширенная обработка отключена</string>
+    <string name="audio_format_enhanced_processing_info_title">Что такое расширенная обработка?</string>
     <string name="audio_format_enhanced_processing_info">Нажмите для просмотра документации</string>
-    <string name="audio_format_enhanced_processing_info_content">При включенной опции «Улучшенная обработка» можно выбирать, какие приложения исключить из обработки JamesDSP через меню с тремя точками в правом нижнем углу и выбрав «Исключенные приложения». Отключение Legacy режима позволяет каждому приложению использовать свой собственный движок эффектов JamesDSP для более тонкого контроля. В противном случае, все приложения будут использовать один механизм обработки, который в Android устарел и больше не должен использоваться. \n\nЕсли Legacy режим выключен, не все мультимедийные приложения будут работать правильно, поэтому включите опцию «Улучшенная обработка», чтобы JamesDSP мог самостоятельно сканировать медиа-сессии не полагаясь на системные сообщения и обеспечивать правильную поддержку нежелательных медиа-приложений.</string>
+    <string name="audio_format_enhanced_processing_info_content">При включенной опции «Расширенная обработка» можно выбирать, какие приложения исключить из обработки JamesDSP через меню с тремя точками в правом нижнем углу и выбрав «Исключенные приложения». Отключение Legacy режима позволяет каждому приложению использовать свой собственный движок эффектов JamesDSP для более тонкого контроля. В противном случае, все приложения будут использовать один механизм обработки, который в Android устарел и больше не должен использоваться. \n\nЕсли Legacy режим выключен, не все мультимедийные приложения будут работать правильно, поэтому включите опцию «Расширенная обработка», чтобы JamesDSP мог самостоятельно сканировать медиа-сессии не полагаясь на системные сообщения и обеспечивать правильную поддержку нежелательных медиа-приложений.</string>
     <string name="audio_format_media_apps_need_restart">После изменения этого параметра необходимо перезапустить все активные мультимедийные приложения, чтобы возобновить обработку звука.</string>
     <string name="audio_format_summary">Предпочтительное кодирование аудио, размер буфера</string>
-    <string name="audio_format_summary_root">Legacy режим, улучшенная обработка</string>
+    <string name="audio_format_summary_root">Legacy режим, расширенная обработка</string>
     <string name="audio_format_encoding">Кодирование аудио</string>
     <string name="audio_format_encoding_int16">16-bit integer PCM</string>
     <string name="audio_format_encoding_float">32-bit float PCM</string>
@@ -454,8 +454,8 @@
     <string name="load_fail_arch_card">Если вы уже установили модуль Magisk, возможно, вы выбрали неправильные настройки во время установки. Попробуйте переустановить модуль и включить совместимость с устройствами Huawei (даже если ваш телефон не произведен компанией Huawei).</string>
     <!-- Enhanced processing -->
     <string name="enhanced_processing_feature_unavailable">Функция недоступна</string>
-    <string name="enhanced_processing_feature_unavailable_content">Функция доступна только при включенной опции «Улучшенная обработка» в настройках. Пожалуйста, включите эту опцию в «Настройки &gt; Обработка аудио &gt; Улучшенная обработка», чтобы получить доступ к этому меню. \n\nПримечание: Опция «Улучшенная обработка» недоступна если включен Legacy режим.</string>
-    <string name="enhanced_processing_missing_perm">Улучшенная обработка была отключена из-за отсутствия необходимых разрешений. Пожалуйста, установите их заново в настройках.</string>
+    <string name="enhanced_processing_feature_unavailable_content">Функция доступна только при включенной опции «Расширенная обработка» в настройках. Пожалуйста, включите эту опцию в «Настройки &gt; Обработка аудио &gt; Расширенная обработка», чтобы получить доступ к этому меню. \n\nПримечание: Опция «Расширенная обработка» недоступна если включен Legacy режим.</string>
+    <string name="enhanced_processing_missing_perm">Расширенная обработка была отключена из-за отсутствия необходимых разрешений. Пожалуйста, установите их заново в настройках.</string>
     <!-- App list -->
     <string name="app_list_loading">Загрузка списка приложений…</string>
     <string name="app_list_search">Поиск</string>
