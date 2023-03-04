@@ -330,7 +330,7 @@
     <string name="theme_yotsuba">Yotsuba</string>
     <string name="theme_tidalwave">Tidal Wave</string>
     <!-- File library preference -->
-    <string name="action_import">Импортировать</string>
+    <string name="action_import">Импорт</string>
     <string name="filelibrary_hint_tap_and_hold">Коснитесь и удерживайте любой элемент для дополнительных опций</string>
     <string name="filelibrary_context_load">Загрузить</string>
     <string name="filelibrary_context_edit">Редактировать</string>
@@ -422,8 +422,8 @@
     <string name="editor_save_prompt_title">Сохранить изменения?</string>
     <string name="editor_save_prompt">Текущий скрипт имеет несохраненные изменения. Сохранить изменения или отменить их?</string>
     <string name="editor_script_launched">Скрипт запущен</string>
-    <string name="editor_cannot_undo">Нет действий для отмены.</string>
-    <string name="editor_cannot_redo">Нет действий для повтора.</string>
+    <string name="editor_cannot_undo">Нет действий для отмены</string>
+    <string name="editor_cannot_redo">Нет действий для повтора</string>
     <string name="editor_text_size">Размер текста</string>
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Исключенные приложения</string>
