@@ -127,7 +127,7 @@ This app focuses on a rootless implementation, but it can be made to work with t
         <br />
         <sub><b>Tim Schneeberger (ThePBone)</b></sub></a>
       <br />
-      <sub><b>20600 words</b></sub>
+      <sub><b>20632 words</b></sub>
     </td>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/netrunner-exe"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15209210/medium/dabb33b18a6eb0e59cee34e448d81e40.jpg" />
@@ -141,7 +141,14 @@ This app focuses on a rootless implementation, but it can be made to work with t
         <br />
         <sub><b>fankesyooni</b></sub></a>
       <br />
-      <sub><b>2820 words</b></sub>
+      <sub><b>2840 words</b></sub>
+    </td>
+    <td align="center" valign="top">
+      <a href="https://crowdin.com/profile/FrameXX"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/14591682/medium/071f9d859dc36f9281f6f84b9c18c852.png" />
+        <br />
+        <sub><b>FrameXX</b></sub></a>
+      <br />
+      <sub><b>1508 words</b></sub>
     </td>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/TheGary"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15713727/medium/4f9ede8b07ace57124001fb6678aeff7_default.png" />
@@ -157,6 +164,8 @@ This app focuses on a rootless implementation, but it can be made to work with t
       <br />
       <sub><b>606 words</b></sub>
     </td>
+  </tr>
+  <tr>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/ianpok17"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15647373/medium/daf979a91f0a64b448cf88a954d45e2b.jpeg" />
         <br />
@@ -164,8 +173,6 @@ This app focuses on a rootless implementation, but it can be made to work with t
       <br />
       <sub><b>470 words</b></sub>
     </td>
-  </tr>
-  <tr>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/Tymwitko"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15706765/medium/a2288209d82b78b8e8d959c009382086_default.png" />
         <br />
@@ -201,6 +208,8 @@ This app focuses on a rootless implementation, but it can be made to work with t
       <br />
       <sub><b>19 words</b></sub>
     </td>
+  </tr>
+  <tr>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/redwalery17"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15698583/medium/2e78c4e4e8152f0e56b34b67955e96ee.jpeg" />
         <br />
@@ -208,12 +217,24 @@ This app focuses on a rootless implementation, but it can be made to work with t
       <br />
       <sub><b>8 words</b></sub>
     </td>
-  </tr>
-  <tr>
+    <td align="center" valign="top">
+      <a href="https://crowdin.com/profile/mrbin233"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15721371/medium/fe13b9238375d895e197025c6c24e4d4.jpeg" />
+        <br />
+        <sub><b>mrbin233</b></sub></a>
+      <br />
+      <sub><b>3 words</b></sub>
+    </td>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/nnamphong0709"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15714167/medium/3a78fdaf3d50a166ee41f3644ef523c8.jpeg" />
         <br />
         <sub><b>Namphong Nguyen (nnamphong0709)</b></sub></a>
+      <br />
+      <sub><b>2 words</b></sub>
+    </td>
+    <td align="center" valign="top">
+      <a href="https://crowdin.com/profile/funtos666"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15720235/medium/f5cc8364c68501da39f0b3606fb2743a.jpeg" />
+        <br />
+        <sub><b>Рома Romario (funtos666)</b></sub></a>
       <br />
       <sub><b>2 words</b></sub>
     </td>
