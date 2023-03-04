@@ -16,7 +16,7 @@
     <string name="action_stop">Зупинити</string>
     <string name="notification_processing">Активні додатки: %1$s</string>
     <string name="notification_idle">Очікування аудіосесії</string>
-    <string name="notification_processing_title">Обробка аудіо активна</string>
+    <string name="notification_processing_title">Обробка аудіо увімкнена</string>
     <string name="notification_processing_disabled_title">Обробка аудіо вимкнена</string>
     <string name="notification_processing_legacy">Натисніть, щоб відкрити JamesDSP manager</string>
     <!-- Permission request notifications -->
