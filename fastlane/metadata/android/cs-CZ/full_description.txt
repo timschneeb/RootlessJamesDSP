@@ -11,7 +11,7 @@ JamesDSP podporuje následující zvukové efekty:
 * Grafický ekvalizér s libovolnou odezvou
 ViPER-DDC
 * Konvoluční efekt
-* Živě programovatelný DSP (skriptovací engine pro audio efekty)
+* Živě programovatelné DSP (skriptovací engine pro audio efekty)
 * Analogové modelování
 * Šířka zvukové scény
 * Přeslech
