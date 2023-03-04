@@ -17,7 +17,7 @@
     <string name="notification_processing">Активні додатки: %1$s</string>
     <string name="notification_idle">Очікування аудіосесії</string>
     <string name="notification_processing_title">Обробка аудіо активна</string>
-    <string name="notification_processing_disabled_title">Обробку аудіо вимкнено</string>
+    <string name="notification_processing_disabled_title">Обробка аудіо вимкнена</string>
     <string name="notification_processing_legacy">Натисніть, щоб відкрити JamesDSP manager</string>
     <!-- Permission request notifications -->
     <string name="notification_request_permission_title">Для запуску JamesDSP потрібна дія користувача</string>
@@ -289,7 +289,7 @@
     <string name="network_autoeq_conntest_running">Перевірка з\'єднання з сервером…</string>
     <string name="network_autoeq_conntest_done">З\'єднання успішно встановлено</string>
     <string name="network_autoeq_conntest_fail">Не вдалося перевірити з\'єднання</string>
-    <string name="network_autoeq_conntest_fail_summary">Сервер не дав правильної відповіді. Переконайтеся, що програмне забезпечення https://github.com/ThePBone/AutoEqApi налаштовано правильно на сервері. \n\nПомилка мережі: %1$s\n\nВідновити типові значення?</string>
+    <string name="network_autoeq_conntest_fail_summary">Сервер не повернув правильну відповідь. Переконайтеся, що програмне забезпечення https://github.com/ThePBone/AutoEqApi налаштовано на сервері правильно.\n\nПомилка мережі: %1$s\n\nВідновити типові значення?</string>
     <string name="about_settings">Про програму</string>
     <string name="about_settings_summary">Автори, підтримка, оновлення</string>
     <string name="privacy">Конфіденційність</string>
