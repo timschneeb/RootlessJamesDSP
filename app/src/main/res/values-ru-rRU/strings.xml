@@ -233,7 +233,7 @@
     <string name="session_loss_ignore">Игнорировать потерю контроля сеанса</string>
     <string name="session_loss_ignore_off">Отключено, стандартное поведение (рекомендуется)</string>
     <string name="session_loss_ignore_on">Не предпринимать никаких действий (может вызвать дублирование звука)</string>
-    <string name="session_loss_ignore_warning">Активация этого параметра может привести к дублированию звука, если другая программа для обработки звука получит контроль над текущей аудиосессией. \nЕсли у вас нет проблем с ложной потерей сессий, то рекомендуется оставить эту опцию выключенной.</string>
+    <string name="session_loss_ignore_warning">Активация этого параметра может привести к дублированию звука, если другое приложение для обработки звука получит контроль над текущей аудиосессией. \nЕсли у вас нет проблем с ложной потерей сессий, то рекомендуется оставить эту опцию выключенной.</string>
     <string name="audio_format_header">Обработка аудио</string>
     <string name="audio_format_section_header">Предпочтительный аудиоформат</string>
     <string name="audio_format_processing_header">Параметры обработки аудио</string>
@@ -418,7 +418,7 @@
     <string name="editor_search_keyword">Поиск</string>
     <string name="editor_source_position">%1$d:%2$d</string>
     <string name="editor_engine_down_title">JamesDSP не активирован</string>
-    <string name="editor_engine_down">Не удается запустить скрипт, так как JamesDSP отключен. Пожалуйста, включите JamesDSP для выполнения скриптов.</string>
+    <string name="editor_engine_down">Не удалось запустить скрипт, так как JamesDSP отключен. Пожалуйста, включите JamesDSP для выполнения скриптов.</string>
     <string name="editor_save_prompt_title">Сохранить изменения?</string>
     <string name="editor_save_prompt">Текущий скрипт имеет несохраненные изменения. Сохранить изменения или отменить их?</string>
     <string name="editor_script_launched">Скрипт запущен</string>
