@@ -46,7 +46,7 @@
     <string name="value_not_set">Не задано</string>
     <string name="undo">Скасувати</string>
     <string name="redo">Повторити</string>
-    <string name="no_activity_found">Не знайдено жодного Активіті для обробки цієї дії</string>
+    <string name="no_activity_found">Не знайдено жодного Activity для обробки цієї дії</string>
     <!-- Main screen -->
     <string name="power_button_alt">Перемкнути обробку аудіо</string>
     <string name="compressor_enable">Автоматичний компресор динамічного діапазону</string>
@@ -159,8 +159,8 @@
     <string name="onboarding_methods_root_root">\u25CF Рекомендується\n\u25CF Не потрібен комп\'ютер\n\u25CF Підходить для всіх версій Android</string>
     <string name="onboarding_methods_root_shizuku">\u25CF Рекомендується, якщо root-доступ відсутній\n\u25CF Не потрібен комп\'ютер\n\u25CF Тільки для Android 11+</string>
     <string name="onboarding_methods_root_adb">\u25CF Для досвідчених користувачів\n\u25CF Потрібен комп\'ютер та USB-кабель\n\u25CF Всі версії Android</string>
-    <string name="onboarding_root_shell_fail_title">Root-доступ відсутній</string>
-    <string name="onboarding_root_shell_fail">Root-доступ відсутній. Будь ласка, скористайтеся іншим методом налаштування.</string>
+    <string name="onboarding_root_shell_fail_title">Root-права відсутні</string>
+    <string name="onboarding_root_shell_fail">Root-права відсутні. Будь ласка, скористайтеся іншим методом налаштування.</string>
     <string name="onboarding_root_shell_fail_unknown">Не вдалося надати дозвіл через root. Будь ласка, скористайтеся іншим методом налаштування.</string>
     <string name="onboarding_root_enhanced_processing_setup_success">Розширена обробка налаштована</string>
     <string name="onboarding_adb_shizuku_title">Налаштування Shizuku</string>
@@ -262,7 +262,7 @@
     <string name="autostart_prompt_at_boot">Запитувати дозвіл на захоплення після завантаження</string>
     <string name="autostart_prompt_at_boot_off">Не показувати сповіщення після завантаження</string>
     <string name="autostart_prompt_at_boot_on">Показувати сповіщення після завантаження</string>
-    <string name="powersave">Енергоощадження</string>
+    <string name="powersave">Енергозбереження</string>
     <string name="powersave_suspend">Призупиняти аудіопотік під час простою</string>
     <string name="powersave_suspend_off">Продовжувати обробку, навіть коли контент не відтворюється</string>
     <string name="powersave_suspend_on">Ставити на паузу обробку аудіопотоку для економії енергії</string>
@@ -451,7 +451,7 @@
     <string name="load_fail_rootless_card_title">Шукаєте альтернативу без root-доступу?</string>
     <string name="load_fail_rootless_card">Ця версія JamesDSP призначена для використання на пристроях з root-доступом. Для пристроїв без root-доступу також доступна альтернатива, але з деякими обмеженнями. Натисніть тут, щоб отримати додаткову інформацію.</string>
     <string name="load_fail_arch_card_title">Модуль вже встановлений?</string>
-    <string name="load_fail_arch_card">Якщо ви вже встановили модуль Magisk, можливо, ви вибрали неправильні налаштування під час встановлення. Спробуйте перевстановити модуль і ввімкнути сумісність із пристроями Huawei (навіть якщо ваш телефон не вироблений компанією Huawei).</string>
+    <string name="load_fail_arch_card">Якщо ви вже встановили модуль Magisk, можливо, ви вибрали неправильні налаштування під час встановлення. Спробуйте перевстановити модуль і увімкнути сумісність із пристроями Huawei (навіть якщо ваш телефон не вироблений компанією Huawei).</string>
     <!-- Enhanced processing -->
     <string name="enhanced_processing_feature_unavailable">Функція недоступна</string>
     <string name="enhanced_processing_feature_unavailable_content">Функція доступна лише при увімкненій опції «Розширена обробка» в налаштуваннях. Будь ласка, увімкніть цю опцію в «Параметри &gt; Обробка аудіо &gt; Розширена обробка», щоб отримати доступ до цього меню. \n\nПримітка: опція «Розширена обробка» недоступна, якщо увімкнено режим legacy.</string>
@@ -483,5 +483,5 @@
     <string name="intent_import_error_file_uri">Не вдалося імпортувати файл. Непідтримувана URI-адреса файлу.</string>
     <!-- Translation notice box -->
     <string name="translation_notice_summary">Допоможіть нам перекласти цей додаток вашою мовою! Натисніть тут, щоб перейти на сайт проекту на Crowdin.</string>
-    <string name="translation_notice">Допомога з перекладом</string>
+    <string name="translation_notice">Допомогти з перекладом</string>
 </resources>
