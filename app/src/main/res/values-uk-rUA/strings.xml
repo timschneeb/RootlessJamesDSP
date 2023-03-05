@@ -27,9 +27,9 @@
     <string name="session_control_loss_notification_title">Обробка аудіо зупинена. Інший додаток перешкоджає роботі JamesDSP.</string>
     <string name="session_control_loss_notification">Будь ласка, вимкніть всі інші додатки, що надають глобальні звукові ефекти перед повторним включенням JamesDSP.</string>
     <!-- App compatibility issue notifications -->
-    <string name="session_app_compat_toast">JamesDSP зупинено через несумісний медіа-додаток. Будь ласка, перевірте повідомлення, щоб вирішити цю проблему.</string>
+    <string name="session_app_compat_toast">JamesDSP зупинено через несумісний медіадодаток. Будь ласка, перевірте повідомлення, щоб розв\'язати цю проблему.</string>
     <string name="session_app_compat_notification_title">Обробка аудіо зупинена. Інший додаток перешкоджає роботі JamesDSP.</string>
-    <string name="session_app_compat_notification">Натисніть на це сповіщення, щоб вирішити проблему.</string>
+    <string name="session_app_compat_notification">Натисніть на це сповіщення, щоб розв\'язати проблему.</string>
     <!-- Capture permission revoked notifications -->
     <string name="capture_permission_revoked_toast">JamesDSP було зупинено, оскільки дозвіл на захоплення аудіо був відкликаний.</string>
     <!-- General purpose -->
@@ -108,7 +108,7 @@
     <string name="ddc_file">Профіль DDC</string>
     <string name="liveprog_enable">Liveprog DSP</string>
     <string name="liveprog_file">Liveprog скрипт</string>
-    <string name="liveprog_additional_params">Додаткові параметри скрипта</string>
+    <string name="liveprog_additional_params">Додаткові параметри скрипту</string>
     <string name="liveprog_additional_params_not_supported">Обраний скрипт не має параметрів, які можна налаштувати</string>
     <string name="liveprog_not_found">Скрипт не знайдено</string>
     <string name="liveprog_no_script_selected">Скрипт не вибрано</string>
@@ -141,7 +141,7 @@
     <string name="onboarding_next">Далі</string>
     <string name="onboarding_finish">Завершити</string>
     <string name="onboarding_greeting">Ласкаво просимо до RootlessJamesDSP!</string>
-    <string name="onboarding_caption">Цей асистент допоможе вам виконати налаштування додатку.</string>
+    <string name="onboarding_caption">Цей асистент допоможе вам виконати налаштування додатка.</string>
     <string name="onboarding_warning">Наразі додаток є незавершеним і може бути нестабільним. Зверніть увагу, що на деяких пристроях він може не працювати належним чином, оскільки використовує Android API, які не передбачені для використання сторонніми додатками.</string>
     <string name="onboarding_fix_permissions_title">Потрібна дія користувача</string>
     <string name="onboarding_fix_permissions">Один або кілька дозволів було відкликано вами або системою.\nЩоб забезпечити правильну роботу додатку, вам потрібно надати ці дозволи знову.\n\nБудь ласка, перезапустіть майстер налаштування для повторного надання цих дозволів.</string>
@@ -401,13 +401,13 @@
     <string name="autoeq_partial_results_warning">Показано перші %1$d результатів. Будь ласка, налаштуйте ваш пошук, щоб отримати більш релевантні результати.</string>
     <string name="autoeq_no_results">Результатів не знайдено</string>
     <!-- Customizable liveprog script parameters -->
-    <string name="title_activity_liveprog_params">Параметри скрипта, що налаштовуються</string>
+    <string name="title_activity_liveprog_params">Параметри скрипту, що налаштовуються</string>
     <string name="action_restore_defaults">Відновити типові значення</string>
     <!-- Liveprog script editor -->
     <string name="title_activity_liveprog_editor">Редактор скриптів</string>
     <string name="editor_find_and_replace">Знайти/Замінити…</string>
     <string name="editor_docs">Допомога</string>
-    <string name="editor_open_fail">Файл скрипта не існує або не може бути відкритий.</string>
+    <string name="editor_open_fail">Файл скрипту не існує або не може бути відкритий.</string>
     <string name="editor_run">Зберегти та запустити</string>
     <string name="editor_save">Зберегти</string>
     <string name="editor_liveprog_enabled">Liveprog було автоматично ввімкнено.</string>
