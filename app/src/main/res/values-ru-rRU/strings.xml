@@ -159,8 +159,8 @@
     <string name="onboarding_methods_root_root">\u25CF Рекомендуется\n\u25CF Не требуется компьютер\n\u25CF Подходит для всех версий Android</string>
     <string name="onboarding_methods_root_shizuku">\u25CF Рекомендуется, если root-доступ не настроен\n\u25CF Не требуется компьютер\n\u25CF Только для Android 11+</string>
     <string name="onboarding_methods_root_adb">\u25CF Для опытных пользователей\n\u25CF Требуется компьютер и USB-кабель\n\u25CF Все версии Android</string>
-    <string name="onboarding_root_shell_fail_title">Отсутствует root-доступ</string>
-    <string name="onboarding_root_shell_fail">Root-права недоступны. Пожалуйста, воспользуйтесь другим методом установки.</string>
+    <string name="onboarding_root_shell_fail_title">Нет root-доступа</string>
+    <string name="onboarding_root_shell_fail">Root-доступ отсутствует. Пожалуйста, воспользуйтесь другим методом установки.</string>
     <string name="onboarding_root_shell_fail_unknown">Не удалось предоставить разрешение через root. Пожалуйста, используйте другой метод установки.</string>
     <string name="onboarding_root_enhanced_processing_setup_success">Расширенная обработка настроена</string>
     <string name="onboarding_adb_shizuku_title">Настройка Shizuku</string>
@@ -222,9 +222,9 @@
     <string name="session_exclude_restricted_off">Приложения, блокирующие захват звука, остаются выключенными (поведение Android по умолчанию)</string>
     <string name="session_exclude_restricted_on">Приложения, которые блокируют захват звука, исключаются и остаются без обработки (рекомендуется)</string>
     <string name="session_detection_header">Обнаружение аудиосессий</string>
-    <string name="session_continuous_polling">Непрерывный опрос</string>
+    <string name="session_continuous_polling">Принудительный постоянный опрос</string>
     <string name="session_continuous_polling_off">Прослушивать только события сеанса от системы</string>
-    <string name="session_continuous_polling_on">Постоянно прослушивать аудиосессии</string>
+    <string name="session_continuous_polling_on">Непрерывно прослушивать аудиосессии</string>
     <string name="session_continuous_polling_rate">Интервал опроса (ms)</string>
     <string name="session_detection_method">Выбранный метод обнаружения аудиосессии</string>
     <string name="session_detection_method_audiopolicyservice">AudioPolicyService dump</string>
