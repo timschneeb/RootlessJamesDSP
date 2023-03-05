@@ -159,8 +159,8 @@
     <string name="onboarding_methods_root_root">\u25CF Рекомендується\n\u25CF Не потрібен комп\'ютер\n\u25CF Підходить для всіх версій Android</string>
     <string name="onboarding_methods_root_shizuku">\u25CF Рекомендується, якщо root-доступ відсутній\n\u25CF Не потрібен комп\'ютер\n\u25CF Тільки для Android 11+</string>
     <string name="onboarding_methods_root_adb">\u25CF Для досвідчених користувачів\n\u25CF Потрібен комп\'ютер та USB-кабель\n\u25CF Всі версії Android</string>
-    <string name="onboarding_root_shell_fail_title">Root-доступ відсутній</string>
-    <string name="onboarding_root_shell_fail">Root-права відсутні. Будь ласка, скористайтеся іншим методом налаштування.</string>
+    <string name="onboarding_root_shell_fail_title">Відсутній root-доступ</string>
+    <string name="onboarding_root_shell_fail">Root-права недоступні. Будь ласка, скористайтеся іншим методом налаштування.</string>
     <string name="onboarding_root_shell_fail_unknown">Не вдалося надати дозвіл через root. Будь ласка, скористайтеся іншим методом налаштування.</string>
     <string name="onboarding_root_enhanced_processing_setup_success">Розширена обробка налаштована</string>
     <string name="onboarding_adb_shizuku_title">Налаштування Shizuku</string>
@@ -224,9 +224,9 @@
     <string name="session_detection_header">Виявлення аудіосесій</string>
     <string name="session_continuous_polling">Безперервне опитування</string>
     <string name="session_continuous_polling_off">Прослуховувати лише події сеансу від системи</string>
-    <string name="session_continuous_polling_on">Постійно сканувати аудіосесії</string>
+    <string name="session_continuous_polling_on">Постійно прослуховувати аудіосесії</string>
     <string name="session_continuous_polling_rate">Інтервал опитування (ms)</string>
-    <string name="session_detection_method">Бажаний метод виявлення аудіосесії</string>
+    <string name="session_detection_method">Обраний метод виявлення аудіосесії</string>
     <string name="session_detection_method_audiopolicyservice">AudioPolicyService dump</string>
     <string name="session_detection_method_audioservice">AudioService dump (рекомендується)</string>
     <string name="session_app_problem_ignore">Ігнорувати проблеми сумісності додатка</string>
@@ -235,7 +235,7 @@
     <string name="session_loss_ignore_on">Не робити жодних дій (може спричинити дублювання звуку)</string>
     <string name="session_loss_ignore_warning">Активація цього параметру може призвести до дублювання звуку, якщо інший додаток для обробки звуку отримає контроль над поточною аудіосесією. \nЯкщо у вас немає проблем з втратою сесій, то рекомендується залишити цю опцію вимкненою.</string>
     <string name="audio_format_header">Обробка аудіо</string>
-    <string name="audio_format_section_header">Бажаний аудіоформат</string>
+    <string name="audio_format_section_header">Обраний аудіоформат</string>
     <string name="audio_format_processing_header">Параметри обробки аудіо</string>
     <string name="audio_format_processing_legacy">Режим legacy</string>
     <string name="audio_format_processing_legacy_on">Прикріпити глобально до сесії 0 (застаріло)</string>
@@ -247,7 +247,7 @@
     <string name="audio_format_enhanced_processing_info">Натисніть, щоб переглянути документацію</string>
     <string name="audio_format_enhanced_processing_info_content">У разі ввімкненої опції «Розширена обробка», ви можете обирати, які додатки виключити з обробки JamesDSP, через меню з трьома крапками в правому нижньому кутку та натиснувши пункт «Виключені додатки». \n\nВимкнення режиму legacy дає змогу кожному додатку використовувати свій власний механізм ефектів JamesDSP для більш тонкого контролю. В іншому випадку всі програми будуть використовувати один механізм обробки, який в Android застарів і більше не повинен використовуватися. \n\nНа жаль, деякі мультимедійні додатки не виконують цю функцію належним чином, тому є ймовірність, що вони не працюватимуть коректно, якщо режим legacy вимкнений. Для розв\'язання цієї проблеми можна увімкнути опцію «Розширена обробка», щоб JamesDSP міг самостійно сканувати аудіосесії, не покладаючись на системні повідомлення та забезпечувати коректну підтримку таких додатків.</string>
     <string name="audio_format_media_apps_need_restart">Після зміни цього параметра необхідно перезапустити всі активні мультимедійні додатки, щоб відновити обробку звуку.</string>
-    <string name="audio_format_summary">Бажане кодування аудіо, розмір буфера</string>
+    <string name="audio_format_summary">Кодування аудіо, розмір буфера</string>
     <string name="audio_format_summary_root">Режим legacy, розширена обробка</string>
     <string name="audio_format_encoding">Кодування аудіо</string>
     <string name="audio_format_encoding_int16">16-bit integer PCM</string>
