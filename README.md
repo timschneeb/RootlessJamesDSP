@@ -112,6 +112,8 @@ Also available on F-Droid: https://f-droid.org/packages/me.timschneeberger.rootl
 
 This app focuses on a rootless implementation, but it can be made to work with the magisk module too. [See here for details](BUILD_ROOT.md).
 
+All the limitations mentioned above are **not relevant** for the magisk/root version. 
+
 ## Credits
 
 * JamesDSP - [James Fung (@james34602)](https://github.com/james34602)
