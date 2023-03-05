@@ -41,6 +41,6 @@ Google Chrome
 en SoundCloud
 * ...
 
---- Translation
-Please help us translate this app here: https://crowdin.com/project/rootlessjamesdsp
-To request a new language that isn't enabled on Crowdin yet, please open an issue here on GitHub and I will turn it on.
+Traducción
+Por favor, ayúdanos a traducir esta aplicación aquí: https://crowdin.com/project/rootlessjamesdsp
+Para solicitar un nuevo idioma que aún no está activado en Crowdin, por favor abra una propuesta en la pestaña "issues" aquí en GitHub y lo activaré.
