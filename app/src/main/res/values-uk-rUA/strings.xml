@@ -159,7 +159,7 @@
     <string name="onboarding_methods_root_root">\u25CF Рекомендується\n\u25CF Не потрібен комп\'ютер\n\u25CF Підходить для всіх версій Android</string>
     <string name="onboarding_methods_root_shizuku">\u25CF Рекомендується, якщо root-доступ відсутній\n\u25CF Не потрібен комп\'ютер\n\u25CF Тільки для Android 11+</string>
     <string name="onboarding_methods_root_adb">\u25CF Для досвідчених користувачів\n\u25CF Потрібен комп\'ютер та USB-кабель\n\u25CF Всі версії Android</string>
-    <string name="onboarding_root_shell_fail_title">Root-права відсутні</string>
+    <string name="onboarding_root_shell_fail_title">Root-доступ відсутній</string>
     <string name="onboarding_root_shell_fail">Root-права відсутні. Будь ласка, скористайтеся іншим методом налаштування.</string>
     <string name="onboarding_root_shell_fail_unknown">Не вдалося надати дозвіл через root. Будь ласка, скористайтеся іншим методом налаштування.</string>
     <string name="onboarding_root_enhanced_processing_setup_success">Розширена обробка налаштована</string>
