@@ -233,7 +233,7 @@
     <string name="session_loss_ignore">Ігнорувати втрату контролю сесії</string>
     <string name="session_loss_ignore_off">Вимкнено, типові налаштування (рекомендується)</string>
     <string name="session_loss_ignore_on">Не робити жодних дій (може спричинити дублювання звуку)</string>
-    <string name="session_loss_ignore_warning">Активація цього параметру може призвести до дублювання звуку, якщо інша програма для обробки звуку отримає контроль над поточною аудіосесією. \nЯкщо у вас немає проблем з помилковою втратою сесій, то рекомендується залишити цю опцію вимкненою.</string>
+    <string name="session_loss_ignore_warning">Активація цього параметру може призвести до дублювання звуку, якщо інший додаток для обробки звуку отримає контроль над поточною аудіосесією. \nЯкщо у вас немає проблем з втратою сесій, то рекомендується залишити цю опцію вимкненою.</string>
     <string name="audio_format_header">Обробка аудіо</string>
     <string name="audio_format_section_header">Бажаний аудіоформат</string>
     <string name="audio_format_processing_header">Параметри обробки аудіо</string>
@@ -257,8 +257,8 @@
     <string name="audio_format_buffer_size_warning_low_value">Попередження: Низькі розміри буфера можуть спричинити проблеми з аудіо, як-от кліппінг!</string>
     <string name="app_behavior">Робота додатку</string>
     <string name="exclude_app_from_recents">Виключити додаток з нещодавніх</string>
-    <string name="exclude_app_from_recents_off">Не видаляти додаток зі списку недавніх задач</string>
-    <string name="exclude_app_from_recents_on">Видалити додаток зі списку недавніх задач</string>
+    <string name="exclude_app_from_recents_off">Не видаляти додаток зі списку нещодавніх завдань</string>
+    <string name="exclude_app_from_recents_on">Видалити додаток зі списку нещодавніх завдань</string>
     <string name="autostart_prompt_at_boot">Запитувати дозвіл на захоплення після завантаження</string>
     <string name="autostart_prompt_at_boot_off">Не показувати сповіщення після завантаження</string>
     <string name="autostart_prompt_at_boot_on">Показувати сповіщення після завантаження</string>
@@ -418,7 +418,7 @@
     <string name="editor_search_keyword">Пошук</string>
     <string name="editor_source_position">%1$d:%2$d</string>
     <string name="editor_engine_down_title">JamesDSP не активований</string>
-    <string name="editor_engine_down">Не вдається запустити скрипт, оскільки JamesDSP вимкнено. Будь ласка, увімкніть JamesDSP для виконання скриптів.</string>
+    <string name="editor_engine_down">Не вдалося запустити скрипт, оскільки JamesDSP вимкнено. Будь ласка, увімкніть JamesDSP для виконання скриптів.</string>
     <string name="editor_save_prompt_title">Зберегти зміни?</string>
     <string name="editor_save_prompt">Поточний скрипт має незбережені зміни. Зберегти зміни чи скасувати їх?</string>
     <string name="editor_script_launched">Скрипт запущено</string>
