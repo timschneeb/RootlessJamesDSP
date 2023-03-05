@@ -46,7 +46,7 @@
     <string name="value_not_set">Не задано</string>
     <string name="undo">Отменить</string>
     <string name="redo">Повторить</string>
-    <string name="no_activity_found">Не найдено ни одного Активити для обработки данного действия</string>
+    <string name="no_activity_found">Не найдено ни одного Activity для обработки данного действия</string>
     <!-- Main screen -->
     <string name="power_button_alt">Переключить обработку аудио</string>
     <string name="compressor_enable">Автоматический компрессор динамического диапазона</string>
@@ -159,8 +159,8 @@
     <string name="onboarding_methods_root_root">\u25CF Рекомендуется\n\u25CF Не требуется компьютер\n\u25CF Подходит для всех версий Android</string>
     <string name="onboarding_methods_root_shizuku">\u25CF Рекомендуется, если root-доступ не настроен\n\u25CF Не требуется компьютер\n\u25CF Только для Android 11+</string>
     <string name="onboarding_methods_root_adb">\u25CF Для опытных пользователей\n\u25CF Требуется компьютер и USB-кабель\n\u25CF Все версии Android</string>
-    <string name="onboarding_root_shell_fail_title">Root-права отсутствуют</string>
-    <string name="onboarding_root_shell_fail">Root-права недоступны. Пожалуйста, воспользуйтесь другим методом установки.</string>
+    <string name="onboarding_root_shell_fail_title">Root-доступ отсутствует</string>
+    <string name="onboarding_root_shell_fail">Root-права отсутствуют. Пожалуйста, воспользуйтесь другим методом установки.</string>
     <string name="onboarding_root_shell_fail_unknown">Не удалось предоставить разрешение через root. Пожалуйста, используйте другой метод установки.</string>
     <string name="onboarding_root_enhanced_processing_setup_success">Расширенная обработка настроена</string>
     <string name="onboarding_adb_shizuku_title">Настройка Shizuku</string>
@@ -466,7 +466,7 @@
     <!-- Slider widget -->
     <string name="slider_dialog_title">Редактировать значение</string>
     <string name="slider_dialog_format_error">Неверный формат числа. Изменения не применены.</string>
-    <string name="slider_dialog_step_error">Значение должно быть кратно %1$d. Изменения не применяются.</string>
+    <string name="slider_dialog_step_error">Значение должно быть кратно %1$d. Изменения не применены.</string>
     <!-- Revert confirmation -->
     <string name="revert_confirmation_title">Вы уверены?</string>
     <string name="revert_confirmation">Сбросить текущий пресет JamesDSP к значениям по умолчанию?</string>
