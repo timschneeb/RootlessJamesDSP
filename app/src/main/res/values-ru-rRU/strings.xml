@@ -417,13 +417,13 @@
     <string name="editor_find_previous_match">Найти предыдущее совпадение</string>
     <string name="editor_search_keyword">Поиск</string>
     <string name="editor_source_position">%1$d:%2$d</string>
-    <string name="editor_engine_down_title">JamesDSP не активен</string>
-    <string name="editor_engine_down">Невозможно запустить скрипт, потому что JamesDSP не активен. Пожалуйста, активируйте JamesDSP для выполнения скриптов.</string>
+    <string name="editor_engine_down_title">JamesDSP не активирован</string>
+    <string name="editor_engine_down">Не удается запустить скрипт, так как JamesDSP отключен. Пожалуйста, включите JamesDSP для выполнения скриптов.</string>
     <string name="editor_save_prompt_title">Сохранить изменения?</string>
     <string name="editor_save_prompt">Текущий скрипт имеет несохраненные изменения. Сохранить изменения или отменить их?</string>
     <string name="editor_script_launched">Скрипт запущен</string>
-    <string name="editor_cannot_undo">Нет действий для отмены</string>
-    <string name="editor_cannot_redo">Нет действий для повтора</string>
+    <string name="editor_cannot_undo">Нет действий для отмены.</string>
+    <string name="editor_cannot_redo">Нет действий для повтора.</string>
     <string name="editor_text_size">Размер текста</string>
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Исключенные приложения</string>
