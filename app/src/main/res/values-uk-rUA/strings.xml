@@ -27,7 +27,7 @@
     <string name="session_control_loss_notification_title">Обробка аудіо зупинена. Інший додаток перешкоджає роботі JamesDSP.</string>
     <string name="session_control_loss_notification">Будь ласка, вимкніть всі інші додатки, що надають глобальні звукові ефекти перед повторним включенням JamesDSP.</string>
     <!-- App compatibility issue notifications -->
-    <string name="session_app_compat_toast">JamesDSP зупинено через несумісний медіадодаток. Будь ласка, перевірте повідомлення, щоб розв\'язати цю проблему.</string>
+    <string name="session_app_compat_toast">JamesDSP зупинено через несумісний мультимедійний додаток. Будь ласка, перевірте повідомлення, щоб розв\'язати цю проблему.</string>
     <string name="session_app_compat_notification_title">Обробка аудіо зупинена. Інший додаток перешкоджає роботі JamesDSP.</string>
     <string name="session_app_compat_notification">Натисніть на це сповіщення, щоб розв\'язати проблему.</string>
     <!-- Capture permission revoked notifications -->
@@ -108,7 +108,7 @@
     <string name="ddc_file">Профіль DDC</string>
     <string name="liveprog_enable">Liveprog DSP</string>
     <string name="liveprog_file">Liveprog скрипт</string>
-    <string name="liveprog_additional_params">Додаткові параметри скрипту</string>
+    <string name="liveprog_additional_params">Додаткові параметри скрипта</string>
     <string name="liveprog_additional_params_not_supported">Обраний скрипт не має параметрів, які можна налаштувати</string>
     <string name="liveprog_not_found">Скрипт не знайдено</string>
     <string name="liveprog_no_script_selected">Скрипт не вибрано</string>
@@ -144,7 +144,7 @@
     <string name="onboarding_caption">Цей асистент допоможе вам виконати налаштування додатка.</string>
     <string name="onboarding_warning">Наразі додаток є незавершеним і може бути нестабільним. Зверніть увагу, що на деяких пристроях він може не працювати належним чином, оскільки використовує Android API, які не передбачені для використання сторонніми додатками.</string>
     <string name="onboarding_fix_permissions_title">Потрібна дія користувача</string>
-    <string name="onboarding_fix_permissions">Один або кілька дозволів було відкликано вами або системою.\nЩоб забезпечити правильну роботу додатку, вам потрібно надати ці дозволи знову.\n\nБудь ласка, перезапустіть майстер налаштування для повторного надання цих дозволів.</string>
+    <string name="onboarding_fix_permissions">Один або кілька дозволів було відкликано вами або системою.\nЩоб забезпечити правильну роботу додатка, вам потрібно надати ці дозволи знову.\n\nБудь ласка, перезапустіть майстер налаштування для повторного надання цих дозволів.</string>
     <string name="onboarding_limitations_title">Обмеження</string>
     <string name="onboarding_limitations_unstable">Важливо! Будь ласка, уважно прочитайте нотатки перед тим, як продовжити.</string>
     <string name="onboarding_methods_title">Оберіть метод налаштування</string>
@@ -187,7 +187,7 @@
     <string name="onboarding_adb_dump_not_granted_title">Дозвіл ще не надано</string>
     <string name="onboarding_adb_dump_not_granted">Будь ласка, спочатку дотримайтесь інструкцій та повторіть спробу. Доступ ADB ще не налаштовано належним чином.</string>
     <string name="onboarding_adb_manual_step1">Перейдіть у приховані налаштування Android «Для розробників» і увімкніть параметр «USB-налагодження». Для розблокування цих налаштувань необхідно кілька разів натиснути на номер збірки в налаштуваннях системи.</string>
-    <string name="onboarding_adb_manual_step2">Перейдіть на сайт https://app.webadb.com у веб-браузері на вашому комп\'ютері (рекомендується використовувати Google Chrome) та під\'єднайте ваш пристрій до комп\'ютера за допомогою USB-кабелю.</string>
+    <string name="onboarding_adb_manual_step2">Перейдіть на сайт https://app.webadb.com у браузері вашого комп\'ютера (рекомендується використовувати Google Chrome) та під\'єднайте ваш пристрій до комп\'ютера за допомогою USB-кабелю.</string>
     <string name="onboarding_adb_manual_step3">Додайте та підключіть USB-пристрій у WebADB.</string>
     <string name="onboarding_adb_manual_step4">Перейдіть у розділ «Interactive Shell» і виконайте в терміналі таку команду: pm grant %s android.permission.DUMP</string>
     <string name="onboarding_adb_manual_step5">Натисніть «Далі» в цьому додатку, щоб продовжити.</string>
@@ -211,11 +211,11 @@
     <string name="limit_hw_accel_title">Проблеми HW-прискореним відтворенням аудіо</string>
     <string name="limit_hw_accel">HW-прискорене відтворення аудіо іноді може призводити до дублювання звуку або зупинки JamesDSP в деяких випадках. Будь ласка, додайте проблемний музичний плеєр до списку виключених додатків, щоб запобігти маршрутизації його звуку через JamesDSP.</string>
     <string name="limit_detect_delay_title">Затримка визначення аудіосесії</string>
-    <string name="limit_detect_delay"><![CDATA[Після того як додаток відкриває нову медіа-сесію для відтворення звуку, ви можете почути повторюваний або уривчастий звук на дуже короткий період (приблизно 250 мс).]]></string>
+    <string name="limit_detect_delay"><![CDATA[Після того як додаток відкриває нову аудіосесію для відтворення звуку, ви можете почути повторюваний або уривчастий звук на дуже короткий період (приблизно 250 мс).]]></string>
     <string name="limit_latency_title">Підвищена затримка</string>
     <string name="limit_latency">Ця програма може додавати деяку затримку в аудіопотік. Ви можете внести програми для перегляду фільмів/відео до списку виключених додатків, щоб уникнути можливих проблем із синхронізацією звуку та відео.</string>
     <string name="limit_tested_devices_title">Протестовані пристрої</string>
-    <string name="limit_tested_devices">Виробник вашого пристрою міг внести зміни до аудіопідсистеми Android, які можуть порушити роботу додатку через використання не задокументованих API.\nДодаток тестувався на пристроях:\n• Samsung S20+ (Android 12)\n• Емулятор AOSP (Android 10-13)\n• Google Pixel 6 Pro (Android 13)</string>
+    <string name="limit_tested_devices">Виробник вашого пристрою міг внести зміни до аудіопідсистеми Android, які можуть порушити роботу додатка через використання не задокументованих API.\nДодаток тестувався на пристроях:\n• Samsung S20+ (Android 12)\n• Емулятор AOSP (Android 10-13)\n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
     <string name="title_activity_settings">Параметри</string>
     <string name="session_exclude_restricted">Виключити непідтримувані додатки</string>
@@ -226,7 +226,7 @@
     <string name="session_continuous_polling_off">Прослуховувати лише події сеансу від системи</string>
     <string name="session_continuous_polling_on">Постійно сканувати аудіосесії</string>
     <string name="session_continuous_polling_rate">Інтервал опитування (ms)</string>
-    <string name="session_detection_method">Бажаний метод виявлення сесії</string>
+    <string name="session_detection_method">Бажаний метод виявлення аудіосесії</string>
     <string name="session_detection_method_audiopolicyservice">AudioPolicyService dump</string>
     <string name="session_detection_method_audioservice">AudioService dump (рекомендується)</string>
     <string name="session_app_problem_ignore">Ігнорувати проблеми сумісності додатка</string>
@@ -247,7 +247,7 @@
     <string name="audio_format_enhanced_processing_info">Натисніть, щоб переглянути документацію</string>
     <string name="audio_format_enhanced_processing_info_content">У разі ввімкненої опції «Розширена обробка», ви можете обирати, які додатки виключити з обробки JamesDSP, через меню з трьома крапками в правому нижньому кутку та натиснувши пункт «Виключені додатки». \n\nВимкнення режиму legacy дає змогу кожному додатку використовувати свій власний механізм ефектів JamesDSP для більш тонкого контролю. В іншому випадку всі програми будуть використовувати один механізм обробки, який в Android застарів і більше не повинен використовуватися. \n\nНа жаль, деякі мультимедійні додатки не виконують цю функцію належним чином, тому є ймовірність, що вони не працюватимуть коректно, якщо режим legacy вимкнений. Для розв\'язання цієї проблеми можна увімкнути опцію «Розширена обробка», щоб JamesDSP міг самостійно сканувати аудіосесії, не покладаючись на системні повідомлення та забезпечувати коректну підтримку таких додатків.</string>
     <string name="audio_format_media_apps_need_restart">Після зміни цього параметра необхідно перезапустити всі активні мультимедійні додатки, щоб відновити обробку звуку.</string>
-    <string name="audio_format_summary">Бажане кодування звуку, розмір буфера</string>
+    <string name="audio_format_summary">Бажане кодування аудіо, розмір буфера</string>
     <string name="audio_format_summary_root">Режим legacy, розширена обробка</string>
     <string name="audio_format_encoding">Кодування аудіо</string>
     <string name="audio_format_encoding_int16">16-bit integer PCM</string>
@@ -255,14 +255,14 @@
     <string name="audio_format_buffer_size">Розмір буфера</string>
     <string name="audio_format_buffer_size_unit">&#xa0;samples</string>
     <string name="audio_format_buffer_size_warning_low_value">Попередження: Низькі розміри буфера можуть спричинити проблеми з аудіо, як-от кліппінг!</string>
-    <string name="app_behavior">Робота додатку</string>
+    <string name="app_behavior">Робота додатка</string>
     <string name="exclude_app_from_recents">Виключити додаток з нещодавніх</string>
     <string name="exclude_app_from_recents_off">Не видаляти додаток зі списку нещодавніх завдань</string>
     <string name="exclude_app_from_recents_on">Видалити додаток зі списку нещодавніх завдань</string>
     <string name="autostart_prompt_at_boot">Запитувати дозвіл на захоплення після завантаження</string>
     <string name="autostart_prompt_at_boot_off">Не показувати сповіщення після завантаження</string>
     <string name="autostart_prompt_at_boot_on">Показувати сповіщення після завантаження</string>
-    <string name="powersave">Енергозбереження</string>
+    <string name="powersave">Енергоощадження</string>
     <string name="powersave_suspend">Призупиняти аудіопотік під час простою</string>
     <string name="powersave_suspend_off">Продовжувати обробку, навіть коли контент не відтворюється</string>
     <string name="powersave_suspend_on">Ставити на паузу обробку аудіопотоку для економії енергії</string>
@@ -290,7 +290,7 @@
     <string name="network_autoeq_conntest_done">З\'єднання успішно встановлено</string>
     <string name="network_autoeq_conntest_fail">Не вдалося перевірити з\'єднання</string>
     <string name="network_autoeq_conntest_fail_summary">Сервер не повернув правильну відповідь. Переконайтеся, що програмне забезпечення https://github.com/ThePBone/AutoEqApi налаштовано на сервері правильно.\n\nПомилка мережі: %1$s\n\nВідновити типові значення?</string>
-    <string name="about_settings">Про програму</string>
+    <string name="about_settings">Про додаток</string>
     <string name="about_settings_summary">Автори, підтримка, оновлення</string>
     <string name="privacy">Конфіденційність</string>
     <string name="privacy_share_crash_reports">Поділитися інформацією про збої в додатку</string>
@@ -306,11 +306,11 @@
     <string name="credits_project_play_page_summary">Пошук нових оновлень</string>
     <string name="credits_project_translate">Допомога з перекладом</string>
     <string name="credits_project_translate_summary">Допоможіть нам перекласти додаток вашою мовою</string>
-    <string name="credits_version">Версія додатку</string>
+    <string name="credits_version">Версія додатка</string>
     <string name="credits_build_info">Інформація про збірку</string>
     <string name="appearance_section_header">Зовнішній вигляд</string>
-    <string name="appearance_summary">Тема додатку, темний режим</string>
-    <string name="appearance_title">Тема додатку</string>
+    <string name="appearance_summary">Тема додатка, темний режим</string>
+    <string name="appearance_title">Тема додатка</string>
     <string name="appearance_theme_mode">Темний режим</string>
     <string name="appearance_theme_mode_default">Використовувати налаштування системи</string>
     <string name="appearance_theme_mode_light">Вимк.</string>
@@ -401,16 +401,16 @@
     <string name="autoeq_partial_results_warning">Показано перші %1$d результатів. Будь ласка, налаштуйте ваш пошук, щоб отримати більш релевантні результати.</string>
     <string name="autoeq_no_results">Результатів не знайдено</string>
     <!-- Customizable liveprog script parameters -->
-    <string name="title_activity_liveprog_params">Параметри скрипту, що налаштовуються</string>
+    <string name="title_activity_liveprog_params">Параметри скрипта, що налаштовуються</string>
     <string name="action_restore_defaults">Відновити типові значення</string>
     <!-- Liveprog script editor -->
     <string name="title_activity_liveprog_editor">Редактор скриптів</string>
     <string name="editor_find_and_replace">Знайти/Замінити…</string>
     <string name="editor_docs">Допомога</string>
-    <string name="editor_open_fail">Файл скрипту не існує або не може бути відкритий.</string>
+    <string name="editor_open_fail">Файл скрипта не існує або не може бути відкритий.</string>
     <string name="editor_run">Зберегти та запустити</string>
     <string name="editor_save">Зберегти</string>
-    <string name="editor_liveprog_enabled">Liveprog було автоматично ввімкнено.</string>
+    <string name="editor_liveprog_enabled">Liveprog було автоматично увімкнено.</string>
     <string name="editor_replace_all">Замінити все</string>
     <string name="editor_replacement">Заміна</string>
     <string name="editor_find_next_match">Знайти наступний збіг</string>
@@ -459,7 +459,7 @@
     <!-- App list -->
     <string name="app_list_loading">Завантаження списку додатків…</string>
     <string name="app_list_search">Пошук</string>
-    <string name="app_list_icon_alt">Значок програми</string>
+    <string name="app_list_icon_alt">Значок додатка</string>
     <!-- Number box view -->
     <string name="number_box_decrement">Зменшення</string>
     <string name="number_box_increment">Збільшення</string>
