@@ -27,7 +27,7 @@
     <string name="session_control_loss_notification_title">Обработка аудио остановлена. Другое приложение препятствует работе JamesDSP.</string>
     <string name="session_control_loss_notification">Пожалуйста, отключите другие приложения, которые предоставляют глобальные аудио эффекты перед повторным включением JamesDSP.</string>
     <!-- App compatibility issue notifications -->
-    <string name="session_app_compat_toast">JamesDSP остановлен из-за несовместимого медиа-приложения. Пожалуйста, проверьте уведомление, чтобы решить эту проблему.</string>
+    <string name="session_app_compat_toast">JamesDSP остановлен из-за несовместимого медиа приложения. Пожалуйста, проверьте уведомление, чтобы решить эту проблему.</string>
     <string name="session_app_compat_notification_title">Обработка аудио остановлена. Другое приложение препятствует работе JamesDSP.</string>
     <string name="session_app_compat_notification">Коснитесь этого уведомления, чтобы решить проблему.</string>
     <!-- Capture permission revoked notifications -->
