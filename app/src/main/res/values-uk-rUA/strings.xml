@@ -37,7 +37,7 @@
     <string name="update">Оновити</string>
     <string name="details">Детальніше</string>
     <string name="warning">Попередження</string>
-    <string name="success">Виконано</string>
+    <string name="success">Успішно виконано</string>
     <string name="open">Відкрити</string>
     <string name="close">Закрити</string>
     <string name="add">Додати</string>
@@ -204,7 +204,7 @@
     <string name="onboarding_perm_missing">Будь ласка, надайте всі запитані дозволи на виконання, щоб продовжити.\nЯкщо ви кілька разів відмовили в наданні дозволів, вам потрібно надати їх вручну в налаштуваннях системи.</string>
     <string name="onboarding_finish_header">JamesDSP налаштовано!</string>
     <string name="onboarding_finish_caption">Якщо у вас виникли будь-які проблеми, будь ласка, відвідайте розділ налаштувань «Усунення неполадок».</string>
-    <string name="limit_session_control_conflict_title">Вимкнути інші додатки для обробки звуку</string>
+    <string name="limit_session_control_conflict_title">Вимкніть інші додатки для обробки звуку</string>
     <string name="limit_session_control_conflict">Додатки для обробки звуку, що використовують вбудований в Android ефект динамічної обробки, перешкоджають роботі цього додатка.</string>
     <string name="limit_unsupported_apps_title">Непідтримувані додатки</string>
     <string name="limit_unsupported_apps">Додатки, які блокують запис внутрішнього аудіо, не будуть оброблені (наприклад, Spotify, Google Chrome).</string>
@@ -279,7 +279,7 @@
     <string name="troubleshooting_notification_access_summary">Забезпечує надійнішу детекцію аудіосесії</string>
     <string name="troubleshooting_repair_assets">Відновити вбудовані IR, DDC та скрипти</string>
     <string name="troubleshooting_repair_assets_summary">Якщо ви втратили або видалили попередньо встановлені ресурси, ви можете їх відновити. Ресурси, імпортовані або створені вами, залишаться без змін</string>
-    <string name="troubleshooting_repair_assets_success">Попередньо встановлені ресурси було відновлено</string>
+    <string name="troubleshooting_repair_assets_success">Попередньо встановлені ресурси були відновлені</string>
     <string name="misc_settings">Інше</string>
     <string name="misc_settings_summary">Звіти про помилки, інші дії</string>
     <string name="assets">Ресурси</string>
