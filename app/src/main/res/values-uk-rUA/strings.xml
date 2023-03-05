@@ -364,7 +364,7 @@
     <string name="message_vdc_corrupt">Обраний файл VDC пошкоджений. Будь ласка, виберіть інший файл.</string>
     <string name="message_irs_corrupt">Обраний файл імпульсного відгуку пошкоджений. Будь ласка, виберіть інший.</string>
     <string name="message_convolver_advimp_invalid">Конвольвер: Розширене редагування форми сигналу містить неприпустимі значення.</string>
-    <string name="message_liveprog_compile_fail">Помилка виконання Liveprog. Обраний скрипт пошкоджений. Використовуйте редактор скриптів для налагодження.</string>
+    <string name="message_liveprog_compile_fail">Помилка виконання Liveprog. Обраний скрипт пошкоджений. Використайте редактор скриптів для налагодження.</string>
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">Амплітудна характеристика</string>
     <string name="geq_edit_as_string">Редагувати як рядок</string>
@@ -417,8 +417,8 @@
     <string name="editor_find_previous_match">Знайти попередній збіг</string>
     <string name="editor_search_keyword">Пошук</string>
     <string name="editor_source_position">%1$d:%2$d</string>
-    <string name="editor_engine_down_title">JamesDSP не активний</string>
-    <string name="editor_engine_down">Неможливо запустити скрипт, тому що JamesDSP не активний. Будь ласка, активуйте JamesDSP для виконання скриптів.</string>
+    <string name="editor_engine_down_title">JamesDSP не активований</string>
+    <string name="editor_engine_down">Не вдається запустити скрипт, оскільки JamesDSP вимкнено. Будь ласка, увімкніть JamesDSP для виконання скриптів.</string>
     <string name="editor_save_prompt_title">Зберегти зміни?</string>
     <string name="editor_save_prompt">Поточний скрипт має незбережені зміни. Зберегти зміни чи скасувати їх?</string>
     <string name="editor_script_launched">Скрипт запущено</string>
