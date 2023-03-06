@@ -492,8 +492,8 @@
     <string name="self_update_install_error">Не вдалося оновити</string>
     <string name="self_update_download_fail">Не вдалося завантажити пакет оновлення. Будь ласка, перевірте ваше інтернет-з\'єднання. Детальніше: %1$s</string>
     <string name="self_update_install_fail">Помилка при встановленні. %1$s</string>
-    <string name="self_update_finished">Оновлення встановлено. Додаток перезавантажується…</string>
-    <string name="self_update_no_updates">Наразі немає нових оновлень</string>
+    <string name="self_update_finished">Оновлення встановлено. Перезапуск додатка…</string>
+    <string name="self_update_no_updates">Наразі немає доступних оновлень</string>
     <string name="self_update_notice">Доступне нове оновлення (%1$s)</string>
     <string name="self_update_notice_summary">Натисніть тут, щоб завантажити та встановити оновлення.</string>
     <string name="self_update_notice_dismiss_install">Встановити зараз</string>
