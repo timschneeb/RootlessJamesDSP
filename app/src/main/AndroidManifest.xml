@@ -285,5 +285,11 @@
                 android:resource="@xml/provider_filelibrary_paths" />
         </provider>
 
+        <provider
+            android:name="me.timschneeberger.rootlessjamesdsp.utils.Cache$Provider"
+            android:authorities="${applicationId}.provider.cache"
+            android:exported="false"
+            android:grantUriPermissions="true" />
+
     </application>
 </manifest>

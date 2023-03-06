@@ -18,18 +18,21 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.preference.DialogPreference.TargetFragment
 import androidx.preference.Preference
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.MainApplication
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.ActivityMainBinding
 import me.timschneeberger.rootlessjamesdsp.databinding.ContentMainBinding
 import me.timschneeberger.rootlessjamesdsp.flavor.CrashlyticsImpl
+import me.timschneeberger.rootlessjamesdsp.flavor.UpdateManager
 import me.timschneeberger.rootlessjamesdsp.fragment.DspFragment
 import me.timschneeberger.rootlessjamesdsp.fragment.FileLibraryDialogFragment
 import me.timschneeberger.rootlessjamesdsp.fragment.LibraryLoadErrorFragment
@@ -53,9 +56,11 @@ import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showSingleCho
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showYesNoAlert
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.unregisterLocalReceiver
+import me.timschneeberger.rootlessjamesdsp.utils.Result
 import me.timschneeberger.rootlessjamesdsp.utils.StorageUtils
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import me.timschneeberger.rootlessjamesdsp.view.FloatingToggleButton
+import org.koin.core.component.inject
 import timber.log.Timber
 import java.io.File
 import java.util.*
@@ -75,6 +80,7 @@ class MainActivity : BaseActivity() {
     /* Root version */
     private var hasLoadFailed = false
     private lateinit var runtimePermissionLauncher: ActivityResultLauncher<Array<String>>
+    private val updateManager: UpdateManager by inject()
 
     private var processorService: BaseAudioProcessorService? = null
     private var processorServiceBound: Boolean = false
@@ -337,6 +343,10 @@ class MainActivity : BaseActivity() {
             }
         }
 
+        dspFragment.setUpdateCardOnClick { updateManager.installUpdate(this) }
+        dspFragment.setUpdateCardOnCloseClick(::dismissUpdate)
+        checkForUpdates()
+
         // Handle potential incoming file intent
         if(intent?.action == Intent.ACTION_VIEW) {
             intent.data?.let { handleFileIntent(it) }
@@ -402,6 +412,77 @@ class MainActivity : BaseActivity() {
         excludeAppFromRecents()
     }
 
+    private fun checkForUpdates() {
+        if(BuildConfig.ROOTLESS ||
+            prefsVar.get<Long>(R.string.key_update_check_timeout) > (System.currentTimeMillis() / 1000L)) {
+            Timber.d("Update check rejected due to flavor or timeout")
+            return
+        }
+
+        CoroutineScope(Dispatchers.Default).launch {
+            updateManager.isUpdateAvailable().collect {
+                when(it) {
+                    is Result.Error -> {
+                        Timber.e("Update check failed")
+                        Timber.d(it.exception)
+                        // Set timeout to +30min
+                        prefsVar.set(R.string.key_update_check_timeout, (System.currentTimeMillis() / 1000L) + 1800L)
+                        false
+                    }
+                    is Result.Success -> {
+                        Timber.d("Is update available? ${it.data}")
+                        if(!it.data) {
+                            // Set timeout to +4h
+                            prefsVar.set(R.string.key_update_check_timeout, (System.currentTimeMillis() / 1000L) + 14400L)
+                        }
+                        it.data
+                    }
+                    else -> false
+                }.let {
+                    withContext(Dispatchers.Main) {
+                        val info = updateManager.getUpdateVersionInfo()
+                        val skipUpdate = info?.second == prefsVar.get<Int>(R.string.key_update_check_skip)
+                        Timber.d("Should skip update ${info?.second}?: $skipUpdate")
+                        if(skipUpdate) {
+                            // Set timeout to +4h
+                            prefsVar.set(R.string.key_update_check_timeout, (System.currentTimeMillis() / 1000L) + 14400L)
+                        }
+                        dspFragment.setUpdateCardTitle(getString(R.string.self_update_notice, info?.first ?: "..."))
+                        dspFragment.setUpdateCardVisible(it && !skipUpdate)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun dismissUpdate() {
+        if(BuildConfig.ROOTLESS)
+            return
+
+        MaterialAlertDialogBuilder(this)
+            .setTitle(getString(R.string.actions))
+            .setItems(R.array.update_dismiss_dialog) { dialogInterface, i ->
+                when(i) {
+                    0 -> updateManager.installUpdate(this)
+                    1 -> {
+                        prefsVar.set(R.string.key_update_check_skip, updateManager.getUpdateVersionInfo()?.second ?: 0)
+                        dspFragment.setUpdateCardVisible(false)
+                    }
+                    2 -> {
+                        prefsVar.set(
+                            R.string.key_update_check_timeout,
+                            (System.currentTimeMillis() / 1000L) + 43200L /* +12h snooze */
+                        )
+                        dspFragment.setUpdateCardVisible(false)
+                    }
+                }
+                dialogInterface.dismiss()
+            }
+            .setNegativeButton(getString(android.R.string.cancel)){ _, _ -> }
+            .create()
+            .show()
+    }
+
     private fun excludeAppFromRecents() {
         getSystemService<ActivityManager>()?.appTasks?.takeIf { it.isNotEmpty() }?.forEach {
             it.setExcludeFromRecents(prefsApp.get(R.string.key_exclude_app_from_recents))
@@ -409,6 +490,9 @@ class MainActivity : BaseActivity() {
     }
 
     private fun showLibraryLoadError() {
+        if(DEBUG_IGNORE_MISSING_LIBRARY)
+           return
+
         hasLoadFailed = true
 
         supportFragmentManager
@@ -631,6 +715,7 @@ class MainActivity : BaseActivity() {
     companion object {
         const val EXTRA_FORCE_SHOW_CAPTURE_PROMPT = "ForceShowCapturePrompt"
 
+        private val DEBUG_IGNORE_MISSING_LIBRARY = BuildConfig.DEBUG
         private const val STATE_LOAD_FAILED = "LoadFailed"
     }
 }

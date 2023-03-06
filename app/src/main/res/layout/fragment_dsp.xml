@@ -33,6 +33,20 @@
             app:iconSrc="@drawable/ic_twotone_translate_24dp"
             app:iconTint="?attr/colorOnSecondaryContainer" />
 
+        <me.timschneeberger.rootlessjamesdsp.view.Card
+            android:id="@+id/update_notice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="1dp"
+            android:clickable="true"
+            app:bodyText="@string/self_update_notice_summary"
+            app:titleText="@string/self_update_notice"
+            app:cardBackground="?attr/colorSecondaryContainer"
+            app:cardMargin="0dp"
+            app:closeButtonVisible="true"
+            app:iconSrc="@drawable/ic_baseline_download_24dp"
+            app:iconTint="?attr/colorOnSecondaryContainer" />
+
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

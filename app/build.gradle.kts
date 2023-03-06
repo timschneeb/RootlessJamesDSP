@@ -93,7 +93,7 @@ android {
             dimension = "version"
 
             manifestPlaceholders["label"] = "JamesDSP"
-            project.setProperty("archivesBaseName", "JamesDSP-v${AndroidConfig.versionName}")
+            project.setProperty("archivesBaseName", "JamesDSP-v${AndroidConfig.versionName}-${AndroidConfig.versionCode}")
             applicationId = "james.dsp"
             AndroidConfig.minSdk = 26
             minSdk = AndroidConfig.minSdk

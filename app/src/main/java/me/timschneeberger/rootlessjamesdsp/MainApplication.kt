@@ -14,8 +14,10 @@ import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistRepository
 import me.timschneeberger.rootlessjamesdsp.session.dump.DumpManager
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.flavor.CrashlyticsImpl
+import me.timschneeberger.rootlessjamesdsp.flavor.UpdateManager
 import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.session.root.RootSessionDatabase
+import me.timschneeberger.rootlessjamesdsp.utils.Cache
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import org.koin.android.ext.android.inject
@@ -82,6 +84,9 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
         if(!BuildConfig.FOSS_ONLY)
             Timber.plant(CrashReportingTree())
 
+        // Clean up
+        Cache.cleanup(this)
+
         Timber.plant(FileLoggerTree.Builder()
             .withFileName("application.log")
             .withDirName(this.cacheDir.absolutePath)
@@ -92,7 +97,7 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
             .build())
         Timber.i("====> Application starting up")
 
-        // Clean up
+        // TODO: use cache
         val dumpFile = File(filesDir, "dump.txt")
         if(dumpFile.exists()) {
             dumpFile.delete()
@@ -100,6 +105,7 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
 
         val appModule = module {
             single { DumpManager(androidContext()) }
+            single { UpdateManager(androidContext()) }
             single { Preferences(androidContext()).App() }
             single { Preferences(androidContext()).Var() }
         }

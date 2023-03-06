@@ -13,16 +13,29 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceGroup
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
+import me.timschneeberger.rootlessjamesdsp.flavor.UpdateManager
 import me.timschneeberger.rootlessjamesdsp.model.Translator
+import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
+import me.timschneeberger.rootlessjamesdsp.utils.Result
+import org.koin.android.ext.android.inject
+import timber.log.Timber
 import java.util.Locale
 
 
 class SettingsAboutFragment : PreferenceFragmentCompat() {
 
+    private val updateManager: UpdateManager by inject()
+
     private val version by lazy { findPreference<Preference>(getString(R.string.key_credits_version)) }
     private val buildInfo by lazy { findPreference<Preference>(getString(R.string.key_credits_build_info)) }
+    private val googlePlay by lazy { findPreference<Preference>(getString(R.string.key_credits_google_play)) }
+    private val selfCheckUpdates by lazy { findPreference<Preference>(getString(R.string.key_credits_check_update)) }
     private val translatorsGroup by lazy { findPreference<PreferenceGroup>(getString(R.string.key_translators)) }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
@@ -38,6 +51,13 @@ class SettingsAboutFragment : PreferenceFragmentCompat() {
             "Release"
 
         buildInfo?.summary = "$type build (${BuildConfig.FLAVOR_dependencies}) @${BuildConfig.COMMIT_SHA} (compiled at ${BuildConfig.BUILD_TIME})"
+
+        googlePlay?.isVisible = BuildConfig.ROOTLESS
+        selfCheckUpdates?.isVisible = !BuildConfig.ROOTLESS
+        selfCheckUpdates?.setOnPreferenceClickListener {
+            checkForUpdates()
+            true
+        }
 
         Translator.readLanguageMap(requireContext()).forEach { (cc, tls) ->
             translatorsGroup?.addPreference(Preference(requireContext()).apply {
@@ -82,6 +102,27 @@ class SettingsAboutFragment : PreferenceFragmentCompat() {
             view.background = ResourcesCompat.getDrawable(requireContext().resources, a.resourceId, requireContext().theme)
         }
         return view
+    }
+
+    private fun checkForUpdates() {
+        if(BuildConfig.ROOTLESS)
+            return
+
+        CoroutineScope(Dispatchers.Default).launch {
+            updateManager.isUpdateAvailable().collect {
+                when(it) {
+                    is Result.Success -> it.data
+                    else -> false
+                }.let { hasUpdate ->
+                    withContext(Dispatchers.Main) {
+                        if (hasUpdate)
+                            updateManager.installUpdate(requireActivity())
+                        else
+                            requireContext().toast(getString(R.string.self_update_no_updates))
+                    }
+                }
+            }
+        }
     }
 
     companion object {

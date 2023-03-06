@@ -29,12 +29,20 @@
     </Preference>
 
     <Preference
+        android:key="@string/key_credits_google_play"
         android:title="@string/credits_project_play_page"
         android:summary="@string/credits_project_play_page_summary"
         app:iconSpaceReserved="false">
         <intent
             android:action="android.intent.action.VIEW"
             android:data="https://play.google.com/store/apps/details?id=me.timschneeberger.rootlessjamesdsp" />
+    </Preference>
+
+    <Preference
+        android:key="@string/key_credits_check_update"
+        android:title="@string/credits_project_check_update"
+        android:summary="@string/credits_project_check_update_summary"
+        app:iconSpaceReserved="false">
     </Preference>
 
     <Preference

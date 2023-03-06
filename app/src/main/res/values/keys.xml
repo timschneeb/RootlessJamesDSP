@@ -3,6 +3,8 @@
     <!-- Internal -->
     <string name="key_first_boot" translatable="false">first_boot</string>
     <string name="key_snooze_translation_notice" translatable="false">snooze_translation_notice</string>
+    <string name="key_update_check_timeout" translatable="false">update_check_timeout</string>
+    <string name="key_update_check_skip" translatable="false">update_check_skip</string>
     <string name="key_reset_proc_mode_fix_applied" translatable="false">reset_proc_mode_fix_applied</string>
     <string name="key_is_activity_active" translatable="false">is_activity_active</string>
     <string name="key_is_app_compat_activity_active" translatable="false">is_app_compat_activity_active</string>
@@ -48,6 +50,8 @@
     <string name="key_troubleshooting_view_limitations" translatable="false">troubleshooting_view_limitations</string>
     <string name="key_credits_version" translatable="false">credits_version</string>
     <string name="key_credits_build_info" translatable="false">credits_build_info</string>
+    <string name="key_credits_check_update" translatable="false">credits_check_update</string>
+    <string name="key_credits_google_play" translatable="false">credits_google_play</string>
     <string name="key_audioformat_enhanced_processing_info" translatable="false">audioformat_enhanced_processing_info</string>
 
     <!-- Script editor -->

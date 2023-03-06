@@ -7,6 +7,8 @@
     <!-- Internal -->
     <bool name="default_first_boot" translatable="false">true</bool>
     <integer name="default_snooze_translation_notice" translatable="false">0</integer>
+    <integer name="default_update_check_timeout" translatable="false">0</integer>
+    <integer name="default_update_check_skip" translatable="false">0</integer>
     <bool name="default_reset_proc_mode_fix_applied" translatable="false">false</bool>
     <bool name="default_is_activity_active" translatable="false">false</bool>
     <bool name="default_is_app_compat_activity_active" translatable="false">false</bool>

@@ -19,6 +19,9 @@ class DspFragment : Fragment() {
     private val prefsVar: Preferences.Var by inject()
 
     private var translateNotice: Card? = null
+    private var updateNotice: Card? = null
+    private var updateNoticeOnClick: (() -> Unit)? = null
+    private var updateNoticeOnCloseClick: (() -> Unit)? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,15 +30,25 @@ class DspFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_dsp, container, false)
         translateNotice = view.findViewById(R.id.translation_notice)
+        updateNotice = view.findViewById(R.id.update_notice)
+
         translateNotice?.setOnCloseClickListener(::hideTranslationNotice)
         translateNotice?.setOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://crowdin.com/project/rootlessjamesdsp")))
             hideTranslationNotice()
         }
 
-        // Should show translation notice?
+        updateNotice?.setOnCloseClickListener {
+            updateNoticeOnCloseClick?.invoke()
+        }
+        updateNotice?.setOnClickListener {
+            updateNoticeOnClick?.invoke()
+        }
+
+        // Should show notice?
         translateNotice?.isVisible =
             prefsVar.get<Long>(R.string.key_snooze_translation_notice) < (System.currentTimeMillis() / 1000L)
+        updateNotice?.isVisible = false
 
         val transition = LayoutTransition()
         transition.enableTransitionType(LayoutTransition.CHANGING)
@@ -98,6 +111,22 @@ class DspFragment : Fragment() {
         translateNotice?.isVisible = false
         // Set timer +1y
         prefsVar.set<Long>(R.string.key_snooze_translation_notice, (System.currentTimeMillis() / 1000L) + 31536000L)
+    }
+
+    fun setUpdateCardVisible(visible: Boolean) {
+        updateNotice?.isVisible = visible
+    }
+
+    fun setUpdateCardTitle(title: String) {
+        updateNotice?.titleText = title
+    }
+
+    fun setUpdateCardOnClick(onClick: () -> Unit) {
+        updateNoticeOnClick = onClick
+    }
+
+    fun setUpdateCardOnCloseClick(onClick: () -> Unit) {
+        updateNoticeOnCloseClick = onClick
     }
 
     fun restartFragment(id: Int, newFragment: Fragment) {

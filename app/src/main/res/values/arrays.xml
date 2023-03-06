@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string-array name="update_dismiss_dialog" translatable="false">
+        <item>@string/self_update_notice_dismiss_install</item>
+        <item>@string/self_update_notice_dismiss_skip</item>
+        <item>@string/self_update_notice_dismiss_snooze</item>
+    </string-array>
+
     <string-array name="session_detection_methods" translatable="false">
         <item>@string/session_detection_method_audioservice</item>
         <item>@string/session_detection_method_audiopolicyservice</item>

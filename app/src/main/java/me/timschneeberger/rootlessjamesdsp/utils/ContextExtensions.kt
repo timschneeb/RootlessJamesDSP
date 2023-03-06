@@ -34,6 +34,7 @@ import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.DialogTextinputBinding
 import timber.log.Timber
+import java.io.File
 import kotlin.math.roundToInt
 
 
@@ -343,4 +344,9 @@ object ContextExtensions {
         val imm = SystemServices.get<InputMethodManager>(this)
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
+
+    fun Context.ensureCacheDir(name: String): File {
+        return File(cacheDir, name).apply { isDirectory || mkdirs() }
+    }
+
 }
