@@ -1,6 +1,6 @@
-Utilice James DSP como un motor de procesamiento de audio para todo el sistema sin acceso su.
+Utilice James DSP como un motor de procesamiento de audio para todo el sistema sin acceso root.
 
-El acceso a Chistu (Android 11+) o ADB a través de una computadora es necesario para la configuración inicial.
+Esta aplicación tiene varias limitaciones que pueden resultar incómodas para algunas personas; por favor, lea todo este documento antes de usar la aplicación. El acceso a Shizuku (Android 11+) o ADB a través de una PC es necesario para la configuración inicial.
 
 JamesDSP soporta los siguientes efectos de audio:
 * Control de límites
@@ -9,7 +9,7 @@ JamesDSP soporta los siguientes efectos de audio:
 * Refuerzo de bajos dinámico
 * Ecualizador FIR interpolante
 * Ecualizador de respuesta arbitrario (EQ gráfico)
-* ViPE-DDC
+* ViPER-DDC
 * Conversar
 * DSP programable en vivo (motor de scripts para efectos de audio)
 * Modelo analógico
@@ -21,24 +21,24 @@ Adicionalmente, esta aplicación se integra directamente con AutoEQ. Usando la i
 
 Restricciones
 * Las aplicaciones que bloquean la captura interna de audio siguen sin procesar (por ejemplo, Spotify, Google Chrome)
-* Las aplicaciones que utilizan algún tipo de reproducción acelerada por HW pueden causar problemas y necesitan ser excluidas manualmente (por ejemplo, algunos juegos de unidad)
-* No se puede coexistir con (algunos) otras aplicaciones de efectos de audio (por ejemplo, Wavelet y otras aplicaciones que hacen uso de la API Android `DynamicsProcessing`)
+* Las aplicaciones que utilizan algún tipo de reproducción acelerada por HW pueden causar problemas y necesitan ser excluidas manualmente (por ejemplo, algunos videojuegos Unity)
+* No puede coexistir con (algunas) otras aplicaciones de efectos de audio (por ejemplo, Wavelet y otras aplicaciones que hacen uso de la API Android `DynamicsProcessing`)
 
 
-- Aplicaciones confirmadas en trabajo:
-Youtube
+- Aplicaciones funcionales confirmadas:
+* YouTube
 * YouTube Música
 * Amazon Música
 * Deezer
 * Poweramp
-* Substreaming
-*Twitch
+* Substreamer
+* Twitch
 * ...
 
 - Las aplicaciones no soportadas incluyen:
 * Spotify (Nota: Se requiere un parche ReVanced de Spotify para soportar Spotify)
-Google Chrome
-en SoundCloud
+* Google Chrome
+* SoundCloud
 * ...
 
 Traducción
