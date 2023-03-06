@@ -22,7 +22,9 @@ class SessionRecordingPolicyManager(private val context: Context) {
 
     fun clearSessions(){
         Timber.d("Cleared session policy list")
-        sessionPolicyList.clear()
+        synchronized(sessionPolicyList) {
+            sessionPolicyList.clear()
+        }
     }
 
     fun update(dump: ISessionPolicyInfoDump)
@@ -43,11 +45,13 @@ class SessionRecordingPolicyManager(private val context: Context) {
         }
 
         var isMinorUpdate = true
-        removedPolicies.forEach {
-            Timber.d("Removed session policy: ${it.value}")
-            sessionPolicyList.remove(it.key)
-            if(it.value.isRestricted) {
-                isMinorUpdate = false
+        synchronized(sessionPolicyList) {
+            removedPolicies.forEach {
+                Timber.d("Removed session policy: ${it.value}")
+                sessionPolicyList.remove(it.key)
+                if (it.value.isRestricted) {
+                    isMinorUpdate = false
+                }
             }
         }
 
@@ -87,15 +91,19 @@ class SessionRecordingPolicyManager(private val context: Context) {
             Timber.d("Updated session policy: $data")
         else if(data.isRestricted) // Only log new restricted sessions
             Timber.d("Added session policy: $data")
-        sessionPolicyList[data.packageName] = data
+        synchronized(sessionPolicyList) {
+            sessionPolicyList[data.packageName] = data
+        }
     }
 
     fun getRestrictedUids(): Array<Int> {
-        return sessionPolicyList.values.toMutableList() // create copy to prevent concurrent access
-            .filter { it.isRestricted }
-            .filter { it.uid > 0 }
-            .map { it.uid }
-            .toTypedArray()
+        return synchronized(sessionPolicyList) {
+            sessionPolicyList.values // create copy to prevent concurrent access
+                .filter { it.isRestricted }
+                .filter { it.uid > 0 }
+                .map { it.uid }
+                .toTypedArray()
+        }
     }
 
     fun registerOnRestrictedSessionChangeListener(changeListener: OnSessionRecordingPolicyChangeListener) {

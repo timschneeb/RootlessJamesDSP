@@ -103,7 +103,6 @@ abstract class BaseSessionDatabase(protected val context: Context) {
         }
     }
 
-    // TODO use synchronized() block
     fun setExcludedUids(uids: Array<Int>) {
         excludedUids = uids
 
