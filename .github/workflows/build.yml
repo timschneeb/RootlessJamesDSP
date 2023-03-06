@@ -124,6 +124,17 @@ jobs:
           name: "${{ matrix.flavor }}JamesDSP-arm64-v8a-preview_apk"
           path: app/build/outputs/apk/${{ steps.flavor.outputs.lowercase }}Full/${{ env.BUILD_TYPE }}/*arm64-v8a-${{ env.BUILD_TYPE }}-signed.apk
        
+      - name: Deploy root flavor APKs to the server
+        if: ${{ steps.flavor.outputs.lowercase == 'root' }}
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+            username: 'tim'
+            server: 'srv1.timschneeberger.me'
+            ssh_private_key: ${{ secrets.DEPLOY_SSH_PRIVATE_KEY }} 
+            local_path: "app/build/outputs/apk/${{ steps.flavor.outputs.lowercase }}Full/${{ env.BUILD_TYPE }}/*universal-${{ env.BUILD_TYPE }}-signed.apk"
+            remote_path: '/srv/http/nightly.timschneeberger.me/rootlessjamesdsp-rootfull'
+            sftpArgs: '-o ConnectTimeout=5'
+       
       - name: Changelog
         if: startsWith(github.ref, 'refs/tags/')
         uses: ardalanamini/auto-changelog@v3
