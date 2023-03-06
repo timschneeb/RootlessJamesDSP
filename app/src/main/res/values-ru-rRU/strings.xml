@@ -27,7 +27,7 @@
     <string name="session_control_loss_notification_title">Обработка аудио остановлена. Другое приложение препятствует работе JamesDSP.</string>
     <string name="session_control_loss_notification">Пожалуйста, отключите другие приложения, которые предоставляют глобальные аудио эффекты перед повторным включением JamesDSP.</string>
     <!-- App compatibility issue notifications -->
-    <string name="session_app_compat_toast">JamesDSP остановлен из-за несовместимого медиа-приложения. Пожалуйста, проверьте уведомление, чтобы решить эту проблему.</string>
+    <string name="session_app_compat_toast">JamesDSP остановлен из-за несовместимого мультимедийного приложения. Пожалуйста, проверьте уведомление, чтобы решить эту проблему.</string>
     <string name="session_app_compat_notification_title">Обработка аудио остановлена. Другое приложение препятствует работе JamesDSP.</string>
     <string name="session_app_compat_notification">Коснитесь этого уведомления, чтобы решить проблему.</string>
     <!-- Capture permission revoked notifications -->
@@ -35,9 +35,11 @@
     <!-- General purpose -->
     <string name="install">Установить</string>
     <string name="update">Обновить</string>
+    <string name="unknown_error">Неизвестная ошибка</string>
     <string name="details">Подробнее</string>
+    <string name="actions">Действия</string>
     <string name="warning">Предупреждение</string>
-    <string name="success">Выполнено</string>
+    <string name="success">Успешно выполнено</string>
     <string name="open">Открыть</string>
     <string name="close">Закрыть</string>
     <string name="add">Добавить</string>
@@ -46,7 +48,7 @@
     <string name="value_not_set">Не задано</string>
     <string name="undo">Отменить</string>
     <string name="redo">Повторить</string>
-    <string name="no_activity_found">Не найдено ни одного Активити для обработки данного действия</string>
+    <string name="no_activity_found">Не найдено ни одного Activity для обработки данного действия</string>
     <!-- Main screen -->
     <string name="power_button_alt">Переключить обработку аудио</string>
     <string name="compressor_enable">Автоматический компрессор динамического диапазона</string>
@@ -159,8 +161,8 @@
     <string name="onboarding_methods_root_root">\u25CF Рекомендуется\n\u25CF Не требуется компьютер\n\u25CF Подходит для всех версий Android</string>
     <string name="onboarding_methods_root_shizuku">\u25CF Рекомендуется, если root-доступ не настроен\n\u25CF Не требуется компьютер\n\u25CF Только для Android 11+</string>
     <string name="onboarding_methods_root_adb">\u25CF Для опытных пользователей\n\u25CF Требуется компьютер и USB-кабель\n\u25CF Все версии Android</string>
-    <string name="onboarding_root_shell_fail_title">Root-права отсутствуют</string>
-    <string name="onboarding_root_shell_fail">Root-права недоступны. Пожалуйста, воспользуйтесь другим методом установки.</string>
+    <string name="onboarding_root_shell_fail_title">Нет root-доступа</string>
+    <string name="onboarding_root_shell_fail">Root-доступ отсутствует. Пожалуйста, воспользуйтесь другим методом установки.</string>
     <string name="onboarding_root_shell_fail_unknown">Не удалось предоставить разрешение через root. Пожалуйста, используйте другой метод установки.</string>
     <string name="onboarding_root_enhanced_processing_setup_success">Расширенная обработка настроена</string>
     <string name="onboarding_adb_shizuku_title">Настройка Shizuku</string>
@@ -172,10 +174,10 @@
     <string name="onboarding_adb_shizuku_open_instruction">Запустите Shizuku и найдите параметр «<b>Запуск через отладку по Wi-Fi</b>». Нажмите кнопку «Подключение» и следуйте инструкциям в приложении. После сопряжения Shizuku с вашим устройством, запустите сервер Shizuku, нажав кнопку «Запустить». Если у вас возникли проблемы при настройке Shizuku, обратитесь к руководству по установке, ссылка на которое приведена в их приложении.</string>
     <string name="onboarding_adb_shizuku_open_button">Запустить Shizuku</string>
     <string name="onboarding_adb_shizuku_open_button_done">Уже активно</string>
-    <string name="onboarding_adb_shizuku_grant_instruction">Предоставьте доступ к Shizuku, нажав на кнопку.</string>
+    <string name="onboarding_adb_shizuku_grant_instruction">Нажмите кнопку, чтобы предоставить доступ к Shizuku.</string>
     <string name="onboarding_adb_shizuku_grant_button">Предоставить доступ</string>
     <string name="onboarding_adb_shizuku_not_installed">Shizuku ещё не установлен. Пожалуйста, сначала скачайте и установите его из Google Play.</string>
-    <string name="onboarding_adb_shizuku_not_installed_title">Shizuku еще не установлен</string>
+    <string name="onboarding_adb_shizuku_not_installed_title">Shizuku ещё не установлен</string>
     <string name="onboarding_adb_shizuku_grant_fail_server_dead">Перед запросом разрешения необходимо запустить сервер Shizuku. Пожалуйста, вернитесь к шагу 2 этой инструкции.</string>
     <string name="onboarding_adb_shizuku_grant_fail_server_dead_title">Сервер Shizuku не запущен</string>
     <string name="onboarding_adb_shizuku_grant_fail_version">Это приложение требует Shizuku версии 11 или выше. Пожалуйста, обновите Shizuku до последней версии.</string>
@@ -184,10 +186,10 @@
     <string name="onboarding_adb_shizuku_grant_fail_denied">Пожалуйста, предоставьте этому приложению доступ к Shizuku. Если вы ранее отказали в разрешении и всплывающее окно больше не появляется, вам может потребоваться открыть менеджер разрешений Shizuku, и предоставить доступ вручную.</string>
     <string name="onboarding_adb_shizuku_no_dump_perm_title">Shizuku не удалось предоставить разрешения ADB</string>
     <string name="onboarding_adb_shizuku_no_dump_perm">Пожалуйста, подождите несколько секунд и попробуйте ещё раз. Если это не сработает, попробуйте альтернативный метод.</string>
-    <string name="onboarding_adb_dump_not_granted_title">Разрешение еще не предоставлено</string>
-    <string name="onboarding_adb_dump_not_granted">Пожалуйста, вначале выполните инструкции и повторите попытку. Доступ ADB еще не настроен правильно.</string>
+    <string name="onboarding_adb_dump_not_granted_title">Разрешение ещё не предоставлено</string>
+    <string name="onboarding_adb_dump_not_granted">Пожалуйста, вначале выполните инструкции и повторите попытку. Доступ ADB ещё не настроен правильно.</string>
     <string name="onboarding_adb_manual_step1">Перейдите в скрытые настройки Android «Для разработчиков» и включите параметр «Отладка по USB». Для разблокировки этих настроек необходимо несколько раз нажать на номер сборки в настройках системы.</string>
-    <string name="onboarding_adb_manual_step2">Перейдите на сайт https://app.webadb.com в веб-браузере на вашем компьютере (рекомендуется использовать Google Chrome) и подключите ваше устройство к компьютеру с помощью USB-кабеля.</string>
+    <string name="onboarding_adb_manual_step2">Перейдите на сайт https://app.webadb.com в браузере вашего компьютера (рекомендуется использовать Google Chrome) и подключите ваше устройство к компьютеру с помощью USB-кабеля.</string>
     <string name="onboarding_adb_manual_step3">Добавьте и подключите USB-устройство в WebADB.</string>
     <string name="onboarding_adb_manual_step4">Перейдите в раздел «Interactive Shell» и выполните в терминале следующую команду: pm grant %s android.permission.DUMP</string>
     <string name="onboarding_adb_manual_step5">Нажмите «Далее» в этом приложении, чтобы продолжить.</string>
@@ -204,14 +206,14 @@
     <string name="onboarding_perm_missing">Пожалуйста, предоставьте все запрошенные разрешения на выполнение, чтобы продолжить.\nЕсли вы несколько раз отказали в предоставлении разрешений, вам нужно предоставить их вручную в настройках системы.</string>
     <string name="onboarding_finish_header">JamesDSP настроен!</string>
     <string name="onboarding_finish_caption">Если у вас возникли какие-либо проблемы, пожалуйста, посетите раздел настроек «Устранение неисправностей».</string>
-    <string name="limit_session_control_conflict_title">Отключить другие приложения для обработки звука</string>
+    <string name="limit_session_control_conflict_title">Отключите другие приложения для обработки звука</string>
     <string name="limit_session_control_conflict">Приложения для обработки звука, использующие встроенный в Android эффект динамической обработки, мешают работе этого приложения.</string>
     <string name="limit_unsupported_apps_title">Неподдерживаемые приложения</string>
     <string name="limit_unsupported_apps">Приложения, которые блокируют запись внутреннего аудио, не будут обработаны (например, Spotify, Google Chrome).</string>
     <string name="limit_hw_accel_title">Проблемы с HW-ускоренным воспроизведенем аудио</string>
     <string name="limit_hw_accel">HW-ускоренное воспроизведение аудио иногда может приводить к дублированию звука или остановке JamesDSP. Добавьте затронутый музыкальный плеер в список исключенных приложений, чтобы предотвратить маршрутизацию его звука через JamesDSP.</string>
     <string name="limit_detect_delay_title">Задержка определения аудиосессии</string>
-    <string name="limit_detect_delay"><![CDATA[После того как приложение открывает новую медиа-сессию для воспроизведения звука, вы можете услышать повторяющийся или обрывистый звук на очень короткий период (примерно 250 мс).]]></string>
+    <string name="limit_detect_delay"><![CDATA[После того как приложение открывает новую аудиосессию для воспроизведения звука, вы можете услышать повторяющийся или обрывистый звук на очень короткий период (примерно 250 мс).]]></string>
     <string name="limit_latency_title">Повышенная задержка</string>
     <string name="limit_latency">Это приложение может добавлять некоторую задержку в аудио поток. Вы можете внести программы для просмотра фильмов/видео в список исключенных приложений, чтобы избежать возможных проблем со синхронизацией звука и видео.</string>
     <string name="limit_tested_devices_title">Проверенные устройства</string>
@@ -222,22 +224,22 @@
     <string name="session_exclude_restricted_off">Приложения, блокирующие захват звука, остаются выключенными (поведение Android по умолчанию)</string>
     <string name="session_exclude_restricted_on">Приложения, которые блокируют захват звука, исключаются и остаются без обработки (рекомендуется)</string>
     <string name="session_detection_header">Обнаружение аудиосессий</string>
-    <string name="session_continuous_polling">Непрерывный опрос</string>
+    <string name="session_continuous_polling">Принудительный постоянный опрос</string>
     <string name="session_continuous_polling_off">Прослушивать только события сеанса от системы</string>
-    <string name="session_continuous_polling_on">Постоянно сканировать аудиосессии</string>
+    <string name="session_continuous_polling_on">Непрерывно прослушивать аудиосессии</string>
     <string name="session_continuous_polling_rate">Интервал опроса (ms)</string>
-    <string name="session_detection_method">Предпочтительный метод обнаружения сессии</string>
+    <string name="session_detection_method">Выбранный метод обнаружения аудиосессии</string>
     <string name="session_detection_method_audiopolicyservice">AudioPolicyService dump</string>
     <string name="session_detection_method_audioservice">AudioService dump (рекомендуется)</string>
     <string name="session_app_problem_ignore">Игнорировать проблемы совместимости приложений</string>
     <string name="session_loss_ignore">Игнорировать потерю контроля сеанса</string>
     <string name="session_loss_ignore_off">Отключено, стандартное поведение (рекомендуется)</string>
     <string name="session_loss_ignore_on">Не предпринимать никаких действий (может вызвать дублирование звука)</string>
-    <string name="session_loss_ignore_warning">Активация этого параметра может привести к дублированию звука, если другая программа для обработки звука получит контроль над текущей аудиосессией. \nЕсли у вас нет проблем с ложной потерей сессий, то рекомендуется оставить эту опцию выключенной.</string>
+    <string name="session_loss_ignore_warning">Активация этого параметра может привести к дублированию звука, если другое приложение для обработки звука получит контроль над текущей аудиосессией. \nЕсли у вас нет проблем с ложной потерей сессий, то рекомендуется оставить эту опцию выключенной.</string>
     <string name="audio_format_header">Обработка аудио</string>
-    <string name="audio_format_section_header">Предпочтительный аудиоформат</string>
+    <string name="audio_format_section_header">Выбранный аудиоформат</string>
     <string name="audio_format_processing_header">Параметры обработки аудио</string>
-    <string name="audio_format_processing_legacy">Legacy режим</string>
+    <string name="audio_format_processing_legacy">Режим legacy</string>
     <string name="audio_format_processing_legacy_on">Прикрепить глобально к сессии 0 (устаревшее)</string>
     <string name="audio_format_processing_legacy_off">Прикреплять к каждому приложению отдельно</string>
     <string name="audio_format_enhanced_processing">Расширенная обработка</string>
@@ -245,10 +247,10 @@
     <string name="audio_format_enhanced_processing_off">Расширенная обработка отключена</string>
     <string name="audio_format_enhanced_processing_info_title">Что такое расширенная обработка?</string>
     <string name="audio_format_enhanced_processing_info">Нажмите для просмотра документации</string>
-    <string name="audio_format_enhanced_processing_info_content">Если опция «Расширенная обработка» включена, вы можете выбирать, какие приложения должны быть исключены из обработки JamesDSP через меню с тремя точками в правом нижнем углу, выбрав пункт «Исключенные приложения». \n\nОтключение Legacy режима позволяет каждому приложению использовать свой собственный движок эффектов JamesDSP для более тонкого контроля. В противном случае все приложения будут использовать один механизм обработки, который в Android устарел и больше не должен использоваться. \n\nК сожалению, не все мультимедийные приложения корректно выполняют эту функцию, и поэтому есть вероятность, что они не будут работать должным образом при отключенном Legacy режиме. Для решения этой проблемы можно включить опцию «Расширенная обработка», чтобы JamesDSP мог самостоятельно сканировать аудиосессии, не полагаясь на системные сообщения, и обеспечивать корректную поддержку таких приложений.</string>
+    <string name="audio_format_enhanced_processing_info_content">Если опция «Расширенная обработка» включена, вы можете выбирать, какие приложения должны быть исключены из обработки JamesDSP через меню с тремя точками в правом нижнем углу, выбрав пункт «Исключенные приложения». \n\nОтключение режима legacy позволяет каждому приложению использовать свой собственный движок эффектов JamesDSP для более тонкого контроля. В противном случае все приложения будут использовать один механизм обработки, который в Android устарел и больше не должен использоваться. \n\nК сожалению, не все мультимедийные приложения корректно выполняют эту функцию, и поэтому есть вероятность, что они не будут работать должным образом при отключенном режиме legacy. Для решения этой проблемы можно включить опцию «Расширенная обработка», чтобы JamesDSP мог самостоятельно сканировать аудиосессии, не полагаясь на системные сообщения и обеспечивать корректную поддержку таких приложений.</string>
     <string name="audio_format_media_apps_need_restart">После изменения этого параметра необходимо перезапустить все активные мультимедийные приложения, чтобы возобновить обработку звука.</string>
-    <string name="audio_format_summary">Предпочтительное кодирование аудио, размер буфера</string>
-    <string name="audio_format_summary_root">Legacy режим, расширенная обработка</string>
+    <string name="audio_format_summary">Кодирование аудио, размер буфера</string>
+    <string name="audio_format_summary_root">Режим legacy, расширенная обработка</string>
     <string name="audio_format_encoding">Кодирование аудио</string>
     <string name="audio_format_encoding_int16">16-bit integer PCM</string>
     <string name="audio_format_encoding_float">32-bit float PCM</string>
@@ -304,6 +306,8 @@
     <string name="credits_project_page_summary">Сообщайте о проблемах, следите за обновлениями и читайте исходный код</string>
     <string name="credits_project_play_page">Посетить RootlessJamesDSP на Google Play</string>
     <string name="credits_project_play_page_summary">Поиск новых обновлений</string>
+    <string name="credits_project_check_update">Проверить наличие обновлений…</string>
+    <string name="credits_project_check_update_summary">Загрузить и установить доступные обновления</string>
     <string name="credits_project_translate">Помочь с переводами</string>
     <string name="credits_project_translate_summary">Помогите нам перевести приложение на ваш язык</string>
     <string name="credits_version">Версия приложения</string>
@@ -330,7 +334,7 @@
     <string name="theme_yotsuba">Yotsuba</string>
     <string name="theme_tidalwave">Tidal Wave</string>
     <!-- File library preference -->
-    <string name="action_import">Импортировать</string>
+    <string name="action_import">Импорт</string>
     <string name="filelibrary_hint_tap_and_hold">Коснитесь и удерживайте любой элемент для дополнительных опций</string>
     <string name="filelibrary_context_load">Загрузить</string>
     <string name="filelibrary_context_edit">Редактировать</string>
@@ -417,8 +421,8 @@
     <string name="editor_find_previous_match">Найти предыдущее совпадение</string>
     <string name="editor_search_keyword">Поиск</string>
     <string name="editor_source_position">%1$d:%2$d</string>
-    <string name="editor_engine_down_title">JamesDSP не активен</string>
-    <string name="editor_engine_down">Невозможно запустить скрипт, потому что JamesDSP не активен. Пожалуйста, активируйте JamesDSP для выполнения скриптов.</string>
+    <string name="editor_engine_down_title">JamesDSP не активирован</string>
+    <string name="editor_engine_down">Не удалось запустить скрипт, так как JamesDSP отключен. Пожалуйста, включите JamesDSP для выполнения скриптов.</string>
     <string name="editor_save_prompt_title">Сохранить изменения?</string>
     <string name="editor_save_prompt">Текущий скрипт имеет несохраненные изменения. Сохранить изменения или отменить их?</string>
     <string name="editor_script_launched">Скрипт запущен</string>
@@ -454,7 +458,7 @@
     <string name="load_fail_arch_card">Если вы уже установили модуль Magisk, возможно, вы выбрали неправильные настройки во время установки. Попробуйте переустановить модуль и включить совместимость с устройствами Huawei (даже если ваш телефон не произведен компанией Huawei).</string>
     <!-- Enhanced processing -->
     <string name="enhanced_processing_feature_unavailable">Функция недоступна</string>
-    <string name="enhanced_processing_feature_unavailable_content">Функция доступна только при включенной опции «Расширенная обработка» в настройках. Пожалуйста, включите эту опцию в «Настройки &gt; Обработка аудио &gt; Расширенная обработка», чтобы получить доступ к этому меню. \n\nПримечание: опция «Расширенная обработка» недоступна при включенном Legacy режиме.</string>
+    <string name="enhanced_processing_feature_unavailable_content">Функция доступна только при включенной опции «Расширенная обработка» в настройках. Пожалуйста, включите эту опцию в «Настройки &gt; Обработка аудио &gt; Расширенная обработка», чтобы получить доступ к этому меню. \n\nПримечание: опция «Расширенная обработка» недоступна при включенном режиме legacy.</string>
     <string name="enhanced_processing_missing_perm">Расширенная обработка была отключена из-за отсутствия необходимых разрешений. Пожалуйста, установите их заново в настройках.</string>
     <!-- App list -->
     <string name="app_list_loading">Загрузка списка приложений…</string>
@@ -466,14 +470,14 @@
     <!-- Slider widget -->
     <string name="slider_dialog_title">Редактировать значение</string>
     <string name="slider_dialog_format_error">Неверный формат числа. Изменения не применены.</string>
-    <string name="slider_dialog_step_error">Значение должно быть кратно %1$d. Изменения не применяются.</string>
+    <string name="slider_dialog_step_error">Значение должно быть кратно %1$d. Изменения не применены.</string>
     <!-- Revert confirmation -->
     <string name="revert_confirmation_title">Вы уверены?</string>
     <string name="revert_confirmation">Сбросить текущий пресет JamesDSP к значениям по умолчанию?</string>
     <!-- File intent handler -->
     <string name="intent_import_preset">Импортировать пресет</string>
     <string name="intent_import_irs">Импортировать импульсный отклик</string>
-    <string name="intent_import_vdc">Импортировать VDC файл</string>
+    <string name="intent_import_vdc">Импортировать файл VDC</string>
     <string name="intent_import_liveprog">Импортировать Liveprog скрипт</string>
     <string name="intent_import_mode_add">Только импортировать</string>
     <string name="intent_import_mode_select">Импортировать и активировать</string>
@@ -484,4 +488,17 @@
     <!-- Translation notice box -->
     <string name="translation_notice_summary">Помогите нам перевести это приложение на ваш язык! Нажмите здесь, чтобы перейти на сайт проекта на Crowdin.</string>
     <string name="translation_notice">Помочь с переводами</string>
+    <!-- Self-updates (Root) -->
+    <string name="self_update_install_error">Не удалось обновить</string>
+    <string name="self_update_download_fail">Не удалось загрузить пакет обновления. Пожалуйста, проверьте ваше интернет-соединение. Подробности: %1$s</string>
+    <string name="self_update_install_fail">Ошибка установки. %1$s</string>
+    <string name="self_update_finished">Обновление установлено. Приложение перезапускается…</string>
+    <string name="self_update_no_updates">На данный момент нет доступных обновлений</string>
+    <string name="self_update_notice">Доступно новое обновление (%1$s)</string>
+    <string name="self_update_notice_summary">Нажмите здесь, чтобы загрузить и установить обновление.</string>
+    <string name="self_update_notice_dismiss_install">Установить сейчас</string>
+    <string name="self_update_notice_dismiss_snooze">Напомнить позже</string>
+    <string name="self_update_notice_dismiss_skip">Пропустить это обновление</string>
+    <string name="self_update_state_downloading">Загрузка…</string>
+    <string name="self_update_state_installing">Установка…</string>
 </resources>

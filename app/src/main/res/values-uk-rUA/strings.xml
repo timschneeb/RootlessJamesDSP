@@ -27,17 +27,19 @@
     <string name="session_control_loss_notification_title">Обробка аудіо зупинена. Інший додаток перешкоджає роботі JamesDSP.</string>
     <string name="session_control_loss_notification">Будь ласка, вимкніть всі інші додатки, що надають глобальні звукові ефекти перед повторним включенням JamesDSP.</string>
     <!-- App compatibility issue notifications -->
-    <string name="session_app_compat_toast">JamesDSP зупинено через несумісний медіа-додаток. Будь ласка, перевірте повідомлення, щоб вирішити цю проблему.</string>
+    <string name="session_app_compat_toast">JamesDSP зупинено через несумісний мультимедійний додаток. Будь ласка, перевірте повідомлення, щоб розв\'язати цю проблему.</string>
     <string name="session_app_compat_notification_title">Обробка аудіо зупинена. Інший додаток перешкоджає роботі JamesDSP.</string>
-    <string name="session_app_compat_notification">Натисніть на це сповіщення, щоб вирішити проблему.</string>
+    <string name="session_app_compat_notification">Натисніть на це сповіщення, щоб розв\'язати проблему.</string>
     <!-- Capture permission revoked notifications -->
     <string name="capture_permission_revoked_toast">JamesDSP було зупинено, оскільки дозвіл на захоплення аудіо був відкликаний.</string>
     <!-- General purpose -->
     <string name="install">Встановити</string>
     <string name="update">Оновити</string>
+    <string name="unknown_error">Невідома помилка</string>
     <string name="details">Детальніше</string>
+    <string name="actions">Дії</string>
     <string name="warning">Попередження</string>
-    <string name="success">Виконано</string>
+    <string name="success">Успішно виконано</string>
     <string name="open">Відкрити</string>
     <string name="close">Закрити</string>
     <string name="add">Додати</string>
@@ -46,7 +48,7 @@
     <string name="value_not_set">Не задано</string>
     <string name="undo">Скасувати</string>
     <string name="redo">Повторити</string>
-    <string name="no_activity_found">Не знайдено жодного Активіті для обробки цієї дії</string>
+    <string name="no_activity_found">Не знайдено жодного Activity для обробки цієї дії</string>
     <!-- Main screen -->
     <string name="power_button_alt">Перемкнути обробку аудіо</string>
     <string name="compressor_enable">Автоматичний компресор динамічного діапазону</string>
@@ -141,10 +143,10 @@
     <string name="onboarding_next">Далі</string>
     <string name="onboarding_finish">Завершити</string>
     <string name="onboarding_greeting">Ласкаво просимо до RootlessJamesDSP!</string>
-    <string name="onboarding_caption">Цей асистент допоможе вам виконати налаштування додатку.</string>
+    <string name="onboarding_caption">Цей асистент допоможе вам виконати налаштування додатка.</string>
     <string name="onboarding_warning">Наразі додаток є незавершеним і може бути нестабільним. Зверніть увагу, що на деяких пристроях він може не працювати належним чином, оскільки використовує Android API, які не передбачені для використання сторонніми додатками.</string>
     <string name="onboarding_fix_permissions_title">Потрібна дія користувача</string>
-    <string name="onboarding_fix_permissions">Один або кілька дозволів було відкликано вами або системою.\nЩоб забезпечити правильну роботу додатку, вам потрібно надати ці дозволи знову.\n\nБудь ласка, перезапустіть майстер налаштування для повторного надання цих дозволів.</string>
+    <string name="onboarding_fix_permissions">Один або кілька дозволів було відкликано вами або системою.\nЩоб забезпечити правильну роботу додатка, вам потрібно надати ці дозволи знову.\n\nБудь ласка, перезапустіть майстер налаштування для повторного надання цих дозволів.</string>
     <string name="onboarding_limitations_title">Обмеження</string>
     <string name="onboarding_limitations_unstable">Важливо! Будь ласка, уважно прочитайте нотатки перед тим, як продовжити.</string>
     <string name="onboarding_methods_title">Оберіть метод налаштування</string>
@@ -159,7 +161,7 @@
     <string name="onboarding_methods_root_root">\u25CF Рекомендується\n\u25CF Не потрібен комп\'ютер\n\u25CF Підходить для всіх версій Android</string>
     <string name="onboarding_methods_root_shizuku">\u25CF Рекомендується, якщо root-доступ відсутній\n\u25CF Не потрібен комп\'ютер\n\u25CF Тільки для Android 11+</string>
     <string name="onboarding_methods_root_adb">\u25CF Для досвідчених користувачів\n\u25CF Потрібен комп\'ютер та USB-кабель\n\u25CF Всі версії Android</string>
-    <string name="onboarding_root_shell_fail_title">Root-доступ відсутній</string>
+    <string name="onboarding_root_shell_fail_title">Немає root-доступу</string>
     <string name="onboarding_root_shell_fail">Root-доступ відсутній. Будь ласка, скористайтеся іншим методом налаштування.</string>
     <string name="onboarding_root_shell_fail_unknown">Не вдалося надати дозвіл через root. Будь ласка, скористайтеся іншим методом налаштування.</string>
     <string name="onboarding_root_enhanced_processing_setup_success">Розширена обробка налаштована</string>
@@ -172,7 +174,7 @@
     <string name="onboarding_adb_shizuku_open_instruction">Запустіть Shizuku і знайдіть параметр «<b>Запуск через налагодження по Wi-Fi</b>». Натисніть кнопку «Підключення» і дотримуйтесь інструкцій у додатку. Після сполучення Shizuku з вашим пристроєм, запустіть сервер Shizuku, натиснувши кнопку «Запустити». Якщо у вас виникли проблеми під час налаштування Shizuku, зверніться до інструкції, посилання на яку наведено в їхньому додатку.</string>
     <string name="onboarding_adb_shizuku_open_button">Запустити Shizuku</string>
     <string name="onboarding_adb_shizuku_open_button_done">Вже активовано</string>
-    <string name="onboarding_adb_shizuku_grant_instruction">Надайте доступ до Shizuku, натиснувши на кнопку.</string>
+    <string name="onboarding_adb_shizuku_grant_instruction">Натисніть кнопку, щоб надати доступ до Shizuku.</string>
     <string name="onboarding_adb_shizuku_grant_button">Надати доступ</string>
     <string name="onboarding_adb_shizuku_not_installed">Shizuku ще не встановлено. Будь ласка, спочатку завантажте та встановіть його з Google Play.</string>
     <string name="onboarding_adb_shizuku_not_installed_title">Shizuku ще не встановлено</string>
@@ -187,7 +189,7 @@
     <string name="onboarding_adb_dump_not_granted_title">Дозвіл ще не надано</string>
     <string name="onboarding_adb_dump_not_granted">Будь ласка, спочатку дотримайтесь інструкцій та повторіть спробу. Доступ ADB ще не налаштовано належним чином.</string>
     <string name="onboarding_adb_manual_step1">Перейдіть у приховані налаштування Android «Для розробників» і увімкніть параметр «USB-налагодження». Для розблокування цих налаштувань необхідно кілька разів натиснути на номер збірки в налаштуваннях системи.</string>
-    <string name="onboarding_adb_manual_step2">Перейдіть на сайт https://app.webadb.com у веб-браузері на вашому комп\'ютері (рекомендується використовувати Google Chrome) та під\'єднайте ваш пристрій до комп\'ютера за допомогою USB-кабелю.</string>
+    <string name="onboarding_adb_manual_step2">Перейдіть на сайт https://app.webadb.com у браузері вашого комп\'ютера (рекомендується використовувати Google Chrome) та під\'єднайте ваш пристрій до комп\'ютера за допомогою USB-кабелю.</string>
     <string name="onboarding_adb_manual_step3">Додайте та підключіть USB-пристрій у WebADB.</string>
     <string name="onboarding_adb_manual_step4">Перейдіть у розділ «Interactive Shell» і виконайте в терміналі таку команду: pm grant %s android.permission.DUMP</string>
     <string name="onboarding_adb_manual_step5">Натисніть «Далі» в цьому додатку, щоб продовжити.</string>
@@ -204,40 +206,40 @@
     <string name="onboarding_perm_missing">Будь ласка, надайте всі запитані дозволи на виконання, щоб продовжити.\nЯкщо ви кілька разів відмовили в наданні дозволів, вам потрібно надати їх вручну в налаштуваннях системи.</string>
     <string name="onboarding_finish_header">JamesDSP налаштовано!</string>
     <string name="onboarding_finish_caption">Якщо у вас виникли будь-які проблеми, будь ласка, відвідайте розділ налаштувань «Усунення неполадок».</string>
-    <string name="limit_session_control_conflict_title">Вимкнути інші додатки для обробки звуку</string>
+    <string name="limit_session_control_conflict_title">Вимкніть інші додатки для обробки звуку</string>
     <string name="limit_session_control_conflict">Додатки для обробки звуку, що використовують вбудований в Android ефект динамічної обробки, перешкоджають роботі цього додатка.</string>
     <string name="limit_unsupported_apps_title">Непідтримувані додатки</string>
     <string name="limit_unsupported_apps">Додатки, які блокують запис внутрішнього аудіо, не будуть оброблені (наприклад, Spotify, Google Chrome).</string>
     <string name="limit_hw_accel_title">Проблеми HW-прискореним відтворенням аудіо</string>
     <string name="limit_hw_accel">HW-прискорене відтворення аудіо іноді може призводити до дублювання звуку або зупинки JamesDSP в деяких випадках. Будь ласка, додайте проблемний музичний плеєр до списку виключених додатків, щоб запобігти маршрутизації його звуку через JamesDSP.</string>
     <string name="limit_detect_delay_title">Затримка визначення аудіосесії</string>
-    <string name="limit_detect_delay"><![CDATA[Після того як додаток відкриває нову медіа-сесію для відтворення звуку, ви можете почути повторюваний або уривчастий звук на дуже короткий період (приблизно 250 мс).]]></string>
+    <string name="limit_detect_delay"><![CDATA[Після того як додаток відкриває нову аудіосесію для відтворення звуку, ви можете почути повторюваний або уривчастий звук на дуже короткий період (приблизно 250 мс).]]></string>
     <string name="limit_latency_title">Підвищена затримка</string>
     <string name="limit_latency">Ця програма може додавати деяку затримку в аудіопотік. Ви можете внести програми для перегляду фільмів/відео до списку виключених додатків, щоб уникнути можливих проблем із синхронізацією звуку та відео.</string>
     <string name="limit_tested_devices_title">Протестовані пристрої</string>
-    <string name="limit_tested_devices">Виробник вашого пристрою міг внести зміни до аудіопідсистеми Android, які можуть порушити роботу додатку через використання не задокументованих API.\nДодаток тестувався на пристроях:\n• Samsung S20+ (Android 12)\n• Емулятор AOSP (Android 10-13)\n• Google Pixel 6 Pro (Android 13)</string>
+    <string name="limit_tested_devices">Виробник вашого пристрою міг внести зміни до аудіопідсистеми Android, які можуть порушити роботу додатка через використання не задокументованих API.\nДодаток тестувався на пристроях:\n• Samsung S20+ (Android 12)\n• Емулятор AOSP (Android 10-13)\n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
     <string name="title_activity_settings">Параметри</string>
     <string name="session_exclude_restricted">Виключити непідтримувані додатки</string>
     <string name="session_exclude_restricted_off">Додатки, які блокують захоплення звуку, залишаються приглушеними (типова поведінка Android)</string>
     <string name="session_exclude_restricted_on">Додатки, які блокують захоплення звуку, виключаються і залишаються без обробки (рекомендується)</string>
     <string name="session_detection_header">Виявлення аудіосесій</string>
-    <string name="session_continuous_polling">Безперервне опитування</string>
+    <string name="session_continuous_polling">Примусове постійне опитування</string>
     <string name="session_continuous_polling_off">Прослуховувати лише події сеансу від системи</string>
-    <string name="session_continuous_polling_on">Постійно сканувати аудіосесії</string>
+    <string name="session_continuous_polling_on">Безперервно прослуховувати аудіосесії</string>
     <string name="session_continuous_polling_rate">Інтервал опитування (ms)</string>
-    <string name="session_detection_method">Бажаний метод виявлення сесії</string>
+    <string name="session_detection_method">Обраний метод виявлення аудіосесії</string>
     <string name="session_detection_method_audiopolicyservice">AudioPolicyService dump</string>
     <string name="session_detection_method_audioservice">AudioService dump (рекомендується)</string>
     <string name="session_app_problem_ignore">Ігнорувати проблеми сумісності додатка</string>
     <string name="session_loss_ignore">Ігнорувати втрату контролю сесії</string>
     <string name="session_loss_ignore_off">Вимкнено, типові налаштування (рекомендується)</string>
     <string name="session_loss_ignore_on">Не робити жодних дій (може спричинити дублювання звуку)</string>
-    <string name="session_loss_ignore_warning">Активація цього параметру може призвести до дублювання звуку, якщо інша програма для обробки звуку отримає контроль над поточною аудіосесією. \nЯкщо у вас немає проблем з помилковою втратою сесій, то рекомендується залишити цю опцію вимкненою.</string>
+    <string name="session_loss_ignore_warning">Активація цього параметру може призвести до дублювання звуку, якщо інший додаток для обробки звуку отримає контроль над поточною аудіосесією. \nЯкщо у вас немає проблем з втратою сесій, то рекомендується залишити цю опцію вимкненою.</string>
     <string name="audio_format_header">Обробка аудіо</string>
-    <string name="audio_format_section_header">Бажаний аудіоформат</string>
+    <string name="audio_format_section_header">Обраний аудіоформат</string>
     <string name="audio_format_processing_header">Параметри обробки аудіо</string>
-    <string name="audio_format_processing_legacy">Legacy режим</string>
+    <string name="audio_format_processing_legacy">Режим legacy</string>
     <string name="audio_format_processing_legacy_on">Прикріпити глобально до сесії 0 (застаріло)</string>
     <string name="audio_format_processing_legacy_off">Прикріплювати до кожного додатка окремо</string>
     <string name="audio_format_enhanced_processing">Розширена обробка</string>
@@ -245,20 +247,20 @@
     <string name="audio_format_enhanced_processing_off">Розширена обробка вимкнена</string>
     <string name="audio_format_enhanced_processing_info_title">Що таке розширена обробка?</string>
     <string name="audio_format_enhanced_processing_info">Натисніть, щоб переглянути документацію</string>
-    <string name="audio_format_enhanced_processing_info_content">У разі ввімкненої опції «Розширена обробка», ви можете обирати, які додатки виключити з обробки JamesDSP, через меню з трьома крапками в правому нижньому кутку та натиснувши пункт «Виключені додатки». \n\nВимкнення Legacy режиму дає змогу кожному додатку використовувати свій власний механізм ефектів JamesDSP для більш тонкого контролю. В іншому випадку всі програми будуть використовувати один механізм обробки, який в Android застарів і більше не повинен використовуватися. \n\nНа жаль, деякі мультимедійні додатки не виконують цю функцію належним чином, тому є ймовірність, що вони не працюватимуть коректно, якщо Legacy режим вимкнений. Для розв\'язання цієї проблеми можна увімкнути опцію \"Розширена обробка\", щоб JamesDSP міг самостійно сканувати аудіосесії, не покладаючись на системні повідомлення та забезпечувати коректну підтримку таких додатків.</string>
+    <string name="audio_format_enhanced_processing_info_content">У разі ввімкненої опції «Розширена обробка», ви можете обирати, які додатки виключити з обробки JamesDSP, через меню з трьома крапками в правому нижньому кутку та натиснувши пункт «Виключені додатки». \n\nВимкнення режиму legacy дає змогу кожному додатку використовувати свій власний механізм ефектів JamesDSP для більш тонкого контролю. В іншому випадку всі програми будуть використовувати один механізм обробки, який в Android застарів і більше не повинен використовуватися. \n\nНа жаль, деякі мультимедійні додатки не виконують цю функцію належним чином, тому є ймовірність, що вони не працюватимуть коректно, якщо режим legacy вимкнений. Для розв\'язання цієї проблеми можна увімкнути опцію «Розширена обробка», щоб JamesDSP міг самостійно сканувати аудіосесії, не покладаючись на системні повідомлення та забезпечувати коректну підтримку таких додатків.</string>
     <string name="audio_format_media_apps_need_restart">Після зміни цього параметра необхідно перезапустити всі активні мультимедійні додатки, щоб відновити обробку звуку.</string>
-    <string name="audio_format_summary">Бажане кодування звуку, розмір буфера</string>
-    <string name="audio_format_summary_root">Legacy режим, розширена обробка</string>
+    <string name="audio_format_summary">Кодування аудіо, розмір буфера</string>
+    <string name="audio_format_summary_root">Режим legacy, розширена обробка</string>
     <string name="audio_format_encoding">Кодування аудіо</string>
     <string name="audio_format_encoding_int16">16-bit integer PCM</string>
     <string name="audio_format_encoding_float">32-bit float PCM</string>
     <string name="audio_format_buffer_size">Розмір буфера</string>
     <string name="audio_format_buffer_size_unit">&#xa0;samples</string>
     <string name="audio_format_buffer_size_warning_low_value">Попередження: Низькі розміри буфера можуть спричинити проблеми з аудіо, як-от кліппінг!</string>
-    <string name="app_behavior">Робота додатку</string>
+    <string name="app_behavior">Робота додатка</string>
     <string name="exclude_app_from_recents">Виключити додаток з нещодавніх</string>
-    <string name="exclude_app_from_recents_off">Не видаляти додаток зі списку недавніх задач</string>
-    <string name="exclude_app_from_recents_on">Видалити додаток зі списку недавніх задач</string>
+    <string name="exclude_app_from_recents_off">Не видаляти додаток зі списку нещодавніх завдань</string>
+    <string name="exclude_app_from_recents_on">Видалити додаток зі списку нещодавніх завдань</string>
     <string name="autostart_prompt_at_boot">Запитувати дозвіл на захоплення після завантаження</string>
     <string name="autostart_prompt_at_boot_off">Не показувати сповіщення після завантаження</string>
     <string name="autostart_prompt_at_boot_on">Показувати сповіщення після завантаження</string>
@@ -279,7 +281,7 @@
     <string name="troubleshooting_notification_access_summary">Забезпечує надійнішу детекцію аудіосесії</string>
     <string name="troubleshooting_repair_assets">Відновити вбудовані IR, DDC та скрипти</string>
     <string name="troubleshooting_repair_assets_summary">Якщо ви втратили або видалили попередньо встановлені ресурси, ви можете їх відновити. Ресурси, імпортовані або створені вами, залишаться без змін</string>
-    <string name="troubleshooting_repair_assets_success">Попередньо встановлені ресурси було відновлено</string>
+    <string name="troubleshooting_repair_assets_success">Попередньо встановлені ресурси були відновлені</string>
     <string name="misc_settings">Інше</string>
     <string name="misc_settings_summary">Звіти про помилки, інші дії</string>
     <string name="assets">Ресурси</string>
@@ -290,7 +292,7 @@
     <string name="network_autoeq_conntest_done">З\'єднання успішно встановлено</string>
     <string name="network_autoeq_conntest_fail">Не вдалося перевірити з\'єднання</string>
     <string name="network_autoeq_conntest_fail_summary">Сервер не повернув правильну відповідь. Переконайтеся, що програмне забезпечення https://github.com/ThePBone/AutoEqApi налаштовано на сервері правильно.\n\nПомилка мережі: %1$s\n\nВідновити типові значення?</string>
-    <string name="about_settings">Про програму</string>
+    <string name="about_settings">Про додаток</string>
     <string name="about_settings_summary">Автори, підтримка, оновлення</string>
     <string name="privacy">Конфіденційність</string>
     <string name="privacy_share_crash_reports">Поділитися інформацією про збої в додатку</string>
@@ -304,13 +306,15 @@
     <string name="credits_project_page_summary">Повідомляйте про проблеми, стежте за оновленнями та читайте програмний код</string>
     <string name="credits_project_play_page">Відвідати RootlessJamesDSP в Google Play</string>
     <string name="credits_project_play_page_summary">Пошук нових оновлень</string>
+    <string name="credits_project_check_update">Перевірити наявність оновлень…</string>
+    <string name="credits_project_check_update_summary">Завантажити та встановити доступні оновлення</string>
     <string name="credits_project_translate">Допомога з перекладом</string>
     <string name="credits_project_translate_summary">Допоможіть нам перекласти додаток вашою мовою</string>
-    <string name="credits_version">Версія додатку</string>
+    <string name="credits_version">Версія додатка</string>
     <string name="credits_build_info">Інформація про збірку</string>
     <string name="appearance_section_header">Зовнішній вигляд</string>
-    <string name="appearance_summary">Тема додатку, темний режим</string>
-    <string name="appearance_title">Тема додатку</string>
+    <string name="appearance_summary">Тема додатка, темний режим</string>
+    <string name="appearance_title">Тема додатка</string>
     <string name="appearance_theme_mode">Темний режим</string>
     <string name="appearance_theme_mode_default">Використовувати налаштування системи</string>
     <string name="appearance_theme_mode_light">Вимк.</string>
@@ -330,7 +334,7 @@
     <string name="theme_yotsuba">Yotsuba</string>
     <string name="theme_tidalwave">Tidal Wave</string>
     <!-- File library preference -->
-    <string name="action_import">Імпортувати</string>
+    <string name="action_import">Імпорт</string>
     <string name="filelibrary_hint_tap_and_hold">Торкніться й утримуйте будь-який елемент для додаткових опцій</string>
     <string name="filelibrary_context_load">Завантажити</string>
     <string name="filelibrary_context_edit">Редагувати</string>
@@ -364,7 +368,7 @@
     <string name="message_vdc_corrupt">Обраний файл VDC пошкоджений. Будь ласка, виберіть інший файл.</string>
     <string name="message_irs_corrupt">Обраний файл імпульсного відгуку пошкоджений. Будь ласка, виберіть інший.</string>
     <string name="message_convolver_advimp_invalid">Конвольвер: Розширене редагування форми сигналу містить неприпустимі значення.</string>
-    <string name="message_liveprog_compile_fail">Помилка виконання Liveprog. Обраний скрипт пошкоджений. Використовуйте редактор скриптів для налагодження.</string>
+    <string name="message_liveprog_compile_fail">Помилка виконання Liveprog. Обраний скрипт пошкоджений. Використайте редактор скриптів для налагодження.</string>
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">Амплітудна характеристика</string>
     <string name="geq_edit_as_string">Редагувати як рядок</string>
@@ -410,15 +414,15 @@
     <string name="editor_open_fail">Файл скрипта не існує або не може бути відкритий.</string>
     <string name="editor_run">Зберегти та запустити</string>
     <string name="editor_save">Зберегти</string>
-    <string name="editor_liveprog_enabled">Liveprog було автоматично ввімкнено.</string>
+    <string name="editor_liveprog_enabled">Liveprog було автоматично увімкнено.</string>
     <string name="editor_replace_all">Замінити все</string>
     <string name="editor_replacement">Заміна</string>
     <string name="editor_find_next_match">Знайти наступний збіг</string>
     <string name="editor_find_previous_match">Знайти попередній збіг</string>
     <string name="editor_search_keyword">Пошук</string>
     <string name="editor_source_position">%1$d:%2$d</string>
-    <string name="editor_engine_down_title">JamesDSP не активний</string>
-    <string name="editor_engine_down">Неможливо запустити скрипт, тому що JamesDSP не активний. Будь ласка, активуйте JamesDSP для виконання скриптів.</string>
+    <string name="editor_engine_down_title">JamesDSP не активований</string>
+    <string name="editor_engine_down">Не вдалося запустити скрипт, оскільки JamesDSP вимкнено. Будь ласка, увімкніть JamesDSP для виконання скриптів.</string>
     <string name="editor_save_prompt_title">Зберегти зміни?</string>
     <string name="editor_save_prompt">Поточний скрипт має незбережені зміни. Зберегти зміни чи скасувати їх?</string>
     <string name="editor_script_launched">Скрипт запущено</string>
@@ -451,15 +455,15 @@
     <string name="load_fail_rootless_card_title">Шукаєте альтернативу без root-доступу?</string>
     <string name="load_fail_rootless_card">Ця версія JamesDSP призначена для використання на пристроях з root-доступом. Для пристроїв без root-доступу також доступна альтернатива, але з деякими обмеженнями. Натисніть тут, щоб отримати додаткову інформацію.</string>
     <string name="load_fail_arch_card_title">Модуль вже встановлений?</string>
-    <string name="load_fail_arch_card">Якщо ви вже встановили модуль Magisk, можливо, ви вибрали неправильні налаштування під час встановлення. Спробуйте перевстановити модуль і ввімкнути сумісність із пристроями Huawei (навіть якщо ваш телефон не вироблений компанією Huawei).</string>
+    <string name="load_fail_arch_card">Якщо ви вже встановили модуль Magisk, можливо, ви вибрали неправильні налаштування під час встановлення. Спробуйте перевстановити модуль і увімкнути сумісність із пристроями Huawei (навіть якщо ваш телефон не вироблений компанією Huawei).</string>
     <!-- Enhanced processing -->
     <string name="enhanced_processing_feature_unavailable">Функція недоступна</string>
-    <string name="enhanced_processing_feature_unavailable_content">Функція доступна лише при увімкненій опції «Розширена обробка» в налаштуваннях. Будь ласка, увімкніть цю опцію в «Параметри &gt; Обробка аудіо &gt; Розширена обробка», щоб отримати доступ до цього меню. \n\nПримітка: опція «Розширена обробка» недоступна, якщо увімкнено Legacy режим.</string>
+    <string name="enhanced_processing_feature_unavailable_content">Функція доступна лише при увімкненій опції «Розширена обробка» в налаштуваннях. Будь ласка, увімкніть цю опцію в «Параметри &gt; Обробка аудіо &gt; Розширена обробка», щоб отримати доступ до цього меню. \n\nПримітка: опція «Розширена обробка» недоступна, якщо увімкнено режим legacy.</string>
     <string name="enhanced_processing_missing_perm">Покращену обробку було вимкнено через відсутність необхідних дозволів. Будь ласка, повторно налаштуйте їх в параметрах.</string>
     <!-- App list -->
     <string name="app_list_loading">Завантаження списку додатків…</string>
     <string name="app_list_search">Пошук</string>
-    <string name="app_list_icon_alt">Значок програми</string>
+    <string name="app_list_icon_alt">Значок додатка</string>
     <!-- Number box view -->
     <string name="number_box_decrement">Зменшення</string>
     <string name="number_box_increment">Збільшення</string>
@@ -473,7 +477,7 @@
     <!-- File intent handler -->
     <string name="intent_import_preset">Імпортувати пресет</string>
     <string name="intent_import_irs">Імпортувати імпульсний відгук</string>
-    <string name="intent_import_vdc">Імпортувати VDC файл</string>
+    <string name="intent_import_vdc">Імпортувати файл VDC</string>
     <string name="intent_import_liveprog">Імпортувати Liveprog скрипт</string>
     <string name="intent_import_mode_add">Лише імпортувати</string>
     <string name="intent_import_mode_select">Імпортувати та активувати</string>
@@ -483,5 +487,18 @@
     <string name="intent_import_error_file_uri">Не вдалося імпортувати файл. Непідтримувана URI-адреса файлу.</string>
     <!-- Translation notice box -->
     <string name="translation_notice_summary">Допоможіть нам перекласти цей додаток вашою мовою! Натисніть тут, щоб перейти на сайт проекту на Crowdin.</string>
-    <string name="translation_notice">Допомога з перекладом</string>
+    <string name="translation_notice">Допомогти з перекладом</string>
+    <!-- Self-updates (Root) -->
+    <string name="self_update_install_error">Не вдалося оновити</string>
+    <string name="self_update_download_fail">Не вдалося завантажити пакет оновлення. Будь ласка, перевірте ваше інтернет-з\'єднання. Детальніше: %1$s</string>
+    <string name="self_update_install_fail">Помилка при встановленні. %1$s</string>
+    <string name="self_update_finished">Оновлення встановлено. Додаток перезавантажується…</string>
+    <string name="self_update_no_updates">Наразі немає нових оновлень</string>
+    <string name="self_update_notice">Доступне нове оновлення (%1$s)</string>
+    <string name="self_update_notice_summary">Натисніть тут, щоб завантажити та встановити оновлення.</string>
+    <string name="self_update_notice_dismiss_install">Встановити зараз</string>
+    <string name="self_update_notice_dismiss_snooze">Нагадати пізніше</string>
+    <string name="self_update_notice_dismiss_skip">Пропустити це оновлення</string>
+    <string name="self_update_state_downloading">Завантаження…</string>
+    <string name="self_update_state_installing">Встановлення…</string>
 </resources>
