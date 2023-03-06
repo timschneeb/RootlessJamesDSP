@@ -1,0 +1,2 @@
+* Fixed crash caused by multi-threaded access
+* Updated translations for languages Russian, Ukrainian, Czech, Chinese, German
