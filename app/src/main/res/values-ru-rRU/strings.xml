@@ -492,7 +492,7 @@
     <string name="self_update_install_error">Не удалось обновить</string>
     <string name="self_update_download_fail">Не удалось загрузить пакет обновления. Пожалуйста, проверьте ваше интернет-соединение. Подробности: %1$s</string>
     <string name="self_update_install_fail">Ошибка установки. %1$s</string>
-    <string name="self_update_finished">Обновление установлено. Приложение перезапускается…</string>
+    <string name="self_update_finished">Обновление установлено. Перезапуск приложения…</string>
     <string name="self_update_no_updates">На данный момент нет доступных обновлений</string>
     <string name="self_update_notice">Доступно новое обновление (%1$s)</string>
     <string name="self_update_notice_summary">Нажмите здесь, чтобы загрузить и установить обновление.</string>
