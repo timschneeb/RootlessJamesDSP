@@ -35,7 +35,9 @@
     <!-- General purpose -->
     <string name="install">Installieren</string>
     <string name="update">Aktualisieren</string>
+    <string name="unknown_error">Unbekannter Fehler</string>
     <string name="details">Details</string>
+    <string name="actions">Aktionen</string>
     <string name="warning">Warnung</string>
     <string name="success">Abgeschlossen</string>
     <string name="open">Öffnen</string>
@@ -304,6 +306,8 @@
     <string name="credits_project_page_summary">Melde Probleme, halte dich auf dem Laufenden und lese den Quellcode</string>
     <string name="credits_project_play_page">Besuche RootlessJamesDSP auf Google Play</string>
     <string name="credits_project_play_page_summary">Nach Updates suchen</string>
+    <string name="credits_project_check_update">Nach Aktualisierungen suchen…</string>
+    <string name="credits_project_check_update_summary">Updates herunterladen und installieren, sofern verfügbar</string>
     <string name="credits_project_translate">Zur Übersetzung beitragen</string>
     <string name="credits_project_translate_summary">Hilf uns diese App in Deine Sprache zu übersetzen</string>
     <string name="credits_version">App-Version</string>
@@ -484,4 +488,17 @@
     <!-- Translation notice box -->
     <string name="translation_notice_summary">Bitte hilf uns diese App in deine Sprache zu übersetzen! Tippe hier, um die Projektseite auf Crowdin zu besuchen.</string>
     <string name="translation_notice">Übersetzungen beitragen</string>
+    <!-- Self-updates (Root) -->
+    <string name="self_update_install_error">Update fehlgeschlagen</string>
+    <string name="self_update_download_fail">Update-Paket konnte nicht heruntergeladen werden. Bitte überprüfe deine Internetverbindung. Details: %1$s</string>
+    <string name="self_update_install_fail">Installation fehlgeschlagen. %1$s</string>
+    <string name="self_update_finished">Update installiert. Die App startet nun neu…</string>
+    <string name="self_update_no_updates">Derzeit sind keine neuen Updates verfügbar</string>
+    <string name="self_update_notice">Neues Update verfügbar (%1$s)</string>
+    <string name="self_update_notice_summary">Tippe hier, um das neue Update herunterzuladen und zu installieren.</string>
+    <string name="self_update_notice_dismiss_install">Jetzt installieren</string>
+    <string name="self_update_notice_dismiss_snooze">Später erinnern</string>
+    <string name="self_update_notice_dismiss_skip">Update überspringen</string>
+    <string name="self_update_state_downloading">Wird heruntergeladen…</string>
+    <string name="self_update_state_installing">Installiere…</string>
 </resources>
