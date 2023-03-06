@@ -35,7 +35,9 @@
     <!-- General purpose -->
     <string name="install">Установить</string>
     <string name="update">Обновить</string>
+    <string name="unknown_error">Неизвестная ошибка</string>
     <string name="details">Подробнее</string>
+    <string name="actions">Действия</string>
     <string name="warning">Предупреждение</string>
     <string name="success">Успешно выполнено</string>
     <string name="open">Открыть</string>
@@ -304,6 +306,8 @@
     <string name="credits_project_page_summary">Сообщайте о проблемах, следите за обновлениями и читайте исходный код</string>
     <string name="credits_project_play_page">Посетить RootlessJamesDSP на Google Play</string>
     <string name="credits_project_play_page_summary">Поиск новых обновлений</string>
+    <string name="credits_project_check_update">Проверить наличие обновлений…</string>
+    <string name="credits_project_check_update_summary">Загрузить и установить обновления</string>
     <string name="credits_project_translate">Помочь с переводами</string>
     <string name="credits_project_translate_summary">Помогите нам перевести приложение на ваш язык</string>
     <string name="credits_version">Версия приложения</string>
@@ -484,4 +488,17 @@
     <!-- Translation notice box -->
     <string name="translation_notice_summary">Помогите нам перевести это приложение на ваш язык! Нажмите здесь, чтобы перейти на сайт проекта на Crowdin.</string>
     <string name="translation_notice">Помочь с переводами</string>
+    <!-- Self-updates (Root) -->
+    <string name="self_update_install_error">Не удалось обновить</string>
+    <string name="self_update_download_fail">Не удалось загрузить пакет обновления. Пожалуйста, проверьте ваше интернет-соединение. Подробности: %1$s</string>
+    <string name="self_update_install_fail">Ошибка установки. %1$s</string>
+    <string name="self_update_finished">Обновление установлено. Приложение перезапускается…</string>
+    <string name="self_update_no_updates">На данный момент нет доступных обновлений</string>
+    <string name="self_update_notice">Доступно новое обновление (%1$s)</string>
+    <string name="self_update_notice_summary">Нажмите здесь, чтобы загрузить и установить обновление.</string>
+    <string name="self_update_notice_dismiss_install">Установить сейчас</string>
+    <string name="self_update_notice_dismiss_snooze">Напомнить позже</string>
+    <string name="self_update_notice_dismiss_skip">Пропустить это обновление</string>
+    <string name="self_update_state_downloading">Загрузка…</string>
+    <string name="self_update_state_installing">Установка…</string>
 </resources>
