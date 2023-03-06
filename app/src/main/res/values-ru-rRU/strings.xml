@@ -307,7 +307,7 @@
     <string name="credits_project_play_page">Посетить RootlessJamesDSP на Google Play</string>
     <string name="credits_project_play_page_summary">Поиск новых обновлений</string>
     <string name="credits_project_check_update">Проверить наличие обновлений…</string>
-    <string name="credits_project_check_update_summary">Загрузить и установить обновления</string>
+    <string name="credits_project_check_update_summary">Загрузить и установить доступные обновления</string>
     <string name="credits_project_translate">Помочь с переводами</string>
     <string name="credits_project_translate_summary">Помогите нам перевести приложение на ваш язык</string>
     <string name="credits_version">Версия приложения</string>
