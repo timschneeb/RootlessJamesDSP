@@ -2,18 +2,16 @@
 
 If you want to use this app with the JamesDSP magisk module on a rooted device, follow these instructions:
 
-**Important: I don't actively test root builds; therefore, I won't provide stable APK files. They may be more unstable than the regular rootless version.**
+**Important: I don't actively test root builds. They may be more unstable than the regular rootless version.**
 
 1. Install the JamesDSP magisk module if not already done.
 2. Uninstall the original JamesDSP app.
-3. Select the latest successful workflow run on this page: https://github.com/ThePBone/RootlessJamesDSP/actions/workflows/build.yml
-4. On the next page, scroll down to the artifacts section and download the prebuilt root APK artifact ZIP archive. **You need to be logged in with a GitHub account** to download it, otherwise the link won't be clickable.
-5. The build artifact is a ZIP file which contains the APK! Make sure to extract it first. (GitHub Actions only allows ZIP downloads)
+3. Download the latest APK from this release server: https://nightly.timschneeberger.me/rootlessjamesdsp-rootfull/
 6. Install the APK.
 7. Make sure to close and restart any music app that is currently active (or simply reboot your device).
 8. Done. You should now be able to use the app normally.
 
-   
+Starting with version 1.3.2, the root build includes a self-updater. You can directly update the app without visiting this site again.
 
 **This app behaves differently than the original app:**
 
@@ -22,4 +20,4 @@ If you want to use this app with the JamesDSP magisk module on a rooted device, 
 * No separate configurations for speaker/bluetooth/usb/wired; there's one active category for all (for now)
 
 ## Restoring the original app
-Uninstall this app, download the original app APK: https://github.com/Magisk-Modules-Repo/ainur_jamesdsp/raw/master/JamesDSPManager.apk, and install it.
+Uninstall this app, download the original app APK: https://github.com/Magisk-Modules-Repo/ainur_jamesdsp/raw/master/JamesDSPManager.apk, and install it. A reboot may be necessary.
