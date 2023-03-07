@@ -56,6 +56,8 @@ import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showSingleCho
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showYesNoAlert
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.unregisterLocalReceiver
+import me.timschneeberger.rootlessjamesdsp.utils.PermissionExtensions.hasDumpPermission
+import me.timschneeberger.rootlessjamesdsp.utils.PermissionExtensions.hasRecordPermission
 import me.timschneeberger.rootlessjamesdsp.utils.Result
 import me.timschneeberger.rootlessjamesdsp.utils.StorageUtils
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
@@ -169,9 +171,7 @@ class MainActivity : BaseActivity() {
 
         // Rootless: Check permissions and launch onboarding if required
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q &&
-            BuildConfig.ROOTLESS &&
-            (checkSelfPermission(Manifest.permission.DUMP) == PackageManager.PERMISSION_DENIED ||
-                    checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_DENIED)) {
+            BuildConfig.ROOTLESS && (!hasDumpPermission() || !hasRecordPermission())) {
             Timber.i("Launching onboarding (first boot: $firstBoot)")
 
             startActivity(Intent(this, OnboardingActivity::class.java).apply {
@@ -332,7 +332,7 @@ class MainActivity : BaseActivity() {
         sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
 
         if(!BuildConfig.ROOTLESS && app.isEnhancedProcessing) {
-            if(checkSelfPermission(Manifest.permission.DUMP) == PackageManager.PERMISSION_DENIED) {
+            if(!hasDumpPermission()) {
                 Timber.e("Dump permission for enhanced processing lost")
                 toast(getString(R.string.enhanced_processing_missing_perm))
                 prefsApp.set(R.string.key_audioformat_enhanced_processing, false)

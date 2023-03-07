@@ -48,6 +48,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocal
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.unregisterLocalReceiver
+import me.timschneeberger.rootlessjamesdsp.utils.PermissionExtensions.hasRecordPermission
 import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import me.timschneeberger.rootlessjamesdsp.utils.ServiceNotificationHelper
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
@@ -426,7 +427,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
     @SuppressLint("BinaryOperationInTimber")
     private fun startRecording() {
         // Sanity check
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+        if (!hasRecordPermission()) {
             Timber.e("Record audio permission missing. Can't record")
             stopSelf()
             return
@@ -613,7 +614,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
     }
 
     private fun buildAudioRecord(encoding: Int, sampleRate: Int, bufferSizeBytes: Int): AudioRecord {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+        if (!hasRecordPermission()) {
             Timber.e("buildAudioRecord: RECORD_AUDIO not granted")
             throw RuntimeException("RECORD_AUDIO not granted")
         }

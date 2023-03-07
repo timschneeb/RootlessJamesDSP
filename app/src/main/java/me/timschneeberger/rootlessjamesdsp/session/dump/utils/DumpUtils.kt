@@ -3,6 +3,7 @@ package me.timschneeberger.rootlessjamesdsp.session.dump.utils
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.ParcelFileDescriptor
+import me.timschneeberger.rootlessjamesdsp.utils.PermissionExtensions.hasDumpPermission
 import rikka.shizuku.SystemServiceHelper
 import timber.log.Timber
 import java.io.FileInputStream
@@ -15,10 +16,8 @@ object DumpUtils {
     }
 
     fun dumpAll(context: Context, service: String): String? {
-        if(context.checkSelfPermission("android.permission.DUMP") == PackageManager.PERMISSION_DENIED)
-        {
+        if(!context.hasDumpPermission())
             return null
-        }
 
         try {
             val pipe = ParcelFileDescriptor.createPipe()

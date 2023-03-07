@@ -33,7 +33,11 @@ import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.launchApp
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.openPlayStoreApp
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
+import me.timschneeberger.rootlessjamesdsp.utils.PermissionExtensions.hasDumpPermission
+import me.timschneeberger.rootlessjamesdsp.utils.PermissionExtensions.hasNotificationPermission
+import me.timschneeberger.rootlessjamesdsp.utils.PermissionExtensions.hasRecordPermission
 import me.timschneeberger.rootlessjamesdsp.utils.Preferences
+import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import org.koin.android.ext.android.inject
 import rikka.shizuku.Shizuku
 import timber.log.Timber
@@ -156,7 +160,7 @@ class OnboardingFragment : Fragment() {
                         return
                     }
                     val success = RootShellImpl.cmd("pm grant ${BuildConfig.APPLICATION_ID} android.permission.DUMP\n")
-                    if(!success && requireContext().checkSelfPermission(DUMP_PERM) != PERMISSION_GRANTED) {
+                    if(!success && !requireContext().hasDumpPermission()) {
                         requireContext().showAlert(
                             R.string.onboarding_root_shell_fail_title,
                             R.string.onboarding_root_shell_fail_unknown
@@ -404,12 +408,10 @@ class OnboardingFragment : Fragment() {
     private fun requestNextPage(nextPage: Int, forward: Boolean): Int
     {
         val shouldSkip = when (nextPage) {
-            PAGE_METHOD_SELECT -> requireContext().checkSelfPermission(DUMP_PERM) == PERMISSION_GRANTED
-            PAGE_ADB_SETUP -> requireContext().checkSelfPermission(DUMP_PERM) == PERMISSION_GRANTED
+            PAGE_METHOD_SELECT -> requireContext().hasDumpPermission()
+            PAGE_ADB_SETUP -> requireContext().hasDumpPermission()
             PAGE_RUNTIME_PERMISSIONS -> {
-                val notificationGranted = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) true
-                else requireContext().checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) == PERMISSION_GRANTED
-                notificationGranted && requireContext().checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PERMISSION_GRANTED
+               requireContext().hasNotificationPermission() && requireContext().hasRecordPermission()
             }
             else -> false
         }
@@ -433,7 +435,7 @@ class OnboardingFragment : Fragment() {
 
     private fun ensureDumpPermission(): Boolean{
         // Permission already granted?
-        if(requireContext().checkSelfPermission(DUMP_PERM) == PERMISSION_GRANTED) {
+        if(requireContext().hasDumpPermission()) {
             Timber.d("DUMP permission granted")
             return true
         }
@@ -443,10 +445,10 @@ class OnboardingFragment : Fragment() {
             val pkg = requireContext().packageName
             val uid = myUid()
             Timber
-                .d("Granting $DUMP_PERM via Shizuku (uid ${Shizuku.getUid()}) for $pkg")
+                .d("Granting DUMP via Shizuku (uid ${Shizuku.getUid()}) for $pkg")
 
             // Grant DUMP as system
-            ShizukuSystemServerApi.PermissionManager_grantRuntimePermission(pkg, DUMP_PERM, UserHandle.USER_SYSTEM)
+            ShizukuSystemServerApi.PermissionManager_grantRuntimePermission(pkg, Manifest.permission.DUMP, UserHandle.USER_SYSTEM)
             try {
                 val result = ShizukuSystemServerApi.AppOpsService_setMode(
                     ShizukuSystemServerApi.APP_OPS_OP_PROJECT_MEDIA,
@@ -463,17 +465,17 @@ class OnboardingFragment : Fragment() {
             }
 
             // Re-check permission
-            return if (requireContext().checkSelfPermission(DUMP_PERM) == PERMISSION_GRANTED) {
+            return if (requireContext().hasDumpPermission()) {
                 Timber.d("DUMP permission via Shizuku granted")
                 true
             } else {
-                Timber.e("$DUMP_PERM not granted")
+                Timber.e("DUMP not granted")
                 requireContext().showAlert(R.string.onboarding_adb_shizuku_no_dump_perm_title,
                     R.string.onboarding_adb_shizuku_no_dump_perm)
 
                 // Fallback just in case
                 @Suppress("DEPRECATION")
-                val proc = Shizuku.newProcess(arrayOf<String>("pm", "grant", pkg, DUMP_PERM), null, null)
+                val proc = Shizuku.newProcess(arrayOf<String>("pm", "grant", pkg, Manifest.permission.DUMP), null, null)
                 proc.waitFor()
                 false
             }
@@ -487,13 +489,13 @@ class OnboardingFragment : Fragment() {
     private fun ensureRuntimePermissions(): Boolean
     {
         val requestedPermissions = arrayListOf<String>()
-        if(requireContext().checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PERMISSION_DENIED) {
+        if(!requireContext().hasRecordPermission()) {
             requestedPermissions.add(Manifest.permission.RECORD_AUDIO)
         }
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
-            requireContext().checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) == PERMISSION_DENIED) {
-            requestedPermissions.add(Manifest.permission.POST_NOTIFICATIONS)
+        sdkAbove(Build.VERSION_CODES.TIRAMISU) {
+            if(!requireContext().hasNotificationPermission())
+                requestedPermissions.add(Manifest.permission.POST_NOTIFICATIONS)
         }
 
         return if(requestedPermissions.isNotEmpty()) {
@@ -592,7 +594,6 @@ class OnboardingFragment : Fragment() {
     {
         fun newInstance() = OnboardingFragment()
 
-        const val DUMP_PERM = "android.permission.DUMP"
         const val SHIZUKU_PKG = "moe.shizuku.privileged.api"
 
         const val REQUEST_CODE_SHIZUKU_GRANT = 1

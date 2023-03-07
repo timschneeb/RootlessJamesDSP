@@ -24,6 +24,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.requestIgnore
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
+import me.timschneeberger.rootlessjamesdsp.utils.PermissionExtensions.hasDumpPermission
 import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import org.koin.android.ext.android.inject
 import timber.log.Timber
@@ -59,7 +60,7 @@ class SettingsAudioFormatFragment : PreferenceFragmentCompat() {
         enhancedMode?.setOnPreferenceChangeListener { _, newValue ->
             if (newValue as Boolean) {
                 // Check DUMP permissions
-                if(requireContext().checkSelfPermission(Manifest.permission.DUMP) == PackageManager.PERMISSION_DENIED) {
+                if(!requireContext().hasDumpPermission()) {
                     Timber.i("Launching enhanced processing onboarding")
 
                     Intent(requireContext(), OnboardingActivity::class.java).let {

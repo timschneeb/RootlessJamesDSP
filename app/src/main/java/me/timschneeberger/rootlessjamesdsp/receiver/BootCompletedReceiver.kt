@@ -1,20 +1,27 @@
 package me.timschneeberger.rootlessjamesdsp.receiver
 
+import android.app.AppOpsManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Build
+import androidx.core.content.ContextCompat.startActivity
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
+import me.timschneeberger.rootlessjamesdsp.activity.EngineLauncherActivity
 import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.PermissionExtensions.hasProjectMediaAppOp
 import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import me.timschneeberger.rootlessjamesdsp.utils.ServiceNotificationHelper
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
+import me.timschneeberger.rootlessjamesdsp.utils.getApplicationInfoCompat
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import timber.log.Timber
 
 
 class BootCompletedReceiver : BroadcastReceiver(), KoinComponent {
@@ -25,6 +32,9 @@ class BootCompletedReceiver : BroadcastReceiver(), KoinComponent {
             return
 
         if(BuildConfig.ROOTLESS) {
+            if (!preferences.get<Boolean>(R.string.key_autostart_prompt_at_boot))
+                return
+
             val notificationManager = SystemServices.get<NotificationManager>(context)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 val channel = NotificationChannel(
@@ -37,8 +47,7 @@ class BootCompletedReceiver : BroadcastReceiver(), KoinComponent {
                 notificationManager.createNotificationChannel(channel)
             }
 
-            if (preferences.get<Boolean>(R.string.key_autostart_prompt_at_boot))
-                ServiceNotificationHelper.pushPermissionPromptNotification(context)
+            ServiceNotificationHelper.pushPermissionPromptNotification(context)
         }
         else {
             // Root version: if enhanced processing mode is on, we need to start the service manually
