@@ -1,2 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <plurals name="custom_parameters">
+        <item quantity="other">%d parameter dapat diubah</item>
+    </plurals>
+    <plurals name="unsupported_apps">
+        <item quantity="other">%d aplikasi tidak didukung otomatis dikecualikan, sentuh untuk melihat detail.</item>
+    </plurals>
+</resources>
