@@ -1,27 +1,300 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
+    <string name="action_settings">Nastavení</string>
+    <string name="action_presets">Předvolby</string>
+    <string name="action_revert">Obnovit výchozí nastavení</string>
+    <string name="action_blocked_apps">Vyloučené aplikace</string>
     <!-- Notification channels -->
+    <string name="notification_channel_service">Upozornění na službu</string>
+    <string name="notification_channel_session_loss_alert">Upozornění na ztrátu relace</string>
+    <string name="notification_channel_permission_prompt">Žádost o oprávnění</string>
+    <string name="notification_channel_app_compat_alert">Upozornění na nekompatibilní aplikace</string>
     <!-- Service notifications -->
+    <string name="action_retry">Zkusit znovu</string>
+    <string name="action_fix">Opravit problém</string>
+    <string name="action_stop">Zastavit</string>
+    <string name="notification_processing">Aktivní aplikace: %1$s</string>
+    <string name="notification_idle">Zpracování zvuku v nečinnosti</string>
+    <string name="notification_processing_title">Zpracování zvuku aktivní</string>
+    <string name="notification_processing_disabled_title">Zpracování zvuku vypnuto</string>
+    <string name="notification_processing_legacy">Klepněte pro otevření správce JamesDSP</string>
     <!-- Permission request notifications -->
+    <string name="notification_request_permission_title">Pro spuštění JamesDSP je vyžadována akce uživatele</string>
+    <string name="notification_request_permission">Klepněte pro udělení oprávnění k zachycování audia a aktivování zpracování zvuku JamesDSP</string>
     <!-- Session control loss notifications -->
+    <string name="session_control_loss_toast">JamesDSP zastaven kvůli ztrátě ovládání zvukové relace. Vypněte prosím ostatní aplikace pro zvukové efekty.</string>
+    <string name="session_control_loss_notification_title">Zpracování zvuku zastaveno. Jiná aplikace ruší zpracování JamesDSP.</string>
+    <string name="session_control_loss_notification">Prosím vypněte všechny ostatní aplikace, které poskytují globální zvukové efekty před opětovným povolením JamesDSP.</string>
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_toast">JamesDSP byl z důvodu nekompatibilní aplikace zastaven. Prosím zkontrolujte oznámení pro vyřešení tohoto problému.</string>
+    <string name="session_app_compat_notification_title">Zpracování zvuku zastaveno. Jiná aplikace ruší zpracování JamesDSP.</string>
+    <string name="session_app_compat_notification">Klepněte na toto oznámení pro vyřešení problému.</string>
     <!-- Capture permission revoked notifications -->
+    <string name="capture_permission_revoked_toast">JamesDSP byl zastaven, protože oprávnění k zachycení zvuku bylo zrušeno.</string>
     <!-- General purpose -->
+    <string name="install">Instalovat</string>
+    <string name="update">Aktualizovat</string>
+    <string name="unknown_error">Neznámá chyba</string>
+    <string name="details">Podrobnosti</string>
+    <string name="actions">Akce</string>
+    <string name="warning">Upozornění</string>
+    <string name="success">Úspěch</string>
+    <string name="open">Otevřít</string>
+    <string name="close">Zavřít</string>
+    <string name="add">Přidat</string>
+    <string name="yes">Ano</string>
+    <string name="no">Ne</string>
+    <string name="value_not_set">Nenastaveno</string>
+    <string name="undo">Vrátit dozadu</string>
+    <string name="redo">Vrátit dopředu</string>
+    <string name="no_activity_found">Nebyla nalezena žádná aktivita pro zpracování akce</string>
     <!-- Main screen -->
+    <string name="power_button_alt">Přepnout zpracování zvuku</string>
+    <string name="compressor_enable">Automatický kompresor dynamického rozsahu</string>
+    <string name="compressor_max_attack">Maximální útok</string>
+    <string name="compressor_max_release">Maximální uvolnění</string>
+    <string name="compressor_adapt_speed">Agresivita</string>
+    <string name="eq_enable">Interpolační FIR ekvalizér</string>
+    <string name="eq_filter_type">Typ filtru</string>
+    <string name="eq_interpolator">Interpolátor</string>
+    <string name="eq_filter_type_minimum">Minimální fáze</string>
+    <string name="eq_filter_type_linear">Lineární fáze</string>
+    <string name="eq_interpolator_chip">Kusově kubický Hermitův interpolační polynom</string>
+    <string name="eq_interpolator_mha">Upravená Hiroshiho Akimova interpolovaná křivka</string>
+    <string name="eq_preset_acoustic">Akustický</string>
+    <string name="eq_preset_bass">Basy</string>
+    <string name="eq_preset_beats">Rytmický</string>
+    <string name="eq_preset_classic">Klasický</string>
+    <string name="eq_preset_clear">Čistý</string>
+    <string name="eq_preset_deep">Hluboký</string>
+    <string name="eq_preset_dubstep">Dubstep</string>
+    <string name="eq_preset_electronic">Elektronický</string>
+    <string name="eq_preset_flat">Plochý</string>
+    <string name="eq_preset_hardstyle">Hardstyle</string>
+    <string name="eq_preset_hiphop">Hip-Hop</string>
+    <string name="eq_preset_jazz">Jazz</string>
+    <string name="eq_preset_metal">Metal</string>
+    <string name="eq_preset_movie">Film</string>
+    <string name="eq_preset_pop">Pop</string>
+    <string name="eq_preset_rb">R&amp;B</string>
+    <string name="eq_preset_rock">Rock</string>
+    <string name="eq_preset_vocal">Zvýraznění hlasu</string>
+    <string name="geq_enable">Ekvalizér s libovolnou kmitočtovou charakteristikou</string>
+    <string name="geq_nodes">Magnitudová odezva</string>
+    <string name="bass_enable">Dynamické zesílení basů</string>
+    <string name="bass_max_gain">Maximální zesílení</string>
+    <string name="reverb_enable">Efekt virtuální místnosti</string>
+    <string name="reverb_room_type">Typ místnosti</string>
+    <string name="reverb_preset_default">Výchozí</string>
+    <string name="reverb_preset_small_hall1">Malý sál 1</string>
+    <string name="reverb_preset_small_hall2">Malá sál 2</string>
+    <string name="reverb_preset_medium_hall2">Střední sál</string>
+    <string name="reverb_preset_large_hall1">Velký sál</string>
+    <string name="reverb_preset_small_room1">Malá místnost 1</string>
+    <string name="reverb_preset_small_room2">Malá místnost 2</string>
+    <string name="reverb_preset_medium_room1">Střední místnost</string>
+    <string name="reverb_preset_large_room1">Velká místnost</string>
+    <string name="reverb_preset_plate_high">Vysoký plech</string>
+    <string name="reverb_preset_plate_low">Nízký plech</string>
+    <string name="reverb_preset_long_reverb1">Dlouhý dozvuk 1</string>
+    <string name="reverb_preset_long_reverb2">Dlouhý dozvuk 2</string>
+    <string name="convolver_enable">Konvoluční efekt</string>
+    <string name="convolver_impulse">Impulsní odezva</string>
+    <string name="convolver_advanced_editing">Pokročilé úpravy vlnového tvaru</string>
+    <string name="convolver_convolution_mode">Optimalizace Impulsní odezvy</string>
+    <string name="convolver_convolution_mode_original">Originál</string>
+    <string name="convolver_convolution_mode_shrink">Zmenšit</string>
+    <string name="convolver_convolution_mode_minimum_phase_shrink">Minimální transformace fáze a zmenšení</string>
+    <string name="ddc_enable">ViPER-DDC</string>
+    <string name="ddc_file">DDC soubor</string>
+    <string name="liveprog_enable">Živě programovatelné DSP</string>
+    <string name="liveprog_file">Liveprog skript</string>
+    <string name="liveprog_additional_params">Další parametry skriptu</string>
+    <string name="liveprog_additional_params_not_supported">Vybraný skript nemá žádné přizpůsobitelné parametry</string>
+    <string name="liveprog_not_found">Skript nenalezen</string>
+    <string name="liveprog_no_script_selected">Nebyl vybrán žádný skript</string>
+    <string name="liveprog_edit_header">Upravit vybraný skript</string>
+    <string name="liveprog_edit">Otevřít aktivní skript v vestavěném editoru</string>
+    <string name="tube_enable">Analogové modelování</string>
+    <string name="tube_drive">Předzesilovač</string>
+    <string name="output_control_header">Kontrola výstupu</string>
+    <string name="output_limiter_threshold">Práh omezovače</string>
+    <string name="output_limiter_release">Uvolnění omezovače</string>
+    <string name="output_control_postgain">Dodatečné zesílení</string>
+    <string name="stereowide_enable">Šířka zvukové scény</string>
+    <string name="stereowide_level">Šířka</string>
+    <string name="stereowide_level_none">Žádná</string>
+    <string name="stereowide_level_very_wide">Velmi široká</string>
+    <string name="stereowide_level_wide">Široká</string>
+    <string name="stereowide_level_very_narrow">Velmi úzká</string>
+    <string name="stereowide_level_narrow">Úzká</string>
+    <string name="crossfeed_enable">Příčný posuv</string>
+    <string name="crossfeed_preset">Předvolba</string>
+    <string name="crossfeed_preset_bs2b_weak">BS2B Slabý</string>
+    <string name="crossfeed_preset_bs2b_strong">BS2B Silný</string>
+    <string name="crossfeed_preset_out_of_head">Mimo hlavu</string>
+    <string name="crossfeed_preset_surround1">Prostorový 1</string>
+    <string name="crossfeed_preset_surround2">Prostorový 2</string>
+    <string name="crossfeed_preset_realistic_surround">Joe0Bloggs Realistický prostorový</string>
     <!-- Onboarding -->
+    <string name="title_activity_onboarding">Průvodce</string>
+    <string name="onboarding_back">Zpět</string>
+    <string name="onboarding_next">Další</string>
+    <string name="onboarding_finish">Dokončit</string>
+    <string name="onboarding_greeting">Vítejte v RootlessJamesDSP!</string>
+    <string name="onboarding_caption">Tento asistent vám pomůže nastavit tuto aplikaci.</string>
+    <string name="onboarding_warning">Tato aplikace je v současné době nedokončená a nestabilní. Vezměte prosím na vědomí, že nemusí správně fungovat na některých zařízeních, protože používá Android API, která není navržena pro použití třetími stranami.</string>
+    <string name="onboarding_fix_permissions_title">Vyžadována akce uživatele</string>
+    <string name="onboarding_fix_permissions">Vámi nebo systémem bylo zrušeno jedno nebo více oprávnění.\nAby se zajistila funkčnost této aplikace musíte tato oprávnění znovu udělit.\n\nZnovu projděte průvodcem nastavení pro opětovné udělení těchto oprávnění.</string>
+    <string name="onboarding_limitations_title">Omezení</string>
+    <string name="onboarding_limitations_unstable">Důležité! Před pokračováním si prosím pečlivě přečtěte poznámky.</string>
+    <string name="onboarding_methods_title">Vyberte způsob nastavení</string>
+    <string name="onboarding_methods_root_title">Root</string>
+    <string name="onboarding_methods_shizuku_title">Shizuku</string>
+    <string name="onboarding_methods_unsupported_append">nekompatibilní</string>
+    <string name="onboarding_methods_adb_title">ADB</string>
     <!-- Rootless flavor -->
+    <string name="onboarding_methods_rootless_shizuku">\u25CF Doporučeno\n\u25CF Není vyžadován žádný externí počítač\n\u25CF pouze Android 11+</string>
+    <string name="onboarding_methods_rootless_adb">\u25CF Pro pokročilé uživatele\n\u25CF Potřebný počítač a USB kabel\n\u25CF Podporován Android 10+</string>
     <!-- Root flavor -->
+    <string name="onboarding_methods_root_root">\u25CF Doporučeno\n\u25CF Není vyžadován žádný externí počítač\n\u25CF pouze Android 11+</string>
+    <string name="onboarding_methods_root_shizuku">\u25CF Doporučeno\n\u25CF Není vyžadován žádný externí počítač\n\u25CF pouze Android 11+</string>
+    <string name="onboarding_methods_root_adb">\u25CF Pro pokročilé uživatele\n\u25CF Potřeba počítač a USB kabel\n\u25CF Všechny verze Android</string>
+    <string name="onboarding_root_shell_fail_title">Žádný root přístup</string>
+    <string name="onboarding_root_shell_fail">Root přístup není k dispozici. Použijte prosím jinou metodu nastavení.</string>
+    <string name="onboarding_root_shell_fail_unknown">Nepodařilo se udělit oprávnění prostřednictvím rootu. Použijte prosím jinou metodu nastavení.</string>
+    <string name="onboarding_root_enhanced_processing_setup_success">Vylepšené zpracování bylo nastaveno</string>
+    <string name="onboarding_adb_shizuku_title">Konfigurace Shizuku</string>
+    <string name="onboarding_adb_adb_title">Konfigurace ADB</string>
+    <string name="onboarding_adb_caption">Tato aplikace vyžaduje zvláštní oprávnění pro vymazání zvukových pravidel a omezení vašeho zařízení. Postupujte podle níže uvedených pokynů.</string>
+    <string name="onboarding_adb_shizuku_install_button">Instalovat Shizuku</string>
+    <string name="onboarding_adb_shizuku_install_button_done">Již nainstalováno</string>
+    <string name="onboarding_adb_shizuku_install_instruction">Nainstalujte \'Shizuku\' z Google Play.</string>
+    <string name="onboarding_adb_shizuku_open_instruction">Spusťte „Shizuku“ a vyhledejte „<b>Spustit pomocí Wi-Fi debuggingu</b>“. Klepněte na tlačítko „Párování“ a postupujte podle pokynů v aplikaci. Po párování Shizuku s vaším zařízením, spusťte Shizuku server stisknutím tlačítka „Start“ v jejich aplikaci. Pokud narazíte na problémy při konfiguraci Shizuku, podívejte se prosím na jejich návodu na konfiguraci Shizuku odkázovaný v jejich aplikaci.</string>
+    <string name="onboarding_adb_shizuku_open_button">Spustit Shizuku</string>
+    <string name="onboarding_adb_shizuku_open_button_done">Již aktivní</string>
+    <string name="onboarding_adb_shizuku_grant_instruction">Klepněte na tlačítko a povolte této aplikaci přístup k Shizuku.</string>
+    <string name="onboarding_adb_shizuku_grant_button">Povolit přístup</string>
+    <string name="onboarding_adb_shizuku_not_installed">Shizuku ještě není nainstalován. Nejprve jej stáhněte a nainstalujte z Google Play.</string>
+    <string name="onboarding_adb_shizuku_not_installed_title">Shizuku ještě není nainstalován</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead">Před požádáním o oprávnění spusťte server Shizuku. Vraťte se zpět na krok 2.</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead_title">Shizuku server není spuštěn</string>
+    <string name="onboarding_adb_shizuku_grant_fail_version">Tato aplikace vyžaduje Shizuku verzi 11 nebo novější. Aktualizujte prosím Shizuku na nejnovější verzi.</string>
+    <string name="onboarding_adb_shizuku_grant_fail_version_title">Nepodporovaná verze Shizuku</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied_title">Oprávnění zamítnuto</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied">Prosím povolte aplikaci přístup k Shizuku. Možná budete muset otevřít správce oprávnění v Shizuku a udělit oprávnění ručně, pokud jste požadavek dříve zamítli a vyskakovací okno se již nezobrazuje.</string>
+    <string name="onboarding_adb_shizuku_no_dump_perm_title">Shizuku se nepodařilo udělit ADB oprávnění</string>
+    <string name="onboarding_adb_shizuku_no_dump_perm">Počkejte prosím několik sekund a zkuste to znovu. Pokud to stále nefunguje, zkuste alternativní metodu.</string>
+    <string name="onboarding_adb_dump_not_granted_title">Oprávnění ještě nebylo uděleno</string>
+    <string name="onboarding_adb_dump_not_granted">Nejprve prosím postupujte podle instrukcí a zkuste to znovu. Přístup ADB ještě není správně nastaven.</string>
+    <string name="onboarding_adb_manual_step1">Jděte do skrytého nastavení pro vývojáře systému Android a povolte ladění USB. Tato nastavení musíte několikrát odemknout klepnutím na číslo sestavení v informacích o systému v systémovém nastavení.</string>
+    <string name="onboarding_adb_manual_step2">Otevřete https://app.webadb.com v prohlížeči počítače (funguje nejlépe v Chrome) a připojte své zařízení pomocí USB k počítači.</string>
+    <string name="onboarding_adb_manual_step3">Přidejte připojte USB zařízení v WebADB.</string>
+    <string name="onboarding_adb_manual_step4">Přejděte do \'Interaktivního příkazového řádku\' a spusťte následující příkaz: \'pm grant %s android.permission.DUMP\'</string>
+    <string name="onboarding_adb_manual_step5">Klepněte na \'Další\' v této aplikaci pro pokračování.</string>
+    <string name="onboarding_adb_manual_step1_button">Otevřete nastavení pro vývojáře</string>
+    <string name="onboarding_perm_title">Ostatní povolení</string>
+    <string name="onboarding_perm_caption">Pro použití této aplikace jsou potřebná další oprávnění. Prosím zkontrolujte je a klepněte na \'Další\' pro jejich udělení.</string>
+    <string name="onboarding_perm_microphone_title">Oprávnění k nahrávání zvuku</string>
+    <string name="onboarding_perm_microphone_caption">Vyžadováno pro nahrávání interního zvuku. Hardwarový mikrofon není používán.</string>
+    <string name="onboarding_perm_notification_title">Oprávnění oznámení</string>
+    <string name="onboarding_perm_notification_caption">Vyžadováno pro získání důležitých aktualizací stavu a informací o stavu zpracování JamesDSP.</string>
+    <string name="onboarding_perm_cast_title">Oprávnění k vysílání/nahrávání</string>
+    <string name="onboarding_perm_cast_caption">Musíte této aplikaci výslovně udělit oprávnění k nahrávání zvukového obsahu pokaždé, když se spustí.</string>
+    <string name="onboarding_perm_missing_title">Uživatelské oprávnění nebylo uděleno</string>
+    <string name="onboarding_perm_missing">Pro pokračování prosím udělte všechna požadovaná uživatelská oprávnění.\nPokud jste oprávnění opakovaně zamítli, musíte je povolit ručně v nastavení systému.</string>
+    <string name="onboarding_finish_header">JamesDSP je připraven!</string>
+    <string name="onboarding_finish_caption">Pokud narazíte na nějaké problémy, navštivte prosím možnosti řešení problémů.</string>
+    <string name="limit_session_control_conflict_title">Zakázat další aplikace zvukových efektů</string>
+    <string name="limit_session_control_conflict">Aplikace pro zvukové efekty, které používají vestavěný dynamický efekt Androidu, narušují tuto aplikaci.</string>
+    <string name="limit_unsupported_apps_title">Nepodporované aplikace médií</string>
+    <string name="limit_unsupported_apps">Aplikace blokující interní záznam zvuku zůstávají nezpracované (např. Spotify, Google Chrome).</string>
+    <string name="limit_hw_accel_title">Problémy při přehrávání HW akcelerovaného zvuku</string>
+    <string name="limit_hw_accel">HW akcelerovné přehrávání zvuku může za určitých okolností způsobit duplicitní zvuk nebo shodit JamesDSP. Přidejte prosím problémový hudební přehrávač do seznamu vyloučených aplikací, aby se zabránilo jeho zpracování.</string>
+    <string name="limit_detect_delay_title">Zpoždění detekce zvukové relace</string>
+    <string name="limit_detect_delay"><![CDATA[Poté, co aplikace otevře novou relaci médií pro přehrávání zvuku, můžete slyšet duplicitní, nebo useknutý zvuk po velmi krátkou dobu (přibližně <250ms).]]></string>
+    <string name="limit_latency_title">Zvýšená odezva</string>
+    <string name="limit_latency">Tato aplikace může přidat určité zpoždění zvukového toku. Můžete přidat filmové/video aplikace do seznamu výjimek, aby se jejich nezpracováním zabránilo desynchromizaci videa a audia.</string>
+    <string name="limit_tested_devices_title">Testovaná zařízení</string>
+    <string name="limit_tested_devices">Změny zvukového subsystému Androidu, které výrobce zařízení provedl, mohou snadno rozbít tuto aplikaci, protože používá několik nezdokumentovaných API.\nByla testována tato zařízení:\n• Samsung S20+ (Android 12)\n• emulátor AOSP (Android 10–13)\n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
+    <string name="title_activity_settings">Nastavení</string>
+    <string name="session_exclude_restricted">Vyloučit nepodporované aplikace</string>
+    <string name="session_exclude_restricted_off">Aplikace blokující záznam zvuku zůstávají ztlumeny (výchozí chování Androidu)</string>
+    <string name="session_exclude_restricted_on">Aplikace, které blokují záznam zvuku, jsou vyloučeny a zůstávají nezpracované (doporučeno)</string>
+    <string name="session_detection_header">Zvuková relace detekována</string>
+    <string name="session_continuous_polling">Vynutit průběžné kontrolování</string>
+    <string name="session_continuous_polling_off">Poslouchat pouze události relací ze systému</string>
+    <string name="session_continuous_polling_on">Průběžně vypisovat zvukové relace</string>
+    <string name="session_continuous_polling_rate">Interval kontrolování (ms)</string>
+    <string name="session_detection_method">Preferovaná metoda detekce relace</string>
+    <string name="session_detection_method_audiopolicyservice">AudioPolicyService dump</string>
+    <string name="session_detection_method_audioservice">AudioService dump (doporučeno)</string>
+    <string name="session_app_problem_ignore">Ignorovat problémy s kompatibilitou aplikace</string>
+    <string name="session_loss_ignore">Ignorovat ztrátu ovládání relace</string>
+    <string name="session_loss_ignore_off">Zakázáno, pracovat normálně (doporučeno)</string>
+    <string name="session_loss_ignore_on">Neprovádět žádnou akci (může způsobit duplicitní zvuk)</string>
+    <string name="session_loss_ignore_warning">Povolení tohoto nastavení může způsobit duplicitní zvuk, když jiná aplikace pro zvukové efekty převezme kontrolu nad zvukovou relací.\nPonechte prosím toto nastavení vypnuto, pokud nezaznamenáte falešně pozitivní ztráty relace.</string>
+    <string name="audio_format_header">Zpracování audia</string>
+    <string name="audio_format_section_header">Preferovaný formát zvuku</string>
+    <string name="audio_format_processing_header">Možnosti zpracování zvuku</string>
+    <string name="audio_format_processing_legacy">Režim kompatability</string>
+    <string name="audio_format_processing_legacy_on">Připojit globálně k relaci 0 (zastaralé)</string>
+    <string name="audio_format_processing_legacy_off">Připojit k každé aplikaci jednotlivě</string>
+    <string name="audio_format_enhanced_processing">Vylepšené zpracování</string>
+    <string name="audio_format_enhanced_processing_on">Jednotlivé ovládání aplikací a rozšířená podpora povolených aplikací</string>
+    <string name="audio_format_enhanced_processing_off">Vylepšené zpracování vypnuto</string>
+    <string name="audio_format_enhanced_processing_info_title">Co je vylepšené zpracování?</string>
+    <string name="audio_format_enhanced_processing_info">Klepnutím zobrazíte dokumentaci</string>
+    <string name="audio_format_enhanced_processing_info_content">Pokud je povoleno rozšířené zpracování, můžete selektivně vyloučit některé aplikace ze zpracování JamesDSP. Použijte 3 bodové menu v pravém dolním rohu a vyberte \'Vyloučené aplikace\' pro přístup k této funkci.\n\nZatímco starší režim je zakázán, JamesDSP se spoléhá na aplikace médií a posílá systémové vysílání při startu přehrávání. Toto je výhoda oproti starému režimu, protože každá aplikace dostane vlastní nástroj pro efekty JamesDSP, který mu umožňuje lépe ovládat. V opačném případě by se starším režimem zapnutým všechny aplikace sdílely jeden procesor, který Android zastaralý a již by neměl být používán.\n\nBohužel ne všechny aplikace médií to dělají správně, a proto by nefungovaly správně, když je zakázán režim kompatability. Pro vyřešení tohoto problému můžete povolit rozšířené zpracování. Namísto spoléhání se na systémové vysílání na nové relace médií, JamesDSP proaktivně prohledává relace médií a umožňuje řádnou podporu nekooperativním aplikacím médií.</string>
+    <string name="audio_format_media_apps_need_restart">Po změně tohoto nastavení je třeba restartovat všechny aktivní aplikace médií, abyste mohli obnovit zpracování zvuku.</string>
+    <string name="audio_format_summary">Upřednostňované audio kódování, velikost vyrovnávací paměti</string>
+    <string name="audio_format_summary_root">Kompatabilní režim, vylepšené zpracování</string>
+    <string name="audio_format_encoding">Kódování zvuku</string>
+    <string name="audio_format_encoding_int16">16-bit integer PCM</string>
+    <string name="audio_format_encoding_float">32-bit float PCM</string>
+    <string name="audio_format_buffer_size">Velikost vyrovnávací paměti</string>
+    <string name="audio_format_buffer_size_unit">&#xa0;vzorků</string>
+    <string name="audio_format_buffer_size_warning_low_value">Varování: Nízké velikosti vyrovnávací paměti mohou způsobit zkreslení zvuku, jako například „oříznutí“ nebo „přiškrcení“ zvuku!</string>
+    <string name="app_behavior">Chování aplikace</string>
+    <string name="exclude_app_from_recents">Vyloučit aplikaci z přehledu nedávných aplikací</string>
+    <string name="exclude_app_from_recents_off">Nevylučovat aplikaci z přehledu nedávných aplikací</string>
+    <string name="exclude_app_from_recents_on">Vyloučit aplikaci z přehledu nedávných aplikací</string>
+    <string name="autostart_prompt_at_boot">Výzva k oprávnění k nahrávání po startu</string>
+    <string name="autostart_prompt_at_boot_off">Nezobrazovat oznámení po startu</string>
+    <string name="autostart_prompt_at_boot_on">Zobrazovat oznámení po startu</string>
+    <string name="powersave">Úspora energie</string>
+    <string name="powersave_suspend">Pozastavit zpracování zvuku v případě nečinnosti</string>
+    <string name="powersave_suspend_off">Pokračovat ve zpracování i v případě, že nehraje žádný obsah</string>
+    <string name="powersave_suspend_on">Pozastavit zpracování zvuku pro úsporu energie</string>
+    <string name="troubleshooting">Řešení problémů</string>
+    <string name="troubleshooting_summary">Pokročilé možnosti, dokumentace, diagnostika</string>
+    <string name="troubleshooting_docs">Dokumentace</string>
+    <string name="troubleshooting_dump">Exportovat záznam zvukové relace…</string>
+    <string name="troubleshooting_dump_summary">Sbírat a ukládat data k řešení problémů</string>
+    <string name="troubleshooting_dump_share_title">Sdílet záznam zvukové relace…</string>
+    <string name="troubleshooting_view_limitations">Technická omezení</string>
+    <string name="troubleshooting_view_limitations_summary">Zobrazit podrobnosti o omezeních této aplikace</string>
+    <string name="troubleshooting_notification_access">Povolit přístup k oznámením pro lepší detekci relací</string>
     <!-- Theme names -->
+    <string name="theme_default">Výchozí</string>
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
+    <string name="message_liveprog_compile_fail">Spuštění Liveprog skriptu se nezdařilo. Vybraný skript je poškozen. Prosím použijte editor skriptu pro doladění a opravu chyb.</string>
     <!-- GraphicEQ editor -->
+    <string name="title_activity_geq">Magnitudová odezva</string>
+    <string name="gep_add_node">Přidat</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
+    <string name="title_activity_liveprog_params">Přizpůsobitelné parametry skriptu</string>
     <!-- Liveprog script editor -->
+    <string name="title_activity_liveprog_editor">Editor skriptu</string>
+    <string name="editor_liveprog_enabled">Liveprog byl automaticky zapnut.</string>
     <!-- Blocklist -->
+    <string name="title_activity_blocklist">Vyloučené aplikace</string>
     <!-- Compatibility issue activity -->
+    <string name="app_compat_retry">Zkusit znovu</string>
     <!-- Hints for compatibility issues for individual apps -->
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
@@ -30,5 +303,7 @@
     <!-- Slider widget -->
     <!-- Revert confirmation -->
     <!-- File intent handler -->
+    <string name="intent_import_liveprog">Importovat Liveprog skript</string>
     <!-- Translation notice box -->
+    <!-- Self-updates (Root) -->
 </resources>
