@@ -485,4 +485,5 @@
     <!-- Translation notice box -->
     <string name="translation_notice_summary">请帮助我们将此应用翻译成您的语言！点击这里访问 Crowdin 的项目网站。</string>
     <string name="translation_notice">贡献翻译</string>
+    <!-- Self-updates (Root) -->
 </resources>
