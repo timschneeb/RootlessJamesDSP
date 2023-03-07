@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <plurals name="nodes">
-        <item quantity="one">%d Knote</item>
+        <item quantity="one">%d Knoten</item>
         <item quantity="other">%d Knoten</item>
     </plurals>
     <plurals name="custom_parameters">

@@ -206,7 +206,7 @@
     <string name="onboarding_perm_missing">Будь ласка, надайте всі запитані дозволи на виконання, щоб продовжити.\nЯкщо ви кілька разів відмовили в наданні дозволів, вам потрібно надати їх вручну в налаштуваннях системи.</string>
     <string name="onboarding_finish_header">JamesDSP налаштовано!</string>
     <string name="onboarding_finish_caption">Якщо у вас виникли будь-які проблеми, будь ласка, відвідайте розділ налаштувань «Усунення неполадок».</string>
-    <string name="limit_session_control_conflict_title">Вимкніть інші додатки для обробки звуку</string>
+    <string name="limit_session_control_conflict_title">Вимкнення інших додатків для обробки звуку</string>
     <string name="limit_session_control_conflict">Додатки для обробки звуку, що використовують вбудований в Android ефект динамічної обробки, перешкоджають роботі цього додатка.</string>
     <string name="limit_unsupported_apps_title">Непідтримувані додатки</string>
     <string name="limit_unsupported_apps">Додатки, які блокують запис внутрішнього аудіо, не будуть оброблені (наприклад, Spotify, Google Chrome).</string>
@@ -492,8 +492,8 @@
     <string name="self_update_install_error">Не вдалося оновити</string>
     <string name="self_update_download_fail">Не вдалося завантажити пакет оновлення. Будь ласка, перевірте ваше інтернет-з\'єднання. Детальніше: %1$s</string>
     <string name="self_update_install_fail">Помилка при встановленні. %1$s</string>
-    <string name="self_update_finished">Оновлення встановлено. Додаток перезавантажується…</string>
-    <string name="self_update_no_updates">Наразі немає нових оновлень</string>
+    <string name="self_update_finished">Оновлення встановлено. Перезапуск додатка…</string>
+    <string name="self_update_no_updates">Наразі немає доступних оновлень</string>
     <string name="self_update_notice">Доступне нове оновлення (%1$s)</string>
     <string name="self_update_notice_summary">Натисніть тут, щоб завантажити та встановити оновлення.</string>
     <string name="self_update_notice_dismiss_install">Встановити зараз</string>

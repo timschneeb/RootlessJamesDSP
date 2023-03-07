@@ -206,6 +206,10 @@
     <string name="onboarding_finish_caption">Si encuentras algún problema, por favor visita las opciones de solución de problemas.</string>
     <string name="limit_session_control_conflict_title">Desactive otras aplicaciones de efectos de audio</string>
     <string name="limit_session_control_conflict">Las aplicaciones de efectos de audio que utilizan el efecto de procesamiento dinámico incorporado en Android interfieren con esta aplicación.</string>
+    <string name="limit_unsupported_apps_title">Aplicaciones multimedia no compatibles</string>
+    <string name="limit_unsupported_apps">Las aplicaciones que bloquean la captura interna de audio permanecen sin procesar (Ej., Spotify, Google Chrome).</string>
+    <string name="limit_hw_accel_title">Problemas de reproducción de audio acelerada por HW</string>
+    <string name="limit_hw_accel">La reproducción de audio acelerada por HW (pistas rápidas) puede a veces causar audio duplicado o cerrar a JamesDSP en algunas circunstancias. Añade el reproductor de música afectado a la lista de aplicaciones excluidas para evitar que JamesDSP lo redirija.</string>
     <!-- Settings -->
     <string name="title_activity_settings">Settings</string>
     <string name="autostart_prompt_at_boot_off">No mostrar notificación después del arranque</string>
@@ -257,4 +261,5 @@
     <!-- Revert confirmation -->
     <!-- File intent handler -->
     <!-- Translation notice box -->
+    <!-- Self-updates (Root) -->
 </resources>
