@@ -271,14 +271,66 @@
     <string name="troubleshooting">Řešení problémů</string>
     <string name="troubleshooting_summary">Pokročilé možnosti, dokumentace, diagnostika</string>
     <string name="troubleshooting_docs">Dokumentace</string>
+    <string name="troubleshooting_actions">Ostatní nastavení</string>
     <string name="troubleshooting_dump">Exportovat záznam zvukové relace…</string>
     <string name="troubleshooting_dump_summary">Sbírat a ukládat data k řešení problémů</string>
     <string name="troubleshooting_dump_share_title">Sdílet záznam zvukové relace…</string>
     <string name="troubleshooting_view_limitations">Technická omezení</string>
     <string name="troubleshooting_view_limitations_summary">Zobrazit podrobnosti o omezeních této aplikace</string>
     <string name="troubleshooting_notification_access">Povolit přístup k oznámením pro lepší detekci relací</string>
+    <string name="troubleshooting_notification_access_summary">Umožňuje spolehlivější detekci zvukové relace</string>
+    <string name="troubleshooting_repair_assets">Obnovit výchozí IRS, DDC a skripty</string>
+    <string name="troubleshooting_repair_assets_summary">Rozbalit výchozí assety, pokud jste je ztratili</string>
+    <string name="troubleshooting_repair_assets_success">Výchozí assety byly obnoveny</string>
+    <string name="misc_settings">Ostatní</string>
+    <string name="misc_settings_summary">Hlášení chyb, další akce</string>
+    <string name="assets">Assety</string>
+    <string name="network_services">Síťové služby</string>
+    <string name="network_autoeq_api_url">URL adresa backendu AutoEQ API</string>
+    <string name="network_invalid_url">Neplatný formát URL</string>
+    <string name="network_autoeq_conntest_running">Testování připojení k serveru…</string>
+    <string name="network_autoeq_conntest_done">Test připojení proběhl úspěšně</string>
+    <string name="network_autoeq_conntest_fail">Test připojení se nezdařil</string>
+    <string name="network_autoeq_conntest_fail_summary">Server nereagoval správně. Ujistěte se, že software na https://github.com/ThePBone/AutoEqApi je správně nastaven na serveru.\n\nChyba sítě: %1$s\n\nChcete obnovit toto nastavení na výchozí hodnotu?</string>
+    <string name="about_settings">O Aplikaci</string>
+    <string name="about_settings_summary">Poděkování, podpora, aktualizace</string>
+    <string name="privacy">Ochrana soukromí</string>
+    <string name="privacy_share_crash_reports">Sdílet informace o pádech aplikace</string>
+    <string name="privacy_share_crash_reports_on">Odesílat hlášení o pádech vývojáři</string>
+    <string name="privacy_share_crash_reports_off">Neodesílat zprávy o pádech vývojáři</string>
+    <string name="credits">Poděkování</string>
+    <string name="translators">Překladatelé</string>
+    <string name="credits_app">Vývojář aplikace &amp; implementace rootless</string>
+    <string name="credits_dsp">Vývojář jádra algorytmu JamesDSP</string>
+    <string name="credits_project_page">Nasvštivte stránku projektu na GitHubu</string>
+    <string name="credits_project_page_summary">Nahlašte chyby, Získejte další informace a přečtěte si zdrojový kód</string>
+    <string name="credits_project_play_page">Navštivte RootlessJamesDSP na Google Play</string>
+    <string name="credits_project_play_page_summary">Zkontrolujte dostupnost aktualizace</string>
+    <string name="credits_project_check_update">Zkontrolovat nové aktualizace…</string>
+    <string name="credits_project_check_update_summary">Stáhnout a nainstalovat aktualizace, pokud jsou k dispozici</string>
+    <string name="credits_project_translate">Přispějte k překladům</string>
+    <string name="credits_project_translate_summary">Pomozte nám přeložit tuto aplikaci do vašeho jazyka</string>
+    <string name="credits_version">Verze aplikace</string>
+    <string name="credits_build_info">Info o sestavení</string>
+    <string name="appearance_section_header">Vzhled</string>
+    <string name="appearance_summary">Motiv aplikace, čistý černý tmavý režim</string>
+    <string name="appearance_title">Motiv</string>
+    <string name="appearance_theme_mode">Tmavý režim</string>
+    <string name="appearance_theme_mode_default">Sledovat motiv systému</string>
+    <string name="appearance_theme_mode_light">Vypnuto</string>
+    <string name="appearance_theme_mode_dark">Zapnuto</string>
+    <string name="appearance_pure_black_mode">Čistě černý tmavý režim</string>
+    <string name="appearance_app_theme">Motiv aplikace</string>
+    <string name="appearance_navigation_title">Navigace</string>
+    <string name="appearance_nav_hide">Skrýt navigační lištu při posouvání</string>
     <!-- Theme names -->
     <string name="theme_default">Výchozí</string>
+    <string name="theme_monet">Dynamický</string>
+    <string name="theme_greenapple">Zelené jablko</string>
+    <string name="theme_strawberrydaiquiri">Jahodový Daiquiri</string>
+    <string name="theme_honey">Med</string>
+    <string name="theme_tealturquoise">Teal &amp; Tyrkysová</string>
+    <string name="theme_yinyang">Yin &amp; Yang</string>
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <string name="message_liveprog_compile_fail">Spuštění Liveprog skriptu se nezdařilo. Vybraný skript je poškozen. Prosím použijte editor skriptu pro doladění a opravu chyb.</string>
@@ -305,5 +357,6 @@
     <!-- File intent handler -->
     <string name="intent_import_liveprog">Importovat Liveprog skript</string>
     <!-- Translation notice box -->
+    <string name="translation_notice">Přispějte k překladům</string>
     <!-- Self-updates (Root) -->
 </resources>
