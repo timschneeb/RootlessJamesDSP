@@ -379,6 +379,7 @@
     <string name="editor_find_next_match">Cari pencocokan berikut</string>
     <string name="editor_find_previous_match">Cari pencocokan sebelum</string>
     <string name="editor_search_keyword">Cari</string>
+    <string name="editor_source_position">%1$d:%2$d</string>
     <string name="editor_engine_down_title">JamesDSP tidak aktif</string>
     <string name="editor_engine_down">Skrip tidak bisa dijalankan karena JamesDSP nonaktif, aktifkan JamesDSP terlebih dahulu.</string>
     <string name="editor_save_prompt_title">Simpan perubahan?</string>
