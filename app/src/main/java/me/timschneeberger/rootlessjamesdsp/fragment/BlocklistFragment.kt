@@ -125,7 +125,8 @@ class BlocklistFragment : Fragment() {
     }
 
     fun showAppSelector() {
-        appsListFragment.show(childFragmentManager, AppsListFragment::class.java.name)
+        if(!appsListFragment.isAdded)
+            appsListFragment.show(childFragmentManager, AppsListFragment::class.java.name)
     }
 
     private fun updateUnsupportedApps() {
