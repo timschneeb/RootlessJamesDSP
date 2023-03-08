@@ -1,7 +1,6 @@
 package me.timschneeberger.rootlessjamesdsp.session.dump.utils
 
 import android.content.Context
-import android.content.pm.PackageManager
 import android.os.ParcelFileDescriptor
 import me.timschneeberger.rootlessjamesdsp.utils.PermissionExtensions.hasDumpPermission
 import rikka.shizuku.SystemServiceHelper

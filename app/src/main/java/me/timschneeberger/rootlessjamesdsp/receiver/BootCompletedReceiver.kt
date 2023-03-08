@@ -1,27 +1,20 @@
 package me.timschneeberger.rootlessjamesdsp.receiver
 
-import android.app.AppOpsManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Build
-import androidx.core.content.ContextCompat.startActivity
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
-import me.timschneeberger.rootlessjamesdsp.activity.EngineLauncherActivity
 import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
-import me.timschneeberger.rootlessjamesdsp.utils.PermissionExtensions.hasProjectMediaAppOp
 import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import me.timschneeberger.rootlessjamesdsp.utils.ServiceNotificationHelper
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
-import me.timschneeberger.rootlessjamesdsp.utils.getApplicationInfoCompat
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import timber.log.Timber
 
 
 class BootCompletedReceiver : BroadcastReceiver(), KoinComponent {

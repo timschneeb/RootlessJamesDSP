@@ -24,7 +24,6 @@ import me.timschneeberger.rootlessjamesdsp.model.Translator
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
 import me.timschneeberger.rootlessjamesdsp.utils.Result
 import org.koin.android.ext.android.inject
-import timber.log.Timber
 import java.util.Locale
 
 

@@ -16,7 +16,6 @@ import java.util.*
 import kotlin.concurrent.thread
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.hours
-import kotlin.time.Duration.Companion.seconds
 
 // Based on https://github.com/Iamlooker/Droid-ify/blob/main/core/common/src/main/java/com/looker/core/common/cache/Cache.kt
 

@@ -1,17 +1,14 @@
 package me.timschneeberger.rootlessjamesdsp.service
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.app.*
 import android.content.*
-import android.content.pm.PackageManager
 import android.content.pm.ServiceInfo
 import android.media.*
 import android.media.projection.MediaProjection
 import android.media.projection.MediaProjectionManager
 import android.os.*
 import androidx.annotation.RequiresApi
-import androidx.core.app.ActivityCompat
 import androidx.core.math.MathUtils.clamp
 import androidx.lifecycle.Observer
 import androidx.lifecycle.asLiveData
