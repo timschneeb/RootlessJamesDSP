@@ -162,7 +162,7 @@
     <string name="onboarding_methods_root_shizuku">\u25CF Рекомендуется, если root-доступ не настроен\n\u25CF Не требуется компьютер\n\u25CF Только для Android 11+</string>
     <string name="onboarding_methods_root_adb">\u25CF Для опытных пользователей\n\u25CF Требуется компьютер и USB-кабель\n\u25CF Все версии Android</string>
     <string name="onboarding_root_shell_fail_title">Нет root-доступа</string>
-    <string name="onboarding_root_shell_fail">Root-доступ отсутствует. Пожалуйста, воспользуйтесь другим методом установки.</string>
+    <string name="onboarding_root_shell_fail">Root-права не предоставлены или отсутствуют на устройстве. Пожалуйста, воспользуйтесь другим методом установки.</string>
     <string name="onboarding_root_shell_fail_unknown">Не удалось предоставить разрешение через root. Пожалуйста, используйте другой метод установки.</string>
     <string name="onboarding_root_enhanced_processing_setup_success">Расширенная обработка настроена</string>
     <string name="onboarding_adb_shizuku_title">Настройка Shizuku</string>
@@ -171,7 +171,7 @@
     <string name="onboarding_adb_shizuku_install_button">Установить Shizuku</string>
     <string name="onboarding_adb_shizuku_install_button_done">Уже установлено</string>
     <string name="onboarding_adb_shizuku_install_instruction">Установить Shizuku из Google Play.</string>
-    <string name="onboarding_adb_shizuku_open_instruction">Запустите Shizuku и найдите параметр «<b>Запуск через отладку по Wi-Fi</b>». Нажмите кнопку «Подключение» и следуйте инструкциям в приложении. После сопряжения Shizuku с вашим устройством, запустите сервер Shizuku, нажав кнопку «Запустить». Если у вас возникли проблемы при настройке Shizuku, обратитесь к руководству по установке, ссылка на которое приведена в их приложении.</string>
+    <string name="onboarding_adb_shizuku_open_instruction">Запустите Shizuku и найдите параметр «<b>Запуск через отладку по Wi-Fi</b>». Нажмите кнопку «Подключение» и следуйте инструкциям в приложении. После сопряжения Shizuku с вашим устройством, запустите сервер Shizuku, нажав кнопку «Запустить». Если у вас возникли трудности с настройкой Shizuku, воспользуйтесь пошаговой инструкцией, ссылка на которую приведена в их приложении.</string>
     <string name="onboarding_adb_shizuku_open_button">Запустить Shizuku</string>
     <string name="onboarding_adb_shizuku_open_button_done">Уже активно</string>
     <string name="onboarding_adb_shizuku_grant_instruction">Нажмите кнопку, чтобы предоставить доступ к Shizuku.</string>
