@@ -193,6 +193,7 @@
     <string name="onboarding_adb_manual_step3">USB-Gerät in WebDAV hinzufügen und verbinden.</string>
     <string name="onboarding_adb_manual_step4">Navigiere zu \'Interaktive Shell\' und führe den folgenden Befehl in der Shell aus: \'pm grant %s android.permission.DUMP\'</string>
     <string name="onboarding_adb_manual_step5">Tippe auf \"Weiter\" in dieser App, um fortzufahren.</string>
+    <string name="onboarding_adb_manual_step5b">(Optional) Du kannst die Erlaubnisanfragen für die Aufnahme des internen Audios permanent überspringen, indem du diesen Befehl ausführst: \'appops set %s PROJECT_MEDIA allow\'</string>
     <string name="onboarding_adb_manual_step1_button">Entwicklereinstellungen öffnen</string>
     <string name="onboarding_perm_title">Weitere Berechtigungen</string>
     <string name="onboarding_perm_caption">Für die Nutzung dieser Anwendung sind zusätzliche Berechtigungen erforderlich. Bitte überprüfen Sie sie und tippen Sie auf \"Weiter\", um sie zu gewähren.</string>
