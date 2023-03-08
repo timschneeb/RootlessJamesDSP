@@ -21,41 +21,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-package com.amrdeveloper.codeview;
+package com.amrdeveloper.codeview
 
 /**
- * Keyword is used to save information to provide auto complete features
+ * Interface to represent a different types of code such as keywords or snippets
  *
  * @since 1.1.0
  */
-public class Keyword implements Code {
+interface Code {
+    /**
+     * @return The title of code
+     */
+    val codeTitle: String
 
-    private final String title;
-    private final String prefix;
+    /**
+     * @return The prefix value of the code
+     */
+    val codePrefix: String
 
-    public Keyword(String title) {
-        this.title = title;
-        this.prefix = title;
-    }
-
-    public Keyword(String title, String prefix) {
-        this.title = title;
-        this.prefix = prefix;
-    }
-
-    @Override
-    public String getCodeTitle() {
-        return title;
-    }
-
-    @Override
-    public String getCodePrefix() {
-        return prefix;
-    }
-
-    @Override
-    public String getCodeBody() {
-        return prefix;
-    }
+    /**
+     * @return The body of the code to insert it
+     */
+    val codeBody: String
 }

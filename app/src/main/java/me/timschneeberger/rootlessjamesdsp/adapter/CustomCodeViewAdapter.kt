@@ -14,8 +14,8 @@ import me.timschneeberger.rootlessjamesdsp.editor.syntax.Function
 
 class CustomCodeViewAdapter(
     context: Context,
-    codes: List<Code?>,
-) : CodeViewAdapter(context, R.layout.item_editor_autocomplete, 0, codes) {
+    codes: List<Code>,
+) : CodeViewAdapter(context, R.layout.item_editor_autocomplete, 0, codes.toMutableList()) {
 
     private val layoutInflater = LayoutInflater.from(context)
 

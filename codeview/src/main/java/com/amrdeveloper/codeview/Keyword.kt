@@ -21,35 +21,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-package com.amrdeveloper.codeview;
+package com.amrdeveloper.codeview
 
 /**
- * Token is class to represent a position on the source code
+ * Keyword is used to save information to provide auto complete features
  *
- * @since 1.2.1
+ * @since 1.1.0
  */
-public class Token {
+class Keyword : Code {
+    private val title: String
+    private val prefix: String
 
-    private final int start;
-    private final int end;
-
-    public Token(int start, int end) {
-        this.start = start;
-        this.end = end;
+    constructor(title: String) {
+        this.title = title
+        prefix = title
     }
 
-    /**
-     * @return The start position of the current token in source code
-     */
-    public int getStart() {
-        return start;
+    constructor(title: String, prefix: String) {
+        this.title = title
+        this.prefix = prefix
     }
 
-    /**
-     * @return The end position of the current token in source code
-     */
-    public int getEnd() {
-        return end;
-    }
+    override val codeTitle: String
+        get() = title
+    override val codePrefix: String
+        get() = prefix
+    override val codeBody: String
+        get() = prefix
 }

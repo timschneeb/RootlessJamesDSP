@@ -21,44 +21,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+package com.amrdeveloper.codeview
 
-package com.amrdeveloper.codeview;
+import android.widget.MultiAutoCompleteTextView
+import kotlin.math.max
 
 /**
- * Snippet is used to save information to provide snippets features
- *
- * @since 1.1.0
+ * The default tokenizer that used in CodeView auto complete feature
  */
-public class Snippet implements Code {
-
-    private final String title;
-    private final String prefix;
-    private final String body;
-
-    public Snippet(String title, String body) {
-        this.title = title;
-        this.prefix = title;
-        this.body = body;
+class KeywordTokenizer : MultiAutoCompleteTextView.Tokenizer {
+    override fun findTokenStart(charSequence: CharSequence, cursor: Int): Int {
+        var sequenceStr = charSequence.toString()
+        sequenceStr = sequenceStr.substring(0, cursor)
+        val spaceIndex = sequenceStr.lastIndexOf(" ")
+        val tabIndex = sequenceStr.lastIndexOf("\t")
+        val lineIndex = sequenceStr.lastIndexOf("\n")
+        val bracketIndex = sequenceStr.lastIndexOf("(")
+        val index = max(0, max(spaceIndex, max(tabIndex, max(lineIndex, bracketIndex))))
+        if (index == 0) return 0
+        return if (index + 1 < charSequence.length) index + 1 else index
     }
 
-    public Snippet(String title, String prefix, String body) {
-        this.title = title;
-        this.prefix = prefix;
-        this.body = body;
+    override fun findTokenEnd(charSequence: CharSequence, cursor: Int): Int {
+        return charSequence.length
     }
 
-    @Override
-    public String getCodeTitle() {
-        return title;
-    }
-
-    @Override
-    public String getCodePrefix() {
-        return prefix;
-    }
-
-    @Override
-    public String getCodeBody() {
-        return body;
+    override fun terminateToken(charSequence: CharSequence): CharSequence {
+        return charSequence
     }
 }

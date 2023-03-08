@@ -21,39 +21,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-package com.amrdeveloper.codeview;
-
-import java.util.List;
+package com.amrdeveloper.codeview
 
 /**
- * Interface used to support find and match features
+ * Token is class to represent a position on the source code
  *
  * @since 1.2.1
  */
-public interface Findable {
-
-    /**
-     * Find all the the tokens that matches the regex string and save them on a list
-     * @param regex The regex used to find tokens
-     * @return List of the matches Tokens
-     */
-    List<Token> findMatches(String regex);
-
-    /**
-     * Highlight and return the next token
-     * @return The next matched token, {@code null} if not found
-     */
-    Token findNextMatch();
-
-    /**
-     * Highlight and return the previous token
-     * @return The previous matched token, {@code null} if not found
-     */
-    Token findPrevMatch();
-
-    /**
-     * Clear all the matches tokens
-     */
-    void clearMatches();
-}
+data class Token(val start: Int, val end: Int)

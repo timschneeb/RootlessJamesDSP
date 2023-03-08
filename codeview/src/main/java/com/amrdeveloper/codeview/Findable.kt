@@ -21,27 +21,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-package com.amrdeveloper.codeview;
+package com.amrdeveloper.codeview
 
 /**
- * Interface used to support find and replacement feature
+ * Interface used to support find and match features
  *
  * @since 1.2.1
  */
-public interface Replaceable {
+interface Findable {
+    /**
+     * Find all the the tokens that matches the regex string and save them on a list
+     * @param regex The regex used to find tokens
+     * @return List of the matches Tokens
+     */
+    fun findMatches(regex: String): List<Token>
 
     /**
-     * Replace the first string that matched by the regex with new string
-     * @param regex regex Regex used to find the first target string
-     * @param replacement Text to replace that matched string by it
+     * Highlight and return the next token
+     * @return The next matched token, `null` if not found
      */
-    void replaceFirstMatch(String regex, String replacement);
+    fun findNextMatch(): Token?
 
     /**
-     * Replace all strings that matched by the regex with new string
-     * @param regex Regex used to find the target string
-     * @param replacement Text to replace that matched string by it
+     * Highlight and return the previous token
+     * @return The previous matched token, `null` if not found
      */
-    void replaceAllMatches(String regex, String replacement);
+    fun findPrevMatch(): Token?
+
+    /**
+     * Clear all the matches tokens
+     */
+    fun clearMatches()
 }

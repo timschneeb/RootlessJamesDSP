@@ -21,28 +21,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-package com.amrdeveloper.codeview;
+package com.amrdeveloper.codeview
 
 /**
- * Interface to represent a different types of code such as keywords or snippets
+ * Interface used to support find and replacement feature
  *
- * @since 1.1.0
+ * @since 1.2.1
  */
-public interface Code {
+interface Replaceable {
+    /**
+     * Replace the first string that matched by the regex with new string
+     * @param regex regex Regex used to find the first target string
+     * @param replacement Text to replace that matched string by it
+     */
+    fun replaceFirstMatch(regex: String?, replacement: String?)
 
     /**
-     * @return The title of code
+     * Replace all strings that matched by the regex with new string
+     * @param regex Regex used to find the target string
+     * @param replacement Text to replace that matched string by it
      */
-    String getCodeTitle();
-
-    /**
-     * @return The prefix value of the code
-     */
-    String getCodePrefix();
-
-    /**
-     * @return The body of the code to insert it
-     */
-    String getCodeBody();
+    fun replaceAllMatches(regex: String?, replacement: String?)
 }

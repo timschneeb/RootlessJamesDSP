@@ -21,39 +21,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-package com.amrdeveloper.codeview;
-
-import android.widget.MultiAutoCompleteTextView;
+package com.amrdeveloper.codeview
 
 /**
- * The default tokenizer that used in CodeView auto complete feature
+ * Snippet is used to save information to provide snippets features
+ *
+ * @since 1.1.0
  */
-public class KeywordTokenizer implements MultiAutoCompleteTextView.Tokenizer {
+class Snippet : Code {
+    private val title: String
+    private val prefix: String
+    private val body: String
 
-    @Override
-    public int findTokenStart(CharSequence charSequence, int cursor) {
-        String sequenceStr = charSequence.toString();
-        sequenceStr = sequenceStr.substring(0, cursor);
-
-        int spaceIndex = sequenceStr.lastIndexOf(" ");
-        int tabIndex = sequenceStr.lastIndexOf("\t");
-        int lineIndex = sequenceStr.lastIndexOf("\n");
-        int bracketIndex = sequenceStr.lastIndexOf("(");
-
-        int index = Math.max(0, Math.max(spaceIndex, Math.max(tabIndex, Math.max(lineIndex, bracketIndex))));
-        if(index == 0) return 0;
-        return (index + 1 < charSequence.length()) ? index + 1 : index;
+    constructor(title: String, body: String) {
+        this.title = title
+        prefix = title
+        this.body = body
     }
 
-    @Override
-    public int findTokenEnd(CharSequence charSequence, int cursor) {
-        return charSequence.length();
+    constructor(title: String, prefix: String, body: String) {
+        this.title = title
+        this.prefix = prefix
+        this.body = body
     }
 
-    @Override
-    public CharSequence terminateToken(CharSequence charSequence) {
-        return charSequence;
-    }
-
+    override val codeTitle: String
+        get() = title
+    override val codePrefix: String
+        get() = prefix
+    override val codeBody: String
+        get() = body
 }
