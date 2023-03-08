@@ -145,6 +145,7 @@ android {
             version = "3.18.1"
         }
     }
+    namespace = "me.timschneeberger.rootlessjamesdsp"
 }
 
 // Hooks to upload native symbols to crashlytics automatically
@@ -176,7 +177,7 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
     implementation("androidx.preference:preference-ktx:1.2.0")
     implementation("androidx.preference:preference:1.2.0")
-    implementation("androidx.databinding:databinding-runtime:7.4.1")
+    implementation("androidx.databinding:databinding-runtime:7.4.2")
     implementation("com.google.android.material:material:1.9.0-alpha02")
 
     // Dependency injection
