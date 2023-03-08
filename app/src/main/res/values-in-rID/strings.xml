@@ -170,6 +170,7 @@
     <string name="onboarding_adb_shizuku_grant_fail_version">Aplikasi ini membutuhkan Shizuku versi 11 atau yang terbaru, perbarui Shizuku anda.</string>
     <string name="onboarding_adb_shizuku_grant_fail_version_title">Versi Shizuku tidak didukung</string>
     <string name="onboarding_adb_shizuku_grant_fail_denied_title">Izin ditolak</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied">Izinkan aplikasi mengakses Shizuku. Anda harus membuka pengelola izin Shizuku untuk memberi izin secara manual jika anda menolak permintaan sebelumnya dan pop-up tidak muncul lagi.</string>
     <string name="onboarding_adb_shizuku_no_dump_perm_title">Shizuku gagal memberi izin ADB</string>
     <string name="onboarding_adb_shizuku_no_dump_perm">Tunggu beberapa saat dan coba lagi. Jika masih tidak bisa, coba cara alternatif.</string>
     <string name="onboarding_adb_dump_not_granted_title">Izin belum diberikan</string>
@@ -197,6 +198,7 @@
     <string name="limit_unsupported_apps_title">Aplikasi media tidak didukung</string>
     <string name="limit_unsupported_apps">Aplikasi memblokir penangkapan audio internal tidak diproses (cth: Spotify, Google Chrome).</string>
     <string name="limit_hw_accel_title">Masalah pemutar audio yang HW-accelerated</string>
+    <string name="limit_hw_accel">Audio playback dengan HW-accelerated (fast tracks) terkadang menyebabkan duplikasi suara atau menonaktifkan JamesDSP dalam beberapa kejadian. Tambahkan pemutar musik yang menjadi penyebab ke dalam daftar pengecualian untuk mencegahnya.</string>
     <string name="limit_detect_delay_title">Deteksi sesi audio delay</string>
     <string name="limit_detect_delay"><![CDATA[Setelah aplikasi membuka sesi media baru ke pemutar audio, anda akan mendengar suara terduplikat atau terpotong menjadi pendek (sekitar <250ms).]]></string>
     <string name="limit_latency_title">Tingkatkan latensi</string>
