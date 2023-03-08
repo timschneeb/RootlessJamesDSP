@@ -4,23 +4,23 @@
     <string name="action_settings">Pengaturan</string>
     <string name="action_presets">Preset</string>
     <string name="action_revert">Setel ulang ke bawaan</string>
-    <string name="action_blocked_apps">Aplikasi Pengucualian</string>
+    <string name="action_blocked_apps">Aplikasi Dikecualikan</string>
     <!-- Notification channels -->
     <string name="notification_channel_service">Layanan Notifikasi</string>
     <string name="notification_channel_session_loss_alert">Peringatan kehilangan sesi</string>
     <string name="notification_channel_permission_prompt">Permintaan izin</string>
-    <string name="notification_channel_app_compat_alert">Aplikasi Tidak Kompatible</string>
+    <string name="notification_channel_app_compat_alert">Peringatan aplikasi tidak kompatibel</string>
     <!-- Service notifications -->
     <string name="action_retry">Coba Lagi</string>
     <string name="action_fix">Perbaikan isu</string>
     <string name="action_stop">Berhenti</string>
     <string name="notification_processing">Aplikasi Aktif: %1$s</string>
-    <string name="notification_idle">Pemroses audio idle</string>
+    <string name="notification_idle">Pemroses audio menganggur</string>
     <string name="notification_processing_title">Pemroses audio aktif</string>
     <string name="notification_processing_disabled_title">Pemroses audio nonaktif</string>
-    <string name="notification_processing_legacy">Tekan untuk buka JamesDSP manager</string>
+    <string name="notification_processing_legacy">Tap untuk membuka JamesDSP manager</string>
     <!-- Permission request notifications -->
-    <string name="notification_request_permission_title">Butuh tindakan pengguna untuk menjalankan JamesDSP</string>
+    <string name="notification_request_permission_title">Diperlukan tindakan pengguna untuk menjalankan JamesDSP</string>
     <string name="notification_request_permission">Tap untuk memberi izin pengambilan dan mengaktifkan JamesDSP</string>
     <!-- Session control loss notifications -->
     <string name="session_control_loss_toast">JamesDSP berhenti karena kendali sesi audio terputus. Matikan audio effect lainnya.</string>
@@ -57,24 +57,13 @@
     <string name="compressor_adapt_speed">Agresif</string>
     <string name="eq_enable">Interpolasi FIR Equalizer</string>
     <string name="eq_filter_type">Jenis Filter</string>
-    <string name="eq_interpolator">Interpolator</string>
-    <string name="eq_filter_type_minimum">Minimum phase</string>
-    <string name="eq_filter_type_linear">Linear phase</string>
-    <string name="eq_interpolator_chip">Piecewise Cubic Hermite Interpolating Polynomial</string>
     <string name="eq_interpolator_mha">Modifikasi spline Hiroshi Akima</string>
     <string name="eq_preset_acoustic">Akustik</string>
-    <string name="eq_preset_bass">Bass</string>
     <string name="eq_preset_classic">Klasik</string>
     <string name="eq_preset_clear">Jernih</string>
-    <string name="eq_preset_dubstep">Dubstep</string>
     <string name="eq_preset_electronic">Elektronik</string>
     <string name="eq_preset_flat">Datar</string>
-    <string name="eq_preset_hardstyle">Hardstyle</string>
-    <string name="eq_preset_hiphop">Hip-Hop</string>
-    <string name="eq_preset_jazz">Jazz</string>
-    <string name="eq_preset_metal">Metal</string>
     <string name="eq_preset_movie">Film</string>
-    <string name="eq_preset_pop">Pop</string>
     <string name="eq_preset_vocal">Penguat Vokal</string>
     <string name="geq_enable">Respon Arbitrary Equalizer</string>
     <string name="geq_nodes">Respon Magnitude</string>
@@ -116,7 +105,6 @@
     <string name="stereowide_level_wide">Luas</string>
     <string name="stereowide_level_very_narrow">Sangat kecil</string>
     <string name="stereowide_level_narrow">Kecil</string>
-    <string name="crossfeed_enable">Crossfeed</string>
     <string name="crossfeed_preset">Preset</string>
     <string name="crossfeed_preset_bs2b_weak">BS2B Lemah</string>
     <string name="crossfeed_preset_bs2b_strong">BS2B Kuat</string>
@@ -125,7 +113,6 @@
     <string name="crossfeed_preset_surround2">Surround 2</string>
     <string name="crossfeed_preset_realistic_surround">Surround realistis Joe0Bloggs</string>
     <!-- Onboarding -->
-    <string name="title_activity_onboarding">Onboarding</string>
     <string name="onboarding_back">Kembali</string>
     <string name="onboarding_next">Lanjut</string>
     <string name="onboarding_finish">Selesai</string>
@@ -202,6 +189,7 @@
     <string name="limit_detect_delay_title">Deteksi sesi audio delay</string>
     <string name="limit_detect_delay"><![CDATA[Setelah aplikasi membuka sesi media baru ke pemutar audio, anda akan mendengar suara terduplikat atau terpotong menjadi pendek (sekitar <250ms).]]></string>
     <string name="limit_latency_title">Tingkatkan latensi</string>
+    <string name="limit_latency">Aplikasi ini mungkin menyebabkan delay ke audio stream. Anda bisa menambahkan pemutar film/video ke daftar pengecualian untuk mencegah AV-desync.</string>
     <string name="limit_tested_devices_title">Perangkat diuji</string>
     <string name="limit_tested_devices">Perubahan pada subsistem audio oleh pengembang perangkat anda dapat merusak aplikasi ini karena tidak ada dokumentasi API yang jelas.\nAplikasi sudah diuji pada perangkat berikut:\n• Samsung S20+ (Android 12)\n• AOSP emulator (Android 10–13)\n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
@@ -227,11 +215,12 @@
     <string name="audio_format_processing_legacy">Mode Legacy</string>
     <string name="audio_format_processing_legacy_on">Sandingkan secara global ke sesi 0 (usang)</string>
     <string name="audio_format_processing_legacy_off">Sandingkan untuk setiap aplikasi satu per satu</string>
-    <string name="audio_format_enhanced_processing">Pemrosesan yang ditingkatkan</string>
+    <string name="audio_format_enhanced_processing">Pemrosesan Ditingkatkan</string>
     <string name="audio_format_enhanced_processing_on">Kontrol per aplikasi dan dukungan disempurnakan untuk aplikasi yang diaktifkan</string>
     <string name="audio_format_enhanced_processing_off">Pemrosesan yang ditingkatkan nonaktif</string>
     <string name="audio_format_enhanced_processing_info_title">Apa itu Pemrosesan yang ditingkatkan?</string>
     <string name="audio_format_enhanced_processing_info">Tap untuk melihat rincian</string>
+    <string name="audio_format_enhanced_processing_info_content">Saat Pemrosesan Ditingkatkan diaktifkan, anda bisa memilih aplikasi yang ingin dikecualikan dari JamesDSP. Gunakan 3-dot menu di pojok bawah dan pilih \'Pengecualian Aplikasi\' untuk mengakses fitur ini.\n\nSaat Mode Legacy dinonaktifkan, JamesDSP bergantung pada aplikasi media yang mengirim System Broadcast saat mereka memulai pemutaran suara. Ini merupakan sebuah kelebihan dari Mode Legacy karena setiap aplikasi mendapat effect engine JamesDSP masing-masing untuk setiap aplikasi, yang memungkinkan kontrol lebih halus. Jika tidak, Mode Legacy akan diaktifkan dan semua aplikasi akan berbagi satu processing engine, yang sudah usang dan seharusnya tidak digunakan lagi menurut Android. \n\nSayangnya, tidak semua aplikasi media melakukannya dengan benar. Oleh karena itu, mode ini tidak bekerja dengan baik saat Mode Legacy dinonaktifkan. Untuk memperbaiki ini, anda bisa mengaktifkan Pemrosesan Ditingkatkan. Daripada bergantung pada system broadcast, JamesDSP akan memindai sesi media baru secara aktif dan memungkinkan dukungan pada aplikasi media yang tidak kooperatif.</string>
     <string name="audio_format_media_apps_need_restart">Anda harus memuat ulang semua aplikasi media setelah mengubah pengaturan ini untuk melanjutkan.</string>
     <string name="audio_format_summary">Pengodean audio pilihan, ukuran buffer</string>
     <string name="audio_format_summary_root">Mode Legacy, pemrosesan yang ditingkatkan</string>
@@ -271,6 +260,7 @@
     <string name="network_autoeq_conntest_running">Memeriksa koneksi server…</string>
     <string name="network_autoeq_conntest_done">Tes koneksi berhasil</string>
     <string name="network_autoeq_conntest_fail">Tes koneksi gagal</string>
+    <string name="network_autoeq_conntest_fail_summary">Server tidak merespon dengan benar. Pastikan perangkat lunak https://github.com/ThePBone/AutoEqApi diatur dengan benar pada server. \n\nKesalahan Jaringan: %1$s\n\nAnda ingin mengembalikan pengaturan ke nilai awal?</string>
     <string name="about_settings">Tentang</string>
     <string name="about_settings_summary">Kredit, dukungan, pembaruan</string>
     <string name="privacy">Privasi</string>
@@ -328,6 +318,7 @@
     <string name="filelibrary_file_exists">File sudah ada</string>
     <string name="filelibrary_resample_complete">Resampled ke %1$dHz</string>
     <string name="filelibrary_resample_failed">Resampling gagal. Input file rusak?</string>
+    <string name="filelibrary_preset_overwritten">Preset \'%1$s\' ditimpa</string>
     <string name="filelibrary_preset_created">Preset \'%1$s\' dibuat</string>
     <string name="filelibrary_preset_save_failed">Gagal menyimpan preset</string>
     <string name="filelibrary_renamed">Nama diubah menjadi \'%1$s\'</string>
@@ -370,6 +361,7 @@
     <string name="geq_api_network_error_details_code">Server merespon dengan kode error: %1$d</string>
     <string name="autoeq_search">Cari AutoEQ</string>
     <string name="autoeq_enter_model">Pilih model headphone…</string>
+    <string name="autoeq_partial_results_warning">Menampilkan hasil pertama dari %1$d hasil. Sesuaikan pencarian anda untuk mencari hasil yang lebih sesuai.</string>
     <string name="autoeq_no_results">Hasil tidak ditemukan</string>
     <!-- Customizable liveprog script parameters -->
     <string name="title_activity_liveprog_params">Parameter dapat diubah</string>
@@ -396,27 +388,35 @@
     <string name="editor_cannot_redo">Tidak ada yang diulang.</string>
     <string name="editor_text_size">Ukuran teks</string>
     <!-- Blocklist -->
-    <string name="title_activity_blocklist">Aplikasi Pengucualian</string>
+    <string name="title_activity_blocklist">Aplikasi Dikecualikan</string>
     <string name="blocklist_add_exclusion_alt">Tambahkan aplikasi ke pengecualian</string>
     <string name="blocklist_delete_title">Hapus aplikasi dipilih?</string>
     <string name="blocklist_delete">Apa anda ingin menghapus aplikasi dari pengecualian?</string>
     <string name="blocklist_no_exclusions">Pengecualian kosong</string>
     <string name="blocklist_unsupported_apps">Aplikasi tidak didukung</string>
+    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>Aplikasi ini tidak mendukung pemrosesan aplikasi yang memblokir perekaman terhadap audio output mereka oleh aplikasi dari pihak ketiga. Untuk mencegah aplikasi dibisukan karena pembatasan penangkapan, aplikasi yang terdampak otomatis dikecualikan.</p><p><u>Aplikasi terdampak:</u><br/>%s</p>]]></string>
     <!-- Compatibility issue activity -->
     <string name="title_activity_app_compat">Masalah kompatibilitas</string>
     <string name="app_compat_retry">Coba Lagi</string>
     <string name="app_compat_exclude">Kecualikan</string>
     <string name="app_compat_title">Pemrosesan audio dihentikan untuk mencegah duplikasi suara</string>
     <string name="app_compat_explanation">Aplikasi berikut membuat RootlessJamesDSP kehilangan kontrol terhadap routing audio:</string>
+    <string name="app_compat_instruction">Periksa pengaturan aplikasi jika anda bisa menonaktifkan HW-acceleration atau pengaturan lainnya yang mungkin bentrok dengan RootlessJamesDSP, lalu tap \'Ulangi\'.</string>
+    <string name="app_compat_instruction_exclude">Untuk langkah alternatif, anda bisa memilih \'Kecualikan\' untuk mengecualikan aplikasi yang tidak didukung.</string>
     <string name="app_compat_unknown_pkg_name">Nama package tidak dikenal</string>
     <!-- Hints for compatibility issues for individual apps -->
+    <string name="app_compat_quirk_voice_search">Pencarian suara dan pengenalan suara adalah masalah yang sudah dikenal pada aplikasi ini. Coba hindari masalah ini dengan mencabut izin mikrofon terhadap aplikasi bermasalah jika masalah seperti ini terjadi.</string>
     <!-- Root: Library load failure -->
     <string name="load_fail_header">Modul magisk tidak terpasang</string>
     <string name="load_fail_card_title">Gagal memuat libjamesdsp.so</string>
+    <string name="load_fail_card">Pasang modul magisk JamesDSP dan mulai ulang perangkat Android anda untuk menggunakan aplikasi. Mungkin anda juga perlu memasang ulang aplikasi setelah memulai ulang.</string>
     <string name="load_fail_rootless_card_title">Mencari alternatif rootless?</string>
+    <string name="load_fail_rootless_card">Jenis JamesDSP ini dirancang untuk perangkat yang sudah di modifikasi atau di-root. Alternatif untuk perangkat non-root yang punya beberapa keterbatasan juga tersedia. Tap untuk melihat detail.</string>
     <string name="load_fail_arch_card_title">Modul sudah terpasang?</string>
+    <string name="load_fail_arch_card">Jika anda sudah memasang modul magisk, sepertinya anda memilih pengaturan yang salah saat pemasangan. Ulangi pemasangan dan coba aktifkan kompatibilitas Huawei (Walaupun perangkat anda bukan Huawei).</string>
     <!-- Enhanced processing -->
     <string name="enhanced_processing_feature_unavailable">Fitur tidak tersedia</string>
+    <string name="enhanced_processing_feature_unavailable_content">Fitur ini hanya tersedia saat fitur \'pemrosesan ditingkatkan\' diaktifkan di pengaturan. Pergi ke \'Pengaturan &gt; Pemrosesan audio &gt; Pemrosesan Ditingkatkan\' dan aktifkan opsi untuk mengakses menu ini.\n\nCatatan \'Pemrosesan Ditingkatkan\' tidak bisa digunakan bersamaan dengan Mode Legacy.</string>
     <string name="enhanced_processing_missing_perm">Pemrosesan ditingkatkan dinonaktifkan karena hilangnya beberapa izin. Atur kembali apilkasi di pengaturan.</string>
     <!-- App list -->
     <string name="app_list_loading">Memuat aplikasi…</string>
