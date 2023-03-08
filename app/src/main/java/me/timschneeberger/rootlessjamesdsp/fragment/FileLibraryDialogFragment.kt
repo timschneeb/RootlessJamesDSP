@@ -23,7 +23,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.FileProvider
 import androidx.core.view.isVisible
+import androidx.preference.DialogPreference.TargetFragment
 import androidx.preference.ListPreferenceDialogFragmentCompat
+import androidx.preference.Preference
 import com.google.android.material.chip.Chip
 import kotlinx.coroutines.*
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
@@ -46,7 +48,7 @@ import java.util.Locale
 import kotlin.math.roundToInt
 
 
-class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
+class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat(), TargetFragment {
 
     private val fileLibPreference by lazy {
         preference as FileLibraryPreference
@@ -521,6 +523,14 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat() {
                 }
             }
         }
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : Preference?> findPreference(key: CharSequence): T? {
+        return if(key == arguments?.getString(BUNDLE_KEY))
+            fileLibPreference as? T
+        else
+            null
     }
 
     companion object {
