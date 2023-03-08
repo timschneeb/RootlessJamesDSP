@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
+    <string name="action_settings">設定</string>
+    <string name="action_presets">プリセット</string>
+    <string name="action_revert">デフォルトに戻す</string>
+    <string name="action_blocked_apps">除外するアプリ</string>
     <!-- Notification channels -->
+    <string name="notification_channel_permission_prompt">権限リクエスト</string>
+    <string name="notification_channel_app_compat_alert">互換性のないアプリのアラート</string>
     <!-- Service notifications -->
+    <string name="action_retry">やり直す</string>
+    <string name="notification_processing">アクティブなアプリ： %1$s</string>
+    <string name="notification_idle">オーディオ処理アイドル中</string>
+    <string name="notification_processing_title">オーディオ処理がアクティブです</string>
+    <string name="notification_processing_disabled_title">オーディオ処理が無効になりました</string>
+    <string name="notification_processing_legacy">タップして JamesDSP マネージャーを開く</string>
     <!-- Permission request notifications -->
+    <string name="notification_request_permission_title">JamesDSP を起動するにはユーザーアクションが必要です</string>
     <!-- Session control loss notifications -->
+    <string name="session_control_loss_toast">JamesDSPはオーディオセッションのコントロールが失われたため停止しました。他のオーディオエフェクトアプリを無効にしてください。</string>
+    <string name="session_control_loss_notification_title">オーディオ処理が停止しました。別のアプリがJamesDSPに干渉しています。</string>
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_notification_title">オーディオ処理が停止しました。別のアプリがJamesDSPに干渉しています。</string>
     <!-- Capture permission revoked notifications -->
     <!-- General purpose -->
     <!-- Main screen -->
@@ -13,6 +29,7 @@
     <!-- Rootless flavor -->
     <!-- Root flavor -->
     <!-- Settings -->
+    <string name="title_activity_settings">設定</string>
     <!-- Theme names -->
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
@@ -21,7 +38,9 @@
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
     <!-- Blocklist -->
+    <string name="title_activity_blocklist">除外するアプリ</string>
     <!-- Compatibility issue activity -->
+    <string name="app_compat_retry">やり直す</string>
     <!-- Hints for compatibility issues for individual apps -->
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
