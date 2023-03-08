@@ -46,8 +46,8 @@
     <string name="yes">Ano</string>
     <string name="no">Ne</string>
     <string name="value_not_set">Nenastaveno</string>
-    <string name="undo">Vrátit dozadu</string>
-    <string name="redo">Vrátit dopředu</string>
+    <string name="undo">Vrátit zpět</string>
+    <string name="redo">Obnovit</string>
     <string name="no_activity_found">Nebyla nalezena žádná aktivita pro zpracování akce</string>
     <!-- Main screen -->
     <string name="power_button_alt">Přepnout zpracování zvuku</string>
@@ -332,25 +332,75 @@
     <string name="theme_tealturquoise">Teal &amp; Tyrkysová</string>
     <string name="theme_yinyang">Yin &amp; Yang</string>
     <!-- File library preference -->
+    <string name="filelibrary_context_edit">Upravit</string>
+    <string name="filelibrary_context_overwrite">Přepsat</string>
+    <string name="filelibrary_context_rename">Přejmenovat</string>
+    <string name="filelibrary_context_share">Sdílet…</string>
+    <string name="filelibrary_context_duplicate">Duplikovat</string>
+    <string name="filelibrary_context_delete">Odstranit</string>
+    <string name="filelibrary_context_new_preset">Nová</string>
+    <string name="filelibrary_context_new_preset_long">Nová předvolba</string>
+    <string name="filelibrary_unsupported_format_title">Nepodporovaný typ souboru</string>
+    <string name="filelibrary_unsupported_format">Vybraný soubor nemá správnou příponu.</string>
+    <string name="filelibrary_corrupted_title">Nepodporovaný nebo poškozený soubor</string>
+    <string name="filelibrary_corrupted">Vybraný soubor neobsahuje žádná použitelná data nebo je poškozen.</string>
+    <string name="filelibrary_access_fail">Přístup ke složce se nezdařil</string>
+    <string name="filelibrary_no_file_selected">Žádný soubor nevybrán</string>
+    <string name="filelibrary_new_file_name">Nový název souboru</string>
+    <string name="filelibrary_file_exists">Soubor již existuje</string>
     <!-- JamesDSP engine messages -->
     <string name="message_liveprog_compile_fail">Spuštění Liveprog skriptu se nezdařilo. Vybraný skript je poškozen. Prosím použijte editor skriptu pro doladění a opravu chyb.</string>
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">Magnitudová odezva</string>
     <string name="gep_add_node">Přidat</string>
+    <string name="geq_delete_node">Odstranit uzel</string>
+    <string name="geq_next_node">Další uzel</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <string name="title_activity_liveprog_params">Přizpůsobitelné parametry skriptu</string>
     <!-- Liveprog script editor -->
     <string name="title_activity_liveprog_editor">Editor skriptu</string>
+    <string name="editor_find_and_replace">Najít/nahradit…</string>
+    <string name="editor_docs">Pomoc</string>
+    <string name="editor_open_fail">Soubor skriptu neexistuje nebo jej nelze otevřít.</string>
+    <string name="editor_run">Uložit a spustit</string>
+    <string name="editor_save">Uložit</string>
     <string name="editor_liveprog_enabled">Liveprog byl automaticky zapnut.</string>
+    <string name="editor_replace_all">Nahradit vše</string>
+    <string name="editor_replacement">Nahrazení</string>
+    <string name="editor_find_next_match">Najít další shodu</string>
+    <string name="editor_find_previous_match">Najít předchozí shodu</string>
+    <string name="editor_search_keyword">Hledat</string>
+    <string name="editor_source_position">%1$d:%2$d</string>
+    <string name="editor_engine_down_title">JamesDSP není aktivní</string>
+    <string name="editor_engine_down">Skript nelze spustit, protože JamesDSP je vypnut. Zapněte prosím JamesDSP pro spuštění skriptů.</string>
+    <string name="editor_save_prompt_title">Uložit změny?</string>
+    <string name="editor_save_prompt">Aktuální skript obsahuje neuložené změny. Chcete uložit změny nebo je zahodit?</string>
+    <string name="editor_script_launched">Skript spuštěn</string>
+    <string name="editor_cannot_undo">Není co vrátit.</string>
+    <string name="editor_cannot_redo">Není co obnovit.</string>
+    <string name="editor_text_size">Velikost písma</string>
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Vyloučené aplikace</string>
+    <string name="blocklist_add_exclusion_alt">Přidat aplikaci k vyloučeným</string>
+    <string name="blocklist_delete_title">Odstranit vybranou aplikaci?</string>
+    <string name="blocklist_delete">Chcete odstranit tuto aplikaci ze seznamu vyloučených?</string>
+    <string name="blocklist_no_exclusions">Žádné vyloučené aplikace</string>
+    <string name="blocklist_unsupported_apps">Nepodporované aplikace</string>
+    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>Tato aplikace nepodporuje zpracování aplikací, které brání třetím stranám v nahrávání jejich interního zvukového výstupu. Aby se zabránilo ztlumení těchto aplikací kvůli jejich omezení v nahrávání, jsou automaticky vyloučeny ze zpracování zvuku a nejsou přesměrovány.</p><p><u>Ovlivněné aplikace:</u><br/>%s</p>]]></string>
     <!-- Compatibility issue activity -->
+    <string name="title_activity_app_compat">Problém s kompatabilitou</string>
     <string name="app_compat_retry">Zkusit znovu</string>
+    <string name="app_compat_exclude">Vyloučit</string>
+    <string name="app_compat_title">Zpracování zvuku bylo pozastaveno, aby se zabránilo duplicitnímu zvuku</string>
+    <string name="app_compat_explanation">Následující aplikace není podporována, protože způsobuje RootlessJamesDSP ztrátu kontroly nad směrováním zvuku:</string>
+    <string name="app_compat_instruction">Prosím zkontrolujte nastavení aplikace, jestli nemůžete zakázat HW akceleraci nebo jiná nastavení, která by mohla narušit chod RootlessJamesDSP a klepněte na \'Zkusit znovu\'.</string>
     <!-- Hints for compatibility issues for individual apps -->
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
+    <string name="enhanced_processing_missing_perm">Rozšířené zpracování bylo vypnuto z důvodu chybějícího oprávnění. Prosím nastavte jej znovu v nastavení.</string>
     <!-- App list -->
+    <string name="app_list_search">Hledat</string>
     <!-- Number box view -->
     <!-- Slider widget -->
     <!-- Revert confirmation -->
