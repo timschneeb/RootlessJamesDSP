@@ -47,7 +47,14 @@ class Preset(val name: String): KoinComponent {
     fun load(): PresetMetadata? {
         val file = file()
         Timber.d("Loading preset from ${file.path}")
-        return load(ctx, FileInputStream(file))
+        return load(
+            ctx,
+            try { FileInputStream(file) }
+            catch(ex: Exception) {
+                Timber.e(ex)
+                return null
+            }
+        )
     }
 
     fun save(): Boolean {
