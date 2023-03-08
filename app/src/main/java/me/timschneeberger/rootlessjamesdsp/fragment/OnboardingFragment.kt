@@ -526,6 +526,7 @@ class OnboardingFragment : Fragment() {
 
         page.step4.isVisible = selectedSetupMethod == SetupMethods.Adb
         page.step5.isVisible = selectedSetupMethod == SetupMethods.Adb
+        page.step5bOptional.isVisible = selectedSetupMethod == SetupMethods.Adb && BuildConfig.ROOTLESS
 
         if(selectedSetupMethod == SetupMethods.Shizuku) {
             val installed = requireContext().isPackageInstalled(SHIZUKU_PKG)
@@ -569,6 +570,7 @@ class OnboardingFragment : Fragment() {
             page.step3.bodyText = getString(R.string.onboarding_adb_manual_step3)
             page.step4.bodyText = getString(R.string.onboarding_adb_manual_step4, requireContext().packageName)
             page.step5.bodyText = getString(R.string.onboarding_adb_manual_step5)
+            page.step5bOptional.bodyText = getString(R.string.onboarding_adb_manual_step5b, requireContext().packageName)
 
             page.title.text = getString(R.string.onboarding_adb_adb_title)
         }

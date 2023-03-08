@@ -15,6 +15,7 @@ import me.timschneeberger.rootlessjamesdsp.activity.EngineLauncherActivity
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.unregisterLocalReceiver
+import me.timschneeberger.rootlessjamesdsp.utils.PermissionExtensions.hasProjectMediaAppOp
 import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import org.koin.android.ext.android.inject
 import org.koin.core.component.KoinComponent
@@ -80,7 +81,7 @@ class QuickTileService : TileService(),
             }
             .let {
                 // If projection permission request needs to be shown, collapse status bar
-                if(BuildConfig.ROOTLESS && app.mediaProjectionStartIntent == null)
+                if(BuildConfig.ROOTLESS && app.mediaProjectionStartIntent == null && !hasProjectMediaAppOp())
                     startActivityAndCollapse(it)
                 else
                     startActivity(it)
