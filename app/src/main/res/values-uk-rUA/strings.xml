@@ -187,7 +187,7 @@
     <string name="onboarding_adb_shizuku_no_dump_perm_title">Shizuku не вдалося надати дозволи ADB</string>
     <string name="onboarding_adb_shizuku_no_dump_perm">Будь ласка, зачекайте кілька секунд і спробуйте ще раз. Якщо це не спрацює, спробуйте альтернативний метод.</string>
     <string name="onboarding_adb_dump_not_granted_title">Дозвіл не надано</string>
-    <string name="onboarding_adb_dump_not_granted">Будь ласка, спочатку виконайте інструкції, а потім спробуйте ще раз. Доступ до ADB ще не налаштовано.</string>
+    <string name="onboarding_adb_dump_not_granted">Будь ласка, спочатку виконайте всі кроки інструкції й потім повторіть спробу. Доступ до ADB ще не налаштовано.</string>
     <string name="onboarding_adb_manual_step1">Перейдіть у приховані налаштування Android «Для розробників» і увімкніть параметр «USB-налагодження». Для розблокування цих налаштувань необхідно кілька разів натиснути на номер збірки в налаштуваннях системи.</string>
     <string name="onboarding_adb_manual_step2">Перейдіть на сайт https://app.webadb.com у браузері вашого комп\'ютера (рекомендується використовувати Google Chrome) та під\'єднайте ваш пристрій до комп\'ютера за допомогою USB-кабелю.</string>
     <string name="onboarding_adb_manual_step3">Додайте та підключіть USB-пристрій у WebADB.</string>
