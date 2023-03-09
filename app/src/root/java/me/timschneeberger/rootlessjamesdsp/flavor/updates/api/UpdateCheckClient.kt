@@ -9,10 +9,10 @@ import kotlinx.coroutines.flow.flowOn
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.api.UserAgentInterceptor
 import me.timschneeberger.rootlessjamesdsp.flavor.updates.model.UpdateCheckResponse
-import me.timschneeberger.rootlessjamesdsp.utils.ApiExtensions
-import me.timschneeberger.rootlessjamesdsp.utils.ApiExtensions.save
 import me.timschneeberger.rootlessjamesdsp.utils.Cache
 import me.timschneeberger.rootlessjamesdsp.utils.Result
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ApiExtensions
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ApiExtensions.save
 import okhttp3.OkHttpClient
 import org.koin.core.component.KoinComponent
 import retrofit2.Retrofit

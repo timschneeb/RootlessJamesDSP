@@ -7,8 +7,8 @@ import android.os.IBinder
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.activity.MainActivity
 import me.timschneeberger.rootlessjamesdsp.utils.Cache
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
-import me.timschneeberger.rootlessjamesdsp.utils.getParcelableAs
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getParcelableAs
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
 import timber.log.Timber
 
 /** Based on https://github.com/Iamlooker/Droid-ify/ licensed under GPLv3 */
