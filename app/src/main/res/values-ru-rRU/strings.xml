@@ -177,7 +177,7 @@
     <string name="onboarding_adb_shizuku_grant_instruction">Нажмите кнопку, чтобы предоставить доступ к Shizuku.</string>
     <string name="onboarding_adb_shizuku_grant_button">Предоставить доступ</string>
     <string name="onboarding_adb_shizuku_not_installed">Shizuku ещё не установлен. Пожалуйста, сначала скачайте и установите его из Google Play.</string>
-    <string name="onboarding_adb_shizuku_not_installed_title">Shizuku ещё не установлен</string>
+    <string name="onboarding_adb_shizuku_not_installed_title">Shizuku не установлен</string>
     <string name="onboarding_adb_shizuku_grant_fail_server_dead">Перед запросом разрешения необходимо запустить сервер Shizuku. Пожалуйста, вернитесь к шагу 2 этой инструкции.</string>
     <string name="onboarding_adb_shizuku_grant_fail_server_dead_title">Сервер Shizuku не запущен</string>
     <string name="onboarding_adb_shizuku_grant_fail_version">Это приложение требует Shizuku версии 11 или выше. Пожалуйста, обновите Shizuku до последней версии.</string>
@@ -186,8 +186,8 @@
     <string name="onboarding_adb_shizuku_grant_fail_denied">Пожалуйста, предоставьте этому приложению доступ к Shizuku. Если вы ранее отказали в разрешении и всплывающее окно больше не появляется, вам может потребоваться открыть менеджер разрешений Shizuku, и предоставить доступ вручную.</string>
     <string name="onboarding_adb_shizuku_no_dump_perm_title">Shizuku не удалось предоставить разрешения ADB</string>
     <string name="onboarding_adb_shizuku_no_dump_perm">Пожалуйста, подождите несколько секунд и попробуйте ещё раз. Если это не сработает, попробуйте альтернативный метод.</string>
-    <string name="onboarding_adb_dump_not_granted_title">Разрешение ещё не предоставлено</string>
-    <string name="onboarding_adb_dump_not_granted">Пожалуйста, вначале выполните инструкции и повторите попытку. Доступ ADB ещё не настроен правильно.</string>
+    <string name="onboarding_adb_dump_not_granted_title">Разрешение не предоставлено</string>
+    <string name="onboarding_adb_dump_not_granted">Пожалуйста, сначала выполните инструкции, а затем попробуйте еще раз. Доступ к ADB еще не настроен.</string>
     <string name="onboarding_adb_manual_step1">Перейдите в скрытые настройки Android «Для разработчиков» и включите параметр «Отладка по USB». Для разблокировки этих настроек необходимо несколько раз нажать на номер сборки в настройках системы.</string>
     <string name="onboarding_adb_manual_step2">Перейдите на сайт https://app.webadb.com в браузере вашего компьютера (рекомендуется использовать Google Chrome) и подключите ваше устройство к компьютеру с помощью USB-кабеля.</string>
     <string name="onboarding_adb_manual_step3">Добавьте и подключите USB-устройство в WebADB.</string>
