@@ -251,7 +251,7 @@
     <string name="audio_format_enhanced_processing_info_content">Pokud je povoleno rozšířené zpracování, můžete selektivně vyloučit některé aplikace ze zpracování JamesDSP. Použijte 3 bodové menu v pravém dolním rohu a vyberte \'Vyloučené aplikace\' pro přístup k této funkci.\n\nZatímco starší režim je zakázán, JamesDSP se spoléhá na aplikace médií a posílá systémové vysílání při startu přehrávání. Toto je výhoda oproti starému režimu, protože každá aplikace dostane vlastní nástroj pro efekty JamesDSP, který mu umožňuje lépe ovládat. V opačném případě by se starším režimem zapnutým všechny aplikace sdílely jeden procesor, který Android zastaralý a již by neměl být používán.\n\nBohužel ne všechny aplikace médií to dělají správně, a proto by nefungovaly správně, když je zakázán režim kompatability. Pro vyřešení tohoto problému můžete povolit rozšířené zpracování. Namísto spoléhání se na systémové vysílání na nové relace médií, JamesDSP proaktivně prohledává relace médií a umožňuje řádnou podporu nekooperativním aplikacím médií.</string>
     <string name="audio_format_media_apps_need_restart">Po změně tohoto nastavení je třeba restartovat všechny aktivní aplikace médií, abyste mohli obnovit zpracování zvuku.</string>
     <string name="audio_format_summary">Upřednostňované audio kódování, velikost vyrovnávací paměti</string>
-    <string name="audio_format_summary_root">Kompatabilní režim, vylepšené zpracování</string>
+    <string name="audio_format_summary_root">Režim kompatability, vylepšené zpracování</string>
     <string name="audio_format_encoding">Kódování zvuku</string>
     <string name="audio_format_encoding_int16">16-bit integer PCM</string>
     <string name="audio_format_encoding_float">32-bit float PCM</string>
@@ -357,14 +357,14 @@
     <string name="filelibrary_file_exists">Soubor již existuje</string>
     <string name="filelibrary_resample_complete">Převzorkováno do na %1$dHz</string>
     <string name="filelibrary_resample_failed">Převzorkování selhalo. Možná poškozený vstupní soubor?</string>
-    <string name="filelibrary_preset_overwritten">Předvolba \'%1$s\' přepsána</string>
-    <string name="filelibrary_preset_created">Předvolba \'%1$s\' vytvořena</string>
+    <string name="filelibrary_preset_overwritten">Předvolba „%1$s“ přepsána</string>
+    <string name="filelibrary_preset_created">Předvolba „%1$s“ vytvořena</string>
     <string name="filelibrary_preset_save_failed">Uložení předvolby se nezdařilo</string>
-    <string name="filelibrary_renamed">Přejmenováno na \'%1$s\'</string>
-    <string name="filelibrary_deleted">\'%1$s\' odstraněno</string>
-    <string name="filelibrary_preset_loaded">Předvolba \'%1$s\' načtena</string>
-    <string name="filelibrary_preset_load_failed">Soubor \'%1$s\' není kompatibilní s touto aplikací</string>
-    <string name="filelibrary_no_presets">Žádné předvolby nebyly uloženy. Klepnutím na \'Přidat\' vytvoříte nové.</string>
+    <string name="filelibrary_renamed">Přejmenováno na „%1$s“</string>
+    <string name="filelibrary_deleted">„%1$s“ odstraněno</string>
+    <string name="filelibrary_preset_loaded">Předvolba „%1$s“ načtena</string>
+    <string name="filelibrary_preset_load_failed">Soubor „%1$s“ není kompatibilní s touto aplikací</string>
+    <string name="filelibrary_no_presets">Žádné předvolby nebyly uloženy. Klepnutím na „Přidat“ vytvoříte nové.</string>
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">Vybraný VDC soubor je poškozen. Vyberte prosím jiný.</string>
     <string name="message_irs_corrupt">Vybraná impulzní odezva je poškozená. Zvolte prosím jinou.</string>
@@ -482,9 +482,9 @@
     <string name="intent_import_liveprog">Importovat Liveprog skript</string>
     <string name="intent_import_mode_add">Pouze importovat</string>
     <string name="intent_import_mode_select">Importovat a aktivovat</string>
-    <string name="intent_import_fail">Nepodařilo se importovat soubor \'%1$s\'</string>
-    <string name="intent_import_success">Soubor \'%1$s\' importován</string>
-    <string name="intent_import_select_success">Soubor \'%1$s\' importován a aktivován</string>
+    <string name="intent_import_fail">Nepodařilo se importovat soubor „%1$s“</string>
+    <string name="intent_import_success">Soubor „%1$s“ importován</string>
+    <string name="intent_import_select_success">Soubor „%1$s“ importován a aktivován</string>
     <string name="intent_import_error_file_uri">Nepodařilo se importovat soubor. Nepodporované URI souboru.</string>
     <!-- Translation notice box -->
     <string name="translation_notice_summary">Prosím, pomozte nám přeložit tuto aplikaci do vašeho jazyka! Klepnutím sem navštivte stránku projektu na Crowdin.</string>
