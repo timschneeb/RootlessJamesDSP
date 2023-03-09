@@ -193,6 +193,7 @@
     <string name="onboarding_adb_manual_step3">Přidejte připojte USB zařízení v WebADB.</string>
     <string name="onboarding_adb_manual_step4">Přejděte do \'Interaktivního příkazového řádku\' a spusťte následující příkaz: \'pm grant %s android.permission.DUMP\'</string>
     <string name="onboarding_adb_manual_step5">Klepněte na \'Další\' v této aplikaci pro pokračování.</string>
+    <string name="onboarding_adb_manual_step5b">(Volitelné) Můžete trvale přeskočit výzvy k povolení pro zachycení zvuku spuštěním tohoto příkazu: \'appops set %s PROJECT_MEDIA allow\'</string>
     <string name="onboarding_adb_manual_step1_button">Otevřete nastavení pro vývojáře</string>
     <string name="onboarding_perm_title">Ostatní povolení</string>
     <string name="onboarding_perm_caption">Pro použití této aplikace jsou potřebná další oprávnění. Prosím zkontrolujte je a klepněte na \'Další\' pro jejich udělení.</string>
@@ -331,6 +332,7 @@
     <string name="theme_honey">Med</string>
     <string name="theme_tealturquoise">Teal &amp; Tyrkysová</string>
     <string name="theme_yinyang">Yin &amp; Yang</string>
+    <string name="theme_yotsuba">Yotsuba</string>
     <!-- File library preference -->
     <string name="filelibrary_context_edit">Upravit</string>
     <string name="filelibrary_context_overwrite">Přepsat</string>
