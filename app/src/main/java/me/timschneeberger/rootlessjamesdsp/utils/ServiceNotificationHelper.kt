@@ -15,8 +15,8 @@ import me.timschneeberger.rootlessjamesdsp.activity.EngineLauncherActivity
 import me.timschneeberger.rootlessjamesdsp.activity.MainActivity
 import me.timschneeberger.rootlessjamesdsp.model.IEffectSession
 import me.timschneeberger.rootlessjamesdsp.service.RootlessAudioProcessorService
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppName
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppNameFromUid
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getAppName
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getAppNameFromUid
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 

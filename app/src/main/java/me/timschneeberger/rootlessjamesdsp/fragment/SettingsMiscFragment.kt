@@ -15,11 +15,11 @@ import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.api.AutoEqClient
 import me.timschneeberger.rootlessjamesdsp.flavor.CrashlyticsImpl
-import me.timschneeberger.rootlessjamesdsp.utils.AssetManagerExtensions.installPrivateAssets
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.AssetManagerExtensions.installPrivateAssets
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showYesNoAlert
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showAlert
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showYesNoAlert
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
 import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import org.koin.android.ext.android.inject
 import java.util.Locale

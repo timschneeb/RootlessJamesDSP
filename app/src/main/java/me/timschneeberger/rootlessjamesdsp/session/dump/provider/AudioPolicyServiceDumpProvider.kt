@@ -6,7 +6,7 @@ import me.timschneeberger.rootlessjamesdsp.session.dump.data.AudioPolicyServiceD
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.utils.DumpUtils
 import me.timschneeberger.rootlessjamesdsp.model.AudioSessionDumpEntry
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getPackageNameFromUid
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getPackageNameFromUid
 import timber.log.Timber
 import java.util.*
 

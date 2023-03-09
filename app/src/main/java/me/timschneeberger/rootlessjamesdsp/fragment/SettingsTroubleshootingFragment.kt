@@ -1,8 +1,10 @@
 package me.timschneeberger.rootlessjamesdsp.fragment
 
+import android.content.ComponentName
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.text.InputType
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -18,10 +20,10 @@ import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
 import me.timschneeberger.rootlessjamesdsp.service.NotificationListenerService
 import me.timschneeberger.rootlessjamesdsp.session.dump.DumpManager
-import me.timschneeberger.rootlessjamesdsp.utils.ApplicationUtils
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showAlert
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
+import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import org.koin.android.ext.android.inject
 import java.io.File
 import java.io.FileOutputStream
@@ -78,7 +80,20 @@ class SettingsTroubleshootingFragment : PreferenceFragmentCompat() {
             true
         }
         findPreference<Preference>(getString(R.string.key_troubleshooting_notification_access))?.setOnPreferenceClickListener {
-            val intent = ApplicationUtils.getIntentForNotificationAccess(requireContext().packageName, NotificationListenerService::class.java)
+            val serviceClassName = NotificationListenerService::class.java.name
+            val intent = sdkAbove(Build.VERSION_CODES.R) {
+                Intent(Settings.ACTION_NOTIFICATION_LISTENER_DETAIL_SETTINGS)
+                    .putExtra(Settings.EXTRA_NOTIFICATION_LISTENER_COMPONENT_NAME, ComponentName(requireContext().packageName, serviceClassName).flattenToString())
+            }.below {
+                Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS)
+                    .apply {
+                        val value = "${requireContext().packageName}/$serviceClassName"
+                        val key = ":settings:fragment_args_key"
+                        putExtra(":settings:show_fragment_args", Bundle().also { it.putString(key, value) })
+                        putExtra(":settings:fragment_args_key", "${requireContext().packageName}/$serviceClassName")
+                    }
+            }
+
             // TVs, smart-watches and some other weird devices do not have these settings
             try {
                 requireActivity().startActivity(intent)

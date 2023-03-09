@@ -13,8 +13,8 @@ import androidx.preference.PreferenceViewHolder
 import androidx.preference.SeekBarPreference
 import com.google.android.material.slider.Slider
 import me.timschneeberger.rootlessjamesdsp.R
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showInputAlert
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showInputAlert
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
 import timber.log.Timber
 import java.math.BigDecimal
 import java.math.MathContext

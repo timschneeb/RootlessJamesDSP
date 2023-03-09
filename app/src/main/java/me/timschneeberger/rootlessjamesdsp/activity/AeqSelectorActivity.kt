@@ -15,8 +15,8 @@ import me.timschneeberger.rootlessjamesdsp.api.AutoEqClient
 import me.timschneeberger.rootlessjamesdsp.contract.AutoEqSelectorContract
 import me.timschneeberger.rootlessjamesdsp.databinding.ActivityAeqSelectorBinding
 import me.timschneeberger.rootlessjamesdsp.model.api.AeqSearchResult
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.hideKeyboardFrom
-import me.timschneeberger.rootlessjamesdsp.utils.getSerializableAs
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getSerializableAs
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.hideKeyboardFrom
 
 class AeqSelectorActivity : BaseActivity() {
 

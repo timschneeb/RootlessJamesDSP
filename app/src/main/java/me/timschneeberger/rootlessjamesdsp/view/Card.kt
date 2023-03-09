@@ -14,8 +14,8 @@ import androidx.core.view.isVisible
 import androidx.core.view.setMargins
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.ViewCardBinding
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.dpToPx
-import me.timschneeberger.rootlessjamesdsp.utils.loadHtml
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.asHtml
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.dpToPx
 
 
 class Card @JvmOverloads constructor(
@@ -52,13 +52,13 @@ class Card @JvmOverloads constructor(
             field = value
             binding.title.isVisible = value != null
             if(value != null) {
-                binding.title.text = loadHtml(value)
+                binding.title.text = value.asHtml()
             }
         }
     var bodyText: String? = null
         set(value) {
             field = value
-            binding.text.text = loadHtml(value ?: "")
+            binding.text.text = value?.asHtml() ?: ""
         }
     @DrawableRes var iconSrc: Int = 0
         set(value) {

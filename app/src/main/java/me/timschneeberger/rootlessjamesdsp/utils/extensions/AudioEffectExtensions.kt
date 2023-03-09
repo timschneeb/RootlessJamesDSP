@@ -1,4 +1,4 @@
-package me.timschneeberger.rootlessjamesdsp.utils
+package me.timschneeberger.rootlessjamesdsp.utils.extensions
 
 import android.media.audiofx.AudioEffect
 import android.media.audiofx.AudioEffectHidden

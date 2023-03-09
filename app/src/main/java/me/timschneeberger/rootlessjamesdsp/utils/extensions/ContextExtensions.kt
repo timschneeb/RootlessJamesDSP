@@ -1,4 +1,4 @@
-package me.timschneeberger.rootlessjamesdsp.utils
+package me.timschneeberger.rootlessjamesdsp.utils.extensions
 
 import android.annotation.SuppressLint
 import android.content.*
@@ -33,6 +33,9 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.DialogTextinputBinding
+import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getApplicationInfoCompat
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getPackageInfoCompat
 import timber.log.Timber
 import java.io.File
 import kotlin.math.roundToInt
@@ -93,10 +96,9 @@ object ContextExtensions {
         }
     }
 
-    @Suppress("DEPRECATION")
     fun Context.isPackageInstalled(packageName: String): Boolean {
         return try {
-            packageManager.getPackageInfo(packageName, 0)
+            packageManager.getPackageInfoCompat(packageName, 0)
             true
         } catch (e: PackageManager.NameNotFoundException) {
             false
@@ -268,10 +270,9 @@ object ContextExtensions {
 
     fun Context.getAppName(): String = applicationInfo.loadLabel(packageManager).toString()
 
-    @Suppress("DEPRECATION")
     fun Context.getAppName(packageName: String): CharSequence? {
         return try {
-            packageManager.getApplicationInfo(packageName, 0)
+            packageManager.getApplicationInfoCompat(packageName, 0)
         } catch (e: Exception) {
             null
         }?.let {
@@ -300,10 +301,9 @@ object ContextExtensions {
         return "UID $uid"
     }
 
-    @Suppress("DEPRECATION")
     fun Context.getUidFromPackage(packageName: String): Int {
         return try {
-            packageManager.getApplicationInfo(packageName, 0).uid
+            packageManager.getApplicationInfoCompat(packageName, 0).uid
         } catch (e: PackageManager.NameNotFoundException) {
             Timber.e("Cannot get UID. Package not found: $packageName")
             -1

@@ -18,7 +18,7 @@ import me.timschneeberger.rootlessjamesdsp.adapter.AppsListAdapter
 import me.timschneeberger.rootlessjamesdsp.databinding.FragmentApplistSheetBinding
 import me.timschneeberger.rootlessjamesdsp.model.AppInfo
 import me.timschneeberger.rootlessjamesdsp.model.ItemViewModel
-import me.timschneeberger.rootlessjamesdsp.utils.getInstalledApplicationsCompat
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getInstalledApplicationsCompat
 
 class AppsListFragment : BottomSheetDialogFragment() {
 

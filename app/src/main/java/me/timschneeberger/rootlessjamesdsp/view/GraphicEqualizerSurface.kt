@@ -10,8 +10,8 @@ import android.view.View
 import androidx.core.content.withStyledAttributes
 import androidx.core.os.bundleOf
 import me.timschneeberger.rootlessjamesdsp.model.GraphicEqNodeList
-import me.timschneeberger.rootlessjamesdsp.utils.getParcelableAs
-import me.timschneeberger.rootlessjamesdsp.utils.prettyNumberFormat
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getParcelableAs
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.prettyNumberFormat
 import java.util.*
 import kotlin.math.*
 
@@ -150,7 +150,7 @@ class GraphicEqualizerSurface(context: Context?, attrs: AttributeSet?) : View(co
                 x > lastFreqTextBounds.right + lastFreqTextBounds.width() /* check for freq text overlap */ &&
                 x > lastGainTextBounds.right + lastGainTextBounds.width() /* check for gain text overlap */) {
 
-                val freqText = prettyNumberFormat(mFreqs[i])
+                val freqText = mFreqs[i].prettyNumberFormat()
                 val freqWidth = mControlBarText.measureText(freqText)
                 val gainText = String.format(Locale.ROOT, "%.1f", mGains[i])
                 val gainWidth = mControlBarText.measureText(gainText)
@@ -170,7 +170,7 @@ class GraphicEqualizerSurface(context: Context?, attrs: AttributeSet?) : View(co
                 x = projectX(scale) * mWidth
                 // UNUSED: y = projectY(gain.toFloat()) * mHeight
 
-                val freqText = prettyNumberFormat(scale)
+                val freqText = scale.prettyNumberFormat()
                 val gainText = String.format(Locale.ROOT, "%.1f", gain)
 
                 canvas.drawText(freqText, x, mHeight - 16, mControlBarText)

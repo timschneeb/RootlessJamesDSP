@@ -41,16 +41,15 @@ import me.timschneeberger.rootlessjamesdsp.utils.Constants.NOTIFICATION_ID_APP_I
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.NOTIFICATION_ID_PERMISSION_PROMPT
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.NOTIFICATION_ID_SERVICE
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.NOTIFICATION_ID_SESSION_LOSS
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocalReceiver
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.unregisterLocalReceiver
-import me.timschneeberger.rootlessjamesdsp.utils.PermissionExtensions.hasRecordPermission
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.registerLocalReceiver
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sendLocalBroadcast
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.unregisterLocalReceiver
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasRecordPermission
 import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import me.timschneeberger.rootlessjamesdsp.utils.ServiceNotificationHelper
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
-import me.timschneeberger.rootlessjamesdsp.utils.concatenate
-import me.timschneeberger.rootlessjamesdsp.utils.getParcelableAs
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getParcelableAs
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 import java.io.IOException
@@ -627,15 +626,15 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
             .addMatchingUsage(AudioAttributes.USAGE_GAME)
             .addMatchingUsage(AudioAttributes.USAGE_UNKNOWN)
 
-        var excluded = if(excludeRestrictedSessions)
+        val excluded = (if(excludeRestrictedSessions)
             sessionManager.sessionPolicyDatabase.getRestrictedUids().toList()
         else {
             sessionManager.pollOnce(false)
             emptyList()
-        }
+        }).toMutableList()
 
         blockedApps.value?.map { it.uid }?.let {
-            excluded = concatenate(excluded, it)
+            excluded += it
         }
 
         excluded.forEach { configBuilder.excludeUid(it) }

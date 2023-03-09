@@ -3,9 +3,16 @@ package me.timschneeberger.rootlessjamesdsp.utils
 import android.os.Build
 import androidx.annotation.ChecksSdkIntAtLeast
 
+class SdkCheckElseBranch<T>(private val result: T?) {
+    fun valueOrNull(): T? = result
+    fun below(onFailure: () -> T): T = result ?: onFailure()
+}
+
 @ChecksSdkIntAtLeast(parameter = 0, lambda = 1)
-inline fun sdkAbove(sdk: Int, onSuccessful: () -> Unit) {
-    if (Build.VERSION.SDK_INT >= sdk) onSuccessful()
+inline fun <T> sdkAbove(sdk: Int, onSuccessful: () -> T): SdkCheckElseBranch<T> {
+    (Build.VERSION.SDK_INT >= sdk).let {
+        return SdkCheckElseBranch<T>(if(it) onSuccessful() else null)
+    }
 }
 
 object SdkCheck {

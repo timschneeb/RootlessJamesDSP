@@ -7,7 +7,7 @@ import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.ActivityAppCompatibilityBinding
 import me.timschneeberger.rootlessjamesdsp.fragment.AppCompatibilityFragment
 import me.timschneeberger.rootlessjamesdsp.service.RootlessAudioProcessorService
-import me.timschneeberger.rootlessjamesdsp.utils.getParcelableAs
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getParcelableAs
 
 class AppCompatibilityActivity : BaseActivity() {
     @SuppressLint("InlinedApi")

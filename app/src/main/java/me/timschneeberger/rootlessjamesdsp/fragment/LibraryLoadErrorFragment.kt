@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import me.timschneeberger.rootlessjamesdsp.databinding.FragmentLibraryLoadErrorBinding
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.openPlayStoreApp
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.openPlayStoreApp
 
 class LibraryLoadErrorFragment : Fragment() {
     private lateinit var binding: FragmentLibraryLoadErrorBinding

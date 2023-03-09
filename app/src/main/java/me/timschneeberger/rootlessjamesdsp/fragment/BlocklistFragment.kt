@@ -24,12 +24,12 @@ import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistViewModelFacto
 import me.timschneeberger.rootlessjamesdsp.model.room.BlockedApp
 import me.timschneeberger.rootlessjamesdsp.session.dump.DumpManager
 import me.timschneeberger.rootlessjamesdsp.session.rootless.SessionRecordingPolicyManager
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppIcon
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppNameFromUidSafe
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showYesNoAlert
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getAppIcon
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getAppNameFromUidSafe
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showAlert
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showYesNoAlert
 import me.timschneeberger.rootlessjamesdsp.utils.Preferences
-import me.timschneeberger.rootlessjamesdsp.utils.loadHtml
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.asHtml
 import org.koin.android.ext.android.inject
 
 class BlocklistFragment : Fragment() {
@@ -82,7 +82,7 @@ class BlocklistFragment : Fragment() {
         binding.notice.setOnClickListener {
             requireContext().showAlert(
                 getString(R.string.blocklist_unsupported_apps),
-                loadHtml(getString(R.string.blocklist_unsupported_apps_message, restrictedApps.joinToString("<br/>")))
+                getString(R.string.blocklist_unsupported_apps_message, restrictedApps.joinToString("<br/>")).asHtml()
             )
         }
         updateUnsupportedApps()

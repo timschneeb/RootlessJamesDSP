@@ -13,7 +13,7 @@ import me.timschneeberger.rootlessjamesdsp.model.preference.AppTheme
 import me.timschneeberger.rootlessjamesdsp.model.preference.ThemeMode
 import me.timschneeberger.rootlessjamesdsp.preference.ThemesPreference
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
-import me.timschneeberger.rootlessjamesdsp.utils.DeviceUtil
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.isDynamicColorAvailable
 
 class SettingsAppearanceFragment : PreferenceFragmentCompat() {
 
@@ -27,7 +27,7 @@ class SettingsAppearanceFragment : PreferenceFragmentCompat() {
 
         val appThemes = AppTheme.values().filter {
             val monetFilter = if (it == AppTheme.MONET) {
-                DeviceUtil.isDynamicColorAvailable
+                isDynamicColorAvailable
             } else {
                 true
             }

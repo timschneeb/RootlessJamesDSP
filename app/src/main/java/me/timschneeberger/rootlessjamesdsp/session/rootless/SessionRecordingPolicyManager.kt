@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import me.timschneeberger.rootlessjamesdsp.model.rootless.SessionRecordingPolicyEntry
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionPolicyInfoDump
-import me.timschneeberger.rootlessjamesdsp.utils.getApplicationInfoCompat
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getApplicationInfoCompat
 import timber.log.Timber
 
 

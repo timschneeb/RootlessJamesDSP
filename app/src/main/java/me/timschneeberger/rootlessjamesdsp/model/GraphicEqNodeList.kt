@@ -2,7 +2,7 @@ package me.timschneeberger.rootlessjamesdsp.model
 
 import android.os.Bundle
 import androidx.databinding.ObservableArrayList
-import me.timschneeberger.rootlessjamesdsp.utils.getSerializableAs
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getSerializableAs
 import timber.log.Timber
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols

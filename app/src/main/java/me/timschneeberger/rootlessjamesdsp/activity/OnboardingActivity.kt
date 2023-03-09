@@ -6,7 +6,7 @@ import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.ActivityOnboardingBinding
 import me.timschneeberger.rootlessjamesdsp.fragment.OnboardingFragment
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showAlert
 
 
 class OnboardingActivity : BaseActivity(){

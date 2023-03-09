@@ -11,8 +11,8 @@ import me.timschneeberger.rootlessjamesdsp.model.AudioSessionDumpEntry
 import me.timschneeberger.rootlessjamesdsp.model.IEffectSession
 import me.timschneeberger.rootlessjamesdsp.model.root.RemoteEffectSession
 import me.timschneeberger.rootlessjamesdsp.session.shared.BaseSessionDatabase
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getUidFromPackage
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getUidFromPackage
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
 import timber.log.Timber
 
 

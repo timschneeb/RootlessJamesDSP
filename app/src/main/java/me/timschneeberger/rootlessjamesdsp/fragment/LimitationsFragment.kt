@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import me.timschneeberger.rootlessjamesdsp.databinding.OnboardingPage2Binding
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.dpToPx
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.dpToPx
 
 class LimitationsFragment : Fragment() {
     private lateinit var binding: OnboardingPage2Binding

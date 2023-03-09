@@ -2,7 +2,7 @@ package me.timschneeberger.rootlessjamesdsp.session.dump.utils
 
 import android.content.Context
 import android.os.ParcelFileDescriptor
-import me.timschneeberger.rootlessjamesdsp.utils.PermissionExtensions.hasDumpPermission
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasDumpPermission
 import rikka.shizuku.SystemServiceHelper
 import timber.log.Timber
 import java.io.FileInputStream

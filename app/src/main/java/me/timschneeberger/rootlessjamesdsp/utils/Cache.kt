@@ -11,6 +11,7 @@ import android.os.Build
 import android.os.ParcelFileDescriptor
 import android.provider.OpenableColumns
 import android.system.Os
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getPackageInfoCompat
 import java.io.File
 import java.util.*
 import kotlin.concurrent.thread
@@ -64,18 +65,10 @@ object Cache {
         val file = getReleaseFile(context, cacheFileName)
         val packageInfo =
             try {
-                if (SdkCheck.isTiramisu) {
-                    context.packageManager.getPackageInfo(
-                        context.packageName,
-                        PackageManager.PackageInfoFlags.of(PackageManager.GET_PROVIDERS.toLong())
-                    )
-                } else {
-                    @Suppress("DEPRECATION")
-                    context.packageManager.getPackageInfo(
-                        context.packageName,
-                        PackageManager.GET_PROVIDERS
-                    )
-                }
+                context.packageManager.getPackageInfoCompat(
+                    context.packageName,
+                    PackageManager.GET_PROVIDERS
+                )
             } catch (e: Exception) {
                 null
             }

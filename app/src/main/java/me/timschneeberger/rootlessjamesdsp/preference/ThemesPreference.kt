@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.adapter.ThemesPreferenceAdapter
 import me.timschneeberger.rootlessjamesdsp.model.preference.AppTheme
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.dpToPx
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.dpToPx
 
 class ThemesPreference @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
     ListPreference(context, attrs),

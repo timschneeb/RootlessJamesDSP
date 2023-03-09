@@ -21,11 +21,11 @@ import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistViewModelFacto
 import me.timschneeberger.rootlessjamesdsp.model.room.BlockedApp
 import me.timschneeberger.rootlessjamesdsp.service.RootlessAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppIcon
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getAppNameFromUidSafe
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.getPackageNameFromUid
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getAppIcon
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getAppNameFromUidSafe
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getPackageNameFromUid
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
-import me.timschneeberger.rootlessjamesdsp.utils.getParcelableAs
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getParcelableAs
 import timber.log.Timber
 import java.util.*
 import kotlin.concurrent.schedule

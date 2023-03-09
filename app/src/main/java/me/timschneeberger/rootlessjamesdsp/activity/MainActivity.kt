@@ -43,20 +43,20 @@ import me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
 import me.timschneeberger.rootlessjamesdsp.service.BaseAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.service.RootlessAudioProcessorService
-import me.timschneeberger.rootlessjamesdsp.utils.ApplicationUtils
-import me.timschneeberger.rootlessjamesdsp.utils.AssetManagerExtensions.installPrivateAssets
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.AssetManagerExtensions.installPrivateAssets
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.check
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.registerLocalReceiver
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.requestIgnoreBatteryOptimizations
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.sendLocalBroadcast
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showAlert
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showSingleChoiceAlert
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.showYesNoAlert
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.toast
-import me.timschneeberger.rootlessjamesdsp.utils.ContextExtensions.unregisterLocalReceiver
-import me.timschneeberger.rootlessjamesdsp.utils.PermissionExtensions.hasDumpPermission
-import me.timschneeberger.rootlessjamesdsp.utils.PermissionExtensions.hasRecordPermission
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.check
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getAppName
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.registerLocalReceiver
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.requestIgnoreBatteryOptimizations
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sendLocalBroadcast
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showAlert
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showSingleChoiceAlert
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showYesNoAlert
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.unregisterLocalReceiver
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasDumpPermission
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasRecordPermission
 import me.timschneeberger.rootlessjamesdsp.utils.Result
 import me.timschneeberger.rootlessjamesdsp.utils.StorageUtils
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
@@ -140,7 +140,7 @@ class MainActivity : BaseActivity() {
         val check = applicationContext.check()
         if(check != 0) {
             toast("($check) Cannot launch application. Please re-download the latest version from the Google Play or the official GitHub project site.")
-            Timber.wtf(UnsupportedOperationException("Launch error $check; ${ApplicationUtils.describe(this)}"))
+            Timber.e(UnsupportedOperationException("Launch error $check; package=${packageName}; app_name=${getAppName()}"))
             quitGracefully()
             return
         }

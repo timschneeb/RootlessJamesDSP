@@ -1,4 +1,4 @@
-package me.timschneeberger.rootlessjamesdsp.utils
+package me.timschneeberger.rootlessjamesdsp.utils.extensions
 
 import android.content.Context
 import android.content.res.AssetManager
