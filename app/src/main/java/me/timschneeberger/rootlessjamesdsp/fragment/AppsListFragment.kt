@@ -1,10 +1,14 @@
 package me.timschneeberger.rootlessjamesdsp.fragment
 
+import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.*
+import android.util.AttributeSet
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -19,6 +23,7 @@ import me.timschneeberger.rootlessjamesdsp.databinding.FragmentApplistSheetBindi
 import me.timschneeberger.rootlessjamesdsp.model.AppInfo
 import me.timschneeberger.rootlessjamesdsp.model.ItemViewModel
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getInstalledApplicationsCompat
+
 
 class AppsListFragment : BottomSheetDialogFragment() {
 
@@ -55,7 +60,7 @@ class AppsListFragment : BottomSheetDialogFragment() {
         }
 
         binding.recyclerview.adapter = adapter
-        binding.recyclerview.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerview.layoutManager = LinearLayoutManagerWrapper(requireContext())
 
         lifecycleScope.launch {
             binding.loader.isVisible = true
@@ -92,6 +97,10 @@ class AppsListFragment : BottomSheetDialogFragment() {
     override fun onDestroyView() {
         binding.filter.removeTextChangedListener(watcher)
         super.onDestroyView()
+    }
+
+    private class LinearLayoutManagerWrapper(context: Context?) : LinearLayoutManager(context) {
+        override fun supportsPredictiveItemAnimations() = false
     }
 
     companion object {
