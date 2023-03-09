@@ -11,10 +11,9 @@ import java.io.Serializable
 
 @Suppress("DEPRECATION")
 object CompatExtensions {
-    @Suppress("UNCHECKED_CAST")
-    fun <T : Serializable> Bundle.getSerializableAs(key: String, clazz: Class<T>): T? {
+    inline fun <reified T : Serializable> Bundle.getSerializableAs(key: String): T? {
         return sdkAbove(Build.VERSION_CODES.TIRAMISU) {
-            this.getSerializable(key, clazz)
+            this.getSerializable(key, T::class.java)
         }.below {
             this.getSerializable(key) as? T
         }

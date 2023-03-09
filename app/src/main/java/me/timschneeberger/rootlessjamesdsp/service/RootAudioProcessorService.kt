@@ -1,6 +1,5 @@
 package me.timschneeberger.rootlessjamesdsp.service
 
-import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
@@ -18,6 +17,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.MainApplication
+import me.timschneeberger.rootlessjamesdsp.Notifications
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspRemoteEngine
 import me.timschneeberger.rootlessjamesdsp.model.IEffectSession
@@ -27,8 +27,6 @@ import me.timschneeberger.rootlessjamesdsp.model.room.BlockedApp
 import me.timschneeberger.rootlessjamesdsp.session.root.OnRootSessionChangeListener
 import me.timschneeberger.rootlessjamesdsp.session.root.RootSessionDumpManager
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
-import me.timschneeberger.rootlessjamesdsp.utils.Constants.CHANNEL_ID_SERVICE
-import me.timschneeberger.rootlessjamesdsp.utils.Constants.NOTIFICATION_ID_SERVICE
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import me.timschneeberger.rootlessjamesdsp.utils.ServiceNotificationHelper
@@ -89,16 +87,6 @@ class RootAudioProcessorService : BaseAudioProcessorService(), KoinComponent,
         // Setup database observer
         blockedApps.observeForever(blockedAppObserver)
 
-        // Register notification channels
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                CHANNEL_ID_SERVICE,
-                getString(R.string.notification_channel_service),
-                NotificationManager.IMPORTANCE_NONE
-            )
-            notificationManager.createNotificationChannel(channel)
-        }
-
         // Launch foreground service
         val notification = if (app.isLegacyMode)
             ServiceNotificationHelper.createServiceNotificationLegacy(this)
@@ -106,13 +94,13 @@ class RootAudioProcessorService : BaseAudioProcessorService(), KoinComponent,
             ServiceNotificationHelper.createServiceNotification(this, arrayOf())
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             startForeground(
-                NOTIFICATION_ID_SERVICE,
+                Notifications.ID_SERVICE_STATUS,
                 notification,
                 ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK
             )
         } else {
             startForeground(
-                NOTIFICATION_ID_SERVICE,
+                Notifications.ID_SERVICE_STATUS,
                 notification
             )
         }
@@ -192,7 +180,7 @@ class RootAudioProcessorService : BaseAudioProcessorService(), KoinComponent,
         preferences.unregisterOnSharedPreferenceChangeListener(this)
         app.rootSessionDatabase.unregisterOnSessionChangeListener(this)
 
-        notificationManager.cancel(NOTIFICATION_ID_SERVICE)
+        notificationManager.cancel(Notifications.ID_SERVICE_STATUS)
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {

@@ -8,10 +8,14 @@
     <string name="action_blocked_apps">Excluded apps</string>
 
     <!-- Notification channels -->
+    <string name="notification_group_service">Service</string>
     <string name="notification_channel_service">Service notification</string>
     <string name="notification_channel_session_loss_alert">Session loss alert</string>
     <string name="notification_channel_permission_prompt">Permission prompt request</string>
     <string name="notification_channel_app_compat_alert">Incompatible app alert</string>
+    <string name="notification_group_backup">Backup and restore</string>
+    <string name="notification_channel_backup_progress">In progress</string>
+    <string name="notification_channel_backup_complete">Complete</string>
 
     <!-- Service notifications -->
     <string name="action_retry">Retry</string>
@@ -549,5 +553,18 @@
     <string name="self_update_notice_dismiss_skip">Skip this update</string>
     <string name="self_update_state_downloading">Downloading…</string>
     <string name="self_update_state_installing">Installing…</string>
+
+
+    <!-- Backups -->
+    <string name="backup_restore_progress">Restoring backup</string>
+    <string name="backup_restore_error">Restoring backup failed</string>
+    <string name="backup_restore_cancel">Cancelled restore</string>
+    <string name="backup_created">Backup created</string>
+    <string name="backup_invalid_file">Invalid backup file</string>
+    <string name="backup_create_progress">Creating backup</string>
+    <string name="backup_create_error">Backup failed</string>
+    <string name="backup_restore_completed">Restore completed</string>
+
+
 
 </resources>

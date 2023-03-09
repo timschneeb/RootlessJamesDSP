@@ -173,11 +173,12 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.recyclerview:recyclerview:1.3.0-rc01")
     implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
-    implementation("androidx.navigation:navigation-fragment:2.5.3")
     implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
     implementation("androidx.preference:preference-ktx:1.2.0")
-    implementation("androidx.preference:preference:1.2.0")
     implementation("androidx.databinding:databinding-runtime:7.4.2")
+    implementation("androidx.work:work-runtime-ktx:2.8.0")
+
+    // Material
     implementation("com.google.android.material:material:1.9.0-alpha02")
 
     // Dependency injection
@@ -216,6 +217,9 @@ dependencies {
     // Shizuku
     implementation("dev.rikka.shizuku:api:${AndroidConfig.shizukuVersion}")
     implementation("dev.rikka.shizuku:provider:${AndroidConfig.shizukuVersion}")
+
+    // Used for backup feature; check if this can be removed later
+    implementation("com.github.tachiyomiorg:unifile:17bec43")
 
     // Root APIs
     "rootImplementation"("com.github.topjohnwu.libsu:core:5.0.4")

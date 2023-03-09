@@ -103,6 +103,8 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
             dumpFile.delete()
         }
 
+        Notifications.createChannels(this)
+
         val appModule = module {
             single { DumpManager(androidContext()) }
             single { UpdateManager(androidContext()) }

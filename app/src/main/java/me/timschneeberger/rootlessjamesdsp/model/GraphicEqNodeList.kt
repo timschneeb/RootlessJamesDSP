@@ -52,7 +52,7 @@ class GraphicEqNodeList : ObservableArrayList<GraphicEqNode>() {
 
         val freq = bundle.getDoubleArray(STATE_FREQ) ?: return
         val gain = bundle.getDoubleArray(STATE_GAIN) ?: return
-        val uuids = bundle.getSerializableAs(STATE_UUID, Array<UUID>::class.java)
+        val uuids = bundle.getSerializableAs<Array<UUID>>(STATE_UUID)
 
         val count = Integer.min(freq.size, gain.size)
         for (i in 0 until count) {

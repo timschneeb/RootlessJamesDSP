@@ -15,6 +15,7 @@ import androidx.lifecycle.asLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
+import me.timschneeberger.rootlessjamesdsp.Notifications
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspLocalEngine
 import me.timschneeberger.rootlessjamesdsp.interop.ProcessorMessageHandler
@@ -34,13 +35,6 @@ import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SAMPLE_RATE_UP
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_HARD_REBOOT_CORE
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_RELOAD_LIVEPROG
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_SOFT_REBOOT_CORE
-import me.timschneeberger.rootlessjamesdsp.utils.Constants.CHANNEL_ID_APP_INCOMPATIBILITY
-import me.timschneeberger.rootlessjamesdsp.utils.Constants.CHANNEL_ID_SERVICE
-import me.timschneeberger.rootlessjamesdsp.utils.Constants.CHANNEL_ID_SESSION_LOSS
-import me.timschneeberger.rootlessjamesdsp.utils.Constants.NOTIFICATION_ID_APP_INCOMPATIBILITY
-import me.timschneeberger.rootlessjamesdsp.utils.Constants.NOTIFICATION_ID_PERMISSION_PROMPT
-import me.timschneeberger.rootlessjamesdsp.utils.Constants.NOTIFICATION_ID_SERVICE
-import me.timschneeberger.rootlessjamesdsp.utils.Constants.NOTIFICATION_ID_SESSION_LOSS
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
@@ -139,34 +133,14 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         // Setup database observer
         blockedApps.observeForever(blockedAppObserver)
 
-        // Register notification channels
-        val channel = NotificationChannel(
-            CHANNEL_ID_SERVICE,
-            getString(R.string.notification_channel_service),
-            NotificationManager.IMPORTANCE_NONE
-        )
-        val channelSessionLoss = NotificationChannel(
-            CHANNEL_ID_SESSION_LOSS,
-            getString(R.string.notification_channel_session_loss_alert),
-            NotificationManager.IMPORTANCE_HIGH
-        )
-        val channelAppCompatIssue = NotificationChannel(
-            CHANNEL_ID_APP_INCOMPATIBILITY,
-            getString(R.string.notification_channel_app_compat_alert),
-            NotificationManager.IMPORTANCE_HIGH
-        )
-
-        notificationManager.createNotificationChannel(channel)
-        notificationManager.createNotificationChannel(channelSessionLoss)
-        notificationManager.createNotificationChannel(channelAppCompatIssue)
-        notificationManager.cancel(NOTIFICATION_ID_PERMISSION_PROMPT)
+        notificationManager.cancel(Notifications.ID_SERVICE_STARTUP)
 
         // No need to recreate in this stage
         recreateRecorderRequested = false
 
         // Launch foreground service
         startForeground(
-            NOTIFICATION_ID_SERVICE,
+            Notifications.ID_SERVICE_STATUS,
             ServiceNotificationHelper.createServiceNotification(this, arrayOf()),
             ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION
         )
@@ -196,8 +170,8 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         }
 
         // Cancel outdated notifications
-        notificationManager.cancel(NOTIFICATION_ID_SESSION_LOSS)
-        notificationManager.cancel(NOTIFICATION_ID_APP_INCOMPATIBILITY)
+        notificationManager.cancel(Notifications.ID_SERVICE_SESSION_LOSS)
+        notificationManager.cancel(Notifications.ID_SERVICE_APPCOMPAT)
 
         // Setup media projection
         mediaProjectionStartIntent = intent.extras?.getParcelableAs(EXTRA_MEDIA_PROJECTION_DATA)
@@ -254,7 +228,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         sessionManager.destroy()
 
         preferences.unregisterOnSharedPreferenceChangeListener(preferencesListener)
-        notificationManager.cancel(NOTIFICATION_ID_SERVICE)
+        notificationManager.cancel(Notifications.ID_SERVICE_STATUS)
 
         stopSelf()
         super.onDestroy()
@@ -285,7 +259,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
 
             this@RootlessAudioProcessorService.toast(getString(R.string.capture_permission_revoked_toast))
 
-            notificationManager.cancel(NOTIFICATION_ID_SERVICE)
+            notificationManager.cancel(Notifications.ID_SERVICE_STATUS)
             stopSelf()
         }
     }
@@ -323,7 +297,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
                 }
 
                 // Request users attention
-                notificationManager.cancel(NOTIFICATION_ID_SERVICE)
+                notificationManager.cancel(Notifications.ID_SERVICE_STATUS)
                 ServiceNotificationHelper.pushSessionLossNotification(this@RootlessAudioProcessorService, mediaProjectionStartIntent)
                 this@RootlessAudioProcessorService.toast(getString(R.string.session_control_loss_toast), false)
                 Timber.w("Terminating service due to session loss")
@@ -351,7 +325,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
             // Push notification if enabled
             if(!preferences.get<Boolean>(R.string.key_session_app_problem_ignore)) {
                 // Request users attention
-                notificationManager.cancel(NOTIFICATION_ID_SERVICE)
+                notificationManager.cancel(Notifications.ID_SERVICE_STATUS)
 
                 // Determine if we should redirect instantly, or push a non-intrusive notification
                 if(preferencesVar.get<Boolean>(R.string.key_is_activity_active) ||
@@ -364,7 +338,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
                             directLaunch = true
                         )
                     )
-                    notificationManager.cancel(NOTIFICATION_ID_APP_INCOMPATIBILITY)
+                    notificationManager.cancel(Notifications.ID_SERVICE_APPCOMPAT)
                 }
                 else
                     ServiceNotificationHelper.pushAppIssueNotification(this@RootlessAudioProcessorService, mediaProjectionStartIntent, uid)
@@ -609,6 +583,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
             .build()
     }
 
+    @SuppressLint("MissingPermission")
     private fun buildAudioRecord(encoding: Int, sampleRate: Int, bufferSizeBytes: Int): AudioRecord {
         if (!hasRecordPermission()) {
             Timber.e("buildAudioRecord: RECORD_AUDIO not granted")

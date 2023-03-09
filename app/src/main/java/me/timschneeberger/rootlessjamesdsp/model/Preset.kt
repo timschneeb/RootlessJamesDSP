@@ -7,21 +7,15 @@ import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.liveprog.EelParser
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.Tar
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
-import org.kamranzafar.jtar.TarEntry
-import org.kamranzafar.jtar.TarInputStream
-import org.kamranzafar.jtar.TarOutputStream
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.xml.sax.SAXException
 import timber.log.Timber
-import java.io.BufferedInputStream
-import java.io.BufferedOutputStream
-import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileInputStream
-import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InputStream
 import javax.xml.parsers.DocumentBuilderFactory
@@ -41,7 +35,7 @@ class Preset(val name: String): KoinComponent {
     }
 
     fun validate(): Boolean {
-        return Companion.validate(FileInputStream(file()))
+        return validate(FileInputStream(file()))
     }
 
     fun load(): PresetMetadata? {
@@ -68,60 +62,35 @@ class Preset(val name: String): KoinComponent {
 
         Timber.d("Saving preset $name to ${targetFile.path}")
 
+
         // Create a TarOutputStream
         try {
-            TarOutputStream(BufferedOutputStream(FileOutputStream(targetFile))).use { out ->
-                fun addFile(file: File) {
-                    if (!file.exists() || file.isDirectory) {
-                        Timber.e("addFile: ${file.absolutePath} is not valid")
-                        return
-                    }
-
-                    out.putNextEntry(TarEntry(file, file.name))
-                    BufferedInputStream(FileInputStream(file)).use { origin ->
-                        var count: Int
-                        val data = ByteArray(2048)
-                        while (origin.read(data).also { count = it } != -1) {
-                            out.write(data, 0, count)
-                        }
-                        out.flush()
-                    }
-                }
-
-                currentPath(ctx)
-                    .listFiles()
-                    ?.filter { it.name.startsWith("dsp_") }
-                    ?.filter { it.extension == "xml" }
-                    ?.forEach(::addFile)
-
-                val metadata = mutableMapOf(
+            Tar.Composer(targetFile).use { c ->
+                c.metadata = mutableMapOf(
                     META_VERSION to "2",
                     META_APP_VERSION to BuildConfig.VERSION_NAME,
                     META_APP_FLAVOR to BuildConfig.FLAVOR,
                     META_LIVEPROG_INCLUDED to false.toString()
                 )
 
-                val liveprogPath = findLiveprogScriptPath(ctx)
-                if (liveprogPath != null) {
-                    val liveprogFile = File(liveprogPath)
-                    if (liveprogFile.exists()) {
-                        Timber.d("Saving included liveprog script state from '$liveprogPath'")
+                currentPath(ctx)
+                    .listFiles()
+                    ?.filter { it.name.startsWith("dsp_") }
+                    ?.filter { it.extension == "xml" }
+                    ?.forEach(c::add)
 
-                        metadata[META_LIVEPROG_INCLUDED] = true.toString()
+                findLiveprogScriptPath(ctx)?.let { path ->
+                    val liveprogFile = File(path)
+                    if (liveprogFile.exists()) {
+                        Timber.d("Saving included liveprog script state from '$path'")
+
+                        c.metadata[META_LIVEPROG_INCLUDED] = true.toString()
                         File(ctx.cacheDir, FILE_LIVEPROG).let {
                             liveprogFile.copyTo(it, overwrite = true)
-                            addFile(it)
+                            c.add(it)
                         }
                     }
                 }
-
-                val metadataFile = File(ctx.cacheDir, FILE_METADATA)
-                metadataFile.writeText(
-                    metadata
-                        .map { "${it.key}=${it.value}" }
-                        .joinToString("\n")
-                )
-                addFile(metadataFile)
             }
         }
         catch (ex: ErrnoException) {
@@ -138,7 +107,6 @@ class Preset(val name: String): KoinComponent {
     }
 
     companion object {
-        const val FILE_METADATA = "metadata"
         const val FILE_LIVEPROG = "liveprog"
 
         const val META_VERSION = "version"
@@ -147,94 +115,16 @@ class Preset(val name: String): KoinComponent {
         const val META_LIVEPROG_INCLUDED = "liveprog_included" /* version 2+ */
 
         private fun currentPath(ctx: Context) = File(ctx.applicationInfo.dataDir + "/shared_prefs")
-        private fun isExtractableEntry(n: String) = (n.startsWith("dsp_") && n.endsWith("xml")) || n == FILE_LIVEPROG
-        private fun isKnownEntry(n: String) = isExtractableEntry(n) || n == FILE_METADATA
+        private fun isKnownEntry(n: String) = (n.startsWith("dsp_") && n.endsWith("xml")) || n == FILE_LIVEPROG
 
-        fun validate(stream: InputStream): Boolean {
-            Timber.d("Validating preset")
-
-            var knownCount = 0
-            try {
-                TarInputStream(BufferedInputStream(stream)).use { tis ->
-                    var entry: TarEntry?
-                    while (tis.nextEntry.also { entry = it } != null) {
-                        val entryName = entry?.name
-                        entryName ?: break
-
-                        if (!isKnownEntry(entryName)) {
-                            Timber.w("Unknown entry name: $entryName")
-                            continue
-                        }
-
-                        knownCount++
-                    }
-                }
-            }
-            catch(ex: IOException) {
-                Timber.e("Preset validation failed.")
-                Timber.w(ex)
-                return false
-            }
-
-            if (knownCount < 1) {
-                Timber.e("Preset archive did not contain any useful data")
-                return false
-            }
-
-            return true
-        }
+        fun validate(inputStream: InputStream) = Tar.Reader(inputStream, ::isKnownEntry).validate()
 
         fun load(ctx: Context, stream: InputStream): PresetMetadata? {
             Timber.d("Loading preset from stream")
 
             val targetFolder = File(ctx.cacheDir, "preset")
-            if(targetFolder.exists())
-                targetFolder.delete()
-            targetFolder.mkdir()
-
-            val metadataBytes = ByteArrayOutputStream()
-            try {
-                TarInputStream(BufferedInputStream(stream)).use { tis ->
-                    var entry: TarEntry?
-                    while (tis.nextEntry.also { entry = it } != null) {
-                        val entryName = entry?.name
-                        entryName ?: break
-
-                        if (!isKnownEntry(entryName)) {
-                            Timber.w("Unknown entry name: $entryName")
-                            continue
-                        }
-
-                        var count: Int
-                        val data = ByteArray(2048)
-                        BufferedOutputStream(FileOutputStream(
-                            targetFolder.absolutePath + "/" + entryName
-                        )).use { dest ->
-                            while (tis.read(data).also { count = it } != -1) {
-                                if (entryName == FILE_METADATA)
-                                    metadataBytes.write(data, 0, count)
-                                else
-                                    dest.write(data, 0, count)
-                            }
-                            dest.flush()
-                        }
-                    }
-                    metadataBytes.flush()
-                }
-            }
-            catch(ex: IOException) {
-                Timber.e("Preset extraction failed.")
-                Timber.w(ex)
-                return null
-            }
-
-            val metadata = mutableMapOf<String, String>()
-            metadataBytes.toString().lines().forEach {
-                val args = it.split("=")
-                if(args.size < 2)
-                    return@forEach
-                metadata[args[0]] = args[1].trim()
-            }
+            val metadata = Tar.Reader(stream, ::isKnownEntry).extract(targetFolder)
+            metadata ?: return null
 
             val version = metadata[META_VERSION]?.toIntOrNull() ?: 2
             Timber.d("Loaded preset file version $version")
@@ -246,12 +136,12 @@ class Preset(val name: String): KoinComponent {
             }
 
             files.forEach next@ { f ->
-                if(!isExtractableEntry(f.name))
+                if(!isKnownEntry(f.name))
                     return@next
 
                 val target = File(currentPath(ctx), f.name)
                 f.copyTo(target, overwrite = true)
-                Timber.d("Extracting to ${target.absolutePath}")
+                Timber.d("Copying to ${target.absolutePath}")
             }
 
             if (files.any { it.name == FILE_LIVEPROG }) {
@@ -280,6 +170,9 @@ class Preset(val name: String): KoinComponent {
                     }
                 }
             }
+
+            // clean up
+            targetFolder.deleteRecursively()
 
             ctx.sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
             ctx.sendLocalBroadcast(Intent(Constants.ACTION_PRESET_LOADED))

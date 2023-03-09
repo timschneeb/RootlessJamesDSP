@@ -1,18 +1,13 @@
 package me.timschneeberger.rootlessjamesdsp.receiver
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
-import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import me.timschneeberger.rootlessjamesdsp.utils.ServiceNotificationHelper
-import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
@@ -27,18 +22,6 @@ class BootCompletedReceiver : BroadcastReceiver(), KoinComponent {
         if(BuildConfig.ROOTLESS) {
             if (!preferences.get<Boolean>(R.string.key_autostart_prompt_at_boot))
                 return
-
-            val notificationManager = SystemServices.get<NotificationManager>(context)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                val channel = NotificationChannel(
-                    Constants.CHANNEL_ID_PERMISSION_PROMPT,
-                    context.getString(R.string.notification_channel_permission_prompt),
-                    NotificationManager.IMPORTANCE_LOW
-                )
-                channel.enableVibration(false)
-                channel.enableLights(false)
-                notificationManager.createNotificationChannel(channel)
-            }
 
             ServiceNotificationHelper.pushPermissionPromptNotification(context)
         }

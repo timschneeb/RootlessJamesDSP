@@ -10,6 +10,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.graphics.drawable.IconCompat
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
+import me.timschneeberger.rootlessjamesdsp.Notifications
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.activity.AppCompatibilityActivity
 import me.timschneeberger.rootlessjamesdsp.activity.EngineLauncherActivity
@@ -26,7 +27,7 @@ object ServiceNotificationHelper: KoinComponent {
     private val preferences: Preferences.App by inject()
 
     fun pushPermissionPromptNotification(context: Context) {
-        NotificationCompat.Builder(context, Constants.CHANNEL_ID_PERMISSION_PROMPT)
+        NotificationCompat.Builder(context, Notifications.CHANNEL_SERVICE_STARTUP)
             .setContentTitle(context.getString(R.string.notification_request_permission_title))
             .setContentText(context.getString(R.string.notification_request_permission))
             .setSmallIcon(R.drawable.ic_tune_vertical_variant_24dp)
@@ -43,18 +44,18 @@ object ServiceNotificationHelper: KoinComponent {
             .build()
             .let {
                 SystemServices.get<NotificationManager>(context)
-                    .notify(Constants.NOTIFICATION_ID_PERMISSION_PROMPT, it)
+                    .notify(Notifications.ID_SERVICE_STARTUP, it)
             }
     }
 
     fun pushServiceNotification(context: Context, sessions: Array<IEffectSession>) {
         SystemServices.get<NotificationManager>(context)
-            .notify(Constants.NOTIFICATION_ID_SERVICE, createServiceNotification(context, sessions))
+            .notify(Notifications.ID_SERVICE_STATUS, createServiceNotification(context, sessions))
     }
 
     fun pushServiceNotificationLegacy(context: Context) {
         SystemServices.get<NotificationManager>(context)
-            .notify(Constants.NOTIFICATION_ID_SERVICE, createServiceNotificationLegacy(context))
+            .notify(Notifications.ID_SERVICE_STATUS, createServiceNotificationLegacy(context))
     }
 
     fun createServiceNotificationLegacy(context: Context): Notification {
@@ -96,7 +97,7 @@ object ServiceNotificationHelper: KoinComponent {
     }
 
     private fun createServiceNotification(context: Context, title: String, message: String): Notification {
-        return NotificationCompat.Builder(context, Constants.CHANNEL_ID_SERVICE)
+        return NotificationCompat.Builder(context, Notifications.CHANNEL_SERVICE_STATUS)
             .setShowWhen(false)
             .setOnlyAlertOnce(true)
             .setCategory(Notification.CATEGORY_SERVICE)
@@ -122,7 +123,7 @@ object ServiceNotificationHelper: KoinComponent {
     }
 
     fun pushSessionLossNotification(context: Context, mediaProjectionStartIntent: Intent?) {
-        NotificationCompat.Builder(context, Constants.CHANNEL_ID_SESSION_LOSS)
+        NotificationCompat.Builder(context, Notifications.CHANNEL_SERVICE_SESSION_LOSS)
             .setContentTitle(context.getString(R.string.session_control_loss_notification_title))
             .setContentText(context.getString(R.string.session_control_loss_notification))
             .setSmallIcon(R.drawable.ic_baseline_warning_24dp)
@@ -141,13 +142,13 @@ object ServiceNotificationHelper: KoinComponent {
             .build()
             .let {
                 SystemServices.get<NotificationManager>(context)
-                    .notify(Constants.NOTIFICATION_ID_SESSION_LOSS, it)
+                    .notify(Notifications.ID_SERVICE_SESSION_LOSS, it)
             }
     }
 
     @RequiresApi(Build.VERSION_CODES.Q)
     fun pushAppIssueNotification(context: Context, mediaProjectionStartIntent: Intent?, appUid: Int) {
-        NotificationCompat.Builder(context, Constants.CHANNEL_ID_APP_INCOMPATIBILITY)
+        NotificationCompat.Builder(context, Notifications.CHANNEL_SERVICE_APP_COMPAT)
             .setContentTitle(context.getString(R.string.session_app_compat_notification_title))
             .setContentText(context.getString(R.string.session_app_compat_notification))
             .setSmallIcon(R.drawable.ic_baseline_warning_24dp)
@@ -164,7 +165,7 @@ object ServiceNotificationHelper: KoinComponent {
             .build()
             .let {
                 SystemServices.get<NotificationManager>(context)
-                    .notify(Constants.NOTIFICATION_ID_APP_INCOMPATIBILITY, it)
+                    .notify(Notifications.ID_SERVICE_APPCOMPAT, it)
             }
     }
 

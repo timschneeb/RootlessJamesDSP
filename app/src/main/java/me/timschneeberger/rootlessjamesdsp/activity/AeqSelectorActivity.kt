@@ -75,7 +75,7 @@ class AeqSelectorActivity : BaseActivity() {
         )
 
         val initialResults = savedInstanceState
-            ?.getSerializableAs(STATE_RESULTS, Array<AeqSearchResult>::class.java)
+            ?.getSerializableAs<Array<AeqSearchResult>>(STATE_RESULTS)
             ?: arrayOf()
 
         val isLoadingOld = savedInstanceState?.getBoolean(STATE_IS_LOADING, false) ?: false

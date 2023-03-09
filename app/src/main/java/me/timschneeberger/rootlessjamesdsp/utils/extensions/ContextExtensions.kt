@@ -1,6 +1,7 @@
 package me.timschneeberger.rootlessjamesdsp.utils.extensions
 
 import android.annotation.SuppressLint
+import android.app.ActivityManager
 import android.content.*
 import android.content.pm.PackageManager
 import android.content.res.Resources
@@ -36,6 +37,7 @@ import me.timschneeberger.rootlessjamesdsp.databinding.DialogTextinputBinding
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getApplicationInfoCompat
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getPackageInfoCompat
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.requestIgnoreBatteryOptimizations
 import timber.log.Timber
 import java.io.File
 import kotlin.math.roundToInt
@@ -96,6 +98,13 @@ object ContextExtensions {
         }
     }
 
+    fun Context.isServiceRunning(serviceClass: Class<*>): Boolean {
+        @Suppress("DEPRECATION")
+        return SystemServices.get<ActivityManager>(this)
+            .getRunningServices(Integer.MAX_VALUE)
+            .any { serviceClass.name == it.service.className }
+    }
+
     fun Context.isPackageInstalled(packageName: String): Boolean {
         return try {
             packageManager.getPackageInfoCompat(packageName, 0)
@@ -121,6 +130,16 @@ object ContextExtensions {
             false
         }
     }
+
+    /**
+     * Convenience method to acquire a partial wake lock.
+     */
+    fun Context.acquireWakeLock(tag: String): PowerManager.WakeLock {
+        return SystemServices.get<PowerManager>(this)
+            .newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "$tag:WakeLock")
+            .apply { acquire(10*60*1000L /*10 minutes*/) }
+    }
+
 
     @SuppressLint("BatteryLife")
     fun Context.requestIgnoreBatteryOptimizations() {
