@@ -4,6 +4,7 @@ import android.os.Build
 import android.text.Html
 import android.text.Spanned
 import com.google.android.material.color.DynamicColors
+import me.timschneeberger.rootlessjamesdsp.utils.SdkCheck
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.security.MessageDigest
@@ -53,6 +54,5 @@ private val isSamsung by lazy {
 }
 
 val isDynamicColorAvailable by lazy {
-    DynamicColors.isDynamicColorAvailable() ||
-            (isSamsung && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
+    DynamicColors.isDynamicColorAvailable() || (isSamsung && SdkCheck.isSnowCake)
 }
