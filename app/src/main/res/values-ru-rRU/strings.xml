@@ -187,7 +187,7 @@
     <string name="onboarding_adb_shizuku_no_dump_perm_title">Shizuku не удалось предоставить разрешения ADB</string>
     <string name="onboarding_adb_shizuku_no_dump_perm">Пожалуйста, подождите несколько секунд и попробуйте ещё раз. Если это не сработает, попробуйте альтернативный метод.</string>
     <string name="onboarding_adb_dump_not_granted_title">Разрешение не предоставлено</string>
-    <string name="onboarding_adb_dump_not_granted">Пожалуйста, сначала выполните инструкции, а затем попробуйте еще раз. Доступ к ADB еще не настроен.</string>
+    <string name="onboarding_adb_dump_not_granted">Пожалуйста, сначала выполните все шаги инструкции и затем повторите попытку. Доступ к ADB ещё не настроен.</string>
     <string name="onboarding_adb_manual_step1">Перейдите в скрытые настройки Android «Для разработчиков» и включите параметр «Отладка по USB». Для разблокировки этих настроек необходимо несколько раз нажать на номер сборки в настройках системы.</string>
     <string name="onboarding_adb_manual_step2">Перейдите на сайт https://app.webadb.com в браузере вашего компьютера (рекомендуется использовать Google Chrome) и подключите ваше устройство к компьютеру с помощью USB-кабеля.</string>
     <string name="onboarding_adb_manual_step3">Добавьте и подключите USB-устройство в WebADB.</string>
