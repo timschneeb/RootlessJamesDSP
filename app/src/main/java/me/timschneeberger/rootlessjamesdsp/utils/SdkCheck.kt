@@ -23,23 +23,15 @@ object SdkCheck {
     val isTiramisu: Boolean
         get() = sdk >= Build.VERSION_CODES.TIRAMISU
 
-    @get:ChecksSdkIntAtLeast(api = Build.VERSION_CODES.R)
-    val isR: Boolean
-        get() = sdk >= Build.VERSION_CODES.R
+    @get:ChecksSdkIntAtLeast(api = Build.VERSION_CODES.Q)
+    val isQ: Boolean
+        get() = sdk >= Build.VERSION_CODES.Q
 
     @get:ChecksSdkIntAtLeast(api = Build.VERSION_CODES.P)
     val isPie: Boolean
         get() = sdk >= Build.VERSION_CODES.P
 
-    @get:ChecksSdkIntAtLeast(api = Build.VERSION_CODES.O)
-    val isOreo: Boolean
-        get() = sdk >= Build.VERSION_CODES.O
-
     @get:ChecksSdkIntAtLeast(api = Build.VERSION_CODES.S)
     val isSnowCake: Boolean
         get() = sdk >= Build.VERSION_CODES.S
-
-    @get:ChecksSdkIntAtLeast(api = Build.VERSION_CODES.N)
-    val isNougat: Boolean
-        get() = sdk >= Build.VERSION_CODES.N
 }

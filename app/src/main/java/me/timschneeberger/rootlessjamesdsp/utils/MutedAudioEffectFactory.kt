@@ -3,7 +3,6 @@ package me.timschneeberger.rootlessjamesdsp.utils
 import android.media.audiofx.AudioEffect
 import android.media.audiofx.AudioEffectHidden
 import android.media.audiofx.DynamicsProcessing
-import android.os.Build
 import android.os.Build.VERSION_CODES
 import dev.rikka.tools.refine.Refine
 import timber.log.Timber

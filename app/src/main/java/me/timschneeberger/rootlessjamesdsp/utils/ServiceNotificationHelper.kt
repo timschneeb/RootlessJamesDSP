@@ -5,7 +5,6 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.graphics.drawable.Icon
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
@@ -27,32 +26,35 @@ object ServiceNotificationHelper: KoinComponent {
     private val preferences: Preferences.App by inject()
 
     fun pushPermissionPromptNotification(context: Context) {
-        val intent = Intent(context, EngineLauncherActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-        val contentIntent =
-            PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
-
-        val notification = NotificationCompat.Builder(context, Constants.CHANNEL_ID_PERMISSION_PROMPT)
+        NotificationCompat.Builder(context, Constants.CHANNEL_ID_PERMISSION_PROMPT)
             .setContentTitle(context.getString(R.string.notification_request_permission_title))
             .setContentText(context.getString(R.string.notification_request_permission))
             .setSmallIcon(R.drawable.ic_tune_vertical_variant_24dp)
-            .setContentIntent(contentIntent)
+            .setContentIntent(
+                PendingIntent.getActivity(
+                    context,
+                    0,
+                    Intent(context, EngineLauncherActivity::class.java).apply {
+                        addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    },
+                    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+                )
+            )
             .build()
-
-        SystemServices.get<NotificationManager>(context)
-            .notify(Constants.NOTIFICATION_ID_PERMISSION_PROMPT, notification)
+            .let {
+                SystemServices.get<NotificationManager>(context)
+                    .notify(Constants.NOTIFICATION_ID_PERMISSION_PROMPT, it)
+            }
     }
 
     fun pushServiceNotification(context: Context, sessions: Array<IEffectSession>) {
-        val notification = createServiceNotification(context, sessions)
         SystemServices.get<NotificationManager>(context)
-            .notify(Constants.NOTIFICATION_ID_SERVICE, notification)
+            .notify(Constants.NOTIFICATION_ID_SERVICE, createServiceNotification(context, sessions))
     }
 
     fun pushServiceNotificationLegacy(context: Context) {
-        val notification = createServiceNotificationLegacy(context)
         SystemServices.get<NotificationManager>(context)
-            .notify(Constants.NOTIFICATION_ID_SERVICE, notification)
+            .notify(Constants.NOTIFICATION_ID_SERVICE, createServiceNotificationLegacy(context))
     }
 
     fun createServiceNotificationLegacy(context: Context): Notification {
@@ -94,117 +96,135 @@ object ServiceNotificationHelper: KoinComponent {
     }
 
     private fun createServiceNotification(context: Context, title: String, message: String): Notification {
-        val intent = Intent(context, MainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-
-        val contentIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
-
-        val builder = NotificationCompat.Builder(context, Constants.CHANNEL_ID_SERVICE)
+        return NotificationCompat.Builder(context, Constants.CHANNEL_ID_SERVICE)
             .setShowWhen(false)
             .setOnlyAlertOnce(true)
             .setCategory(Notification.CATEGORY_SERVICE)
             .setContentTitle(title)
             .setContentText(message)
             .setSmallIcon(R.drawable.ic_tune_vertical_variant_24dp)
-            .setContentIntent(contentIntent)
+            .setContentIntent(
+                PendingIntent.getActivity(
+                    context,
+                    0,
+                    Intent(context, MainActivity::class.java).apply {
+                        addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    },
+                    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+                )
+            )
             .setOngoing(true)
-
-        if(BuildConfig.ROOTLESS)
-            builder.addAction(createStopAction(context))
-
-        return builder.build()
+            .apply {
+                if(BuildConfig.ROOTLESS)
+                    addAction(createStopAction(context))
+            }
+            .build()
     }
 
-
     fun pushSessionLossNotification(context: Context, mediaProjectionStartIntent: Intent?) {
-        val intent = Intent(context, MainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-
-        val contentIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
-        val notification = NotificationCompat.Builder(context, Constants.CHANNEL_ID_SESSION_LOSS)
+        NotificationCompat.Builder(context, Constants.CHANNEL_ID_SESSION_LOSS)
             .setContentTitle(context.getString(R.string.session_control_loss_notification_title))
             .setContentText(context.getString(R.string.session_control_loss_notification))
             .setSmallIcon(R.drawable.ic_baseline_warning_24dp)
             .addAction(createRetryAction(context, mediaProjectionStartIntent))
             .setAutoCancel(true)
-            .setContentIntent(contentIntent)
+            .setContentIntent(
+                PendingIntent.getActivity(
+                    context,
+                    0,
+                    Intent(context, MainActivity::class.java).apply {
+                        addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    },
+                    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+                )
+            )
             .build()
-
-        SystemServices.get<NotificationManager>(context)
-            .notify(Constants.NOTIFICATION_ID_SESSION_LOSS, notification)
+            .let {
+                SystemServices.get<NotificationManager>(context)
+                    .notify(Constants.NOTIFICATION_ID_SESSION_LOSS, it)
+            }
     }
 
     @RequiresApi(Build.VERSION_CODES.Q)
     fun pushAppIssueNotification(context: Context, mediaProjectionStartIntent: Intent?, appUid: Int) {
-        val intent = createAppTroubleshootIntent(context, mediaProjectionStartIntent, appUid, directLaunch = false)
-        val contentIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
-        val notification = NotificationCompat.Builder(context, Constants.CHANNEL_ID_APP_INCOMPATIBILITY)
+        NotificationCompat.Builder(context, Constants.CHANNEL_ID_APP_INCOMPATIBILITY)
             .setContentTitle(context.getString(R.string.session_app_compat_notification_title))
             .setContentText(context.getString(R.string.session_app_compat_notification))
             .setSmallIcon(R.drawable.ic_baseline_warning_24dp)
             .addAction(createAppTroubleshootAction(context, mediaProjectionStartIntent, appUid))
             .setAutoCancel(true)
-            .setContentIntent(contentIntent)
+            .setContentIntent(
+                PendingIntent.getActivity(
+                    context,
+                    0,
+                    createAppTroubleshootIntent(context, mediaProjectionStartIntent, appUid, directLaunch = false),
+                    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+                )
+            )
             .build()
-
-        SystemServices.get<NotificationManager>(context)
-            .notify(Constants.NOTIFICATION_ID_APP_INCOMPATIBILITY, notification)
+            .let {
+                SystemServices.get<NotificationManager>(context)
+                    .notify(Constants.NOTIFICATION_ID_APP_INCOMPATIBILITY, it)
+            }
     }
 
     private fun createStopAction(context: Context): NotificationCompat.Action {
-        val stopIntent = createStopIntent(context)
-        val stopPendingIntent = PendingIntent.getService(
-            context,
-            0,
-            stopIntent,
-            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
+        return NotificationCompat.Action(
+            IconCompat.createWithResource(context, R.drawable.ic_close_24dp),
+            context.getString(R.string.action_stop),
+            PendingIntent.getService(
+                context,
+                0,
+                createStopIntent(context),
+                PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
+            )
         )
-        val stopIcon = IconCompat.createWithResource(context, R.drawable.ic_close_24dp)
-        val stopString = context.getString(R.string.action_stop)
-        return NotificationCompat.Action(stopIcon, stopString, stopPendingIntent)
     }
 
     private fun createRetryAction(context: Context, mediaProjectionStartIntent: Intent?): NotificationCompat.Action? {
         mediaProjectionStartIntent ?: return null
-        val retryIntent = createStartIntent(context, mediaProjectionStartIntent)
-        val retryPendingIntent = PendingIntent.getService(
-            context,
-            0,
-            retryIntent,
-            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
+
+        return NotificationCompat.Action(
+            IconCompat.createWithResource(context, R.drawable.ic_baseline_refresh_24dp),
+            context.getString(R.string.action_retry),
+            PendingIntent.getService(
+                context,
+                0,
+                createStartIntent(context, mediaProjectionStartIntent),
+                PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
+            )
         )
-        val retryIcon = IconCompat.createWithResource(context, R.drawable.ic_baseline_refresh_24dp)
-        val retryString = context.getString(R.string.action_retry)
-        return NotificationCompat.Action(retryIcon, retryString, retryPendingIntent)
     }
 
     @RequiresApi(Build.VERSION_CODES.Q)
     private fun createAppTroubleshootAction(context: Context, mediaProjectionStartIntent: Intent?, appUid: Int): NotificationCompat.Action? {
         mediaProjectionStartIntent ?: return null
-        val fixIntent = PendingIntent.getService(
-            context,
-            0,
-            createAppTroubleshootIntent(context, mediaProjectionStartIntent, appUid, directLaunch = false),
-            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
+
+        return NotificationCompat.Action(
+            IconCompat.createWithResource(context, R.drawable.ic_twotone_chevron_right_24dp),
+            context.getString(R.string.action_fix),
+            PendingIntent.getService(
+                context,
+                0,
+                createAppTroubleshootIntent(context, mediaProjectionStartIntent, appUid, directLaunch = false),
+                PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
+            )
         )
-        val fixIcon = IconCompat.createWithResource(context, R.drawable.ic_twotone_chevron_right_24dp)
-        val fixString = context.getString(R.string.action_fix)
-        return NotificationCompat.Action(fixIcon, fixString, fixIntent)
     }
 
     @RequiresApi(Build.VERSION_CODES.Q)
     fun createAppTroubleshootIntent(ctx: Context, mediaProjectionData: Intent?, appUid: Int, directLaunch: Boolean): Intent {
-        val intent = Intent(ctx, AppCompatibilityActivity::class.java)
-        intent.action = RootlessAudioProcessorService.ACTION_START
-        intent.putExtra(RootlessAudioProcessorService.EXTRA_MEDIA_PROJECTION_DATA, mediaProjectionData)
-        intent.putExtra(RootlessAudioProcessorService.EXTRA_APP_UID, appUid)
-        intent.putExtra(RootlessAudioProcessorService.EXTRA_APP_COMPAT_INTERNAL_CALL, directLaunch)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-        return intent
+        return Intent(ctx, AppCompatibilityActivity::class.java).apply {
+            action = RootlessAudioProcessorService.ACTION_START
+            putExtra(RootlessAudioProcessorService.EXTRA_MEDIA_PROJECTION_DATA, mediaProjectionData)
+            putExtra(RootlessAudioProcessorService.EXTRA_APP_UID, appUid)
+            putExtra(RootlessAudioProcessorService.EXTRA_APP_COMPAT_INTERNAL_CALL, directLaunch)
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
     }
 
     fun createStopIntent(ctx: Context): Intent {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && BuildConfig.ROOTLESS) {
+        return if (SdkCheck.isQ && BuildConfig.ROOTLESS) {
             with(Intent(ctx, RootlessAudioProcessorService::class.java)) {
                 action = RootlessAudioProcessorService.ACTION_STOP
                 this
@@ -215,7 +235,7 @@ object ServiceNotificationHelper: KoinComponent {
     }
 
     fun createStartIntent(ctx: Context, mediaProjectionData: Intent? = null): Intent {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && BuildConfig.ROOTLESS) {
+        return if (SdkCheck.isQ && BuildConfig.ROOTLESS) {
             with(Intent(ctx, RootlessAudioProcessorService::class.java)) {
                 action = RootlessAudioProcessorService.ACTION_START
                 putExtra(RootlessAudioProcessorService.EXTRA_MEDIA_PROJECTION_DATA, mediaProjectionData)
