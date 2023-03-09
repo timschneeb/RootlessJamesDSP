@@ -99,10 +99,10 @@
     <string name="reverb_preset_plate_low">Nízký plech</string>
     <string name="reverb_preset_long_reverb1">Dlouhý dozvuk 1</string>
     <string name="reverb_preset_long_reverb2">Dlouhý dozvuk 2</string>
-    <string name="convolver_enable">Konvoluční efekt</string>
-    <string name="convolver_impulse">Impulsní odezva</string>
+    <string name="convolver_enable">Konvolátor</string>
+    <string name="convolver_impulse">Impulzní odezva</string>
     <string name="convolver_advanced_editing">Pokročilé úpravy vlnového tvaru</string>
-    <string name="convolver_convolution_mode">Optimalizace Impulsní odezvy</string>
+    <string name="convolver_convolution_mode">Optimalizace Impulzní odezvy</string>
     <string name="convolver_convolution_mode_original">Originál</string>
     <string name="convolver_convolution_mode_shrink">Zmenšit</string>
     <string name="convolver_convolution_mode_minimum_phase_shrink">Minimální transformace fáze a zmenšení</string>
@@ -333,11 +333,16 @@
     <string name="theme_tealturquoise">Teal &amp; Tyrkysová</string>
     <string name="theme_yinyang">Yin &amp; Yang</string>
     <string name="theme_yotsuba">Yotsuba</string>
+    <string name="theme_tidalwave">Nárazové zvlnění</string>
     <!-- File library preference -->
+    <string name="action_import">Importovat</string>
+    <string name="filelibrary_hint_tap_and_hold">Stiskněte a podržte jakoukoliv položku pro více možností</string>
+    <string name="filelibrary_context_load">Načíst</string>
     <string name="filelibrary_context_edit">Upravit</string>
     <string name="filelibrary_context_overwrite">Přepsat</string>
     <string name="filelibrary_context_rename">Přejmenovat</string>
     <string name="filelibrary_context_share">Sdílet…</string>
+    <string name="filelibrary_context_resample">Offline převzorkování</string>
     <string name="filelibrary_context_duplicate">Duplikovat</string>
     <string name="filelibrary_context_delete">Odstranit</string>
     <string name="filelibrary_context_new_preset">Nová</string>
@@ -350,16 +355,59 @@
     <string name="filelibrary_no_file_selected">Žádný soubor nevybrán</string>
     <string name="filelibrary_new_file_name">Nový název souboru</string>
     <string name="filelibrary_file_exists">Soubor již existuje</string>
+    <string name="filelibrary_resample_complete">Převzorkováno do na %1$dHz</string>
+    <string name="filelibrary_resample_failed">Převzorkování selhalo. Možná poškozený vstupní soubor?</string>
+    <string name="filelibrary_preset_overwritten">Předvolba \'%1$s\' přepsána</string>
+    <string name="filelibrary_preset_created">Předvolba \'%1$s\' vytvořena</string>
+    <string name="filelibrary_preset_save_failed">Uložení předvolby se nezdařilo</string>
+    <string name="filelibrary_renamed">Přejmenováno na \'%1$s\'</string>
+    <string name="filelibrary_deleted">\'%1$s\' odstraněno</string>
+    <string name="filelibrary_preset_loaded">Předvolba \'%1$s\' načtena</string>
+    <string name="filelibrary_preset_load_failed">Soubor \'%1$s\' není kompatibilní s touto aplikací</string>
+    <string name="filelibrary_no_presets">Žádné předvolby nebyly uloženy. Klepnutím na \'Přidat\' vytvoříte nové.</string>
     <!-- JamesDSP engine messages -->
+    <string name="message_vdc_corrupt">Vybraný VDC soubor je poškozen. Vyberte prosím jiný.</string>
+    <string name="message_irs_corrupt">Vybraná impulzní odezva je poškozená. Zvolte prosím jinou.</string>
+    <string name="message_convolver_advimp_invalid">Konvulátor: Pokročilé úpravy vln obsahují neplatné hodnoty.</string>
     <string name="message_liveprog_compile_fail">Spuštění Liveprog skriptu se nezdařilo. Vybraný skript je poškozen. Prosím použijte editor skriptu pro doladění a opravu chyb.</string>
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">Magnitudová odezva</string>
+    <string name="geq_edit_as_string">Upravit jako řetězec</string>
+    <string name="geq_autoeq">AutoEQ profily</string>
     <string name="gep_add_node">Přidat</string>
+    <string name="geq_preview">Náhled</string>
+    <string name="geq_preview_collapsed">Náhled (rozbalte stisknutím)</string>
+    <string name="geq_edit_hint">Uzly GraphicEQ</string>
+    <string name="geq_reset">Resetovat</string>
+    <string name="geq_reset_confirm_title">Jste si jisti?</string>
+    <string name="geq_reset_confirm">Chcete resetovat nastavení GraphicEQ?</string>
+    <string name="geq_node_editor">Editor uzlů</string>
+    <string name="geq_node_list">Seznam uzlů</string>
+    <string name="geq_no_nodes_defined">Žádn´uzly nedefinovány</string>
     <string name="geq_delete_node">Odstranit uzel</string>
+    <string name="geq_go_back_to_node_list">Přejít zpět do seznamu uzlů</string>
     <string name="geq_next_node">Další uzel</string>
+    <string name="geq_previous_node">Předchozí uzel</string>
+    <string name="geq_done_spaced">&#160;&#160;Dokončeno&#160;</string>
+    <string name="geq_done">Dokončeno</string>
+    <string name="geq_cancel_spaced">&#160;&#160;Zahodit&#160;</string>
+    <string name="geq_cancel">Zahodit</string>
+    <string name="geq_discard_changes_title">Zahodit změny a odejít?</string>
+    <string name="geq_discard_changes">Hodnoty nejsou platné nebo jsou prázdné. Vaše změny nelze uložit.\nChcete zrušit změny a ukončit?</string>
+    <string name="geq_frequeny_range">Hodnota mezi 1Hz a 24000Hz</string>
+    <string name="geq_gain_range">Hodnota mezi -32 dB a 32 dB</string>
+    <string name="geq_gain">Zesílení</string>
+    <string name="geq_frequency">Frekvence</string>
     <!-- AutoEQ GraphicEQ selector -->
+    <string name="geq_api_network_error">Připojení k serveru selhalo. %1$s</string>
+    <string name="geq_api_network_error_details_code">Server odpověděl chybovým kódem: %1$d</string>
+    <string name="autoeq_search">Hledání AutoEQ</string>
+    <string name="autoeq_enter_model">Zadejte model vašich sluchátek…</string>
+    <string name="autoeq_partial_results_warning">Zobrazení prvních %1$d výsledků. Dolaďte prosím své hledání pro získání relevantnějších výsledků.</string>
+    <string name="autoeq_no_results">Nenalezeny žádné výsledky</string>
     <!-- Customizable liveprog script parameters -->
     <string name="title_activity_liveprog_params">Přizpůsobitelné parametry skriptu</string>
+    <string name="action_restore_defaults">Obnovit výchozí</string>
     <!-- Liveprog script editor -->
     <string name="title_activity_liveprog_editor">Editor skriptu</string>
     <string name="editor_find_and_replace">Najít/nahradit…</string>
@@ -397,18 +445,61 @@
     <string name="app_compat_title">Zpracování zvuku bylo pozastaveno, aby se zabránilo duplicitnímu zvuku</string>
     <string name="app_compat_explanation">Následující aplikace není podporována, protože způsobuje RootlessJamesDSP ztrátu kontroly nad směrováním zvuku:</string>
     <string name="app_compat_instruction">Prosím zkontrolujte nastavení aplikace, jestli nemůžete zakázat HW akceleraci nebo jiná nastavení, která by mohla narušit chod RootlessJamesDSP a klepněte na \'Zkusit znovu\'.</string>
+    <string name="app_compat_instruction_exclude">Případně zvolte „Vyloučit“ pro obejití tohoto problému vyloučením nekompatibilní aplikace ze zpracování zvuku.</string>
+    <string name="app_compat_unknown_pkg_name">Neznámý název balíčku</string>
     <!-- Hints for compatibility issues for individual apps -->
+    <string name="app_compat_quirk_voice_search">Je známo, že tento problém způsobuje hlasové vyhledávání a rozpoznávání hlasu v této aplikaci. Pokud problém přetrvává, pokuste se vyhnout používání těchto funkcí a zrušte oprávnění mikrofonu pro problematické aplikace.</string>
     <!-- Root: Library load failure -->
+    <string name="load_fail_header">Magisk modul není nainstalován</string>
+    <string name="load_fail_card_title">Nepodařilo se načíst libjamesdsp.so</string>
+    <string name="load_fail_card">Nainstalujte prosím magisk modul JamesDSP a restartujte zařízení Android, abyste mohli používat tuto aplikaci. Tuto aplikaci možná budete muset po restartování přeinstalovat.</string>
+    <string name="load_fail_rootless_card_title">Hledáte alternativu bez potřeby rootu?</string>
+    <string name="load_fail_rootless_card">Tato verze JamesDSP byla určena k použití s rootem/modifikovaným zařízením. K dispozici je také alternativa bez nutnosti rootu, ale s nějakými omezeními. Klepnutím sem zobrazíte podrobnosti.</string>
+    <string name="load_fail_arch_card_title">Modul je již nainstalován?</string>
+    <string name="load_fail_arch_card">Pokud jste již nainstalovali modul magisk, je možné, že jste při instalaci zvolili nesprávné nastavení. Znovu jej nainstalujte a zkuste povolit kompatibilitu s Huawei (i když váš telefon není od tohoto výrobce).</string>
     <!-- Enhanced processing -->
+    <string name="enhanced_processing_feature_unavailable">Funkce není k dispozici</string>
+    <string name="enhanced_processing_feature_unavailable_content">Tato funkce je dostupná pouze v případě, že je v nastavení povoleno „vylepšené zpracování“. Přejděte do „Nastavení &gt; zpracování zvuku &gt; Vylepšené zpracování“ a povolte tuto možnost pro přístup k tomuto menu.\n\nPoznámka: „Rozšířené zpracování“ nelze použít, když je povolen režim kompatability.</string>
     <string name="enhanced_processing_missing_perm">Rozšířené zpracování bylo vypnuto z důvodu chybějícího oprávnění. Prosím nastavte jej znovu v nastavení.</string>
     <!-- App list -->
+    <string name="app_list_loading">Načítání aplikací…</string>
     <string name="app_list_search">Hledat</string>
+    <string name="app_list_icon_alt">Ikona aplikace</string>
     <!-- Number box view -->
+    <string name="number_box_decrement">Snížit</string>
+    <string name="number_box_increment">Zvýšit</string>
     <!-- Slider widget -->
+    <string name="slider_dialog_title">Upravit hodnotu</string>
+    <string name="slider_dialog_format_error">Neplatný formát čísla. Změny nejsou použity.</string>
+    <string name="slider_dialog_step_error">Hodnota musí být násobek %1$d. Změny nebyly použity.</string>
     <!-- Revert confirmation -->
+    <string name="revert_confirmation_title">Jste si jisti?</string>
+    <string name="revert_confirmation">Chcete resetovat aktuální předvolbu JamesDSP na výchozí hodnoty?</string>
     <!-- File intent handler -->
+    <string name="intent_import_preset">Importovat předvolbu</string>
+    <string name="intent_import_irs">Importovat impulzní odezvu</string>
+    <string name="intent_import_vdc">Importovat VDC soubor</string>
     <string name="intent_import_liveprog">Importovat Liveprog skript</string>
+    <string name="intent_import_mode_add">Pouze importovat</string>
+    <string name="intent_import_mode_select">Importovat a aktivovat</string>
+    <string name="intent_import_fail">Nepodařilo se importovat soubor \'%1$s\'</string>
+    <string name="intent_import_success">Soubor \'%1$s\' importován</string>
+    <string name="intent_import_select_success">Soubor \'%1$s\' importován a aktivován</string>
+    <string name="intent_import_error_file_uri">Nepodařilo se importovat soubor. Nepodporované URI souboru.</string>
     <!-- Translation notice box -->
+    <string name="translation_notice_summary">Prosím, pomozte nám přeložit tuto aplikaci do vašeho jazyka! Klepnutím sem navštivte stránku projektu na Crowdin.</string>
     <string name="translation_notice">Přispějte k překladům</string>
     <!-- Self-updates (Root) -->
+    <string name="self_update_install_error">Aktualizace selhala</string>
+    <string name="self_update_download_fail">Nepodařilo se stáhnout balíček aktualizací. Prosím zkontrolujte připojení k internetu. Podrobnosti: %1$s</string>
+    <string name="self_update_install_fail">Instalace selhala. %1$s</string>
+    <string name="self_update_finished">Aktualizace nainstalována. Aplikace se nyní restartuje…</string>
+    <string name="self_update_no_updates">V tuto chvíli nejsou k dispozici žádné nové aktualizace</string>
+    <string name="self_update_notice">Nová aktualizace k dispozici (%1$s)</string>
+    <string name="self_update_notice_summary">Klepněte zde pro stáhnutí a instalaci nové aktualizace.</string>
+    <string name="self_update_notice_dismiss_install">Instalovat nyní</string>
+    <string name="self_update_notice_dismiss_snooze">Připomenout později</string>
+    <string name="self_update_notice_dismiss_skip">Přeskočit tuto aktualizaci</string>
+    <string name="self_update_state_downloading">Stahování…</string>
+    <string name="self_update_state_installing">Instalace…</string>
 </resources>
