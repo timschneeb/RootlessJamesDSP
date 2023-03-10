@@ -357,7 +357,7 @@
     <string name="appearance_navigation_title">Navigation</string>
     <string name="appearance_nav_hide">Hide navigation bar on scroll</string>
     <string name="backup_settings">Backup and restore</string>
-    <string name="backup_settings_summary">Automated &amp; manual backups</string>
+    <string name="backup_settings_summary">Automatic &amp; manual backups</string>
     <string name="backup_frequency">Backup frequency</string>
     <string name="backup_location">Backup location</string>
     <string name="backup_maximum">Maximum backups</string>
