@@ -366,7 +366,9 @@
     <string name="filelibrary_unsupported_format">Выбранный файл имеет неправильное расширение.</string>
     <string name="filelibrary_corrupted_title">Файл не поддерживается или поврежден</string>
     <string name="filelibrary_corrupted">Выбранный файл не содержит пригодных для использования данных или поврежден.</string>
+    <string name="filelibrary_file_too_new">Выбранный файл был создан более новой версией приложения и не может быть загружен. Пожалуйста, обновите приложение, чтобы продолжить.</string>
     <string name="filelibrary_access_fail">Не удалось получить доступ к каталогу</string>
+    <string name="filelibrary_is_backup_not_preset">Выбранный файл является файлом резервной копии, а не пресетом. Если вы хотите выполнить восстановление настроек, перейдите к параметрам резервного копирования.</string>
     <string name="filelibrary_no_file_selected">Файл не выбран</string>
     <string name="filelibrary_new_file_name">Новое имя файла</string>
     <string name="filelibrary_file_exists">Файл уже существует</string>
