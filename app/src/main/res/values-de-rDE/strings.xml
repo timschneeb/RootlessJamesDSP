@@ -447,7 +447,6 @@
     <string name="app_compat_instruction">Bitte überprüfen Sie in den Einstellungen der App, ob Sie die HW-Beschleunigung oder andere Einstellungen deaktivieren können, die RootlessJamesDSP stören könnten, und tippen Sie auf \"Wiederholen\".</string>
     <string name="app_compat_instruction_exclude">Alternativ wählen Sie \"Ausschließen\" aus, um dieses Problem zu umgehen, indem Sie die inkompatible App von der Audioverarbeitung ausschließen.</string>
     <string name="app_compat_unknown_pkg_name">Unbekannter Paketname</string>
-    <!-- Hints for compatibility issues for individual apps -->
     <!-- Root: Library load failure -->
     <string name="load_fail_header">Magisk-Modul nicht installiert</string>
     <string name="load_fail_card_title">Fehler beim Laden von libjamesdsp.so</string>
