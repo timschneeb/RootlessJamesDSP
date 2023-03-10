@@ -41,7 +41,6 @@
     <!-- Blocklist -->
     <!-- Compatibility issue activity -->
     <string name="app_compat_retry">Réessayer</string>
-    <!-- Hints for compatibility issues for individual apps -->
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
     <!-- App list -->
