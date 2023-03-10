@@ -202,8 +202,9 @@ dependencies {
     implementation("com.jakewharton.timber:timber:5.0.1")
     implementation("com.github.bastienpaulfr:Treessence:1.0.0")
 
-    // Archiving
+    // IO
     implementation("org.kamranzafar:jtar:2.3")
+    implementation("com.squareup.okio:okio:3.3.0")
 
     // Room databases
     val roomVersion = "2.5.0"
