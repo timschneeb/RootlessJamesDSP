@@ -501,4 +501,6 @@
     <string name="self_update_state_downloading">Загрузка…</string>
     <string name="self_update_state_installing">Установка…</string>
     <!-- Backups -->
+    <string name="backup_restore_error_format">Неподдерживаемый или поврежденный файл резервной копии</string>
+    <string name="backup_restore_error_version_too_new">Резервная копия создана более новой версией приложения и не может быть загружена. Пожалуйста, обновите приложение, чтобы продолжить.</string>
 </resources>
