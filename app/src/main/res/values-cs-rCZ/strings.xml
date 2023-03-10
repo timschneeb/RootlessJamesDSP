@@ -448,7 +448,6 @@
     <string name="app_compat_instruction_exclude">Případně zvolte „Vyloučit“ pro obejití tohoto problému vyloučením nekompatibilní aplikace ze zpracování zvuku.</string>
     <string name="app_compat_unknown_pkg_name">Neznámý název balíčku</string>
     <!-- Hints for compatibility issues for individual apps -->
-    <string name="app_compat_quirk_voice_search">Je známo, že tento problém způsobuje hlasové vyhledávání a rozpoznávání hlasu v této aplikaci. Pokud problém přetrvává, pokuste se vyhnout používání těchto funkcí a zrušte oprávnění mikrofonu pro problematické aplikace.</string>
     <!-- Root: Library load failure -->
     <string name="load_fail_header">Magisk modul není nainstalován</string>
     <string name="load_fail_card_title">Nepodařilo se načíst libjamesdsp.so</string>
