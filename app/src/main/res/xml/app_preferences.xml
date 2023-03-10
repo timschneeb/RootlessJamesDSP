@@ -5,35 +5,35 @@
         app:title="@string/appearance_section_header"
         app:summary="@string/appearance_summary"
         app:icon="@drawable/ic_twotone_color_lens_24dp"
-        app:fragment="me.timschneeberger.rootlessjamesdsp.fragment.SettingsAppearanceFragment" />
+        app:fragment="me.timschneeberger.rootlessjamesdsp.fragment.settings.SettingsAppearanceFragment" />
 
     <Preference
         app:key="@string/key_audio_format"
         app:title="@string/audio_format_header"
         app:summary="@string/audio_format_summary"
         app:icon="@drawable/ic_twotone_volume_up_24dp"
-        app:fragment="me.timschneeberger.rootlessjamesdsp.fragment.SettingsAudioFormatFragment" />
+        app:fragment="me.timschneeberger.rootlessjamesdsp.fragment.settings.SettingsAudioFormatFragment" />
 
     <Preference
         app:key="@string/key_troubleshooting"
         app:title="@string/troubleshooting"
         app:summary="@string/troubleshooting_summary"
         app:icon="@drawable/ic_twotone_troubleshoot_24dp"
-        app:fragment="me.timschneeberger.rootlessjamesdsp.fragment.SettingsTroubleshootingFragment" />
+        app:fragment="me.timschneeberger.rootlessjamesdsp.fragment.settings.SettingsTroubleshootingFragment" />
 
     <Preference
         app:key="@string/key_backup"
         app:title="@string/backup_settings"
         app:summary="@string/backup_settings_summary"
         app:icon="@drawable/ic_twotone_settings_backup_restore_24dp"
-        app:fragment="me.timschneeberger.rootlessjamesdsp.fragment.SettingsBackupFragment" />
+        app:fragment="me.timschneeberger.rootlessjamesdsp.fragment.settings.SettingsBackupFragment" />
 
     <Preference
         app:key="@string/key_misc"
         app:title="@string/misc_settings"
         app:summary="@string/misc_settings_summary"
         app:icon="@drawable/ic_twotone_more_horiz_24"
-        app:fragment="me.timschneeberger.rootlessjamesdsp.fragment.SettingsMiscFragment"
+        app:fragment="me.timschneeberger.rootlessjamesdsp.fragment.settings.SettingsMiscFragment"
         app:allowDividerBelow="true" />
 
     <Preference
@@ -41,7 +41,7 @@
         app:title="@string/about_settings"
         app:summary="@string/about_settings_summary"
         app:icon="@drawable/ic_twotone_help_24dp"
-        app:fragment="me.timschneeberger.rootlessjamesdsp.fragment.SettingsAboutFragment"
+        app:fragment="me.timschneeberger.rootlessjamesdsp.fragment.settings.SettingsAboutFragment"
         app:allowDividerAbove="true" />
 
 </PreferenceScreen>

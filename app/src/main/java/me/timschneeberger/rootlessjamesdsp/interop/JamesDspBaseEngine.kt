@@ -163,7 +163,7 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
     {
         val fullPath = FileLibraryPreference.createFullPathCompat(context, vdcPath)
 
-        if(!File(fullPath).exists()) {
+        if(!File(fullPath).exists() || File(fullPath).isDirectory) {
             Timber.w("setVdc: file does not exist")
             setVdcInternal(false, "")
             return true /* non-critical */
@@ -179,7 +179,7 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
         val path = FileLibraryPreference.createFullPathCompat(context, impulseResponsePath)
 
         // Handle disabled state before everything else
-        if(!enable || !File(path).exists()) {
+        if(!enable || !File(path).exists() || File(path).isDirectory) {
             setConvolverInternal(false, FloatArray(0), 0, 0)
             return true
         }
@@ -254,7 +254,7 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
     {
         val fullPath = FileLibraryPreference.createFullPathCompat(context, path)
 
-        if(!File(fullPath).exists()) {
+        if(!File(fullPath).exists() || File(fullPath).isDirectory) {
             Timber.w("setLiveprog: file does not exist")
             return setLiveprogInternal(false, "", "")
         }
