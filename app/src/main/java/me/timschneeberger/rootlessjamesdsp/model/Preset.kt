@@ -9,6 +9,7 @@ import me.timschneeberger.rootlessjamesdsp.liveprog.EelParser
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.Tar
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sendLocalBroadcast
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showAlert
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -38,16 +39,15 @@ class Preset(val name: String): KoinComponent {
         return validate(FileInputStream(file()))
     }
 
-    fun load(): PresetMetadata? {
+    /**
+     * @exception Exception if preset cannot be loaded
+     */
+    fun load(): PresetMetadata {
         val file = file()
         Timber.d("Loading preset from ${file.path}")
         return load(
             ctx,
-            try { FileInputStream(file) }
-            catch(ex: Exception) {
-                Timber.e(ex)
-                return null
-            }
+            FileInputStream(file)
         )
     }
 
@@ -67,10 +67,11 @@ class Preset(val name: String): KoinComponent {
         try {
             Tar.Composer(targetFile).use { c ->
                 c.metadata = mutableMapOf(
-                    META_VERSION to "2",
+                    META_VERSION to PRESET_VERSION,
                     META_APP_VERSION to BuildConfig.VERSION_NAME,
                     META_APP_FLAVOR to BuildConfig.FLAVOR,
-                    META_LIVEPROG_INCLUDED to false.toString()
+                    META_LIVEPROG_INCLUDED to false.toString(),
+                    META_MIN_VERSION_CODE to MIN_VERSION_CODE
                 )
 
                 currentPath(ctx)
@@ -107,32 +108,48 @@ class Preset(val name: String): KoinComponent {
     }
 
     companion object {
+        /* Update constants as needed */
+        const val PRESET_VERSION = "3"
+        const val MIN_VERSION_CODE = "26"
+
         const val FILE_LIVEPROG = "liveprog"
 
         const val META_VERSION = "version"
         const val META_APP_VERSION = "app_version"
         const val META_APP_FLAVOR = "app_flavor"
         const val META_LIVEPROG_INCLUDED = "liveprog_included" /* version 2+ */
+        const val META_MIN_VERSION_CODE = "min_version_code" /* version 3+ */
 
         private fun currentPath(ctx: Context) = File(ctx.applicationInfo.dataDir + "/shared_prefs")
         private fun isKnownEntry(n: String) = (n.startsWith("dsp_") && n.endsWith("xml")) || n == FILE_LIVEPROG
 
         fun validate(inputStream: InputStream) = Tar.Reader(inputStream, ::isKnownEntry).validate()
 
-        fun load(ctx: Context, stream: InputStream): PresetMetadata? {
+        /**
+         * @exception Exception if preset cannot be loaded
+         */
+        fun load(ctx: Context, stream: InputStream): PresetMetadata {
             Timber.d("Loading preset from stream")
 
             val targetFolder = File(ctx.cacheDir, "preset")
             val metadata = Tar.Reader(stream, ::isKnownEntry).extract(targetFolder)
-            metadata ?: return null
+            metadata ?: throw Exception(ctx.getString(R.string.filelibrary_corrupted))
 
             val version = metadata[META_VERSION]?.toIntOrNull() ?: 2
             Timber.d("Loaded preset file version $version")
 
+            val minVersionCode = metadata[META_MIN_VERSION_CODE]?.toIntOrNull() ?: 0
+            if(BuildConfig.VERSION_CODE < minVersionCode) {
+                Timber.w("Preset too new. Version code $minVersionCode or later required")
+                targetFolder.deleteRecursively()
+                throw Exception(ctx.getString(R.string.filelibrary_file_too_new))
+            }
+
             val files = targetFolder.listFiles()
             if(files == null || files.isEmpty()) {
                 Timber.e("Preset archive did not contain any useful data")
-                return null
+                targetFolder.deleteRecursively()
+                throw Exception(ctx.getString(R.string.filelibrary_corrupted))
             }
 
             files.forEach next@ { f ->

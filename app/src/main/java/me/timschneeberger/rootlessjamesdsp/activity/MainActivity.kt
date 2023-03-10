@@ -661,10 +661,16 @@ class MainActivity : BaseActivity() {
                     CoroutineScope(Dispatchers.Default).launch {
                         delay(250L)
 
-                        if (name.endsWith(".tar"))
-                            StorageUtils.openInputStreamSafe(this@MainActivity, uri)?.use {
-                                Preset.load(this@MainActivity, it)
+                        if (name.endsWith(".tar")) {
+                            try {
+                                StorageUtils.openInputStreamSafe(this@MainActivity, uri)?.use {
+                                    Preset.load(this@MainActivity, it)
+                                }
                             }
+                            catch (ex: Exception) {
+                                showAlert(getString(R.string.filelibrary_corrupted_title), ex.localizedMessage ?: "")
+                            }
+                        }
                         else if (namespace != null && key != null && keyEnable != null)
                             @Suppress("DEPRECATION")
                             getSharedPreferences(namespace, MODE_MULTI_PROCESS)

@@ -396,6 +396,7 @@
     <string name="filelibrary_unsupported_format">The selected file has not have the correct file extension.</string>
     <string name="filelibrary_corrupted_title">Unsupported or corrupted file</string>
     <string name="filelibrary_corrupted">The selected file contains no useable data or is corrupted.</string>
+    <string name="filelibrary_file_too_new">The selected file was created with a newer version of this application and cannnot be loaded. Please update this app to continue.</string>
     <string name="filelibrary_access_fail">Failed to access directory</string>
     <string name="filelibrary_no_file_selected">No file selected</string>
     <string name="filelibrary_new_file_name">New file name</string>

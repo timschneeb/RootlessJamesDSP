@@ -453,11 +453,15 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat(), TargetFr
             val value = item.value
 
             if(fileLibPreference.isPreset()) {
-                val result = Preset(File(value.toString()).name).load() != null
-                if(result)
+
+                try {
+                    Preset(File(value.toString()).name).load()
                     requireContext().toast(getString(R.string.filelibrary_preset_loaded, name))
-                else
-                    requireContext().toast(getString(R.string.filelibrary_preset_load_failed, name))
+                }
+                catch (ex: Exception) {
+                    requireContext().showAlert(getString(R.string.filelibrary_corrupted_title),
+                        ex.localizedMessage ?: getString(R.string.filelibrary_preset_load_failed, name))
+                }
             }
 
             clickedEntryValue = value
