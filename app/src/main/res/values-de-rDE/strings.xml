@@ -448,7 +448,6 @@
     <string name="app_compat_instruction_exclude">Alternativ wählen Sie \"Ausschließen\" aus, um dieses Problem zu umgehen, indem Sie die inkompatible App von der Audioverarbeitung ausschließen.</string>
     <string name="app_compat_unknown_pkg_name">Unbekannter Paketname</string>
     <!-- Hints for compatibility issues for individual apps -->
-    <string name="app_compat_quirk_voice_search">Sprachsuche und Spracherkennung sind bekannt dafür, dieses Problem mit dieser App zu verursachen. Versuchen Sie diese Funktion zu vermeiden und widerrufen Sie die Mikrofonberechtigung für die problematischen Apps, falls das Problem weiterhin besteht.</string>
     <!-- Root: Library load failure -->
     <string name="load_fail_header">Magisk-Modul nicht installiert</string>
     <string name="load_fail_card_title">Fehler beim Laden von libjamesdsp.so</string>
