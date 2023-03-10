@@ -366,7 +366,9 @@
     <string name="filelibrary_unsupported_format">Die ausgewählte Datei hat nicht die richtige Dateiendung.</string>
     <string name="filelibrary_corrupted_title">Datei nicht unterstützt oder beschädigt</string>
     <string name="filelibrary_corrupted">Die ausgewählte Datei enthält keine nutzbaren Daten oder ist beschädigt.</string>
+    <string name="filelibrary_file_too_new">Das Backup wurde mit einer neueren Version dieser App erstellt und kann nicht geladen werden. Bitte aktualisiere diese App um fortzufahren.</string>
     <string name="filelibrary_access_fail">Fehler beim Zugriff auf das Verzeichnis</string>
+    <string name="filelibrary_is_backup_not_preset">Die ausgewählte Datei ist eine Backup-Datei, keine Voreinstellung. Bitte gehe zu den Sicherungseinstellungen, wenn du sie wiederherstellen möchtest.</string>
     <string name="filelibrary_no_file_selected">Keine Datei ausgewählt</string>
     <string name="filelibrary_new_file_name">Neuer Dateiname</string>
     <string name="filelibrary_file_exists">Datei ist bereits vorhanden</string>
