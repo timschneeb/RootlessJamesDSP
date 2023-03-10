@@ -13,6 +13,7 @@
     <string name="notification_channel_backup_progress">प्रगति में</string>
     <string name="notification_channel_backup_complete">पूर्ण</string>
     <!-- Service notifications -->
+    <string name="action_retry">पुन: प्रयास करें</string>
     <string name="action_fix">समस्याएं ठीक करें</string>
     <string name="action_stop">रोके</string>
     <!-- Permission request notifications -->
@@ -21,6 +22,20 @@
     <!-- Capture permission revoked notifications -->
     <!-- General purpose -->
     <!-- Main screen -->
+    <string name="eq_preset_acoustic">ध्वनिक</string>
+    <string name="eq_preset_electronic">इलेक्ट्रॉनिक</string>
+    <string name="eq_preset_flat">फ्लैट</string>
+    <string name="eq_preset_hardstyle">हार्ड-स्टाइल</string>
+    <string name="eq_preset_hiphop">हिप-हॉप</string>
+    <string name="eq_preset_jazz">जैज़</string>
+    <string name="eq_preset_metal">मेटल</string>
+    <string name="eq_preset_movie">चलचित्र</string>
+    <string name="eq_preset_pop">पॉप</string>
+    <string name="eq_preset_rb">R&amp;B</string>
+    <string name="eq_preset_rock">रॉक</string>
+    <string name="eq_preset_vocal">स्वर बूस्टर</string>
+    <string name="reverb_preset_default">डिफॉल्ट</string>
+    <string name="convolver_convolution_mode_original">मूल</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
@@ -28,6 +43,7 @@
     <string name="title_activity_settings">सेटिंग्स</string>
     <string name="backup_settings">बैकअप और पुनर्स्थापना</string>
     <!-- Theme names -->
+    <string name="theme_default">डिफॉल्ट</string>
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
@@ -37,6 +53,7 @@
     <!-- Blocklist -->
     <string name="title_activity_blocklist">बहिष्कृत ऐप्स</string>
     <!-- Compatibility issue activity -->
+    <string name="app_compat_retry">पुन: प्रयास करें</string>
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
     <!-- App list -->
