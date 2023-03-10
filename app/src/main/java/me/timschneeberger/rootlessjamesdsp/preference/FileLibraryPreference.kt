@@ -150,6 +150,9 @@ class FileLibraryPreference(context: Context, attrs: AttributeSet?) :
             else
                 context.getExternalFilesDir(null)!!.absolutePath + "/" + path
         }
-
+        fun createFullPathNullCompat(context: Context, path: String?): String? {
+            path ?: return null
+            return createFullPathCompat(context, path)
+        }
     }
 }
