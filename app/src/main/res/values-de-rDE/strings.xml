@@ -502,4 +502,5 @@
     <string name="self_update_notice_dismiss_skip">Update überspringen</string>
     <string name="self_update_state_downloading">Wird heruntergeladen…</string>
     <string name="self_update_state_installing">Installiere…</string>
+    <!-- Backups -->
 </resources>
