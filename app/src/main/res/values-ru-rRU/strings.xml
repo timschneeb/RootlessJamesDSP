@@ -502,4 +502,5 @@
     <string name="self_update_notice_dismiss_skip">Пропустить это обновление</string>
     <string name="self_update_state_downloading">Загрузка…</string>
     <string name="self_update_state_installing">Установка…</string>
+    <!-- Backups -->
 </resources>
