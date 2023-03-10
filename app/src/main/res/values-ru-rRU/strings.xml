@@ -6,10 +6,14 @@
     <string name="action_revert">Сброс к значениям по умолчанию</string>
     <string name="action_blocked_apps">Исключенные приложения</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">Сервис</string>
     <string name="notification_channel_service">Уведомление о работе сервиса</string>
     <string name="notification_channel_session_loss_alert">Оповещение о потере сессии</string>
     <string name="notification_channel_permission_prompt">Запрос на получение разрешений</string>
     <string name="notification_channel_app_compat_alert">Оповещение о несовместимом приложении</string>
+    <string name="notification_group_backup">Резервное копирование и восстановление</string>
+    <string name="notification_channel_backup_progress">В работе</string>
+    <string name="notification_channel_backup_complete">Выполнено</string>
     <!-- Service notifications -->
     <string name="action_retry">Повторить</string>
     <string name="action_fix">Исправить проблему</string>
@@ -324,6 +328,17 @@
     <string name="appearance_app_theme">Цветовой акцент темы</string>
     <string name="appearance_navigation_title">Навигация</string>
     <string name="appearance_nav_hide">Скрывать панель навигации при прокрутке</string>
+    <string name="backup_settings">Резервное копирование и восстановление</string>
+    <string name="backup_settings_summary">Автоматическое и ручное резервное копирование</string>
+    <string name="backup_frequency">Частота резервного копирования</string>
+    <string name="backup_location">Расположение резервных копий</string>
+    <string name="backup_maximum">Макс. количество резервных копий</string>
+    <string name="backup_never">Никогда</string>
+    <string name="backup_12hour">Каждые 12 часов</string>
+    <string name="backup_24hour">Ежедневно</string>
+    <string name="backup_48hour">Каждые 2 дня</string>
+    <string name="backup_weekly">Еженедельно</string>
+    <string name="backup_select_location">Выберите папку для создания резервных копий</string>
     <!-- Theme names -->
     <string name="theme_default">По умолчанию</string>
     <string name="theme_monet">Dynamic</string>
@@ -501,4 +516,23 @@
     <string name="self_update_state_downloading">Загрузка…</string>
     <string name="self_update_state_installing">Установка…</string>
     <!-- Backups -->
+    <string name="backup_restore_progress">Восстановление резервной копии</string>
+    <string name="backup_restore_error">Ошибка восстановления резервной копии</string>
+    <string name="backup_restore_error_format">Неподдерживаемый или поврежденный файл резервной копии</string>
+    <string name="backup_restore_error_version_too_new">Резервная копия создана более новой версией приложения и не может быть загружена. Пожалуйста, обновите приложение, чтобы продолжить.</string>
+    <string name="backup_restore_completed">Восстановление завершено</string>
+    <string name="backup_create_completed">Резервная копия создана</string>
+    <string name="backup_create_progress">Создание резервной копии</string>
+    <string name="backup_create_error">Ошибка резервного копирования</string>
+    <string name="backup_manual_backup">Ручное резервное копирование</string>
+    <string name="backup_create">Создать резервную копию</string>
+    <string name="backup_create_summary">Может быть использовано для восстановления текущих настроек</string>
+    <string name="backup_restore">Восстановить резервную копию</string>
+    <string name="backup_restore_summary">Восстановление настроек из файла резервной копии</string>
+    <string name="backup_automatic_backup">Автоматическое резервное копирование</string>
+    <string name="backup_compat_info">Резервные копии содержат только импульсные отклики, скрипты, файлы VDC, пресеты и текущую конфигурацию аудио для обеспечения максимальной совместимости с другими версиями.</string>
+    <string name="backup_restore_mode_title">Режим восстановления</string>
+    <string name="backup_restore_mode_clean">Удалить все существующие файлы (чистое восстановление)</string>
+    <string name="backup_restore_mode_dirty">Только перезаписать (грязное восстановление)</string>
+    <string name="backup_in_progress">Резервное копирование уже выполняется</string>
 </resources>
