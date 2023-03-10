@@ -448,7 +448,6 @@
     <string name="app_compat_instruction_exclude">В качестве альтернативы, выберите «Исключить», чтобы обойти эту проблему, исключив несовместимое приложение из обработки звука.</string>
     <string name="app_compat_unknown_pkg_name">Неизвестное имя пакета</string>
     <!-- Hints for compatibility issues for individual apps -->
-    <string name="app_compat_quirk_voice_search">Голосовой поиск и распознавание голоса могут вызвать проблемы с этим приложением. Если проблема сохраняется, попробуйте избежать использования этих функций и отозвать разрешение на использование микрофона для проблемных приложений.</string>
     <!-- Root: Library load failure -->
     <string name="load_fail_header">Модуль Magisk не установлен</string>
     <string name="load_fail_card_title">Не удалось загрузить libjamesdsp.so</string>
