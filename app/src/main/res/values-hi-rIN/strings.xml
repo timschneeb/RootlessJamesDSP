@@ -6,8 +6,12 @@
     <string name="action_revert">डिफ़ॉल्ट पर रीसेट करें</string>
     <string name="action_blocked_apps">बहिष्कृत ऐप्स</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">सर्विस</string>
     <string name="notification_channel_service">सेवा सूचनाएं</string>
     <string name="notification_channel_permission_prompt">अनुमति प्रॉम्प्ट अनुरोध</string>
+    <string name="notification_group_backup">बैकअप और पुनर्स्थापना</string>
+    <string name="notification_channel_backup_progress">प्रगति में</string>
+    <string name="notification_channel_backup_complete">पूर्ण</string>
     <!-- Service notifications -->
     <string name="action_fix">समस्याएं ठीक करें</string>
     <string name="action_stop">रोके</string>
@@ -22,6 +26,7 @@
     <!-- Root flavor -->
     <!-- Settings -->
     <string name="title_activity_settings">सेटिंग्स</string>
+    <string name="backup_settings">बैकअप और पुनर्स्थापना</string>
     <!-- Theme names -->
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
