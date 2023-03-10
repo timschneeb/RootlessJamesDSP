@@ -454,7 +454,6 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat(), TargetFr
             val value = item.value
 
             if(fileLibPreference.isPreset()) {
-
                 try {
                     Preset(File(value.toString()).name).load()
                     requireContext().toast(getString(R.string.filelibrary_preset_loaded, name))

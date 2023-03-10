@@ -75,6 +75,10 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
                 val liveprogEdit = findPreference<Preference>(getString(R.string.key_liveprog_edit))
                 val liveprogFile = findPreference<FileLibraryPreference>(getString(R.string.key_liveprog_file))
 
+                val currentFile = liveprogFile?.value?.let {
+                    FileLibraryPreference.createFullPathCompat(requireContext(), it)
+                }
+
                 fun updateLiveprog(newValue: String) {
                     eelParser.load(FileLibraryPreference.createFullPathCompat(requireContext(), newValue))
                     val count = eelParser.properties.size
@@ -114,8 +118,8 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
                         eelParser.description
                 }
 
-                if(liveprogFile != null) {
-                    updateLiveprog(liveprogFile.value)
+                if(currentFile != null) {
+                    updateLiveprog(currentFile)
                 }
 
                 liveprogFile?.setOnPreferenceChangeListener { _, newValue ->
@@ -125,14 +129,14 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
 
                 liveprogParams?.setOnPreferenceClickListener {
                     val intent = Intent(requireContext(), LiveprogParamsActivity::class.java)
-                    intent.putExtra(LiveprogParamsActivity.EXTRA_TARGET_FILE, liveprogFile?.value)
+                    intent.putExtra(LiveprogParamsActivity.EXTRA_TARGET_FILE, currentFile)
                     startActivity(intent)
                     true
                 }
 
                 liveprogEdit?.setOnPreferenceClickListener {
                     val intent = Intent(requireContext(), LiveprogEditorActivity::class.java)
-                    intent.putExtra(LiveprogEditorActivity.EXTRA_TARGET_FILE, liveprogFile?.value)
+                    intent.putExtra(LiveprogEditorActivity.EXTRA_TARGET_FILE, currentFile)
                     startActivity(intent)
                     true
                 }
