@@ -447,7 +447,6 @@
     <string name="app_compat_instruction">Пожалуйста, проверьте настройки приложения, чтобы выключить аппаратное ускорение или другие настройки, которые могут помешать RootlessJamesDSP и затем нажмите «Повторить».</string>
     <string name="app_compat_instruction_exclude">В качестве альтернативы, выберите «Исключить», чтобы обойти эту проблему, исключив несовместимое приложение из обработки звука.</string>
     <string name="app_compat_unknown_pkg_name">Неизвестное имя пакета</string>
-    <!-- Hints for compatibility issues for individual apps -->
     <!-- Root: Library load failure -->
     <string name="load_fail_header">Модуль Magisk не установлен</string>
     <string name="load_fail_card_title">Не удалось загрузить libjamesdsp.so</string>
