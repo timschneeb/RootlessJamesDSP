@@ -87,7 +87,6 @@
     <string name="app_compat_retry">Spróbuj ponownie</string>
     <string name="app_compat_exclude">Wyklucz</string>
     <string name="app_compat_unknown_pkg_name">Nieznana nazwa pakietu</string>
-    <!-- Hints for compatibility issues for individual apps -->
     <!-- Root: Library load failure -->
     <string name="load_fail_header">Moduł Magisk nie jest zainstalowany</string>
     <string name="load_fail_card_title">Nie udało się załadować libjamesdsp.so</string>
