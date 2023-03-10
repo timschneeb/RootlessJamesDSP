@@ -460,4 +460,5 @@
     <string name="self_update_notice_dismiss_skip">Lewatkan pembaruan</string>
     <string name="self_update_state_downloading">Mengunduh…</string>
     <string name="self_update_state_installing">Memasang…</string>
+    <!-- Backups -->
 </resources>
