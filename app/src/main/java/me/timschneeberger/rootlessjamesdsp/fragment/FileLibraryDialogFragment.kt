@@ -114,7 +114,7 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat(), TargetFr
                 _, view, position, _ ->
             val item = dialog.listView.adapter.getItem(position) as Entry
             val name = item.name
-            val path = item.value
+            val path = FileLibraryPreference.createFullPathCompat(requireContext(), item.value.toString())
 
             val popupMenu = PopupMenu(requireContext(), view)
             popupMenu.menuInflater.inflate(R.menu.menu_filelibrary_context, popupMenu.menu)
@@ -368,7 +368,8 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat(), TargetFr
             val foundTags = mutableMapOf<String /* tag */, MutableList<String> /* scripts */>()
 
             fileLibPreference.entryValues.forEach { path ->
-                eelParser.load(path.toString(), skipProperties = true)
+
+                eelParser.load(FileLibraryPreference.createFullPathCompat(requireContext(), path.toString()), skipProperties = true)
                 if(eelParser.tags.isEmpty())
                     eelParser.fileName?.let(untaggedScripts::add)
                 eelParser.tags.forEach { tag ->

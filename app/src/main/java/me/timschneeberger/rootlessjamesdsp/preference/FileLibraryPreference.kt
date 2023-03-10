@@ -48,7 +48,12 @@ class FileLibraryPreference(context: Context, attrs: AttributeSet?) :
     }
 
     override fun onSetInitialValue(defaultValue: Any?) {
-        value = getPersistedString((defaultValue as? String) ?: "")
+        // Convert old full path convention to new relative paths
+        val init = getPersistedString((defaultValue as? String) ?: "")
+        value = if(init.startsWith("/"))
+            File(init).toRelativeString(context.getExternalFilesDir(null)!!)
+        else
+            init
     }
 
     override fun onClick() {
@@ -75,7 +80,7 @@ class FileLibraryPreference(context: Context, attrs: AttributeSet?) :
     private fun createFileStringArray(fullPath: Boolean): Array<String> {
         val result = arrayListOf<String>()
         directory?.list()?.forEach {
-            val name = if(fullPath) (directory!!.absolutePath + "/" + it) else it.substringBeforeLast('.')
+            val name = if(fullPath) (File(directory!!, it).toRelativeString(context.getExternalFilesDir(null)!!)) else it.substringBeforeLast('.')
             if(hasCorrectExtension(it))
             {
                 result.add(name)
@@ -133,5 +138,18 @@ class FileLibraryPreference(context: Context, attrs: AttributeSet?) :
         fun hasPresetExtension(it: String): Boolean {
             return types["Presets"]!!.any { ext -> it.endsWith(ext) }
         }
+
+
+        /**
+         * If path starts at root, it is already a full path.
+         * If path is relative to the external files dir, it needs to be changed to use a full path.
+         */
+        fun createFullPathCompat(context: Context, path: String): String {
+            return if(path.startsWith("/"))
+                path
+            else
+                context.getExternalFilesDir(null)!!.absolutePath + "/" + path
+        }
+
     }
 }

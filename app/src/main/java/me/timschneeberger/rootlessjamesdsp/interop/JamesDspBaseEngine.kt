@@ -12,6 +12,7 @@ import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.interop.structure.EelVmVariable
 import me.timschneeberger.rootlessjamesdsp.model.ProcessorMessage
+import me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sendLocalBroadcast
 import timber.log.Timber
 import java.io.File
@@ -160,21 +161,25 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
 
     fun setVdc(enable: Boolean, vdcPath: String): Boolean
     {
-        if(!File(vdcPath).exists()) {
+        val fullPath = FileLibraryPreference.createFullPathCompat(context, vdcPath)
+
+        if(!File(fullPath).exists()) {
             Timber.w("setVdc: file does not exist")
             setVdcInternal(false, "")
             return true /* non-critical */
         }
 
-        return FileReader(vdcPath).use {
+        return FileReader(fullPath).use {
             setVdcInternal(enable, it.readText())
         }
     }
 
     fun setConvolver(enable: Boolean, impulseResponsePath: String, optimizationMode: Int, waveEditStr: String): Boolean
     {
+        val path = FileLibraryPreference.createFullPathCompat(context, impulseResponsePath)
+
         // Handle disabled state before everything else
-        if(!enable || !File(impulseResponsePath).exists()) {
+        if(!enable || !File(path).exists()) {
             setConvolverInternal(false, FloatArray(0), 0, 0)
             return true
         }
@@ -202,7 +207,7 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
 
         val info = IntArray(3)
         val imp = JdspImpResToolbox.ReadImpulseResponseToFloat(
-            impulseResponsePath,
+            path,
             sampleRate.toInt(),
             info,
             optimizationMode,
@@ -247,13 +252,15 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
 
     fun setLiveprog(enable: Boolean, path: String): Boolean
     {
-        if(!File(path).exists()) {
+        val fullPath = FileLibraryPreference.createFullPathCompat(context, path)
+
+        if(!File(fullPath).exists()) {
             Timber.w("setLiveprog: file does not exist")
             return setLiveprogInternal(false, "", "")
         }
 
-        return FileReader(path).use {
-            val name = File(path).name
+        return FileReader(fullPath).use {
+            val name = File(fullPath).name
             setLiveprogInternal(enable, name, it.readText())
         }
     }

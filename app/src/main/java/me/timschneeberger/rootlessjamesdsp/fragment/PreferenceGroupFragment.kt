@@ -76,7 +76,7 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
                 val liveprogFile = findPreference<FileLibraryPreference>(getString(R.string.key_liveprog_file))
 
                 fun updateLiveprog(newValue: String) {
-                    eelParser.load(newValue)
+                    eelParser.load(FileLibraryPreference.createFullPathCompat(requireContext(), newValue))
                     val count = eelParser.properties.size
                     val filePresent = eelParser.contents != null
                     val uiUpdate = {
