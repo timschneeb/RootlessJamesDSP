@@ -41,7 +41,6 @@
     <string name="title_activity_blocklist">除外するアプリ</string>
     <!-- Compatibility issue activity -->
     <string name="app_compat_retry">やり直す</string>
-    <!-- Hints for compatibility issues for individual apps -->
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
     <!-- App list -->
