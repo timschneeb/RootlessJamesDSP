@@ -25,7 +25,6 @@
     <!-- Liveprog script editor -->
     <!-- Blocklist -->
     <!-- Compatibility issue activity -->
-    <!-- Hints for compatibility issues for individual apps -->
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
     <!-- App list -->
@@ -35,4 +34,5 @@
     <!-- File intent handler -->
     <!-- Translation notice box -->
     <!-- Self-updates (Root) -->
+    <!-- Backups -->
 </resources>

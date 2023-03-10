@@ -162,7 +162,7 @@
     <string name="onboarding_methods_root_shizuku">\u25CF Рекомендується, якщо root-доступ відсутній\n\u25CF Не потрібен комп\'ютер\n\u25CF Тільки для Android 11+</string>
     <string name="onboarding_methods_root_adb">\u25CF Для досвідчених користувачів\n\u25CF Потрібен комп\'ютер та USB-кабель\n\u25CF Всі версії Android</string>
     <string name="onboarding_root_shell_fail_title">Немає root-доступу</string>
-    <string name="onboarding_root_shell_fail">Root-доступ відсутній. Будь ласка, скористайтеся іншим методом налаштування.</string>
+    <string name="onboarding_root_shell_fail">Root-права не надані або відсутні на пристрої. Будь ласка, скористайтеся іншим методом налаштування.</string>
     <string name="onboarding_root_shell_fail_unknown">Не вдалося надати дозвіл через root. Будь ласка, скористайтеся іншим методом налаштування.</string>
     <string name="onboarding_root_enhanced_processing_setup_success">Розширена обробка налаштована</string>
     <string name="onboarding_adb_shizuku_title">Налаштування Shizuku</string>
@@ -171,13 +171,13 @@
     <string name="onboarding_adb_shizuku_install_button">Встановити Shizuku</string>
     <string name="onboarding_adb_shizuku_install_button_done">Вже інстальовано</string>
     <string name="onboarding_adb_shizuku_install_instruction">Встановити Shizuku з Google Play.</string>
-    <string name="onboarding_adb_shizuku_open_instruction">Запустіть Shizuku і знайдіть параметр «<b>Запуск через налагодження по Wi-Fi</b>». Натисніть кнопку «Підключення» і дотримуйтесь інструкцій у додатку. Після сполучення Shizuku з вашим пристроєм, запустіть сервер Shizuku, натиснувши кнопку «Запустити». Якщо у вас виникли проблеми під час налаштування Shizuku, зверніться до інструкції, посилання на яку наведено в їхньому додатку.</string>
+    <string name="onboarding_adb_shizuku_open_instruction">Запустіть Shizuku і знайдіть параметр «<b>Запуск через налагодження по Wi-Fi</b>». Натисніть кнопку «Підключення» і дотримуйтесь інструкцій у додатку. Після сполучення Shizuku з вашим пристроєм, запустіть сервер Shizuku, натиснувши кнопку «Запустити». Якщо у вас виникли труднощі з налаштуванням Shizuku, скористайтеся покроковою інструкцією, посилання на яку наведено в їхньому додатку.</string>
     <string name="onboarding_adb_shizuku_open_button">Запустити Shizuku</string>
     <string name="onboarding_adb_shizuku_open_button_done">Вже активовано</string>
     <string name="onboarding_adb_shizuku_grant_instruction">Натисніть кнопку, щоб надати доступ до Shizuku.</string>
     <string name="onboarding_adb_shizuku_grant_button">Надати доступ</string>
     <string name="onboarding_adb_shizuku_not_installed">Shizuku ще не встановлено. Будь ласка, спочатку завантажте та встановіть його з Google Play.</string>
-    <string name="onboarding_adb_shizuku_not_installed_title">Shizuku ще не встановлено</string>
+    <string name="onboarding_adb_shizuku_not_installed_title">Shizuku не встановлено</string>
     <string name="onboarding_adb_shizuku_grant_fail_server_dead">Перед запитом дозволу необхідно запустити сервер Shizuku. Будь ласка, поверніться до кроку 2 цієї інструкції.</string>
     <string name="onboarding_adb_shizuku_grant_fail_server_dead_title">Сервер Shizuku не запущено</string>
     <string name="onboarding_adb_shizuku_grant_fail_version">Для роботи цієї програми потрібен Shizuku версії 11 або вище. Будь ласка, оновіть Shizuku до останньої версії.</string>
@@ -186,13 +186,14 @@
     <string name="onboarding_adb_shizuku_grant_fail_denied">Будь ласка, надайте цьому додатку доступ до Shizuku. Якщо ви раніше відмовили в дозволі й спливаюче вікно більше не з\'являється, вам може знадобитися відкрити менеджер дозволів Shizuku й надати доступ вручну.</string>
     <string name="onboarding_adb_shizuku_no_dump_perm_title">Shizuku не вдалося надати дозволи ADB</string>
     <string name="onboarding_adb_shizuku_no_dump_perm">Будь ласка, зачекайте кілька секунд і спробуйте ще раз. Якщо це не спрацює, спробуйте альтернативний метод.</string>
-    <string name="onboarding_adb_dump_not_granted_title">Дозвіл ще не надано</string>
-    <string name="onboarding_adb_dump_not_granted">Будь ласка, спочатку дотримайтесь інструкцій та повторіть спробу. Доступ ADB ще не налаштовано належним чином.</string>
+    <string name="onboarding_adb_dump_not_granted_title">Дозвіл не надано</string>
+    <string name="onboarding_adb_dump_not_granted">Будь ласка, спочатку виконайте всі кроки інструкції й потім повторіть спробу. Доступ до ADB ще не налаштовано.</string>
     <string name="onboarding_adb_manual_step1">Перейдіть у приховані налаштування Android «Для розробників» і увімкніть параметр «USB-налагодження». Для розблокування цих налаштувань необхідно кілька разів натиснути на номер збірки в налаштуваннях системи.</string>
     <string name="onboarding_adb_manual_step2">Перейдіть на сайт https://app.webadb.com у браузері вашого комп\'ютера (рекомендується використовувати Google Chrome) та під\'єднайте ваш пристрій до комп\'ютера за допомогою USB-кабелю.</string>
     <string name="onboarding_adb_manual_step3">Додайте та підключіть USB-пристрій у WebADB.</string>
     <string name="onboarding_adb_manual_step4">Перейдіть у розділ «Interactive Shell» і виконайте в терміналі таку команду: pm grant %s android.permission.DUMP</string>
     <string name="onboarding_adb_manual_step5">Натисніть «Далі» в цьому додатку, щоб продовжити.</string>
+    <string name="onboarding_adb_manual_step5b">(Необов\'язково) Ви можете назавжди вимкнути запити на дозвіл захоплення аудіо, виконавши цю команду: appops set %s PROJECT_MEDIA allow</string>
     <string name="onboarding_adb_manual_step1_button">Відкрити «Для розробників»</string>
     <string name="onboarding_perm_title">Інші дозволи</string>
     <string name="onboarding_perm_caption">Для використання цієї програми необхідні додаткові дозволи. Будь ласка, ознайомтеся з ними та натисніть «Далі» щоб надати їх.</string>
@@ -307,7 +308,7 @@
     <string name="credits_project_play_page">Відвідати RootlessJamesDSP в Google Play</string>
     <string name="credits_project_play_page_summary">Пошук нових оновлень</string>
     <string name="credits_project_check_update">Перевірити наявність оновлень…</string>
-    <string name="credits_project_check_update_summary">Завантажити та встановити доступні оновлення</string>
+    <string name="credits_project_check_update_summary">Оновити додаток до останньої версії</string>
     <string name="credits_project_translate">Допомога з перекладом</string>
     <string name="credits_project_translate_summary">Допоможіть нам перекласти додаток вашою мовою</string>
     <string name="credits_version">Версія додатка</string>
@@ -446,8 +447,6 @@
     <string name="app_compat_instruction">Будь ласка, перевірте налаштування програми, щоб вимкнути апаратне прискорення або інші налаштування, які можуть перешкодити RootlessJamesDSP і потім натисніть «Повторити».</string>
     <string name="app_compat_instruction_exclude">Як альтернативу, виберіть «Виключити», щоб обійти цю проблему, виключивши несумісну програму з обробки звуку.</string>
     <string name="app_compat_unknown_pkg_name">Невідоме ім\'я пакету</string>
-    <!-- Hints for compatibility issues for individual apps -->
-    <string name="app_compat_quirk_voice_search">Голосовий пошук і розпізнавання голосу можуть викликати проблеми з цим додатком. Якщо проблема зберігається, спробуйте уникнути використання цих функцій і відкликати дозвіл на використання мікрофона для проблемних додатків.</string>
     <!-- Root: Library load failure -->
     <string name="load_fail_header">Модуль Magisk не встановлений</string>
     <string name="load_fail_card_title">Не вдалося завантажити libjamesdsp.so</string>
@@ -493,7 +492,7 @@
     <string name="self_update_download_fail">Не вдалося завантажити пакет оновлення. Будь ласка, перевірте ваше інтернет-з\'єднання. Детальніше: %1$s</string>
     <string name="self_update_install_fail">Помилка при встановленні. %1$s</string>
     <string name="self_update_finished">Оновлення встановлено. Перезапуск додатка…</string>
-    <string name="self_update_no_updates">Наразі немає доступних оновлень</string>
+    <string name="self_update_no_updates">Наразі немає нових оновлень</string>
     <string name="self_update_notice">Доступне нове оновлення (%1$s)</string>
     <string name="self_update_notice_summary">Натисніть тут, щоб завантажити та встановити оновлення.</string>
     <string name="self_update_notice_dismiss_install">Встановити зараз</string>
@@ -501,4 +500,5 @@
     <string name="self_update_notice_dismiss_skip">Пропустити це оновлення</string>
     <string name="self_update_state_downloading">Завантаження…</string>
     <string name="self_update_state_installing">Встановлення…</string>
+    <!-- Backups -->
 </resources>

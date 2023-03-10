@@ -243,8 +243,6 @@
     <string name="app_compat_instruction">Por favor, verifica las configuraciones de las aplicaciones para ver si puedes desactivar la aceleración de hardware u otras configuraciones que podrían interferir con RootlessJamesDSP y toca \'Reintentar\'.</string>
     <string name="app_compat_instruction_exclude">Alternativamente, selecciona \'Excluir\' para pasar por alto este problema excluyendo la aplicación incompatible del procesamiento de audio.</string>
     <string name="app_compat_unknown_pkg_name">Nombre de paquete desconocido</string>
-    <!-- Hints for compatibility issues for individual apps -->
-    <string name="app_compat_quirk_voice_search">La búsqueda y reconocimiento de voz se sabe que causan este problema con esta aplicación. Trata de evitar usar estas funciones y revoca el permiso del micrófono para las aplicaciones problemáticas si el problema persiste.</string>
     <!-- Root: Library load failure -->
     <string name="load_fail_header">Módulo de Magisk no instalado</string>
     <string name="load_fail_card_title">Error al cargar libjamesdsp.so</string>
@@ -262,4 +260,5 @@
     <!-- File intent handler -->
     <!-- Translation notice box -->
     <!-- Self-updates (Root) -->
+    <!-- Backups -->
 </resources>
