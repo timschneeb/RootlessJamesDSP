@@ -10,6 +10,7 @@
     <string name="notification_channel_session_loss_alert">Сповіщення про втрату сесії</string>
     <string name="notification_channel_permission_prompt">Запит на отримання дозволів</string>
     <string name="notification_channel_app_compat_alert">Сповіщення про несумісний додаток</string>
+    <string name="notification_group_backup">Резервне копіювання та відновлення</string>
     <!-- Service notifications -->
     <string name="action_retry">Повторити</string>
     <string name="action_fix">Виправити проблему</string>
@@ -324,6 +325,14 @@
     <string name="appearance_app_theme">Колірний акцент теми</string>
     <string name="appearance_navigation_title">Навігація</string>
     <string name="appearance_nav_hide">Приховати панель навігації під час прокрутки</string>
+    <string name="backup_settings">Резервне копіювання та відновлення</string>
+    <string name="backup_frequency">Частота резервного копіювання</string>
+    <string name="backup_maximum">Максимальна кількість резервних копій</string>
+    <string name="backup_never">Ніколи</string>
+    <string name="backup_12hour">Кожні 12 годин</string>
+    <string name="backup_24hour">Щодня</string>
+    <string name="backup_48hour">Кожні 2 дні</string>
+    <string name="backup_weekly">Щотижня</string>
     <!-- Theme names -->
     <string name="theme_default">Типові налаштування</string>
     <string name="theme_monet">Dynamic</string>
@@ -503,4 +512,16 @@
     <!-- Backups -->
     <string name="backup_restore_error_format">Непідтримуваний або пошкоджений файл резервної копії</string>
     <string name="backup_restore_error_version_too_new">Резервна копія створена новішою версією додатка і не може бути завантажена. Будь ласка, оновіть додаток, щоб продовжити.</string>
+    <string name="backup_restore_completed">Відновлення завершено</string>
+    <string name="backup_create_completed">Резервна копія створена</string>
+    <string name="backup_create_progress">Створення резервної копії</string>
+    <string name="backup_manual_backup">Ручна резервна копія</string>
+    <string name="backup_create">Створити резервну копію</string>
+    <string name="backup_create_summary">Може бути використано для відновлення поточних налаштувань</string>
+    <string name="backup_restore">Відновити з резервної копії</string>
+    <string name="backup_restore_summary">Відновити налаштування з файлу резервної копії</string>
+    <string name="backup_automatic_backup">Автоматичне резервне копіювання</string>
+    <string name="backup_compat_info">Резервні копії містять лише імпульсні відгуки, скрипти, файли VDC, пресети та поточну конфігурацію аудіо для максимальної сумісності з іншими версіями.</string>
+    <string name="backup_restore_mode_title">Режим відновлення</string>
+    <string name="backup_restore_mode_clean">Чисте відновлення (видалити всі наявні файли)</string>
 </resources>
