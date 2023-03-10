@@ -42,7 +42,6 @@
     <string name="title_activity_blocklist">Apps excluídos</string>
     <!-- Compatibility issue activity -->
     <string name="app_compat_retry">Tente novamente</string>
-    <!-- Hints for compatibility issues for individual apps -->
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
     <!-- App list -->
