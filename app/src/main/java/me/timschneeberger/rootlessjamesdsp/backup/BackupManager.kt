@@ -67,7 +67,8 @@ class BackupManager(private val context: Context): KoinComponent {
             Tar.Composer(file.openOutputStream().sink().gzip().buffer().outputStream()).use { c ->
                 c.metadata = mutableMapOf(
                     META_MIN_VERSION_CODE to BuildConfig.VERSION_CODE.toString(),
-                    META_FLAVOR to BuildConfig.FLAVOR
+                    META_FLAVOR to BuildConfig.FLAVOR,
+                    META_IS_BACKUP to true.toString()
                 )
 
                 File(context.applicationInfo.dataDir + "/shared_prefs")
@@ -138,8 +139,9 @@ class BackupManager(private val context: Context): KoinComponent {
     }
 
     companion object {
-        private const val META_MIN_VERSION_CODE = "minVersionCode"
+        private const val META_MIN_VERSION_CODE = "min_version_code"
         private const val META_FLAVOR = "flavor"
+        const val META_IS_BACKUP = "is_backup"
 
         private fun isKnownFile(name: String): Boolean {
             return (name.contains("dsp_") && name.endsWith(".xml")) ||

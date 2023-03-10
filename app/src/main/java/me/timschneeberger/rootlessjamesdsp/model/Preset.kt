@@ -5,6 +5,7 @@ import android.content.Intent
 import android.system.ErrnoException
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
+import me.timschneeberger.rootlessjamesdsp.backup.BackupManager.Companion.META_IS_BACKUP
 import me.timschneeberger.rootlessjamesdsp.liveprog.EelParser
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.Tar
@@ -134,6 +135,12 @@ class Preset(val name: String): KoinComponent {
             val targetFolder = File(ctx.cacheDir, "preset")
             val metadata = Tar.Reader(stream, ::isKnownEntry).extract(targetFolder)
             metadata ?: throw Exception(ctx.getString(R.string.filelibrary_corrupted))
+
+            if(metadata[META_IS_BACKUP]?.toBoolean() == true) {
+                Timber.e("This is a backup file, not a preset file")
+                targetFolder.deleteRecursively()
+                throw Exception(ctx.getString(R.string.filelibrary_is_backup_not_preset))
+            }
 
             val version = metadata[META_VERSION]?.toIntOrNull() ?: 2
             Timber.d("Loaded preset file version $version")
