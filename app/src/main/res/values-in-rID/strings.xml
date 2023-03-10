@@ -406,7 +406,6 @@
     <string name="app_compat_instruction_exclude">Untuk langkah alternatif, anda bisa memilih \'Kecualikan\' untuk mengecualikan aplikasi yang tidak didukung.</string>
     <string name="app_compat_unknown_pkg_name">Nama package tidak dikenal</string>
     <!-- Hints for compatibility issues for individual apps -->
-    <string name="app_compat_quirk_voice_search">Pencarian suara dan pengenalan suara adalah masalah yang sudah dikenal pada aplikasi ini. Coba hindari masalah ini dengan mencabut izin mikrofon terhadap aplikasi bermasalah jika masalah seperti ini terjadi.</string>
     <!-- Root: Library load failure -->
     <string name="load_fail_header">Modul magisk tidak terpasang</string>
     <string name="load_fail_card_title">Gagal memuat libjamesdsp.so</string>
