@@ -6,10 +6,14 @@
     <string name="action_revert">Auf Standard zurücksetzen</string>
     <string name="action_blocked_apps">Ausgeschlossene Apps</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">Dienst</string>
     <string name="notification_channel_service">Servicebenachrichtigung</string>
     <string name="notification_channel_session_loss_alert">Sitzungsverlust-Warnung</string>
     <string name="notification_channel_permission_prompt">Berechtigungsanforderung</string>
     <string name="notification_channel_app_compat_alert">Inkompatible App-Warnung</string>
+    <string name="notification_group_backup">Sichern und Wiederherstellen</string>
+    <string name="notification_channel_backup_progress">Wird ausgeführt</string>
+    <string name="notification_channel_backup_complete">Abgeschlossen</string>
     <!-- Service notifications -->
     <string name="action_retry">Erneut versuchen</string>
     <string name="action_fix">Problem beheben</string>
@@ -324,6 +328,17 @@
     <string name="appearance_app_theme">App-Design</string>
     <string name="appearance_navigation_title">Navigation</string>
     <string name="appearance_nav_hide">Navigationsleiste beim Scrollen ausblenden</string>
+    <string name="backup_settings">Sichern und Wiederherstellen</string>
+    <string name="backup_settings_summary">Automatische &amp; manuelle Sicherungen</string>
+    <string name="backup_frequency">Backup-Häufigkeit</string>
+    <string name="backup_location">Backup-Speicherort</string>
+    <string name="backup_maximum">Maximale Backups</string>
+    <string name="backup_never">Niemals</string>
+    <string name="backup_12hour">Alle 12 Stunden</string>
+    <string name="backup_24hour">Täglich</string>
+    <string name="backup_48hour">Alle zwei Tage</string>
+    <string name="backup_weekly">Wöchentlich</string>
+    <string name="backup_select_location">Bitte erstelle und wähle ein Sicherungsverzeichnis…</string>
     <!-- Theme names -->
     <string name="theme_default">Standard</string>
     <string name="theme_monet">Dynamisch</string>
@@ -501,4 +516,23 @@
     <string name="self_update_state_downloading">Wird heruntergeladen…</string>
     <string name="self_update_state_installing">Installiere…</string>
     <!-- Backups -->
+    <string name="backup_restore_progress">Backup wird wiederhergestellt</string>
+    <string name="backup_restore_error">Wiederherstellung fehlgeschlagen</string>
+    <string name="backup_restore_error_format">Nicht unterstützte oder beschädigte Backup-Datei</string>
+    <string name="backup_restore_error_version_too_new">Das Backup wurde mit einer neueren Version dieser App erstellt und kann nicht geladen werden. Bitte aktualisiere diese App um fortzufahren.</string>
+    <string name="backup_restore_completed">Wiederherstellung abgeschlossen</string>
+    <string name="backup_create_completed">Backup erstellt</string>
+    <string name="backup_create_progress">Backup wird erstellt</string>
+    <string name="backup_create_error">Backup fehlgeschlagen</string>
+    <string name="backup_manual_backup">Manuelles Backup</string>
+    <string name="backup_create">Backup erstellen</string>
+    <string name="backup_create_summary">Kann später benutzt werden, um die aktuellen Einstellungen wiederherzustellen</string>
+    <string name="backup_restore">Backup wiederherstellen</string>
+    <string name="backup_restore_summary">Einstellungen aus einer Backup-Datei wiederherstellen</string>
+    <string name="backup_automatic_backup">Automatisches Backup</string>
+    <string name="backup_compat_info">Backups beinhalten nur Impulsantworten, Skripte, VDC-Dateien, Presets und die aktuelle Audio-Konfiguration, um eine maximale Kompatibilität mit anderen Versionen zu gewährleisten.</string>
+    <string name="backup_restore_mode_title">Wiederherstellungsmodus</string>
+    <string name="backup_restore_mode_clean">Saubere Wiederherstellung (alle vorhandenen Dateien löschen)</string>
+    <string name="backup_restore_mode_dirty">Unsaubere Wiederherstellung (nur überschreiben)</string>
+    <string name="backup_in_progress">Backup läuft bereits</string>
 </resources>
