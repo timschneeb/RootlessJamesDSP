@@ -443,7 +443,6 @@
     <string name="app_compat_instruction">如果您可以禁用 HW-size 或其它可能干扰 RootlessJamesDSP 的设置并点击重试，请检查应用的设置。</string>
     <string name="app_compat_instruction_exclude">或者，选择“排除”来绕过这个问题，将不兼容的应用排除在音频处理之外。</string>
     <string name="app_compat_unknown_pkg_name">未知应用包名</string>
-    <!-- Hints for compatibility issues for individual apps -->
     <!-- Root: Library load failure -->
     <string name="load_fail_header">Magisk 模块未安装</string>
     <string name="load_fail_card_title">加载 libjamesdsp.so 失败</string>
