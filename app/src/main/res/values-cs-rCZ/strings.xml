@@ -447,7 +447,6 @@
     <string name="app_compat_instruction">Prosím zkontrolujte nastavení aplikace, jestli nemůžete zakázat HW akceleraci nebo jiná nastavení, která by mohla narušit chod RootlessJamesDSP a klepněte na \'Zkusit znovu\'.</string>
     <string name="app_compat_instruction_exclude">Případně zvolte „Vyloučit“ pro obejití tohoto problému vyloučením nekompatibilní aplikace ze zpracování zvuku.</string>
     <string name="app_compat_unknown_pkg_name">Neznámý název balíčku</string>
-    <!-- Hints for compatibility issues for individual apps -->
     <!-- Root: Library load failure -->
     <string name="load_fail_header">Magisk modul není nainstalován</string>
     <string name="load_fail_card_title">Nepodařilo se načíst libjamesdsp.so</string>
