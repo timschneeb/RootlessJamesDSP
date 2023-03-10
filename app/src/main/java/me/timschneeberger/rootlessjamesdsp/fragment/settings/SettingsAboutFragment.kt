@@ -1,4 +1,4 @@
-package me.timschneeberger.rootlessjamesdsp.fragment
+package me.timschneeberger.rootlessjamesdsp.fragment.settings
 
 import android.content.Intent
 import android.net.Uri

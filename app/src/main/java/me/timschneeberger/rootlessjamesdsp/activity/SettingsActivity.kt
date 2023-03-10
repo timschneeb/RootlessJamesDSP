@@ -9,9 +9,9 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.ActivitySettingsBinding
-import me.timschneeberger.rootlessjamesdsp.fragment.SettingsAboutFragment
-import me.timschneeberger.rootlessjamesdsp.fragment.SettingsBackupFragment
-import me.timschneeberger.rootlessjamesdsp.fragment.SettingsFragment
+import me.timschneeberger.rootlessjamesdsp.fragment.settings.SettingsAboutFragment
+import me.timschneeberger.rootlessjamesdsp.fragment.settings.SettingsBackupFragment
+import me.timschneeberger.rootlessjamesdsp.fragment.settings.SettingsFragment
 
 class SettingsActivity : BaseActivity(),
     PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
