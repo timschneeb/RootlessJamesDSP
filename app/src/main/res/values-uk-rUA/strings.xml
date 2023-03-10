@@ -329,6 +329,7 @@
     <string name="appearance_navigation_title">Навігація</string>
     <string name="appearance_nav_hide">Приховати панель навігації під час прокрутки</string>
     <string name="backup_settings">Резервне копіювання та відновлення</string>
+    <string name="backup_settings_summary">Автоматичне і ручне резервне копіювання</string>
     <string name="backup_frequency">Частота резервного копіювання</string>
     <string name="backup_location">Розташування резервних копій</string>
     <string name="backup_maximum">Макс. кількість резервних копій</string>
@@ -337,7 +338,7 @@
     <string name="backup_24hour">Щодня</string>
     <string name="backup_48hour">Кожні 2 дні</string>
     <string name="backup_weekly">Щотижня</string>
-    <string name="backup_select_location">Будь ласка, створіть та оберіть каталог резервної копії…</string>
+    <string name="backup_select_location">Виберіть папку для створення резервних копій</string>
     <!-- Theme names -->
     <string name="theme_default">Типові налаштування</string>
     <string name="theme_monet">Dynamic</string>
@@ -532,5 +533,6 @@
     <string name="backup_compat_info">Резервні копії містять лише імпульсні відгуки, скрипти, файли VDC, пресети та поточну конфігурацію аудіо для забезпечення максимальної сумісності з іншими версіями.</string>
     <string name="backup_restore_mode_title">Режим відновлення</string>
     <string name="backup_restore_mode_clean">Видалити всі наявні файли (чисте відновлення)</string>
+    <string name="backup_restore_mode_dirty">Тільки перезаписати (брудне відновлення)</string>
     <string name="backup_in_progress">Резервне копіювання вже виконується</string>
 </resources>
