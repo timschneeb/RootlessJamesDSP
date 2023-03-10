@@ -502,4 +502,5 @@
     <string name="self_update_notice_dismiss_skip">Přeskočit tuto aktualizaci</string>
     <string name="self_update_state_downloading">Stahování…</string>
     <string name="self_update_state_installing">Instalace…</string>
+    <!-- Backups -->
 </resources>
