@@ -329,7 +329,6 @@
     <string name="appearance_navigation_title">Navigation</string>
     <string name="appearance_nav_hide">Navigationsleiste beim Scrollen ausblenden</string>
     <string name="backup_settings">Sichern und Wiederherstellen</string>
-    <string name="backup_settings_summary">Automatische &amp; manuelle Sicherungen</string>
     <string name="backup_frequency">Backup-Häufigkeit</string>
     <string name="backup_location">Backup-Speicherort</string>
     <string name="backup_maximum">Maximale Backups</string>
