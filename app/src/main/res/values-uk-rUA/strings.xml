@@ -366,7 +366,9 @@
     <string name="filelibrary_unsupported_format">Обраний файл має неправильне розширення.</string>
     <string name="filelibrary_corrupted_title">Непідтримуваний або пошкоджений файл</string>
     <string name="filelibrary_corrupted">Обраний файл не містить придатних для використання даних або пошкоджений.</string>
+    <string name="filelibrary_file_too_new">Вибраний файл був створений новішою версією додатка і не може бути завантажений. Будь ласка, оновіть додаток, щоб продовжити.</string>
     <string name="filelibrary_access_fail">Не вдалося отримати доступ до каталогу</string>
+    <string name="filelibrary_is_backup_not_preset">Вибраний файл є файлом резервної копії, а не пресетом. Якщо ви хочете виконати відновлення налаштувань, перейдіть до параметрів резервного копіювання.</string>
     <string name="filelibrary_no_file_selected">Файл не вибрано</string>
     <string name="filelibrary_new_file_name">Нова назва файлу</string>
     <string name="filelibrary_file_exists">Файл вже існує</string>
