@@ -329,6 +329,7 @@
     <string name="appearance_navigation_title">Навигация</string>
     <string name="appearance_nav_hide">Скрывать панель навигации при прокрутке</string>
     <string name="backup_settings">Резервное копирование и восстановление</string>
+    <string name="backup_settings_summary">Автоматическое и ручное резервное копирование</string>
     <string name="backup_frequency">Частота резервного копирования</string>
     <string name="backup_location">Расположение резервных копий</string>
     <string name="backup_maximum">Макс. количество резервных копий</string>
@@ -337,7 +338,7 @@
     <string name="backup_24hour">Ежедневно</string>
     <string name="backup_48hour">Каждые 2 дня</string>
     <string name="backup_weekly">Еженедельно</string>
-    <string name="backup_select_location">Пожалуйста, создайте и выберите каталог резервной копии…</string>
+    <string name="backup_select_location">Выберите папку для создания резервных копий</string>
     <!-- Theme names -->
     <string name="theme_default">По умолчанию</string>
     <string name="theme_monet">Dynamic</string>
