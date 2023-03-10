@@ -37,14 +37,7 @@ class AppCompatibilityFragment : Fragment() {
         AppBlocklistViewModelFactory((requireActivity().application as MainApplication).blockedAppRepository)
     }
 
-    private val knownQuirks = mapOf(
-        arrayOf(
-            "com.google.android.youtube",
-            "com.google.android.apps.youtube.music",
-            "com.vanced.android.youtube",
-            "app.revanced.android.youtube"
-        ) to R.string.app_compat_quirk_voice_search
-    )
+    private val knownQuirks = mapOf<String, Int>()
 
     override fun onCreateView(
         inflater: LayoutInflater,

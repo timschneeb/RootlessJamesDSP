@@ -500,9 +500,6 @@
     <string name="app_compat_instruction_exclude">Alternatively, select \'Exclude\' to bypass this issue by excluding the incompatible app from audio processing.</string>
     <string name="app_compat_unknown_pkg_name">Unknown package name</string>
 
-    <!-- Hints for compatibility issues for individual apps -->
-    <string name="app_compat_quirk_voice_search">Voice search and voice recognition is known to cause this issue with this app. Try to avoid using these features and revoke the microphone permission for the problematic apps if the issue persists.</string>
-
     <!-- Root: Library load failure -->
     <string name="load_fail_header">Magisk module not installed</string>
     <string name="load_fail_card_title">Failed to load libjamesdsp.so</string>
