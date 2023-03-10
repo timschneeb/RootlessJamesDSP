@@ -501,4 +501,6 @@
     <string name="self_update_state_downloading">Завантаження…</string>
     <string name="self_update_state_installing">Встановлення…</string>
     <!-- Backups -->
+    <string name="backup_restore_error_format">Непідтримуваний або пошкоджений файл резервної копії</string>
+    <string name="backup_restore_error_version_too_new">Резервна копія створена новішою версією додатка і не може бути завантажена. Будь ласка, оновіть додаток, щоб продовжити.</string>
 </resources>
