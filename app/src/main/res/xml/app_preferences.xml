@@ -22,6 +22,13 @@
         app:fragment="me.timschneeberger.rootlessjamesdsp.fragment.SettingsTroubleshootingFragment" />
 
     <Preference
+        app:key="@string/key_backup"
+        app:title="@string/backup_settings"
+        app:summary="@string/backup_settings_summary"
+        app:icon="@drawable/ic_twotone_settings_backup_restore_24dp"
+        app:fragment="me.timschneeberger.rootlessjamesdsp.fragment.SettingsBackupFragment" />
+
+    <Preference
         app:key="@string/key_misc"
         app:title="@string/misc_settings"
         app:summary="@string/misc_settings_summary"

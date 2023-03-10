@@ -1,0 +1,46 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory app:title="@string/backup_manual_backup"
+        app:iconSpaceReserved="false">
+        <Preference
+            app:key="@string/key_backup_create"
+            app:title="@string/backup_create"
+            app:summary="@string/backup_create_summary"
+            app:iconSpaceReserved="false" />
+        <Preference
+            app:key="@string/key_backup_restore"
+            app:title="@string/backup_restore"
+            app:summary="@string/backup_restore_summary"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+c
+    <PreferenceCategory app:title="@string/backup_automatic_backup"
+        app:iconSpaceReserved="false">
+        <ListPreference
+            android:key="@string/key_backup_frequency"
+            android:defaultValue="@string/default_backup_frequency"
+            android:title="@string/backup_frequency"
+            android:entries="@array/backup_frequency"
+            android:entryValues="@array/backup_frequency_values"
+            app:useSimpleSummaryProvider="true"
+            app:iconSpaceReserved="false" />
+        <Preference
+            android:key="@string/key_backup_location"
+            android:defaultValue="@string/default_backup_location"
+            android:title="@string/backup_location"
+            android:summary="@string/value_not_set"
+            app:iconSpaceReserved="false" />
+        <ListPreference
+            android:key="@string/key_backup_maximum"
+            android:defaultValue="@string/default_backup_maximum"
+            android:title="@string/backup_maximum"
+            android:entries="@array/backup_maximum"
+            android:entryValues="@array/backup_maximum"
+            app:useSimpleSummaryProvider="true"
+            app:iconSpaceReserved="false" />
+        <Preference
+            android:icon="@drawable/ic_twotone_info_24dp"
+            android:selectable="false"
+            android:summary="@string/backup_compat_info" />
+    </PreferenceCategory>
+</PreferenceScreen>

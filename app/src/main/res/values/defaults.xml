@@ -39,6 +39,11 @@
     <string name="default_appearance_app_theme" translatable="false">DEFAULT</string>
     <bool name="default_appearance_nav_hide" translatable="false">false</bool>
 
+    <!-- Backups -->
+    <string name="default_backup_frequency" translatable="false">0</string>
+    <string name="default_backup_maximum" translatable="false">2</string>
+    <string name="default_backup_location" translatable="false" />
+
     <!-- Script editor -->
     <integer name="default_editor_font_size" translatable="false">13</integer>
 

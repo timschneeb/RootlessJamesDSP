@@ -7,6 +7,7 @@ import android.content.*
 import android.media.projection.MediaProjectionManager
 import android.net.Uri
 import android.os.*
+import android.provider.DocumentsContract
 import android.view.HapticFeedbackConstants
 import android.view.Menu
 import androidx.activity.result.ActivityResultLauncher
@@ -215,6 +216,7 @@ class MainActivity : BaseActivity() {
                             .add(R.id.dsp_fragment_container, presetDialogHost!!)
                             .commitNow()
                     }
+                    presetDialogHost?.pref?.refresh()
 
                     val dialogFragment = FileLibraryDialogFragment.newInstance("presets")
                     dialogFragment.setTargetFragment(presetDialogHost, 0)
@@ -322,6 +324,8 @@ class MainActivity : BaseActivity() {
             }
             runtimePermissionLauncher.launch(arrayOf(Manifest.permission.POST_NOTIFICATIONS))
         }
+
+
 
         // Load initial preference states
         val initialPrefList = arrayOf(R.string.key_appearance_nav_hide, R.string.key_powered_on)
@@ -692,7 +696,7 @@ class MainActivity : BaseActivity() {
     }
 
     class FakePresetFragment : Fragment(), TargetFragment {
-        private val pref by lazy {
+        val pref by lazy {
             FileLibraryPreference(requireContext(), null).apply {
                 this.type = "Presets"
                 this.key = "presets"

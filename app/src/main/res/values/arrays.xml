@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string-array name="backup_maximum" translatable="false">
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="backup_frequency" translatable="false">
+        <item>@string/backup_never</item>
+        <item>@string/backup_12hour</item>
+        <item>@string/backup_24hour</item>
+        <item>@string/backup_48hour</item>
+        <item>@string/backup_weekly</item>
+    </string-array>
+
+    <string-array name="backup_frequency_values" translatable="false">
+        <item>0</item>
+        <item>12</item>
+        <item>24</item>
+        <item>48</item>
+        <item>168</item>
+    </string-array>
+
     <string-array name="update_dismiss_dialog" translatable="false">
         <item>@string/self_update_notice_dismiss_install</item>
         <item>@string/self_update_notice_dismiss_skip</item>

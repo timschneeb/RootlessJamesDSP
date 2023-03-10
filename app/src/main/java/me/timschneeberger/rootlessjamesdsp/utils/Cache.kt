@@ -12,6 +12,7 @@ import android.os.ParcelFileDescriptor
 import android.provider.OpenableColumns
 import android.system.Os
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getPackageInfoCompat
+import timber.log.Timber
 import java.io.File
 import java.util.*
 import kotlin.concurrent.thread
@@ -106,6 +107,8 @@ object Cache {
     }
 
     private fun cleanup(context: Context, vararg dirHours: Pair<String, Duration>) {
+        Timber.i("cleaning up")
+
         val knownNames = dirHours.asSequence().map { it.first }.toSet()
         val files = context.cacheDir.listFiles().orEmpty()
         files.asSequence().filter { it.name !in knownNames }.forEach {

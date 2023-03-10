@@ -17,6 +17,7 @@
     <string name="key_audio_format" translatable="false">audio_format</string>
     <string name="key_troubleshooting" translatable="false">troubleshooting</string>
     <string name="key_misc" translatable="false">misc</string>
+    <string name="key_backup" translatable="false">backup</string>
     <string name="key_about" translatable="false">about</string>
     <string name="key_translators" translatable="false">translators</string>
 
@@ -43,7 +44,14 @@
     <string name="key_appearance_app_theme" translatable="false">appearance_app_theme</string>
     <string name="key_appearance_nav_hide" translatable="false">appearance_nav_hide</string>
 
+    <!-- Backups -->
+    <string name="key_backup_frequency" translatable="false">backup_frequency</string>
+    <string name="key_backup_location" translatable="false">backup_location</string>
+    <string name="key_backup_maximum" translatable="false">backup_maximum</string>
+
     <!-- Settings (static) -->
+    <string name="key_backup_create" translatable="false">backup_create</string>
+    <string name="key_backup_restore" translatable="false">backup_restore</string>
     <string name="key_troubleshooting_dump" translatable="false">troubleshooting_dump</string>
     <string name="key_troubleshooting_notification_access" translatable="false">troubleshooting_notification_access</string>
     <string name="key_troubleshooting_repair_assets" translatable="false">troubleshooting_repair_assets</string>

@@ -356,6 +356,17 @@
     <string name="appearance_app_theme">App theme</string>
     <string name="appearance_navigation_title">Navigation</string>
     <string name="appearance_nav_hide">Hide navigation bar on scroll</string>
+    <string name="backup_settings">Backup and restore</string>
+    <string name="backup_settings_summary">Automated &amp; manual backups</string>
+    <string name="backup_frequency">Backup frequency</string>
+    <string name="backup_location">Backup location</string>
+    <string name="backup_maximum">Maximum backups</string>
+    <string name="backup_never">Never</string>
+    <string name="backup_12hour">Every 12 hours</string>
+    <string name="backup_24hour">Daily</string>
+    <string name="backup_48hour">Every 2 days</string>
+    <string name="backup_weekly">Weekly</string>
+    <string name="backup_select_location">Please create and select a backup directory…</string>
 
     <!-- Theme names -->
     <string name="theme_default">Default</string>
@@ -554,17 +565,24 @@
     <string name="self_update_state_downloading">Downloading…</string>
     <string name="self_update_state_installing">Installing…</string>
 
-
     <!-- Backups -->
     <string name="backup_restore_progress">Restoring backup</string>
     <string name="backup_restore_error">Restoring backup failed</string>
-    <string name="backup_restore_cancel">Cancelled restore</string>
-    <string name="backup_created">Backup created</string>
-    <string name="backup_invalid_file">Invalid backup file</string>
+    <string name="backup_restore_error_format">Unsupported or corrupted backup file</string>
+    <string name="backup_restore_error_version_too_new">The backup has been created with a newer version of this application and cannot be loaded. Please update this app to continue.</string>
+    <string name="backup_restore_completed">Restore completed</string>
+    <string name="backup_create_completed">Backup created</string>
     <string name="backup_create_progress">Creating backup</string>
     <string name="backup_create_error">Backup failed</string>
-    <string name="backup_restore_completed">Restore completed</string>
-
-
-
+    <string name="backup_manual_backup">Manual backup</string>
+    <string name="backup_create">Create backup</string>
+    <string name="backup_create_summary">Can be used to restore the current settings later</string>
+    <string name="backup_restore">Restore backup</string>
+    <string name="backup_restore_summary">Restore settings from backup file</string>
+    <string name="backup_automatic_backup">Automatic backup</string>
+    <string name="backup_compat_info">Backups only include impulse responses, scripts, VDC files, presets, and the current audio configuration for maximum compatibility with other versions.</string>
+    <string name="backup_restore_mode_title">Restore mode</string>
+    <string name="backup_restore_mode_clean">Clean restore (delete all existing files)</string>
+    <string name="backup_restore_mode_dirty">Dirty restore (overwrite only)</string>
+    <string name="backup_in_progress">Backup already in progress</string>
 </resources>

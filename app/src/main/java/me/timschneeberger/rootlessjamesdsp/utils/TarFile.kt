@@ -17,6 +17,7 @@ import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InputStream
+import java.io.OutputStream
 
 object Tar {
     private const val FILE_METADATA = "metadata"
@@ -26,19 +27,27 @@ object Tar {
      * @throws FileNotFoundException if file already exists as a directory or cannot be created for other reasons
      * @throws SecurityException if write access is denied
      */
-    class Composer(val file: File): AutoCloseable, KoinComponent {
+    class Composer: AutoCloseable, KoinComponent {
+        constructor(outputStream: OutputStream) {
+            stream = TarOutputStream(outputStream)
+        }
+
+        constructor(file: File) {
+            stream = TarOutputStream(file)
+        }
+
         private val context: Context by inject()
-        private val stream = TarOutputStream(file)
+        private val stream: TarOutputStream
 
         var metadata = mutableMapOf<String, String>()
 
-        fun add(file: File): Boolean {
+        fun add(file: File, entryPath: String? = null): Boolean {
             if (!file.exists() || file.isDirectory) {
                 Timber.e("addFile: ${file.absolutePath} is not valid")
                 return false
             }
 
-            stream.putNextEntry(TarEntry(file, file.name))
+            stream.putNextEntry(TarEntry(file, (entryPath ?: file.name)))
             BufferedInputStream(FileInputStream(file)).use { origin ->
                 var count: Int
                 val data = ByteArray(2048)
@@ -110,13 +119,15 @@ object Tar {
         fun extract(targetFolder: File) : Map<String, String>? {
             if(targetFolder.exists())
                 targetFolder.delete()
-            targetFolder.mkdir()
+            targetFolder.mkdirs()
 
             val metadataBytes = ByteArrayOutputStream()
             try {
                 process { stream, name ->
                     var count: Int
                     val data = ByteArray(2048)
+                    // create subdirectories in archive entry name
+                    File(targetFolder.absolutePath + "/" + name).parentFile?.mkdirs()
                     BufferedOutputStream(FileOutputStream(
                         targetFolder.absolutePath + "/" + name
                     )).use { dest ->

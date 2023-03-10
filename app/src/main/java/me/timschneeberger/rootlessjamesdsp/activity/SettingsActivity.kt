@@ -1,15 +1,24 @@
 package me.timschneeberger.rootlessjamesdsp.activity
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.ActivitySettingsBinding
 import me.timschneeberger.rootlessjamesdsp.fragment.SettingsAboutFragment
+import me.timschneeberger.rootlessjamesdsp.fragment.SettingsBackupFragment
 import me.timschneeberger.rootlessjamesdsp.fragment.SettingsFragment
 
 class SettingsActivity : BaseActivity(),
     PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
+
+    lateinit var backupLocationSelectLauncher: ActivityResultLauncher<Uri?>
+    lateinit var backupSaveFileSelectLauncher: ActivityResultLauncher<String>
+    lateinit var backupLoadFileSelectLauncher: ActivityResultLauncher<Array<String>>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,8 +46,46 @@ class SettingsActivity : BaseActivity(),
             }
         }
 
+        backupLocationSelectLauncher = registerForActivityResult(
+            ActivityResultContracts.OpenDocumentTree(),
+            ::onBackupLocationSet
+        )
+
+        backupSaveFileSelectLauncher = registerForActivityResult(
+            ActivityResultContracts.CreateDocument("application/*")
+        ) {
+            it ?: return@registerForActivityResult
+            val fragment = supportFragmentManager.findFragmentById(R.id.settings)
+            if(fragment is SettingsBackupFragment)
+                fragment.startManualBackup(it)
+        }
+
+        backupLoadFileSelectLauncher = registerForActivityResult(
+            ActivityResultContracts.OpenDocument()
+        ) {
+            it ?: return@registerForActivityResult
+            val fragment = supportFragmentManager.findFragmentById(R.id.settings)
+            if(fragment is SettingsBackupFragment)
+                fragment.startManualRestore(it)
+        }
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.settingsToolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
+    }
+
+    private fun onBackupLocationSet(uri: Uri?) {
+        val fragment = supportFragmentManager.findFragmentById(R.id.settings) as? SettingsBackupFragment
+
+        if (uri != null) {
+            contentResolver.takePersistableUriPermission(
+                uri,
+                Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+            )
+            prefsApp.set(R.string.key_backup_location, uri.toString())
+            fragment?.updateSummaries()
+        } else {
+            fragment?.resetFrequencyIfLocationUnset()
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

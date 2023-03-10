@@ -18,7 +18,7 @@
     <a href="https://github.com/ThePBone/RootlessJamesDSP/actions/workflows/build.yml">
       <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/thepbone/rootlessjamesdsp/build.yml">
   </a>
- 
+
 </p>
 <p align="center">
   <a href="#limitations">Limitations</a> •
@@ -117,7 +117,7 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
 ## Credits
 
 * JamesDSP - [James Fung (@james34602)](https://github.com/james34602)
-* Theming system based on Tachiyomi
+* Theming system & backup system based on Tachiyomi
 
 ### Translators
 

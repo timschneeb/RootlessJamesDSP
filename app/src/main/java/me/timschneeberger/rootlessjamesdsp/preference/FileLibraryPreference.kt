@@ -114,17 +114,24 @@ class FileLibraryPreference(context: Context, attrs: AttributeSet?) :
     }
 
     companion object {
+        val types = mapOf(
+            "Convolver" to listOf(".flac", ".wav", ".irs"),
+            "Liveprog" to listOf(".eel"),
+            "DDC" to listOf(".vdc"),
+            "Presets" to listOf(".tar")
+        )
+
         fun hasIrsExtension(it: String): Boolean {
-            return it.endsWith(".flac") || it.endsWith(".wav") ||  it.endsWith(".irs")
+            return types["Convolver"]!!.any { ext -> it.endsWith(ext) }
         }
         fun hasLiveprogExtension(it: String): Boolean {
-            return it.endsWith(".eel")
+            return types["Liveprog"]!!.any { ext -> it.endsWith(ext) }
         }
         fun hasVdcExtension(it: String): Boolean {
-            return it.endsWith(".vdc")
+            return types["DDC"]!!.any { ext -> it.endsWith(ext) }
         }
         fun hasPresetExtension(it: String): Boolean {
-            return it.endsWith(".tar")
+            return types["Presets"]!!.any { ext -> it.endsWith(ext) }
         }
     }
 }

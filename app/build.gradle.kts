@@ -218,7 +218,7 @@ dependencies {
     implementation("dev.rikka.shizuku:api:${AndroidConfig.shizukuVersion}")
     implementation("dev.rikka.shizuku:provider:${AndroidConfig.shizukuVersion}")
 
-    // Used for backup feature; check if this can be removed later
+    // Used for backup file access
     implementation("com.github.tachiyomiorg:unifile:17bec43")
 
     // Root APIs
