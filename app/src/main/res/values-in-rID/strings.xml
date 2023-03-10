@@ -405,7 +405,6 @@
     <string name="app_compat_instruction">Periksa pengaturan aplikasi jika anda bisa menonaktifkan HW-acceleration atau pengaturan lainnya yang mungkin bentrok dengan RootlessJamesDSP, lalu tap \'Ulangi\'.</string>
     <string name="app_compat_instruction_exclude">Untuk langkah alternatif, anda bisa memilih \'Kecualikan\' untuk mengecualikan aplikasi yang tidak didukung.</string>
     <string name="app_compat_unknown_pkg_name">Nama package tidak dikenal</string>
-    <!-- Hints for compatibility issues for individual apps -->
     <!-- Root: Library load failure -->
     <string name="load_fail_header">Modul magisk tidak terpasang</string>
     <string name="load_fail_card_title">Gagal memuat libjamesdsp.so</string>
