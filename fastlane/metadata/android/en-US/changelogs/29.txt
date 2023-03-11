@@ -1,0 +1,1 @@
+* Hotfix: fixed crash when opening file selector (Convolver, DDC, Liveprog) due to regression in v1.4.1
