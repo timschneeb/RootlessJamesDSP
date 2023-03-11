@@ -3,5 +3,4 @@
 * Presets/backups can now be properly shared between app versions/flavors without causing issues
 * Better auto-start notification that skips the permission prompt if possible and doesn't bring the app into foreground by force
 * Added info about skipping the capture permission prompt in the ADB setup wizard
-* Various crash fixes
 * Updated translations for languages Russian, Ukrainian, Czech, Chinese, German, Hindi
