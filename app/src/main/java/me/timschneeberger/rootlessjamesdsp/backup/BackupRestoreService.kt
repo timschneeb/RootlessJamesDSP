@@ -15,12 +15,9 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.Notifications
-import me.timschneeberger.rootlessjamesdsp.R
-import me.timschneeberger.rootlessjamesdsp.activity.MainActivity
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getParcelableAs
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.acquireWakeLock
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.isServiceRunning
-import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
 import timber.log.Timber
 
 /**

@@ -2,9 +2,6 @@ package me.timschneeberger.rootlessjamesdsp.utils.extensions
 
 import android.media.audiofx.AudioEffect
 import android.media.audiofx.AudioEffectHidden
-import me.timschneeberger.rootlessjamesdsp.utils.extensions.AudioEffectExtensions.setParameter
-import me.timschneeberger.rootlessjamesdsp.utils.extensions.AudioEffectExtensions.setParameterImpulseResponseBuffer
-import me.timschneeberger.rootlessjamesdsp.utils.extensions.AudioEffectExtensions.setParameterIntArray
 import timber.log.Timber
 import java.nio.ByteBuffer
 import java.nio.ByteOrder

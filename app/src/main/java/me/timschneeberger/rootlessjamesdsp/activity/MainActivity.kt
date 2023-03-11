@@ -7,7 +7,6 @@ import android.content.*
 import android.media.projection.MediaProjectionManager
 import android.net.Uri
 import android.os.*
-import android.provider.DocumentsContract
 import android.view.HapticFeedbackConstants
 import android.view.Menu
 import androidx.activity.result.ActivityResultLauncher
@@ -44,8 +43,11 @@ import me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
 import me.timschneeberger.rootlessjamesdsp.service.BaseAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.service.RootlessAudioProcessorService
-import me.timschneeberger.rootlessjamesdsp.utils.extensions.AssetManagerExtensions.installPrivateAssets
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.Result
+import me.timschneeberger.rootlessjamesdsp.utils.StorageUtils
+import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.AssetManagerExtensions.installPrivateAssets
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.check
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getAppName
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.registerLocalReceiver
@@ -58,9 +60,6 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.to
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.unregisterLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasDumpPermission
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasRecordPermission
-import me.timschneeberger.rootlessjamesdsp.utils.Result
-import me.timschneeberger.rootlessjamesdsp.utils.StorageUtils
-import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import me.timschneeberger.rootlessjamesdsp.view.FloatingToggleButton
 import org.koin.core.component.inject
 import timber.log.Timber

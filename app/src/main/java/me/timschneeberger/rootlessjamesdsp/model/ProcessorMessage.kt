@@ -28,7 +28,7 @@ package me.timschneeberger.rootlessjamesdsp.model
      }
 
      enum class ConvolverErrorCode(val value: Int) {
-         Unknown(1),
+         Unknown(0),
          Corrupted(1),
          NoFrames(2),
          AdvParamsInvalid(3);

@@ -37,7 +37,6 @@ import me.timschneeberger.rootlessjamesdsp.databinding.DialogTextinputBinding
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getApplicationInfoCompat
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getPackageInfoCompat
-import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.requestIgnoreBatteryOptimizations
 import timber.log.Timber
 import java.io.File
 import kotlin.math.roundToInt
