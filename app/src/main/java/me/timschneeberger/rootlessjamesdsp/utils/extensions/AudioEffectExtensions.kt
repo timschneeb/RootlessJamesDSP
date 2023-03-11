@@ -2,6 +2,9 @@ package me.timschneeberger.rootlessjamesdsp.utils.extensions
 
 import android.media.audiofx.AudioEffect
 import android.media.audiofx.AudioEffectHidden
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.AudioEffectExtensions.setParameter
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.AudioEffectExtensions.setParameterImpulseResponseBuffer
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.AudioEffectExtensions.setParameterIntArray
 import timber.log.Timber
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
@@ -18,7 +21,7 @@ object AudioEffectExtensions {
             val zeroPad = 256 - result.size
             result += ByteArray(zeroPad)
         }
-        return this.setParameter(parameter, result)
+        return safeAccess { this.setParameter(parameter, result) }
     }
 
     fun AudioEffectHidden?.setParameterCharBuffer(parameterSend: Int, parameterCommit: Int, string: String): Int{
@@ -39,7 +42,7 @@ object AudioEffectExtensions {
             )
 
         // Commit buffer
-        return setParameter(parameterCommit, 1.toShort())
+        return safeAccess { this.setParameter(parameterCommit, 1.toShort()) }
     }
 
     fun AudioEffectHidden?.setParameterImpulseResponseBuffer(
@@ -67,7 +70,7 @@ object AudioEffectExtensions {
         }
 
         // Commit buffer
-        return setParameter(parameterCommit, 1.toShort())
+        return safeAccess { this.setParameter(parameterCommit, 1.toShort()) }
     }
 
     fun AudioEffectHidden?.setParameterFloatArray(parameter: Int, value: FloatArray): Int {
@@ -79,7 +82,7 @@ object AudioEffectExtensions {
         for (i in value.indices)
             byteDataBuffer.putFloat(value[i])
 
-        return this.setParameter(parameter, result)
+        return safeAccess { this.setParameter(parameter, result) }
     }
 
     fun AudioEffectHidden?.setParameterIntArray(parameter: Int, value: IntArray): Int {
@@ -91,39 +94,47 @@ object AudioEffectExtensions {
         for (i in value.indices)
             byteDataBuffer.putInt(value[i])
 
-        return this.setParameter(parameter, result)
+        return safeAccess { this.setParameter(parameter, result) }
     }
 
     fun AudioEffectHidden?.setParameter(param: ByteArray, value: ByteArray): Int {
         this ?: return AudioEffect.ERROR_NO_INIT
-        return this.setParameter(param, value)
+        return safeAccess { this.setParameter(param, value) }
     }
 
     fun AudioEffectHidden?.setParameter(param: Int, value: Int): Int {
         this ?: return AudioEffect.ERROR_NO_INIT
-        return this.setParameter(param, value)
+        return safeAccess { this.setParameter(param, value) }
     }
 
     fun AudioEffectHidden?.setParameter(param: Int, value: ByteArray): Int {
         this ?: return AudioEffect.ERROR_NO_INIT
-        return this.setParameter(param, value)
+        return safeAccess { this.setParameter(param, value) }
     }
 
     fun AudioEffectHidden?.setParameter(param: Int, value: Short): Int {
         this ?: return AudioEffect.ERROR_NO_INIT
-        return this.setParameter(param, value)
+        return safeAccess { this.setParameter(param, value) }
     }
 
     fun AudioEffectHidden?.getParameterInt(parameter: Int): Int? {
         this ?: return null
 
         val bytes = ByteArray(4)
-        val ret = this.getParameter(parameter, bytes)
+        val ret = safeAccess { this.getParameter(parameter, bytes) }
         if(ret < 0) {
             Timber.e("getParameterInt: failed to get parameter $parameter; error code: $ret")
             return null
         }
         return ByteBuffer.wrap(bytes).order(ByteOrder.nativeOrder()).int
+    }
+
+    private fun safeAccess(onTry: () -> Int): Int {
+        return try { onTry.invoke() } catch (ex: IllegalStateException) {
+            Timber.e("AudioEffect is in invalid state")
+            Timber.d(ex)
+            AudioEffect.ERROR_NO_INIT
+        }
     }
 
     private const val MAX_CHAR_PARTITION_SIZE = 256
