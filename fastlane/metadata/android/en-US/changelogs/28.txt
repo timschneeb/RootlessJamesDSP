@@ -1,0 +1,1 @@
+* Hotfix: fixed crash during setup wizard due to regression in v1.4.0
