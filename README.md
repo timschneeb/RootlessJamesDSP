@@ -129,14 +129,14 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
         <br />
         <sub><b>Tim Schneeberger (ThePBone)</b></sub></a>
       <br />
-      <sub><b>21131 words</b></sub>
+      <sub><b>21286 words</b></sub>
     </td>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/netrunner-exe"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15209210/medium/dabb33b18a6eb0e59cee34e448d81e40.jpg" />
         <br />
         <sub><b>Oleksandr Tkachenko (netrunner-exe)</b></sub></a>
       <br />
-      <sub><b>6209 words</b></sub>
+      <sub><b>6297 words</b></sub>
     </td>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/FrameXX"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/14591682/medium/071f9d859dc36f9281f6f84b9c18c852.png" />
@@ -234,6 +234,13 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
       <sub><b>50 words</b></sub>
     </td>
     <td align="center" valign="top">
+      <a href="https://crowdin.com/profile/vbisoi"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15726357/medium/e7a928f5536f12bdd3a985b116c65d0b_default.png" />
+        <br />
+        <sub><b>vbisoi</b></sub></a>
+      <br />
+      <sub><b>39 words</b></sub>
+    </td>
+    <td align="center" valign="top">
       <a href="https://crowdin.com/profile/nattramnar"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15722771/medium/13729d04abd3d7cfb680bfb1cef79a33_default.png" />
         <br />
         <sub><b>nattramnar</b></sub></a>
@@ -247,21 +254,14 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
       <br />
       <sub><b>21 words</b></sub>
     </td>
+  </tr>
+  <tr>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/O2C14"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15716303/medium/b2e76f82c99dd39c24ec0c3e36c0fdc9.png" />
         <br />
         <sub><b>陈里 (O2C14)</b></sub></a>
       <br />
       <sub><b>19 words</b></sub>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" valign="top">
-      <a href="https://crowdin.com/profile/vbisoi"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15726357/medium/e7a928f5536f12bdd3a985b116c65d0b_default.png" />
-        <br />
-        <sub><b>vbisoi</b></sub></a>
-      <br />
-      <sub><b>15 words</b></sub>
     </td>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/redwalery17"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15698583/medium/2e78c4e4e8152f0e56b34b67955e96ee.jpeg" />
@@ -295,6 +295,15 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
       <a href="https://crowdin.com/profile/mekyson"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15715699/medium/3445884a2b6cf411305a730e29cb9d72.jpeg" />
         <br />
         <sub><b>Mekyson Makys (mekyson)</b></sub></a>
+      <br />
+      <sub><b>1 words</b></sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top">
+      <a href="https://crowdin.com/profile/huxflux252"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15733253/medium/1167781a1aa3a068aacd79c6a342d974.png" />
+        <br />
+        <sub><b>a bbb (huxflux252)</b></sub></a>
       <br />
       <sub><b>1 words</b></sub>
     </td>
