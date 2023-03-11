@@ -174,14 +174,16 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
     override fun onDisplayPreferenceDialog(preference: Preference) {
         when (preference) {
             is EqualizerPreference -> {
-                val dialogFragment = EqualizerDialogFragment.newInstance(preference.key)
-                dialogFragment.setTargetFragment(this, 0)
-                dialogFragment.show(parentFragmentManager, null)
+                EqualizerDialogFragment.newInstance(preference.key).apply {
+                    setTargetFragment(this, 0)
+                    show(parentFragmentManager, null)
+                }
             }
             is FileLibraryPreference -> {
-                val dialogFragment = FileLibraryDialogFragment.newInstance(preference.key)
-                dialogFragment.setTargetFragment(this, 0)
-                dialogFragment.show(parentFragmentManager, null)
+                FileLibraryDialogFragment.newInstance(preference.key).apply {
+                    setTargetFragment(this, 0)
+                    show(parentFragmentManager, null)
+                }
             }
             else -> super.onDisplayPreferenceDialog(preference)
         }

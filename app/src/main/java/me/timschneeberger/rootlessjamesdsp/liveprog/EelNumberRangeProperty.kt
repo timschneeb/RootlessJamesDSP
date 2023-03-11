@@ -33,7 +33,7 @@ open class EelNumberRangeProperty<T:Number>(
     }
 
     fun handleAsInt(): Boolean {
-        return floor(step.toDouble()) == step
+        return step.toDouble().equalsDelta(floor(step.toDouble()))
     }
 
     override fun hasDefault(): Boolean {

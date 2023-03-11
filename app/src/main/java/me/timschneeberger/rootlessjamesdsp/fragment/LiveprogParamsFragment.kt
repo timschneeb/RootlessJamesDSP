@@ -26,8 +26,7 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
     private var isCreated = false
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        val args = requireArguments()
-        args.getString(BUNDLE_TARGET_FILE)?.let { eelParser.load(it) }
+        requireArguments().getString(BUNDLE_TARGET_FILE)?.let { eelParser.load(it) }
         if(!eelParser.isFileLoaded) {
             requireContext().toast(R.string.liveprog_not_found)
             return
@@ -60,10 +59,10 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
         if(baseProp is EelListProperty)
             return
 
-        val prop = baseProp as? EelNumberRangeProperty<Float>
-        prop ?: return
-        prop.value = value
-        eelParser.manipulateProperty(prop)
+        (baseProp as? EelNumberRangeProperty<Float>)?.apply {
+            this.value = value
+            eelParser.manipulateProperty(this)
+        }
 
         updateResetMenuItem()
 
@@ -75,45 +74,45 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
 
         eelParser.properties.forEach { prop ->
             if(prop is EelListProperty) {
-                val preference = DropDownPreference(requireContext())
-                preference.key = prop.key
-                preference.title = prop.description
-                //preference.summary = prop.options.getOrNull(prop.value) ?: getString(R.string.value_not_set);
-                preference.setDefaultValue(prop.value.toString())
-                preference.entries = prop.options.toTypedArray()
-                preference.entryValues = (0 until(prop.options.size)).toList().map { it.toString() }.toTypedArray()
-                preference.setValueIndex(prop.validateRange(prop.value))
-                preference.setOnPreferenceChangeListener { _, newValue ->
-                    if(!isCreated) {
-                        Timber.d("onPreferenceChangeListener not yet ready")
-                        return@setOnPreferenceChangeListener false
+                DropDownPreference(requireContext()).apply {
+                    key = prop.key
+                    title = prop.description
+                    //summary = prop.options.getOrNull(prop.value) ?: getString(R.string.value_not_set);
+                    setDefaultValue(prop.value.toString())
+                    entries = prop.options.toTypedArray()
+                    entryValues = (0 until(prop.options.size)).toList().map { it.toString() }.toTypedArray()
+                    setValueIndex(prop.validateRange(prop.value))
+                    setOnPreferenceChangeListener { _, newValue ->
+                        if(!isCreated) {
+                            Timber.d("onPreferenceChangeListener not yet ready")
+                            return@setOnPreferenceChangeListener false
+                        }
+
+                        val currentProp = eelParser.properties.find { it.key == prop.key } as? EelListProperty
+                        currentProp ?: return@setOnPreferenceChangeListener false
+
+                        Timber.d("List item with value $newValue selected")
+
+                        currentProp.value = (newValue as? String)?.toIntOrNull() ?: 0
+                        eelParser.manipulateProperty(currentProp)
+
+                        updateResetMenuItem()
+                        requireContext().sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_RELOAD_LIVEPROG))
+                        true
                     }
-
-                    val currentProp = eelParser.properties.find { it.key == prop.key } as? EelListProperty
-                    currentProp ?: return@setOnPreferenceChangeListener false
-
-                    Timber.d("List item with value $newValue selected")
-
-                    currentProp.value = (newValue as? String)?.toIntOrNull() ?: 0
-                    eelParser.manipulateProperty(currentProp)
-
-                    updateResetMenuItem()
-                    requireContext().sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_RELOAD_LIVEPROG))
-                    true
-                }
-                screen.addPreference(preference)
+                }.let(screen::addPreference)
             }
             else if(prop is EelNumberRangeProperty<*>) {
-                val slider = MaterialSeekbarPreference(requireContext())
-                slider.key = prop.key
-                slider.title = prop.description
-                slider.mPrecision = if(prop.handleAsInt()) 0 else 2
-                slider.setMin(prop.minimum.toFloat())
-                slider.setMax(prop.maximum.toFloat())
-                slider.setUpdatesContinuously(false)
-                slider.setShowSeekBarValue(true)
-                slider.setDefaultValue(prop.value)
-                screen.addPreference(slider)
+                MaterialSeekbarPreference(requireContext()).apply {
+                    key = prop.key
+                    title = prop.description
+                    mPrecision = if(prop.handleAsInt()) 0 else 2
+                    setMin(prop.minimum.toFloat())
+                    setMax(prop.maximum.toFloat())
+                    setUpdatesContinuously(false)
+                    setShowSeekBarValue(true)
+                    setDefaultValue(prop.value)
+                }.let(screen::addPreference)
             }
         }
 

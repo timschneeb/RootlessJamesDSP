@@ -12,6 +12,8 @@ import kotlin.math.*
 
 fun String.asHtml(): Spanned = Html.fromHtml(this, Html.FROM_HTML_MODE_LEGACY)
 
+fun Double.equalsDelta(other: Double, delta: Double = 0.000001): Boolean = abs(this/other - 1) < delta
+
 fun Double.prettyNumberFormat(): String {
     if( this == 0.0 ) return "0"
 
@@ -41,6 +43,8 @@ fun Double.prettyNumberFormat(): String {
         else -> "${prefix}∞"
     }
 }
+
+
 
 fun Boolean.toShort() = (if (this) 1 else 0).toShort()
 

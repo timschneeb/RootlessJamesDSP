@@ -1,4 +1,4 @@
-package me.timschneeberger.rootlessjamesdsp
+package me.timschneeberger.rootlessjamesdsp.utils
 
 import android.content.Context
 import androidx.core.app.NotificationManagerCompat
@@ -6,6 +6,8 @@ import androidx.core.app.NotificationManagerCompat.IMPORTANCE_DEFAULT
 import androidx.core.app.NotificationManagerCompat.IMPORTANCE_HIGH
 import androidx.core.app.NotificationManagerCompat.IMPORTANCE_LOW
 import androidx.core.app.NotificationManagerCompat.IMPORTANCE_NONE
+import me.timschneeberger.rootlessjamesdsp.BuildConfig
+import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.buildNotificationChannel
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.buildNotificationChannelGroup
 

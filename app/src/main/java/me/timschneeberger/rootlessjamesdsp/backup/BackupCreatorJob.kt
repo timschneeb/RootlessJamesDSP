@@ -14,7 +14,7 @@ import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
 import com.hippo.unifile.UniFile
-import me.timschneeberger.rootlessjamesdsp.Notifications
+import me.timschneeberger.rootlessjamesdsp.utils.Notifications
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
@@ -49,6 +49,12 @@ class BackupCreatorJob(private val context: Context, workerParams: WorkerParamet
     }
 
     companion object : KoinComponent {
+        private const val TAG_AUTO = "BackupCreator"
+        private const val TAG_MANUAL = "$TAG_AUTO:manual"
+
+        private const val IS_AUTO_BACKUP_KEY = "is_auto_backup"
+        private const val LOCATION_URI_KEY = "location_uri"
+
         private val preferences: Preferences.App by inject()
 
         fun isManualJobRunning(context: Context): Boolean {
@@ -90,9 +96,3 @@ class BackupCreatorJob(private val context: Context, workerParams: WorkerParamet
         }
     }
 }
-
-private const val TAG_AUTO = "BackupCreator"
-private const val TAG_MANUAL = "$TAG_AUTO:manual"
-
-private const val IS_AUTO_BACKUP_KEY = "is_auto_backup" // Boolean
-private const val LOCATION_URI_KEY = "location_uri" // String

@@ -5,7 +5,7 @@ import android.content.Context
 import android.graphics.BitmapFactory
 import androidx.core.app.NotificationCompat
 import com.hippo.unifile.UniFile
-import me.timschneeberger.rootlessjamesdsp.Notifications
+import me.timschneeberger.rootlessjamesdsp.utils.Notifications
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 
