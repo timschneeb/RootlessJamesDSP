@@ -42,6 +42,7 @@ import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.service.RootlessAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.Result
+import me.timschneeberger.rootlessjamesdsp.utils.SdkCheck
 import me.timschneeberger.rootlessjamesdsp.utils.StorageUtils
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.AssetManagerExtensions.installPrivateAssets
@@ -57,6 +58,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.to
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.unregisterLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasDumpPermission
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasRecordPermission
+import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import me.timschneeberger.rootlessjamesdsp.view.FloatingToggleButton
 import org.koin.core.component.inject
 import timber.log.Timber
@@ -166,8 +168,7 @@ class MainActivity : BaseActivity() {
             showLibraryLoadError()
 
         // Rootless: Check permissions and launch onboarding if required
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q &&
-            BuildConfig.ROOTLESS && (!hasDumpPermission() || !hasRecordPermission())) {
+        if(SdkCheck.isQ && BuildConfig.ROOTLESS && (!hasDumpPermission() || !hasRecordPermission())) {
             Timber.i("Launching onboarding (first boot: $firstBoot)")
 
             startActivity(Intent(this, OnboardingActivity::class.java).apply {
@@ -256,17 +257,18 @@ class MainActivity : BaseActivity() {
         binding.powerToggle.toggleOnClick = false
         binding.powerToggle.setOnToggleClickListener(object : FloatingToggleButton.OnToggleClickListener{
             override fun onClick() {
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && BuildConfig.ROOTLESS) {
+                if(SdkCheck.isQ && BuildConfig.ROOTLESS) {
                     if (binding.powerToggle.isToggled) {
                         // Currently on, let's turn it off
                         RootlessAudioProcessorService.stop(this@MainActivity)
                         binding.powerToggle.isToggled = false
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+
+                        sdkAbove(Build.VERSION_CODES.R) {
                             binding.powerToggle.performHapticFeedback(HapticFeedbackConstants.REJECT)
                         }
                     } else {
                         // Currently off, let's turn it on
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                        sdkAbove(Build.VERSION_CODES.R) {
                             binding.powerToggle.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
                         }
                         requestCapturePermission()
@@ -279,7 +281,7 @@ class MainActivity : BaseActivity() {
             }
         })
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && BuildConfig.ROOTLESS) {
+        if (SdkCheck.isQ && BuildConfig.ROOTLESS) {
             capturePermissionLauncher = registerForActivityResult(
                 ActivityResultContracts.StartActivityForResult()
             ) { result ->
@@ -294,7 +296,7 @@ class MainActivity : BaseActivity() {
         }
 
         // Rootless: request capture permission instantly, if redirected from onboarding
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && BuildConfig.ROOTLESS) {
+        if (SdkCheck.isQ && BuildConfig.ROOTLESS) {
             if (intent.getBooleanExtra(EXTRA_FORCE_SHOW_CAPTURE_PROMPT, false)) {
                 requestCapturePermission()
             }
@@ -312,7 +314,7 @@ class MainActivity : BaseActivity() {
         }
 
         // Root: request notification permission on Android 13 because the onboarding is not used for root
-        if (!BuildConfig.ROOTLESS && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        if (!BuildConfig.ROOTLESS && SdkCheck.isTiramisu) {
             runtimePermissionLauncher = registerForActivityResult(
                 ActivityResultContracts.RequestMultiplePermissions()
             ) { isGranted ->
@@ -495,12 +497,14 @@ class MainActivity : BaseActivity() {
     }
 
     private fun bindProcessorService() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && BuildConfig.ROOTLESS) {
-            Intent(this, RootlessAudioProcessorService::class.java).also { intent ->
-                val ret = bindService(intent, processorServiceConnection, 0)
-                // Service not active
-                if(!ret)
-                    requestCapturePermission()
+        if (BuildConfig.ROOTLESS) {
+            sdkAbove(Build.VERSION_CODES.Q) {
+                Intent(this, RootlessAudioProcessorService::class.java).also { intent ->
+                    val ret = bindService(intent, processorServiceConnection, 0)
+                    // Service not active
+                    if (!ret)
+                        requestCapturePermission()
+                }
             }
         }
         else if (!BuildConfig.ROOTLESS) {

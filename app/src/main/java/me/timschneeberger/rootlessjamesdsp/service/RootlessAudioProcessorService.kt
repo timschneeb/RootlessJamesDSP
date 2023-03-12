@@ -44,6 +44,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import me.timschneeberger.rootlessjamesdsp.utils.ServiceNotificationHelper
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getParcelableAs
+import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 import java.io.IOException
@@ -551,7 +552,8 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
                 .setUsage(AudioAttributes.USAGE_UNKNOWN)
                 .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
                 .setFlags(0)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+
+        sdkAbove(Build.VERSION_CODES.Q) {
             attributesBuilder.setAllowedCapturePolicy(AudioAttributes.ALLOW_CAPTURE_BY_NONE)
         }
 

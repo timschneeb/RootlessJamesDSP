@@ -21,6 +21,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.Cache
 import me.timschneeberger.rootlessjamesdsp.utils.Notifications
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.Preferences
+import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -36,8 +37,7 @@ import java.util.*
 
 class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChangeListener {
     init {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.P)
-        {
+        sdkAbove(Build.VERSION_CODES.P) {
             HiddenApiBypass.addHiddenApiExemptions("L")
         }
     }

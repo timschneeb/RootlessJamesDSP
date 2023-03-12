@@ -21,6 +21,7 @@ import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistViewModel
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistViewModelFactory
 import me.timschneeberger.rootlessjamesdsp.model.room.BlockedApp
 import me.timschneeberger.rootlessjamesdsp.service.RootlessAudioProcessorService
+import me.timschneeberger.rootlessjamesdsp.utils.SdkCheck
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getParcelableAs
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getAppIcon
@@ -80,7 +81,7 @@ class AppCompatibilityFragment : Fragment() {
             Timber.d("Requesting retry")
 
             projectIntent?.let {
-                if (BuildConfig.ROOTLESS && Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+                if (BuildConfig.ROOTLESS && SdkCheck.isQ)
                     RootlessAudioProcessorService.start(requireContext(), it)
             }
 
@@ -100,7 +101,7 @@ class AppCompatibilityFragment : Fragment() {
 
             Timer("Reboot", false).schedule(100L) {
                 projectIntent?.let {
-                    if (BuildConfig.ROOTLESS && Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+                    if (BuildConfig.ROOTLESS && SdkCheck.isQ)
                         RootlessAudioProcessorService.start(requireContext(), it)
                 }
 

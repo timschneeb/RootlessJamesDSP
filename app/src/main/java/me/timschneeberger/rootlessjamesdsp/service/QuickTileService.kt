@@ -17,6 +17,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.re
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.unregisterLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasProjectMediaAppOp
 import me.timschneeberger.rootlessjamesdsp.utils.Preferences
+import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import org.koin.android.ext.android.inject
 import org.koin.core.component.KoinComponent
 
@@ -104,13 +105,12 @@ class QuickTileService : TileService(),
             return
         }
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)
-            return
-
-        // Rootless
-        if(!toggled)
+        sdkAbove(Build.VERSION_CODES.Q) {
+            // Rootless
+            if (!toggled)
                 RootlessAudioProcessorService.stop(this)
-        else
-            launchService()
+            else
+                launchService()
+        }
     }
 }

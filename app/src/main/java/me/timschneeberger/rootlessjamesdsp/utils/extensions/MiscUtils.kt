@@ -66,7 +66,7 @@ val isDynamicColorAvailable by lazy {
 fun View.setBackgroundFromAttribute(@AttrRes attrRes: Int) {
     val a = TypedValue()
     context.theme.resolveAttribute(attrRes, a, true)
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && a.isColorType) {
+    if (SdkCheck.isQ && a.isColorType) {
         setBackgroundColor(a.data)
     } else {
         background = ResourcesCompat.getDrawable(context.resources, a.resourceId, context.theme)

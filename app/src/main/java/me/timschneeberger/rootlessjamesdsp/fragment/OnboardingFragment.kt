@@ -36,6 +36,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasNotificationPermission
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasRecordPermission
 import me.timschneeberger.rootlessjamesdsp.utils.Preferences
+import me.timschneeberger.rootlessjamesdsp.utils.SdkCheck
 import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import org.koin.android.ext.android.inject
 import rikka.shizuku.Shizuku
@@ -348,7 +349,7 @@ class OnboardingFragment : Fragment() {
         }
         else if(number == PAGE_RUNTIME_PERMISSIONS) {
             val pageBinding = binding.onboardingPage5
-            if(Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            if(!SdkCheck.isTiramisu) {
                 pageBinding.findViewById<View>(R.id.onboarding_notification_permission).visibility = View.GONE
             }
         }
@@ -510,7 +511,7 @@ class OnboardingFragment : Fragment() {
     private fun updateSetupMethods() {
         val page = binding.methodSelect
 
-        if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
+        if(!SdkCheck.isQ) {
             page.methodsShizukuCard.isEnabled = false
             page.methodsShizukuCard.isClickable = false
             page.methodsShizukuCard.isFocusable = false
