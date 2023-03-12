@@ -507,6 +507,7 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat(), TargetFr
         override fun getItemId(position: Int): Long = position.toLong()
         override fun getFilter(): Filter {
             return object : Filter() {
+                @Suppress("UNCHECKED_CAST")
                 override fun publishResults(charSequence: CharSequence?, filterResults: FilterResults) {
                     items = filterResults.values as Array<Entry>
                     notifyDataSetChanged()

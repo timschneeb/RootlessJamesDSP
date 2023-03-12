@@ -1,9 +1,11 @@
 package me.timschneeberger.rootlessjamesdsp.activity
 
+import android.app.ActivityManager
 import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.getSystemService
 import me.timschneeberger.rootlessjamesdsp.MainApplication
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.delegates.ThemingDelegate
@@ -12,7 +14,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import org.koin.android.ext.android.inject
 import org.koin.core.component.KoinComponent
 
-open class BaseActivity :
+abstract class BaseActivity :
     AppCompatActivity(),
     SharedPreferences.OnSharedPreferenceChangeListener,
     KoinComponent,
@@ -37,6 +39,15 @@ open class BaseActivity :
     override fun onDestroy() {
         prefsApp.unregisterOnSharedPreferenceChangeListener(this)
         super.onDestroy()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        // Exclude from recents if enabled
+        getSystemService<ActivityManager>()?.appTasks?.takeIf { it.isNotEmpty() }?.forEach {
+            it.setExcludeFromRecents(prefsApp.get<Boolean>(R.string.key_exclude_app_from_recents))
+        }
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {

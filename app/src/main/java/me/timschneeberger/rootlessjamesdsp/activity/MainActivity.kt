@@ -2,17 +2,14 @@ package me.timschneeberger.rootlessjamesdsp.activity
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.ActivityManager
 import android.content.*
 import android.media.projection.MediaProjectionManager
 import android.net.Uri
 import android.os.*
 import android.view.HapticFeedbackConstants
-import android.view.Menu
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
-import androidx.core.content.getSystemService
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.preference.DialogPreference.TargetFragment
@@ -218,6 +215,7 @@ class MainActivity : BaseActivity() {
                     presetDialogHost?.pref?.refresh()
 
                     val dialogFragment = FileLibraryDialogFragment.newInstance("presets")
+                    @Suppress("DEPRECATION")
                     dialogFragment.setTargetFragment(presetDialogHost, 0)
                     dialogFragment.show(supportFragmentManager, null)
                     true
@@ -324,8 +322,6 @@ class MainActivity : BaseActivity() {
             runtimePermissionLauncher.launch(arrayOf(Manifest.permission.POST_NOTIFICATIONS))
         }
 
-
-
         // Load initial preference states
         val initialPrefList = arrayOf(R.string.key_appearance_nav_hide, R.string.key_powered_on)
         for (pref in initialPrefList)
@@ -410,8 +406,6 @@ class MainActivity : BaseActivity() {
 
         if(BuildConfig.ROOTLESS)
             binding.powerToggle.isToggled = processorService != null
-
-        excludeAppFromRecents()
     }
 
     private fun checkForUpdates() {
@@ -485,12 +479,6 @@ class MainActivity : BaseActivity() {
             .show()
     }
 
-    private fun excludeAppFromRecents() {
-        getSystemService<ActivityManager>()?.appTasks?.takeIf { it.isNotEmpty() }?.forEach {
-            it.setExcludeFromRecents(prefsApp.get(R.string.key_exclude_app_from_recents))
-        }
-    }
-
     private fun showLibraryLoadError() {
         if(DEBUG_IGNORE_MISSING_LIBRARY)
            return
@@ -530,12 +518,6 @@ class MainActivity : BaseActivity() {
             Timber.d("Failed to unbind service connection. Not registered?")
             Timber.i(ex)
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // TODO unused
-        // menuInflater.inflate(R.menu.menu_main, menu)
-        return true
     }
 
     @RequiresApi(Build.VERSION_CODES.Q)
