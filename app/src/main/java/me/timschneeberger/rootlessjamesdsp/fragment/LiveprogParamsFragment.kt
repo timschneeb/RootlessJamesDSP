@@ -77,7 +77,6 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
                 DropDownPreference(requireContext()).apply {
                     key = prop.key
                     title = prop.description
-                    //summary = prop.options.getOrNull(prop.value) ?: getString(R.string.value_not_set);
                     setDefaultValue(prop.value.toString())
                     entries = prop.options.toTypedArray()
                     entryValues = (0 until(prop.options.size)).toList().map { it.toString() }.toTypedArray()

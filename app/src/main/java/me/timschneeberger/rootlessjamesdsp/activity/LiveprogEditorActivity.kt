@@ -119,7 +119,7 @@ class LiveprogEditorActivity : BaseActivity() {
             Timber.d("Restoring parser state")
             parser.load(path, skipParse = true)
             parser.contents = codeView.text.toString()
-            parser.parse(silent = true)
+            parser.parse()
             isDirty = savedInstanceState.getBoolean(STATE_IS_DIRTY)
             undoRedoManager.clearHistory() // TODO save history instance state correctly
         }

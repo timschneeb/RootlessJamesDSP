@@ -16,7 +16,7 @@ import kotlin.math.*
 
 fun String.asHtml(): Spanned = Html.fromHtml(this, Html.FROM_HTML_MODE_LEGACY)
 
-fun Double.equalsDelta(other: Double, delta: Double = 0.000001): Boolean = abs(this/other - 1) < delta
+fun Double.equalsDelta(other: Double) = abs(this - other) < 0.00001 * max(abs(this), abs(other))
 
 fun Double.prettyNumberFormat(): String {
     if( this == 0.0 ) return "0"

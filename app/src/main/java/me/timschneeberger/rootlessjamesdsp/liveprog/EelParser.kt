@@ -68,7 +68,7 @@ class EelParser {
         lastFileHash = null
 
         if(!skipParse) {
-            parse(false, skipProperties)
+            parse(skipProperties)
         }
 
         lastFileHash = contents?.md5
@@ -87,12 +87,7 @@ class EelParser {
         return false
     }
 
-    @Suppress("UNUSED_VARIABLE")
-    fun parse(silent: Boolean, skipProperties: Boolean = false) {
-        fun d(s: String) { if(silent) Timber.d(s) }
-        fun e(s: String) { if(silent) Timber.e(s) }
-        fun e(t: Throwable) { if(silent) Timber.e(t) }
-
+    fun parse(skipProperties: Boolean = false) {
         // Parse description & tags
         parseDescription()
         parseTags()
@@ -103,89 +98,8 @@ class EelParser {
             return
 
         // Parse number range parameters
-        val rangeParamRegex = """(?<var>\w+):(?<def>-?\d+\.?\d*)?<(?<min>-?\d+\.?\d*),(?<max>-?\d+\.?\d*),?(?<step>-?\d+\.?\d*)?>(?<desc>[\s\S][^\n]*)""".toRegex()
-        val listParamRegex = """(?<var>\w+):(?<def>-?\d+\.?\d*)?<(?<min>-?\d+\.?\d*),(?<max>-?\d+\.?\d*),?(?<step>-?\d+\.?\d*)?\{(?<opt>[^\}]*)\}>(?<desc>[\s\S][^\n]*)""".toRegex()
         contents?.lines()?.forEach next@ {
-            val matchRange = rangeParamRegex.find(it)
-            val groupsRange = matchRange?.groups
-            if(groupsRange != null) {
-                val key = groupsRange[1]?.value
-                val def = groupsRange[2]?.value
-                val min = groupsRange[3]?.value
-                val max = groupsRange[4]?.value
-                val step = groupsRange[5]?.value ?: "0.1"
-                val desc = groupsRange[6]?.value?.trim()
-
-                if(key == null || desc == null || min == null || max == null) {
-                    return@next
-                }
-
-                val current = EelNumberRangeProperty.findVariable(key, contents!!)
-                if(current == null) {
-                    e("Failed to find current value of number range parameter (key=$key)")
-                    return@next
-                }
-
-                try {
-                    val prop = EelNumberRangeProperty(
-                        key,
-                        desc,
-                        def?.toFloatOrNull(),
-                        current,
-                        min.toFloat(),
-                        max.toFloat(),
-                        step.toFloatOrNull() ?: 0.1
-                    )
-                    d("Found number range property: $prop")
-                    properties.add(prop)
-                }
-                catch (ex: NumberFormatException) {
-                    e("Failed to parse number range parameter (key=$key)")
-                    e(ex)
-                }
-            }
-            else {
-                val matchList = listParamRegex.find(it)
-                val groupsList = matchList?.groups
-                if(groupsList != null) {
-                    val key = groupsList[1]?.value
-                    val def = groupsList[2]?.value
-                    val min = groupsList[3]?.value
-                    val max = groupsList[4]?.value
-                    val step = groupsList[5]?.value ?: "1"
-                    val opt = groupsList[6]?.value
-                    val desc = groupsList[7]?.value?.trim()
-
-                    if(key == null || desc == null || min == null || max == null || opt == null) {
-                        return@next
-                    }
-
-                    val current = EelListProperty.findVariable(key, contents!!)
-                    if(current == null) {
-                        e("Failed to find current value of list option parameter (key=$key)")
-                        return@next
-                    }
-
-                    try {
-                        val prop = EelListProperty(
-                            key,
-                            desc,
-                            def?.toInt(),
-                            current,
-                            min.toInt(),
-                            max.toInt(),
-                            1,
-                            opt.split(',').map(String::trim)
-                        )
-                        d("Found list option property: $prop")
-                        properties.add(prop)
-                    }
-                    catch (ex: NumberFormatException) {
-                        e("Failed to parse list option parameter (key=$key)")
-                        e(ex)
-                    }
-                }
-            }
+            EelPropertyFactory.create(it, contents!!)?.let(properties::add)
         }
     }
 
@@ -204,9 +118,8 @@ class EelParser {
     }
 
     fun refresh(): Boolean {
-        if(!isFileLoaded)
+        if(!isFileLoaded || path == null)
             return false
-        path ?: return false
 
         load(path!!)
         return true
@@ -236,28 +149,18 @@ class EelParser {
         return false
     }
 
-    @Suppress("UNCHECKED_CAST")
     fun restoreDefaults(): Boolean {
         if(!isFileLoaded)
             return false
 
         properties.forEach { prop ->
-            if(prop is EelListProperty) {
-                prop.value = prop.default!!
-            }
-            else if(prop is EelNumberRangeProperty<*>) {
-                // Note: Currently only Float is used with EelNumberRangeProperty
-                prop as EelNumberRangeProperty<Float>
-                prop.value = prop.default!!
-            }
+            prop.restoreDefaults()
             manipulateProperty(prop)
         }
         save()
 
         return true
     }
-
-    // TODO clean this mess up
 
     fun manipulateProperty(prop: EelBaseProperty): Boolean {
         if(!isFileLoaded)
@@ -272,34 +175,14 @@ class EelParser {
             properties.add(prop)
         }
 
-        if(prop is EelListProperty) {
-            val value = prop.value.toString()
-            Timber.d("Manipulating property: $prop (processedValue=$value)")
-            val result = EelListProperty.replaceVariable(prop.key, value, contents ?: "")
-            if(result == null) {
-                Timber.e("Failed to manipulate '${prop.key}' by replacing its value with '$value' (source=${prop.value})")
-                return false
-            }
-            contents = result
-            return save()
+        Timber.d("Manipulating property ${prop.key} to value '${prop.valueAsString()}'")
+        val result = contents?.let { prop.manipulateProperty(it) }
+        if(result == null) {
+            Timber.e("Failed to manipulate '${prop.key}' by replacing its value with '${prop.valueAsString()}' (source=${prop})")
+            return false
         }
-        else if(prop is EelNumberRangeProperty<*>) {
-            val value: String = if(prop.handleAsInt()) {
-                prop.value.toInt().toString()
-            } else {
-                "%.2f".format(Locale.ROOT, prop.value)
-            }
-            Timber.d("Manipulating property: $prop (processedValue=$value)")
-            val result = EelNumberRangeProperty.replaceVariable(prop.key, value, contents ?: "")
-            if(result == null) {
-                Timber.e("Failed to manipulate '${prop.key}' by replacing its value with '$value' (source=${prop.value})")
-                return false
-            }
-            contents = result
-            return save()
-        }
-
-        return false
+        contents = result
+        return save()
     }
 
     private fun parseDescription() {
