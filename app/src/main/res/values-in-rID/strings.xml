@@ -481,4 +481,18 @@
     <string name="backup_restore_error_format">File rusak atau tidak didukung</string>
     <string name="backup_restore_error_version_too_new">File yang dibuat dengan versi terbaru tidak dapat dimuat, perbarui aplikasi untuk melanjutkan.</string>
     <string name="backup_restore_completed">Pemulihan selesai</string>
+    <string name="backup_create_completed">Cadangan dibuat</string>
+    <string name="backup_create_progress">Membuat cadangan</string>
+    <string name="backup_create_error">Pencadangan gagal</string>
+    <string name="backup_manual_backup">Pencadangan manual</string>
+    <string name="backup_create">Buat cadangan</string>
+    <string name="backup_create_summary">Digunakan untuk memulihkan pengaturan saat ini nanti</string>
+    <string name="backup_restore">Pulihkan cadangan</string>
+    <string name="backup_restore_summary">Pulihkan pengaturan dari file cadangan</string>
+    <string name="backup_automatic_backup">Pencadangan otomatis</string>
+    <string name="backup_compat_info">Pencadangan hanya termasuk Respon Impulse, skrip, File VDC, Presetz dan konfigurasi audio saat ini untuk kompatibilitas dengan versi lainnya.</string>
+    <string name="backup_restore_mode_title">Mode pemulihan</string>
+    <string name="backup_restore_mode_clean">Bersihkan pemulihan (hapus semua file)</string>
+    <string name="backup_restore_mode_dirty">Pemulihan dirty (hanya timpa)</string>
+    <string name="backup_in_progress">Pencadangan sedang diproses</string>
 </resources>
