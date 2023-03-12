@@ -26,7 +26,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.to
 import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import org.koin.android.ext.android.inject
 
-class SettingsBackupFragment : PreferenceFragmentCompat() {
+class SettingsBackupFragment : SettingsBaseFragment() {
 
     private val create by lazy { findPreference<Preference>(getString(R.string.key_backup_create)) }
     private val restore by lazy { findPreference<Preference>(getString(R.string.key_backup_restore)) }
@@ -151,22 +151,6 @@ class SettingsBackupFragment : PreferenceFragmentCompat() {
         val current = preferences.get<String>(R.string.key_backup_location)
         location?.summary = if(current.isBlank()) getString(R.string.value_not_set)
             else UniFile.fromUri(context, current.toUri()).filePath + "/automatic"
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        val view = super.onCreateView(inflater, container, savedInstanceState)
-        val a = TypedValue()
-        requireContext().theme.resolveAttribute(android.R.attr.windowBackground, a, true)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && a.isColorType) {
-            view.setBackgroundColor(a.data)
-        } else {
-            view.background = ResourcesCompat.getDrawable(requireContext().resources, a.resourceId, requireContext().theme)
-        }
-        return view
     }
 
     companion object {

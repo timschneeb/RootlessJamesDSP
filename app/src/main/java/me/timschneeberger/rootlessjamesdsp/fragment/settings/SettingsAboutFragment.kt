@@ -27,7 +27,7 @@ import org.koin.android.ext.android.inject
 import java.util.Locale
 
 
-class SettingsAboutFragment : PreferenceFragmentCompat() {
+class SettingsAboutFragment : SettingsBaseFragment() {
 
     private val updateManager: UpdateManager by inject()
 
@@ -85,22 +85,6 @@ class SettingsAboutFragment : PreferenceFragmentCompat() {
                 }
             })
         }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val view = super.onCreateView(inflater, container, savedInstanceState)
-        val a = TypedValue()
-        requireContext().theme.resolveAttribute(android.R.attr.windowBackground, a, true)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && a.isColorType) {
-            view.setBackgroundColor(a.data)
-        } else {
-            view.background = ResourcesCompat.getDrawable(requireContext().resources, a.resourceId, requireContext().theme)
-        }
-        return view
     }
 
     private fun checkForUpdates() {

@@ -3,6 +3,10 @@ package me.timschneeberger.rootlessjamesdsp.utils.extensions
 import android.os.Build
 import android.text.Html
 import android.text.Spanned
+import android.util.TypedValue
+import android.view.View
+import androidx.annotation.AttrRes
+import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.color.DynamicColors
 import me.timschneeberger.rootlessjamesdsp.utils.SdkCheck
 import java.math.BigDecimal
@@ -44,8 +48,6 @@ fun Double.prettyNumberFormat(): String {
     }
 }
 
-
-
 fun Boolean.toShort() = (if (this) 1 else 0).toShort()
 
 val String.md5: ByteArray
@@ -59,4 +61,14 @@ private val isSamsung by lazy {
 
 val isDynamicColorAvailable by lazy {
     DynamicColors.isDynamicColorAvailable() || (isSamsung && SdkCheck.isSnowCake)
+}
+
+fun View.setBackgroundFromAttribute(@AttrRes attrRes: Int) {
+    val a = TypedValue()
+    context.theme.resolveAttribute(attrRes, a, true)
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && a.isColorType) {
+        setBackgroundColor(a.data)
+    } else {
+        background = ResourcesCompat.getDrawable(context.resources, a.resourceId, context.theme)
+    }
 }

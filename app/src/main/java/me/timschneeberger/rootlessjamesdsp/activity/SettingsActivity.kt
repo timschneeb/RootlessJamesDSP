@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.FragmentTransaction
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import me.timschneeberger.rootlessjamesdsp.R
@@ -28,9 +29,13 @@ class SettingsActivity : BaseActivity(),
         setSupportActionBar(binding.settingsToolbar)
 
         if (savedInstanceState == null) {
+            val fragment = SettingsFragment.newInstance()
+            @Suppress("DEPRECATION")
+            fragment.setTargetFragment(null, 0)
+
             supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.settings, SettingsFragment.newInstance())
+                .replace(R.id.settings, fragment)
                 .commit()
         }
         else {
@@ -55,36 +60,42 @@ class SettingsActivity : BaseActivity(),
             ActivityResultContracts.CreateDocument("application/*")
         ) {
             it ?: return@registerForActivityResult
-            val fragment = supportFragmentManager.findFragmentById(R.id.settings)
-            if(fragment is SettingsBackupFragment)
-                fragment.startManualBackup(it)
+            accessFragment<SettingsBackupFragment> {
+                startManualBackup(it)
+            }
         }
 
         backupLoadFileSelectLauncher = registerForActivityResult(
             ActivityResultContracts.OpenDocument()
         ) {
             it ?: return@registerForActivityResult
-            val fragment = supportFragmentManager.findFragmentById(R.id.settings)
-            if(fragment is SettingsBackupFragment)
-                fragment.startManualRestore(it)
+            accessFragment<SettingsBackupFragment> {
+                startManualRestore(it)
+            }
         }
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.settingsToolbar.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
     }
 
-    private fun onBackupLocationSet(uri: Uri?) {
-        val fragment = supportFragmentManager.findFragmentById(R.id.settings) as? SettingsBackupFragment
+    private inline fun<reified T> accessFragment(onAccess: T.() -> Unit) {
+        val fragment = supportFragmentManager.findFragmentById(R.id.settings)
+        if(fragment is T)
+            onAccess(fragment)
+    }
 
-        if (uri != null) {
-            contentResolver.takePersistableUriPermission(
-                uri,
-                Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-            )
-            prefsApp.set(R.string.key_backup_location, uri.toString())
-            fragment?.updateSummaries()
-        } else {
-            fragment?.resetFrequencyIfLocationUnset()
+    private fun onBackupLocationSet(uri: Uri?) {
+        accessFragment<SettingsBackupFragment> {
+            if (uri != null) {
+                contentResolver.takePersistableUriPermission(
+                    uri,
+                    Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+                )
+                prefsApp.set(R.string.key_backup_location, uri.toString())
+                updateSummaries()
+            } else {
+                resetFrequencyIfLocationUnset()
+            }
         }
     }
 
@@ -115,12 +126,7 @@ class SettingsActivity : BaseActivity(),
 
         // Replace the existing Fragment with the new Fragment
         supportFragmentManager.beginTransaction()
-            .setCustomAnimations(
-                R.anim.slide_in,
-                R.anim.fade_out,
-                R.anim.fade_in,
-                R.anim.slide_out
-            )
+            .setReorderingAllowed(true)
             .replace(R.id.settings, fragment)
             .addToBackStack(title)
             .commit()

@@ -24,7 +24,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import org.koin.android.ext.android.inject
 import java.util.Locale
 
-class SettingsMiscFragment : PreferenceFragmentCompat() {
+class SettingsMiscFragment : SettingsBaseFragment() {
 
     private val autoStartNotify by lazy { findPreference<Preference>(getString(R.string.key_autostart_prompt_at_boot)) }
     private val repairAssets by lazy { findPreference<Preference>(getString(R.string.key_troubleshooting_repair_assets)) }
@@ -93,22 +93,6 @@ class SettingsMiscFragment : PreferenceFragmentCompat() {
         crashReports?.parent?.isVisible = !BuildConfig.FOSS_ONLY
         debugDatabase?.parent?.isVisible = BuildConfig.DEBUG
         autoStartNotify?.parent?.isVisible = BuildConfig.ROOTLESS
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        val view = super.onCreateView(inflater, container, savedInstanceState)
-        val a = TypedValue()
-        requireContext().theme.resolveAttribute(android.R.attr.windowBackground, a, true)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && a.isColorType) {
-            view.setBackgroundColor(a.data)
-        } else {
-            view.background = ResourcesCompat.getDrawable(requireContext().resources, a.resourceId, requireContext().theme)
-        }
-        return view
     }
 
     companion object {

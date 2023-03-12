@@ -6,7 +6,7 @@ import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 
 
-class SettingsFragment : PreferenceFragmentCompat() {
+class SettingsFragment : SettingsBaseFragment() {
 
     private val processing by lazy { findPreference<Preference>(getString(R.string.key_audio_format)) }
     private val troubleshooting by lazy { findPreference<Preference>(getString(R.string.key_troubleshooting)) }

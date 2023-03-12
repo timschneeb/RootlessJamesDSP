@@ -27,7 +27,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.Preferences
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 
-class SettingsAudioFormatFragment : PreferenceFragmentCompat() {
+class SettingsAudioFormatFragment : SettingsBaseFragment() {
 
     private val encoding by lazy { findPreference<ListPreference>(getString(R.string.key_audioformat_encoding)) }
     private val bufferSize by lazy { findPreference<MaterialSeekbarPreference>(getString(R.string.key_audioformat_buffersize)) }
@@ -96,22 +96,6 @@ class SettingsAudioFormatFragment : PreferenceFragmentCompat() {
             context?.sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_HARD_REBOOT_CORE))
             true
         }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val view = super.onCreateView(inflater, container, savedInstanceState)
-        val a = TypedValue()
-        requireContext().theme.resolveAttribute(android.R.attr.windowBackground, a, true)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && a.isColorType) {
-            view.setBackgroundColor(a.data)
-        } else {
-            view.background = ResourcesCompat.getDrawable(requireContext().resources, a.resourceId, requireContext().theme)
-        }
-        return view
     }
 
     companion object {

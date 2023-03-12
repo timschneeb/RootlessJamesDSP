@@ -29,7 +29,7 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStreamWriter
 
-class SettingsTroubleshootingFragment : PreferenceFragmentCompat() {
+class SettingsTroubleshootingFragment : SettingsBaseFragment() {
 
     private val dumpManager: DumpManager by inject()
 
@@ -116,22 +116,6 @@ class SettingsTroubleshootingFragment : PreferenceFragmentCompat() {
         findPreference<EditTextPreference>(getString(R.string.key_session_continuous_polling_rate))?.setOnBindEditTextListener { editText ->
             editText.inputType = InputType.TYPE_CLASS_NUMBER
         }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        val view = super.onCreateView(inflater, container, savedInstanceState)
-        val a = TypedValue()
-        requireContext().theme.resolveAttribute(android.R.attr.windowBackground, a, true)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && a.isColorType) {
-            view.setBackgroundColor(a.data)
-        } else {
-            view.background = ResourcesCompat.getDrawable(requireContext().resources, a.resourceId, requireContext().theme)
-        }
-        return view
     }
 
     companion object {
