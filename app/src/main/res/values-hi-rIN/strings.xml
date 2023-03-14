@@ -27,6 +27,7 @@
     <!-- Session control loss notifications -->
     <string name="session_control_loss_toast">JamesDSP रुक गई है। कृपया दूसरे ध्वनि नियंत्रण करने वाले एप्स को बंद करे।</string>
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_notification_title">ध्वनि प्रसंस्करण रूकी हुई है‌ ‌। कोई अन्य ऐप जेम्सडिसपी के साथ हस्तक्षेप कर रहा है।</string>
     <!-- Capture permission revoked notifications -->
     <!-- General purpose -->
     <!-- Main screen -->
