@@ -8,6 +8,7 @@
     <!-- Notification channels -->
     <string name="notification_group_service">सर्विस</string>
     <string name="notification_channel_service">सेवा सूचनाएं</string>
+    <string name="notification_channel_session_loss_alert">चेतावनी सत्र खत्म हो रहा है</string>
     <string name="notification_channel_permission_prompt">अनुमति प्रॉम्प्ट अनुरोध</string>
     <string name="notification_group_backup">बैकअप और पुनर्स्थापना</string>
     <string name="notification_channel_backup_progress">प्रगति में</string>
@@ -16,8 +17,11 @@
     <string name="action_retry">पुन: प्रयास करें</string>
     <string name="action_fix">समस्याएं ठीक करें</string>
     <string name="action_stop">रोके</string>
+    <string name="notification_idle">ध्वनि प्रसंस्करण रुकी हुई है</string>
     <!-- Permission request notifications -->
+    <string name="notification_request_permission">JamesDSP की ध्वनि प्रसंस्करण प्रदान करें</string>
     <!-- Session control loss notifications -->
+    <string name="session_control_loss_toast">JamesDSP रुक गई है। कृपया दूसरे ध्वनि नियंत्रण करने वाले एप्स को बंद करे।</string>
     <!-- App compatibility issue notifications -->
     <!-- Capture permission revoked notifications -->
     <!-- General purpose -->
