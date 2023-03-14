@@ -6,9 +6,13 @@
     <string name="action_revert">Redefinir para padrão</string>
     <string name="action_blocked_apps">Apps excluídos</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">Serviço</string>
     <string name="notification_channel_service">Notificações de serviço</string>
     <string name="notification_channel_session_loss_alert">Aviso de perca de sessão</string>
     <string name="notification_channel_app_compat_alert">Alerta de app incompatível</string>
+    <string name="notification_group_backup">Backup e restauração</string>
+    <string name="notification_channel_backup_progress">Em andamento</string>
+    <string name="notification_channel_backup_complete">Concluído</string>
     <!-- Service notifications -->
     <string name="action_retry">Tente novamente</string>
     <string name="action_fix">Corrigir erro</string>
@@ -22,7 +26,11 @@
     <string name="notification_request_permission_title">Ação do usuário é necessária para iniciar o JamesDSP</string>
     <string name="notification_request_permission">Toque para conceder permissão de captura e ativar o processamento de áudio do JamesDSP</string>
     <!-- Session control loss notifications -->
+    <string name="session_control_loss_toast">JamesDSP parou devido à perda de controle da sessão de áudio. Por favor, desative outros aplicativos de efeito de áudio.</string>
+    <string name="session_control_loss_notification_title">Processamento de áudio parado. Outro aplicativo está interferindo o JamesDSP.</string>
+    <string name="session_control_loss_notification">Por favor, desative todos os outros aplicativos que fornecem efeitos de áudio globais antes de reativar o JamesDSP.</string>
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_notification_title">Processamento de áudio parado. Outro aplicativo está interferindo o JamesDSP.</string>
     <!-- Capture permission revoked notifications -->
     <!-- General purpose -->
     <!-- Main screen -->
@@ -31,6 +39,7 @@
     <!-- Root flavor -->
     <!-- Settings -->
     <string name="title_activity_settings">Configurações</string>
+    <string name="backup_settings">Backup e restauração</string>
     <!-- Theme names -->
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
