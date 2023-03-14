@@ -30,10 +30,52 @@
     <string name="session_control_loss_notification_title">Processamento de áudio parado. Outro aplicativo está interferindo o JamesDSP.</string>
     <string name="session_control_loss_notification">Por favor, desative todos os outros aplicativos que fornecem efeitos de áudio globais antes de reativar o JamesDSP.</string>
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_toast">JamesDSP foi interrompido devido a um app de mídia incompatível. Por favor, verifique a notificação para resolver este problema.</string>
     <string name="session_app_compat_notification_title">Processamento de áudio parado. Outro aplicativo está interferindo o JamesDSP.</string>
+    <string name="session_app_compat_notification">Toque nesta notificação para resolver o problema.</string>
     <!-- Capture permission revoked notifications -->
+    <string name="capture_permission_revoked_toast">O JamesDSP foi interrompido porque a permissão de captura de áudio foi revogada.</string>
     <!-- General purpose -->
+    <string name="install">Instalar</string>
+    <string name="update">Atualizar</string>
+    <string name="unknown_error">Erro desconhecido</string>
+    <string name="details">Detalhes</string>
+    <string name="actions">Ações</string>
+    <string name="warning">Aviso</string>
+    <string name="success">Sucesso</string>
+    <string name="open">Abrir</string>
+    <string name="close">Fechar</string>
+    <string name="add">Adicionar</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+    <string name="value_not_set">Não definido</string>
+    <string name="undo">Desfazer</string>
+    <string name="redo">Refazer</string>
+    <string name="no_activity_found">Nenhuma atividade encontrada para executar a ação</string>
     <!-- Main screen -->
+    <string name="power_button_alt">Ativar/desativar processamento de áudio</string>
+    <string name="compressor_enable">Compressor automático dinâmico de faixa</string>
+    <string name="compressor_max_attack">Ataque máximo</string>
+    <string name="compressor_max_release">Liberação máxima</string>
+    <string name="compressor_adapt_speed">Agressividade</string>
+    <string name="eq_enable">Interpolação do equalizador FIR</string>
+    <string name="eq_filter_type">Tipo de filtro</string>
+    <string name="eq_interpolator">Interpolador</string>
+    <string name="eq_filter_type_minimum">Fase mínima</string>
+    <string name="eq_filter_type_linear">Fase linear</string>
+    <string name="eq_interpolator_mha">Spline de Hiroshi Akima modificada</string>
+    <string name="eq_preset_acoustic">Acústico</string>
+    <string name="eq_preset_bass">Baixo</string>
+    <string name="eq_preset_beats">Beats</string>
+    <string name="eq_preset_classic">Clássico</string>
+    <string name="eq_preset_clear">Nítido</string>
+    <string name="eq_preset_deep">Profundo</string>
+    <string name="eq_preset_dubstep">Dubstep</string>
+    <string name="eq_preset_electronic">Eletrônico</string>
+    <string name="eq_preset_flat">Plano</string>
+    <string name="eq_preset_hardstyle">Hardstyle</string>
+    <string name="eq_preset_hiphop">Hip Hop</string>
+    <string name="output_control_postgain">Pós-ganho</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
@@ -44,6 +86,7 @@
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="gep_add_node">Adicionar</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
