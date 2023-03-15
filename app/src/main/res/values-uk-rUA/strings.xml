@@ -215,7 +215,7 @@
     <string name="limit_session_control_conflict">Додатки для обробки аудіоефектів, які використовують вбудований в Android ефект динамічної обробки, перешкоджають роботі цього додатка.</string>
     <string name="limit_unsupported_apps_title">Непідтримувані додатки</string>
     <string name="limit_unsupported_apps">Додатки, які блокують запис внутрішнього аудіо, не будуть оброблені (наприклад, Spotify, Google Chrome).</string>
-    <string name="limit_hw_accel_title">Проблеми з апаратно прискореним відтворенням аудіо</string>
+    <string name="limit_hw_accel_title">Проблеми з відтворенням апаратно прискореного аудіо</string>
     <string name="limit_hw_accel">Апаратно прискорене (HW-accelerated) відтворення аудіо іноді може призводити до дублювання звуку або зупинки JamesDSP в деяких випадках. Будь ласка, додайте проблемний музичний плеєр до списку виключених додатків, щоб запобігти маршрутизації його звуку через JamesDSP.</string>
     <string name="limit_detect_delay_title">Затримка визначення аудіосесії</string>
     <string name="limit_detect_delay"><![CDATA[Після того як додаток відкриває нову аудіосесію для відтворення звуку, ви можете почути повторюваний або уривчастий звук на дуже короткий період (приблизно 250 мс).]]></string>
