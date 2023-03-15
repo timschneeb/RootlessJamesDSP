@@ -27,9 +27,9 @@
     <string name="notification_request_permission_title">Для запуску JamesDSP потрібна дія користувача</string>
     <string name="notification_request_permission">Натисніть, щоб надати дозвіл на захоплення та увімкнути обробку аудіо в JamesDSP</string>
     <!-- Session control loss notifications -->
-    <string name="session_control_loss_toast">JamesDSP зупинено через втрату контролю над аудіосесією. Будь ласка, вимкніть інші додатки для обробки аудіо ефектів.</string>
+    <string name="session_control_loss_toast">JamesDSP зупинено через втрату контролю над аудіосесією. Будь ласка, вимкніть інші додатки для обробки аудіоефектів.</string>
     <string name="session_control_loss_notification_title">Обробка аудіо зупинена. Інший додаток перешкоджає роботі JamesDSP.</string>
-    <string name="session_control_loss_notification">Будь ласка, вимкніть всі інші додатки, що надають глобальні звукові ефекти перед повторним включенням JamesDSP.</string>
+    <string name="session_control_loss_notification">Будь ласка, вимкніть всі інші додатки, що надають глобальні аудіоефекти перед повторним включенням JamesDSP.</string>
     <!-- App compatibility issue notifications -->
     <string name="session_app_compat_toast">JamesDSP зупинено через несумісний мультимедійний додаток. Будь ласка, перевірте повідомлення, щоб розв\'язати цю проблему.</string>
     <string name="session_app_compat_notification_title">Обробка аудіо зупинена. Інший додаток перешкоджає роботі JamesDSP.</string>
@@ -211,12 +211,12 @@
     <string name="onboarding_perm_missing">Будь ласка, надайте всі запитані дозволи на виконання, щоб продовжити.\nЯкщо ви кілька разів відмовили в наданні дозволів, вам потрібно надати їх вручну в налаштуваннях системи.</string>
     <string name="onboarding_finish_header">JamesDSP налаштовано!</string>
     <string name="onboarding_finish_caption">Якщо у вас виникли будь-які проблеми, будь ласка, відвідайте розділ налаштувань «Усунення неполадок».</string>
-    <string name="limit_session_control_conflict_title">Вимкнення інших додатків для обробки звуку</string>
-    <string name="limit_session_control_conflict">Додатки для обробки звуку, що використовують вбудований в Android ефект динамічної обробки, перешкоджають роботі цього додатка.</string>
+    <string name="limit_session_control_conflict_title">Вимкнення інших додатків для обробки аудіоефектів</string>
+    <string name="limit_session_control_conflict">Додатки для обробки аудіоефектів, які використовують вбудований в Android ефект динамічної обробки, перешкоджають роботі цього додатка.</string>
     <string name="limit_unsupported_apps_title">Непідтримувані додатки</string>
     <string name="limit_unsupported_apps">Додатки, які блокують запис внутрішнього аудіо, не будуть оброблені (наприклад, Spotify, Google Chrome).</string>
-    <string name="limit_hw_accel_title">Проблеми HW-прискореним відтворенням аудіо</string>
-    <string name="limit_hw_accel">HW-прискорене відтворення аудіо іноді може призводити до дублювання звуку або зупинки JamesDSP в деяких випадках. Будь ласка, додайте проблемний музичний плеєр до списку виключених додатків, щоб запобігти маршрутизації його звуку через JamesDSP.</string>
+    <string name="limit_hw_accel_title">Проблеми апаратно прискореним відтворенням аудіо</string>
+    <string name="limit_hw_accel">Апаратно прискорене (HW-accelerated) відтворення аудіо іноді може призводити до дублювання звуку або зупинки JamesDSP в деяких випадках. Будь ласка, додайте проблемний музичний плеєр до списку виключених додатків, щоб запобігти маршрутизації його звуку через JamesDSP.</string>
     <string name="limit_detect_delay_title">Затримка визначення аудіосесії</string>
     <string name="limit_detect_delay"><![CDATA[Після того як додаток відкриває нову аудіосесію для відтворення звуку, ви можете почути повторюваний або уривчастий звук на дуже короткий період (приблизно 250 мс).]]></string>
     <string name="limit_latency_title">Підвищена затримка</string>
@@ -461,7 +461,7 @@
     <string name="app_compat_exclude">Виключити</string>
     <string name="app_compat_title">Обробку аудіо було призупинено для запобігання дублювання звуку</string>
     <string name="app_compat_explanation">Цей додаток не підтримується, оскільки він призводить до втрати RootlessJamesDSP контролю над маршрутизацією звуку:</string>
-    <string name="app_compat_instruction">Будь ласка, перевірте налаштування програми, щоб вимкнути апаратне прискорення або інші налаштування, які можуть перешкодити RootlessJamesDSP і потім натисніть «Повторити».</string>
+    <string name="app_compat_instruction">Будь ласка, перевірте налаштування програми, щоб вимкнути апаратне прискорення (HW-acceleration) або інші налаштування, які можуть перешкодити RootlessJamesDSP і потім натисніть «Повторити».</string>
     <string name="app_compat_instruction_exclude">Як альтернативу, виберіть «Виключити», щоб обійти цю проблему, виключивши несумісну програму з обробки звуку.</string>
     <string name="app_compat_unknown_pkg_name">Невідоме ім\'я пакету</string>
     <!-- Root: Library load failure -->
