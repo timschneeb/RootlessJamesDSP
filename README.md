@@ -143,7 +143,7 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
         <br />
         <sub><b>FrameXX</b></sub></a>
       <br />
-      <sub><b>2950 words</b></sub>
+      <sub><b>3125 words</b></sub>
     </td>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/fankesyooni"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15676501/medium/6ee6d7e4c63bfb0f90dc5088a5ff0efd.jpg" />
@@ -157,7 +157,7 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
         <br />
         <sub><b>Beruanglaut (beruanglaut)</b></sub></a>
       <br />
-      <sub><b>2544 words</b></sub>
+      <sub><b>2719 words</b></sub>
     </td>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/TheGary"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15713727/medium/4f9ede8b07ace57124001fb6678aeff7_default.png" />
@@ -190,6 +190,13 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
       <sub><b>210 words</b></sub>
     </td>
     <td align="center" valign="top">
+      <a href="https://crowdin.com/profile/jont4"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15464490/medium/bd7f97dff61f637d007652f9947d8f17.jpeg" />
+        <br />
+        <sub><b>Jontix (jont4)</b></sub></a>
+      <br />
+      <sub><b>190 words</b></sub>
+    </td>
+    <td align="center" valign="top">
       <a href="https://crowdin.com/profile/Jamil.M.Gomez"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/13442100/medium/70d15cc33101a9739868321b10543f18.png" />
         <br />
         <sub><b>Jamil M. Gomez (Jamil.M.Gomez)</b></sub></a>
@@ -203,6 +210,8 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
       <br />
       <sub><b>61 words</b></sub>
     </td>
+  </tr>
+  <tr>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/dev_trace"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15729737/medium/f515d9ef1eeb393759e7180bc700afc2_default.png" />
         <br />
@@ -210,14 +219,12 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
       <br />
       <sub><b>61 words</b></sub>
     </td>
-  </tr>
-  <tr>
     <td align="center" valign="top">
-      <a href="https://crowdin.com/profile/jont4"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15464490/medium/bd7f97dff61f637d007652f9947d8f17.jpeg" />
+      <a href="https://crowdin.com/profile/vbisoi"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15726357/medium/e7a928f5536f12bdd3a985b116c65d0b_default.png" />
         <br />
-        <sub><b>Jontix (jont4)</b></sub></a>
+        <sub><b>vbisoi</b></sub></a>
       <br />
-      <sub><b>52 words</b></sub>
+      <sub><b>60 words</b></sub>
     </td>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/trmatii"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15725233/medium/a324828f5904f9be718a3e6de262a48d.jpeg" />
@@ -234,11 +241,11 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
       <sub><b>50 words</b></sub>
     </td>
     <td align="center" valign="top">
-      <a href="https://crowdin.com/profile/vbisoi"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15726357/medium/e7a928f5536f12bdd3a985b116c65d0b_default.png" />
+      <a href="https://crowdin.com/profile/introvertkabira"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15738251/medium/e4a4479fc5fb796ce27e91962bceccd2_default.png" />
         <br />
-        <sub><b>vbisoi</b></sub></a>
+        <sub><b>introvertkabira</b></sub></a>
       <br />
-      <sub><b>39 words</b></sub>
+      <sub><b>30 words</b></sub>
     </td>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/nattramnar"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15722771/medium/13729d04abd3d7cfb680bfb1cef79a33_default.png" />
@@ -247,6 +254,8 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
       <br />
       <sub><b>28 words</b></sub>
     </td>
+  </tr>
+  <tr>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/Rosacco"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15722829/medium/45cf6551b57a2ae855c714389ef43f3c_default.png" />
         <br />
@@ -254,8 +263,6 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
       <br />
       <sub><b>21 words</b></sub>
     </td>
-  </tr>
-  <tr>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/O2C14"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15716303/medium/b2e76f82c99dd39c24ec0c3e36c0fdc9.png" />
         <br />
@@ -291,6 +298,8 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
       <br />
       <sub><b>2 words</b></sub>
     </td>
+  </tr>
+  <tr>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/mekyson"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15715699/medium/3445884a2b6cf411305a730e29cb9d72.jpeg" />
         <br />
@@ -298,8 +307,6 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
       <br />
       <sub><b>1 words</b></sub>
     </td>
-  </tr>
-  <tr>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/huxflux252"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15733253/medium/1167781a1aa3a068aacd79c6a342d974.png" />
         <br />
