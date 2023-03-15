@@ -532,7 +532,7 @@
     <string name="backup_restore">Obnovit zálohu</string>
     <string name="backup_restore_summary">Obnovit nastavení ze souboru zálohy</string>
     <string name="backup_automatic_backup">Automatické zálohování</string>
-    <string name="backup_compat_info">Zálohy zahrnují pouze odezvu impulsu, skripty, VDC soubory, předvolby a aktuální konfiguraci zvuku pro maximální kompatibilitu s ostatními verzemi.</string>
+    <string name="backup_compat_info">Zálohy zahrnují pouze impulzní odezvu, skripty, VDC soubory, předvolby a aktuální konfiguraci zvuku pro maximální kompatibilitu s ostatními verzemi.</string>
     <string name="backup_restore_mode_title">Režim obnovení</string>
     <string name="backup_restore_mode_clean">Čistá obnova (odstranit všechny existující soubory)</string>
     <string name="backup_restore_mode_dirty">Špinavá obnova (pouze přepsat)</string>
