@@ -92,7 +92,7 @@ class SettingsMiscFragment : SettingsBaseFragment() {
 
         crashReports?.parent?.isVisible = !BuildConfig.FOSS_ONLY
         debugDatabase?.parent?.isVisible = BuildConfig.DEBUG
-        autoStartNotify?.parent?.isVisible = BuildConfig.ROOTLESS
+        autoStartNotify?.isVisible = BuildConfig.ROOTLESS
     }
 
     companion object {
