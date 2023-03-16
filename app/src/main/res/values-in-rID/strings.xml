@@ -6,10 +6,14 @@
     <string name="action_revert">Setel ulang ke bawaan</string>
     <string name="action_blocked_apps">Aplikasi Dikecualikan</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">Layanan</string>
     <string name="notification_channel_service">Layanan Notifikasi</string>
     <string name="notification_channel_session_loss_alert">Peringatan kehilangan sesi</string>
     <string name="notification_channel_permission_prompt">Permintaan izin</string>
     <string name="notification_channel_app_compat_alert">Peringatan aplikasi tidak kompatibel</string>
+    <string name="notification_group_backup">Cadangkan dan pulihkan</string>
+    <string name="notification_channel_backup_progress">Sedang Diproses</string>
+    <string name="notification_channel_backup_complete">Selesai</string>
     <!-- Service notifications -->
     <string name="action_retry">Coba Lagi</string>
     <string name="action_fix">Perbaikan isu</string>
@@ -291,6 +295,17 @@
     <string name="appearance_app_theme">Tema aplikasi</string>
     <string name="appearance_navigation_title">Navigasi</string>
     <string name="appearance_nav_hide">Sembunyikan bilah navigasi saat bergulir</string>
+    <string name="backup_settings">Cadangkan dan pulihkan</string>
+    <string name="backup_settings_summary">Pencadangan otomatis &amp; manual</string>
+    <string name="backup_frequency">Frekuensi pencadangan</string>
+    <string name="backup_location">Lokasi cadangan</string>
+    <string name="backup_maximum">Maksimal pencadangan</string>
+    <string name="backup_never">Tidak pernah</string>
+    <string name="backup_12hour">Setiap 12 jam</string>
+    <string name="backup_24hour">Harian</string>
+    <string name="backup_48hour">Setiap 2 hari</string>
+    <string name="backup_weekly">Mingguan</string>
+    <string name="backup_select_location">Buat dan pilih direktori pencadangan…</string>
     <!-- Theme names -->
     <string name="theme_default">Standar</string>
     <string name="theme_monet">Dinamis</string>
@@ -312,7 +327,9 @@
     <string name="filelibrary_unsupported_format">File yang dipilih punya ekstensi yang tidak tepat.</string>
     <string name="filelibrary_corrupted_title">File rusak atau tidak didukung</string>
     <string name="filelibrary_corrupted">File yang dipilih korup atau berisi data tidak dapat digunakan.</string>
+    <string name="filelibrary_file_too_new">File yang dibuat dengan versi terbaru tidak dapat dimuat, perbarui aplikasi untuk melanjutkan.</string>
     <string name="filelibrary_access_fail">Gagal mengakses direktori</string>
+    <string name="filelibrary_is_backup_not_preset">File yang dipilih adalah berkas pencadangan, bukan preset. Lihat pengaturan cadangan jika anda ingin memulihkannya.</string>
     <string name="filelibrary_no_file_selected">Tidak ada file dipilih</string>
     <string name="filelibrary_new_file_name">Nama file baru</string>
     <string name="filelibrary_file_exists">File sudah ada</string>
@@ -459,4 +476,23 @@
     <string name="self_update_state_downloading">Mengunduh…</string>
     <string name="self_update_state_installing">Memasang…</string>
     <!-- Backups -->
+    <string name="backup_restore_progress">Memulihkan cadangan</string>
+    <string name="backup_restore_error">Pemulihan gagal</string>
+    <string name="backup_restore_error_format">File rusak atau tidak didukung</string>
+    <string name="backup_restore_error_version_too_new">File yang dibuat dengan versi terbaru tidak dapat dimuat, perbarui aplikasi untuk melanjutkan.</string>
+    <string name="backup_restore_completed">Pemulihan selesai</string>
+    <string name="backup_create_completed">Cadangan dibuat</string>
+    <string name="backup_create_progress">Membuat cadangan</string>
+    <string name="backup_create_error">Pencadangan gagal</string>
+    <string name="backup_manual_backup">Pencadangan manual</string>
+    <string name="backup_create">Buat cadangan</string>
+    <string name="backup_create_summary">Digunakan untuk memulihkan pengaturan saat ini nanti</string>
+    <string name="backup_restore">Pulihkan cadangan</string>
+    <string name="backup_restore_summary">Pulihkan pengaturan dari file cadangan</string>
+    <string name="backup_automatic_backup">Pencadangan otomatis</string>
+    <string name="backup_compat_info">Pencadangan hanya termasuk Respon Impulse, skrip, File VDC, Presetz dan konfigurasi audio saat ini untuk kompatibilitas dengan versi lainnya.</string>
+    <string name="backup_restore_mode_title">Mode pemulihan</string>
+    <string name="backup_restore_mode_clean">Bersihkan pemulihan (hapus semua file)</string>
+    <string name="backup_restore_mode_dirty">Pemulihan dirty (hanya timpa)</string>
+    <string name="backup_in_progress">Pencadangan sedang diproses</string>
 </resources>

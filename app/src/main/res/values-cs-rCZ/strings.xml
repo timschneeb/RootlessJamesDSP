@@ -6,10 +6,14 @@
     <string name="action_revert">Obnovit výchozí nastavení</string>
     <string name="action_blocked_apps">Vyloučené aplikace</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">Služba</string>
     <string name="notification_channel_service">Upozornění na službu</string>
     <string name="notification_channel_session_loss_alert">Upozornění na ztrátu relace</string>
     <string name="notification_channel_permission_prompt">Žádost o oprávnění</string>
     <string name="notification_channel_app_compat_alert">Upozornění na nekompatibilní aplikace</string>
+    <string name="notification_group_backup">Zálohování a obnovení</string>
+    <string name="notification_channel_backup_progress">V průběhu</string>
+    <string name="notification_channel_backup_complete">Dokončené</string>
     <!-- Service notifications -->
     <string name="action_retry">Zkusit znovu</string>
     <string name="action_fix">Opravit problém</string>
@@ -324,6 +328,17 @@
     <string name="appearance_app_theme">Motiv aplikace</string>
     <string name="appearance_navigation_title">Navigace</string>
     <string name="appearance_nav_hide">Skrýt navigační lištu při posouvání</string>
+    <string name="backup_settings">Zálohování a obnovení</string>
+    <string name="backup_settings_summary">Automatické &amp; manuální zálohování</string>
+    <string name="backup_frequency">Frekvence zálohování</string>
+    <string name="backup_location">Umístění záloh</string>
+    <string name="backup_maximum">Maximum záloh</string>
+    <string name="backup_never">Nikdy</string>
+    <string name="backup_12hour">Každých 12 hodin</string>
+    <string name="backup_24hour">Denně</string>
+    <string name="backup_48hour">Každé 2 dny</string>
+    <string name="backup_weekly">Týdně</string>
+    <string name="backup_select_location">Prosím vytvořte a vyberte umístění pro zálohy…</string>
     <!-- Theme names -->
     <string name="theme_default">Výchozí</string>
     <string name="theme_monet">Dynamický</string>
@@ -351,7 +366,9 @@
     <string name="filelibrary_unsupported_format">Vybraný soubor nemá správnou příponu.</string>
     <string name="filelibrary_corrupted_title">Nepodporovaný nebo poškozený soubor</string>
     <string name="filelibrary_corrupted">Vybraný soubor neobsahuje žádná použitelná data nebo je poškozen.</string>
+    <string name="filelibrary_file_too_new">Vybraný soubor byl vytvořen s novější verzí této aplikace a nelze jej načíst. Aktualizujte tuto aplikaci pro pokračování.</string>
     <string name="filelibrary_access_fail">Přístup ke složce se nezdařil</string>
+    <string name="filelibrary_is_backup_not_preset">Vybraný soubor je soubor zálohy, ne přednastavení. Chcete-li jej obnovit, přejděte do nastavení záloh.</string>
     <string name="filelibrary_no_file_selected">Žádný soubor nevybrán</string>
     <string name="filelibrary_new_file_name">Nový název souboru</string>
     <string name="filelibrary_file_exists">Soubor již existuje</string>
@@ -501,4 +518,23 @@
     <string name="self_update_state_downloading">Stahování…</string>
     <string name="self_update_state_installing">Instalace…</string>
     <!-- Backups -->
+    <string name="backup_restore_progress">Obnovování zálohy</string>
+    <string name="backup_restore_error">Obnovení zálohy selhalo</string>
+    <string name="backup_restore_error_format">Nepodporovaný nebo poškozený soubor zálohy</string>
+    <string name="backup_restore_error_version_too_new">Vybraná záloha byla vytvořen s novější verzí této aplikace a nelze ji načíst. Aktualizujte tuto aplikaci pro pokračování.</string>
+    <string name="backup_restore_completed">Obnovení bylo dokončeno</string>
+    <string name="backup_create_completed">Záloha vytvořena</string>
+    <string name="backup_create_progress">Vytváření zálohy</string>
+    <string name="backup_create_error">Zálohování selhalo</string>
+    <string name="backup_manual_backup">Manuální zálohování</string>
+    <string name="backup_create">Vytvořit zálohu</string>
+    <string name="backup_create_summary">Může být použito pro pozdější obnovení aktuálního nastavení</string>
+    <string name="backup_restore">Obnovit zálohu</string>
+    <string name="backup_restore_summary">Obnovit nastavení ze souboru zálohy</string>
+    <string name="backup_automatic_backup">Automatické zálohování</string>
+    <string name="backup_compat_info">Zálohy zahrnují pouze impulzní odezvu, skripty, VDC soubory, předvolby a aktuální konfiguraci zvuku pro maximální kompatibilitu s ostatními verzemi.</string>
+    <string name="backup_restore_mode_title">Režim obnovení</string>
+    <string name="backup_restore_mode_clean">Čistá obnova (odstranit všechny existující soubory)</string>
+    <string name="backup_restore_mode_dirty">Špinavá obnova (pouze přepsat)</string>
+    <string name="backup_in_progress">Zálohování již probíhá</string>
 </resources>
