@@ -1,0 +1,3 @@
+* Material3 transitions in settings
+* Translation updates
+* Other fixes & code refactors
