@@ -179,7 +179,7 @@ dependencies {
     implementation("androidx.work:work-runtime-ktx:2.8.0")
 
     // Material
-    implementation("com.google.android.material:material:1.9.0-alpha02")
+    implementation("com.google.android.material:material:1.9.0-beta01")
 
     // Dependency injection
     implementation("io.insert-koin:koin-android:3.2.0")
