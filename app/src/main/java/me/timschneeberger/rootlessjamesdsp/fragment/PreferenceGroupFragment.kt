@@ -108,7 +108,7 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
                 liveprogFile?.summaryProvider = SummaryProvider<FileLibraryPreference> {
                     updateLiveprog(it.value)
                     if(it.value == null || it.value.isBlank() || !eelParser.isFileLoaded) {
-                        "No script selected"
+                        getString(R.string.liveprog_no_script_selected)
                     }
                     else
                         eelParser.description
@@ -154,10 +154,12 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
         parent: ViewGroup,
         savedInstanceState: Bundle?,
     ): RecyclerView {
-        recyclerView = super.onCreateRecyclerView(inflater, parent, savedInstanceState)
-        recyclerView!!.itemAnimator = null // Fix to prevent RecyclerView crash if group is toggled rapidly
-        recyclerView!!.isNestedScrollingEnabled = false
-        return recyclerView!!
+        return super.onCreateRecyclerView(inflater, parent, savedInstanceState).apply {
+            itemAnimator = null // Fix to prevent RecyclerView crash if group is toggled rapidly
+            isNestedScrollingEnabled = false
+
+            this@PreferenceGroupFragment.recyclerView = this
+        }
     }
 
     override fun onCreateAdapter(preferenceScreen: PreferenceScreen): RecyclerView.Adapter<*> {
@@ -192,18 +194,18 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
         private const val BUNDLE_XML_RES = "preferencesXmlRes"
 
         fun newInstance(preferencesName: String?, @XmlRes preferencesXmlRes: Int): PreferenceGroupFragment {
-            val fragment = PreferenceGroupFragment()
-
-            val args = Bundle()
-            args.putString(BUNDLE_PREF_NAME, preferencesName)
-            args.putInt(BUNDLE_XML_RES, preferencesXmlRes)
-            fragment.arguments = args
-            return fragment
+            return PreferenceGroupFragment().apply {
+                arguments = Bundle().apply {
+                    putString(BUNDLE_PREF_NAME, preferencesName)
+                    putInt(BUNDLE_XML_RES, preferencesXmlRes)
+                }
+            }
         }
 
         fun cloneInstance(fragment: PreferenceGroupFragment): PreferenceGroupFragment {
-            val args = fragment.requireArguments()
-            return newInstance(args.getString(BUNDLE_PREF_NAME), args.getInt(BUNDLE_XML_RES))
+            return fragment.requireArguments().let { args ->
+                 newInstance(args.getString(BUNDLE_PREF_NAME), args.getInt(BUNDLE_XML_RES))
+            }
         }
     }
 }
