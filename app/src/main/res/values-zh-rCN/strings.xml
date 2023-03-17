@@ -535,4 +535,7 @@
     <string name="backup_automatic_backup">自动备份</string>
     <string name="backup_compat_info">备份仅包括脉冲响应、脚本、VDC 文件、预设和当前音频配置，以最大程度地兼容其它版本。</string>
     <string name="backup_restore_mode_title">还原模式</string>
+    <string name="backup_restore_mode_clean">清理恢复 (删除所有现有文件)</string>
+    <string name="backup_restore_mode_dirty">Dirty 恢复 (仅覆盖)</string>
+    <string name="backup_in_progress">备份已在进行中</string>
 </resources>
