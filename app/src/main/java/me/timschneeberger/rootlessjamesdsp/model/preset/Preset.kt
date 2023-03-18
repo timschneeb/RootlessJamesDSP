@@ -1,11 +1,11 @@
-package me.timschneeberger.rootlessjamesdsp.model
+package me.timschneeberger.rootlessjamesdsp.model.preset
 
 import android.content.Context
 import android.content.Intent
 import android.system.ErrnoException
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
-import me.timschneeberger.rootlessjamesdsp.backup.BackupManager.Companion.META_IS_BACKUP
+import me.timschneeberger.rootlessjamesdsp.backup.BackupManager
 import me.timschneeberger.rootlessjamesdsp.liveprog.EelParser
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.Tar
@@ -21,11 +21,7 @@ import java.io.IOException
 import java.io.InputStream
 import javax.xml.parsers.DocumentBuilderFactory
 
-
-typealias PresetMetadata = Map<String, String>
-
 class Preset(val name: String): KoinComponent {
-
     private val ctx: Context by inject()
     private val externalPath = File("${ctx.getExternalFilesDir(null)!!.path}/Presets")
 
@@ -135,7 +131,7 @@ class Preset(val name: String): KoinComponent {
             val metadata = Tar.Reader(stream, ::isKnownEntry).extract(targetFolder)
             metadata ?: throw Exception(ctx.getString(R.string.filelibrary_corrupted))
 
-            if(metadata[META_IS_BACKUP]?.toBoolean() == true) {
+            if(metadata[BackupManager.META_IS_BACKUP]?.toBoolean() == true) {
                 Timber.e("This is a backup file, not a preset file")
                 targetFolder.deleteRecursively()
                 throw Exception(ctx.getString(R.string.filelibrary_is_backup_not_preset))
@@ -170,7 +166,8 @@ class Preset(val name: String): KoinComponent {
             if (files.any { it.name == FILE_LIVEPROG }) {
                 findLiveprogScriptPath(ctx)?.let {
                     val originalFile = File(it)
-                    val targetFile = File("${ctx.getExternalFilesDir(null)!!.path}/Liveprog", originalFile.name)
+                    val targetFile =
+                        File("${ctx.getExternalFilesDir(null)!!.path}/Liveprog", originalFile.name)
                     val tempPath = File(currentPath(ctx), FILE_LIVEPROG)
 
                     if(metadata[META_LIVEPROG_INCLUDED].toBoolean()) {
@@ -232,3 +229,5 @@ class Preset(val name: String): KoinComponent {
     }
 }
 
+
+typealias PresetMetadata = Map<String, String>

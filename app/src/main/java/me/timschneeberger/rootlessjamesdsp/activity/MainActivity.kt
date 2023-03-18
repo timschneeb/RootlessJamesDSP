@@ -34,7 +34,7 @@ import me.timschneeberger.rootlessjamesdsp.fragment.FileLibraryDialogFragment
 import me.timschneeberger.rootlessjamesdsp.fragment.LibraryLoadErrorFragment
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspRemoteEngine
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspWrapper
-import me.timschneeberger.rootlessjamesdsp.model.Preset
+import me.timschneeberger.rootlessjamesdsp.model.preset.Preset
 import me.timschneeberger.rootlessjamesdsp.model.ProcessorMessage
 import me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
 import me.timschneeberger.rootlessjamesdsp.service.BaseAudioProcessorService

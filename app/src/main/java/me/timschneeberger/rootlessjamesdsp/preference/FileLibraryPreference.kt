@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import androidx.preference.ListPreference
 import androidx.preference.Preference.SummaryProvider
 import me.timschneeberger.rootlessjamesdsp.R
-import me.timschneeberger.rootlessjamesdsp.model.Preset
+import me.timschneeberger.rootlessjamesdsp.model.preset.Preset
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
 import java.io.File
 import java.io.InputStream
