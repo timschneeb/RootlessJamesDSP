@@ -70,8 +70,10 @@ class QuickTileService : TileService(),
     }
 
     private fun updateState() {
-        qsTile.state = if(isEffectEnabled()) Tile.STATE_ACTIVE else Tile.STATE_INACTIVE
-        qsTile.updateTile()
+        qsTile?.let { tile ->
+            tile.state = if(isEffectEnabled()) Tile.STATE_ACTIVE else Tile.STATE_INACTIVE
+            tile.updateTile()
+        }
     }
 
     private fun launchService() {
@@ -94,7 +96,7 @@ class QuickTileService : TileService(),
     override fun onClick() {
         super.onClick()
 
-        val toggled = qsTile.state != Tile.STATE_ACTIVE
+        val toggled = qsTile?.let { it.state != Tile.STATE_ACTIVE } ?: return
 
         // Root
         if(!BuildConfig.ROOTLESS) {
