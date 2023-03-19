@@ -250,4 +250,24 @@ object ServiceNotificationHelper: KoinComponent {
                     or Intent.FLAG_ACTIVITY_NEW_TASK)
         }
     }
+
+
+    fun createStopIntent(ctx: Context) =
+        if (SdkCheck.isQ && BuildConfig.ROOTLESS) {
+            with(Intent(ctx, RootlessAudioProcessorService::class.java)) {
+                action = RootlessAudioProcessorService.ACTION_STOP
+                this
+            }
+        }
+        else throw IllegalStateException()
+
+    fun createStartIntent(ctx: Context, mediaProjectionData: Intent? = null) =
+        if (SdkCheck.isQ && BuildConfig.ROOTLESS) {
+            with(Intent(ctx, RootlessAudioProcessorService::class.java)) {
+                action = RootlessAudioProcessorService.ACTION_START
+                putExtra(RootlessAudioProcessorService.EXTRA_MEDIA_PROJECTION_DATA, mediaProjectionData)
+                this
+            }
+        }
+        else throw IllegalStateException()
 }
