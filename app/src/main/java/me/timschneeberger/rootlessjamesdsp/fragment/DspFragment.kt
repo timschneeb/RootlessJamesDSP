@@ -9,6 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.Preferences
@@ -131,14 +134,16 @@ class DspFragment : Fragment() {
     }
 
     fun restartFragment(id: Int, newFragment: Fragment) {
-        try {
-            childFragmentManager.beginTransaction()
-                .replace(id, newFragment)
-                .commitAllowingStateLoss()
-        }
-        catch(ex: IllegalStateException) {
-            Timber.e("Failed to restart fragment")
-            Timber.i(ex)
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                childFragmentManager.beginTransaction()
+                    .replace(id, newFragment)
+                    .commitAllowingStateLoss()
+            }
+            catch(ex: IllegalStateException) {
+                Timber.e("Failed to restart fragment")
+                Timber.i(ex)
+            }
         }
     }
 
