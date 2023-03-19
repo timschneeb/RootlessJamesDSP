@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
+import androidx.annotation.UiContext
 import androidx.appcompat.app.AlertDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import me.timschneeberger.rootlessjamesdsp.databinding.DialogProgressBinding
@@ -12,7 +13,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import kotlin.math.roundToInt
 
 class ProgressDialog(
-    val context: Context,
+    @UiContext val context: Context,
     onCancelListener: ((DialogInterface) -> Unit)?
 ) {
     private val dialog: AlertDialog
