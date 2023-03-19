@@ -8,6 +8,8 @@ import androidx.preference.PreferenceViewHolder
 import me.timschneeberger.rootlessjamesdsp.view.EqualizerSurface
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.PreferenceEqualizerBinding
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
+import timber.log.Timber
 
 class EqualizerPreference : DialogPreference {
 
@@ -74,6 +76,7 @@ class EqualizerPreference : DialogPreference {
             .split(";")
             .drop(15)
             .dropLastWhile(String::isEmpty)
-            .forEachIndexed { index, s -> equalizerView?.setBand(index, s.toDouble()) }
+            .map(String::toDoubleOrNull)
+            .forEachIndexed { index, s -> equalizerView?.setBand(index, s ?: 0.0) }
     }
 }

@@ -29,7 +29,7 @@ class EqualizerDialogFragment : PreferenceDialogFragmentCompat() {
             .split(";")
             .drop(15)
             .dropLastWhile(String::isEmpty)
-            .map(String::toDouble)
+            .map { it.toDoubleOrNull() ?: 0.0 }
             .toDoubleArray()
             .copyOf(15)
     }
@@ -69,7 +69,7 @@ class EqualizerDialogFragment : PreferenceDialogFragmentCompat() {
                         (preference as EqualizerPreference).entryValues[index]
                             .split(";")
                             .dropLastWhile(String::isEmpty)
-                            .map(String::toDouble)
+                            .map { it.toDoubleOrNull() ?: 0.0 }
                             .forEachIndexed(::updateBand)
                             .also { applyCurrentSetting() }
                     }
