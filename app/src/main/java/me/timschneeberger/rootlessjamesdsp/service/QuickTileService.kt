@@ -48,10 +48,10 @@ class QuickTileService : TileService(),
     override fun onStartListening() {
         updateState()
 
-        val filter = IntentFilter()
-        filter.addAction(Constants.ACTION_SERVICE_STARTED)
-        filter.addAction(Constants.ACTION_SERVICE_STOPPED)
-        registerLocalReceiver(broadcastReceiver, filter)
+        registerLocalReceiver(broadcastReceiver, IntentFilter().apply {
+            addAction(Constants.ACTION_SERVICE_STARTED)
+            addAction(Constants.ACTION_SERVICE_STOPPED)
+        })
         preferences.registerOnSharedPreferenceChangeListener(this)
 
         super.onStartListening()
@@ -82,7 +82,7 @@ class QuickTileService : TileService(),
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
             }
-            .let {
+            .also {
                 // If projection permission request needs to be shown, collapse status bar
                 if(BuildConfig.ROOTLESS && app.mediaProjectionStartIntent == null && !hasProjectMediaAppOp())
                     startActivityAndCollapse(it)
