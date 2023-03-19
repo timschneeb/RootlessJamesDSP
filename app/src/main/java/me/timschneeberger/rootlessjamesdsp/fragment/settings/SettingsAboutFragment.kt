@@ -2,15 +2,8 @@ package me.timschneeberger.rootlessjamesdsp.fragment.settings
 
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.util.TypedValue
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.core.content.res.ResourcesCompat
 import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceGroup
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.CoroutineScope
@@ -71,15 +64,17 @@ class SettingsAboutFragment : SettingsBaseFragment() {
                     if(tls.size == 1)
                         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://crowdin.com/profile/${tls[0].user}")))
                     else {
-                        MaterialAlertDialogBuilder(requireContext())
-                            .setItems(tls.map { it.name }.toTypedArray()) { dialogInterface, i ->
-                                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://crowdin.com/profile/${tls[i].user}")))
-                                dialogInterface.dismiss()
-                            }
-                            .setTitle(title)
-                            .setNegativeButton(getString(android.R.string.cancel)){ _, _ -> }
-                            .create()
-                            .show()
+                        this@SettingsAboutFragment.context?.let { ctx ->
+                            MaterialAlertDialogBuilder(ctx)
+                                .setItems(tls.map { it.name }.toTypedArray()) { dialogInterface, i ->
+                                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://crowdin.com/profile/${tls[i].user}")))
+                                    dialogInterface.dismiss()
+                                }
+                                .setTitle(title)
+                                .setNegativeButton(getString(android.R.string.cancel)){ _, _ -> }
+                                .create()
+                                .show()
+                        }
                     }
                     true
                 }
@@ -101,7 +96,7 @@ class SettingsAboutFragment : SettingsBaseFragment() {
                         if (hasUpdate)
                             updateManager.installUpdate(requireActivity())
                         else
-                            requireContext().toast(getString(R.string.self_update_no_updates))
+                            context?.toast(getString(R.string.self_update_no_updates))
                     }
                 }
             }
