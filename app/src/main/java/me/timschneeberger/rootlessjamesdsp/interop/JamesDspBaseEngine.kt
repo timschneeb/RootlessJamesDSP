@@ -16,7 +16,9 @@ import me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sendLocalBroadcast
 import timber.log.Timber
 import java.io.File
+import java.io.FileNotFoundException
 import java.io.FileReader
+import java.io.IOException
 import java.lang.NumberFormatException
 
 abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspWrapper.JamesDspCallbacks? = null) : AutoCloseable {
@@ -169,9 +171,9 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
             return true /* non-critical */
         }
 
-        return FileReader(fullPath).use {
+        return safeFileReader(fullPath)?.use {
             setVdcInternal(enable, it.readText())
-        }
+        } ?: false
     }
 
     fun setConvolver(enable: Boolean, impulseResponsePath: String, optimizationMode: Int, waveEditStr: String): Boolean
@@ -259,11 +261,20 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
             return setLiveprogInternal(false, "", "")
         }
 
-        return FileReader(fullPath).use {
+        return safeFileReader(fullPath)?.use {
             val name = File(fullPath).name
             setLiveprogInternal(enable, name, it.readText())
-        }
+        } ?: false
     }
+
+    private fun safeFileReader(path: String) =
+        try { FileReader(path) }
+        catch (ex: FileNotFoundException) {
+            /* Exception may occur when old presets created with version <1.4.3 are swapped
+               between root, rootless, debug, or release builds due to path name differences. */
+            Timber.w(ex)
+            null
+        }
 
     // Effect config
     abstract fun setOutputControl(threshold: Float, release: Float, postGain: Float): Boolean
