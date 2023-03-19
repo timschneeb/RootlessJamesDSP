@@ -314,10 +314,11 @@ class OnboardingFragment : Fragment() {
 
     @SuppressLint("ApplySharedPref")
     private fun finishSetup() {
-        val intent = Intent(requireContext(), MainActivity::class.java)
+
+        val intent = context?.let { Intent(it, MainActivity::class.java) } ?: return
         intent.putExtra(MainActivity.EXTRA_FORCE_SHOW_CAPTURE_PROMPT, true)
         startActivity(intent)
-        requireActivity().finish()
+        activity?.finish()
 
         // Mark setup as done
         if(!useRoot) {
@@ -326,8 +327,10 @@ class OnboardingFragment : Fragment() {
         // Root: enable enhanced processing
         else {
             prefsApp.set(R.string.key_audioformat_enhanced_processing, true, async = false)
-            RootAudioProcessorService.startServiceEnhanced(requireContext())
-            requireContext().toast(R.string.onboarding_root_enhanced_processing_setup_success)
+            context?.let {
+                RootAudioProcessorService.startServiceEnhanced(it)
+                it.toast(R.string.onboarding_root_enhanced_processing_setup_success)
+            }
         }
     }
 
