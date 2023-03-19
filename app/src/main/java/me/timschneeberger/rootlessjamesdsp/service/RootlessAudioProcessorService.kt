@@ -424,8 +424,16 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
                 "HAL buffer size (bytes): ${determineBufferSize()}")
 
         // Create recorder and track
-        var recorder = buildAudioRecord(encodingFormat, sampleRate, bufferSizeBytes)
         val track = buildAudioTrack(encodingFormat, sampleRate, bufferSizeBytes)
+        var recorder = try {
+            buildAudioRecord(encodingFormat, sampleRate, bufferSizeBytes)
+        }
+        catch(ex: Exception) {
+            Timber.e("Failed to create initial audio record")
+            Timber.e(ex)
+            stopSelf()
+            return
+        }
 
         if(engine.sampleRate.toInt() != sampleRate) {
             Timber.d("Sampling rate changed to ${sampleRate}Hz")
