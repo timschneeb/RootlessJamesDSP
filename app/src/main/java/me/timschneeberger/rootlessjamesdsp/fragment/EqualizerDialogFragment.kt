@@ -16,13 +16,16 @@ class EqualizerDialogFragment : PreferenceDialogFragmentCompat() {
 
     private var equalizer: EqualizerSurface? = null
     private lateinit var mLevels: DoubleArray
-    private var shouldReset = true
+    private lateinit var mOldSetting: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        mLevels = savedInstanceState?.getDoubleArray("levels") ?: preference.sharedPreferences
-            ?.getString(preference.key, (preference as EqualizerPreference).initialValue)!!
+        mOldSetting = savedInstanceState?.getString("oldSetting")
+            ?: preference.sharedPreferences
+            ?.getString(preference.key, (preference as EqualizerPreference).initialValue) ?: ""
+
+        mLevels = savedInstanceState?.getDoubleArray("levels") ?: mOldSetting
             .split(";")
             .drop(15)
             .dropLastWhile(String::isEmpty)
@@ -50,6 +53,7 @@ class EqualizerDialogFragment : PreferenceDialogFragmentCompat() {
             }
 
             updateBand(band, level.toDouble())
+            applyCurrentSetting()
             true
         }
 
@@ -67,6 +71,7 @@ class EqualizerDialogFragment : PreferenceDialogFragmentCompat() {
                             .dropLastWhile(String::isEmpty)
                             .map(String::toDouble)
                             .forEachIndexed(::updateBand)
+                            .also { applyCurrentSetting() }
                     }
                 }
         binding.equalizerPresets.addView(chip, index)
@@ -74,8 +79,10 @@ class EqualizerDialogFragment : PreferenceDialogFragmentCompat() {
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        shouldReset = false
-        super.onSaveInstanceState(outState.apply { putDoubleArray("levels", mLevels) })
+        super.onSaveInstanceState(outState.apply {
+            putDoubleArray("levels", mLevels)
+            putString("oldSetting", mOldSetting)
+        })
     }
 
     override fun onDialogClosed(positiveResult: Boolean) {
@@ -83,20 +90,22 @@ class EqualizerDialogFragment : PreferenceDialogFragmentCompat() {
             val array = EqualizerSurface.FreqScale + mLevels
             val value = array.joinToString(";")
             if (preference.callChangeListener(value)) {
-                preference.preferenceManager.sharedPreferences?.edit(commit = true) {
-                    putString(preference.key, value)
-                }
-                (preference as EqualizerPreference).updateFromPreferences()
+                applySetting(value)
             }
-        } else if (shouldReset) {
-            preference.sharedPreferences?.getString(
-                preference.key, (preference as EqualizerPreference).initialValue
-            )!!.split(";")
-                .drop(15)
-                .dropLastWhile(String::isEmpty)
-                .map(String::toDouble)
-                .forEachIndexed(::updateBand)
+        } else {
+            applySetting(mOldSetting)
         }
+    }
+
+    private fun applyCurrentSetting() {
+        applySetting((EqualizerSurface.FreqScale + mLevels).joinToString(";"))
+    }
+
+    private fun applySetting(value: String) {
+        preference.preferenceManager.sharedPreferences?.edit(commit = true) {
+            putString(preference.key, value)
+        }
+        (preference as EqualizerPreference).updateFromPreferences()
     }
 
     private fun updateBand(i: Int, gain: Double) {
