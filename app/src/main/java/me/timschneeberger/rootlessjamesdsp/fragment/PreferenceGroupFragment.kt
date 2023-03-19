@@ -200,10 +200,6 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
                     putString(BUNDLE_PREF_NAME, preferencesName)
                     putInt(BUNDLE_XML_RES, preferencesXmlRes)
                 }
-                enterTransition = MaterialFade()
-                exitTransition = MaterialFade()
-                reenterTransition = MaterialFade()
-                returnTransition = MaterialFade()
             }
         }
 
