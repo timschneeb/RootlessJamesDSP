@@ -1,18 +1,19 @@
 package me.timschneeberger.rootlessjamesdsp.preference
 
+import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.TypedArray
-import android.graphics.drawable.TransitionDrawable
 import android.util.AttributeSet
 import android.view.View
-import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.content.ContextCompat
 import androidx.preference.Preference
 import androidx.preference.PreferenceGroup
 import androidx.preference.PreferenceViewHolder
 import androidx.preference.children
 import com.google.android.material.materialswitch.MaterialSwitch
 import me.timschneeberger.rootlessjamesdsp.R
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.animatedValueAs
 
 
 @SuppressLint("PrivateResource")
@@ -23,6 +24,7 @@ class SwitchPreferenceGroup(context: Context, attrs: AttributeSet) : PreferenceG
     private var childrenVisible = false
     private var switch: MaterialSwitch? = null
     private var itemView: View? = null
+    private var bgAnimation: ValueAnimator? = null
     private var state = false
 
     init {
@@ -31,7 +33,7 @@ class SwitchPreferenceGroup(context: Context, attrs: AttributeSet) : PreferenceG
     }
 
     override fun onSetInitialValue(defaultValue: Any?) {
-        setValue(getPersistedBoolean((defaultValue as? Boolean) ?: false))
+        setValueInternal(getPersistedBoolean((defaultValue as? Boolean) ?: false), true)
     }
 
     override fun onGetDefaultValue(a: TypedArray, index: Int): Any = a.getBoolean(index, false)
@@ -40,9 +42,16 @@ class SwitchPreferenceGroup(context: Context, attrs: AttributeSet) : PreferenceG
         super.onBindViewHolder(holder)
 
         itemView = holder.itemView
+        itemView?.background = ContextCompat.getDrawable(context, R.drawable.shape_rounded_highlight)
+        itemView?.background?.alpha = 0
 
-        val transition = AppCompatResources.getDrawable(context, R.drawable.transition_cardheader_background)
-        itemView?.background = transition
+        bgAnimation = ValueAnimator.ofInt(TRANSITION_MIN, TRANSITION_MAX).apply {
+            duration = 200 // milliseconds
+            addUpdateListener { animator ->
+                itemView?.background?.alpha = animator.animatedValueAs<Int>() ?: 0
+            }
+        }
+
         setChildrenVisibility(state)
         animateHeaderState(state)
 
@@ -73,9 +82,9 @@ class SwitchPreferenceGroup(context: Context, attrs: AttributeSet) : PreferenceG
 
     private fun setValueInternal(value: Boolean, notifyChanged: Boolean) {
         setChildrenVisibility(value)
-        animateHeaderState(value)
-
         if (state != value) {
+            animateHeaderState(value)
+
             state = value
             persistBoolean(state)
             if (notifyChanged) {
@@ -85,16 +94,11 @@ class SwitchPreferenceGroup(context: Context, attrs: AttributeSet) : PreferenceG
     }
 
     private fun animateHeaderState(selected: Boolean) {
-        val transition = itemView?.background as? TransitionDrawable
-        transition ?: return // View holder not yet bound
-
-        if(selected) {
-            transition.startTransition(TRANSITION_DURATION)
-        }
-        else {
-            transition.startTransition(0) // ensure animation has been played
-            transition.reverseTransition(TRANSITION_DURATION)
-        }
+        val current = bgAnimation?.animatedValueAs<Int>() ?: 0
+        if(selected && current < TRANSITION_MAX)
+            bgAnimation?.start()
+        else if(!selected && current > TRANSITION_MIN)
+            bgAnimation?.reverse()
     }
 
     private fun setChildrenVisibility(visible: Boolean) {
@@ -102,6 +106,7 @@ class SwitchPreferenceGroup(context: Context, attrs: AttributeSet) : PreferenceG
     }
 
     companion object {
-        const val TRANSITION_DURATION = 100
+        private const val TRANSITION_MIN = 0
+        private const val TRANSITION_MAX = 255
     }
 }

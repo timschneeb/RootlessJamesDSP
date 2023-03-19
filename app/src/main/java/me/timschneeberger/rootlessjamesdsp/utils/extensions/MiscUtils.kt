@@ -1,5 +1,6 @@
 package me.timschneeberger.rootlessjamesdsp.utils.extensions
 
+import android.animation.ValueAnimator
 import android.os.Build
 import android.text.Html
 import android.text.Spanned
@@ -72,3 +73,5 @@ fun View.setBackgroundFromAttribute(@AttrRes attrRes: Int) {
         background = ResourcesCompat.getDrawable(context.resources, a.resourceId, context.theme)
     }
 }
+
+inline fun <reified T> ValueAnimator.animatedValueAs(): T? = this.animatedValue as? T

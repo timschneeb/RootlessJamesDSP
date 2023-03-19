@@ -8,6 +8,7 @@ import androidx.annotation.XmlRes
 import androidx.preference.*
 import androidx.preference.Preference.SummaryProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.transition.MaterialFade
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.activity.GraphicEqualizerActivity
 import me.timschneeberger.rootlessjamesdsp.activity.LiveprogEditorActivity
@@ -199,6 +200,10 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
                     putString(BUNDLE_PREF_NAME, preferencesName)
                     putInt(BUNDLE_XML_RES, preferencesXmlRes)
                 }
+                enterTransition = MaterialFade()
+                exitTransition = MaterialFade()
+                reenterTransition = MaterialFade()
+                returnTransition = MaterialFade()
             }
         }
 
