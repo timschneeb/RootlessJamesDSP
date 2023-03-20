@@ -9,6 +9,7 @@
     <string name="notification_group_service">Serviço</string>
     <string name="notification_channel_service">Notificações de serviço</string>
     <string name="notification_channel_session_loss_alert">Aviso de perca de sessão</string>
+    <string name="notification_channel_permission_prompt">Solicitação de permissão</string>
     <string name="notification_channel_app_compat_alert">Alerta de app incompatível</string>
     <string name="notification_group_backup">Backup e restauração</string>
     <string name="notification_channel_backup_progress">Em andamento</string>
@@ -63,6 +64,7 @@
     <string name="eq_interpolator">Interpolador</string>
     <string name="eq_filter_type_minimum">Fase mínima</string>
     <string name="eq_filter_type_linear">Fase linear</string>
+    <string name="eq_interpolator_chip">Interpolação Polinomial de Hermite Cúbica em partes</string>
     <string name="eq_interpolator_mha">Spline de Hiroshi Akima modificada</string>
     <string name="eq_preset_acoustic">Acústico</string>
     <string name="eq_preset_bass">Baixo</string>
@@ -75,17 +77,83 @@
     <string name="eq_preset_flat">Plano</string>
     <string name="eq_preset_hardstyle">Hardstyle</string>
     <string name="eq_preset_hiphop">Hip Hop</string>
+    <string name="eq_preset_jazz">Jazz</string>
+    <string name="eq_preset_metal">Metal</string>
+    <string name="eq_preset_movie">Filme</string>
+    <string name="eq_preset_pop">Pop</string>
+    <string name="eq_preset_rb">R&amp;B</string>
+    <string name="eq_preset_rock">Rock</string>
+    <string name="eq_preset_vocal">Amplificar a voz</string>
+    <string name="geq_enable">Equalizador de resposta arbitrária</string>
+    <string name="geq_nodes">Resposta de Magnitude</string>
+    <string name="bass_enable">Reforço dinâmico de graves</string>
+    <string name="bass_max_gain">Ganho Máximo</string>
+    <string name="reverb_enable">Efeito virtual de ambiente</string>
+    <string name="reverb_room_type">Tipo de ambiente</string>
+    <string name="reverb_preset_default">Padrão</string>
+    <string name="reverb_preset_small_hall1">Salão pequeno 1</string>
+    <string name="reverb_preset_small_hall2">Salão pequeno 2</string>
+    <string name="reverb_preset_medium_hall2">Salão médio</string>
+    <string name="reverb_preset_large_hall1">Salão grande</string>
+    <string name="reverb_preset_small_room1">Sala pequena 1</string>
+    <string name="reverb_preset_small_room2">Sala pequena 2</string>
+    <string name="reverb_preset_medium_room1">Sala média</string>
+    <string name="reverb_preset_large_room1">Sala grande</string>
+    <string name="reverb_preset_plate_high">Placa alta</string>
+    <string name="reverb_preset_plate_low">Placa baixa</string>
+    <string name="reverb_preset_long_reverb1">Reverberação longa 1</string>
+    <string name="reverb_preset_long_reverb2">Reverberação longa 2</string>
+    <string name="convolver_enable">Convolver</string>
+    <string name="convolver_impulse">Resposta de impulso</string>
+    <string name="convolver_advanced_editing">Edição Avançada de onda</string>
+    <string name="convolver_convolution_mode">Otimização de resposta de impulso</string>
+    <string name="convolver_convolution_mode_original">Original</string>
+    <string name="convolver_convolution_mode_shrink">Reduzir</string>
+    <string name="convolver_convolution_mode_minimum_phase_shrink">Mínimo de transformação e redução de fase</string>
+    <string name="ddc_enable">ViPER-DDC</string>
+    <string name="ddc_file">Arquivo DDC</string>
+    <string name="liveprog_enable">DSP programável em tempo real</string>
+    <string name="liveprog_file">Script de Liveprog</string>
+    <string name="liveprog_additional_params">Parâmetros adicionais de script</string>
+    <string name="liveprog_additional_params_not_supported">O script selecionado não tem parâmetros personalizáveis</string>
+    <string name="liveprog_not_found">O script não foi encontrado</string>
+    <string name="liveprog_no_script_selected">Nenhum script selecionado</string>
+    <string name="liveprog_edit_header">Editar script selecionado</string>
+    <string name="liveprog_edit">Abrir o script ativo no editor integrado</string>
+    <string name="tube_enable">Modelagem analógica</string>
+    <string name="tube_drive">Preamplificar</string>
+    <string name="output_control_header">Controle de Saída</string>
+    <string name="output_limiter_threshold">Limite de Limitador</string>
+    <string name="output_limiter_release">Liberação do limitador</string>
     <string name="output_control_postgain">Pós-ganho</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
+    <string name="onboarding_adb_shizuku_grant_button">Conceder acesso</string>
+    <string name="onboarding_adb_shizuku_not_installed">Shizuku ainda não está instalado. Baixe e instale-o a partir do Google Play primeiro.</string>
+    <string name="onboarding_adb_shizuku_not_installed_title">Shizuku ainda não está instalado</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead">Por favor, inicie o servidor Shizuku antes de solicitar a permissão. Volte ao passo 2 da instrução.</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead_title">Servidor Shizuku não está executando</string>
+    <string name="onboarding_adb_shizuku_grant_fail_version">Este aplicativo requer a versão 11 ou posteriores do Shizuku. Atualize o Shizuku para a versão mais recente.</string>
+    <string name="onboarding_adb_shizuku_grant_fail_version_title">Versão Shizuku não suportada</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied_title">Permissão negada</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied">Conceda acesso ao aplicativo Shizuku. Você talvez precise abrir o gerenciador de permissões do Shizuku e conceder a permissão manualmente se você o negou anteriormente e o popup deixou de mostrar.</string>
+    <string name="onboarding_adb_shizuku_no_dump_perm_title">O Shizuku falhou em conceder permissões ADB</string>
+    <string name="onboarding_adb_shizuku_no_dump_perm">Por favor, aguarde alguns segundos e tente novamente. Se ainda não funcionar, tente o método alternativo.</string>
+    <string name="onboarding_adb_dump_not_granted_title">Permissão ainda não concedida</string>
+    <string name="onboarding_adb_dump_not_granted">Por favor, siga as instruções primeiro e tente novamente. O acesso ao ADB ainda não está configurado corretamente.</string>
+    <string name="onboarding_adb_manual_step1">Acesse as configurações de desenvolvimento ocultas do Android e ative a depuração USB. É necessário desbloquear estas configurações tocando várias vezes no número de build nas configurações do sistema.</string>
+    <string name="onboarding_adb_manual_step2">Abra https://app.webadb.com no navegador do seu computador (funciona melhor no Chrome) e conecte seu dispositivo por USB ao computador.</string>
+    <string name="onboarding_adb_manual_step3">Adicione e conecte o dispositivo USB no WebADB.</string>
     <!-- Settings -->
     <string name="title_activity_settings">Configurações</string>
     <string name="backup_settings">Backup e restauração</string>
     <!-- Theme names -->
+    <string name="theme_default">Padrão</string>
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="title_activity_geq">Resposta de Magnitude</string>
     <string name="gep_add_node">Adicionar</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
