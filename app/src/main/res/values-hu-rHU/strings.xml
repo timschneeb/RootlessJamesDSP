@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
+    <string name="action_settings">Beállítások</string>
+    <string name="action_presets">Sémák</string>
+    <string name="action_revert">Alapértelmezett beállítások visszaállítása</string>
+    <string name="action_blocked_apps">Kizárt alkalmazások</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">Szolgáltatás</string>
+    <string name="notification_channel_service">Szolgáltatási értesítés</string>
     <!-- Service notifications -->
     <!-- Permission request notifications -->
     <!-- Session control loss notifications -->
@@ -13,6 +19,7 @@
     <!-- Rootless flavor -->
     <!-- Root flavor -->
     <!-- Settings -->
+    <string name="title_activity_settings">Beállítások</string>
     <!-- Theme names -->
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
@@ -21,6 +28,7 @@
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
     <!-- Blocklist -->
+    <string name="title_activity_blocklist">Kizárt alkalmazások</string>
     <!-- Compatibility issue activity -->
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
