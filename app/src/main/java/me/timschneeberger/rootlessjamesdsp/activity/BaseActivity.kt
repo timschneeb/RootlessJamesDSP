@@ -10,7 +10,7 @@ import me.timschneeberger.rootlessjamesdsp.MainApplication
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.delegates.ThemingDelegate
 import me.timschneeberger.rootlessjamesdsp.delegates.ThemingDelegateImpl
-import me.timschneeberger.rootlessjamesdsp.utils.Preferences
+import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import org.koin.android.ext.android.inject
 import org.koin.core.component.KoinComponent
 

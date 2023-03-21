@@ -14,7 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
-import me.timschneeberger.rootlessjamesdsp.utils.Preferences
+import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import me.timschneeberger.rootlessjamesdsp.view.Card
 import org.koin.android.ext.android.inject
 import timber.log.Timber

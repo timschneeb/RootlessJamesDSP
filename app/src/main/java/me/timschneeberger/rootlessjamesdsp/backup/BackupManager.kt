@@ -9,8 +9,8 @@ import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
-import me.timschneeberger.rootlessjamesdsp.utils.Preferences
-import me.timschneeberger.rootlessjamesdsp.utils.Tar
+import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
+import me.timschneeberger.rootlessjamesdsp.utils.storage.Tar
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sendLocalBroadcast
 import okio.buffer
 import okio.gzip

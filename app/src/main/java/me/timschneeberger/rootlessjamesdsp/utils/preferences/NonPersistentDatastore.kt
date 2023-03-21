@@ -1,4 +1,4 @@
-package me.timschneeberger.rootlessjamesdsp.utils
+package me.timschneeberger.rootlessjamesdsp.utils.preferences
 
 import androidx.preference.PreferenceDataStore
 

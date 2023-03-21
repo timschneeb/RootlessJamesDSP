@@ -293,7 +293,7 @@
         </provider>
 
         <provider
-            android:name="me.timschneeberger.rootlessjamesdsp.utils.Cache$Provider"
+            android:name="me.timschneeberger.rootlessjamesdsp.utils.storage.Cache$Provider"
             android:authorities="${applicationId}.provider.cache"
             android:exported="false"
             android:grantUriPermissions="true" />

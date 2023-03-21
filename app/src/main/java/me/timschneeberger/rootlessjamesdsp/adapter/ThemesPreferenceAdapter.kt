@@ -11,7 +11,7 @@ import me.timschneeberger.rootlessjamesdsp.databinding.PreferenceThemeItemBindin
 import me.timschneeberger.rootlessjamesdsp.delegates.ThemingDelegate
 import me.timschneeberger.rootlessjamesdsp.model.preference.AppTheme
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getResourceColor
-import me.timschneeberger.rootlessjamesdsp.utils.Preferences
+import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 

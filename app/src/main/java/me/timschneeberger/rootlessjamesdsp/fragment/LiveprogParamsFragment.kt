@@ -17,7 +17,7 @@ import me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
-import me.timschneeberger.rootlessjamesdsp.utils.NonPersistentDatastore
+import me.timschneeberger.rootlessjamesdsp.utils.preferences.NonPersistentDatastore
 import timber.log.Timber
 
 class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastore.OnPreferenceChanged {

@@ -1,4 +1,4 @@
-package me.timschneeberger.rootlessjamesdsp.utils
+package me.timschneeberger.rootlessjamesdsp.utils.notifications
 
 import android.app.Notification
 import android.app.NotificationManager
@@ -18,8 +18,11 @@ import me.timschneeberger.rootlessjamesdsp.activity.EngineLauncherActivity
 import me.timschneeberger.rootlessjamesdsp.activity.MainActivity
 import me.timschneeberger.rootlessjamesdsp.model.IEffectSession
 import me.timschneeberger.rootlessjamesdsp.service.RootlessAudioProcessorService
+import me.timschneeberger.rootlessjamesdsp.utils.SdkCheck
+import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getAppName
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getAppNameFromUid
+import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 

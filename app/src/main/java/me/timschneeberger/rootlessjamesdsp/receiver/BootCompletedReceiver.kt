@@ -6,8 +6,8 @@ import android.content.Intent
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
-import me.timschneeberger.rootlessjamesdsp.utils.Preferences
-import me.timschneeberger.rootlessjamesdsp.utils.ServiceNotificationHelper
+import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
+import me.timschneeberger.rootlessjamesdsp.utils.notifications.ServiceNotificationHelper
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 

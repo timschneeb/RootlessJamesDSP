@@ -17,7 +17,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.MainApplication
-import me.timschneeberger.rootlessjamesdsp.utils.Notifications
+import me.timschneeberger.rootlessjamesdsp.utils.notifications.Notifications
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspRemoteEngine
 import me.timschneeberger.rootlessjamesdsp.model.IEffectSession
@@ -28,8 +28,8 @@ import me.timschneeberger.rootlessjamesdsp.session.root.OnRootSessionChangeListe
 import me.timschneeberger.rootlessjamesdsp.session.root.RootSessionDumpManager
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sendLocalBroadcast
-import me.timschneeberger.rootlessjamesdsp.utils.Preferences
-import me.timschneeberger.rootlessjamesdsp.utils.ServiceNotificationHelper
+import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
+import me.timschneeberger.rootlessjamesdsp.utils.notifications.ServiceNotificationHelper
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import org.koin.android.ext.android.inject

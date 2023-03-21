@@ -40,7 +40,7 @@ import me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showAlert
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showInputAlert
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
-import me.timschneeberger.rootlessjamesdsp.utils.StorageUtils
+import me.timschneeberger.rootlessjamesdsp.utils.storage.StorageUtils
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import timber.log.Timber
 import java.io.File

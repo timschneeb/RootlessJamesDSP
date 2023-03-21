@@ -43,7 +43,7 @@ import me.timschneeberger.rootlessjamesdsp.service.RootlessAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.Result
 import me.timschneeberger.rootlessjamesdsp.utils.SdkCheck
-import me.timschneeberger.rootlessjamesdsp.utils.StorageUtils
+import me.timschneeberger.rootlessjamesdsp.utils.storage.StorageUtils
 import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.AssetManagerExtensions.installPrivateAssets
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.check

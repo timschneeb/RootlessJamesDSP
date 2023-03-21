@@ -17,10 +17,11 @@ import me.timschneeberger.rootlessjamesdsp.flavor.CrashlyticsImpl
 import me.timschneeberger.rootlessjamesdsp.flavor.UpdateManager
 import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.session.root.RootSessionDatabase
-import me.timschneeberger.rootlessjamesdsp.utils.Cache
-import me.timschneeberger.rootlessjamesdsp.utils.Notifications
+import me.timschneeberger.rootlessjamesdsp.utils.storage.Cache
+import me.timschneeberger.rootlessjamesdsp.utils.notifications.Notifications
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.registerLocalReceiver
-import me.timschneeberger.rootlessjamesdsp.utils.Preferences
+import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
+import me.timschneeberger.rootlessjamesdsp.utils.RoutingObserver
 import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
@@ -44,6 +45,7 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
 
     private val prefs: Preferences.App by inject()
 
+    val routingObserver by lazy { RoutingObserver(this) }
     val rootSessionDatabase by lazy { RootSessionDatabase(this) }
     val isLegacyMode
         get() = prefs.get<Boolean>(R.string.key_audioformat_processing)

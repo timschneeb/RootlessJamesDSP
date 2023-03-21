@@ -1,4 +1,4 @@
-package me.timschneeberger.rootlessjamesdsp.utils
+package me.timschneeberger.rootlessjamesdsp.utils.storage
 
 import android.content.Context
 import android.system.ErrnoException

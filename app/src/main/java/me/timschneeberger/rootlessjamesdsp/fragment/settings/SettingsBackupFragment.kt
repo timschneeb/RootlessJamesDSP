@@ -3,17 +3,10 @@ package me.timschneeberger.rootlessjamesdsp.fragment.settings
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.util.TypedValue
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.core.content.res.ResourcesCompat
 import androidx.core.net.toUri
 import androidx.preference.ListPreference
 import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.hippo.unifile.UniFile
 import me.timschneeberger.rootlessjamesdsp.R
@@ -23,7 +16,7 @@ import me.timschneeberger.rootlessjamesdsp.backup.BackupManager
 import me.timschneeberger.rootlessjamesdsp.backup.BackupRestoreService
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
-import me.timschneeberger.rootlessjamesdsp.utils.Preferences
+import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import org.koin.android.ext.android.inject
 
 class SettingsBackupFragment : SettingsBaseFragment() {

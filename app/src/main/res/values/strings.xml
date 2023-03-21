@@ -584,4 +584,12 @@
     <string name="backup_restore_mode_clean">Clean restore (delete all existing files)</string>
     <string name="backup_restore_mode_dirty">Dirty restore (overwrite only)</string>
     <string name="backup_in_progress">Backup already in progress</string>
+
+    <!-- Multi-device profiles -->
+    <string name="group_wired_headphones">Wired headphones</string>
+    <string name="group_bluetooth">Bluetooth</string>
+    <string name="group_hdmi">HDMI</string>
+    <string name="group_speaker">Speaker</string>
+    <string name="group_usb">USB</string>
+    <string name="group_unknown">Unknown</string>
 </resources>

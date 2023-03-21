@@ -1,4 +1,4 @@
-package me.timschneeberger.rootlessjamesdsp.utils
+package me.timschneeberger.rootlessjamesdsp.utils.preferences
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import androidx.annotation.StringRes
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.flavor.CrashlyticsImpl
+import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import kotlin.reflect.KClass
 
 class Preferences(val context: Context) {

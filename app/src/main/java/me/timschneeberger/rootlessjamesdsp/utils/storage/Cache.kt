@@ -1,4 +1,4 @@
-package me.timschneeberger.rootlessjamesdsp.utils
+package me.timschneeberger.rootlessjamesdsp.utils.storage
 
 import android.content.ContentProvider
 import android.content.ContentValues
@@ -12,6 +12,7 @@ import android.os.ParcelFileDescriptor
 import android.provider.OpenableColumns
 import android.system.Os
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getPackageInfoCompat
+import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import timber.log.Timber
 import java.io.File
 import java.util.*
