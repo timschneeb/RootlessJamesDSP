@@ -6,8 +6,13 @@
     <string name="action_revert">デフォルトに戻す</string>
     <string name="action_blocked_apps">除外するアプリ</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">サービス</string>
+    <string name="notification_channel_service">通知サービス</string>
+    <string name="notification_channel_session_loss_alert">セッションロスアラート</string>
     <string name="notification_channel_permission_prompt">権限リクエスト</string>
     <string name="notification_channel_app_compat_alert">互換性のないアプリのアラート</string>
+    <string name="notification_group_backup">バックアップと復元</string>
+    <string name="notification_channel_backup_complete">完了</string>
     <!-- Service notifications -->
     <string name="action_retry">やり直す</string>
     <string name="notification_processing">アクティブなアプリ： %1$s</string>
@@ -17,19 +22,32 @@
     <string name="notification_processing_legacy">タップして JamesDSP マネージャーを開く</string>
     <!-- Permission request notifications -->
     <string name="notification_request_permission_title">JamesDSP を起動するにはユーザーアクションが必要です</string>
+    <string name="notification_request_permission">タップしてキャプチャの権限を付与し、JamesDSPのオーディオ処理を有効にする</string>
     <!-- Session control loss notifications -->
     <string name="session_control_loss_toast">JamesDSPはオーディオセッションのコントロールが失われたため停止しました。他のオーディオエフェクトアプリを無効にしてください。</string>
     <string name="session_control_loss_notification_title">オーディオ処理が停止しました。別のアプリがJamesDSPに干渉しています。</string>
+    <string name="session_control_loss_notification">JamesDSPを再度有効にする前に、グローバルなオーディオエフェクトを提供する他のアプリをすべて無効にしてください。</string>
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_toast">互換性のないメディアアプリのため、JamesDSPが停止しました。この問題を解決するためには通知を確認してください。</string>
     <string name="session_app_compat_notification_title">オーディオ処理が停止しました。別のアプリがJamesDSPに干渉しています。</string>
+    <string name="session_app_compat_notification">問題を解決するには、この通知をタップします。</string>
     <!-- Capture permission revoked notifications -->
+    <string name="capture_permission_revoked_toast">音声キャプチャの権限が取り消されたため、JamesDSPが停止しました。</string>
     <!-- General purpose -->
+    <string name="install">インストール</string>
+    <string name="update">アップデート</string>
+    <string name="yes">はい</string>
+    <string name="no">いいえ</string>
+    <string name="value_not_set">未設定</string>
+    <string name="undo">やり直し</string>
+    <string name="no_activity_found">アクションを処理するアクティビティが見つかりませんでした</string>
     <!-- Main screen -->
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
     <!-- Settings -->
     <string name="title_activity_settings">設定</string>
+    <string name="backup_settings">バックアップと復元</string>
     <!-- Theme names -->
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
