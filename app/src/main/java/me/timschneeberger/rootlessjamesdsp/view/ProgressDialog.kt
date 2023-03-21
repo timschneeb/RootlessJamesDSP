@@ -1,7 +1,6 @@
 package me.timschneeberger.rootlessjamesdsp.view
 
 import android.annotation.SuppressLint
-import android.app.NotificationManager
 import android.content.Context
 import android.content.DialogInterface
 import android.view.LayoutInflater

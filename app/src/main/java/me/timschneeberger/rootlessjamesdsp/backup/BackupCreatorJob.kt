@@ -2,9 +2,7 @@ package me.timschneeberger.rootlessjamesdsp.backup
 
 import android.app.NotificationManager
 import android.content.Context
-import android.media.projection.MediaProjectionManager
 import android.net.Uri
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.content.getSystemService
 import androidx.core.net.toUri
 import androidx.work.CoroutineWorker

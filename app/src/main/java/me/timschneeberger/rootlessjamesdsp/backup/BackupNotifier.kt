@@ -3,12 +3,11 @@ package me.timschneeberger.rootlessjamesdsp.backup
 import android.app.NotificationManager
 import android.content.Context
 import android.graphics.BitmapFactory
-import android.media.projection.MediaProjectionManager
 import androidx.core.app.NotificationCompat
 import androidx.core.content.getSystemService
 import com.hippo.unifile.UniFile
-import me.timschneeberger.rootlessjamesdsp.utils.notifications.Notifications
 import me.timschneeberger.rootlessjamesdsp.R
+import me.timschneeberger.rootlessjamesdsp.utils.notifications.Notifications
 
 
 class BackupNotifier(private val context: Context) {
@@ -30,7 +29,7 @@ class BackupNotifier(private val context: Context) {
     }
 
     private fun NotificationCompat.Builder.show(id: Int) {
-        notificationManager.notify(id, build())
+        notificationManager?.notify(id, build())
     }
 
     fun showBackupProgress(): NotificationCompat.Builder {
@@ -46,7 +45,7 @@ class BackupNotifier(private val context: Context) {
     }
 
     fun showBackupError(error: String?) {
-        notificationManager.cancel(Notifications.ID_BACKUP_PROGRESS)
+        notificationManager?.cancel(Notifications.ID_BACKUP_PROGRESS)
 
         with(completeNotificationBuilder) {
             setContentTitle(context.getString(R.string.backup_create_error))
@@ -57,7 +56,7 @@ class BackupNotifier(private val context: Context) {
     }
 
     fun showBackupComplete(unifile: UniFile) {
-        notificationManager.cancel(Notifications.ID_BACKUP_PROGRESS)
+        notificationManager?.cancel(Notifications.ID_BACKUP_PROGRESS)
 
         with(completeNotificationBuilder) {
             setContentTitle(context.getString(R.string.backup_create_completed))
@@ -84,7 +83,7 @@ class BackupNotifier(private val context: Context) {
     }
 
     fun showRestoreError(error: String?) {
-        notificationManager.cancel(Notifications.ID_RESTORE_PROGRESS)
+        notificationManager?.cancel(Notifications.ID_RESTORE_PROGRESS)
 
         with(completeNotificationBuilder) {
             setContentTitle(context.getString(R.string.backup_restore_error))
@@ -95,7 +94,7 @@ class BackupNotifier(private val context: Context) {
     }
 
     fun showRestoreComplete() {
-        notificationManager.cancel(Notifications.ID_RESTORE_PROGRESS)
+        notificationManager?.cancel(Notifications.ID_RESTORE_PROGRESS)
 
         with(completeNotificationBuilder) {
             setContentTitle(context.getString(R.string.backup_restore_completed))

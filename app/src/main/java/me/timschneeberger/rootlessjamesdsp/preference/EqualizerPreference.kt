@@ -5,11 +5,9 @@ import android.content.res.TypedArray
 import android.util.AttributeSet
 import androidx.preference.DialogPreference
 import androidx.preference.PreferenceViewHolder
-import me.timschneeberger.rootlessjamesdsp.view.EqualizerSurface
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.PreferenceEqualizerBinding
-import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
-import timber.log.Timber
+import me.timschneeberger.rootlessjamesdsp.view.EqualizerSurface
 
 class EqualizerPreference : DialogPreference {
 
