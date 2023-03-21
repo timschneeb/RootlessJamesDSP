@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.StringRes
+import androidx.core.content.getSystemService
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -21,7 +22,6 @@ import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistViewModelFacto
 import me.timschneeberger.rootlessjamesdsp.model.room.BlockedApp
 import me.timschneeberger.rootlessjamesdsp.service.RootlessAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.utils.SdkCheck
-import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getParcelableAs
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getAppIcon
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getAppNameFromUidSafe
@@ -43,8 +43,8 @@ class AppCompatibilityFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        SystemServices.get<NotificationManager>(requireContext())
-            .cancel(Notifications.ID_SERVICE_APPCOMPAT)
+        requireContext().getSystemService<NotificationManager>()
+            ?.cancel(Notifications.ID_SERVICE_APPCOMPAT)
 
         val args = requireArguments()
         val projectIntent = args.getParcelableAs<Intent>(BUNDLE_MEDIA_PROJECTION)

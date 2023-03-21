@@ -11,6 +11,7 @@ import android.media.session.MediaSessionManager
 import android.os.*
 import androidx.annotation.CallSuper
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.getSystemService
 import dev.rikka.tools.refine.Refine
 import kotlinx.coroutines.*
 import kotlinx.coroutines.sync.Mutex
@@ -24,7 +25,6 @@ import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.unregisterLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
-import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import timber.log.Timber
@@ -34,8 +34,8 @@ abstract class BaseSessionManager(protected val context: Context) : DumpManager.
     BroadcastReceiver(), MediaSessionManager.OnActiveSessionsChangedListener, KoinComponent
 {
     // System services
-    private val audioManager = SystemServices.get<AudioManager>(context)
-    private val sessionManager = SystemServices.get<MediaSessionManager>(context)
+    private val audioManager = context.getSystemService<AudioManager>()!!
+    private val sessionManager = context.getSystemService<MediaSessionManager>()!!
 
     // Session dump manager
     protected val dumpManager: DumpManager by inject()

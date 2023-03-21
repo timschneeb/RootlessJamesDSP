@@ -1,15 +1,16 @@
 package me.timschneeberger.rootlessjamesdsp.view
 
 import android.annotation.SuppressLint
+import android.app.NotificationManager
 import android.content.Context
 import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import androidx.annotation.UiContext
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.getSystemService
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import me.timschneeberger.rootlessjamesdsp.databinding.DialogProgressBinding
-import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import kotlin.math.roundToInt
 
 class ProgressDialog(
@@ -18,7 +19,7 @@ class ProgressDialog(
 ) {
     private val dialog: AlertDialog
     private val binding: DialogProgressBinding =
-        DialogProgressBinding.inflate(SystemServices.get<LayoutInflater>(context))
+        DialogProgressBinding.inflate(context.getSystemService<LayoutInflater>()!!)
 
     var title: CharSequence
         set(value) {

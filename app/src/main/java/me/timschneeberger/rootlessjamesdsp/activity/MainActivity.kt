@@ -10,6 +10,7 @@ import android.view.HapticFeedbackConstants
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.core.content.getSystemService
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.preference.DialogPreference.TargetFragment
@@ -44,7 +45,6 @@ import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.Result
 import me.timschneeberger.rootlessjamesdsp.utils.SdkCheck
 import me.timschneeberger.rootlessjamesdsp.utils.storage.StorageUtils
-import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.AssetManagerExtensions.installPrivateAssets
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.check
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getAppName
@@ -132,7 +132,7 @@ class MainActivity : BaseActivity() {
         val firstBoot = prefsVar.get<Boolean>(R.string.key_first_boot)
         assets.installPrivateAssets(this, force = firstBoot)
 
-        mediaProjectionManager = SystemServices.get<MediaProjectionManager>(this)
+        mediaProjectionManager = getSystemService<MediaProjectionManager>()!!
         binding = ActivityMainBinding.inflate(layoutInflater)
         bindingContent = ContentMainBinding.inflate(layoutInflater)
 

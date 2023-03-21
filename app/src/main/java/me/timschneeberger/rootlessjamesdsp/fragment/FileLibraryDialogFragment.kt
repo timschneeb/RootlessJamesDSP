@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.media.AudioManager
+import android.media.projection.MediaProjectionManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +23,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.FileProvider
+import androidx.core.content.getSystemService
 import androidx.core.view.isVisible
 import androidx.preference.DialogPreference.TargetFragment
 import androidx.preference.ListPreferenceDialogFragmentCompat
@@ -41,7 +43,6 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sh
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showInputAlert
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
 import me.timschneeberger.rootlessjamesdsp.utils.storage.StorageUtils
-import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import timber.log.Timber
 import java.io.File
 import java.util.Locale
@@ -131,8 +132,8 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat(), TargetFr
                         if(fileLibPreference.isIrs()) {
                             var targetRate = (requireActivity().application as MainApplication).engineSampleRate.roundToInt()
                             if (targetRate <= 0) {
-                                targetRate = SystemServices.get<AudioManager>(requireContext())
-                                    .getProperty(AudioManager.PROPERTY_OUTPUT_SAMPLE_RATE)
+                                targetRate = requireContext().getSystemService<AudioManager>()
+                                    ?.getProperty(AudioManager.PROPERTY_OUTPUT_SAMPLE_RATE)
                                     ?.let { str -> Integer.parseInt(str).takeUnless { it == 0 } } ?: 48000
                                 Timber.w("resample: engine sample rate is zero, using HAL rate instead")
                             }

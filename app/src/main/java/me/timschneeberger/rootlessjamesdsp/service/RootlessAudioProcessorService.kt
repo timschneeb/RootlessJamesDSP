@@ -9,6 +9,7 @@ import android.media.projection.MediaProjection
 import android.media.projection.MediaProjectionManager
 import android.os.*
 import androidx.annotation.RequiresApi
+import androidx.core.content.getSystemService
 import androidx.core.math.MathUtils.clamp
 import androidx.lifecycle.Observer
 import androidx.lifecycle.asLiveData
@@ -42,7 +43,6 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.un
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasRecordPermission
 import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import me.timschneeberger.rootlessjamesdsp.utils.notifications.ServiceNotificationHelper
-import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getParcelableAs
 import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import org.koin.android.ext.android.inject
@@ -102,9 +102,9 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         super.onCreate()
 
         // Get reference to system services
-        audioManager = SystemServices.get<AudioManager>(this)
-        mediaProjectionManager = SystemServices.get<MediaProjectionManager>(this)
-        notificationManager = SystemServices.get<NotificationManager>(this)
+        audioManager = getSystemService<AudioManager>()!!
+        mediaProjectionManager = getSystemService<MediaProjectionManager>()!!
+        notificationManager = getSystemService<NotificationManager>()!!
 
         // Setup session manager
         sessionManager = RootlessSessionManager(this)

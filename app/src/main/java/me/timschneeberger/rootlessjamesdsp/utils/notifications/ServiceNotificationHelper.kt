@@ -10,6 +10,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.RequiresApi
 import androidx.annotation.StringRes
 import androidx.core.app.NotificationCompat
+import androidx.core.content.getSystemService
 import androidx.core.graphics.drawable.IconCompat
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
@@ -19,7 +20,6 @@ import me.timschneeberger.rootlessjamesdsp.activity.MainActivity
 import me.timschneeberger.rootlessjamesdsp.model.IEffectSession
 import me.timschneeberger.rootlessjamesdsp.service.RootlessAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.utils.SdkCheck
-import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getAppName
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getAppNameFromUid
 import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
@@ -49,19 +49,19 @@ object ServiceNotificationHelper: KoinComponent {
             )
             .build()
             .let {
-                SystemServices.get<NotificationManager>(context)
-                    .notify(Notifications.ID_SERVICE_STARTUP, it)
+                context.getSystemService<NotificationManager>()
+                    ?.notify(Notifications.ID_SERVICE_STARTUP, it)
             }
     }
 
     fun pushServiceNotification(context: Context, sessions: Array<IEffectSession>) {
-        SystemServices.get<NotificationManager>(context)
-            .notify(Notifications.ID_SERVICE_STATUS, createServiceNotification(context, sessions))
+        context.getSystemService<NotificationManager>()
+            ?.notify(Notifications.ID_SERVICE_STATUS, createServiceNotification(context, sessions))
     }
 
     fun pushServiceNotificationLegacy(context: Context) {
-        SystemServices.get<NotificationManager>(context)
-            .notify(Notifications.ID_SERVICE_STATUS, createServiceNotificationLegacy(context))
+        context.getSystemService<NotificationManager>()
+            ?.notify(Notifications.ID_SERVICE_STATUS, createServiceNotificationLegacy(context))
     }
 
     fun createServiceNotificationLegacy(context: Context): Notification {
@@ -155,8 +155,8 @@ object ServiceNotificationHelper: KoinComponent {
             )
             .build()
             .let {
-                SystemServices.get<NotificationManager>(context)
-                    .notify(Notifications.ID_SERVICE_SESSION_LOSS, it)
+                context.getSystemService<NotificationManager>()
+                    ?.notify(Notifications.ID_SERVICE_SESSION_LOSS, it)
             }
 
     @RequiresApi(Build.VERSION_CODES.Q)
@@ -177,8 +177,8 @@ object ServiceNotificationHelper: KoinComponent {
             )
             .build()
             .let {
-                SystemServices.get<NotificationManager>(context)
-                    .notify(Notifications.ID_SERVICE_APPCOMPAT, it)
+                context.getSystemService<NotificationManager>()
+                    ?.notify(Notifications.ID_SERVICE_APPCOMPAT, it)
             }
     }
 

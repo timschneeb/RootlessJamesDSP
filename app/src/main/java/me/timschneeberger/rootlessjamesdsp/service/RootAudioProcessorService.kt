@@ -8,6 +8,7 @@ import android.content.pm.ServiceInfo
 import android.media.AudioManager
 import android.media.audiofx.AudioEffect
 import android.os.Build
+import androidx.core.content.getSystemService
 import androidx.lifecycle.Observer
 import androidx.lifecycle.asLiveData
 import kotlinx.coroutines.CoroutineScope
@@ -30,7 +31,6 @@ import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import me.timschneeberger.rootlessjamesdsp.utils.notifications.ServiceNotificationHelper
-import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import org.koin.android.ext.android.inject
 import org.koin.core.component.KoinComponent
@@ -82,8 +82,8 @@ class RootAudioProcessorService : BaseAudioProcessorService(), KoinComponent,
         app.rootSessionDatabase.registerOnSessionChangeListener(this)
 
         // Get reference to system services
-        audioManager = SystemServices.get<AudioManager>(this)
-        notificationManager = SystemServices.get<NotificationManager>(this)
+        audioManager = getSystemService<AudioManager>()!!
+        notificationManager = getSystemService<NotificationManager>()!!
 
         // Setup database observer
         blockedApps.observeForever(blockedAppObserver)

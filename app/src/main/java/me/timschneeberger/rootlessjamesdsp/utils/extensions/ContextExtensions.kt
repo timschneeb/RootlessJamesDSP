@@ -26,6 +26,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import androidx.core.content.getSystemService
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.alpha
 import androidx.core.graphics.blue
@@ -36,7 +37,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.DialogTextinputBinding
-import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getApplicationInfoCompat
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getPackageInfoCompat
 import timber.log.Timber
@@ -101,9 +101,10 @@ object ContextExtensions {
 
     fun Context.isServiceRunning(serviceClass: Class<*>): Boolean {
         @Suppress("DEPRECATION")
-        return SystemServices.get<ActivityManager>(this)
-            .getRunningServices(Integer.MAX_VALUE)
-            .any { serviceClass.name == it.service.className }
+        return getSystemService<ActivityManager>()
+            ?.getRunningServices(Integer.MAX_VALUE)
+            ?.any { serviceClass.name == it.service.className }
+            ?: false
     }
 
     fun Context.isPackageInstalled(packageName: String): Boolean {
@@ -136,7 +137,7 @@ object ContextExtensions {
      * Convenience method to acquire a partial wake lock.
      */
     fun Context.acquireWakeLock(tag: String): PowerManager.WakeLock {
-        return SystemServices.get<PowerManager>(this)
+        return getSystemService<PowerManager>()!!
             .newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "$tag:WakeLock")
             .apply { acquire(10*60*1000L /*10 minutes*/) }
     }
@@ -144,7 +145,7 @@ object ContextExtensions {
 
     @SuppressLint("BatteryLife")
     fun Context.requestIgnoreBatteryOptimizations() {
-        if (!BuildConfig.ROOTLESS && !SystemServices.get<PowerManager>(this).isIgnoringBatteryOptimizations(packageName)) {
+        if (!BuildConfig.ROOTLESS && !getSystemService<PowerManager>()!!.isIgnoringBatteryOptimizations(packageName)) {
             startActivity(Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS,
                 Uri.parse("package:$packageName")))
         }
@@ -361,12 +362,11 @@ object ContextExtensions {
     }
 
     fun Context.hideKeyboardFrom(view: View) {
-        val imm = SystemServices.get<InputMethodManager>(this)
-        imm.hideSoftInputFromWindow(view.windowToken, 0)
+        getSystemService<InputMethodManager>()
+            ?.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     fun Context.ensureCacheDir(name: String): File {
         return File(cacheDir, name).apply { isDirectory || mkdirs() }
     }
-
 }

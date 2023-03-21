@@ -6,10 +6,10 @@ import android.os.Build
 import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.getSystemService
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.service.RootlessAudioProcessorService
-import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import timber.log.Timber
 
@@ -53,9 +53,9 @@ class EngineLauncherActivity : BaseActivity() {
                 finish()
             }
 
-            SystemServices.get<MediaProjectionManager>(this)
-                .createScreenCaptureIntent()
-                .let(capturePermissionLauncher::launch)
+            getSystemService<MediaProjectionManager>()
+                ?.createScreenCaptureIntent()
+                ?.let(capturePermissionLauncher::launch)
         }
     }
 }

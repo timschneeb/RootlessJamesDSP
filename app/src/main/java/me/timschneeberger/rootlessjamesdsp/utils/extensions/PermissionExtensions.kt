@@ -5,7 +5,7 @@ import android.app.AppOpsManager
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
-import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
+import androidx.core.content.getSystemService
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getApplicationInfoCompat
 import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import timber.log.Timber
@@ -17,8 +17,8 @@ object PermissionExtensions {
     private fun Context.hasAppOp(appOp: String): Boolean {
         return try {
             val applicationInfo = packageManager.getApplicationInfoCompat(packageName, 0)
-            val appOpsManager = SystemServices.get<AppOpsManager>(this)
-            val mode = appOpsManager.unsafeCheckOpNoThrow(
+            val appOpsManager = getSystemService<AppOpsManager>()
+            val mode = appOpsManager!!.unsafeCheckOpNoThrow(
                 appOp,
                 applicationInfo.uid,
                 applicationInfo.packageName

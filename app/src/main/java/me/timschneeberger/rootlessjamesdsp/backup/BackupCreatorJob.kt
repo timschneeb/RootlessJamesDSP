@@ -2,7 +2,10 @@ package me.timschneeberger.rootlessjamesdsp.backup
 
 import android.app.NotificationManager
 import android.content.Context
+import android.media.projection.MediaProjectionManager
 import android.net.Uri
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.content.getSystemService
 import androidx.core.net.toUri
 import androidx.work.CoroutineWorker
 import androidx.work.ExistingPeriodicWorkPolicy
@@ -17,7 +20,6 @@ import com.hippo.unifile.UniFile
 import me.timschneeberger.rootlessjamesdsp.utils.notifications.Notifications
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
-import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import timber.log.Timber
@@ -26,7 +28,7 @@ import java.util.concurrent.TimeUnit
 class BackupCreatorJob(private val context: Context, workerParams: WorkerParameters) :
     CoroutineWorker(context, workerParams) {
 
-    private val notificationManager = SystemServices.get<NotificationManager>(context)
+    private val notificationManager = context.getSystemService<NotificationManager>()
 
     override suspend fun doWork(): Result {
         val notifier = BackupNotifier(context)
@@ -34,7 +36,7 @@ class BackupCreatorJob(private val context: Context, workerParams: WorkerParamet
             ?: preferences.get<String>(R.string.key_backup_location).toUri()
         val isAutoBackup = inputData.getBoolean(IS_AUTO_BACKUP_KEY, true)
 
-        notificationManager.notify(Notifications.ID_BACKUP_PROGRESS, notifier.showBackupProgress().build())
+        notificationManager?.notify(Notifications.ID_BACKUP_PROGRESS, notifier.showBackupProgress().build())
         return try {
             val location = BackupManager(context).createBackup(uri, isAutoBackup)
             if (!isAutoBackup) notifier.showBackupComplete(UniFile.fromUri(context, location.toUri()))
@@ -44,7 +46,7 @@ class BackupCreatorJob(private val context: Context, workerParams: WorkerParamet
             if (!isAutoBackup) notifier.showBackupError(e.message)
             Result.failure()
         } finally {
-            notificationManager.cancel(Notifications.ID_BACKUP_PROGRESS)
+            notificationManager?.cancel(Notifications.ID_BACKUP_PROGRESS)
         }
     }
 

@@ -3,16 +3,17 @@ package me.timschneeberger.rootlessjamesdsp.backup
 import android.app.NotificationManager
 import android.content.Context
 import android.graphics.BitmapFactory
+import android.media.projection.MediaProjectionManager
 import androidx.core.app.NotificationCompat
+import androidx.core.content.getSystemService
 import com.hippo.unifile.UniFile
 import me.timschneeberger.rootlessjamesdsp.utils.notifications.Notifications
 import me.timschneeberger.rootlessjamesdsp.R
-import me.timschneeberger.rootlessjamesdsp.utils.SystemServices
 
 
 class BackupNotifier(private val context: Context) {
 
-    private val notificationManager = SystemServices.get<NotificationManager>(context)
+    private val notificationManager = context.getSystemService<NotificationManager>()
 
     private val progressNotificationBuilder = NotificationCompat.Builder(context, Notifications.CHANNEL_BACKUP_RESTORE_PROGRESS).apply {
         setLargeIcon(BitmapFactory.decodeResource(context.resources, R.mipmap.ic_launcher))
