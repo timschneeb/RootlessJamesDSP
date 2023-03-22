@@ -211,7 +211,7 @@
     <string name="onboarding_perm_missing">Pro pokračování prosím udělte všechna požadovaná uživatelská oprávnění.\nPokud jste oprávnění opakovaně zamítli, musíte je povolit ručně v nastavení systému.</string>
     <string name="onboarding_finish_header">JamesDSP je připraven!</string>
     <string name="onboarding_finish_caption">Pokud narazíte na nějaké problémy, navštivte prosím možnosti řešení problémů.</string>
-    <string name="limit_session_control_conflict_title">Zakázat další aplikace zvukových efektů</string>
+    <string name="limit_session_control_conflict_title">Zakažte další aplikace zvukových efektů</string>
     <string name="limit_session_control_conflict">Aplikace pro zvukové efekty, které používají vestavěný dynamický efekt Androidu, narušují tuto aplikaci.</string>
     <string name="limit_unsupported_apps_title">Nepodporované aplikace médií</string>
     <string name="limit_unsupported_apps">Aplikace blokující interní záznam zvuku zůstávají nezpracované (např. Spotify, Google Chrome).</string>
