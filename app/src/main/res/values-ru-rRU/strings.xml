@@ -46,6 +46,7 @@
     <string name="success">Успешно выполнено</string>
     <string name="open">Открыть</string>
     <string name="close">Закрыть</string>
+    <string name="delete">Удалить</string>
     <string name="add">Добавить</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
@@ -262,6 +263,7 @@
     <string name="audio_format_buffer_size">Размер буфера</string>
     <string name="audio_format_buffer_size_unit">&#xa0;samples</string>
     <string name="audio_format_buffer_size_warning_low_value">Предупреждение: Низкие размеры буфера могут вызвать проблемы с аудио, такие как клиппинг!</string>
+    <string name="profiles_info">Нажмите для просмотра документации</string>
     <string name="app_behavior">Работа приложения</string>
     <string name="exclude_app_from_recents">Исключить приложение из недавних</string>
     <string name="exclude_app_from_recents_off">Не убирать приложение из списка недавних задач</string>
@@ -537,4 +539,5 @@
     <string name="backup_restore_mode_clean">Удалить все существующие файлы (чистое восстановление)</string>
     <string name="backup_restore_mode_dirty">Только перезаписать (грязное восстановление)</string>
     <string name="backup_in_progress">Резервное копирование уже выполняется</string>
+    <!-- Multi-device profiles -->
 </resources>
