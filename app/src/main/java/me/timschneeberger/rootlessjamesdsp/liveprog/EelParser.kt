@@ -4,8 +4,6 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.md5
 import timber.log.Timber
 import java.io.File
 import java.io.FileNotFoundException
-import java.util.*
-import kotlin.collections.ArrayList
 
 class EelParser {
     var isFileLoaded: Boolean
