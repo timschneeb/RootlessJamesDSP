@@ -2,6 +2,7 @@ package me.timschneeberger.rootlessjamesdsp.fragment
 
 import android.animation.LayoutTransition
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,52 +14,64 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import me.timschneeberger.rootlessjamesdsp.R
+import me.timschneeberger.rootlessjamesdsp.databinding.FragmentDspBinding
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import me.timschneeberger.rootlessjamesdsp.view.Card
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 
-class DspFragment : Fragment() {
+class DspFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListener {
+    private val prefsApp: Preferences.App by inject()
     private val prefsVar: Preferences.Var by inject()
 
+    private lateinit var binding: FragmentDspBinding
     private var translateNotice: Card? = null
     private var updateNotice: Card? = null
     private var updateNoticeOnClick: (() -> Unit)? = null
     private var updateNoticeOnCloseClick: (() -> Unit)? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        prefsApp.registerOnSharedPreferenceChangeListener(this)
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onDestroy() {
+        prefsApp.unregisterOnSharedPreferenceChangeListener(this)
+        super.onDestroy()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_dsp, container, false)
-        translateNotice = view.findViewById(R.id.translation_notice)
-        updateNotice = view.findViewById(R.id.update_notice)
+        binding = FragmentDspBinding.inflate(layoutInflater, container, false)
 
-        translateNotice?.setOnCloseClickListener(::hideTranslationNotice)
-        translateNotice?.setOnClickListener {
+        binding.translationNotice.setOnCloseClickListener(::hideTranslationNotice)
+        binding.translationNotice.setOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://crowdin.com/project/rootlessjamesdsp")))
             hideTranslationNotice()
         }
 
-        updateNotice?.setOnCloseClickListener {
+        binding.updateNotice.setOnCloseClickListener {
             updateNoticeOnCloseClick?.invoke()
         }
-        updateNotice?.setOnClickListener {
+        binding.updateNotice.setOnClickListener {
             updateNoticeOnClick?.invoke()
         }
 
         // Should show notice?
-        translateNotice?.isVisible =
+        binding.translationNotice.isVisible =
             prefsVar.get<Long>(R.string.key_snooze_translation_notice) < (System.currentTimeMillis() / 1000L)
-        updateNotice?.isVisible = false
+        binding.updateNotice.isVisible = false
 
         val transition = LayoutTransition()
         transition.enableTransitionType(LayoutTransition.CHANGING)
-        view.findViewById<ViewGroup>(R.id.card_container).layoutTransition = transition
+        binding.cardContainer.layoutTransition = transition
 
         childFragmentManager.beginTransaction()
+            .replace(R.id.card_device_profiles, DeviceProfilesCardFragment.newInstance())
             .replace(
                 R.id.card_output_control, PreferenceGroupFragment.newInstance(Constants.PREF_OUTPUT,
                     R.xml.dsp_output_control_preferences
@@ -108,7 +121,22 @@ class DspFragment : Fragment() {
                     R.xml.dsp_reverb_preferences
                 ))
             .commit()
-        return view
+
+        // Load initial preferences
+        arrayOf(R.string.key_device_profiles_enable).forEach {
+            onSharedPreferenceChanged(null, getString(it))
+        }
+
+        return binding.root
+    }
+
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+        when(key) {
+            getString(R.string.key_device_profiles_enable) -> {
+                (binding.cardDeviceProfiles.parent as ViewGroup).isVisible =
+                    prefsApp.get<Boolean>(R.string.key_device_profiles_enable)
+            }
+        }
     }
 
     private fun hideTranslationNotice() {

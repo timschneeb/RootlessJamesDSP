@@ -1,28 +1,33 @@
 package me.timschneeberger.rootlessjamesdsp
 
 import android.app.Application
-import android.content.*
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.content.SharedPreferences
 import android.os.Build
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import fr.bipi.tressence.file.FileLoggerTree
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
+import me.timschneeberger.rootlessjamesdsp.flavor.CrashlyticsImpl
+import me.timschneeberger.rootlessjamesdsp.flavor.UpdateManager
 import me.timschneeberger.rootlessjamesdsp.model.preference.ThemeMode
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistDatabase
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistRepository
-import me.timschneeberger.rootlessjamesdsp.session.dump.DumpManager
-import me.timschneeberger.rootlessjamesdsp.utils.Constants
-import me.timschneeberger.rootlessjamesdsp.flavor.CrashlyticsImpl
-import me.timschneeberger.rootlessjamesdsp.flavor.UpdateManager
 import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
+import me.timschneeberger.rootlessjamesdsp.session.dump.DumpManager
 import me.timschneeberger.rootlessjamesdsp.session.root.RootSessionDatabase
-import me.timschneeberger.rootlessjamesdsp.utils.storage.Cache
-import me.timschneeberger.rootlessjamesdsp.utils.notifications.Notifications
-import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.registerLocalReceiver
-import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
+import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.ProfileManager
 import me.timschneeberger.rootlessjamesdsp.utils.RoutingObserver
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.registerLocalReceiver
+import me.timschneeberger.rootlessjamesdsp.utils.notifications.Notifications
+import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
+import me.timschneeberger.rootlessjamesdsp.utils.storage.Cache
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -30,10 +35,11 @@ import org.koin.core.context.GlobalContext.startKoin
 import org.koin.dsl.module
 import org.lsposed.hiddenapibypass.HiddenApiBypass
 import timber.log.Timber
-import timber.log.Timber.*
+import timber.log.Timber.DebugTree
 import java.io.File
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 
 class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChangeListener {
@@ -44,8 +50,8 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
     }
 
     private val prefs: Preferences.App by inject()
+    lateinit var profileManager: ProfileManager
 
-    val routingObserver by lazy { RoutingObserver(this) }
     val rootSessionDatabase by lazy { RootSessionDatabase(this) }
     val isLegacyMode
         get() = prefs.get<Boolean>(R.string.key_audioformat_processing)
@@ -109,8 +115,9 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
         Notifications.createChannels(this)
 
         val appModule = module {
-            single { DumpManager(androidContext()) }
+            single { RoutingObserver(androidContext()) }
             single { UpdateManager(androidContext()) }
+            single { DumpManager(androidContext()) }
             single { Preferences(androidContext()).App() }
             single { Preferences(androidContext()).Var() }
         }
@@ -120,6 +127,9 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
             androidContext(this@MainApplication)
             modules(appModule)
         }
+
+        // Depends on Koin
+        profileManager = ProfileManager()
 
         if(!BuildConfig.FOSS_ONLY) {
             // Soft-disable crashlytics in debug mode by default on each launch

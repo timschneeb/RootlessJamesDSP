@@ -15,6 +15,13 @@
         app:fragment="me.timschneeberger.rootlessjamesdsp.fragment.settings.SettingsAudioFormatFragment" />
 
     <Preference
+        app:key="@string/key_device_profiles"
+        app:title="@string/profiles_section_header"
+        app:summary="@string/profiles_summary"
+        app:icon="@drawable/ic_twotone_cable_24dp"
+        app:fragment="me.timschneeberger.rootlessjamesdsp.fragment.settings.SettingsDeviceProfilesFragment" />
+
+    <Preference
         app:key="@string/key_troubleshooting"
         app:title="@string/troubleshooting"
         app:summary="@string/troubleshooting_summary"

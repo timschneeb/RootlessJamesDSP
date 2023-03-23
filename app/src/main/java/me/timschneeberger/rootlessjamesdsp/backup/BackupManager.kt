@@ -9,9 +9,9 @@ import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import me.timschneeberger.rootlessjamesdsp.utils.storage.Tar
-import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sendLocalBroadcast
 import okio.buffer
 import okio.gzip
 import okio.sink
@@ -68,7 +68,8 @@ class BackupManager(private val context: Context): KoinComponent {
                 c.metadata = mutableMapOf(
                     META_MIN_VERSION_CODE to BuildConfig.VERSION_CODE.toString(),
                     META_FLAVOR to BuildConfig.FLAVOR,
-                    META_IS_BACKUP to true.toString()
+                    META_IS_BACKUP to true.toString(),
+                    META_HAS_DEVICE_PROFILES to false.toString()
                 )
 
                 File(context.applicationInfo.dataDir + "/shared_prefs")
@@ -76,6 +77,15 @@ class BackupManager(private val context: Context): KoinComponent {
                     ?.filter { it.name.startsWith("dsp_") }
                     ?.filter { it.extension == "xml" }
                     ?.forEach { c.add(it, "shared_prefs/${it.name}") }
+
+                if(preferences.get<Boolean>(R.string.key_device_profiles_enable)) {
+                    c.metadata[META_HAS_DEVICE_PROFILES] = true.toString()
+                    File(context.applicationInfo.dataDir + "/files/profiles").let { root ->
+                        root
+                            .walkTopDown()
+                            .forEach { c.add(it, "profiles/${it.toRelativeString(root)}") }
+                    }
+                }
 
                 FileLibraryPreference.types.entries.forEach { entry ->
                     File(context.getExternalFilesDir(null), "/${entry.key}")
@@ -112,6 +122,9 @@ class BackupManager(private val context: Context): KoinComponent {
 
             // Clean restore
             if(!dirty) {
+                // Remove profiles
+                File(context.applicationInfo.dataDir + "/files/profiles").deleteRecursively()
+
                 // Remove shared dsp prefs
                 File(context.applicationInfo.dataDir + "/shared_prefs").listFiles { file: File ->
                     file.name.startsWith("dsp_") && file.extension == "xml"
@@ -126,6 +139,13 @@ class BackupManager(private val context: Context): KoinComponent {
             targetFolder.listFiles()?.forEach { file ->
                 if(file.isDirectory && file.name == "shared_prefs")
                     file.copyRecursively(File(context.applicationInfo.dataDir + "/shared_prefs"), true)
+                else if(file.isDirectory && file.name == "profiles") {
+                    preferences.set(R.string.key_device_profiles_enable, true)
+                    file.copyRecursively(
+                        File(context.applicationInfo.dataDir + "/files/profiles"),
+                        true
+                    )
+                }
                 else if(file.isDirectory && FileLibraryPreference.types.any { file.name.startsWith(it.key) }) {
                     file.copyRecursively(File(context.getExternalFilesDir(null)!!.absolutePath + "/" + file.name), true)
                 }
@@ -135,16 +155,19 @@ class BackupManager(private val context: Context): KoinComponent {
 
             context.sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
             context.sendLocalBroadcast(Intent(Constants.ACTION_PRESET_LOADED))
+
         }
     }
 
     companion object {
         private const val META_MIN_VERSION_CODE = "min_version_code"
         private const val META_FLAVOR = "flavor"
+        private const val META_HAS_DEVICE_PROFILES = "has_device_profiles"
         const val META_IS_BACKUP = "is_backup"
 
         private fun isKnownFile(name: String): Boolean {
             return (name.contains("dsp_") && name.endsWith(".xml")) ||
+                    name.startsWith("profiles/") ||
                     FileLibraryPreference.types.any { name.contains(it.key) && it.value.any { ext -> name.endsWith(ext) } }
         }
 

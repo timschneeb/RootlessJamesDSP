@@ -54,6 +54,9 @@
     <string name="success">Success</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="delete">Delete</string>
+    <string name="copy">Copy</string>
+    <string name="paste">Paste</string>
     <string name="add">Add</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -290,6 +293,15 @@
     <string name="audio_format_buffer_size">Buffer size</string>
     <string name="audio_format_buffer_size_unit">&#xa0;samples</string>
     <string name="audio_format_buffer_size_warning_low_value">Warning: Low buffer sizes may cause audio issues such as clipping!</string>
+    <string name="profiles_section_header">Device profiles</string>
+    <string name="profiles_summary">Per-device profiles, automatic switching</string>
+    <string name="profiles_enable">Per-device profiles</string>
+    <string name="profiles_enable_summary_on">Per-device profiles enabled</string>
+    <string name="profiles_enable_summary_off">Per-device profiles disabled</string>
+    <string name="profiles_info_title">What are per-device profiles?</string>
+    <string name="profiles_info">Tap to view documentation</string>
+    <string name="profiles_info_content">While this setting is enabled, each audio device is assigned a separate audio configuration. This app will automatically switch between device profiles when the output device changes. \n\nEach new device that is connected starts with a blank profile. You can then configure it or copy settings from another device profile.\n\nNote: Presets are only applied to the active profile while this feature is enabled. Inactive profiles remain untouched.</string>
+    <string name="profiles_manage_hint">Tap the \'Active device profile\' button on the main screen to copy or delete profiles.</string>
     <string name="app_behavior">App behavior</string>
     <string name="exclude_app_from_recents">Exclude app from recents</string>
     <string name="exclude_app_from_recents_off">Don\'t exclude app from recent tasks list</string>
@@ -589,7 +601,14 @@
     <string name="group_wired_headphones">Wired headphones</string>
     <string name="group_bluetooth">Bluetooth</string>
     <string name="group_hdmi">HDMI</string>
-    <string name="group_speaker">Speaker</string>
+    <string name="group_speaker">Internal speaker</string>
     <string name="group_usb">USB</string>
     <string name="group_unknown">Unknown</string>
+    <string name="device_profile_status">Active device profile</string>
+    <string name="device_profile_manage_copy">Copy profile…</string>
+    <string name="device_profile_manage_delete">Delete profiles…</string>
+    <string name="device_profile_manage_copy_select_no_target">No profiles to overwrite available</string>
+    <string name="device_profile_manage_copy_select">Select profile to copy</string>
+    <string name="device_profile_manage_paste_select">Select profiles to overwrite</string>
+
 </resources>

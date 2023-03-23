@@ -33,6 +33,9 @@
     <bool name="default_audioformat_processing" translatable="false">true</bool>
     <bool name="default_audioformat_enhanced_processing" translatable="false">false</bool>
 
+    <!-- Device profiles -->
+    <bool name="default_device_profiles_enable" translatable="false">false</bool>
+
     <!-- Appearance -->
     <string name="default_appearance_theme_mode" translatable="false">0</string>
     <bool name="default_appearance_pure_black" translatable="false">false</bool>

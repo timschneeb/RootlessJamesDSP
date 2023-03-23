@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string-array name="manange_profiles_menu" translatable="false">
+        <item>@string/device_profile_manage_copy</item>
+        <item>@string/device_profile_manage_delete</item>
+    </string-array>
 
     <string-array name="backup_maximum" translatable="false">
         <item>2</item>

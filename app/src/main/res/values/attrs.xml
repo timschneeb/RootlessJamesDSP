@@ -21,6 +21,10 @@
         <attr name="type" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="DropDownPreference">
+        <attr name="isStatic" format="string" />
+    </declare-styleable>
+
     <declare-styleable name="Card">
         <attr name="titleText" format="string" />
         <attr name="bodyText" format="string" />

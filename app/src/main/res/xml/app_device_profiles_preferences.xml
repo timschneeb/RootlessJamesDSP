@@ -1,0 +1,26 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        app:title="@string/profiles_section_header"
+        app:iconSpaceReserved="false">
+        <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
+            android:key="@string/key_device_profiles_enable"
+            android:defaultValue="@bool/default_device_profiles_enable"
+            android:title="@string/profiles_enable"
+            android:summaryOff="@string/profiles_enable_summary_off"
+            android:summaryOn="@string/profiles_enable_summary_on"
+            app:iconSpaceReserved="false" />
+
+        <Preference
+            android:key="@string/key_device_profiles_info"
+            android:title="@string/profiles_info_title"
+            android:summary="@string/profiles_info"
+            app:iconSpaceReserved="false"/>
+
+        <Preference
+            android:icon="@drawable/ic_twotone_info_24dp"
+            android:selectable="false"
+            android:summary="@string/profiles_manage_hint" />
+
+    </PreferenceCategory>
+</PreferenceScreen>

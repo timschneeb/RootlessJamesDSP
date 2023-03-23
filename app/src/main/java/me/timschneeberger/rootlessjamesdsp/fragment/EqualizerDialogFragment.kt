@@ -1,6 +1,10 @@
 package me.timschneeberger.rootlessjamesdsp.fragment
 
 import android.annotation.SuppressLint
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.edit
@@ -8,6 +12,9 @@ import androidx.preference.PreferenceDialogFragmentCompat
 import com.google.android.material.chip.Chip
 import me.timschneeberger.rootlessjamesdsp.databinding.PreferenceEqualizerDialogBinding
 import me.timschneeberger.rootlessjamesdsp.preference.EqualizerPreference
+import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.registerLocalReceiver
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.unregisterLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.view.EqualizerSurface
 import me.timschneeberger.rootlessjamesdsp.view.EqualizerSurface.Companion.MAX_DB
 import me.timschneeberger.rootlessjamesdsp.view.EqualizerSurface.Companion.MIN_DB
@@ -17,6 +24,14 @@ class EqualizerDialogFragment : PreferenceDialogFragmentCompat() {
     private var equalizer: EqualizerSurface? = null
     private lateinit var mLevels: DoubleArray
     private lateinit var mOldSetting: String
+
+    private val broadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            when(intent?.action) {
+                Constants.ACTION_PRESET_LOADED -> dismiss()
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +47,10 @@ class EqualizerDialogFragment : PreferenceDialogFragmentCompat() {
             .map { it.toDoubleOrNull() ?: 0.0 }
             .toDoubleArray()
             .copyOf(15)
+
+        requireContext().registerLocalReceiver(broadcastReceiver, IntentFilter(Constants.ACTION_PRESET_LOADED))
     }
+
 
     // FIXME Equalizer is impossible to use with accessibility tools
     @SuppressLint("ClickableViewAccessibility")
@@ -114,6 +132,7 @@ class EqualizerDialogFragment : PreferenceDialogFragmentCompat() {
     }
 
     override fun onDestroy() {
+        requireContext().unregisterLocalReceiver(broadcastReceiver)
         super.onDestroy()
         equalizer = null
     }

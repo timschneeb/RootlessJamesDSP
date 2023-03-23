@@ -1,8 +1,10 @@
 package me.timschneeberger.rootlessjamesdsp.fragment
 
 import android.annotation.SuppressLint
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.res.Configuration
 import android.content.res.Configuration.ORIENTATION_LANDSCAPE
 import android.os.Bundle
@@ -13,15 +15,18 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import me.timschneeberger.rootlessjamesdsp.R
+import me.timschneeberger.rootlessjamesdsp.activity.GraphicEqualizerActivity
 import me.timschneeberger.rootlessjamesdsp.adapter.GraphicEqNodeAdapter
 import me.timschneeberger.rootlessjamesdsp.contract.AutoEqSelectorContract
 import me.timschneeberger.rootlessjamesdsp.databinding.FragmentGraphicEqBinding
 import me.timschneeberger.rootlessjamesdsp.model.GraphicEqNode
 import me.timschneeberger.rootlessjamesdsp.model.GraphicEqNodeList
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showInputAlert
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showYesNoAlert
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.unregisterLocalReceiver
 import timber.log.Timber
 import java.util.UUID
 
@@ -53,6 +58,29 @@ class GraphicEqualizerFragment : Fragment() {
                 save()
             }
         }
+
+    private val broadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            when(intent?.action) {
+                Constants.ACTION_PRESET_LOADED -> {
+                    activity?.finish()
+                    startActivity(Intent(requireContext(), GraphicEqualizerActivity::class.java).apply {
+                        flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    })
+                }
+            }
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        requireContext().registerLocalReceiver(broadcastReceiver, IntentFilter(Constants.ACTION_PRESET_LOADED))
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onDestroy() {
+        requireContext().unregisterLocalReceiver(broadcastReceiver)
+        super.onDestroy()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -138,6 +166,23 @@ class GraphicEqualizerFragment : Fragment() {
         }
 
         // Load node data
+        binding.nodeList.layoutManager = LinearLayoutManager(requireContext())
+        loadNodes(savedInstanceState)
+
+        // TODO fix
+        /*if(savedInstanceState != null) {
+            editorNodeUuid = savedInstanceState.getSerializableAs(STATE_EDITOR_NODE_UUID, UUID::class.java)
+            editorNodeBackup = savedInstanceState.getSerializableAs(STATE_EDITOR_NODE_BACKUP, GraphicEqNode::class.java)
+            editorActive = savedInstanceState.getBoolean(STATE_EDITOR_ACTIVE)
+            binding.freqInput.value = savedInstanceState.getFloat(STATE_EDITOR_UI_FREQ_INPUT)
+            binding.gainInput.value = savedInstanceState.getFloat(STATE_EDITOR_UI_GAIN_INPUT)
+        }*/
+
+        updateViewState()
+        return binding.root
+    }
+
+    private fun loadNodes(savedInstanceState: Bundle?) {
         val nodes = GraphicEqNodeList()
         val dataSaved = savedInstanceState?.getBundle(STATE_NODES)
         if(dataSaved != null) {
@@ -151,36 +196,24 @@ class GraphicEqualizerFragment : Fragment() {
         nodes.sortBy { it.freq }
         binding.equalizerSurface.setNodes(nodes)
 
-        binding.nodeList.layoutManager = LinearLayoutManager(requireContext())
-        binding.nodeList.adapter = GraphicEqNodeAdapter(nodes)
-        adapter.onItemsChanged = {
-            binding.equalizerSurface.setNodes(it.nodes)
+        binding.nodeList.adapter = GraphicEqNodeAdapter(nodes).apply {
+            onItemsChanged = {
+                binding.equalizerSurface.setNodes(it.nodes)
 
-            updateViewState()
-            save()
+                updateViewState()
+                save()
+            }
+
+            onItemClicked = { node: GraphicEqNode, _: Int ->
+                editorNodeBackup = node
+                editorNodeUuid = node.uuid
+                editorActive = true
+
+                binding.freqInput.value = node.freq.toFloat()
+                binding.gainInput.value = node.gain.toFloat()
+                updateViewState()
+            }
         }
-
-        adapter.onItemClicked = { node: GraphicEqNode, _: Int ->
-            editorNodeBackup = node
-            editorNodeUuid = node.uuid
-            editorActive = true
-
-            binding.freqInput.value = node.freq.toFloat()
-            binding.gainInput.value = node.gain.toFloat()
-            updateViewState()
-        }
-
-        // TODO fix
-        /*if(savedInstanceState != null) {
-            editorNodeUuid = savedInstanceState.getSerializableAs(STATE_EDITOR_NODE_UUID, UUID::class.java)
-            editorNodeBackup = savedInstanceState.getSerializableAs(STATE_EDITOR_NODE_BACKUP, GraphicEqNode::class.java)
-            editorActive = savedInstanceState.getBoolean(STATE_EDITOR_ACTIVE)
-            binding.freqInput.value = savedInstanceState.getFloat(STATE_EDITOR_UI_FREQ_INPUT)
-            binding.gainInput.value = savedInstanceState.getFloat(STATE_EDITOR_UI_GAIN_INPUT)
-        }*/
-
-        updateViewState()
-        return binding.root
     }
 
     private fun updateViewState() {

@@ -35,6 +35,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.DialogTextinputBinding
+import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getApplicationInfoCompat
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getPackageInfoCompat
 import timber.log.Timber
@@ -271,6 +272,66 @@ object ContextExtensions {
             .show()
     }
 
+    fun Context.showChoiceAlert(
+        entries: Array<CharSequence>,
+        @StringRes titleRes: Int,
+        @StringRes positiveRes: Int,
+        @StringRes negativeRes: Int = android.R.string.cancel,
+        onConfirm: (index: Int) -> Unit
+    ) {
+        var selected = -1
+        MaterialAlertDialogBuilder(this)
+            .setSingleChoiceItems(
+                entries,
+                -1
+            ) { _, which: Int ->
+                selected = which
+            }
+            .setTitle(getString(titleRes))
+            .setNegativeButton(getString(negativeRes)){ _, _ -> }
+            .setPositiveButton(getString(positiveRes)){ _, _ ->
+                selected.let {
+                    if(it >= 0)
+                        onConfirm(it)
+                }
+            }
+            .create()
+            .show()
+    }
+
+    fun <T> Context.showMultipleChoiceAlert(
+        entries: Array<CharSequence>,
+        entryValues: Array<T>,
+        @StringRes titleRes: Int,
+        @StringRes positiveRes: Int,
+        @StringRes negativeRes: Int = android.R.string.cancel,
+        onConfirm: (selected: List<T>) -> Unit
+    ) {
+        val selected = arrayListOf<T>()
+        MaterialAlertDialogBuilder(this)
+            .setMultiChoiceItems(
+                entries,
+                null
+            ) { _: DialogInterface, which: Int, isChecked: Boolean ->
+                entryValues.getOrNull(which)?.let {
+                    if(isChecked)
+                        selected.add(it)
+                    else if(selected.contains(it))
+                        selected.remove(it)
+                }
+            }
+            .setTitle(getString(titleRes))
+            .setNegativeButton(getString(negativeRes)){ _, _ -> }
+            .setPositiveButton(getString(positiveRes)){ _, _ ->
+                selected.let {
+                    if(it.isNotEmpty())
+                        onConfirm(it)
+                }
+            }
+            .create()
+            .show()
+    }
+
     fun Context.toast(message: String, long: Boolean = true) = Toast.makeText(this, message,
         if(long) Toast.LENGTH_LONG else Toast.LENGTH_SHORT).show()
     fun Context.toast(@StringRes message: Int, long: Boolean = true) = toast(getString(message), long)
@@ -366,5 +427,21 @@ object ContextExtensions {
 
     fun Context.ensureCacheDir(name: String): File {
         return File(cacheDir, name).apply { isDirectory || mkdirs() }
+    }
+
+    fun Context.restoreDspSettings(silent: Boolean = false) {
+        // Delete DSP settings
+        Timber.d("Reverting dsp preferences")
+        File(applicationInfo.dataDir + "/shared_prefs")
+            .listFiles()?.forEach next@ { f ->
+                if(!f.name.startsWith("dsp_") || f.extension != "xml" || f.isDirectory)
+                    return@next
+                f.delete()
+            }
+
+        if(!silent) {
+            sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
+            sendLocalBroadcast(Intent(Constants.ACTION_PRESET_LOADED))
+        }
     }
 }

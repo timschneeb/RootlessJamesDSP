@@ -2,6 +2,7 @@ package me.timschneeberger.rootlessjamesdsp.utils
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.SharedPreferences
 import android.content.res.Resources
 import android.media.AudioDeviceInfo
 import android.media.AudioManager
@@ -13,15 +14,21 @@ import androidx.mediarouter.media.MediaRouteSelector
 import androidx.mediarouter.media.MediaRouter
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.RoutingObserver.DeviceGroup.Companion.usesSingleProfile
+import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 import timber.log.Timber
 import kotlin.properties.Delegates
 
 
-class RoutingObserver(val context: Context) : MediaRouter.Callback() {
+class RoutingObserver(val context: Context) : MediaRouter.Callback(), KoinComponent,
+    SharedPreferences.OnSharedPreferenceChangeListener {
+
     private val callbacks = mutableListOf<RoutingChangedCallback>()
     private val router by lazy { MediaRouter.getInstance(context) }
+    private val prefs: Preferences.App by inject()
 
-    private var currentDevice by Delegates.observable<Device?>(null) { _, old, new ->
+    var currentDevice by Delegates.observable<Device?>(null) { _, old, new ->
         if (old != new)
             callbacks.forEach { it.onRoutingDeviceChanged(new) }
     }
@@ -63,7 +70,7 @@ class RoutingObserver(val context: Context) : MediaRouter.Callback() {
          */
         get() = Resources.getSystem().getText(
             Resources.getSystem().getIdentifier(
-                sdkAbove(34 /* FIXME Build.VERSION_CODES.UPSIDEDOWNCAKE */) {
+                sdkAbove(34 /* FIXME Build.VERSION_CODES.UPSIDE_DOWN_CAKE */) {
                     "default_audio_route_name_external_device"
                 }.below {
                     "default_audio_route_name_hdmi"
@@ -77,7 +84,7 @@ class RoutingObserver(val context: Context) : MediaRouter.Callback() {
 
     private val MediaRouter.RouteInfo.isUsb: Boolean
         @SuppressLint("DiscouragedApi")
-        get() = sdkAbove(Build.VERSION_CODES.P) {
+        get() = sdkAbove(Build.VERSION_CODES.Q) {
             Resources.getSystem().getText(
                 Resources.getSystem().getIdentifier(
                     "default_audio_route_name_usb", "string", "android"
@@ -99,6 +106,15 @@ class RoutingObserver(val context: Context) : MediaRouter.Callback() {
             router.defaultRoute == this && hpName == name
         }
 
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+        when(key) {
+            context.getString(R.string.key_device_profiles_enable) -> {
+                if(prefs.get<Boolean>(R.string.key_device_profiles_enable))
+                    retrigger()
+            }
+        }
+    }
+
     override fun onRouteSelected(router: MediaRouter, route: MediaRouter.RouteInfo, reason: Int) {
         currentDevice = route.findOutputDevice()
     }
@@ -111,8 +127,13 @@ class RoutingObserver(val context: Context) : MediaRouter.Callback() {
         router.unselect(MediaRouter.UNSELECT_REASON_DISCONNECTED)
     }
 
+    private fun retrigger() {
+        callbacks.forEach { callback -> currentDevice?.let(callback::onRoutingDeviceChanged) }
+    }
+
     fun registerOnRoutingChangeListener(callback: RoutingChangedCallback) {
         if (callbacks.isEmpty()) {
+            prefs.registerOnSharedPreferenceChangeListener(this)
             router.addCallback(
                 MediaRouteSelector.Builder()
                     .addControlCategory(MediaControlIntent.CATEGORY_LIVE_AUDIO)
@@ -127,8 +148,11 @@ class RoutingObserver(val context: Context) : MediaRouter.Callback() {
 
     fun unregisterOnRoutingChangeListener(callback: RoutingChangedCallback) {
         callbacks.remove(callback)
-        if (callbacks.isEmpty())
+
+        if (callbacks.isEmpty()) {
+            prefs.unregisterOnSharedPreferenceChangeListener(this)
             router.removeCallback(this)
+        }
     }
 
     interface RoutingChangedCallback {
@@ -155,8 +179,15 @@ class RoutingObserver(val context: Context) : MediaRouter.Callback() {
         val name: String
             get() = if(group.usesSingleProfile())
                 context.getString(group.nameRes)
-            else
-                "${if(hasProductName()) productName else address} (${context.getString(group.nameRes)})"
+            else {
+                "${if(hasProductName()) productName else address} (${context.getString(group.nameRes)})".let {
+                    if(group == DeviceGroup.USB)
+                        it.replace("USB-Audio - ", "")
+                    else
+                        it
+                }
+            }
+
 
         override fun toString() = "Device(id=$id, group=$group, name='$name', productName='$productName', address='$address')"
         private fun hasProductName() = productName != Build.MODEL && productName.isNotEmpty()
@@ -173,14 +204,14 @@ class RoutingObserver(val context: Context) : MediaRouter.Callback() {
         OTHER(R.string.group_unknown);
 
         companion object {
-            fun DeviceGroup.usesSingleProfile() = this == ANALOG || this == SPEAKER
+            fun DeviceGroup.usesSingleProfile() = this == ANALOG || this == SPEAKER || this == OTHER
 
             fun from(type: Int) = when (type) {
                 AudioDeviceInfo.TYPE_BUILTIN_SPEAKER -> SPEAKER
                 AudioDeviceInfo.TYPE_WIRED_HEADSET,
                 AudioDeviceInfo.TYPE_LINE_ANALOG,
                 AudioDeviceInfo.TYPE_WIRED_HEADPHONES -> ANALOG
-                AudioDeviceInfo.TYPE_BLUETOOTH_A2DP, // FIXME what about BLE broadcast groups?
+                AudioDeviceInfo.TYPE_BLUETOOTH_A2DP,
                 AudioDeviceInfo.TYPE_BLE_HEADSET,
                 AudioDeviceInfo.TYPE_BLE_SPEAKER -> BLUETOOTH
                 AudioDeviceInfo.TYPE_USB_DEVICE,

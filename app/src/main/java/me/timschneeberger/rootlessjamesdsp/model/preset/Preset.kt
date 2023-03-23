@@ -8,9 +8,9 @@ import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.backup.BackupManager
 import me.timschneeberger.rootlessjamesdsp.liveprog.EelParser
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
-import me.timschneeberger.rootlessjamesdsp.utils.storage.Tar
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
+import me.timschneeberger.rootlessjamesdsp.utils.storage.Tar
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.xml.sax.SAXException
@@ -21,9 +21,9 @@ import java.io.IOException
 import java.io.InputStream
 import javax.xml.parsers.DocumentBuilderFactory
 
-class Preset(val name: String): KoinComponent {
+class Preset(val name: String, externalPath: File? = null): KoinComponent {
     private val ctx: Context by inject()
-    private val externalPath = File("${ctx.getExternalFilesDir(null)!!.path}/Presets")
+    private val externalPath = externalPath ?: File("${ctx.getExternalFilesDir(null)!!.path}/Presets")
 
     fun file(): File = File(externalPath, name)
 
@@ -197,7 +197,7 @@ class Preset(val name: String): KoinComponent {
             ctx.sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
             ctx.sendLocalBroadcast(Intent(Constants.ACTION_PRESET_LOADED))
 
-            return metadata
+            return metadata.toMutableMap()
         }
 
         private fun findLiveprogScriptPath(ctx: Context): String? {
@@ -214,8 +214,11 @@ class Preset(val name: String): KoinComponent {
                     val node = nodes.item(i)
                     if(node.attributes.getNamedItem("name").nodeValue ==
                         ctx.getString(R.string.key_liveprog_file)) {
-                        Timber.d("Found liveprog file path: ${node.textContent}")
-                        return node.textContent
+                        return node.textContent.let {
+                            ctx.getExternalFilesDir(null)!!.absolutePath + "/" + it
+                        }.also {
+                            Timber.d("Found liveprog file path: $it")
+                        }
                     }
                 }
             } catch (e: SAXException) {
@@ -230,4 +233,4 @@ class Preset(val name: String): KoinComponent {
 }
 
 
-typealias PresetMetadata = Map<String, String>
+typealias PresetMetadata = MutableMap<String, String>

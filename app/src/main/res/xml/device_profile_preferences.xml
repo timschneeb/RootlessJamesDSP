@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <me.timschneeberger.rootlessjamesdsp.preference.DropDownPreference
+        android:title="@string/device_profile_status"
+        android:summary="@string/group_speaker"
+        android:key="@string/key_profile_active"
+        android:entries="@array/manange_profiles_menu"
+        android:persistent="false"
+        android:enabled="true"
+        android:icon="@drawable/ic_twotone_device_unknown_24dp"
+        app:isStatic="true"
+        app:iconSpaceReserved="false"/>
+</PreferenceScreen>

@@ -53,6 +53,17 @@
             android:layout_marginHorizontal="1dp">
 
             <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/card_device_profiles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="1dp">
+
+            <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/card_output_control"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

@@ -14,7 +14,7 @@ import me.timschneeberger.rootlessjamesdsp.R
 /**
  * A [ListPreference] that presents the options in a drop down menu rather than a dialog.
  */
-class DropDownPreference(
+open class DropDownPreference(
     private val mContext: Context, attrs: AttributeSet?,
     defStyleAttr: Int, defStyleRes: Int,
 ) :
@@ -30,6 +30,16 @@ class DropDownPreference(
     ) : this(context, attrs, defStyle, 0) {
         layoutResource = R.layout.preference_alt
     }
+
+    var onMenuItemClick: ((index: Int) -> Unit)? = null
+    var isStatic: Boolean = false
+
+    init {
+        with(context.obtainStyledAttributes(attrs, R.styleable.DropDownPreference)) {
+            isStatic = getBoolean(R.styleable.DropDownPreference_isStatic, false)
+        }
+    }
+
 
     override fun onClick() {
         mPopup?.show()
@@ -49,8 +59,10 @@ class DropDownPreference(
 
         mPopup?.setOnMenuItemClickListener { menuItem: MenuItem ->
             if (menuItem.itemId >= 0) {
-                val value: String = entryValues[menuItem.itemId].toString()
-                if (value != getValue() && callChangeListener(value)) {
+                val value = entryValues?.getOrNull(menuItem.itemId)?.toString()
+                onMenuItemClick?.invoke(menuItem.itemId)
+
+                if (value != null && value != getValue() && callChangeListener(value)) {
                     setValue(value)
                     notifyChanged()
                 }
@@ -59,9 +71,10 @@ class DropDownPreference(
         }
     }
 
-    override fun setValue(value: String) {
-        val index = entryValues.indexOf(value)
-        summary = if(index < 0) mContext.getString(R.string.value_not_set) else entries[index]
+    override fun setValue(value: String?) {
+        val index = entryValues?.indexOf(value) ?: return
+        if(!isStatic)
+            summary = if(index < 0) mContext.getString(R.string.value_not_set) else entries[index]
         super.setValue(value)
     }
 

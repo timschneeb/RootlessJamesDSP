@@ -10,10 +10,16 @@ import androidx.annotation.AttrRes
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.color.DynamicColors
 import me.timschneeberger.rootlessjamesdsp.utils.SdkCheck
+import java.io.File
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.security.MessageDigest
-import kotlin.math.*
+import kotlin.math.abs
+import kotlin.math.floor
+import kotlin.math.log10
+import kotlin.math.max
+import kotlin.math.pow
+import kotlin.math.roundToInt
 
 fun String.asHtml(): Spanned = Html.fromHtml(this, Html.FROM_HTML_MODE_LEGACY)
 
@@ -73,5 +79,8 @@ fun View.setBackgroundFromAttribute(@AttrRes attrRes: Int) {
         background = ResourcesCompat.getDrawable(context.resources, a.resourceId, context.theme)
     }
 }
+
+fun File.ensureIsDirectory() = if(isDirectory) this else null
+fun File.ensureIsFile() = if(isFile) this else null
 
 inline fun <reified T> ValueAnimator.animatedValueAs(): T? = this.animatedValue as? T

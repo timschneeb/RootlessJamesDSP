@@ -35,8 +35,8 @@ import me.timschneeberger.rootlessjamesdsp.fragment.FileLibraryDialogFragment
 import me.timschneeberger.rootlessjamesdsp.fragment.LibraryLoadErrorFragment
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspRemoteEngine
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspWrapper
-import me.timschneeberger.rootlessjamesdsp.model.preset.Preset
 import me.timschneeberger.rootlessjamesdsp.model.ProcessorMessage
+import me.timschneeberger.rootlessjamesdsp.model.preset.Preset
 import me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
 import me.timschneeberger.rootlessjamesdsp.service.BaseAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
@@ -44,12 +44,12 @@ import me.timschneeberger.rootlessjamesdsp.service.RootlessAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.Result
 import me.timschneeberger.rootlessjamesdsp.utils.SdkCheck
-import me.timschneeberger.rootlessjamesdsp.utils.storage.StorageUtils
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.AssetManagerExtensions.installPrivateAssets
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.check
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getAppName
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.requestIgnoreBatteryOptimizations
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.restoreDspSettings
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showAlert
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showSingleChoiceAlert
@@ -59,6 +59,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.un
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasDumpPermission
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasRecordPermission
 import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
+import me.timschneeberger.rootlessjamesdsp.utils.storage.StorageUtils
 import me.timschneeberger.rootlessjamesdsp.view.FloatingToggleButton
 import org.koin.core.component.inject
 import timber.log.Timber
@@ -226,19 +227,8 @@ class MainActivity : BaseActivity() {
                         R.string.revert_confirmation_title,
                         R.string.revert_confirmation
                     ) {
-                        if(it) {
-                            // Delete DSP settings
-                            Timber.d("Reverting dsp preferences")
-                            File(applicationInfo.dataDir + "/shared_prefs")
-                                .listFiles()?.forEach next@ { f ->
-                                    if(!f.name.startsWith("dsp_") || f.extension != "xml" || f.isDirectory)
-                                        return@next
-                                    f.delete()
-                                }
-
-                            sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
-                            sendLocalBroadcast(Intent(Constants.ACTION_PRESET_LOADED))
-                        }
+                        if(it)
+                            restoreDspSettings()
                     }
                     true
                 }
@@ -483,7 +473,7 @@ class MainActivity : BaseActivity() {
 
     private fun showLibraryLoadError() {
         if(DEBUG_IGNORE_MISSING_LIBRARY)
-           return
+            return
 
         hasLoadFailed = true
 

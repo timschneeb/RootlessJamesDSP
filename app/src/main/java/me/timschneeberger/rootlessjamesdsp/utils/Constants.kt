@@ -22,7 +22,7 @@ object Constants {
     const val PREF_TUBE = "dsp_tube"
 
     // Default string values
-    const val DEFAULT_CONVOLVER_ADVIMP = "-80;-100;23;12;17;28"
+    const val DEFAULT_CONVOLVER_ADVIMP = "-80;-100;0;0;0;0"
     const val DEFAULT_GEQ = "GraphicEQ: "
     const val DEFAULT_GEQ_INTERNAL = "GraphicEQ: 0.0 0.0;"
     const val DEFAULT_EQ = "25.0;40.0;63.0;100.0;160.0;250.0;400.0;630.0;1000.0;1600.0;2500.0;4000.0;6300.0;10000.0;16000.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0;0.0"
