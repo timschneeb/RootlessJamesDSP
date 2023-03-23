@@ -46,6 +46,7 @@
     <string name="success">Abgeschlossen</string>
     <string name="open">Öffnen</string>
     <string name="close">Schließen</string>
+    <string name="delete">Löschen</string>
     <string name="add">Hinzufügen</string>
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
@@ -262,6 +263,7 @@
     <string name="audio_format_buffer_size">Puffergröße</string>
     <string name="audio_format_buffer_size_unit">&#xa0;Samples</string>
     <string name="audio_format_buffer_size_warning_low_value">Warnung: Niedrige Puffergrößen können Audioprobleme wie Clipping verursachen!</string>
+    <string name="profiles_info">Zum Anzeigen der Dokumentation tippen</string>
     <string name="app_behavior">App-Verhalten</string>
     <string name="exclude_app_from_recents">App von Anwendungsverlauf ausschließen</string>
     <string name="exclude_app_from_recents_off">App nicht von der Liste der letzten Aufgaben ausschließen</string>
@@ -537,4 +539,5 @@
     <string name="backup_restore_mode_clean">Saubere Wiederherstellung (alle vorhandenen Dateien löschen)</string>
     <string name="backup_restore_mode_dirty">Unsaubere Wiederherstellung (nur überschreiben)</string>
     <string name="backup_in_progress">Backup läuft bereits</string>
+    <!-- Multi-device profiles -->
 </resources>
