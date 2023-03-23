@@ -20,7 +20,7 @@
     <string name="action_stop">Zastavit</string>
     <string name="notification_processing">Aktivní aplikace: %1$s</string>
     <string name="notification_idle">Zpracování zvuku v nečinnosti</string>
-    <string name="notification_processing_title">Zpracování zvuku aktivní</string>
+    <string name="notification_processing_title">Zpracování zvuku aktivováno</string>
     <string name="notification_processing_disabled_title">Zpracování zvuku vypnuto</string>
     <string name="notification_processing_legacy">Klepněte pro otevření správce JamesDSP</string>
     <!-- Permission request notifications -->
