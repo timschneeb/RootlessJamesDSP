@@ -36,6 +36,9 @@
     <!-- General purpose -->
     <string name="install">インストール</string>
     <string name="update">アップデート</string>
+    <string name="delete">削除</string>
+    <string name="copy">コピー</string>
+    <string name="paste">貼り付け</string>
     <string name="yes">はい</string>
     <string name="no">いいえ</string>
     <string name="value_not_set">未設定</string>
@@ -47,6 +50,7 @@
     <!-- Root flavor -->
     <!-- Settings -->
     <string name="title_activity_settings">設定</string>
+    <string name="profiles_section_header">端末情報</string>
     <string name="backup_settings">バックアップと復元</string>
     <!-- Theme names -->
     <!-- File library preference -->
