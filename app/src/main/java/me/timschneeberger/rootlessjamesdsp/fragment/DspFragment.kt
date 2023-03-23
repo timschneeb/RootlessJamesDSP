@@ -17,7 +17,6 @@ import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.FragmentDspBinding
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
-import me.timschneeberger.rootlessjamesdsp.view.Card
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 
@@ -26,8 +25,6 @@ class DspFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListen
     private val prefsVar: Preferences.Var by inject()
 
     private lateinit var binding: FragmentDspBinding
-    private var translateNotice: Card? = null
-    private var updateNotice: Card? = null
     private var updateNoticeOnClick: (() -> Unit)? = null
     private var updateNoticeOnCloseClick: (() -> Unit)? = null
 
@@ -45,7 +42,7 @@ class DspFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListen
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         binding = FragmentDspBinding.inflate(layoutInflater, container, false)
 
         binding.translationNotice.setOnCloseClickListener(::hideTranslationNotice)
@@ -140,17 +137,17 @@ class DspFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListen
     }
 
     private fun hideTranslationNotice() {
-        translateNotice?.isVisible = false
+        binding.translationNotice.isVisible = false
         // Set timer +1y
         prefsVar.set<Long>(R.string.key_snooze_translation_notice, (System.currentTimeMillis() / 1000L) + 31536000L)
     }
 
     fun setUpdateCardVisible(visible: Boolean) {
-        updateNotice?.isVisible = visible
+        binding.updateNotice.isVisible = visible
     }
 
     fun setUpdateCardTitle(title: String) {
-        updateNotice?.titleText = title
+        binding.updateNotice.titleText = title
     }
 
     fun setUpdateCardOnClick(onClick: () -> Unit) {
