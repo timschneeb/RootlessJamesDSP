@@ -47,6 +47,8 @@
     <string name="open">Відкрити</string>
     <string name="close">Закрити</string>
     <string name="delete">Видалити</string>
+    <string name="copy">Копіювати</string>
+    <string name="paste">Вставити</string>
     <string name="add">Додати</string>
     <string name="yes">Так</string>
     <string name="no">Ні</string>
@@ -199,6 +201,7 @@
     <string name="onboarding_adb_manual_step4">Перейдіть у розділ «Interactive Shell» і виконайте в терміналі таку команду: pm grant %s android.permission.DUMP</string>
     <string name="onboarding_adb_manual_step5">Натисніть «Далі» в цьому додатку, щоб продовжити.</string>
     <string name="onboarding_adb_manual_step5b">(Необов\'язково) Ви можете назавжди вимкнути запити на дозвіл захоплення аудіо, виконавши цю команду: appops set %s PROJECT_MEDIA allow</string>
+    <string name="onboarding_adb_manual_step5c">(Необов\'язково) Додатково до попереднього кроку ви також можете увімкнути автозапуск, виконавши наступну команду: pm grant %s android.permission.SYSTEM_ALERT_WINDOW</string>
     <string name="onboarding_adb_manual_step1_button">Відкрити «Для розробників»</string>
     <string name="onboarding_perm_title">Інші дозволи</string>
     <string name="onboarding_perm_caption">Для використання цієї програми необхідні додаткові дозволи. Будь ласка, ознайомтеся з ними та натисніть «Далі» щоб надати їх.</string>
@@ -263,7 +266,10 @@
     <string name="audio_format_buffer_size">Розмір буфера</string>
     <string name="audio_format_buffer_size_unit">&#xa0;samples</string>
     <string name="audio_format_buffer_size_warning_low_value">Попередження: Низькі розміри буфера можуть спричинити проблеми з аудіо, як-от кліппінг!</string>
+    <string name="profiles_section_header">Профілі пристрою</string>
+    <string name="profiles_info_title">Що таке профілі для кожного пристрою?</string>
     <string name="profiles_info">Натисніть, щоб переглянути документацію</string>
+    <string name="profiles_manage_hint">Щоб скопіювати або видалити профілі, натисніть кнопку «Активний профіль пристрою» на головному екрані.</string>
     <string name="app_behavior">Робота додатка</string>
     <string name="exclude_app_from_recents">Виключити додаток з нещодавніх</string>
     <string name="exclude_app_from_recents_off">Не видаляти додаток зі списку нещодавніх завдань</string>
@@ -540,4 +546,15 @@
     <string name="backup_restore_mode_dirty">Тільки перезаписати (брудне відновлення)</string>
     <string name="backup_in_progress">Резервне копіювання вже виконується</string>
     <!-- Multi-device profiles -->
+    <string name="group_wired_headphones">Дротові навушники</string>
+    <string name="group_bluetooth">Bluetooth</string>
+    <string name="group_hdmi">HDMI</string>
+    <string name="group_speaker">Внутрішній динамік</string>
+    <string name="group_usb">USB</string>
+    <string name="device_profile_status">Активний профіль пристрою</string>
+    <string name="device_profile_manage_copy">Скопіювати профіль</string>
+    <string name="device_profile_manage_delete">Видалити профілі</string>
+    <string name="device_profile_manage_copy_select_no_target">Немає доступних профілів для перезапису</string>
+    <string name="device_profile_manage_copy_select">Виберіть профіль для копіювання</string>
+    <string name="device_profile_manage_paste_select">Виберіть профілі для перезапису</string>
 </resources>
