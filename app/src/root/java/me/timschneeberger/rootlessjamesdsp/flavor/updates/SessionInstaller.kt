@@ -8,9 +8,9 @@ import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import kotlinx.coroutines.suspendCancellableCoroutine
-import me.timschneeberger.rootlessjamesdsp.utils.Cache
 import me.timschneeberger.rootlessjamesdsp.utils.SdkCheck
 import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
+import me.timschneeberger.rootlessjamesdsp.utils.storage.Cache
 import kotlin.coroutines.resume
 
 /** Based on https://github.com/Iamlooker/Droid-ify/ licensed under GPLv3 */

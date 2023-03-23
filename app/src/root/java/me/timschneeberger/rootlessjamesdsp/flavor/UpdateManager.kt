@@ -14,11 +14,11 @@ import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.flavor.updates.SessionInstaller
 import me.timschneeberger.rootlessjamesdsp.flavor.updates.api.UpdateCheckClient
 import me.timschneeberger.rootlessjamesdsp.flavor.updates.model.UpdateCheckResponse
-import me.timschneeberger.rootlessjamesdsp.utils.Cache
 import me.timschneeberger.rootlessjamesdsp.utils.Result
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ApiExtensions
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showAlert
 import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
+import me.timschneeberger.rootlessjamesdsp.utils.storage.Cache
 import me.timschneeberger.rootlessjamesdsp.view.ProgressDialog
 import timber.log.Timber
 
