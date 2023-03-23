@@ -171,15 +171,15 @@ class OnboardingFragment : Fragment() {
                 override fun onShellAttached(isRoot: Boolean) {
                     Timber.d("onShellAttached: isRoot=$isRoot")
                     if(!isRoot) {
-                        requireContext().showAlert(
+                        context?.showAlert(
                             R.string.onboarding_root_shell_fail_title,
                             R.string.onboarding_root_shell_fail
                         )
                         return
                     }
                     val success = RootShellImpl.cmd("pm grant ${BuildConfig.APPLICATION_ID} android.permission.DUMP\n")
-                    if(!success && !requireContext().hasDumpPermission()) {
-                        requireContext().showAlert(
+                    if(!success && context?.hasDumpPermission() != true) {
+                        context?.showAlert(
                             R.string.onboarding_root_shell_fail_title,
                             R.string.onboarding_root_shell_fail_unknown
                         )
