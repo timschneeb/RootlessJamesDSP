@@ -27,6 +27,7 @@ import me.timschneeberger.rootlessjamesdsp.activity.OnboardingActivity.Companion
 import me.timschneeberger.rootlessjamesdsp.databinding.OnboardingFragmentBinding
 import me.timschneeberger.rootlessjamesdsp.flavor.RootShellImpl
 import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
+import me.timschneeberger.rootlessjamesdsp.utils.SdkCheck
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.isPackageInstalled
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.launchApp
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.openPlayStoreApp
@@ -36,7 +37,6 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasNotificationPermission
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasRecordPermission
 import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
-import me.timschneeberger.rootlessjamesdsp.utils.SdkCheck
 import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import org.koin.android.ext.android.inject
 import rikka.shizuku.Shizuku
@@ -450,8 +450,26 @@ class OnboardingFragment : Fragment() {
             Timber
                 .d("Granting DUMP via Shizuku (uid ${Shizuku.getUid()}) for $pkg")
 
-            // Grant DUMP as system
-            ShizukuSystemServerApi.PermissionManager_grantRuntimePermission(pkg, Manifest.permission.DUMP, UserHandle.USER_SYSTEM)
+            // Grant DUMP as shell
+            ShizukuSystemServerApi.PermissionManager_grantRuntimePermission(
+                pkg,
+                Manifest.permission.DUMP,
+                UserHandle.USER_SYSTEM
+            )
+
+            // Grant SYSTEM_ALERT_WINDOW as shell
+            try {
+                ShizukuSystemServerApi.PermissionManager_grantRuntimePermission(
+                    pkg,
+                    Manifest.permission.SYSTEM_ALERT_WINDOW,
+                    UserHandle.USER_SYSTEM
+                )
+            }
+            catch (ex: Exception) {
+                Timber.e(ex)
+            }
+
+            // Grant permanent PROJECT_MEDIA op as shell
             try {
                 val result = ShizukuSystemServerApi.AppOpsService_setMode(
                     ShizukuSystemServerApi.APP_OPS_OP_PROJECT_MEDIA,
@@ -530,6 +548,7 @@ class OnboardingFragment : Fragment() {
         page.step4.isVisible = selectedSetupMethod == SetupMethods.Adb
         page.step5.isVisible = selectedSetupMethod == SetupMethods.Adb
         page.step5bOptional.isVisible = selectedSetupMethod == SetupMethods.Adb && BuildConfig.ROOTLESS
+        page.step5cOptional.isVisible = selectedSetupMethod == SetupMethods.Adb && BuildConfig.ROOTLESS
 
         if(selectedSetupMethod == SetupMethods.Shizuku) {
             val installed = requireContext().isPackageInstalled(SHIZUKU_PKG)
@@ -574,6 +593,7 @@ class OnboardingFragment : Fragment() {
             page.step4.bodyText = getString(R.string.onboarding_adb_manual_step4, requireContext().packageName)
             page.step5.bodyText = getString(R.string.onboarding_adb_manual_step5)
             page.step5bOptional.bodyText = getString(R.string.onboarding_adb_manual_step5b, requireContext().packageName)
+            page.step5cOptional.bodyText = getString(R.string.onboarding_adb_manual_step5c, requireContext().packageName)
 
             page.title.text = getString(R.string.onboarding_adb_adb_title)
         }

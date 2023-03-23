@@ -226,6 +226,7 @@
     <string name="onboarding_adb_manual_step4">Navigate to \'Interactive Shell\' and execute the following command in the shell: \'pm grant %s android.permission.DUMP\'</string>
     <string name="onboarding_adb_manual_step5">Tap \'Next\' in this app to continue.</string>
     <string name="onboarding_adb_manual_step5b">(Optional) You can permanently skip the audio capture permission prompts by executing this command: \'appops set %s PROJECT_MEDIA allow\'</string>
+    <string name="onboarding_adb_manual_step5c">(Optional) In addition to the previous step, you can also enable auto-start by executing the following command: \'pm grant %s android.permission.SYSTEM_ALERT_WINDOW\'</string>
     <string name="onboarding_adb_manual_step1_button">Open development settings</string>
 
     <string name="onboarding_perm_title">Other permissions</string>
