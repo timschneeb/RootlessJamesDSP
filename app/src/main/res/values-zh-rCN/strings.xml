@@ -46,6 +46,7 @@
     <string name="success">成功</string>
     <string name="open">打开</string>
     <string name="close">关闭</string>
+    <string name="delete">删除</string>
     <string name="add">添加</string>
     <string name="yes">确定</string>
     <string name="no">取消</string>
@@ -262,6 +263,7 @@
     <string name="audio_format_buffer_size">缓冲大小</string>
     <string name="audio_format_buffer_size_unit">&#xa0;样本</string>
     <string name="audio_format_buffer_size_warning_low_value">警告：过小的缓冲区大小可能会导致诸如卡顿等音频问题</string>
+    <string name="profiles_info">点击查看文档</string>
     <string name="app_behavior">应用行为</string>
     <string name="exclude_app_from_recents">在最近任务中隐藏应用</string>
     <string name="exclude_app_from_recents_off">不在最近任务中隐藏应用</string>
@@ -538,4 +540,5 @@
     <string name="backup_restore_mode_clean">清理恢复 (删除所有现有文件)</string>
     <string name="backup_restore_mode_dirty">Dirty 恢复 (仅覆盖)</string>
     <string name="backup_in_progress">备份已在进行中</string>
+    <!-- Multi-device profiles -->
 </resources>
