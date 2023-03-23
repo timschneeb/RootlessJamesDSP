@@ -20,7 +20,7 @@
     <string name="action_stop">Zastavit</string>
     <string name="notification_processing">Aktivní aplikace: %1$s</string>
     <string name="notification_idle">Zpracování zvuku v nečinnosti</string>
-    <string name="notification_processing_title">Zpracování zvuku aktivní</string>
+    <string name="notification_processing_title">Zpracování zvuku aktivováno</string>
     <string name="notification_processing_disabled_title">Zpracování zvuku vypnuto</string>
     <string name="notification_processing_legacy">Klepněte pro otevření správce JamesDSP</string>
     <!-- Permission request notifications -->
@@ -46,6 +46,7 @@
     <string name="success">Úspěch</string>
     <string name="open">Otevřít</string>
     <string name="close">Zavřít</string>
+    <string name="delete">Odstranit</string>
     <string name="add">Přidat</string>
     <string name="yes">Ano</string>
     <string name="no">Ne</string>
@@ -211,7 +212,7 @@
     <string name="onboarding_perm_missing">Pro pokračování prosím udělte všechna požadovaná uživatelská oprávnění.\nPokud jste oprávnění opakovaně zamítli, musíte je povolit ručně v nastavení systému.</string>
     <string name="onboarding_finish_header">JamesDSP je připraven!</string>
     <string name="onboarding_finish_caption">Pokud narazíte na nějaké problémy, navštivte prosím možnosti řešení problémů.</string>
-    <string name="limit_session_control_conflict_title">Zakázat další aplikace zvukových efektů</string>
+    <string name="limit_session_control_conflict_title">Zakažte další aplikace zvukových efektů</string>
     <string name="limit_session_control_conflict">Aplikace pro zvukové efekty, které používají vestavěný dynamický efekt Androidu, narušují tuto aplikaci.</string>
     <string name="limit_unsupported_apps_title">Nepodporované aplikace médií</string>
     <string name="limit_unsupported_apps">Aplikace blokující interní záznam zvuku zůstávají nezpracované (např. Spotify, Google Chrome).</string>
@@ -262,6 +263,7 @@
     <string name="audio_format_buffer_size">Velikost vyrovnávací paměti</string>
     <string name="audio_format_buffer_size_unit">&#xa0;vzorků</string>
     <string name="audio_format_buffer_size_warning_low_value">Varování: Nízké velikosti vyrovnávací paměti mohou způsobit zkreslení zvuku, jako například „oříznutí“ nebo „přiškrcení“ zvuku!</string>
+    <string name="profiles_info">Klepnutím zobrazíte dokumentaci</string>
     <string name="app_behavior">Chování aplikace</string>
     <string name="exclude_app_from_recents">Vyloučit aplikaci z přehledu nedávných aplikací</string>
     <string name="exclude_app_from_recents_off">Nevylučovat aplikaci z přehledu nedávných aplikací</string>
@@ -537,4 +539,5 @@
     <string name="backup_restore_mode_clean">Čistá obnova (odstranit všechny existující soubory)</string>
     <string name="backup_restore_mode_dirty">Špinavá obnova (pouze přepsat)</string>
     <string name="backup_in_progress">Zálohování již probíhá</string>
+    <!-- Multi-device profiles -->
 </resources>

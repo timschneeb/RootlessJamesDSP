@@ -46,6 +46,7 @@
     <string name="success">Berhasil</string>
     <string name="open">Buka</string>
     <string name="close">Tutup</string>
+    <string name="delete">Hapus</string>
     <string name="add">Tambah</string>
     <string name="yes">Ya</string>
     <string name="no">Tidak</string>
@@ -231,6 +232,7 @@
     <string name="audio_format_encoding">Pengkodean Audio</string>
     <string name="audio_format_buffer_size">Ukuran buffer</string>
     <string name="audio_format_buffer_size_warning_low_value">Peringatan: Ukuran Buffer kecil dapat menyebabkan suara pecah!</string>
+    <string name="profiles_info">Tap untuk melihat rincian</string>
     <string name="app_behavior">Perilaku aplikasi</string>
     <string name="exclude_app_from_recents">Kecualikan aplikasi dari Recents</string>
     <string name="exclude_app_from_recents_off">Jangan kecualikan dari daftar Recent</string>
@@ -495,4 +497,5 @@
     <string name="backup_restore_mode_clean">Bersihkan pemulihan (hapus semua file)</string>
     <string name="backup_restore_mode_dirty">Pemulihan dirty (hanya timpa)</string>
     <string name="backup_in_progress">Pencadangan sedang diproses</string>
+    <!-- Multi-device profiles -->
 </resources>

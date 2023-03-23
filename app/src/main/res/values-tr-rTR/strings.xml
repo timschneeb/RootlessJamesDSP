@@ -158,6 +158,7 @@
     <string name="audio_format_enhanced_processing_off">Gelişmiş işleme devre dışı</string>
     <string name="audio_format_enhanced_processing_info_title">Gelişmiş işleme nedir?</string>
     <string name="audio_format_enhanced_processing_info">Dokümentasyona bakmak için tıklayın</string>
+    <string name="profiles_info">Dokümentasyona bakmak için tıklayın</string>
     <!-- Theme names -->
     <string name="theme_default">Varsayılan</string>
     <!-- File library preference -->
@@ -181,4 +182,5 @@
     <!-- Translation notice box -->
     <!-- Self-updates (Root) -->
     <!-- Backups -->
+    <!-- Multi-device profiles -->
 </resources>

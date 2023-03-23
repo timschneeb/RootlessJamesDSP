@@ -1,8 +1,8 @@
-Use JamesDSP as a system-wide audio processing engine without any root access.
+استخدم JamesDSP كمحرك معالجة صوتية على مستوى النظام دون أي وصول إلى الجذر.
 
-This app has several limitations that may be deal-breaking to some people; please read this whole document before using the app. Shizuku (Android 11+) or ADB access via a computer is required for the initial setup.
+هذا التطبيق لديه عدة قيود قد تكون مفترقة لبعض الأشخاص؛ الرجاء قراءة هذا المستند بأكمله قبل استخدام التطبيق. شيزوكو (أندرويد 11+) أو الوصول إلى ADB عن طريق الكمبيوتر مطلوب للإعداد الأولي.
 
-JamesDSP supports the following audio effects:
+JamesDSP يدعم التأثيرات الصوت التالية:
 * Limiter control
 * Output gain control
 * Auto dynamic range compressor
@@ -17,30 +17,30 @@ JamesDSP supports the following audio effects:
 * Crossfeed
 * Virtual room effect (reverb)
 
-Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration, you can search and import frequency responses that aim to correct your headphone to a neutral sound. Go to 'Arbitrary response equalizer > Magnitude response > AutoEQ profiles' to get started.
+Additionally, this app integrates directly with AutoEQ. باستخدام تكامل AutoEQ ، يمكنك البحث واستيراد موجات التردد التي تهدف إلى تصحيح سماعات الرأس الخاصة بك إلى صوت محايد. اذهب إلى 'معادل الاستجابة التعسفية> استجابة ماكنتوود > ملفات تعريف AutoEQ للبدء.
 
---- Limitations
-* Apps blocking internal audio capture remain unprocessed (e.g., Spotify, Google Chrome)
-* Apps using some types of HW-accelerated playback may cause issues and need to be manually excluded (e.g., some Unity games)
-* Cannot coexist with (some) other audio effect apps (e.g., Wavelet and other apps that make use of the `DynamicsProcessing` Android API)
+--- القيود
+* تبقى التطبيقات التي تمنع التقاط الصوت الداخلي غير المعالج (على سبيل المثال Spotify, Google Chrome)
+* التطبيقات التي تستخدم بعض أنواع التشغيل المتسارع HW قد تسبب مشاكل ويلزم استبعادها يدوياً (على سبيل المثال بعض ألعاب unity)
+* لا يمكن التعايش مع تطبيقات التأثير الصوتي الأخرى (بعضها) (على سبيل المثال، Wavelet و التطبيقات الأخرى التي تستخدم تطبيقات الـ `DynamicsProcessing' Android API)
 
 
-- Apps confirmed working:
-* YouTube
-* YouTube Music
-* Amazon Music
+- تم تأكيد عمل التطبيقات:
+* يوتيوب
+* موسيقى YouTube
+* موسيقى الأمازون
 * Deezer
 * Poweramp
 * Substreamer
-* Twitch
+* تويتش
 * ...
 
-- Unsupported apps include:
-* Spotify (Note: Spotify ReVanced patch is required to support Spotify)
-* Google Chrome
-* SoundCloud
+- التطبيقات غير المدعومة:
+* سبوتيفاي (ملاحظة: تصحيح Spotify ReVanced مطلوب لدعم Spotify)
+* جوجل كروم
+* ساوندكلاود
 * ...
 
 --- Translation
-Please help us translate this app here: https://crowdin.com/project/rootlessjamesdsp
-To request a new language that isn't enabled on Crowdin yet, please open an issue here on GitHub and I will turn it on.
+الرجاء مساعدتنا في ترجمة هذا التطبيق هنا: https://crowdin.com/project/rootlessjamesdsp
+لطلب لغة جديدة غير مفعلة على كراودِن حتى الآن، يرجى فتح مشكلة هنا على GitHub وسوف أقوم بتشغيلها.

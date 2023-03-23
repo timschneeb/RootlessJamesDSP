@@ -1,27 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
+    <string name="action_settings">Beállítások</string>
+    <string name="action_presets">Sémák</string>
+    <string name="action_revert">Alapértelmezett beállítások visszaállítása</string>
+    <string name="action_blocked_apps">Kizárt alkalmazások</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">Szolgáltatás</string>
+    <string name="notification_channel_service">Szolgáltatási értesítés</string>
+    <string name="notification_channel_session_loss_alert">Bezárult munkamenet</string>
+    <string name="notification_channel_permission_prompt">Engedély kérése</string>
+    <string name="notification_channel_app_compat_alert">App nem kompatibilis</string>
+    <string name="notification_group_backup">Mentés és visszaállítás</string>
+    <string name="notification_channel_backup_progress">Folyamatban</string>
+    <string name="notification_channel_backup_complete">Mentés kész</string>
     <!-- Service notifications -->
+    <string name="action_retry">Újra</string>
+    <string name="action_fix">Hibajavítás</string>
+    <string name="action_stop">Megállítás</string>
+    <string name="notification_processing">Aktív appok %1$s</string>
+    <string name="notification_idle">Hang feldolgozása inaktív</string>
+    <string name="notification_processing_title">Hang feldolgozása aktív</string>
+    <string name="notification_processing_disabled_title">Hang feldolgozása letiltva</string>
+    <string name="notification_processing_legacy">Koppintson a JamesDSP menedzser megnyitásához</string>
     <!-- Permission request notifications -->
+    <string name="notification_request_permission_title">Felhasználó beavatkozása szügséges a JamesDSP indításához</string>
+    <string name="notification_request_permission">Koppintson a képernyőrögzítési jogosultság megadásához hogy engedélyezze a JamesDSP hang feldolgozását</string>
     <!-- Session control loss notifications -->
+    <string name="session_control_loss_toast">JamesDSP leállt mivel a hang munkamenete elvesztette az irányítást. Kérjük tiltson le más hangot befolyásoló appokat.</string>
+    <string name="session_control_loss_notification_title">Hang feldolgozása leállt. Egy másik app gátolja a JamesDSP működését.</string>
+    <string name="session_control_loss_notification">Kérjük tiltsa le az összes további appot ami globális hanghatásokat nyújt mielőtt újra engedélyezi a JamesDSP szolgáltatást.</string>
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_toast">JamesDSP leállt mivel a médiát lejátszó app nem kompatibilis. Kérjük ellenőrizze az értesítést a probléma megoldásához.</string>
+    <string name="session_app_compat_notification_title">Hang feldolgozása leállt. Egy másik app gátolja a JamesDSP működését.</string>
+    <string name="session_app_compat_notification">Koppintson erre az értesítésre a probléma megoldásához.</string>
     <!-- Capture permission revoked notifications -->
+    <string name="capture_permission_revoked_toast">A JamesDSP le lett állítva mivel a hangrögzítési jogosultság vissza lett vonva.</string>
     <!-- General purpose -->
+    <string name="install">Telepítés</string>
+    <string name="update">Frissítés</string>
+    <string name="unknown_error">Ismeretlen hiba</string>
+    <string name="details">Részletek</string>
+    <string name="actions">Műveletek</string>
+    <string name="warning">Figyelmeztetés</string>
+    <string name="success">Siker</string>
+    <string name="open">Megnyitás</string>
+    <string name="close">Bezárás</string>
+    <string name="add">Hozzáadás</string>
+    <string name="yes">Igen</string>
+    <string name="no">Nem</string>
+    <string name="value_not_set">Nincs beállítva</string>
+    <string name="undo">Visszavonás</string>
+    <string name="redo">Mégis végrehajt</string>
+    <string name="no_activity_found">Nem található cselekvés a tett kezeléséhez</string>
     <!-- Main screen -->
+    <string name="power_button_alt">Hang feldolgozás bekapcsolása</string>
+    <string name="compressor_enable">Automatikus dinamikus tömörítő tartomány</string>
+    <string name="compressor_max_attack">Maximum támadás</string>
+    <string name="compressor_max_release">Maximum engedés</string>
+    <string name="compressor_adapt_speed">Agresszivitás</string>
+    <string name="eq_preset_acoustic">Akusztikus</string>
+    <string name="eq_preset_bass">Basszus</string>
+    <string name="eq_preset_beats">Ritmus</string>
+    <string name="eq_preset_classic">Klasszikus</string>
+    <string name="eq_preset_clear">Tiszta</string>
+    <string name="eq_preset_deep">Mély</string>
+    <string name="eq_preset_dubstep">Dubstep</string>
+    <string name="eq_preset_electronic">Elektronikus</string>
+    <string name="eq_preset_flat">Lapos</string>
+    <string name="eq_preset_hardstyle">Hardstyle</string>
+    <string name="eq_preset_hiphop">Hip-Hop</string>
+    <string name="eq_preset_jazz">Jazz</string>
+    <string name="eq_preset_metal">Metál</string>
+    <string name="eq_preset_movie">Film</string>
+    <string name="eq_preset_pop">Pop</string>
+    <string name="eq_preset_rock">Rock</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
     <!-- Settings -->
+    <string name="title_activity_settings">Beállítások</string>
+    <string name="backup_settings">Mentés és visszaállítás</string>
     <!-- Theme names -->
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="gep_add_node">Hozzáadás</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
     <!-- Blocklist -->
+    <string name="title_activity_blocklist">Kizárt alkalmazások</string>
     <!-- Compatibility issue activity -->
+    <string name="app_compat_retry">Újra</string>
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
     <!-- App list -->
@@ -32,4 +103,5 @@
     <!-- Translation notice box -->
     <!-- Self-updates (Root) -->
     <!-- Backups -->
+    <!-- Multi-device profiles -->
 </resources>

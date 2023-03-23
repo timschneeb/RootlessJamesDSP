@@ -1,27 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
+    <string name="action_settings">الإعدادات</string>
+    <string name="action_presets">الإعدادات المسبقة</string>
+    <string name="action_revert">إعادة التعيين إلى الوضع الافتراضي</string>
+    <string name="action_blocked_apps">التطبيقات المستثناة</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">الخدمة</string>
+    <string name="notification_channel_service">إشعار الخدمة</string>
+    <string name="notification_channel_session_loss_alert">تنبيه فقدان الجِلسة</string>
+    <string name="notification_channel_permission_prompt">تنبيه طلب الإذن</string>
+    <string name="notification_channel_app_compat_alert">تنبيه التطبيق غير متوافق</string>
+    <string name="notification_group_backup">النسخ الاحتياطي والاستعادة</string>
+    <string name="notification_channel_backup_progress">قيد التقدم</string>
+    <string name="notification_channel_backup_complete">مكتمل</string>
     <!-- Service notifications -->
+    <string name="action_retry">أعد المحاولة</string>
+    <string name="action_fix">إصلاح المشكلة</string>
+    <string name="action_stop">إيقاف</string>
+    <string name="notification_processing">التطبيقات النشطة: %1$s</string>
+    <string name="notification_idle">معالجة الصوت خاملة</string>
+    <string name="notification_processing_title">معالجة الصوت نشطة</string>
+    <string name="notification_processing_disabled_title">معالجة الصوت معطلة</string>
+    <string name="notification_processing_legacy">اضغط لفتح مدير JamesDSP</string>
     <!-- Permission request notifications -->
+    <string name="notification_request_permission_title">إجراء المستخدم مطلوب لتشغيل JamesDSP</string>
+    <string name="notification_request_permission">انقر لمنح إذن التقاط وتمكين معالجة صوت JamesDSP</string>
     <!-- Session control loss notifications -->
+    <string name="session_control_loss_toast">توقف جيمس Dsp بسبب فقدان التحكم في جلسة الصوت. الرجاء تعطيل تطبيقات تأثير الصوت الأخرى.</string>
+    <string name="session_control_loss_notification_title">توقفت معالجة الصوت. وهناك تطبيق آخر يتدخل مع JamesDSP.</string>
+    <string name="session_control_loss_notification">الرجاء تعطيل جميع التطبيقات الأخرى التي توفر تأثيرات صوتية عالمية قبل إعادة تمكين JamesDSP.</string>
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_toast">توقف JamesDSP بسبب تطبيق الوسائط غير المتوافقة. الرجاء التحقق من الإشعار لحل هذه المشكلة.</string>
+    <string name="session_app_compat_notification_title">توقفت معالجة الصوت. وهناك تطبيق آخر يتدخل مع JamesDSP.</string>
+    <string name="session_app_compat_notification">اضغط على هذا الإشعار لحل المشكلة.</string>
     <!-- Capture permission revoked notifications -->
+    <string name="capture_permission_revoked_toast">تم إيقاف JamesDSP بسبب إلغاء إذن التقاط الصوت.</string>
     <!-- General purpose -->
+    <string name="install">تثبيت</string>
+    <string name="update">تحديث</string>
+    <string name="unknown_error">خطأ غير معروف</string>
+    <string name="details">التفاصيل</string>
+    <string name="actions">الإجراءات</string>
+    <string name="warning">تحذير</string>
+    <string name="success">تم بنجاح</string>
+    <string name="open">فتح</string>
+    <string name="close">إغلاق</string>
+    <string name="add">إضافة</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
+    <string name="value_not_set">لم يتم تعيينه</string>
+    <string name="undo">تراجع</string>
+    <string name="redo">إعادة</string>
+    <string name="no_activity_found">لم يتم العثور على نشاط لمعالجة الإجراء</string>
     <!-- Main screen -->
+    <string name="power_button_alt">تشغيل معالجة الصوت</string>
+    <string name="compressor_enable">ضغط النطاق الديناميكي التلقائي</string>
+    <string name="compressor_max_attack">الحد الأقصى للهجوم</string>
+    <string name="compressor_max_release">الحد الأقصى للإصدار</string>
+    <string name="compressor_adapt_speed">العدوانية</string>
+    <string name="eq_filter_type">نوع التصفية</string>
+    <string name="eq_interpolator">مستقطب</string>
+    <string name="eq_filter_type_minimum">المرحلة الأدنى</string>
+    <string name="eq_filter_type_linear">المرحلة الخطية</string>
+    <string name="eq_interpolator_chip">بوليينوميت، البوليونوماتيك المكعب</string>
+    <string name="eq_interpolator_mha">منحنى هيروشي أكيما المعدل</string>
+    <string name="eq_preset_acoustic">الصوتية</string>
+    <string name="eq_preset_bass">الجهير</string>
+    <string name="eq_preset_beats">إيقاعات</string>
+    <string name="eq_preset_classic">قديم</string>
+    <string name="eq_preset_clear">واضح</string>
+    <string name="eq_preset_deep">عميق</string>
+    <string name="eq_preset_electronic">إلكتروني</string>
+    <string name="eq_preset_flat">مسطح</string>
+    <string name="eq_preset_hiphop">الهيب هوب</string>
+    <string name="eq_preset_jazz">موسيقى الجاز</string>
+    <string name="eq_preset_metal">موسيقى الميتال</string>
+    <string name="eq_preset_movie">فيلم</string>
+    <string name="eq_preset_pop">موسيقى البوب</string>
+    <string name="eq_preset_rb">آر آند بي</string>
+    <string name="eq_preset_rock">موسيقى الروك</string>
+    <string name="eq_preset_vocal">التعزيز الصوتي</string>
+    <string name="geq_enable">معادل الاستجابة العشوائية</string>
+    <string name="geq_nodes">استجابة الضخامة</string>
+    <string name="bass_enable">تحسين الجهير الديناميكي</string>
+    <string name="reverb_enable">تأثير الغرفة الافتراضية</string>
+    <string name="reverb_room_type">نوع الغرفة</string>
+    <string name="reverb_preset_default">الافتراضي</string>
+    <string name="reverb_preset_small_hall1">قاعة صغيرة 1</string>
+    <string name="reverb_preset_small_hall2">قاعة صغيرة 2</string>
+    <string name="reverb_preset_medium_hall2">قاعة متوسطة الحجم</string>
+    <string name="reverb_preset_large_hall1">قاعة كبيرة الحجم</string>
+    <string name="reverb_preset_small_room1">غرفة صغيرة</string>
+    <string name="reverb_preset_small_room2">غرفة صغيرة</string>
+    <string name="reverb_preset_medium_room1">غرفة متوسطة</string>
+    <string name="reverb_preset_large_room1">غرفة كبيرة</string>
+    <string name="reverb_preset_plate_high">لوحة عالية</string>
+    <string name="reverb_preset_plate_low">لوحة منخفضة</string>
+    <string name="reverb_preset_long_reverb1">تردد طويل ١</string>
+    <string name="reverb_preset_long_reverb2">تردد طويل 2</string>
+    <string name="convolver_impulse">دافع الاستجابة</string>
+    <string name="convolver_advanced_editing">تحرير نموذج الموجة المتقدم</string>
+    <string name="convolver_convolution_mode">تحسين استجابة التأثير</string>
+    <string name="convolver_convolution_mode_original">أصليّة</string>
+    <string name="convolver_convolution_mode_shrink">تقليص</string>
+    <string name="convolver_convolution_mode_minimum_phase_shrink">الحد الأدنى للمرحلة من التحول والانكماش</string>
+    <string name="ddc_enable">ViPER-DDC</string>
+    <string name="ddc_file">ملف DDC</string>
+    <string name="liveprog_file">نص Liveprog</string>
+    <string name="liveprog_additional_params">معلمات البرنامج النصي الإضافية</string>
+    <string name="liveprog_additional_params_not_supported">البرنامَج النصي المحدد لا يحتوي على معلمات قابلة للتخصيص</string>
+    <string name="liveprog_not_found">لم يتم العثور على البرنامَج النصي</string>
+    <string name="liveprog_no_script_selected">لم يتم تحديد البرنامَج النصي</string>
+    <string name="liveprog_edit_header">تعديل البرنامج النصي المحدد</string>
+    <string name="liveprog_edit">فتح البرنامج النصي النشط في المحرر المدمج</string>
+    <string name="tube_enable">النماذج التناظرية</string>
+    <string name="tube_drive">التضخيم الأولي</string>
+    <string name="output_control_header">التحكم في المخرج</string>
+    <string name="output_limiter_threshold">عتبة محددة</string>
+    <string name="output_limiter_release">الإصدار المحدود</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
+    <string name="onboarding_adb_shizuku_install_button">تثبيت Shizuku</string>
+    <string name="onboarding_adb_shizuku_install_button_done">مثبت بالفعل</string>
+    <string name="onboarding_adb_shizuku_install_instruction">تثبيت \'Shizuku\' من Google Play.</string>
+    <string name="onboarding_adb_shizuku_open_instruction">تشغيل \'Shizuku\' والبحث عن \'<b>ابدأ عبر Wireless Debugging</b>\'. اضغط على زر \'الاقتران\' واتبع التعليمات داخل التطبيق. بعد إقران Shizuku بجهازك، ابدأ خادم Shizuku بالضغط على زر \'بدء\' في تطبيقهم. إذا واجهت مشاكل أثناء إعداد Shizuku، يرجى الرجوع إلى دروس الإعداد المرتبطة في تطبيقهم.</string>
+    <string name="onboarding_adb_shizuku_open_button">تشغيل Shizuku</string>
+    <string name="onboarding_adb_shizuku_open_button_done">نشط بالفعل</string>
+    <string name="onboarding_adb_shizuku_grant_instruction">اضغط على الزر ومنح هذا التطبيق حق الوصول إلى Shizuku.</string>
+    <string name="onboarding_adb_shizuku_grant_button">منح الوصول</string>
+    <string name="onboarding_adb_shizuku_not_installed">لم يتم تثبيت Shizuku بعد. الرجاء تنزيله وتثبيته من Google Play أولاً.</string>
+    <string name="onboarding_adb_shizuku_not_installed_title">لم يتم تثبيت Shizuku بعد</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead">الرجاء بدء تشغيل خادم Shizuku قبل طلب الإذن. العودة إلى خطوة التعليمات 2.</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead_title">خادم Shizuku لا يعمل</string>
+    <string name="onboarding_adb_shizuku_grant_fail_version">يتطلب هذا التطبيق إصدار Shizuku 11 أو أكثر. الرجاء تحديث Shizuku إلى أحدث إصدار.</string>
+    <string name="onboarding_adb_shizuku_grant_fail_version_title">إصدار Shizuku غير مدعوم</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied_title">طلب الإذن مرفوض</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied">الرجاء منح هذا التطبيق حق الوصول إلى شيزوكو. قد تحتاج إلى فتح مدير إذن شيزوكو ومنح الإذن يدوياً إذا كنت قد رفضته مسبقاً ولم تعد تظهر النوافذ المنبثقة.</string>
+    <string name="onboarding_adb_shizuku_no_dump_perm_title">فشل Shizuku في منح أذونات ADB</string>
+    <string name="onboarding_adb_shizuku_no_dump_perm">الرجاء الانتظار بضع ثوان ثم حاول مرة أخرى. إذا كان لا يزال لا يعمل، حاول الطريقة البديلة.</string>
+    <string name="onboarding_adb_dump_not_granted_title">لم يتم بعد منح الإذن</string>
+    <string name="onboarding_adb_dump_not_granted">الرجاء اتباع الإرشادات أولاً وحاول مرة أخرى. لم يتم بعد إعداد الوصول إلى ADB بشكل صحيح.</string>
+    <string name="onboarding_adb_manual_step1">انتقل إلى إعدادات التطوير المخفية للأندرويد وتمكين تصحيح أخطاء USB. تحتاج إلى فتح هذه الإعدادات عن طريق النقر على رقم البناء في إعدادات النظام عدة مرات.</string>
+    <string name="onboarding_adb_manual_step2">افتح https://app.webadb.com في متصفح الكمبيوتر الخاص بك (يعمل بشكل أفضل في Chrome) واتصل جهازك باستخدام USB مع الكمبيوتر.</string>
+    <string name="onboarding_adb_manual_step3">إضافة وتوصيل جهاز USB في WebADB.</string>
+    <string name="onboarding_adb_manual_step4">انتقل إلى \'Interactive Shell\' وتنفيذ الأمر التالي في الطرفية: \'pm grant %s android.permission.DUMP\'</string>
+    <string name="onboarding_adb_manual_step5">انقر فوق \'التالي\' في هذا التطبيق للمتابعة.</string>
+    <string name="onboarding_adb_manual_step5b">(اختياري) يمكنك تخطي طلبات السماح بالتقاط الصوت بشكل دائم عن طريق تنفيذ هذا الأمر: \'appops set %s PROJECT_MEDIA allow\'</string>
+    <string name="onboarding_adb_manual_step1_button">فتح إعدادات التطوير</string>
+    <string name="onboarding_perm_title">الأذونات الأخرى</string>
+    <string name="onboarding_perm_caption">مطلوب أذونات إضافية لاستخدام هذا التطبيق. الرجاء مراجعتها والنقر على \"التالي\" لمنحها.</string>
+    <string name="onboarding_perm_microphone_title">إذن تسجيل الصوت</string>
+    <string name="onboarding_perm_microphone_caption">مطلوب لتسجيل الصوت الداخلي. لم يتم تنشيط ميكروفون الجهاز.</string>
+    <string name="onboarding_perm_notification_title">إذن الإشعارات</string>
+    <string name="onboarding_perm_notification_caption">مطلوب لتلقي معلومات مستكملة هامة عن الحالة ومعلومات عن حالة التجهيز JamesDSP.</string>
+    <string name="onboarding_perm_cast_title">صلاحية البث/التسجيل</string>
+    <string name="onboarding_perm_cast_caption">تحتاج إلى منح هذا التطبيق إذن تسجيل محتوى الصوت في كل مرة يتم تشغيله.</string>
+    <string name="onboarding_perm_missing_title">لم يتم منح أذونات وقت تشغيل</string>
+    <string name="onboarding_perm_missing">الرجاء منح جميع أذونات وقت التشغيل المطلوبة للمتابعة.\nإذا كنت ترفض الأذونات مراراً، تحتاج إلى منحها يدوياً في إعدادات النظام.</string>
+    <string name="onboarding_finish_header">تم إعداد JamesDSP!</string>
+    <string name="onboarding_finish_caption">إذا واجهت أي مشكلة، يرجى زيارة خيارات استكشاف الأخطاء.</string>
+    <string name="limit_session_control_conflict_title">تعطيل تطبيقات تأثير الصوت الأخرى</string>
+    <string name="limit_session_control_conflict">تطبيقات التأثير الصوتي باستخدام تأثير المعالجة الديناميكية المدمج في اندرويد يتداخل مع هذا التطبيق.</string>
+    <string name="limit_unsupported_apps_title">تطبيقات الوسائط غير المدعومة</string>
+    <string name="limit_unsupported_apps">التطبيقات التي تمنع التقاط الصوت الداخلي تبقى غير معالجة (على سبيل المثال Spotify، Google Chrome).</string>
+    <string name="limit_detect_delay_title">تأخير اكتشاف جلسة الصوت</string>
+    <string name="limit_latency_title">زيادة التأخير</string>
     <!-- Settings -->
+    <string name="title_activity_settings">الإعدادات</string>
+    <string name="backup_settings">النسخ الاحتياطي والاستعادة</string>
     <!-- Theme names -->
+    <string name="theme_default">الافتراضي</string>
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="title_activity_geq">استجابة الضخامة</string>
+    <string name="gep_add_node">إضافة</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
     <!-- Blocklist -->
+    <string name="title_activity_blocklist">التطبيقات المستثناة</string>
     <!-- Compatibility issue activity -->
+    <string name="app_compat_retry">أعد المحاولة</string>
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
     <!-- App list -->
@@ -32,4 +194,5 @@
     <!-- Translation notice box -->
     <!-- Self-updates (Root) -->
     <!-- Backups -->
+    <!-- Multi-device profiles -->
 </resources>

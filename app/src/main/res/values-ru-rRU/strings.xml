@@ -46,6 +46,7 @@
     <string name="success">Успешно выполнено</string>
     <string name="open">Открыть</string>
     <string name="close">Закрыть</string>
+    <string name="delete">Удалить</string>
     <string name="add">Добавить</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
@@ -215,12 +216,12 @@
     <string name="limit_session_control_conflict">Приложения для обработки аудиоэффектов, использующие встроенный в Android эффект динамической обработки, нарушают работу этого приложения.</string>
     <string name="limit_unsupported_apps_title">Неподдерживаемые приложения</string>
     <string name="limit_unsupported_apps">Приложения, которые блокируют запись внутреннего аудио, не будут обработаны (например, Spotify, Google Chrome).</string>
-    <string name="limit_hw_accel_title">Проблемы с воспроизведением аппаратно ускоренного аудио</string>
+    <string name="limit_hw_accel_title">Проблемы с аппаратно ускоренным воспроизведением аудио</string>
     <string name="limit_hw_accel">Аппаратно ускоренное (HW-accelerated) воспроизведение аудио иногда может приводить к дублированию звука или остановке JamesDSP. Добавьте затронутый музыкальный плеер в список исключенных приложений, чтобы предотвратить маршрутизацию его звука через JamesDSP.</string>
     <string name="limit_detect_delay_title">Задержка определения аудиосессии</string>
     <string name="limit_detect_delay"><![CDATA[После того как приложение открывает новую аудиосессию для воспроизведения звука, вы можете услышать повторяющийся или обрывистый звук на очень короткий период (примерно 250 мс).]]></string>
     <string name="limit_latency_title">Повышенная задержка</string>
-    <string name="limit_latency">Это приложение может добавлять некоторую задержку в аудио поток. Вы можете внести программы для просмотра фильмов/видео в список исключенных приложений, чтобы избежать возможных проблем со синхронизацией звука и видео.</string>
+    <string name="limit_latency">Это приложение может добавлять некоторую задержку в аудиопоток. Вы можете внести программы для просмотра фильмов/видео в список исключенных приложений, чтобы избежать возможных проблем со синхронизацией звука и видео.</string>
     <string name="limit_tested_devices_title">Проверенные устройства</string>
     <string name="limit_tested_devices">Производитель вашего устройства мог внести изменения в аудио-подсистему Android, которые могут нарушить работу приложения из-за использования не задокументированных API.\nПриложение тестировалось на устройствах:\n• Samsung S20+ (Android 12)\n• Эмулятор AOSP (Android 10–13)\n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
@@ -240,7 +241,7 @@
     <string name="session_loss_ignore">Игнорировать потерю контроля сеанса</string>
     <string name="session_loss_ignore_off">Отключено, стандартное поведение (рекомендуется)</string>
     <string name="session_loss_ignore_on">Не предпринимать никаких действий (может вызвать дублирование звука)</string>
-    <string name="session_loss_ignore_warning">Активация этого параметра может привести к дублированию звука, если другое приложение для обработки звука получит контроль над текущей аудиосессией. \nЕсли у вас нет проблем с ложной потерей сессий, то рекомендуется оставить эту опцию выключенной.</string>
+    <string name="session_loss_ignore_warning">Активация этого параметра может привести к дублированию звука, если другое приложение для обработки аудио получит контроль над текущей аудиосессией. \nЕсли у вас нет проблем с ложной потерей сессий, то рекомендуется оставить эту опцию выключенной.</string>
     <string name="audio_format_header">Обработка аудио</string>
     <string name="audio_format_section_header">Выбранный аудиоформат</string>
     <string name="audio_format_processing_header">Параметры обработки аудио</string>
@@ -262,6 +263,7 @@
     <string name="audio_format_buffer_size">Размер буфера</string>
     <string name="audio_format_buffer_size_unit">&#xa0;samples</string>
     <string name="audio_format_buffer_size_warning_low_value">Предупреждение: Низкие размеры буфера могут вызвать проблемы с аудио, такие как клиппинг!</string>
+    <string name="profiles_info">Нажмите для просмотра документации</string>
     <string name="app_behavior">Работа приложения</string>
     <string name="exclude_app_from_recents">Исключить приложение из недавних</string>
     <string name="exclude_app_from_recents_off">Не убирать приложение из списка недавних задач</string>
@@ -537,4 +539,5 @@
     <string name="backup_restore_mode_clean">Удалить все существующие файлы (чистое восстановление)</string>
     <string name="backup_restore_mode_dirty">Только перезаписать (грязное восстановление)</string>
     <string name="backup_in_progress">Резервное копирование уже выполняется</string>
+    <!-- Multi-device profiles -->
 </resources>

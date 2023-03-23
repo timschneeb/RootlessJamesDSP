@@ -46,6 +46,7 @@
     <string name="success">Успішно виконано</string>
     <string name="open">Відкрити</string>
     <string name="close">Закрити</string>
+    <string name="delete">Видалити</string>
     <string name="add">Додати</string>
     <string name="yes">Так</string>
     <string name="no">Ні</string>
@@ -215,7 +216,7 @@
     <string name="limit_session_control_conflict">Додатки для обробки аудіоефектів, які використовують вбудований в Android ефект динамічної обробки, перешкоджають роботі цього додатка.</string>
     <string name="limit_unsupported_apps_title">Непідтримувані додатки</string>
     <string name="limit_unsupported_apps">Додатки, які блокують запис внутрішнього аудіо, не будуть оброблені (наприклад, Spotify, Google Chrome).</string>
-    <string name="limit_hw_accel_title">Проблеми з відтворенням апаратно прискореного аудіо</string>
+    <string name="limit_hw_accel_title">Проблеми з апаратно прискореним відтворенням аудіо</string>
     <string name="limit_hw_accel">Апаратно прискорене (HW-accelerated) відтворення аудіо іноді може призводити до дублювання звуку або зупинки JamesDSP в деяких випадках. Будь ласка, додайте проблемний музичний плеєр до списку виключених додатків, щоб запобігти маршрутизації його звуку через JamesDSP.</string>
     <string name="limit_detect_delay_title">Затримка визначення аудіосесії</string>
     <string name="limit_detect_delay"><![CDATA[Після того як додаток відкриває нову аудіосесію для відтворення звуку, ви можете почути повторюваний або уривчастий звук на дуже короткий період (приблизно 250 мс).]]></string>
@@ -240,7 +241,7 @@
     <string name="session_loss_ignore">Ігнорувати втрату контролю сесії</string>
     <string name="session_loss_ignore_off">Вимкнено, типові налаштування (рекомендується)</string>
     <string name="session_loss_ignore_on">Не робити жодних дій (може спричинити дублювання звуку)</string>
-    <string name="session_loss_ignore_warning">Активація цього параметру може призвести до дублювання звуку, якщо інший додаток для обробки звуку отримає контроль над поточною аудіосесією. \nЯкщо у вас немає проблем з втратою сесій, то рекомендується залишити цю опцію вимкненою.</string>
+    <string name="session_loss_ignore_warning">Активація цього параметру може призвести до дублювання звуку, якщо інший додаток для обробки аудіо отримає контроль над поточною аудіосесією. \nЯкщо у вас немає проблем з втратою сесій, то рекомендується залишити цю опцію вимкненою.</string>
     <string name="audio_format_header">Обробка аудіо</string>
     <string name="audio_format_section_header">Обраний аудіоформат</string>
     <string name="audio_format_processing_header">Параметри обробки аудіо</string>
@@ -262,6 +263,7 @@
     <string name="audio_format_buffer_size">Розмір буфера</string>
     <string name="audio_format_buffer_size_unit">&#xa0;samples</string>
     <string name="audio_format_buffer_size_warning_low_value">Попередження: Низькі розміри буфера можуть спричинити проблеми з аудіо, як-от кліппінг!</string>
+    <string name="profiles_info">Натисніть, щоб переглянути документацію</string>
     <string name="app_behavior">Робота додатка</string>
     <string name="exclude_app_from_recents">Виключити додаток з нещодавніх</string>
     <string name="exclude_app_from_recents_off">Не видаляти додаток зі списку нещодавніх завдань</string>
@@ -537,4 +539,5 @@
     <string name="backup_restore_mode_clean">Видалити всі наявні файли (чисте відновлення)</string>
     <string name="backup_restore_mode_dirty">Тільки перезаписати (брудне відновлення)</string>
     <string name="backup_in_progress">Резервне копіювання вже виконується</string>
+    <!-- Multi-device profiles -->
 </resources>

@@ -6,15 +6,19 @@
     <string name="action_revert">重置为默认</string>
     <string name="action_blocked_apps">排除的应用</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">服务</string>
     <string name="notification_channel_service">服务通知</string>
     <string name="notification_channel_session_loss_alert">会话丢失警告</string>
     <string name="notification_channel_permission_prompt">权限请求</string>
     <string name="notification_channel_app_compat_alert">不兼容的应用警告</string>
+    <string name="notification_group_backup">备份与恢复</string>
+    <string name="notification_channel_backup_progress">进行中</string>
+    <string name="notification_channel_backup_complete">完成</string>
     <!-- Service notifications -->
     <string name="action_retry">重试</string>
     <string name="action_fix">修复问题</string>
     <string name="action_stop">停止</string>
-    <string name="notification_processing">激活的：%1$s</string>
+    <string name="notification_processing">活跃的应用：%1$s</string>
     <string name="notification_idle">没有需要处理的音频流</string>
     <string name="notification_processing_title">正在处理音频流</string>
     <string name="notification_processing_disabled_title">音频流未在处理或被禁用</string>
@@ -35,11 +39,14 @@
     <!-- General purpose -->
     <string name="install">安装</string>
     <string name="update">更新</string>
+    <string name="unknown_error">未知错误</string>
     <string name="details">详情</string>
+    <string name="actions">动作</string>
     <string name="warning">警告</string>
     <string name="success">成功</string>
     <string name="open">打开</string>
     <string name="close">关闭</string>
+    <string name="delete">删除</string>
     <string name="add">添加</string>
     <string name="yes">确定</string>
     <string name="no">取消</string>
@@ -191,6 +198,7 @@
     <string name="onboarding_adb_manual_step3">在 WebADB 中添加并连接 USB 设备。</string>
     <string name="onboarding_adb_manual_step4">导航到“Interactive Shell”并在 shell 中执行此命令：“pm grant %s android.permission.DUMP”</string>
     <string name="onboarding_adb_manual_step5">点击此应用中的“下一步”以继续。</string>
+    <string name="onboarding_adb_manual_step5b">(可选) 您可以通过执行此命令永久跳过音频捕获权限提示：\'appops set %s PROJECT_MEDIA allow\'</string>
     <string name="onboarding_adb_manual_step1_button">打开开发者设置</string>
     <string name="onboarding_perm_title">其它权限</string>
     <string name="onboarding_perm_caption">使用此应用需要额外的权限。请检查它们并点击“下一步”来授予它们。</string>
@@ -255,6 +263,7 @@
     <string name="audio_format_buffer_size">缓冲大小</string>
     <string name="audio_format_buffer_size_unit">&#xa0;样本</string>
     <string name="audio_format_buffer_size_warning_low_value">警告：过小的缓冲区大小可能会导致诸如卡顿等音频问题</string>
+    <string name="profiles_info">点击查看文档</string>
     <string name="app_behavior">应用行为</string>
     <string name="exclude_app_from_recents">在最近任务中隐藏应用</string>
     <string name="exclude_app_from_recents_off">不在最近任务中隐藏应用</string>
@@ -304,6 +313,8 @@
     <string name="credits_project_page_summary">报告问题、保持更新并查看源码</string>
     <string name="credits_project_play_page">在 Google Play 上查看 RootlessJamesDSP</string>
     <string name="credits_project_play_page_summary">检查更新</string>
+    <string name="credits_project_check_update">检查更新…</string>
+    <string name="credits_project_check_update_summary">下载并安装可用的更新</string>
     <string name="credits_project_translate">贡献翻译</string>
     <string name="credits_project_translate_summary">帮我们翻译应用为您的语言</string>
     <string name="credits_version">应用版本</string>
@@ -319,6 +330,17 @@
     <string name="appearance_app_theme">应用主题</string>
     <string name="appearance_navigation_title">底部导航栏</string>
     <string name="appearance_nav_hide">滚动时隐藏底部导航栏</string>
+    <string name="backup_settings">备份与恢复</string>
+    <string name="backup_settings_summary">自动 &amp; 手动备份</string>
+    <string name="backup_frequency">备份频率</string>
+    <string name="backup_location">备份位置</string>
+    <string name="backup_maximum">最大备份数量</string>
+    <string name="backup_never">从不</string>
+    <string name="backup_12hour">每隔 12 小时</string>
+    <string name="backup_24hour">每天</string>
+    <string name="backup_48hour">每 2 天</string>
+    <string name="backup_weekly">每周</string>
+    <string name="backup_select_location">请创建并选择一个备份目录…</string>
     <!-- Theme names -->
     <string name="theme_default">默认</string>
     <string name="theme_monet">动态</string>
@@ -346,7 +368,9 @@
     <string name="filelibrary_unsupported_format">选中的文件没有正确的文件扩展名。</string>
     <string name="filelibrary_corrupted_title">不支持或损坏的文件</string>
     <string name="filelibrary_corrupted">选中的文件中没有可用的数据或数据已损坏。</string>
+    <string name="filelibrary_file_too_new">选中的文件是用此应用的新版本创建的，无法加载，请更新此应用以继续。</string>
     <string name="filelibrary_access_fail">创建目录失败</string>
+    <string name="filelibrary_is_backup_not_preset">选中的文件是备份文件，而不是预设文件，如果您想要还原它，请转到备份设置。</string>
     <string name="filelibrary_no_file_selected">未选择文件</string>
     <string name="filelibrary_new_file_name">新文件名</string>
     <string name="filelibrary_file_exists">文件已存在</string>
@@ -484,5 +508,37 @@
     <string name="translation_notice_summary">请帮助我们将此应用翻译成您的语言！点击这里访问 Crowdin 的项目网站。</string>
     <string name="translation_notice">贡献翻译</string>
     <!-- Self-updates (Root) -->
+    <string name="self_update_install_error">更新失败</string>
+    <string name="self_update_download_fail">下载更新包失败，请检查您的网络连接。\n详细信息： %1$s</string>
+    <string name="self_update_install_fail">安装失败。 %1$s</string>
+    <string name="self_update_finished">更新已安装，应用正在重启…</string>
+    <string name="self_update_no_updates">目前没有可用的更新</string>
+    <string name="self_update_notice">有更新可用 (%1$s)</string>
+    <string name="self_update_notice_summary">点击这里下载并安装更新。</string>
+    <string name="self_update_notice_dismiss_install">立即安装</string>
+    <string name="self_update_notice_dismiss_snooze">稍后提醒我</string>
+    <string name="self_update_notice_dismiss_skip">跳过此更新</string>
+    <string name="self_update_state_downloading">正在下载...</string>
+    <string name="self_update_state_installing">正在安装...</string>
     <!-- Backups -->
+    <string name="backup_restore_progress">正在恢复备份</string>
+    <string name="backup_restore_error">恢复备份失败</string>
+    <string name="backup_restore_error_format">不支持或损坏的备份文件</string>
+    <string name="backup_restore_error_version_too_new">选中的文件是用此应用的新版本创建的，无法加载，请更新此应用以继续。</string>
+    <string name="backup_restore_completed">还原已完成</string>
+    <string name="backup_create_completed">备份已创建</string>
+    <string name="backup_create_progress">正在创建备份</string>
+    <string name="backup_create_error">备份失败</string>
+    <string name="backup_manual_backup">手动备份</string>
+    <string name="backup_create">创建备份</string>
+    <string name="backup_create_summary">可以用来稍后还原当前设置</string>
+    <string name="backup_restore">恢复备份</string>
+    <string name="backup_restore_summary">从备份文件还原设置</string>
+    <string name="backup_automatic_backup">自动备份</string>
+    <string name="backup_compat_info">备份仅包括脉冲响应、脚本、VDC 文件、预设和当前音频配置，以最大程度地兼容其它版本。</string>
+    <string name="backup_restore_mode_title">还原模式</string>
+    <string name="backup_restore_mode_clean">清理恢复 (删除所有现有文件)</string>
+    <string name="backup_restore_mode_dirty">Dirty 恢复 (仅覆盖)</string>
+    <string name="backup_in_progress">备份已在进行中</string>
+    <!-- Multi-device profiles -->
 </resources>
