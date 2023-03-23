@@ -31,6 +31,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.SdkCheck
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.isPackageInstalled
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.launchApp
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.openPlayStoreApp
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.resolveColorAttribute
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showAlert
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasDumpPermission
@@ -147,6 +148,23 @@ class OnboardingFragment : Fragment() {
             else
                 R.string.onboarding_methods_rootless_adb
         )
+
+        if(!SdkCheck.isQ) {
+            methodPage.methodsShizukuCard.isEnabled = false
+            methodPage.methodsShizukuCard.isClickable = false
+            methodPage.methodsShizukuCard.isFocusable = false
+            methodPage.methodsShizukuBody.isEnabled = false
+            methodPage.methodsShizukuTitle.isEnabled = false
+            methodPage.methodsShizukuTitle.text = "${getString(R.string.onboarding_methods_shizuku_title)} (${getString(R.string.onboarding_methods_unsupported_append)})"
+        }
+
+        if(!useRoot && SdkCheck.isQ) {
+            // Highlight Shizuku card as preferred option
+            methodPage.methodsShizukuCard.setCardBackgroundColor(
+                requireContext().resolveColorAttribute(com.google.android.material.R.attr.colorSecondaryContainer)
+            )
+
+        }
 
         methodPage.methodsRootCard.setOnClickListener {
             RootShellImpl.getShell(object : RootShellImpl.OnShellAttachedCallback {
@@ -344,10 +362,7 @@ class OnboardingFragment : Fragment() {
         }
 
         // Prepare pages
-        if(number == PAGE_METHOD_SELECT) {
-            updateSetupMethods()
-        }
-        else if(number == PAGE_ADB_SETUP) {
+        if(number == PAGE_ADB_SETUP) {
             updateSetupInstructions()
         }
         else if(number == PAGE_RUNTIME_PERMISSIONS) {
@@ -525,20 +540,6 @@ class OnboardingFragment : Fragment() {
         }
         else {
             true
-        }
-    }
-
-    @SuppressLint("SetTextI18n")
-    private fun updateSetupMethods() {
-        val page = binding.methodSelect
-
-        if(!SdkCheck.isQ) {
-            page.methodsShizukuCard.isEnabled = false
-            page.methodsShizukuCard.isClickable = false
-            page.methodsShizukuCard.isFocusable = false
-            page.methodsShizukuBody.isEnabled = false
-            page.methodsShizukuTitle.isEnabled = false
-            page.methodsShizukuTitle.text = "${getString(R.string.onboarding_methods_shizuku_title)} (${getString(R.string.onboarding_methods_unsupported_append)})"
         }
     }
 
