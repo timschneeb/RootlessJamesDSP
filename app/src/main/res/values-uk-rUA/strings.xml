@@ -56,6 +56,8 @@
     <string name="undo">Скасувати</string>
     <string name="redo">Повторити</string>
     <string name="no_activity_found">Не знайдено жодного Activity для обробки цієї дії</string>
+    <string name="permission_allowed">Дозволено</string>
+    <string name="permission_not_allowed">Заборонено</string>
     <!-- Main screen -->
     <string name="power_button_alt">Перемкнути обробку аудіо</string>
     <string name="compressor_enable">Автоматичний компресор динамічного діапазону</string>
@@ -302,6 +304,9 @@
     <string name="troubleshooting_repair_assets_success">Попередньо встановлені ресурси були відновлені</string>
     <string name="misc_settings">Інше</string>
     <string name="misc_settings_summary">Звіти про помилки, інші дії</string>
+    <string name="misc_permission_restart_setup">Перезапустити майстер налаштування</string>
+    <string name="misc_permission_restart_setup_summary">Надати відсутні додаткові дозволи</string>
+    <string name="misc_permission_header">Додаткові дозволи</string>
     <string name="assets">Ресурси</string>
     <string name="network_services">Мережеві сервіси</string>
     <string name="network_autoeq_api_url">URL-адреса API-бекенду AutoEQ</string>
