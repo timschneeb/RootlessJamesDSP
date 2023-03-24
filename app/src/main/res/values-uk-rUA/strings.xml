@@ -267,9 +267,13 @@
     <string name="audio_format_buffer_size_unit">&#xa0;samples</string>
     <string name="audio_format_buffer_size_warning_low_value">Попередження: Низькі розміри буфера можуть спричинити проблеми з аудіо, як-от кліппінг!</string>
     <string name="profiles_section_header">Профілі пристрою</string>
-    <string name="profiles_info_title">Що таке профілі для кожного пристрою?</string>
+    <string name="profiles_summary">Індивідуальні профілі пристроїв, автоматичне перемикання</string>
+    <string name="profiles_enable">Індивідуальні профілі пристроїв</string>
+    <string name="profiles_enable_summary_on">Індивідуальні профілі увімкнені</string>
+    <string name="profiles_enable_summary_off">Індивідуальні профілі вимкнені</string>
+    <string name="profiles_info_title">Що таке індивідуальні профілі пристроїв?</string>
     <string name="profiles_info">Натисніть, щоб переглянути документацію</string>
-    <string name="profiles_info_content">У разі ввімкнення цього налаштування кожному аудіопристрою призначається окрема конфігурація звуку. Додаток автоматично перемикається між профілями пристроїв у разі зміни вихідного пристрою. \n\nКожен новий підключений аудіопристрій починає з порожнього профілю. Ви можете налаштувати його або скопіювати налаштування з іншого профілю. \n\nЗверніть увагу: у разі ввімкнення цієї функції пресети застосовуватимуться тільки до активного профілю. Неактивні профілі залишаються без змін.</string>
+    <string name="profiles_info_content">У разі ввімкнення цього налаштування кожному аудіопристрою призначається окрема конфігурація звуку. Додаток автоматично перемикається між профілями пристроїв у разі зміни вихідного пристрою. \n\nКожен новий підключений аудіопристрій починає з порожнього профілю. Ви можете налаштувати його або скопіювати налаштування з іншого профілю. \n\nЗверніть увагу: у разі ввімкнення цієї функції, пресети застосовуватимуться тільки до активного профілю. Неактивні профілі залишаються без змін.</string>
     <string name="profiles_manage_hint">Щоб скопіювати або видалити профілі, натисніть кнопку «Активний профіль пристрою» на головному екрані.</string>
     <string name="app_behavior">Робота додатка</string>
     <string name="exclude_app_from_recents">Виключити додаток з нещодавніх</string>
@@ -552,8 +556,9 @@
     <string name="group_hdmi">HDMI</string>
     <string name="group_speaker">Внутрішній динамік</string>
     <string name="group_usb">USB</string>
+    <string name="group_unknown">Невідомо</string>
     <string name="device_profile_status">Активний профіль пристрою</string>
-    <string name="device_profile_manage_copy">Скопіювати профіль</string>
+    <string name="device_profile_manage_copy">Копіювати профіль</string>
     <string name="device_profile_manage_delete">Видалити профілі</string>
     <string name="device_profile_manage_copy_select_no_target">Немає доступних профілів для перезапису</string>
     <string name="device_profile_manage_copy_select">Виберіть профіль для копіювання</string>
