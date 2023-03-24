@@ -201,7 +201,6 @@
     <string name="onboarding_adb_manual_step4">Перейдіть у розділ «Interactive Shell» і виконайте в терміналі таку команду: pm grant %s android.permission.DUMP</string>
     <string name="onboarding_adb_manual_step5">Натисніть «Далі» в цьому додатку, щоб продовжити.</string>
     <string name="onboarding_adb_manual_step5b">(Необов\'язково) Ви можете назавжди вимкнути запити на дозвіл захоплення аудіо, виконавши цю команду: appops set %s PROJECT_MEDIA allow</string>
-    <string name="onboarding_adb_manual_step5c">(Необов\'язково) Додатково до попереднього кроку ви також можете увімкнути автозапуск, виконавши наступну команду: pm grant %s android.permission.SYSTEM_ALERT_WINDOW</string>
     <string name="onboarding_adb_manual_step1_button">Відкрити «Для розробників»</string>
     <string name="onboarding_perm_title">Інші дозволи</string>
     <string name="onboarding_perm_caption">Для використання цієї програми необхідні додаткові дозволи. Будь ласка, ознайомтеся з ними та натисніть «Далі» щоб надати їх.</string>
