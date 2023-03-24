@@ -561,7 +561,7 @@
     <string name="backup_restore_mode_dirty">Špinavá obnova (pouze přepsat)</string>
     <string name="backup_in_progress">Zálohování již probíhá</string>
     <!-- Multi-device profiles -->
-    <string name="group_wired_headphones">Kabelové sluchátka</string>
+    <string name="group_wired_headphones">Kabelová sluchátka</string>
     <string name="group_bluetooth">Bluetooth</string>
     <string name="group_hdmi">HDMI</string>
     <string name="group_speaker">Interní reproduktor</string>
