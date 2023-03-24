@@ -201,7 +201,6 @@
     <string name="onboarding_adb_manual_step4">Перейдите в раздел «Interactive Shell» и выполните в терминале следующую команду: pm grant %s android.permission.DUMP</string>
     <string name="onboarding_adb_manual_step5">Нажмите «Далее» в этом приложении, чтобы продолжить.</string>
     <string name="onboarding_adb_manual_step5b">(Необязательно) Вы можете навсегда отключить запросы на разрешение захвата аудио, выполнив эту команду: appops set %s PROJECT_MEDIA allow</string>
-    <string name="onboarding_adb_manual_step5c">(Необязательно) В дополнение к предыдущему шагу вы также можете включить автостарт, выполнив следующую команду: pm grant %s android.permission.SYSTEM_ALERT_WINDOW</string>
     <string name="onboarding_adb_manual_step1_button">Открыть «Для разработчиков»</string>
     <string name="onboarding_perm_title">Другие разрешения</string>
     <string name="onboarding_perm_caption">Для использования этого приложения необходимы дополнительные разрешения. Пожалуйста, ознакомьтесь с ними и нажмите «Далее» чтобы предоставить их.</string>
