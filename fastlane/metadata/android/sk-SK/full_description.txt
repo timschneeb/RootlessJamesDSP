@@ -1,8 +1,8 @@
-JamesDSPをシステム全体のオーディオ処理エンジンとして、非ルート化端末で使用することができます。
+Use JamesDSP as a system-wide audio processing engine without any root access.
 
-このアプリにはいくつかの制限があります。初期設定には、Shizuku(Android 11+)またはパソコンからのADBアクセスが必要です。
+This app has several limitations that may be deal-breaking to some people; please read this whole document before using the app. Shizuku (Android 11+) or ADB access via a computer is required for the initial setup.
 
-JamesDSPが対応するオーディオエフェクト:
+JamesDSP supports the following audio effects:
 * Limiter control
 * Output gain control
 * Auto dynamic range compressor

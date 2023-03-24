@@ -47,6 +47,8 @@
     <string name="open">Открыть</string>
     <string name="close">Закрыть</string>
     <string name="delete">Удалить</string>
+    <string name="copy">Копировать</string>
+    <string name="paste">Вставить</string>
     <string name="add">Добавить</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
@@ -263,7 +265,15 @@
     <string name="audio_format_buffer_size">Размер буфера</string>
     <string name="audio_format_buffer_size_unit">&#xa0;samples</string>
     <string name="audio_format_buffer_size_warning_low_value">Предупреждение: Низкие размеры буфера могут вызвать проблемы с аудио, такие как клиппинг!</string>
+    <string name="profiles_section_header">Профили устройства</string>
+    <string name="profiles_summary">Индивидуальные профили устройств, автоматическое переключение</string>
+    <string name="profiles_enable">Индивидуальные профили устройств</string>
+    <string name="profiles_enable_summary_on">Индивидуальные профили включены</string>
+    <string name="profiles_enable_summary_off">Индивидуальные профили отключены</string>
+    <string name="profiles_info_title">Что такое индивидуальные профили устройств?</string>
     <string name="profiles_info">Нажмите для просмотра документации</string>
+    <string name="profiles_info_content">При включении данной настройки каждому аудиоустройству назначается отдельная конфигурация звука. Приложение автоматически переключается между профилями при изменении выходного устройства. \n\nПри подключении нового аудиоустройства ему автоматически назначается пустой профиль. Вы можете настроить его или скопировать настройки из другого профиля. \n\nОбратите внимание: при включении данной функции, пресеты будут применяться только к активному профилю. Неактивные профили остаются без изменений.</string>
+    <string name="profiles_manage_hint">Чтобы скопировать или удалить профили, нажмите кнопку «Активный профиль устройства» на главном экране.</string>
     <string name="app_behavior">Работа приложения</string>
     <string name="exclude_app_from_recents">Исключить приложение из недавних</string>
     <string name="exclude_app_from_recents_off">Не убирать приложение из списка недавних задач</string>
@@ -540,4 +550,16 @@
     <string name="backup_restore_mode_dirty">Только перезаписать (грязное восстановление)</string>
     <string name="backup_in_progress">Резервное копирование уже выполняется</string>
     <!-- Multi-device profiles -->
+    <string name="group_wired_headphones">Проводные наушники</string>
+    <string name="group_bluetooth">Bluetooth</string>
+    <string name="group_hdmi">HDMI</string>
+    <string name="group_speaker">Внутренний динамик</string>
+    <string name="group_usb">USB</string>
+    <string name="group_unknown">Неизвестно</string>
+    <string name="device_profile_status">Активный профиль устройства</string>
+    <string name="device_profile_manage_copy">Копировать профиль</string>
+    <string name="device_profile_manage_delete">Удалить профили</string>
+    <string name="device_profile_manage_copy_select_no_target">Нет доступных профилей для перезаписи</string>
+    <string name="device_profile_manage_copy_select">Выберите профиль для копирования</string>
+    <string name="device_profile_manage_paste_select">Выберите профили для перезаписи</string>
 </resources>

@@ -56,6 +56,8 @@
     <string name="undo">Rückgängig</string>
     <string name="redo">Wiederherstellen</string>
     <string name="no_activity_found">Keine App gefunden, um diese Aktion zu behandeln</string>
+    <string name="permission_allowed">Erlaubt</string>
+    <string name="permission_not_allowed">Nicht erlaubt</string>
     <!-- Main screen -->
     <string name="power_button_alt">Audioverarbeitung umschalten</string>
     <string name="compressor_enable">Automatischer Dynamikbereichskompressor</string>
@@ -201,6 +203,7 @@
     <string name="onboarding_adb_manual_step4">Navigiere zu \'Interaktive Shell\' und führe den folgenden Befehl in der Shell aus: \'pm grant %s android.permission.DUMP\'</string>
     <string name="onboarding_adb_manual_step5">Tippe auf \"Weiter\" in dieser App, um fortzufahren.</string>
     <string name="onboarding_adb_manual_step5b">(Optional) Du kannst die Erlaubnisanfragen für die Aufnahme des internen Audios permanent überspringen, indem du diesen Befehl ausführst: \'appops set %s PROJECT_MEDIA allow\'</string>
+    <string name="onboarding_adb_manual_step5c">(Optional) Zusätzlich zum vorherigen Schritt kannst du auch den Auto-Start aktivieren, indem du den folgenden Befehl ausführst: \'appops set %s SYSTEM_ALERT_WINDOW allow\'</string>
     <string name="onboarding_adb_manual_step1_button">Entwicklereinstellungen öffnen</string>
     <string name="onboarding_perm_title">Weitere Berechtigungen</string>
     <string name="onboarding_perm_caption">Für die Nutzung dieser Anwendung sind zusätzliche Berechtigungen erforderlich. Bitte überprüfen Sie sie und tippen Sie auf \"Weiter\", um sie zu gewähren.</string>
@@ -281,6 +284,9 @@
     <string name="autostart_prompt_at_boot">Anfrage nach Aufnahmeberechtigung nach dem Booten</string>
     <string name="autostart_prompt_at_boot_off">Keine Benachrichtigung nach dem Booten anzeigen</string>
     <string name="autostart_prompt_at_boot_on">Benachrichtigung nach dem Booten anzeigen</string>
+    <string name="autostart_service_at_boot">Nach dem Booten starten</string>
+    <string name="autostart_service_at_boot_off">Dienst nach dem Booten nicht automatisch starten</string>
+    <string name="autostart_service_at_boot_on">Dienst nach dem Booten automatisch starten</string>
     <string name="powersave">Energie sparen</string>
     <string name="powersave_suspend">Audio-Pipeline im Leerlauf unterbrechen</string>
     <string name="powersave_suspend_off">Verarbeite auch, wenn kein Inhalt abgespielt wird</string>
@@ -301,6 +307,11 @@
     <string name="troubleshooting_repair_assets_success">Gebündelte Dateien wurden wiederhergestellt</string>
     <string name="misc_settings">Verschiedenes</string>
     <string name="misc_settings_summary">Absturzberichte, andere Aktionen</string>
+    <string name="misc_permission_skip_prompt">Erlaubnisanfrage für Audio-Aufnahme überspringen</string>
+    <string name="misc_permission_auto_start">Effekt-Engine beim Booten automatisch starten</string>
+    <string name="misc_permission_restart_setup">Setup-Assistenten neu starten</string>
+    <string name="misc_permission_restart_setup_summary">Fehlende optionale Berechtigungen erteilen</string>
+    <string name="misc_permission_header">Optionale Berechtigungen</string>
     <string name="assets">Assets</string>
     <string name="network_services">Netzwerkdienste</string>
     <string name="network_autoeq_api_url">AutoEQ API Backend-URL</string>
