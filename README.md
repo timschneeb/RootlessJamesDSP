@@ -129,21 +129,21 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
         <br />
         <sub><b>Tim Schneeberger (ThePBone)</b></sub></a>
       <br />
-      <sub><b>21594 words</b></sub>
+      <sub><b>21708 words</b></sub>
     </td>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/netrunner-exe"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15209210/medium/dabb33b18a6eb0e59cee34e448d81e40.jpg" />
         <br />
         <sub><b>Oleksandr Tkachenko (netrunner-exe)</b></sub></a>
       <br />
-      <sub><b>6605 words</b></sub>
+      <sub><b>6719 words</b></sub>
     </td>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/FrameXX"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/14591682/medium/071f9d859dc36f9281f6f84b9c18c852.png" />
         <br />
         <sub><b>FrameXX</b></sub></a>
       <br />
-      <sub><b>3125 words</b></sub>
+      <sub><b>3315 words</b></sub>
     </td>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/fankesyooni"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15676501/medium/6ee6d7e4c63bfb0f90dc5088a5ff0efd.jpg" />
@@ -322,6 +322,13 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
       <sub><b>2 words</b></sub>
     </td>
     <td align="center" valign="top">
+      <a href="https://crowdin.com/profile/Fi8ysnqvfm"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/13664019/medium/5f6e4091616940da7d8a929730acad09_default.png" />
+        <br />
+        <sub><b>Fi8ysnqvfm</b></sub></a>
+      <br />
+      <sub><b>2 words</b></sub>
+    </td>
+    <td align="center" valign="top">
       <a href="https://crowdin.com/profile/mekyson"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15715699/medium/3445884a2b6cf411305a730e29cb9d72.jpeg" />
         <br />
         <sub><b>Mekyson Makys (mekyson)</b></sub></a>
@@ -332,13 +339,6 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
       <a href="https://crowdin.com/profile/huxflux252"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15733253/medium/1167781a1aa3a068aacd79c6a342d974.png" />
         <br />
         <sub><b>a bbb (huxflux252)</b></sub></a>
-      <br />
-      <sub><b>1 words</b></sub>
-    </td>
-    <td align="center" valign="top">
-      <a href="https://crowdin.com/profile/Fi8ysnqvfm"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/13664019/medium/5f6e4091616940da7d8a929730acad09_default.png" />
-        <br />
-        <sub><b>Fi8ysnqvfm</b></sub></a>
       <br />
       <sub><b>1 words</b></sub>
     </td>
