@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Main menu bar -->
+    <!-- Notification channels -->
+    <!-- Service notifications -->
+    <!-- Permission request notifications -->
+    <!-- Session control loss notifications -->
+    <!-- App compatibility issue notifications -->
+    <!-- Capture permission revoked notifications -->
+    <!-- General purpose -->
+    <!-- Main screen -->
+    <!-- Onboarding -->
+    <!-- Rootless flavor -->
+    <!-- Root flavor -->
+    <!-- Settings -->
+    <!-- Theme names -->
+    <!-- File library preference -->
+    <!-- JamesDSP engine messages -->
+    <!-- GraphicEQ editor -->
+    <!-- AutoEQ GraphicEQ selector -->
+    <!-- Customizable liveprog script parameters -->
+    <!-- Liveprog script editor -->
+    <!-- Blocklist -->
+    <!-- Compatibility issue activity -->
+    <!-- Root: Library load failure -->
+    <!-- Enhanced processing -->
+    <!-- App list -->
+    <!-- Number box view -->
+    <!-- Slider widget -->
+    <!-- Revert confirmation -->
+    <!-- File intent handler -->
+    <!-- Translation notice box -->
+    <!-- Self-updates (Root) -->
+    <!-- Backups -->
+    <!-- Multi-device profiles -->
+</resources>
