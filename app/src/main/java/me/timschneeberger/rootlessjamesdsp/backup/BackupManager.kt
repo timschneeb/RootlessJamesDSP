@@ -136,11 +136,12 @@ class BackupManager(private val context: Context): KoinComponent {
                     ?.forEach { it.deleteRecursively() }
             }
 
+            var enableDeviceProfiles = false
             targetFolder.listFiles()?.forEach { file ->
                 if(file.isDirectory && file.name == "shared_prefs")
                     file.copyRecursively(File(context.applicationInfo.dataDir + "/shared_prefs"), true)
                 else if(file.isDirectory && file.name == "profiles") {
-                    preferences.set(R.string.key_device_profiles_enable, true)
+                    enableDeviceProfiles = true
                     file.copyRecursively(
                         File(context.applicationInfo.dataDir + "/files/profiles"),
                         true
@@ -155,7 +156,10 @@ class BackupManager(private val context: Context): KoinComponent {
 
             context.sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
             context.sendLocalBroadcast(Intent(Constants.ACTION_PRESET_LOADED))
+            context.sendLocalBroadcast(Intent(Constants.ACTION_BACKUP_RESTORED))
 
+            if(enableDeviceProfiles)
+                preferences.set(R.string.key_device_profiles_enable, true)
         }
     }
 

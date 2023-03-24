@@ -127,7 +127,7 @@ class RoutingObserver(val context: Context) : MediaRouter.Callback(), KoinCompon
         router.unselect(MediaRouter.UNSELECT_REASON_DISCONNECTED)
     }
 
-    private fun retrigger() {
+    fun retrigger() {
         callbacks.forEach { callback -> currentDevice?.let(callback::onRoutingDeviceChanged) }
     }
 

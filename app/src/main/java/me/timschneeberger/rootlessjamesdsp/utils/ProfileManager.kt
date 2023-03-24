@@ -1,13 +1,18 @@
 package me.timschneeberger.rootlessjamesdsp.utils
 
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.model.preset.Preset
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.restoreDspSettings
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.unregisterLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ensureIsDirectory
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ensureIsFile
 import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
@@ -17,13 +22,13 @@ import timber.log.Timber
 import java.io.File
 import java.io.FileNotFoundException
 
-class ProfileManager : RoutingObserver.RoutingChangedCallback, KoinComponent {
+class ProfileManager : BroadcastReceiver(), RoutingObserver.RoutingChangedCallback, KoinComponent {
     private val context: Context by inject()
     private val prefs: Preferences.App by inject()
     private val routingObserver: RoutingObserver by inject()
     private val lock = Any()
 
-    private var activeProfile: Profile?
+    private var activeProfile: Profile? = null
 
     val allProfiles: Array<Profile>
         get() = getProfileDirectory(null)
@@ -47,14 +52,21 @@ class ProfileManager : RoutingObserver.RoutingChangedCallback, KoinComponent {
             ?.toTypedArray() ?: arrayOf()
 
     init {
-        activeProfile = getProfileDirectory(null).ensureIsDirectory()?.let {
-            File(it, FILE_PROFILE).ensureIsFile()?.let { file -> Profile.from(file) }
-        }
+        resetState()
+        context.registerLocalReceiver(this, IntentFilter(Constants.ACTION_BACKUP_RESTORED))
         routingObserver.registerOnRoutingChangeListener(this)
     }
 
     protected fun finalize() {
+        context.unregisterLocalReceiver(this)
         routingObserver.unregisterOnRoutingChangeListener(this)
+    }
+
+    private fun resetState() {
+        Timber.d("activeProfile reset")
+        activeProfile = getProfileDirectory(null).ensureIsDirectory()?.let {
+            File(it, FILE_PROFILE).ensureIsFile()?.let { file -> Profile.from(file) }
+        }
     }
 
     override fun onRoutingDeviceChanged(device: RoutingObserver.Device?) {
@@ -66,9 +78,12 @@ class ProfileManager : RoutingObserver.RoutingChangedCallback, KoinComponent {
     }
 
     fun rotate(newDevice: RoutingObserver.Device) {
+        rotate(Profile.from(newDevice))
+    }
+
+    fun rotate(newProfile: Profile) {
         synchronized(lock) {
-            Timber.d("Rotating profile from '${activeProfile?.id}' to '${newDevice.id}'")
-            val newProfile = Profile.from(newDevice)
+            Timber.d("Rotating profile from '${activeProfile?.id}' to '${newProfile.id}'")
             if(newProfile.id == activeProfile?.id) {
                 Timber.w("Profile already loaded. No action taken.")
                 return
@@ -192,9 +207,19 @@ class ProfileManager : RoutingObserver.RoutingChangedCallback, KoinComponent {
         return File(context.applicationInfo.dataDir, "shared_prefs")
     }
 
+    override fun onReceive(context: Context?, intent: Intent?) {
+        when(intent?.action) {
+            Constants.ACTION_BACKUP_RESTORED -> {
+                // Reset activeProfile state
+                resetState()
+                // Retrigger last device change event
+                routingObserver.retrigger()
+            }
+        }
+    }
+
     companion object {
         const val FILE_PROFILE = "profile.json"
         const val FILE_PROFILE_PRESET = "profile.tar"
     }
-
 }
