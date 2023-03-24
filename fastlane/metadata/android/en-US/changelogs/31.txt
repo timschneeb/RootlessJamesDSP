@@ -1,0 +1,5 @@
+* Added device-specific audio profiles (automatic switching)
+* Automatic auto-start support (requires additional permissions)
+* Equalizer: apply changes in real-time
+* Translation updates
+* Other fixes & code refactors
