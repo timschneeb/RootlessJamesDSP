@@ -284,6 +284,9 @@
     <string name="autostart_prompt_at_boot">Запитувати дозвіл на захоплення після завантаження</string>
     <string name="autostart_prompt_at_boot_off">Не показувати сповіщення після завантаження</string>
     <string name="autostart_prompt_at_boot_on">Показувати сповіщення після завантаження</string>
+    <string name="autostart_service_at_boot">Запуск після завантаження</string>
+    <string name="autostart_service_at_boot_off">Не запускати сервіс автоматично після завантаження</string>
+    <string name="autostart_service_at_boot_on">Запускати сервіс автоматично після завантаження</string>
     <string name="powersave">Енергозбереження</string>
     <string name="powersave_suspend">Призупиняти аудіопотік під час простою</string>
     <string name="powersave_suspend_off">Продовжувати обробку, навіть коли контент не відтворюється</string>
@@ -304,6 +307,8 @@
     <string name="troubleshooting_repair_assets_success">Попередньо встановлені ресурси були відновлені</string>
     <string name="misc_settings">Інше</string>
     <string name="misc_settings_summary">Звіти про помилки, інші дії</string>
+    <string name="misc_permission_skip_prompt">Пропустити запит дозволу на захоплення</string>
+    <string name="misc_permission_auto_start">Автозапуск механізму обробки ефектів під час завантаження</string>
     <string name="misc_permission_restart_setup">Перезапустити майстер налаштування</string>
     <string name="misc_permission_restart_setup_summary">Надати відсутні додаткові дозволи</string>
     <string name="misc_permission_header">Додаткові дозволи</string>
