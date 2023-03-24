@@ -258,7 +258,7 @@
     <string name="audio_format_enhanced_processing_off">Расширенная обработка отключена</string>
     <string name="audio_format_enhanced_processing_info_title">Что такое расширенная обработка?</string>
     <string name="audio_format_enhanced_processing_info">Нажмите для просмотра документации</string>
-    <string name="audio_format_enhanced_processing_info_content">Если опция «Расширенная обработка» включена, вы можете выбирать, какие приложения должны быть исключены из обработки JamesDSP через меню с тремя точками в правом нижнем углу, выбрав пункт «Исключенные приложения». \n\nОтключение режима legacy позволяет каждому приложению использовать свой собственный движок эффектов JamesDSP для более тонкого контроля. В противном случае все приложения будут использовать один механизм обработки, который в Android устарел и больше не должен использоваться. \n\nК сожалению, не все мультимедийные приложения корректно выполняют эту функцию, и поэтому есть вероятность, что они не будут работать должным образом при отключенном режиме legacy. Для решения этой проблемы можно включить опцию «Расширенная обработка», чтобы JamesDSP мог самостоятельно сканировать аудиосессии, не полагаясь на системные сообщения и обеспечивать корректную поддержку таких приложений.</string>
+    <string name="audio_format_enhanced_processing_info_content">Если опция «Расширенная обработка» включена, вы можете выбирать, какие приложения должны быть исключены из обработки JamesDSP через меню с тремя точками в правом нижнем углу, выбрав пункт «Исключенные приложения». \n\nОтключение режима legacy позволяет каждому приложению использовать свой собственный механизм обработки эффектов JamesDSP для более тонкого контроля. В противном случае все приложения будут использовать один механизм обработки, который в Android устарел и больше не должен использоваться. \n\nК сожалению, не все мультимедийные приложения корректно выполняют эту функцию, и поэтому есть вероятность, что они не будут работать должным образом при отключенном режиме legacy. Для решения этой проблемы можно включить опцию «Расширенная обработка», чтобы JamesDSP мог самостоятельно сканировать аудиосессии, не полагаясь на системные сообщения и обеспечивать корректную поддержку таких приложений.</string>
     <string name="audio_format_media_apps_need_restart">После изменения этого параметра необходимо перезапустить все активные мультимедийные приложения, чтобы возобновить обработку звука.</string>
     <string name="audio_format_summary">Кодирование аудио, размер буфера</string>
     <string name="audio_format_summary_root">Режим legacy, расширенная обработка</string>
@@ -284,9 +284,9 @@
     <string name="autostart_prompt_at_boot">Запрашивать разрешение на захват после загрузки</string>
     <string name="autostart_prompt_at_boot_off">Не показывать уведомление после загрузки</string>
     <string name="autostart_prompt_at_boot_on">Показывать уведомление после загрузки</string>
-    <string name="autostart_service_at_boot">Запускать после загрузки</string>
-    <string name="autostart_service_at_boot_off">Не запускать службу автоматически после загрузки</string>
-    <string name="autostart_service_at_boot_on">Запускать службу автоматически после загрузки</string>
+    <string name="autostart_service_at_boot">Запуск после загрузки</string>
+    <string name="autostart_service_at_boot_off">Не запускать сервис автоматически после загрузки</string>
+    <string name="autostart_service_at_boot_on">Запускать сервис автоматически после загрузки</string>
     <string name="powersave">Энергосбережение</string>
     <string name="powersave_suspend">Приостанавливать аудиопоток во время простоя</string>
     <string name="powersave_suspend_off">Продолжать обработку, даже если контент не воспроизводится</string>
@@ -308,7 +308,7 @@
     <string name="misc_settings">Прочее</string>
     <string name="misc_settings_summary">Отчёты об ошибках, другие действия</string>
     <string name="misc_permission_skip_prompt">Пропустить запрос разрешения на захват</string>
-    <string name="misc_permission_auto_start">Автозапуск движка эффектов при загрузке</string>
+    <string name="misc_permission_auto_start">Автозапуск механизма обработки эффектов при загрузке</string>
     <string name="misc_permission_restart_setup">Перезапустить мастер настройки</string>
     <string name="misc_permission_restart_setup_summary">Предоставить отсутствующие дополнительные разрешения</string>
     <string name="misc_permission_header">Дополнительные разрешения</string>
