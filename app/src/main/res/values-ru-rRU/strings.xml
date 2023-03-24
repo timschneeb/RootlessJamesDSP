@@ -56,6 +56,8 @@
     <string name="undo">Отменить</string>
     <string name="redo">Повторить</string>
     <string name="no_activity_found">Не найдено ни одного Activity для обработки данного действия</string>
+    <string name="permission_allowed">Разрешено</string>
+    <string name="permission_not_allowed">Запрещено</string>
     <!-- Main screen -->
     <string name="power_button_alt">Переключить обработку аудио</string>
     <string name="compressor_enable">Автоматический компрессор динамического диапазона</string>
@@ -306,6 +308,7 @@
     <string name="misc_settings">Прочее</string>
     <string name="misc_settings_summary">Отчёты об ошибках, другие действия</string>
     <string name="misc_permission_skip_prompt">Пропустить запрос разрешения на захват</string>
+    <string name="misc_permission_auto_start">Автозапуск движка эффектов при загрузке</string>
     <string name="misc_permission_restart_setup">Перезапустить мастер настройки</string>
     <string name="misc_permission_restart_setup_summary">Предоставить отсутствующие дополнительные разрешения</string>
     <string name="misc_permission_header">Дополнительные разрешения</string>
