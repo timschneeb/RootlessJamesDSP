@@ -15,7 +15,6 @@ Starting with version 1.3.2, the root build includes a self-updater. You can dir
 
 **This app behaves differently than the original app:**
 
-* No separate configurations for speaker/bluetooth/usb/wired for now; there's one active category for all (I'm going to add device profiles later)
 * Different preset file format (.tar); you can't import old presets
 * `/sdcard/Android/data/james.dsp/` is used instead of `/sdcard/JamesDSP` due to scoped storage. Files in scoped storage are deleted when the app is uninstalled. You can use the new auto-backup feature if you'd like to keep a separate backup of all your IRS, DDC, Liveprog, and preset files.
 
