@@ -56,6 +56,8 @@
     <string name="undo">Скасувати</string>
     <string name="redo">Повторити</string>
     <string name="no_activity_found">Не знайдено жодного Activity для обробки цієї дії</string>
+    <string name="permission_allowed">Дозволено</string>
+    <string name="permission_not_allowed">Заборонено</string>
     <!-- Main screen -->
     <string name="power_button_alt">Перемкнути обробку аудіо</string>
     <string name="compressor_enable">Автоматичний компресор динамічного діапазону</string>
@@ -200,7 +202,8 @@
     <string name="onboarding_adb_manual_step3">Додайте та підключіть USB-пристрій у WebADB.</string>
     <string name="onboarding_adb_manual_step4">Перейдіть у розділ «Interactive Shell» і виконайте в терміналі таку команду: pm grant %s android.permission.DUMP</string>
     <string name="onboarding_adb_manual_step5">Натисніть «Далі» в цьому додатку, щоб продовжити.</string>
-    <string name="onboarding_adb_manual_step5b">(Необов\'язково) Ви можете назавжди вимкнути запити на дозвіл захоплення аудіо, виконавши цю команду: appops set %s PROJECT_MEDIA allow</string>
+    <string name="onboarding_adb_manual_step5b">(Додатково) Ви можете назавжди вимкнути запити на дозвіл захоплення аудіо, виконавши цю команду: appops set %s PROJECT_MEDIA allow</string>
+    <string name="onboarding_adb_manual_step5c">(Додатково) Ви також можете увімкнути автозапуск, виконавши наступну команду: appops set %s SYSTEM_ALERT_WINDOW allow</string>
     <string name="onboarding_adb_manual_step1_button">Відкрити «Для розробників»</string>
     <string name="onboarding_perm_title">Інші дозволи</string>
     <string name="onboarding_perm_caption">Для використання цієї програми необхідні додаткові дозволи. Будь ласка, ознайомтеся з ними та натисніть «Далі» щоб надати їх.</string>
@@ -266,13 +269,13 @@
     <string name="audio_format_buffer_size_unit">&#xa0;samples</string>
     <string name="audio_format_buffer_size_warning_low_value">Попередження: Низькі розміри буфера можуть спричинити проблеми з аудіо, як-от кліппінг!</string>
     <string name="profiles_section_header">Профілі пристрою</string>
-    <string name="profiles_summary">Індивідуальні профілі пристроїв, автоматичне перемикання</string>
-    <string name="profiles_enable">Індивідуальні профілі пристроїв</string>
-    <string name="profiles_enable_summary_on">Індивідуальні профілі увімкнені</string>
-    <string name="profiles_enable_summary_off">Індивідуальні профілі вимкнені</string>
-    <string name="profiles_info_title">Що таке індивідуальні профілі пристроїв?</string>
+    <string name="profiles_summary">Окремі профілі пристроїв, автоматичне перемикання</string>
+    <string name="profiles_enable">Окремі профілі пристроїв</string>
+    <string name="profiles_enable_summary_on">Окремі профілі для кожного пристрою увімкнені</string>
+    <string name="profiles_enable_summary_off">Окремі профілі для кожного пристрою вимкнені</string>
+    <string name="profiles_info_title">Що таке окремі профілі для кожного пристрою?</string>
     <string name="profiles_info">Натисніть, щоб переглянути документацію</string>
-    <string name="profiles_info_content">У разі ввімкнення цього налаштування кожному аудіопристрою призначається окрема конфігурація звуку. Додаток автоматично перемикається між профілями у разі зміни вихідного пристрою. \n\nПід час під\'єднання нового аудіопристрою йому автоматично призначається порожній профіль. Ви можете налаштувати його або скопіювати налаштування з іншого профілю. \n\nЗверніть увагу: у разі ввімкнення цієї функції, пресети застосовуватимуться тільки до активного профілю. Неактивні профілі залишаються без змін.</string>
+    <string name="profiles_info_content">Якщо цей параметр увімкнено, кожному аудіопристрою призначається окрема конфігурація звуку. Додаток автоматично перемикається між профілями у разі зміни вихідного пристрою. \n\nПід час під\'єднання нового аудіопристрою йому автоматично призначається порожній профіль. Ви можете налаштувати його або скопіювати налаштування з іншого профілю. \n\nЗверніть увагу: при увімкненні цієї опції, пресети застосовуватимуться тільки до активного профілю. Неактивні профілі залишаються без змін.</string>
     <string name="profiles_manage_hint">Щоб скопіювати або видалити профілі, натисніть кнопку «Активний профіль пристрою» на головному екрані.</string>
     <string name="app_behavior">Робота додатка</string>
     <string name="exclude_app_from_recents">Виключити додаток з нещодавніх</string>
@@ -281,6 +284,9 @@
     <string name="autostart_prompt_at_boot">Запитувати дозвіл на захоплення після завантаження</string>
     <string name="autostart_prompt_at_boot_off">Не показувати сповіщення після завантаження</string>
     <string name="autostart_prompt_at_boot_on">Показувати сповіщення після завантаження</string>
+    <string name="autostart_service_at_boot">Запуск після завантаження</string>
+    <string name="autostart_service_at_boot_off">Не запускати сервіс автоматично після завантаження</string>
+    <string name="autostart_service_at_boot_on">Запускати сервіс автоматично після завантаження</string>
     <string name="powersave">Енергозбереження</string>
     <string name="powersave_suspend">Призупиняти аудіопотік під час простою</string>
     <string name="powersave_suspend_off">Продовжувати обробку, навіть коли контент не відтворюється</string>
@@ -301,6 +307,11 @@
     <string name="troubleshooting_repair_assets_success">Попередньо встановлені ресурси були відновлені</string>
     <string name="misc_settings">Інше</string>
     <string name="misc_settings_summary">Звіти про помилки, інші дії</string>
+    <string name="misc_permission_skip_prompt">Пропустити запит дозволу на захоплення</string>
+    <string name="misc_permission_auto_start">Автозапуск механізму обробки ефектів під час завантаження</string>
+    <string name="misc_permission_restart_setup">Перезапустити майстер налаштування</string>
+    <string name="misc_permission_restart_setup_summary">Надати відсутні додаткові дозволи</string>
+    <string name="misc_permission_header">Додаткові дозволи</string>
     <string name="assets">Ресурси</string>
     <string name="network_services">Мережеві сервіси</string>
     <string name="network_autoeq_api_url">URL-адреса API-бекенду AutoEQ</string>

@@ -258,7 +258,7 @@
     <string name="audio_format_enhanced_processing_off">Vylepšené zpracování vypnuto</string>
     <string name="audio_format_enhanced_processing_info_title">Co je vylepšené zpracování?</string>
     <string name="audio_format_enhanced_processing_info">Klepnutím zobrazíte dokumentaci</string>
-    <string name="audio_format_enhanced_processing_info_content">Pokud je povoleno rozšířené zpracování, můžete selektivně vyloučit některé aplikace ze zpracování JamesDSP. Použijte 3 bodové menu v pravém dolním rohu a vyberte \'Vyloučené aplikace\' pro přístup k této funkci.\n\nZatímco starší režim je zakázán, JamesDSP se spoléhá na aplikace médií a posílá systémové vysílání při startu přehrávání. Toto je výhoda oproti starému režimu, protože každá aplikace dostane vlastní nástroj pro efekty JamesDSP, který mu umožňuje lépe ovládat. V opačném případě by se starším režimem zapnutým všechny aplikace sdílely jeden procesor, který Android zastaralý a již by neměl být používán.\n\nBohužel ne všechny aplikace médií to dělají správně, a proto by nefungovaly správně, když je zakázán režim kompatability. Pro vyřešení tohoto problému můžete povolit rozšířené zpracování. Namísto spoléhání se na systémové vysílání na nové relace médií, JamesDSP proaktivně prohledává relace médií a umožňuje řádnou podporu nekooperativním aplikacím médií.</string>
+    <string name="audio_format_enhanced_processing_info_content">Pokud je povoleno rozšířené zpracování, můžete selektivně vyloučit některé aplikace ze zpracování JamesDSP. Použijte 3 bodové menu v pravém dolním rohu a vyberte \'Vyloučené aplikace\' pro přístup k této funkci.\n\nZatímco režim kompatability je zakázán, JamesDSP se spoléhá na aplikace médií a posílá systémové vysílání při startu přehrávání. Toto je výhoda oproti režimu kompatability, protože každá aplikace dostane vlastní JamesDSP modul pro efekty, což umožňuje jemnější ovládání. V opačném případě by se starším režimem zapnutým všechny aplikace sdílely jeden procesor, který Android zastaralý a již by neměl být používán.\n\nBohužel ne všechny aplikace médií to dělají správně, a proto by nefungovaly správně, když je zakázán režim kompatability. Pro vyřešení tohoto problému můžete povolit rozšířené zpracování. Namísto spoléhání se na systémové vysílání na nové relace médií, JamesDSP proaktivně prohledává relace médií a umožňuje řádnou podporu nekooperativním aplikacím médií.</string>
     <string name="audio_format_media_apps_need_restart">Po změně tohoto nastavení je třeba restartovat všechny aktivní aplikace médií, abyste mohli obnovit zpracování zvuku.</string>
     <string name="audio_format_summary">Upřednostňované audio kódování, velikost vyrovnávací paměti</string>
     <string name="audio_format_summary_root">Režim kompatability, vylepšené zpracování</string>
@@ -271,7 +271,12 @@
     <string name="profiles_section_header">Profily zařízení</string>
     <string name="profiles_summary">Profily pro jednotlivá zařízení, automatické přepínání</string>
     <string name="profiles_enable">Profily pro jednotlivá zařízení</string>
+    <string name="profiles_enable_summary_on">Profily pro jednotlivá zařízení zapnuty</string>
+    <string name="profiles_enable_summary_off">Profily pro jednotlivá zařízení vypnuty</string>
+    <string name="profiles_info_title">Co jsou profily pro jednotlivá zařízení?</string>
     <string name="profiles_info">Klepnutím zobrazíte dokumentaci</string>
+    <string name="profiles_info_content">Pokud je toto nastavení povoleno, každému zvukovému zařízení je přiřazena konfigurace zpracování audia. Tato aplikace automaticky přepíná mezi profily zařízení při změně výstupního zařízení. \n\nKaždé nové zařízení, které je připojeno, začíná s prázdným profilem. Poté jej můžete nakonfigurovat nebo zkopírovat nastavení z jiného profilu zařízení.\n\nPoznámka: Předvolby jsou aplikovány pouze na aktivní profil, když je tato funkce povolena. Neaktivní profily zůstávají nezměněny.</string>
+    <string name="profiles_manage_hint">Stiskněte tlačítko \'Aktivní profil zařízení\' na hlavní obrazovce pro kopírování nebo mazání profilů.</string>
     <string name="app_behavior">Chování aplikace</string>
     <string name="exclude_app_from_recents">Vyloučit aplikaci z přehledu nedávných aplikací</string>
     <string name="exclude_app_from_recents_off">Nevylučovat aplikaci z přehledu nedávných aplikací</string>
@@ -279,6 +284,9 @@
     <string name="autostart_prompt_at_boot">Výzva k oprávnění k nahrávání po startu</string>
     <string name="autostart_prompt_at_boot_off">Nezobrazovat oznámení po startu</string>
     <string name="autostart_prompt_at_boot_on">Zobrazovat oznámení po startu</string>
+    <string name="autostart_service_at_boot">Spustit po startu</string>
+    <string name="autostart_service_at_boot_off">Po startu nespouštět službu automaticky</string>
+    <string name="autostart_service_at_boot_on">Po startu spustit službu automaticky</string>
     <string name="powersave">Úspora energie</string>
     <string name="powersave_suspend">Pozastavit zpracování zvuku v případě nečinnosti</string>
     <string name="powersave_suspend_off">Pokračovat ve zpracování i v případě, že nehraje žádný obsah</string>
@@ -299,6 +307,11 @@
     <string name="troubleshooting_repair_assets_success">Výchozí assety byly obnoveny</string>
     <string name="misc_settings">Ostatní</string>
     <string name="misc_settings_summary">Hlášení chyb, další akce</string>
+    <string name="misc_permission_skip_prompt">Přeskočit výzvu k oprávnění k zachycování zvuku</string>
+    <string name="misc_permission_auto_start">Automatické spuštění efektového modulu při startu</string>
+    <string name="misc_permission_restart_setup">Znovu spustit průvodce nastavením</string>
+    <string name="misc_permission_restart_setup_summary">Udělit chybějící volitelná oprávnění</string>
+    <string name="misc_permission_header">Volitelná oprávnění</string>
     <string name="assets">Assety</string>
     <string name="network_services">Síťové služby</string>
     <string name="network_autoeq_api_url">URL adresa backendu AutoEQ API</string>
@@ -548,4 +561,16 @@
     <string name="backup_restore_mode_dirty">Špinavá obnova (pouze přepsat)</string>
     <string name="backup_in_progress">Zálohování již probíhá</string>
     <!-- Multi-device profiles -->
+    <string name="group_wired_headphones">Kabelové sluchátka</string>
+    <string name="group_bluetooth">Bluetooth</string>
+    <string name="group_hdmi">HDMI</string>
+    <string name="group_speaker">Interní reproduktor</string>
+    <string name="group_usb">USB</string>
+    <string name="group_unknown">Neznámé</string>
+    <string name="device_profile_status">Profil aktivního zařízení</string>
+    <string name="device_profile_manage_copy">Kopírovat profil…</string>
+    <string name="device_profile_manage_delete">Odstranit profily…</string>
+    <string name="device_profile_manage_copy_select_no_target">Žádné profily k přepsání nejsou k dispozici</string>
+    <string name="device_profile_manage_copy_select">Vyberte profil ke kopírování</string>
+    <string name="device_profile_manage_paste_select">Vyberte profily k přepsání</string>
 </resources>
