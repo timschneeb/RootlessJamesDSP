@@ -47,6 +47,8 @@
     <string name="open">Otevřít</string>
     <string name="close">Zavřít</string>
     <string name="delete">Odstranit</string>
+    <string name="copy">Kopírovat</string>
+    <string name="paste">Vložit</string>
     <string name="add">Přidat</string>
     <string name="yes">Ano</string>
     <string name="no">Ne</string>
@@ -54,6 +56,8 @@
     <string name="undo">Vrátit zpět</string>
     <string name="redo">Obnovit</string>
     <string name="no_activity_found">Nebyla nalezena žádná aktivita pro zpracování akce</string>
+    <string name="permission_allowed">Povoleno</string>
+    <string name="permission_not_allowed">Nepovoleno</string>
     <!-- Main screen -->
     <string name="power_button_alt">Přepnout zpracování zvuku</string>
     <string name="compressor_enable">Automatický kompresor dynamického rozsahu</string>
@@ -199,6 +203,7 @@
     <string name="onboarding_adb_manual_step4">Přejděte do \'Interaktivního příkazového řádku\' a spusťte následující příkaz: \'pm grant %s android.permission.DUMP\'</string>
     <string name="onboarding_adb_manual_step5">Klepněte na \'Další\' v této aplikaci pro pokračování.</string>
     <string name="onboarding_adb_manual_step5b">(Volitelné) Můžete trvale přeskočit výzvy k povolení pro zachycení zvuku spuštěním tohoto příkazu: \'appops set %s PROJECT_MEDIA allow\'</string>
+    <string name="onboarding_adb_manual_step5c">(Volitelné) Kromě předchozího kroku můžete také povolit automatické spuštění provedením následujícího příkazu: „appops set %s SYSTEM_ALERT_WINDOW allow“</string>
     <string name="onboarding_adb_manual_step1_button">Otevřete nastavení pro vývojáře</string>
     <string name="onboarding_perm_title">Ostatní povolení</string>
     <string name="onboarding_perm_caption">Pro použití této aplikace jsou potřebná další oprávnění. Prosím zkontrolujte je a klepněte na \'Další\' pro jejich udělení.</string>
@@ -263,6 +268,9 @@
     <string name="audio_format_buffer_size">Velikost vyrovnávací paměti</string>
     <string name="audio_format_buffer_size_unit">&#xa0;vzorků</string>
     <string name="audio_format_buffer_size_warning_low_value">Varování: Nízké velikosti vyrovnávací paměti mohou způsobit zkreslení zvuku, jako například „oříznutí“ nebo „přiškrcení“ zvuku!</string>
+    <string name="profiles_section_header">Profily zařízení</string>
+    <string name="profiles_summary">Profily pro jednotlivá zařízení, automatické přepínání</string>
+    <string name="profiles_enable">Profily pro jednotlivá zařízení</string>
     <string name="profiles_info">Klepnutím zobrazíte dokumentaci</string>
     <string name="app_behavior">Chování aplikace</string>
     <string name="exclude_app_from_recents">Vyloučit aplikaci z přehledu nedávných aplikací</string>
