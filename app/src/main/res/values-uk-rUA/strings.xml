@@ -200,7 +200,8 @@
     <string name="onboarding_adb_manual_step3">Додайте та підключіть USB-пристрій у WebADB.</string>
     <string name="onboarding_adb_manual_step4">Перейдіть у розділ «Interactive Shell» і виконайте в терміналі таку команду: pm grant %s android.permission.DUMP</string>
     <string name="onboarding_adb_manual_step5">Натисніть «Далі» в цьому додатку, щоб продовжити.</string>
-    <string name="onboarding_adb_manual_step5b">(Необов\'язково) Ви можете назавжди вимкнути запити на дозвіл захоплення аудіо, виконавши цю команду: appops set %s PROJECT_MEDIA allow</string>
+    <string name="onboarding_adb_manual_step5b">(Додатково) Ви можете назавжди вимкнути запити на дозвіл захоплення аудіо, виконавши цю команду: appops set %s PROJECT_MEDIA allow</string>
+    <string name="onboarding_adb_manual_step5c">(Додатково) Ви також можете увімкнути автозапуск, виконавши наступну команду: appops set %s SYSTEM_ALERT_WINDOW allow</string>
     <string name="onboarding_adb_manual_step1_button">Відкрити «Для розробників»</string>
     <string name="onboarding_perm_title">Інші дозволи</string>
     <string name="onboarding_perm_caption">Для використання цієї програми необхідні додаткові дозволи. Будь ласка, ознайомтеся з ними та натисніть «Далі» щоб надати їх.</string>
