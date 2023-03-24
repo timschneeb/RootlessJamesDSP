@@ -183,18 +183,18 @@ dependencies {
     implementation("com.google.android.material:material:1.9.0-beta01")
 
     // Dependency injection
-    implementation("io.insert-koin:koin-android:3.2.0")
+    implementation("io.insert-koin:koin-android:3.3.3")
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0")
 
     // Firebase
-    "fullImplementation"(platform("com.google.firebase:firebase-bom:30.4.1"))
+    "fullImplementation"(platform("com.google.firebase:firebase-bom:31.2.3"))
     "fullImplementation"("com.google.firebase:firebase-analytics-ktx")
     "fullImplementation"("com.google.firebase:firebase-crashlytics-ktx")
     "fullImplementation"("com.google.firebase:firebase-crashlytics-ndk")
 
     // Web API client
-    implementation("com.google.code.gson:gson:2.10")
+    implementation("com.google.code.gson:gson:2.10.1")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
