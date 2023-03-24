@@ -23,6 +23,7 @@ import me.timschneeberger.hiddenapi_impl.UserHandle
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.activity.MainActivity
+import me.timschneeberger.rootlessjamesdsp.activity.OnboardingActivity.Companion.EXTRA_ROOTLESS_REDO_ADB_SETUP
 import me.timschneeberger.rootlessjamesdsp.activity.OnboardingActivity.Companion.EXTRA_ROOT_SETUP_DUMP_PERM
 import me.timschneeberger.rootlessjamesdsp.databinding.OnboardingFragmentBinding
 import me.timschneeberger.rootlessjamesdsp.flavor.RootShellImpl
@@ -71,6 +72,7 @@ class OnboardingFragment : Fragment() {
     private lateinit var runtimePermissionLauncher: ActivityResultLauncher<Array<String>>
 
     private var useRoot: Boolean = false
+    private var redoAdbSetup: Boolean = false
     private var shizukuAlive = false
 
     private val prefsApp: Preferences.App by inject()
@@ -115,6 +117,7 @@ class OnboardingFragment : Fragment() {
         bundle: Bundle?
     ): View {
         useRoot = requireActivity().intent.getBooleanExtra(EXTRA_ROOT_SETUP_DUMP_PERM, false)
+        redoAdbSetup = requireActivity().intent.getBooleanExtra(EXTRA_ROOTLESS_REDO_ADB_SETUP, false)
         binding = OnboardingFragmentBinding.inflate(layoutInflater, viewGroup, false)
         return binding.root
     }
@@ -127,7 +130,7 @@ class OnboardingFragment : Fragment() {
         backButton.setOnClickListener { changePage(false) }
         nextButton.setOnClickListener { changePage(true) }
 
-        if(useRoot) {
+        if(useRoot || redoAdbSetup) {
             pageMap.remove(PAGE_RUNTIME_PERMISSIONS)
             pageMap.remove(PAGE_READY)
             goToPage(PAGE_METHOD_SELECT)
@@ -163,7 +166,6 @@ class OnboardingFragment : Fragment() {
             methodPage.methodsShizukuCard.setCardBackgroundColor(
                 requireContext().resolveColorAttribute(com.google.android.material.R.attr.colorSecondaryContainer)
             )
-
         }
 
         methodPage.methodsRootCard.setOnClickListener {
@@ -333,9 +335,11 @@ class OnboardingFragment : Fragment() {
     @SuppressLint("ApplySharedPref")
     private fun finishSetup() {
 
-        val intent = context?.let { Intent(it, MainActivity::class.java) } ?: return
-        intent.putExtra(MainActivity.EXTRA_FORCE_SHOW_CAPTURE_PROMPT, true)
-        startActivity(intent)
+        if(!redoAdbSetup) {
+            val intent = context?.let { Intent(it, MainActivity::class.java) } ?: return
+            intent.putExtra(MainActivity.EXTRA_FORCE_SHOW_CAPTURE_PROMPT, true)
+            startActivity(intent)
+        }
         activity?.finish()
 
         // Mark setup as done
@@ -414,8 +418,8 @@ class OnboardingFragment : Fragment() {
             return
         }
 
-        // Root setup; cut-off first two pages
-        if(useRoot && !forward && (currentPage - 1) <= PAGE_LIMITATIONS) {
+        // Root setup or rootless re-setup; cut-off first two pages
+        if((redoAdbSetup || useRoot) && !forward && (currentPage - 1) <= PAGE_LIMITATIONS) {
             requireActivity().finish()
             return
         }
@@ -426,8 +430,9 @@ class OnboardingFragment : Fragment() {
     private fun requestNextPage(nextPage: Int, forward: Boolean): Int
     {
         val shouldSkip = when (nextPage) {
-            PAGE_METHOD_SELECT -> requireContext().hasDumpPermission()
-            PAGE_ADB_SETUP -> requireContext().hasDumpPermission()
+            // Don't skip ADB setup if redoAdbSetup is set
+            PAGE_METHOD_SELECT -> requireContext().hasDumpPermission() && !redoAdbSetup
+            PAGE_ADB_SETUP -> requireContext().hasDumpPermission() && !redoAdbSetup
             PAGE_RUNTIME_PERMISSIONS -> {
                requireContext().hasNotificationPermission() && requireContext().hasRecordPermission()
             }
@@ -452,8 +457,11 @@ class OnboardingFragment : Fragment() {
     }
 
     private fun ensureDumpPermission(): Boolean{
-        // Permission already granted?
-        if(requireContext().hasDumpPermission()) {
+        /* Permission already granted?
+         * Note: If were are redoing the ADB setup, make sure that the Shizuku setup
+         *       can run regardless to grant optional permissions
+         */
+        if(requireContext().hasDumpPermission() && (!redoAdbSetup || selectedSetupMethod != SetupMethods.Shizuku)) {
             Timber.d("DUMP permission granted")
             return true
         }
@@ -481,6 +489,22 @@ class OnboardingFragment : Fragment() {
                 )
             }
             catch (ex: Exception) {
+                Timber.e(ex)
+            }
+
+            // Grant permanent SYSTEM_ALERT_WINDOW op as shell
+            try {
+                val result = ShizukuSystemServerApi.AppOpsService_setMode(
+                    ShizukuSystemServerApi.APP_OPS_OP_SYSTEM_ALERT_WINDOW,
+                    uid,
+                    pkg,
+                    ShizukuSystemServerApi.APP_OPS_MODE_ALLOW
+                )
+                if(!result)
+                    Timber.e("AppOpsService_setMode for system_alert_window failed")
+            }
+            catch (ex: Exception) {
+                Timber.e("AppOpsService_setMode for system_alert_window threw an exception")
                 Timber.e(ex)
             }
 

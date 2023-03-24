@@ -1,5 +1,6 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
     <PreferenceCategory app:title="@string/app_behavior"
         app:iconSpaceReserved="false">
         <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
@@ -24,6 +25,29 @@
             android:key="@string/key_troubleshooting_repair_assets"
             android:title="@string/troubleshooting_repair_assets"
             android:summary="@string/troubleshooting_repair_assets_summary"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/misc_permission_header"
+        app:iconSpaceReserved="false">
+        <me.timschneeberger.rootlessjamesdsp.preference.IconPreference
+            android:key="@string/key_misc_permission_skip_prompt"
+            android:title="@string/misc_permission_skip_prompt"
+            tools:icon="@drawable/ic_twotone_check_circle_24dp"
+            android:enabled="false"
+            tools:summary="@string/permission_allowed"
+            app:iconSpaceReserved="false" />
+        <me.timschneeberger.rootlessjamesdsp.preference.IconPreference
+            android:key="@string/key_misc_permission_auto_start"
+            android:title="@string/misc_permission_auto_start"
+            tools:icon="@drawable/ic_twotone_error_24dp"
+            android:enabled="false"
+            tools:summary="@string/permission_not_allowed"
+            app:iconSpaceReserved="false" />
+        <Preference
+            android:key="@string/key_misc_permission_restart_setup"
+            android:title="@string/misc_permission_restart_setup"
+            android:summary="@string/misc_permission_restart_setup_summary"
             app:iconSpaceReserved="false" />
     </PreferenceCategory>
 

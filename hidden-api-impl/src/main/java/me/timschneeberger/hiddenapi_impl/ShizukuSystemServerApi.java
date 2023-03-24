@@ -60,6 +60,7 @@ public class ShizukuSystemServerApi {
     public static final String APP_OPS_MODE_FOREGROUND = "foreground";
 
     public static final String APP_OPS_OP_PROJECT_MEDIA = "PROJECT_MEDIA";
+    public static final String APP_OPS_OP_SYSTEM_ALERT_WINDOW = "SYSTEM_ALERT_WINDOW";
 
     public static boolean AppOpsService_setMode(String op, int packageUid, String packageName, String mode) throws RemoteException {
         int index = -1;

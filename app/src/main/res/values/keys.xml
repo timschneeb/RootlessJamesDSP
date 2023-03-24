@@ -66,6 +66,9 @@
     <string name="key_credits_google_play" translatable="false">credits_google_play</string>
     <string name="key_audioformat_enhanced_processing_info" translatable="false">audioformat_enhanced_processing_info</string>
     <string name="key_device_profiles_info" translatable="false">device_profiles_info</string>
+    <string name="key_misc_permission_skip_prompt" translatable="false">misc_permission_skip_prompt</string>
+    <string name="key_misc_permission_auto_start" translatable="false">misc_permission_auto_start</string>
+    <string name="key_misc_permission_restart_setup" translatable="false">misc_permission_restart_setup</string>
 
     <!-- Script editor -->
     <string name="key_editor_font_size" translatable="false">editor_font_size</string>

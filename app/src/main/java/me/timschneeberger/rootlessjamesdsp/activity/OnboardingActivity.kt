@@ -27,8 +27,6 @@ class OnboardingActivity : BaseActivity(){
         binding = ActivityOnboardingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        fragment
-
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.onboarding_fragment_container, fragment)
@@ -55,9 +53,7 @@ class OnboardingActivity : BaseActivity(){
     {
         val finished = !fragment.onBackPressed()
         if(finished)
-        {
-            this.finishAffinity()
-        }
+            finish()
         return finished
     }
 
@@ -74,5 +70,6 @@ class OnboardingActivity : BaseActivity(){
     {
         const val EXTRA_FIX_PERMS = "FixPermissions"
         const val EXTRA_ROOT_SETUP_DUMP_PERM = "RootSetupDumpPerm"
+        const val EXTRA_ROOTLESS_REDO_ADB_SETUP = "RootlessRedoAdbSetup"
     }
 }

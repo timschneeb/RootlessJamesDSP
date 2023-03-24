@@ -1,6 +1,6 @@
 <!-- drawable/numeric_1_circle_outline.xml -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:tint="#000000"
+    android:tint="?attr/colorControlNormal"
     android:height="24dp"
     android:width="24dp"
     android:viewportWidth="24"

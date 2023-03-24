@@ -25,6 +25,12 @@
         <attr name="isStatic" format="string" />
     </declare-styleable>
 
+    <attr name="iconTint" format="color" />
+
+    <declare-styleable name="IconPreference">
+        <attr name="iconTint" />
+    </declare-styleable>
+
     <declare-styleable name="Card">
         <attr name="titleText" format="string" />
         <attr name="bodyText" format="string" />
@@ -32,7 +38,7 @@
         <attr name="buttonText" format="string" />
         <attr name="buttonEnabled" format="boolean" />
         <attr name="iconSrc" format="reference" />
-        <attr name="iconTint" format="color" />
+        <attr name="iconTint" />
         <attr name="iconCentered" format="boolean" />
         <attr name="cardBackground" format="color" />
         <attr name="cardMargin" format="dimension" />
