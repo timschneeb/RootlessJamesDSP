@@ -46,6 +46,9 @@
     <string name="success">تم بنجاح</string>
     <string name="open">فتح</string>
     <string name="close">إغلاق</string>
+    <string name="delete">حذف</string>
+    <string name="copy">نسخ</string>
+    <string name="paste">لصق</string>
     <string name="add">إضافة</string>
     <string name="yes">نعم</string>
     <string name="no">لا</string>
@@ -169,6 +172,15 @@
     <string name="limit_latency_title">زيادة التأخير</string>
     <!-- Settings -->
     <string name="title_activity_settings">الإعدادات</string>
+    <string name="profiles_section_header">ملفات الجهاز</string>
+    <string name="profiles_summary">ملفات تعريف لكل جهاز، التبديل التلقائي</string>
+    <string name="profiles_enable">ملفات تعريف للأجهزة</string>
+    <string name="profiles_enable_summary_on">تمكين ملفات التعريف لكل جهاز</string>
+    <string name="profiles_enable_summary_off">تم تعطيل ملفات التعريف لكل جهاز</string>
+    <string name="profiles_info_title">ما هي ملفات التعريف لكل جهاز؟</string>
+    <string name="profiles_info">انقر لعرض المستندات</string>
+    <string name="profiles_info_content">بينما يتم تمكين هذا الإعداد، يتم تعيين تكوين صوتي منفصل لكل جهاز صوتي. سيقوم هذا التطبيق تلقائياً بالتبديل بين ملفات الجهاز الشخصية عند تغيير جهاز الخروج. \n\nكل جهاز جديد متصل يبدأ بملف تعريف فارغ. يمكنك بعد ذلك إعداده أو نسخ الإعدادات من ملف تعريف جهاز آخر.\n\nملاحظة: يتم تطبيق الإعدادات المسبقة فقط على الملف الشخصي النشط أثناء تمكين هذه الميزة. تظل الملفات الشخصية غير النشطة بدون مسر.</string>
+    <string name="profiles_manage_hint">انقر على زر \'المِلَفّ الشخصي للجهاز النشط\' على الشاشة الرئيسة لنسخ أو حذف الملفات التعريفية.</string>
     <string name="backup_settings">النسخ الاحتياطي والاستعادة</string>
     <!-- Theme names -->
     <string name="theme_default">الافتراضي</string>
@@ -195,4 +207,16 @@
     <!-- Self-updates (Root) -->
     <!-- Backups -->
     <!-- Multi-device profiles -->
+    <string name="group_wired_headphones">سماعات الرأس</string>
+    <string name="group_bluetooth">البلوتوث</string>
+    <string name="group_hdmi">HDMI</string>
+    <string name="group_speaker">السماعة الداخلية</string>
+    <string name="group_usb">USB</string>
+    <string name="group_unknown">غير معروف</string>
+    <string name="device_profile_status">ملف تعريف الجهاز النشط</string>
+    <string name="device_profile_manage_copy">نسخ ملف التعريف…</string>
+    <string name="device_profile_manage_delete">حذف ملفات التعريف…</string>
+    <string name="device_profile_manage_copy_select_no_target">لا توجد ملفات تعريف قابلة للكتابة</string>
+    <string name="device_profile_manage_copy_select">حدد ملف التعريف لنسخه</string>
+    <string name="device_profile_manage_paste_select">حدد ملفات التعريف للكتابة فوقها</string>
 </resources>
