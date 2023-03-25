@@ -206,13 +206,13 @@
     <string name="onboarding_adb_manual_step5c">(Дополнительно) Вы также можете включить автозапуск, выполнив следующую команду: appops set %s SYSTEM_ALERT_WINDOW allow</string>
     <string name="onboarding_adb_manual_step1_button">Открыть «Для разработчиков»</string>
     <string name="onboarding_perm_title">Другие разрешения</string>
-    <string name="onboarding_perm_caption">Для использования этого приложения необходимы дополнительные разрешения. Пожалуйста, ознакомьтесь с ними и нажмите «Далее» чтобы предоставить их.</string>
+    <string name="onboarding_perm_caption">Для использования данного приложения необходимо предоставить дополнительные разрешения. Пожалуйста, ознакомьтесь с ними и нажмите «Далее» чтобы продолжить.</string>
     <string name="onboarding_perm_microphone_title">Запись аудио</string>
     <string name="onboarding_perm_microphone_caption">Требуется для записи внутреннего аудио. Аппаратный микрофон устройства не будет использоваться.</string>
     <string name="onboarding_perm_notification_title">Разрешение на отображение уведомлений</string>
     <string name="onboarding_perm_notification_caption">Требуется для получения важных обновлений статуса и информации о состоянии обработки JamesDSP.</string>
     <string name="onboarding_perm_cast_title">Трансляция/запись</string>
-    <string name="onboarding_perm_cast_caption">Вы должны предоставить этому приложению разрешение на запись аудио контента при каждом запуске.</string>
+    <string name="onboarding_perm_cast_caption">Вы должны предоставить этому приложению разрешение на запись аудиоконтента при каждом запуске.</string>
     <string name="onboarding_perm_missing_title">Разрешения на выполнение не предоставлены</string>
     <string name="onboarding_perm_missing">Пожалуйста, предоставьте все запрошенные разрешения на выполнение, чтобы продолжить.\nЕсли вы несколько раз отказали в предоставлении разрешений, вам нужно предоставить их вручную в настройках системы.</string>
     <string name="onboarding_finish_header">JamesDSP настроен!</string>
