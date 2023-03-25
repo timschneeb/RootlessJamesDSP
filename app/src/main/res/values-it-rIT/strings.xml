@@ -6,10 +6,14 @@
     <string name="action_revert">Reimposta ai valori predefiniti</string>
     <string name="action_blocked_apps">Applicazioni escluse</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">Servizio</string>
     <string name="notification_channel_service">Notifica di servizio</string>
     <string name="notification_channel_session_loss_alert">Avviso perdita di sessione</string>
     <string name="notification_channel_permission_prompt">Richiesta di autorizzazione</string>
     <string name="notification_channel_app_compat_alert">Avviso app non compatibile</string>
+    <string name="notification_group_backup">Backup e ripristino</string>
+    <string name="notification_channel_backup_progress">In corso</string>
+    <string name="notification_channel_backup_complete">Completato</string>
     <!-- Service notifications -->
     <string name="action_retry">Riprova</string>
     <string name="action_fix">Aggiorna</string>
@@ -21,6 +25,7 @@
     <string name="notification_processing_legacy">Tocca per aprire JamesDSP manager</string>
     <!-- Permission request notifications -->
     <string name="notification_request_permission_title">Per avviare JamesDSP è necessaria un\'azione utente</string>
+    <string name="notification_request_permission">Tocca per concedere l\'autorizzazione di acquisizione e abilitare l\'elaborazione audio di JamesDSP</string>
     <!-- Session control loss notifications -->
     <!-- App compatibility issue notifications -->
     <!-- Capture permission revoked notifications -->
@@ -31,6 +36,7 @@
     <!-- Root flavor -->
     <!-- Settings -->
     <string name="title_activity_settings">Impostazioni</string>
+    <string name="backup_settings">Backup e ripristino</string>
     <!-- Theme names -->
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
