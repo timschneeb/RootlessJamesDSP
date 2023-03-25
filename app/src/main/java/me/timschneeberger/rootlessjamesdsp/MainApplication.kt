@@ -22,6 +22,7 @@ import com.pluto.plugins.rooms.db.PlutoRoomsDatabasePlugin
 import fr.bipi.tressence.file.FileLoggerTree
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
+import leakcanary.LeakCanary
 import me.timschneeberger.rootlessjamesdsp.flavor.CrashlyticsImpl
 import me.timschneeberger.rootlessjamesdsp.flavor.UpdateManager
 import me.timschneeberger.rootlessjamesdsp.model.preference.ThemeMode
@@ -124,6 +125,9 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
         }
 
         if(BuildConfig.DEBUG) {
+            // Hide LeakCanary icons
+            LeakCanary.showLeakDisplayActivityLauncherIcon(false)
+
             // Setup strict mode with death penalty
             StrictMode.setThreadPolicy(
                 StrictMode.ThreadPolicy.Builder()
