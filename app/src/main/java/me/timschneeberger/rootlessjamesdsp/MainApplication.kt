@@ -131,11 +131,13 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
             // Setup strict mode with death penalty
             StrictMode.setThreadPolicy(
                 StrictMode.ThreadPolicy.Builder()
-                    .detectCustomSlowCalls()
-                    .detectNetwork()
-                    .detectResourceMismatches()
-                    .penaltyLog()
-                    .penaltyDeath()
+                    .apply {
+                        detectCustomSlowCalls()
+                        detectNetwork()
+                        detectResourceMismatches()
+                        penaltyLog()
+                        penaltyDeath()
+                    }
                     .build()
             )
 
