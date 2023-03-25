@@ -27,13 +27,104 @@
     <string name="notification_request_permission_title">Per avviare JamesDSP è necessaria un\'azione utente</string>
     <string name="notification_request_permission">Tocca per concedere l\'autorizzazione di acquisizione e abilitare l\'elaborazione audio di JamesDSP</string>
     <!-- Session control loss notifications -->
+    <string name="session_control_loss_toast">JamesDSP è stato interrotto a causa della perdita del controllo della sessione audio. Si prega di disabilitare altre applicazioni che utilizzano effetti audio.</string>
+    <string name="session_control_loss_notification_title">Elaborazione audio interrotta. Un\'altra applicazione sta interferendo con JamesDSP.</string>
+    <string name="session_control_loss_notification">Si prega di disabilitare tutte le altre applicazioni che forniscono effetti audio globali prima di riattivare JamesDSP.</string>
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_toast">JamesDSP si è interrotto a causa di app multimediali incompatibili. Controlla la notifica per risolvere questo problema.</string>
+    <string name="session_app_compat_notification_title">Elaborazione audio interrotta. Un\'altra applicazione sta interferendo con JamesDSP.</string>
+    <string name="session_app_compat_notification">Tocca questa notifica per risolvere il problema.</string>
     <!-- Capture permission revoked notifications -->
+    <string name="capture_permission_revoked_toast">JamesDSP è stato fermato perché è stato revocato il permesso di acquisizione audio.</string>
     <!-- General purpose -->
+    <string name="install">Installa</string>
+    <string name="update">Aggiorna</string>
+    <string name="unknown_error">Errore sconosciuto</string>
+    <string name="details">Dettagli</string>
+    <string name="actions">Azioni</string>
+    <string name="warning">Avviso</string>
+    <string name="success">Riuscito</string>
+    <string name="open">Apri</string>
+    <string name="close">Chiudi</string>
+    <string name="delete">Elimina</string>
+    <string name="copy">Copia</string>
+    <string name="paste">Incolla</string>
+    <string name="add">Aggiungi</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+    <string name="value_not_set">Non impostato</string>
+    <string name="undo">Annulla</string>
+    <string name="redo">Rifare</string>
+    <string name="no_activity_found">Nessuna attività trovata per gestire l\'azione</string>
+    <string name="permission_allowed">Consentito</string>
+    <string name="permission_not_allowed">Non consentito</string>
     <!-- Main screen -->
+    <string name="power_button_alt">Attiva/disattiva l\'elaborazione audio</string>
+    <string name="compressor_enable">Compressore automatico della gamma dinamica</string>
+    <string name="compressor_max_attack">Attacco massimo</string>
+    <string name="compressor_max_release">Rilascio massimo</string>
+    <string name="compressor_adapt_speed">Aggressività</string>
+    <string name="eq_enable">Equalizzatore FIR interpolante</string>
+    <string name="eq_filter_type">Tipo di filtro</string>
+    <string name="eq_interpolator">Interpolatore</string>
+    <string name="eq_filter_type_minimum">Fase minima</string>
+    <string name="eq_filter_type_linear">Fase lineare</string>
+    <string name="eq_interpolator_chip">Polinomio d\'interpolazione di Piecewise Cubic Hermite</string>
+    <string name="eq_interpolator_mha">Hiroshi Akima spline \"modificata\"</string>
+    <string name="eq_preset_acoustic">Acustico</string>
+    <string name="eq_preset_bass">Basso</string>
+    <string name="eq_preset_beats">Battiti</string>
+    <string name="eq_preset_classic">Classico</string>
+    <string name="eq_preset_clear">Pulisci</string>
+    <string name="tube_drive">Pre-amplificazione</string>
+    <string name="output_control_header">Controllo in uscita</string>
+    <string name="output_limiter_threshold">Soglia del limitatore</string>
+    <string name="output_limiter_release">Rilascio del limitatore</string>
+    <string name="output_control_postgain">Post guadagno</string>
+    <string name="stereowide_enable">Ampiezza del palcoscenico</string>
+    <string name="stereowide_level">Ampiezza</string>
+    <string name="stereowide_level_none">Nessuno</string>
+    <string name="stereowide_level_very_wide">Molto ampio</string>
+    <string name="stereowide_level_wide">Ampio</string>
+    <string name="stereowide_level_very_narrow">Molto stretto</string>
+    <string name="stereowide_level_narrow">Stretto</string>
+    <string name="crossfeed_enable">Crossfeed</string>
+    <string name="crossfeed_preset">Preimpostato</string>
+    <string name="crossfeed_preset_bs2b_weak">BS2B Debole</string>
+    <string name="crossfeed_preset_bs2b_strong">BS2B Forte</string>
+    <string name="crossfeed_preset_out_of_head">Fuori di testa</string>
+    <string name="crossfeed_preset_surround1">Surround #1</string>
+    <string name="crossfeed_preset_surround2">Surround #2</string>
+    <string name="crossfeed_preset_realistic_surround">Joe0Bloggs Surround Realistico</string>
     <!-- Onboarding -->
+    <string name="title_activity_onboarding">Processo d\'inserimento</string>
+    <string name="onboarding_back">Indietro</string>
+    <string name="onboarding_next">Avanti</string>
+    <string name="onboarding_finish">Fine</string>
+    <string name="onboarding_greeting">Benvenuto in RootlessJamesDSP!</string>
+    <string name="onboarding_caption">L\'assistente ti aiuterà a configurare questa applicazione.</string>
+    <string name="onboarding_warning">Attualmente, questa applicazione è incompleta e instabile. Si prega di notare che potrebbe non funzionare correttamente come previsto su alcuni dispositivi, in quanto essa utilizza API Android non progettati per l\'utilizzo da parte di terzi.</string>
+    <string name="onboarding_fix_permissions_title">Azione dell\'utente richiesta</string>
+    <string name="onboarding_fix_permissions">Uno o più permessi sono stati revocati da te o dal sistema.\nPer garantire il corretto funzionamento dell\'applicazione, è necessario concedere nuovamente questi permessi.\n\n Si prega di effettuare la configurazione guidata per concedere correttamente tutti i permessi necessari.</string>
+    <string name="onboarding_limitations_title">Limitazioni</string>
+    <string name="onboarding_limitations_unstable">Importante! Si prega di leggere attentamente le note prima di proseguire.</string>
+    <string name="onboarding_methods_title">Seleziona il metodo di configurazione</string>
+    <string name="onboarding_methods_root_title">Root</string>
+    <string name="onboarding_methods_shizuku_title">Shizuku</string>
+    <string name="onboarding_methods_unsupported_append">incompatibile</string>
+    <string name="onboarding_methods_adb_title">ADB</string>
     <!-- Rootless flavor -->
+    <string name="onboarding_methods_rootless_shizuku">\u25CF Raccomandato\n\u25CF Nessun computer esterno richiesto\n\u25CF Solo Android 11+</string>
+    <string name="onboarding_methods_rootless_adb">\u25CF Per gli utenti esperti\n\u25CF È richiesto l\'utilizzo del Computer e del cavo USB\n\u25CF Android 10+ supportato</string>
     <!-- Root flavor -->
+    <string name="onboarding_methods_root_root">\u25CF Raccomandato\n\u25CF Nessun utilizzo del computer esterno è richiesto\n\u25CF Per tutte le versioni di Android</string>
+    <string name="onboarding_methods_root_shizuku">\u25CF Raccomandato, se il root non è configurato\n\u25CF Nessun computer esterno è richiesto\n\u25CF Solo Android 11+</string>
+    <string name="onboarding_methods_root_adb">\u25CF Per gli utenti esperti\n\u25CF È richiesto l\'utilizzo del Computer e del cavo USB\n\u25CFPer tutte le versioni Android</string>
+    <string name="onboarding_root_shell_fail_title">Senza permessi di root</string>
+    <string name="onboarding_root_shell_fail">Nessun permesso di root disponibile. Si prega di utilizzare un altro metodo di configurazione.</string>
+    <string name="onboarding_root_shell_fail_unknown">Impossibile concedere l\'autorizzazione tramite root. Si prega di utilizzare un altro metodo di configurazione.</string>
+    <string name="onboarding_root_enhanced_processing_setup_success">L\'elaborazione migliorata è stata impostata</string>
+    <string name="onboarding_adb_shizuku_title">Configurazione Shizuku</string>
     <!-- Settings -->
     <string name="title_activity_settings">Impostazioni</string>
     <string name="backup_settings">Backup e ripristino</string>
@@ -41,6 +132,7 @@
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="gep_add_node">Aggiungi</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
