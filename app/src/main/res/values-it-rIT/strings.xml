@@ -125,8 +125,40 @@
     <string name="onboarding_root_shell_fail_unknown">Impossibile concedere l\'autorizzazione tramite root. Si prega di utilizzare un altro metodo di configurazione.</string>
     <string name="onboarding_root_enhanced_processing_setup_success">L\'elaborazione migliorata è stata impostata</string>
     <string name="onboarding_adb_shizuku_title">Configurazione Shizuku</string>
+    <string name="onboarding_adb_adb_title">Configurazione ADB</string>
+    <string name="onboarding_adb_caption">Questa app richiede permessi speciali per l\'acquisizione della politica audio del dispositivo. Si prega di seguire le istruzioni riportate di seguito.</string>
+    <string name="onboarding_adb_shizuku_install_button">Installa Shizuku</string>
+    <string name="onboarding_adb_shizuku_install_button_done">Già installato</string>
     <!-- Settings -->
     <string name="title_activity_settings">Impostazioni</string>
+    <string name="session_exclude_restricted">Escludi app non supportate</string>
+    <string name="session_exclude_restricted_off">Le applicazioni che bloccano la cattura dell\'audio resteranno silenziate (comportamento predefinito di Android)</string>
+    <string name="session_exclude_restricted_on">Le applicazioni che bloccano l\'acquisizione audio verranno escluse e resteranno non elaborate (raccomandato)</string>
+    <string name="session_detection_header">Rilevamento della sessione audio</string>
+    <string name="session_continuous_polling">Forza il polling continuo</string>
+    <string name="session_continuous_polling_off">Ascolta solo gli eventi di sessione dal sistema</string>
+    <string name="session_continuous_polling_on">Enumera continuamente le sessioni audio</string>
+    <string name="session_continuous_polling_rate">Intervallo di polling (ms)</string>
+    <string name="session_detection_method">Metodo di rilevamento di sessione preferito</string>
+    <string name="session_detection_method_audiopolicyservice">ServizioPoliticaAudio dump</string>
+    <string name="session_detection_method_audioservice">ServizioAudio dump (raccomandato)</string>
+    <string name="session_app_problem_ignore">Ignora problemi di compatibilità dell\'app</string>
+    <string name="session_loss_ignore">Ignora la perdita di controllo di sessione</string>
+    <string name="session_loss_ignore_off">Disabilitato, mantieni normalmente (raccomandato)</string>
+    <string name="session_loss_ignore_on">Non intraprendere alcuna azione (può causare audio duplicato)</string>
+    <string name="session_loss_ignore_warning">Abilitare questa impostazione quando un\'altra app di effetti audio prende il controllo di una sessione audio, potrebbe causare audio duplicato.\nSi prega di mantenere questa impostazione disabilitata a meno che non si riscontrino falsi eventi positivi di perdita di sessione.</string>
+    <string name="audio_format_header">Elaborazione audio</string>
+    <string name="audio_format_section_header">Formato audio preferito</string>
+    <string name="audio_format_processing_header">Opzioni di elaborazione audio</string>
+    <string name="audio_format_processing_legacy">Modalità alternativa</string>
+    <string name="audio_format_processing_legacy_on">Allega globalmente alla sessione 0 (deprecato)</string>
+    <string name="audio_format_processing_legacy_off">Allega individualmente per ogni applicazione</string>
+    <string name="audio_format_enhanced_processing">Elaborazione migliorata</string>
+    <string name="audio_format_enhanced_processing_on">Controllo per-app e supporto migliorato per le applicazioni abilitate</string>
+    <string name="audio_format_enhanced_processing_off">Processo di elaborazione migliorata disabilitato</string>
+    <string name="audio_format_enhanced_processing_info_title">Che cosa è il processo di elaborazione migliorata?</string>
+    <string name="audio_format_enhanced_processing_info">Tocca per visualizzare la documentazione</string>
+    <string name="profiles_info">Tocca per visualizzare la documentazione</string>
     <string name="backup_settings">Backup e ripristino</string>
     <!-- Theme names -->
     <!-- File library preference -->
