@@ -35,6 +35,7 @@ object DumpUtils {
             val reader = InputStreamReader(fd, "UTF-8")
             val dump = reader.readText()
             reader.close()
+            readPipe.close()
             fd.close()
             return dump
         }
