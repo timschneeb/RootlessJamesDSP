@@ -277,8 +277,11 @@
     <string name="blocklist_delete">Vuoi rimuovere questa applicazione dalla lista di esclusione?</string>
     <string name="blocklist_no_exclusions">Non ci sono applicazioni escluse</string>
     <string name="blocklist_unsupported_apps">Applicazioni non supportate</string>
+    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>Questa applicazione non supporta le applicazioni che bloccano l'elaborazione di registrazione della loro uscita audio da parte di terzi. Per prevenire dall'eventuale silenziamento causato dalle restrizioni d'acquisizione dell'audio, quest'ultime vengono automaticamente escluse dall'elaborazione audio e non vengono reindirizzate.</p><p><u>Applicazioni interessate:</u><br/>%s</p>]]></string>
     <!-- Compatibility issue activity -->
+    <string name="title_activity_app_compat">Problema di compatibilità</string>
     <string name="app_compat_retry">Riprova</string>
+    <string name="app_compat_exclude">Escludere</string>
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
     <!-- App list -->
