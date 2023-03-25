@@ -170,28 +170,125 @@
     <string name="audio_format_buffer_size_warning_low_value">Attenzione: Le piccole dimensioni del buffer possono causare problemi di clipping dell\'audio!</string>
     <string name="profiles_section_header">Profili del dispositivo</string>
     <string name="profiles_summary">Profili per dispositivo, commutazione automatica</string>
+    <string name="profiles_enable">Profili per dispositivo</string>
+    <string name="profiles_enable_summary_on">Profili per dispositivo abilitati</string>
+    <string name="profiles_enable_summary_off">Profili per dispositivo disabilitati</string>
+    <string name="profiles_info_title">Cosa sono i profili per dispositivo?</string>
     <string name="profiles_info">Tocca per visualizzare la documentazione</string>
+    <string name="profiles_info_content">Mentre questa impostazione è abilitata, a ogni dispositivo audio viene assegnata una configurazione audio separata. Questa applicazione verrà assegnata automaticamente a uno dei profili del dispositivo quando il dispositivo d\'uscita cambia. \n\nOgni nuovo dispositivo collegato inizierà in modo predefinito con un profilo vuoto. È quindi possibile configurarlo autonomamente oppure è possibile copiare le impostazioni di un profilo da un\'altro dispositivo.\n\nNota: le preimpostazioni sono applicate solo al profilo attivo mentre questa funzionalità è abilitata. I profili inattivi rimarranno intatti.</string>
+    <string name="profiles_manage_hint">Tocca il pulsante \'Profilo del dispositivo attivo\' nella schermata principale per copiare o eliminare i profili.</string>
+    <string name="app_behavior">Comportamento dell\'applicazione</string>
+    <string name="exclude_app_from_recents">Escludi l\'app. dai recenti</string>
+    <string name="exclude_app_from_recents_off">Non escludere l\'app. dall\'elenco delle attività recenti</string>
+    <string name="exclude_app_from_recents_on">Escludi l\'app. dall\'elenco delle attività recenti</string>
+    <string name="credits_project_page_summary">Segnala i problemi, tieniti aggiornato e leggi il codice sorgente</string>
+    <string name="credits_project_play_page">Visita RootlessJamesDSP su Google Play</string>
+    <string name="credits_project_play_page_summary">Cerca per nuovi aggiornamenti</string>
+    <string name="credits_project_check_update">Controllo per nuovi aggiornamenti…</string>
+    <string name="credits_project_check_update_summary">Scarica e installa gli aggiornamenti se disponibili</string>
+    <string name="credits_project_translate">Contribuisci alle traduzioni</string>
+    <string name="credits_project_translate_summary">Aiutaci a tradurre l\'applicazione nella tua lingua</string>
+    <string name="credits_version">Versione app</string>
+    <string name="credits_build_info">Informazioni build</string>
+    <string name="appearance_section_header">Aspetto</string>
+    <string name="appearance_summary">Tema dell\'app, modalità scura puramente in nero</string>
+    <string name="appearance_title">Tema</string>
+    <string name="appearance_theme_mode">Modalità scura</string>
+    <string name="appearance_theme_mode_default">Segui il tema di sistema</string>
+    <string name="appearance_theme_mode_light">Spento</string>
+    <string name="appearance_theme_mode_dark">Acceso</string>
+    <string name="appearance_pure_black_mode">Modalità scura Amoled</string>
+    <string name="appearance_app_theme">Tema dell\'app</string>
+    <string name="appearance_navigation_title">Navigazione</string>
+    <string name="appearance_nav_hide">Nascondi la barra di navigazione durante lo scorrimento</string>
     <string name="backup_settings">Backup e ripristino</string>
+    <string name="backup_settings_summary">Automatico &amp; backups manuali</string>
+    <string name="backup_frequency">Frequenza di backup</string>
+    <string name="backup_location">Percorso del backup</string>
+    <string name="backup_maximum">Massimi backups</string>
+    <string name="backup_never">Mai</string>
+    <string name="backup_12hour">Ogni 12 ore</string>
+    <string name="backup_24hour">Giornaliero</string>
+    <string name="backup_48hour">Ogni 2 giorni</string>
+    <string name="backup_weekly">Settimanale</string>
+    <string name="backup_select_location">Si prega di creare e selezionare un percorso di backup…</string>
     <!-- Theme names -->
+    <string name="theme_default">Predefinito</string>
+    <string name="theme_monet">Dinamico</string>
+    <string name="theme_greenapple">Mela Verde</string>
+    <string name="theme_strawberrydaiquiri">Fragola Daiquiri</string>
+    <string name="theme_honey">Miele</string>
+    <string name="theme_tealturquoise">Verde acqua &amp; Turchese</string>
+    <string name="theme_yinyang">Yin &amp; Yang</string>
+    <string name="theme_yotsuba">Yotsuba</string>
+    <string name="theme_tidalwave">Maremoto</string>
     <!-- File library preference -->
+    <string name="action_import">Importa</string>
+    <string name="filelibrary_hint_tap_and_hold">Tocca e tieni premuto un oggetto per più opzioni</string>
+    <string name="filelibrary_context_load">Carico</string>
+    <string name="filelibrary_context_edit">Modifica</string>
+    <string name="filelibrary_context_overwrite">Sovrascrivi</string>
+    <string name="filelibrary_context_rename">Rinomina</string>
+    <string name="filelibrary_context_share">Condividi…</string>
+    <string name="filelibrary_context_resample">Ricampiona offline</string>
+    <string name="filelibrary_context_duplicate">Duplica</string>
+    <string name="filelibrary_context_delete">Elimina</string>
+    <string name="filelibrary_context_new_preset">Nuovo</string>
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
     <string name="gep_add_node">Aggiungi</string>
+    <string name="geq_frequency">Frequenza</string>
     <!-- AutoEQ GraphicEQ selector -->
+    <string name="geq_api_network_error">Connessione al server fallita. %1$s</string>
+    <string name="geq_api_network_error_details_code">Il server ha risposto con un codice d\'errore: %1$d</string>
+    <string name="autoeq_search">Cerca AutoEQ</string>
+    <string name="autoeq_enter_model">Inserisci il modello delle tue cuffie…</string>
+    <string name="autoeq_partial_results_warning">Mostra i primi %1$d risultati. Per favore perfeziona la tua ricerca per ottenere risultati migliori.</string>
+    <string name="autoeq_no_results">Nessun risultato trovato</string>
     <!-- Customizable liveprog script parameters -->
+    <string name="title_activity_liveprog_params">Parametri dello script personalizzabili</string>
+    <string name="action_restore_defaults">Ripristina i valori predefiniti</string>
     <!-- Liveprog script editor -->
+    <string name="title_activity_liveprog_editor">Editor dello script</string>
+    <string name="editor_find_and_replace">Trova/sostituisci…</string>
+    <string name="editor_docs">Aiuto</string>
+    <string name="editor_open_fail">Il file dello script non esiste o non può essere aperto.</string>
+    <string name="editor_run">Salva ed esegui</string>
+    <string name="editor_save">Salva</string>
+    <string name="editor_liveprog_enabled">Liveprog è stato attivato automaticamente.</string>
+    <string name="editor_replace_all">Sostituisci tutto</string>
+    <string name="editor_replacement">Sostituzione</string>
+    <string name="editor_find_next_match">Trova la prossima corrispondenza</string>
+    <string name="editor_find_previous_match">Trova la corrispondenza precedente</string>
+    <string name="editor_search_keyword">Cerca</string>
+    <string name="editor_source_position">%1$d:%2$d</string>
+    <string name="editor_engine_down_title">JamesDSP non è attivo</string>
+    <string name="editor_engine_down">Impossibile eseguire lo script perché JamesDSP è disabilitato. Si prega di attivare JamesDSP per eseguire gli script.</string>
+    <string name="editor_save_prompt_title">Salva i cambiamenti?</string>
+    <string name="editor_save_prompt">Il seguente script ha delle modifiche non salvate. Vuoi salvare le modifiche correnti oppure scartarle?</string>
+    <string name="editor_script_launched">Script avviato</string>
+    <string name="editor_cannot_undo">Niente da annullare.</string>
+    <string name="editor_cannot_redo">Nulla da ripristinare.</string>
+    <string name="editor_text_size">Dimensione del testo</string>
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Applicazioni escluse</string>
+    <string name="blocklist_add_exclusion_alt">Aggiungi l\'applicazione da escludere</string>
+    <string name="blocklist_delete_title">Rimuovi l\'applicazione selezionata?</string>
+    <string name="blocklist_delete">Vuoi rimuovere questa applicazione dalla lista di esclusione?</string>
+    <string name="blocklist_no_exclusions">Non ci sono applicazioni escluse</string>
+    <string name="blocklist_unsupported_apps">Applicazioni non supportate</string>
     <!-- Compatibility issue activity -->
     <string name="app_compat_retry">Riprova</string>
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
     <!-- App list -->
+    <string name="app_list_search">Cerca</string>
     <!-- Number box view -->
     <!-- Slider widget -->
     <!-- Revert confirmation -->
     <!-- File intent handler -->
     <!-- Translation notice box -->
+    <string name="translation_notice">Contribuisci alle traduzioni</string>
     <!-- Self-updates (Root) -->
     <!-- Backups -->
     <!-- Multi-device profiles -->
