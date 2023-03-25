@@ -7,8 +7,18 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.SharedPreferences
 import android.os.Build
+import android.os.StrictMode
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
+import com.pluto.Pluto
+import com.pluto.plugins.exceptions.PlutoExceptions
+import com.pluto.plugins.exceptions.PlutoExceptionsPlugin
+import com.pluto.plugins.logger.PlutoLoggerPlugin
+import com.pluto.plugins.logger.PlutoTimberTree
+import com.pluto.plugins.network.PlutoNetworkPlugin
+import com.pluto.plugins.preferences.PlutoSharePreferencesPlugin
+import com.pluto.plugins.rooms.db.PlutoRoomsDBWatcher
+import com.pluto.plugins.rooms.db.PlutoRoomsDatabasePlugin
 import fr.bipi.tressence.file.FileLoggerTree
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
@@ -89,6 +99,7 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
 
     override fun onCreate() {
         Timber.plant(DebugTree())
+        Timber.plant(PlutoTimberTree())
 
         if(!BuildConfig.FOSS_ONLY)
             Timber.plant(CrashReportingTree())
@@ -110,6 +121,49 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
         val dumpFile = File(filesDir, "dump.txt")
         if(dumpFile.exists()) {
             dumpFile.delete()
+        }
+
+        if(BuildConfig.DEBUG) {
+            // Setup strict mode with death penalty
+            StrictMode.setThreadPolicy(
+                StrictMode.ThreadPolicy.Builder()
+                    .detectCustomSlowCalls()
+                    .detectNetwork()
+                    .detectResourceMismatches()
+                    .penaltyLog()
+                    .penaltyDeath()
+                    .build()
+            )
+
+            StrictMode.setVmPolicy(
+                StrictMode.VmPolicy.Builder()
+                    .apply {
+                        detectLeakedRegistrationObjects()
+                        detectCleartextNetwork()
+                        detectActivityLeaks()
+                        detectLeakedClosableObjects()
+                        detectLeakedSqlLiteObjects()
+                        detectContentUriWithoutPermission()
+                        penaltyLog()
+                        penaltyDeath()
+                    }
+                    .build()
+            )
+
+            Pluto.Installer(this)
+                .addPlugin(PlutoNetworkPlugin("network"))
+                .addPlugin(PlutoExceptionsPlugin("exceptions"))
+                .addPlugin(PlutoLoggerPlugin("logger"))
+                .addPlugin(PlutoSharePreferencesPlugin("sharedPref"))
+                .addPlugin(PlutoRoomsDatabasePlugin("rooms-db"))
+                .install()
+            Pluto.showNotch(true)
+
+            PlutoExceptions.setANRHandler { thread, exception ->
+                Timber.e("unhandled ANR handled on thread: " + thread.name, exception)
+            }
+
+            PlutoRoomsDBWatcher.watch("blocked_apps.db", AppBlocklistDatabase::class.java)
         }
 
         Notifications.createChannels(this)

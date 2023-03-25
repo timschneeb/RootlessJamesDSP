@@ -1,6 +1,7 @@
 package me.timschneeberger.rootlessjamesdsp.api
 
 import android.content.Context
+import com.pluto.plugins.network.PlutoInterceptor
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.flavor.CrashlyticsImpl
@@ -25,6 +26,7 @@ class AutoEqClient(val context: Context, callTimeout: Long = 10, customBaseUrl: 
     private val http = OkHttpClient
         .Builder()
         .callTimeout(callTimeout, TimeUnit.SECONDS)
+        .addInterceptor(PlutoInterceptor())
         .addInterceptor(UserAgentInterceptor("RootlessJamesDSP v${BuildConfig.VERSION_NAME}"))
         .build()
 

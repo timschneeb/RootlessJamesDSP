@@ -234,6 +234,10 @@ dependencies {
 
     // Debug utilities
     debugImplementation("com.squareup.leakcanary:leakcanary-android:2.10")
+    debugImplementation("com.plutolib:pluto:2.0.9")
+    releaseImplementation("com.plutolib:pluto-no-op:2.0.9")
+    debugImplementation("com.plutolib.plugins:bundle-core:2.0.9")
+    releaseImplementation("com.plutolib.plugins:bundle-core-no-op:2.0.9")
 
     // Unit tests
     testImplementation("junit:junit:4.13.2")

@@ -22,7 +22,7 @@
     </declare-styleable>
 
     <declare-styleable name="DropDownPreference">
-        <attr name="isStatic" format="string" />
+        <attr name="isStatic" format="boolean" />
     </declare-styleable>
 
     <attr name="iconTint" format="color" />
