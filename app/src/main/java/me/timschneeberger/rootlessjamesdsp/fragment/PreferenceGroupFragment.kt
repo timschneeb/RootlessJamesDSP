@@ -41,7 +41,7 @@ class PreferenceGroupFragment : PreferenceFragmentCompat(), KoinComponent {
     private val listenerApp =
         SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
             when(key) {
-                getString(R.string.key_appearance_show_icons) -> updateIconState()
+                context?.resources?.getString(R.string.key_appearance_show_icons) -> updateIconState()
             }
         }
 
