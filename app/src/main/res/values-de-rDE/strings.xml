@@ -351,6 +351,7 @@
     <string name="appearance_app_theme">App-Design</string>
     <string name="appearance_navigation_title">Navigation</string>
     <string name="appearance_nav_hide">Navigationsleiste beim Scrollen ausblenden</string>
+    <string name="appearance_show_icons">Kategorie-Symbole anzeigen</string>
     <string name="backup_settings">Sichern und Wiederherstellen</string>
     <string name="backup_settings_summary">Automatische &amp; manuelle Backups</string>
     <string name="backup_frequency">Backup-Häufigkeit</string>
