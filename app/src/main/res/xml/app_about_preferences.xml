@@ -10,19 +10,19 @@
         android:title="@string/credits_version"
         android:summary="x.x.x"
         android:key="@string/key_credits_version"
-        app:allowDividerAbove="true"
-        app:iconSpaceReserved="false" />
+        android:icon="@drawable/ic_twotone_history_24dp"
+        app:allowDividerAbove="true" />
 
     <Preference
         android:title="@string/credits_build_info"
-        android:summary="Unknown"
-        android:key="@string/key_credits_build_info"
-        app:iconSpaceReserved="false" />
+        android:summary="@string/value_not_set"
+        android:icon="@drawable/ic_twotone_info_24dp"
+        android:key="@string/key_credits_build_info" />
 
     <Preference
         android:title="@string/credits_project_page"
         android:summary="@string/credits_project_page_summary"
-        app:iconSpaceReserved="false">
+        android:icon="@drawable/ic_baseline_github_24dp">
         <intent
             android:action="android.intent.action.VIEW"
             android:data="https://github.com/thepbone/RootlessJamesDSP" />
@@ -32,7 +32,7 @@
         android:key="@string/key_credits_google_play"
         android:title="@string/credits_project_play_page"
         android:summary="@string/credits_project_play_page_summary"
-        app:iconSpaceReserved="false">
+        android:icon="@drawable/ic_baseline_google_play_24dp">
         <intent
             android:action="android.intent.action.VIEW"
             android:data="https://play.google.com/store/apps/details?id=me.timschneeberger.rootlessjamesdsp" />
@@ -42,13 +42,13 @@
         android:key="@string/key_credits_check_update"
         android:title="@string/credits_project_check_update"
         android:summary="@string/credits_project_check_update_summary"
-        app:iconSpaceReserved="false">
+        android:icon="@drawable/ic_twotone_download_24">
     </Preference>
 
     <Preference
         android:title="@string/credits_project_translate"
         android:summary="@string/credits_project_translate_summary"
-        app:iconSpaceReserved="false">
+        android:icon="@drawable/ic_twotone_translate_24dp">
         <intent
             android:action="android.intent.action.VIEW"
             android:data="https://crowdin.com/project/rootlessjamesdsp" />
