@@ -5,6 +5,7 @@
         android:key="@string/key_liveprog_enable"
         android:disableDependentsState="false"
         android:title="@string/liveprog_enable"
+        android:icon="@drawable/ic_baseline_code_tags_24dp"
         app:iconSpaceReserved="false">
         <me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
             android:title="@string/liveprog_file"

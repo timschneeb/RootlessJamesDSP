@@ -17,20 +17,32 @@ import me.timschneeberger.rootlessjamesdsp.liveprog.EelParser
 import me.timschneeberger.rootlessjamesdsp.preference.EqualizerPreference
 import me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
 import me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
+import me.timschneeberger.rootlessjamesdsp.preference.SwitchPreferenceGroup
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.unregisterLocalReceiver
+import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 import timber.log.Timber
 
 
-class PreferenceGroupFragment : PreferenceFragmentCompat() {
+class PreferenceGroupFragment : PreferenceFragmentCompat(), KoinComponent {
+    private val prefsApp: Preferences.App by inject()
     private val eelParser = EelParser()
     private var recyclerView: RecyclerView? = null
 
     private val listener =
         SharedPreferences.OnSharedPreferenceChangeListener { _, _ ->
             requireContext().sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
+        }
+
+    private val listenerApp =
+        SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+            when(key) {
+                getString(R.string.key_appearance_show_icons) -> updateIconState()
+            }
         }
 
     private val receiver = object : BroadcastReceiver() {
@@ -40,6 +52,13 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
                 Timber.d("Reloading group fragment for ${this@PreferenceGroupFragment.preferenceManager.sharedPreferencesName}")
                 (requireParentFragment() as DspFragment).restartFragment(id, cloneInstance(this@PreferenceGroupFragment))
             }
+        }
+    }
+
+    private fun updateIconState() {
+        if(preferenceScreen.preferenceCount > 0) {
+            (preferenceScreen.getPreference(0) as? SwitchPreferenceGroup?)
+                ?.setIsIconVisible(prefsApp.get<Boolean>(R.string.key_appearance_show_icons))
         }
     }
 
@@ -146,7 +165,10 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
             }
         }
 
+        updateIconState()
+
         preferenceManager.sharedPreferences?.registerOnSharedPreferenceChangeListener(listener)
+        prefsApp.registerOnSharedPreferenceChangeListener(listenerApp)
     }
 
     override fun onCreateRecyclerView(
@@ -169,6 +191,7 @@ class PreferenceGroupFragment : PreferenceFragmentCompat() {
     override fun onDestroy() {
         super.onDestroy()
         requireContext().unregisterLocalReceiver(receiver)
+        prefsApp.unregisterOnSharedPreferenceChangeListener(listener)
         preferenceManager.sharedPreferences?.unregisterOnSharedPreferenceChangeListener(listener)
     }
 

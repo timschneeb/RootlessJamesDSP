@@ -5,6 +5,7 @@
         android:key="@string/key_stereowide_enable"
         android:disableDependentsState="false"
         android:title="@string/stereowide_enable"
+        android:icon="@drawable/ic_baseline_cone_24dp"
         app:iconSpaceReserved="false">
         <me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
             android:title="@string/stereowide_level"

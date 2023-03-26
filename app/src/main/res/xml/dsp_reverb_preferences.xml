@@ -5,6 +5,7 @@
         android:key="@string/key_reverb_enable"
         android:disableDependentsState="false"
         android:title="@string/reverb_enable"
+        android:icon="@drawable/ic_baseline_cube_outline_24dp"
         app:iconSpaceReserved="false">
         <ListPreference
             android:defaultValue="15"

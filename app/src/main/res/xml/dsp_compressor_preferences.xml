@@ -5,6 +5,7 @@
         android:key="@string/key_compression_enable"
         android:disableDependentsState="false"
         android:title="@string/compressor_enable"
+        android:icon="@drawable/ic_baseline_arrow_collapse_24dp"
         app:iconSpaceReserved="false">
         <me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
             android:key="@string/key_compression_max_atk"

@@ -5,6 +5,7 @@
         android:disableDependentsState="false"
         android:key="@string/key_bass_enable"
         android:title="@string/bass_enable"
+        android:icon="@drawable/ic_twotone_speaker_24dp"
         app:iconSpaceReserved="false">
         <me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
             android:key="@string/key_bass_max_gain"

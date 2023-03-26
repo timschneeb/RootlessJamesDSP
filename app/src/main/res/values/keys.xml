@@ -47,6 +47,7 @@
     <string name="key_appearance_pure_black" translatable="false">appearance_pure_black</string>
     <string name="key_appearance_app_theme" translatable="false">appearance_app_theme</string>
     <string name="key_appearance_nav_hide" translatable="false">appearance_nav_hide</string>
+    <string name="key_appearance_show_icons" translatable="false">appearance_show_icons</string>
 
     <!-- Backups -->
     <string name="key_backup_frequency" translatable="false">backup_frequency</string>

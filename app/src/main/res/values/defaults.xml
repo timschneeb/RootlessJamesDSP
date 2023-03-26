@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- This file contains default values for shared preferences.
          Key names always have a 'default_' prefix and should otherwise match keys.xml.
          DSP-related configuration keys should not be put here and are handled differently. -->
 
     <!-- Internal -->
-    <bool name="default_first_boot" translatable="false">true</bool>
-    <integer name="default_snooze_translation_notice" translatable="false">0</integer>
-    <integer name="default_update_check_timeout" translatable="false">0</integer>
-    <integer name="default_update_check_skip" translatable="false">0</integer>
-    <bool name="default_reset_proc_mode_fix_applied" translatable="false">false</bool>
-    <bool name="default_is_activity_active" translatable="false">false</bool>
-    <bool name="default_is_app_compat_activity_active" translatable="false">false</bool>
+    <bool name="default_first_boot" translatable="false" tools:keep="@bool/default_first_boot">true</bool>
+    <integer name="default_snooze_translation_notice" translatable="false" tools:keep="@integer/default_snooze_translation_notice">0</integer>
+    <integer name="default_update_check_timeout" translatable="false" tools:keep="@integer/default_update_check_timeout">0</integer>
+    <integer name="default_update_check_skip" translatable="false" tools:keep="@integer/default_update_check_skip">0</integer>
+    <bool name="default_reset_proc_mode_fix_applied" translatable="false" tools:keep="@bool/default_reset_proc_mode_fix_applied">false</bool>
+    <bool name="default_is_activity_active" translatable="false" tools:keep="@bool/default_is_activity_active">false</bool>
+    <bool name="default_is_app_compat_activity_active" translatable="false" tools:keep="@bool/default_is_app_compat_activity_active">false</bool>
 
     <!-- Internal DSP (root only) -->
-    <bool name="default_powered_on" translatable="false">true</bool>
+    <bool name="default_powered_on" translatable="false" tools:keep="@bool/default_powered_on">true</bool>
 
     <!-- Settings -->
     <bool name="default_share_crash_reports" translatable="false">true</bool>
@@ -41,6 +41,7 @@
     <bool name="default_appearance_pure_black" translatable="false">false</bool>
     <string name="default_appearance_app_theme" translatable="false">DEFAULT</string>
     <bool name="default_appearance_nav_hide" translatable="false">false</bool>
+    <bool name="default_appearance_show_icons" translatable="false">true</bool>
 
     <!-- Backups -->
     <string name="default_backup_frequency" translatable="false">0</string>
@@ -48,6 +49,6 @@
     <string name="default_backup_location" translatable="false" />
 
     <!-- Script editor -->
-    <integer name="default_editor_font_size" translatable="false">13</integer>
+    <integer name="default_editor_font_size" translatable="false" tools:keep="@integer/default_editor_font_size">13</integer>
 
 </resources>

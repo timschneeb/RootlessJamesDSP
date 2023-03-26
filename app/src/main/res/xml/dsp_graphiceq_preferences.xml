@@ -5,6 +5,7 @@
         android:disableDependentsState="false"
         android:key="@string/key_geq_enable"
         android:title="@string/geq_enable"
+        android:icon="@drawable/ic_baseline_chart_timeline_variant_24dp"
         app:iconSpaceReserved="false">
         <!--<EditTextPreference
             android:key="@string/key_geq_nodes"

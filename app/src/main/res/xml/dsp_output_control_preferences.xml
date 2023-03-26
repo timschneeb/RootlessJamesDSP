@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-  <Preference
+  <me.timschneeberger.rootlessjamesdsp.preference.SwitchPreferenceGroup
       android:title="@string/output_control_header"
       android:enabled="false"
-      app:iconSpaceReserved="false" />
+      android:defaultValue="false"
+      android:icon="@drawable/ic_twotone_volume_up_24dp"
+      android:selectable="false"
+      android:persistent="false" />
   <me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
       android:key="@string/key_limiter_threshold"
       android:title="@string/output_limiter_threshold"

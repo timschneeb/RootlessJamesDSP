@@ -100,8 +100,11 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
 
     override fun onCreate() {
         Timber.plant(DebugTree())
-        Timber.plant(PlutoTimberTree())
 
+        if(BuildConfig.DEBUG) {
+            Timber.plant(PlutoTimberTree())
+            enableDebugTools()
+        }
         if(!BuildConfig.FOSS_ONLY)
             Timber.plant(CrashReportingTree())
 
@@ -122,54 +125,6 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
         val dumpFile = File(filesDir, "dump.txt")
         if(dumpFile.exists()) {
             dumpFile.delete()
-        }
-
-        if(BuildConfig.DEBUG) {
-            // Hide LeakCanary icons
-            LeakCanary.showLeakDisplayActivityLauncherIcon(false)
-
-            // Setup strict mode with death penalty
-            StrictMode.setThreadPolicy(
-                StrictMode.ThreadPolicy.Builder()
-                    .apply {
-                        detectCustomSlowCalls()
-                        detectNetwork()
-                        detectResourceMismatches()
-                        penaltyLog()
-                        penaltyDeath()
-                    }
-                    .build()
-            )
-
-            StrictMode.setVmPolicy(
-                StrictMode.VmPolicy.Builder()
-                    .apply {
-                        detectLeakedRegistrationObjects()
-                        detectCleartextNetwork()
-                        detectActivityLeaks()
-                        detectLeakedClosableObjects()
-                        detectLeakedSqlLiteObjects()
-                        detectContentUriWithoutPermission()
-                        penaltyLog()
-                        penaltyDeath()
-                    }
-                    .build()
-            )
-
-            Pluto.Installer(this)
-                .addPlugin(PlutoNetworkPlugin("network"))
-                .addPlugin(PlutoExceptionsPlugin("exceptions"))
-                .addPlugin(PlutoLoggerPlugin("logger"))
-                .addPlugin(PlutoSharePreferencesPlugin("sharedPref"))
-                .addPlugin(PlutoRoomsDatabasePlugin("rooms-db"))
-                .install()
-            Pluto.showNotch(true)
-
-            PlutoExceptions.setANRHandler { thread, exception ->
-                Timber.e("unhandled ANR handled on thread: " + thread.name, exception)
-            }
-
-            PlutoRoomsDBWatcher.watch("blocked_apps.db", AppBlocklistDatabase::class.java)
         }
 
         Notifications.createChannels(this)
@@ -197,8 +152,7 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
                 prefs.set(R.string.key_share_crash_reports, false)
             }
 
-            val crashlytics = prefs.get(R.string.key_share_crash_reports) &&
-                    (!BuildConfig.DEBUG || BuildConfig.PREVIEW)
+            val crashlytics = prefs.get<Boolean>(R.string.key_share_crash_reports)
             Timber.d("Crashlytics enabled? $crashlytics")
             CrashlyticsImpl.setCollectionEnabled(crashlytics)
 
@@ -259,6 +213,54 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
         }
     }
 
+    private fun enableDebugTools() {
+        // Hide LeakCanary icons
+        LeakCanary.showLeakDisplayActivityLauncherIcon(false)
+
+        // Setup strict mode with death penalty
+        StrictMode.setThreadPolicy(
+            StrictMode.ThreadPolicy.Builder()
+                .apply {
+                    detectCustomSlowCalls()
+                    detectNetwork()
+                    detectResourceMismatches()
+                    penaltyLog()
+                    penaltyDeath()
+                }
+                .build()
+        )
+
+        StrictMode.setVmPolicy(
+            StrictMode.VmPolicy.Builder()
+                .apply {
+                    detectLeakedRegistrationObjects()
+                    detectCleartextNetwork()
+                    detectActivityLeaks()
+                    detectLeakedClosableObjects()
+                    detectLeakedSqlLiteObjects()
+                    detectContentUriWithoutPermission()
+                    penaltyLog()
+                    penaltyDeath()
+                }
+                .build()
+        )
+
+        Pluto.Installer(this)
+            .addPlugin(PlutoNetworkPlugin("network"))
+            .addPlugin(PlutoExceptionsPlugin("exceptions"))
+            .addPlugin(PlutoLoggerPlugin("logger"))
+            .addPlugin(PlutoSharePreferencesPlugin("sharedPref"))
+            .addPlugin(PlutoRoomsDatabasePlugin("rooms-db"))
+            .install()
+        Pluto.showNotch(true)
+
+        PlutoExceptions.setANRHandler { thread, exception ->
+            Timber.e("unhandled ANR handled on thread: " + thread.name, exception)
+        }
+
+        PlutoRoomsDBWatcher.watch("blocked_apps.db", AppBlocklistDatabase::class.java)
+    }
+
     /** A tree which logs important information for crash reporting.  */
     private class CrashReportingTree : DebugTree() {
         private fun priorityAsString(priority: Int): String {
@@ -274,12 +276,8 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
         }
 
         override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
-            val safeTag = tag ?: "Unknown"
-            CrashlyticsImpl.log("[${priorityAsString(priority)}] $safeTag: $message")
-
-            if (t != null && (priority == Log.ERROR || priority == Log.WARN || priority == Log.ASSERT)) {
-                CrashlyticsImpl.recordException(t)
-            }
+            CrashlyticsImpl.log("[${priorityAsString(priority)}] ${tag ?: "???"}: $message")
+            t?.takeIf { priority >= Log.WARN }?.let(CrashlyticsImpl::recordException)
         }
     }
 }

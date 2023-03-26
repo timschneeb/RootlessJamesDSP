@@ -25,6 +25,12 @@
             android:title="@string/appearance_pure_black_mode"
             app:iconSpaceReserved="false" />
 
+        <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
+            android:key="@string/key_appearance_show_icons"
+            android:defaultValue="@bool/default_appearance_show_icons"
+            android:title="@string/appearance_show_icons"
+            app:iconSpaceReserved="false" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

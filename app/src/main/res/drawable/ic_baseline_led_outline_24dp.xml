@@ -1,0 +1,11 @@
+<!-- drawable/led_outline.xml -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24"
+    android:tint="?attr/colorControlNormal">
+    <path
+        android:fillColor="#000000"
+        android:pathData="m12 2.083a4.667 4.667 0 0 0-4.667 4.667v7h-2.333v2.333h3.5v5.833h2.333v-5.833h2.333v5.833h2.333v-5.833h3.5v-2.333h-2.333v-7a4.667 4.667 0 0 0-4.667-4.667m0 2.333a2.333 2.333 0 0 1 2.333 2.333v5.833h-4.667v-5.833a2.333 2.333 0 0 1 2.333-2.333z" />
+</vector>

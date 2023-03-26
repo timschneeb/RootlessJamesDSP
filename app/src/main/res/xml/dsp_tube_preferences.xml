@@ -5,6 +5,7 @@
         android:key="@string/key_tube_enable"
         android:disableDependentsState="false"
         android:title="@string/tube_enable"
+        android:icon="@drawable/ic_baseline_led_outline_24dp"
         app:iconSpaceReserved="false">
         <me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
             android:key="@string/key_tube_drive"

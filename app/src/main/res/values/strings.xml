@@ -379,6 +379,7 @@
     <string name="appearance_app_theme">App theme</string>
     <string name="appearance_navigation_title">Navigation</string>
     <string name="appearance_nav_hide">Hide navigation bar on scroll</string>
+    <string name="appearance_show_icons">Show category icons</string>
     <string name="backup_settings">Backup and restore</string>
     <string name="backup_settings_summary">Automatic &amp; manual backups</string>
     <string name="backup_frequency">Backup frequency</string>

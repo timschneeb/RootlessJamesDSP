@@ -5,6 +5,7 @@
         android:key="@string/key_crossfeed_enable"
         android:disableDependentsState="false"
         android:title="@string/crossfeed_enable"
+        android:icon="@drawable/ic_baseline_image_filter_tilt_shift_24dp"
         app:iconSpaceReserved="false">
         <ListPreference
             android:title="@string/crossfeed_preset"

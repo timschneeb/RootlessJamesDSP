@@ -7,6 +7,7 @@ import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.preference.Preference
 import androidx.preference.PreferenceGroup
 import androidx.preference.PreferenceViewHolder
@@ -25,6 +26,7 @@ class SwitchPreferenceGroup(context: Context, attrs: AttributeSet) : PreferenceG
     private var switch: MaterialSwitch? = null
     private var itemView: View? = null
     private var bgAnimation: ValueAnimator? = null
+    private var isIconVisible: Boolean = false
     private var state = false
 
     init {
@@ -54,10 +56,12 @@ class SwitchPreferenceGroup(context: Context, attrs: AttributeSet) : PreferenceG
 
         setChildrenVisibility(state)
         animateHeaderState(state)
+        setIsIconVisible(isIconVisible)
 
         switch = (holder.findViewById(R.id.switchWidget) as MaterialSwitch).apply {
             // Apply initial state
             isChecked = state
+            isVisible = isSelectable
 
             setOnCheckedChangeListener { _, isChecked ->
                 setValueInternal(isChecked, false)
@@ -74,6 +78,11 @@ class SwitchPreferenceGroup(context: Context, attrs: AttributeSet) : PreferenceG
     override fun onPrepareAddPreference(preference: Preference): Boolean {
         preference.isVisible = childrenVisible
         return super.onPrepareAddPreference(preference)
+    }
+
+    fun setIsIconVisible(value: Boolean) {
+        isIconVisible = value
+        itemView?.findViewById<View>(R.id.icon_frame)?.isVisible = value
     }
 
     fun setValue(value: Boolean) {
