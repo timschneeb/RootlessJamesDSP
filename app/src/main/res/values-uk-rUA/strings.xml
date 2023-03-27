@@ -351,6 +351,7 @@
     <string name="appearance_app_theme">Колірний акцент теми</string>
     <string name="appearance_navigation_title">Навігація</string>
     <string name="appearance_nav_hide">Приховати панель навігації під час прокрутки</string>
+    <string name="appearance_show_icons">Показувати значки категорій</string>
     <string name="backup_settings">Резервне копіювання та відновлення</string>
     <string name="backup_settings_summary">Автоматичне і ручне резервне копіювання</string>
     <string name="backup_frequency">Частота резервного копіювання</string>
