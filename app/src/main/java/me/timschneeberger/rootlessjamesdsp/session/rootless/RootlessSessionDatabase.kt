@@ -50,8 +50,14 @@ class RootlessSessionDatabase(context: Context) : BaseSessionDatabase(context) {
 
     override fun onSessionRemoved(item: IEffectSession) {
         (item as MutedEffectSession).run {
-            audioMuteEffect?.enabled = false
-            audioMuteEffect?.release()
+            try {
+                audioMuteEffect?.enabled = false
+                audioMuteEffect?.release()
+            }
+            catch (ex: Exception) {
+                Timber.e("onSessionRemoved: effect already destroyed")
+                Timber.d(ex)
+            }
         }
     }
 
