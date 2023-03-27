@@ -275,7 +275,7 @@
     <string name="profiles_enable_summary_off">Отдельные профили для каждого устройства отключены</string>
     <string name="profiles_info_title">Что такое отдельные профили для каждого устройства?</string>
     <string name="profiles_info">Нажмите для просмотра документации</string>
-    <string name="profiles_info_content">При включении данной настройки каждому аудиоустройству назначается отдельная конфигурация звука. Приложение автоматически переключается между профилями при изменении выходного устройства. \n\nПри подключении нового аудиоустройства ему автоматически назначается пустой профиль. Вы можете настроить его или скопировать настройки из другого профиля. \n\nОбратите внимание: при активации данной опции, пресеты будут применяться только к активному профилю. Неактивные профили остаются без изменений.</string>
+    <string name="profiles_info_content">При включении данной настройки каждому аудиоустройству назначается отдельная конфигурация звука. Приложение автоматически переключается между профилями при изменении выходного устройства. \n\nПри подключении нового аудиоустройства ему автоматически назначается пустой профиль. Вы можете настроить его или скопировать настройки из другого профиля. \n\nОбратите внимание: при включении данной опции, пресеты будут применяться только к активному профилю. Неактивные профили остаются без изменений.</string>
     <string name="profiles_manage_hint">Чтобы скопировать или удалить профили, нажмите кнопку «Активный профиль устройства» на главном экране.</string>
     <string name="app_behavior">Работа приложения</string>
     <string name="exclude_app_from_recents">Исключить приложение из недавних</string>
@@ -306,7 +306,7 @@
     <string name="troubleshooting_repair_assets_summary">Если вы потеряли или удалили предустановленные ресурсы, вы можете их восстановить. Ресурсы, импортированные или созданные вами, останутся без изменений</string>
     <string name="troubleshooting_repair_assets_success">Предустановленные ресурсы были восстановлены</string>
     <string name="misc_settings">Прочее</string>
-    <string name="misc_settings_summary">Отчёты об ошибках, другие действия</string>
+    <string name="misc_settings_summary">Отчеты об ошибках, другие действия</string>
     <string name="misc_permission_skip_prompt">Пропустить запрос разрешения на захват</string>
     <string name="misc_permission_auto_start">Автозапуск механизма обработки эффектов при загрузке</string>
     <string name="misc_permission_restart_setup">Перезапустить мастер настройки</string>
@@ -324,8 +324,8 @@
     <string name="about_settings_summary">Авторы, поддержка, обновления</string>
     <string name="privacy">Конфиденциальность</string>
     <string name="privacy_share_crash_reports">Поделиться информацией о сбоях приложения</string>
-    <string name="privacy_share_crash_reports_on">Отправлять отчёты о сбоях разработчику</string>
-    <string name="privacy_share_crash_reports_off">Не отправлять отчёты о сбоях разработчику</string>
+    <string name="privacy_share_crash_reports_on">Отправлять отчеты о сбоях разработчику</string>
+    <string name="privacy_share_crash_reports_off">Не отправлять отчеты о сбоях разработчику</string>
     <string name="credits">Благодарности</string>
     <string name="translators">Авторы переводов</string>
     <string name="credits_app">Приложение и rootless версия</string>
@@ -351,6 +351,7 @@
     <string name="appearance_app_theme">Цветовой акцент темы</string>
     <string name="appearance_navigation_title">Навигация</string>
     <string name="appearance_nav_hide">Скрывать панель навигации при прокрутке</string>
+    <string name="appearance_show_icons">Отображать значки категорий</string>
     <string name="backup_settings">Резервное копирование и восстановление</string>
     <string name="backup_settings_summary">Автоматическое и ручное резервное копирование</string>
     <string name="backup_frequency">Частота резервного копирования</string>
