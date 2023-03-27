@@ -105,6 +105,7 @@
     <string name="reverb_preset_plate_low">لوحة منخفضة</string>
     <string name="reverb_preset_long_reverb1">تردد طويل ١</string>
     <string name="reverb_preset_long_reverb2">تردد طويل 2</string>
+    <string name="convolver_enable">الدوار</string>
     <string name="convolver_impulse">دافع الاستجابة</string>
     <string name="convolver_advanced_editing">تحرير نموذج الموجة المتقدم</string>
     <string name="convolver_convolution_mode">تحسين استجابة التأثير</string>
@@ -125,9 +126,48 @@
     <string name="output_control_header">التحكم في المخرج</string>
     <string name="output_limiter_threshold">عتبة محددة</string>
     <string name="output_limiter_release">الإصدار المحدود</string>
+    <string name="stereowide_enable">توسيع مرحلة الصوت</string>
+    <string name="stereowide_level_none">لا شيء</string>
+    <string name="stereowide_level_very_wide">واسع جداً</string>
+    <string name="stereowide_level_wide">واسع</string>
+    <string name="stereowide_level_very_narrow">ضيق جدا</string>
+    <string name="stereowide_level_narrow">ضيق</string>
+    <string name="crossfeed_enable">متقاطع</string>
+    <string name="crossfeed_preset">أعدادات مسبقة</string>
+    <string name="crossfeed_preset_bs2b_weak">ضعيف BS2B</string>
+    <string name="crossfeed_preset_bs2b_strong">قوي BS2B</string>
+    <string name="crossfeed_preset_out_of_head">خارج الرأس</string>
+    <string name="crossfeed_preset_surround1">محيطي 1</string>
+    <string name="crossfeed_preset_surround2">محيطي 2</string>
+    <string name="crossfeed_preset_realistic_surround">Joe0Bloggs الواقعية المحيطية</string>
     <!-- Onboarding -->
+    <string name="onboarding_back">رجوع</string>
+    <string name="onboarding_next">التالي</string>
+    <string name="onboarding_finish">إنهاء</string>
+    <string name="onboarding_greeting">مرحبا بك في RootlessJamesDSP!</string>
+    <string name="onboarding_caption">سيساعدك هذا المساعد في إعداد هذا التطبيق.</string>
+    <string name="onboarding_warning">وهذا التطبيق غير مكتمل وغير مستقر في الوقت الحالي. يرجى ملاحظة أنه قد لا يعمل على بعض الأجهزة كما هو متوقع لأنه يستخدم أندرويد APIs غير مصممة للاستخدام من قبل أطراف ثالثة.</string>
+    <string name="onboarding_fix_permissions_title">مطلوب إجراء من المستخدم</string>
+    <string name="onboarding_fix_permissions">تم إلغاء واحد أو أكثر من الأذونات من قبلك أو من قبل النظام.\nللتأكد من أن هذا التطبيق يتصرف بشكل صحيح، تحتاج إلى منح هذه الأذونات مرة أخرى.\n\nالرجاء إعادة تشغيل معالج الإعداد لإعادة منح هذه الأذونات.</string>
+    <string name="onboarding_limitations_title">القيود</string>
+    <string name="onboarding_limitations_unstable">مهم! يرجى قراءة الملاحظات بعناية قبل المتابعة.</string>
+    <string name="onboarding_methods_title">اختيار طريقة الإعداد</string>
+    <string name="onboarding_methods_root_title">الجذر</string>
+    <string name="onboarding_methods_shizuku_title">Shizuku</string>
+    <string name="onboarding_methods_unsupported_append">غير متوافقة</string>
+    <string name="onboarding_methods_adb_title">جسر تطوير الاندرويد ADB</string>
     <!-- Rootless flavor -->
+    <string name="onboarding_methods_rootless_shizuku">\u25CF موصى به\n\u25CF لا يتطلب كمبيوتر خارجي\n\u25CF أندرويد 11+ فقط</string>
+    <string name="onboarding_methods_rootless_adb">\u25CF للمستخدمين المتقدمين\n\u25CF الكمبيوتر وكبل USB مطلوبين\n\u25CF أندرويد 10+ مدعومة</string>
     <!-- Root flavor -->
+    <string name="onboarding_methods_root_root">\u25CF موصى به\n\u25CF لا يتطلب جهاز كمبيوتر خارجي\n\u25CF جميع إصدارات الأندرويد</string>
+    <string name="onboarding_methods_root_shizuku">\u25CF موصى به، إذا لم يتم إعداد الجذر\n\u25CF لا يتطلب جهاز كمبيوتر خارجي\n\u25CF أندرويد 11+ فقط</string>
+    <string name="onboarding_methods_root_adb">\u25CF للمستخدمين المتقدمين\n\u25CF الكمبيوتر وكبل USB مطلوب\n\u25CFجميع إصدارات Android</string>
+    <string name="onboarding_root_shell_fail_title">لا توجد صلاحيات الجذر</string>
+    <string name="onboarding_root_shell_fail">لا تتوفر إمكانية الوصول إلى الجذر. الرجاء استخدام طريقة إعداد أخرى.</string>
+    <string name="onboarding_root_shell_fail_unknown">فشل في منح الإذن عن طريق الجذر. الرجاء استخدام طريقة إعداد أخرى.</string>
+    <string name="onboarding_root_enhanced_processing_setup_success">تم إعداد تحسين المعالجة</string>
+    <string name="onboarding_adb_shizuku_title">الإعداد عبر Shizuku</string>
     <string name="onboarding_adb_shizuku_install_button">تثبيت Shizuku</string>
     <string name="onboarding_adb_shizuku_install_button_done">مثبت بالفعل</string>
     <string name="onboarding_adb_shizuku_install_instruction">تثبيت \'Shizuku\' من Google Play.</string>
