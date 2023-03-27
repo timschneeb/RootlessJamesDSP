@@ -368,8 +368,13 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat(), TargetFr
             val foundTags = mutableMapOf<String /* tag */, MutableList<String> /* scripts */>()
 
             fileLibPreference.entryValues.forEach { path ->
+                context?.let {
+                    eelParser.load(
+                        FileLibraryPreference.createFullPathCompat(it, path.toString()),
+                        skipProperties = true
+                    )
+                } ?: return@forEach
 
-                eelParser.load(FileLibraryPreference.createFullPathCompat(requireContext(), path.toString()), skipProperties = true)
                 if(eelParser.tags.isEmpty())
                     eelParser.fileName?.let(untaggedScripts::add)
                 eelParser.tags.forEach { tag ->
