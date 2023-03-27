@@ -77,8 +77,10 @@
     <string name="eq_preset_classic">قديم</string>
     <string name="eq_preset_clear">واضح</string>
     <string name="eq_preset_deep">عميق</string>
+    <string name="eq_preset_dubstep">دبستيب</string>
     <string name="eq_preset_electronic">إلكتروني</string>
     <string name="eq_preset_flat">مسطح</string>
+    <string name="eq_preset_hardstyle">الوضع الصلب</string>
     <string name="eq_preset_hiphop">الهيب هوب</string>
     <string name="eq_preset_jazz">موسيقى الجاز</string>
     <string name="eq_preset_metal">موسيقى الميتال</string>
@@ -90,6 +92,7 @@
     <string name="geq_enable">معادل الاستجابة العشوائية</string>
     <string name="geq_nodes">استجابة الضخامة</string>
     <string name="bass_enable">تحسين الجهير الديناميكي</string>
+    <string name="bass_max_gain">أقصى قين</string>
     <string name="reverb_enable">تأثير الغرفة الافتراضية</string>
     <string name="reverb_room_type">نوع الغرفة</string>
     <string name="reverb_preset_default">الافتراضي</string>
@@ -114,6 +117,7 @@
     <string name="convolver_convolution_mode_minimum_phase_shrink">الحد الأدنى للمرحلة من التحول والانكماش</string>
     <string name="ddc_enable">ViPER-DDC</string>
     <string name="ddc_file">ملف DDC</string>
+    <string name="liveprog_enable">البرمجة المباشرة DSP</string>
     <string name="liveprog_file">نص Liveprog</string>
     <string name="liveprog_additional_params">معلمات البرنامج النصي الإضافية</string>
     <string name="liveprog_additional_params_not_supported">البرنامَج النصي المحدد لا يحتوي على معلمات قابلة للتخصيص</string>
@@ -126,7 +130,9 @@
     <string name="output_control_header">التحكم في المخرج</string>
     <string name="output_limiter_threshold">عتبة محددة</string>
     <string name="output_limiter_release">الإصدار المحدود</string>
+    <string name="output_control_postgain">تعزيز القين</string>
     <string name="stereowide_enable">توسيع مرحلة الصوت</string>
+    <string name="stereowide_level">الاتساع</string>
     <string name="stereowide_level_none">لا شيء</string>
     <string name="stereowide_level_very_wide">واسع جداً</string>
     <string name="stereowide_level_wide">واسع</string>
@@ -141,6 +147,7 @@
     <string name="crossfeed_preset_surround2">محيطي 2</string>
     <string name="crossfeed_preset_realistic_surround">Joe0Bloggs الواقعية المحيطية</string>
     <!-- Onboarding -->
+    <string name="title_activity_onboarding">الاحاطة</string>
     <string name="onboarding_back">رجوع</string>
     <string name="onboarding_next">التالي</string>
     <string name="onboarding_finish">إنهاء</string>
@@ -354,9 +361,29 @@
     <string name="backup_12hour">كل 12 ساعة</string>
     <string name="backup_24hour">يومياً</string>
     <string name="backup_48hour">كل يومين</string>
+    <string name="backup_weekly">إسبوعياً</string>
+    <string name="backup_select_location">الرجاء إنشاء واختيار دليل النسخ الاحتياطي…</string>
     <!-- Theme names -->
     <string name="theme_default">الافتراضي</string>
+    <string name="theme_monet">ديناميكي</string>
+    <string name="theme_greenapple">تفاحة خضراء</string>
+    <string name="theme_strawberrydaiquiri">الفراولة دايستوبي</string>
+    <string name="theme_honey">العسل</string>
+    <string name="theme_tealturquoise">Teal &amp; Turquoise</string>
+    <string name="theme_yinyang">Yin &amp; Yang</string>
+    <string name="theme_yotsuba">يوتسوبا</string>
+    <string name="theme_tidalwave">تاد ويف</string>
     <!-- File library preference -->
+    <string name="action_import">استيراد</string>
+    <string name="filelibrary_hint_tap_and_hold">اضغط مع الاستمرار على أي عنصر لمزيد من الخيارات</string>
+    <string name="filelibrary_context_load">تحميل</string>
+    <string name="filelibrary_context_edit">تحرير</string>
+    <string name="filelibrary_context_overwrite">الكتابة فوق الملف</string>
+    <string name="filelibrary_context_rename">إعادة تسمية</string>
+    <string name="filelibrary_context_share">مشاركة…</string>
+    <string name="filelibrary_context_resample">إعادة غير متصل</string>
+    <string name="filelibrary_context_duplicate">استنساخ</string>
+    <string name="filelibrary_context_delete">حذف</string>
     <string name="filelibrary_context_new_preset">جديد</string>
     <string name="filelibrary_context_new_preset_long">إعداد مسبق جديد</string>
     <string name="filelibrary_unsupported_format_title">نوع الملف غير مدعوم</string>
@@ -387,6 +414,7 @@
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">استجابة الضخامة</string>
     <string name="geq_edit_as_string">تحرير كسلسلة</string>
+    <string name="geq_autoeq">AutoEQ ملف تعريف</string>
     <string name="gep_add_node">إضافة</string>
     <string name="geq_preview">معاينة</string>
     <string name="geq_preview_collapsed">معاينة (انقر للتوسع)</string>
@@ -409,9 +437,31 @@
     <string name="geq_discard_changes">القيم غير صالحة أو فارغة. لا يمكن حفظ التغييرات الخاصة بك.\nهل تريد تجاهل التغييرات والخروج؟</string>
     <string name="geq_frequeny_range">القيمة بين 1Hz و24000Hz</string>
     <string name="geq_gain_range">القيمة بين -32dB و 32dB</string>
+    <string name="geq_gain">قين</string>
+    <string name="geq_frequency">التردد</string>
     <!-- AutoEQ GraphicEQ selector -->
+    <string name="geq_api_network_error">فشل الاتصال بالخادم. %1$s</string>
+    <string name="geq_api_network_error_details_code">استجاب الخادم برمز الخطأ: %1$d</string>
+    <string name="autoeq_search">بحث AutoEQ</string>
+    <string name="autoeq_enter_model">أدخل نموذج سماعة الرأس الخاص بك…</string>
+    <string name="autoeq_partial_results_warning">عرض النتائج %1$d الأولى. يرجى ضبط البحث الخاص بك للحصول على المزيد من النتائج ذات الصلة.</string>
+    <string name="autoeq_no_results">لم يتم العثور على أي نتائج</string>
     <!-- Customizable liveprog script parameters -->
+    <string name="title_activity_liveprog_params">معلمات البرنامج النصي القابلة للتخصيص</string>
+    <string name="action_restore_defaults">إستعادة الافتراضية</string>
     <!-- Liveprog script editor -->
+    <string name="title_activity_liveprog_editor">محرر البرنامج النصي</string>
+    <string name="editor_find_and_replace">العثور على / استبدال…</string>
+    <string name="editor_docs">الدعم</string>
+    <string name="editor_open_fail">ملف البرنامج النصي غير موجود أو لا يمكن فتحه.</string>
+    <string name="editor_run">حفظ وتشغيل</string>
+    <string name="editor_save">حفظ</string>
+    <string name="editor_liveprog_enabled">تم تشغيل Liveprog تلقائياً.</string>
+    <string name="editor_replace_all">استبدال الكل</string>
+    <string name="editor_replacement">الاستبدال</string>
+    <string name="editor_find_next_match">بحث عن التطابق التالي</string>
+    <string name="editor_find_previous_match">البحث عن تطابق سابق</string>
+    <string name="editor_search_keyword">بحث</string>
     <string name="editor_source_position">%1$d:%2$d</string>
     <string name="editor_engine_down_title">JamesDSP غير نشط</string>
     <string name="editor_engine_down">لا يمكن تشغيل البرنامج النصي بسبب تعطيل JamesDSP. الرجاء تشغيل JamesDSP لتنفيذ البرامج النصية.</string>
@@ -496,6 +546,21 @@
     <string name="backup_restore_error">فشل استرجاع النسخ الاحتياطي</string>
     <string name="backup_restore_error_format">ملف النسخ الاحتياطي غير مدعوم أو معطوب</string>
     <string name="backup_restore_error_version_too_new">تم إنشاء النسخة الاحتياطية مع إصدار أحدث من هذا التطبيق ولا يمكن تحميلها. الرجاء تحديث هذا التطبيق للمتابعة.</string>
+    <string name="backup_restore_completed">اكتملت الاستعادة</string>
+    <string name="backup_create_completed">تم إنشاء نسخة احتياطية</string>
+    <string name="backup_create_progress">إنشاء نسخة احتياطية</string>
+    <string name="backup_create_error">فشل النسخ الاحتياطي</string>
+    <string name="backup_manual_backup">النسخ الاحتياطي اليدوي</string>
+    <string name="backup_create">إنشاء نسخة احتياطية</string>
+    <string name="backup_create_summary">يمكن استخدامه لاستعادة الإعدادات الحالية في وقت لاحق</string>
+    <string name="backup_restore">استرجاع النسخة الاحتياطية</string>
+    <string name="backup_restore_summary">استعادة الإعدادات من ملف النسخ الاحتياطي</string>
+    <string name="backup_automatic_backup">النسخ الاحتياطي التلقائي</string>
+    <string name="backup_compat_info">وتشمل النسخ الاحتياطي فقط الردود على الدفع، والنصوص البرمجية، وملفات VDC والإعدادات المسبقة، والتكوين الصوتي الحالي لتحقيق أقصى قدر من التوافق مع الإصدارات الأخرى.</string>
+    <string name="backup_restore_mode_title">وضع الإستعادة</string>
+    <string name="backup_restore_mode_clean">مسح الاستعادة (حذف جميع الملفات الموجودة)</string>
+    <string name="backup_restore_mode_dirty">الاستعادة الناقصة (الكتابة فوق فقط)</string>
+    <string name="backup_in_progress">النسخ الاحتياطي قيد التقدم بالفعل</string>
     <!-- Multi-device profiles -->
     <string name="group_wired_headphones">سماعات الرأس</string>
     <string name="group_bluetooth">البلوتوث</string>
