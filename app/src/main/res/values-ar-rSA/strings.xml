@@ -56,12 +56,15 @@
     <string name="undo">تراجع</string>
     <string name="redo">إعادة</string>
     <string name="no_activity_found">لم يتم العثور على نشاط لمعالجة الإجراء</string>
+    <string name="permission_allowed">مسموح</string>
+    <string name="permission_not_allowed">غير مسموح به</string>
     <!-- Main screen -->
     <string name="power_button_alt">تشغيل معالجة الصوت</string>
     <string name="compressor_enable">ضغط النطاق الديناميكي التلقائي</string>
     <string name="compressor_max_attack">الحد الأقصى للهجوم</string>
     <string name="compressor_max_release">الحد الأقصى للإصدار</string>
     <string name="compressor_adapt_speed">العدوانية</string>
+    <string name="eq_enable">معادل معلومات FIR</string>
     <string name="eq_filter_type">نوع التصفية</string>
     <string name="eq_interpolator">مستقطب</string>
     <string name="eq_filter_type_minimum">المرحلة الأدنى</string>
@@ -181,6 +184,7 @@
     <string name="profiles_info">انقر لعرض المستندات</string>
     <string name="profiles_info_content">بينما يتم تمكين هذا الإعداد، يتم تعيين تكوين صوتي منفصل لكل جهاز صوتي. سيقوم هذا التطبيق تلقائياً بالتبديل بين ملفات الجهاز الشخصية عند تغيير جهاز الخروج. \n\nكل جهاز جديد متصل يبدأ بملف تعريف فارغ. يمكنك بعد ذلك إعداده أو نسخ الإعدادات من ملف تعريف جهاز آخر.\n\nملاحظة: يتم تطبيق الإعدادات المسبقة فقط على الملف الشخصي النشط أثناء تمكين هذه الميزة. تظل الملفات الشخصية غير النشطة بدون مسر.</string>
     <string name="profiles_manage_hint">انقر على زر \'المِلَفّ الشخصي للجهاز النشط\' على الشاشة الرئيسة لنسخ أو حذف الملفات التعريفية.</string>
+    <string name="appearance_show_icons">إظهار أيقونات الفئة</string>
     <string name="backup_settings">النسخ الاحتياطي والاستعادة</string>
     <!-- Theme names -->
     <string name="theme_default">الافتراضي</string>
