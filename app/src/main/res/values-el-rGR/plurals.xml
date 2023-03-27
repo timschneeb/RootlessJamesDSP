@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <plurals name="custom_parameters">
+        <item quantity="one">%d Προσαρμόσιμη παράμετρος</item>
+        <item quantity="other">%d Προσαρμόσιμες παράμετροι</item>
+    </plurals>
+</resources>
