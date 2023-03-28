@@ -1,9 +1,9 @@
-Use JamesDSP as a system-wide audio processing engine without any root access.
+Gunakan JamesDSP sebagai pemroses audio global tanpa akses root.
 
-This app has several limitations that may be deal-breaking to some people; please read this whole document before using the app. Shizuku (Android 11+) or ADB access via a computer is required for the initial setup.
+Aplikasi ini punya beberapa keterbatasan yang mungkin melanggar beberapa kesepakatan bagi beberapa orang; baca seluruh dokumentasi sebelum menggunakan. Dibutuhkan Shizuku (Android 11+) atau ADB via komputer untuk inisialisasi.
 
-JamesDSP supports the following audio effects:
-* Limiter control
+JamesDSP mendukung audio effect berikut:
+* Kontrol limiter
 * Output gain control
 * Auto dynamic range compressor
 * Dynamic bass boost
@@ -11,21 +11,21 @@ JamesDSP supports the following audio effects:
 * Arbitrary response equalizer (Graphic EQ)
 * ViPER-DDC
 * Convolver
-* Live-programmable DSP (scripting engine for audio effects)
+* Live-programmable DSP (mesin scripting untuk audio effect)
 * Analog modelling
 * Soundstage wideness
 * Crossfeed
 * Virtual room effect (reverb)
 
-Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration, you can search and import frequency responses that aim to correct your headphone to a neutral sound. Go to 'Arbitrary response equalizer > Magnitude response > AutoEQ profiles' to get started.
+Sebagai tambahan, aplikasi ini terintegrasi langsung dengan AutoEQ. Dengan AutoEQ, anda dapat mencari dan mengimpor respon frekuensi untuk memperbaiki suara netral headset anda. Buka 'Arbitrary response equalizer > Respon Magnitude > Profil AutoEQ' untuk memulai.
 
---- Limitations
-* Apps blocking internal audio capture remain unprocessed (e.g., Spotify, Google Chrome)
-* Apps using some types of HW-accelerated playback may cause issues and need to be manually excluded (e.g., some Unity games)
-* Cannot coexist with (some) other audio effect apps (e.g., Wavelet and other apps that make use of the `DynamicsProcessing` Android API)
+--- Keterbatasan
+* Aplikasi yang memblokir penangkapan audio internal tidak akan diproses (seperti Spotify, Google Chrome)
+* Aplikasi yang menggunakan sejenis HW-accelerated playback dapat menyebabkan masalah dan harus dikecualikan manual (seperti beberapa game Unity)
+* Tidak bisa berjalan dengan audio effect lainnya (seperti Wavelet dan aplikasi yang menggunakan API `DynamicsProcessing`)
 
 
-- Apps confirmed working:
+- Aplikasi yang dikonfirmasi berjalan:
 * YouTube
 * YouTube Music
 * Amazon Music
@@ -35,12 +35,12 @@ Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration
 * Twitch
 * ...
 
-- Unsupported apps include:
-* Spotify (Note: Spotify ReVanced patch is required to support Spotify)
+- Aplikasi tidak didukung diantaranya:
+* Spotify (Catatan: patch ReVanced dibutuhkan untuk Spotify)
 * Google Chrome
 * SoundCloud
 * ...
 
---- Translation
-Please help us translate this app here: https://crowdin.com/project/rootlessjamesdsp
-To request a new language that isn't enabled on Crowdin yet, please open an issue here on GitHub and I will turn it on.
+--- Terjemahan
+Bantu kami menerjemahkan aplikasi in di sinii: https://crowdin.com/project/rootlessjamesdsp
+Untuk meminta bahasa baru yang belum ada di Crowdin, buka GitHub issue dan saya akan mengaktifkannya.
