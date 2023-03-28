@@ -46,6 +46,9 @@
     <string name="success">Sucesso</string>
     <string name="open">Abrir</string>
     <string name="close">Fechar</string>
+    <string name="delete">Excluir</string>
+    <string name="copy">Copiar</string>
+    <string name="paste">Colar</string>
     <string name="add">Adicionar</string>
     <string name="yes">Sim</string>
     <string name="no">Não</string>
@@ -53,6 +56,8 @@
     <string name="undo">Desfazer</string>
     <string name="redo">Refazer</string>
     <string name="no_activity_found">Nenhuma atividade encontrada para executar a ação</string>
+    <string name="permission_allowed">Permitido</string>
+    <string name="permission_not_allowed">Não permitido</string>
     <!-- Main screen -->
     <string name="power_button_alt">Ativar/desativar processamento de áudio</string>
     <string name="compressor_enable">Compressor automático dinâmico de faixa</string>
@@ -126,6 +131,10 @@
     <string name="output_limiter_threshold">Limite de Limitador</string>
     <string name="output_limiter_release">Liberação do limitador</string>
     <string name="output_control_postgain">Pós-ganho</string>
+    <string name="stereowide_enable">Amplitude do palco sonoro</string>
+    <string name="stereowide_level">Amplitude</string>
+    <string name="stereowide_level_none">Nenhum</string>
+    <string name="stereowide_level_very_wide">Muito amplo</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
