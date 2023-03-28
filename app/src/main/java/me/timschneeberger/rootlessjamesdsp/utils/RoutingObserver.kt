@@ -177,8 +177,12 @@ class RoutingObserver(val context: Context) : MediaRouter.Callback(), KoinCompon
             else
                 "${group.name.lowercase()}_${(if(group == DeviceGroup.BLUETOOTH) address else productName).lowercase().sanitize()}"
         val name: String
+            // If single profile
             get() = if(group.usesSingleProfile())
                 context.getString(group.nameRes)
+            // If Bluetooth device without address, use single profile
+            else if((group == DeviceGroup.BLUETOOTH && address.isBlank()))
+                "${context.getString(group.nameRes)} (${context.getString(R.string.group_unknown)})"
             else {
                 "${if(hasProductName()) productName else address} (${context.getString(group.nameRes)})".let {
                     if(group == DeviceGroup.USB)
@@ -190,8 +194,10 @@ class RoutingObserver(val context: Context) : MediaRouter.Callback(), KoinCompon
 
 
         override fun toString() = "Device(id=$id, group=$group, name='$name', productName='$productName', address='$address')"
-        // Special case: you can connect two phones of the same model name via bluetooth
-        private fun hasProductName() =  (productName != Build.MODEL || group == DeviceGroup.BLUETOOTH) && productName.isNotEmpty()
+        private fun hasProductName(): Boolean {
+            // Special case: you can connect two phones of the same model name via bluetooth
+            return (productName != Build.MODEL || group == DeviceGroup.BLUETOOTH) && productName.isNotEmpty()
+        }
         private fun String.sanitize() = this.replace("[ \\;/:*?\"<>|&']".toRegex(),"_")
     }
 
