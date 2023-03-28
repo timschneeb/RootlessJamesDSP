@@ -177,14 +177,15 @@ class RoutingObserver(val context: Context) : MediaRouter.Callback(), KoinCompon
             else
                 "${group.name.lowercase()}_${(if(group == DeviceGroup.BLUETOOTH) address else productName).lowercase().sanitize()}"
         val name: String
-            // If single profile
+            // If single profile, only use generic name
             get() = if(group.usesSingleProfile())
                 context.getString(group.nameRes)
-            // If Bluetooth device without address, use single profile
+            // If Bluetooth device without address, resort to single profile
             else if((group == DeviceGroup.BLUETOOTH && address.isBlank()))
                 "${context.getString(group.nameRes)} (${context.getString(R.string.group_unknown)})"
             else {
                 "${if(hasProductName()) productName else address} (${context.getString(group.nameRes)})".let {
+                    // Cleanup USB driver name prefix
                     if(group == DeviceGroup.USB)
                         it.replace("USB-Audio - ", "")
                     else
