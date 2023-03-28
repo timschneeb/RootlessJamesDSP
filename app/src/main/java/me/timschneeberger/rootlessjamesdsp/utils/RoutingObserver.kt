@@ -190,7 +190,8 @@ class RoutingObserver(val context: Context) : MediaRouter.Callback(), KoinCompon
 
 
         override fun toString() = "Device(id=$id, group=$group, name='$name', productName='$productName', address='$address')"
-        private fun hasProductName() = productName != Build.MODEL && productName.isNotEmpty()
+        // Special case: you can connect two phones of the same model name via bluetooth
+        private fun hasProductName() =  (productName != Build.MODEL || group == DeviceGroup.BLUETOOTH) && productName.isNotEmpty()
         private fun String.sanitize() = this.replace("[ \\;/:*?\"<>|&']".toRegex(),"_")
     }
 
