@@ -68,17 +68,25 @@ class RoutingObserver(val context: Context) : MediaRouter.Callback(), KoinCompon
             - resource 'default_audio_route_name_hdmi' was renamed to 'default_audio_route_name_external_device'
             https://cs.android.com/android/_/android/platform/frameworks/base/+/376bae463a9e46437047efbd082c7ac56e1ced3f
          */
-        get() = Resources.getSystem().getText(
-            Resources.getSystem().getIdentifier(
-                sdkAbove(34 /* FIXME Build.VERSION_CODES.UPSIDE_DOWN_CAKE */) {
-                    "default_audio_route_name_external_device"
-                }.below {
-                    "default_audio_route_name_hdmi"
-                },
-                "string", "android"
-            )
-        ).let { hdmiName ->
-            router.defaultRoute == this && hdmiName == name
+        get() = try {
+            Resources.getSystem().getText(
+                Resources.getSystem().getIdentifier(
+                    sdkAbove(34 /* FIXME Build.VERSION_CODES.UPSIDE_DOWN_CAKE */) {
+                        "default_audio_route_name_external_device"
+                    }.below {
+                        "default_audio_route_name_hdmi"
+                    },
+                    "string", "android"
+                )
+            ).let { hdmiName ->
+                router.defaultRoute == this && hdmiName == name
+            }
+        }
+        catch (ex: Resources.NotFoundException) {
+            Timber.e("HDMI route name string not found")
+            Timber.i(ex)
+            // Fallback to unsafe check
+            router.defaultRoute == this && name.contains("HDMI")
         }
 
 
