@@ -8,16 +8,16 @@ JamesDSP podporuje následující zvukové efekty:
 * Automatický kompresor dynamického rozsahu
 * Zesílení dynamických basů
 * Interpolační FIR ekvalizér
-* Grafický ekvalizér s libovolnou odezvou
-ViPER-DDC
-* Konvoluční efekt
+* Ekvalizér s manipulovatelnými frekvenčními odezvami (Grafický ekvalizér)
+* ViPER-DDC
+* Efekt konvoluce
 * Živě programovatelné DSP (skriptovací engine pro audio efekty)
 * Analogové modelování
 * Šířka zvukové scény
 * Přeslech
 * Efekt virtuální místnosti (reverb)
 
-Navíc se tato aplikace integruje přímo s AutoEQ. Pomocí integrace AutoEQ můžete hledat a importovat frekvenční odezvy, které slouží k opravě frekvenční křivky vašich sluchátek a nastavení neutrálního zvuku. Jděte do „Ekvalizér s libovolnou kmitočtovou charakteristikou > Magnitudová odezva > AutoEQ profily“, aby jste začali.
+Navíc se tato aplikace integruje přímo s AutoEQ. Pomocí integrace AutoEQ můžete hledat a importovat frekvenční odezvy, které slouží k opravě frekvenční křivky vašich sluchátek a nastavení neutrálního zvuku. Jděte do „Ekvalizér s manipulovatelnými frekvenčními odezvami > Frekvenční odezva > AutoEQ profily“, aby jste začali.
 
 --- Omezení
 * Aplikace blokující interní záznam zvuku zůstávají nezpracované (např. Spotify, Google Chrome)

@@ -6,7 +6,6 @@
     <string name="action_revert">Setel ulang ke bawaan</string>
     <string name="action_blocked_apps">Aplikasi Dikecualikan</string>
     <!-- Notification channels -->
-    <string name="notification_group_service">Layanan</string>
     <string name="notification_channel_service">Layanan Notifikasi</string>
     <string name="notification_channel_session_loss_alert">Peringatan kehilangan sesi</string>
     <string name="notification_channel_permission_prompt">Permintaan izin</string>
@@ -47,6 +46,8 @@
     <string name="open">Buka</string>
     <string name="close">Tutup</string>
     <string name="delete">Hapus</string>
+    <string name="copy">Salin</string>
+    <string name="paste">Tempel</string>
     <string name="add">Tambah</string>
     <string name="yes">Ya</string>
     <string name="no">Tidak</string>
@@ -54,6 +55,8 @@
     <string name="undo">Urungkan</string>
     <string name="redo">Ulangi</string>
     <string name="no_activity_found">Tidak ada Activity untuk menangani aksi</string>
+    <string name="permission_allowed">Diizinkan</string>
+    <string name="permission_not_allowed">Tidak diizinkan</string>
     <!-- Main screen -->
     <string name="power_button_alt">Alihkan pemrosesan audio</string>
     <string name="compressor_enable">Dynamic range compressor otomatis</string>
@@ -172,6 +175,8 @@
     <string name="onboarding_adb_manual_step3">Tambahkan dan sambungkan perangkat USB ke WebADB.</string>
     <string name="onboarding_adb_manual_step4">Pergi ke \'Interactive Shell\' dan jalankan perintah berikut: \'pm grant %s android.permission.DUMP\'</string>
     <string name="onboarding_adb_manual_step5">Tap \'Berikutnya\' untuk melanjutkan.</string>
+    <string name="onboarding_adb_manual_step5b">(Opsional) Anda bisa melewati permintaan izin penangkapan audio dengan menjalankan perintah berikut: \'appops set %s PROJECT_MEDIA allow\'</string>
+    <string name="onboarding_adb_manual_step5c">(Opsional) Sebagai tambahan langkah sebelumnya, anda dapat mengaktifkan fitur auto-start dengan mengetik perintah berikut: appops set %s SYSTEM_ALERT_WINDOW allow\'</string>
     <string name="onboarding_adb_manual_step1_button">Buka pengaturan pengembang</string>
     <string name="onboarding_perm_title">Izin lainnya</string>
     <string name="onboarding_perm_caption">Izin tambahan dibutuhkan aplikasi ini. Lihat izin dan tekan \'Next\' untuk memberi izin.</string>
@@ -231,8 +236,17 @@
     <string name="audio_format_summary_root">Mode Legacy, pemrosesan yang ditingkatkan</string>
     <string name="audio_format_encoding">Pengkodean Audio</string>
     <string name="audio_format_buffer_size">Ukuran buffer</string>
+    <string name="audio_format_buffer_size_unit">&#xa0;sampel</string>
     <string name="audio_format_buffer_size_warning_low_value">Peringatan: Ukuran Buffer kecil dapat menyebabkan suara pecah!</string>
+    <string name="profiles_section_header">Profil perangkat</string>
+    <string name="profiles_summary">Profil per perangkat, otomatis berganti</string>
+    <string name="profiles_enable">Profil per perangkat</string>
+    <string name="profiles_enable_summary_on">Profil per perangkat aktif</string>
+    <string name="profiles_enable_summary_off">Profil per perangkat nonaktif</string>
+    <string name="profiles_info_title">Apa itu profil per perangkat?</string>
     <string name="profiles_info">Tap untuk melihat rincian</string>
+    <string name="profiles_info_content">Saat opsi ini diaktifkan, setiap perangkat audio akan mendapat konfigurasi terpisah. Aplikasi akan berganti secara otomatis ke setiap profil perangkat saat opsi output berubah.\n\nSetiap perangkat baru yang terhubung akan dimulai dengan profil kosong, anda bisa melakukan konfigurasi atau menyalin profil dari perangkat lain.\n\nCatatan: Preset hanya dapat diterapkan pada perangkat yang aktif saat fitur ini digunakan. Perangkat nonaktif tidak akan dirubah.</string>
+    <string name="profiles_manage_hint">Tap tombol \'Aktifkan profil perangkat\' di layar utama untuk menyalin atau menghapus profil.</string>
     <string name="app_behavior">Perilaku aplikasi</string>
     <string name="exclude_app_from_recents">Kecualikan aplikasi dari Recents</string>
     <string name="exclude_app_from_recents_off">Jangan kecualikan dari daftar Recent</string>
@@ -240,6 +254,9 @@
     <string name="autostart_prompt_at_boot">Minta izin menangkap setelah boot</string>
     <string name="autostart_prompt_at_boot_off">Jangan tampilkan pemberitahuan setelah booting</string>
     <string name="autostart_prompt_at_boot_on">Tampilkan pemberitahuan setelah booting</string>
+    <string name="autostart_service_at_boot">Jalankan setelah booting</string>
+    <string name="autostart_service_at_boot_off">Jangan jalankan service setelah booting</string>
+    <string name="autostart_service_at_boot_on">Jalankan service setelah booting</string>
     <string name="powersave">Hemat daya</string>
     <string name="powersave_suspend">Tangguhkan pipeline audio saat tidak digunakan</string>
     <string name="powersave_suspend_off">Tetap proses meskiupun tidak ada audio diputar</string>
@@ -260,6 +277,11 @@
     <string name="troubleshooting_repair_assets_success">Bundled aset sudah dikembalikan</string>
     <string name="misc_settings">Lainnya</string>
     <string name="misc_settings_summary">Laporan kerusakan dan tindakan lain</string>
+    <string name="misc_permission_skip_prompt">Lewati permintaan izin capture</string>
+    <string name="misc_permission_auto_start">Jalankan effect engine saat booting</string>
+    <string name="misc_permission_restart_setup">Ulangi setup wizard</string>
+    <string name="misc_permission_restart_setup_summary">Beri izin opsional yang hilang</string>
+    <string name="misc_permission_header">Izin opsional</string>
     <string name="assets">Aset</string>
     <string name="network_services">Layanan jaringan</string>
     <string name="network_invalid_url">Format URL tidak valid</string>
@@ -297,6 +319,7 @@
     <string name="appearance_app_theme">Tema aplikasi</string>
     <string name="appearance_navigation_title">Navigasi</string>
     <string name="appearance_nav_hide">Sembunyikan bilah navigasi saat bergulir</string>
+    <string name="appearance_show_icons">Tampilkan icon kategori</string>
     <string name="backup_settings">Cadangkan dan pulihkan</string>
     <string name="backup_settings_summary">Pencadangan otomatis &amp; manual</string>
     <string name="backup_frequency">Frekuensi pencadangan</string>
@@ -498,4 +521,13 @@
     <string name="backup_restore_mode_dirty">Pemulihan dirty (hanya timpa)</string>
     <string name="backup_in_progress">Pencadangan sedang diproses</string>
     <!-- Multi-device profiles -->
+    <string name="group_wired_headphones">Headset Kabel</string>
+    <string name="group_speaker">Speaker internal</string>
+    <string name="group_unknown">Tidak Dikenal</string>
+    <string name="device_profile_status">Profil perangkat aktif</string>
+    <string name="device_profile_manage_copy">Salin profil…</string>
+    <string name="device_profile_manage_delete">Hapus profil…</string>
+    <string name="device_profile_manage_copy_select_no_target">Tidak ada profil untuk ditimpa tersedia</string>
+    <string name="device_profile_manage_copy_select">Pilih profil untuk disalin</string>
+    <string name="device_profile_manage_paste_select">Pilih profil untuk ditimpa</string>
 </resources>

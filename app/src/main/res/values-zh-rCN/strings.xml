@@ -47,6 +47,8 @@
     <string name="open">打开</string>
     <string name="close">关闭</string>
     <string name="delete">删除</string>
+    <string name="copy">复制</string>
+    <string name="paste">粘贴</string>
     <string name="add">添加</string>
     <string name="yes">确定</string>
     <string name="no">取消</string>
@@ -54,6 +56,8 @@
     <string name="undo">撤销</string>
     <string name="redo">重做</string>
     <string name="no_activity_found">没有找到处理此 URL 的活动</string>
+    <string name="permission_allowed">允许</string>
+    <string name="permission_not_allowed">不允许</string>
     <!-- Main screen -->
     <string name="power_button_alt">切换音频处理</string>
     <string name="compressor_enable">动态压缩范围</string>
@@ -199,6 +203,7 @@
     <string name="onboarding_adb_manual_step4">导航到“Interactive Shell”并在 shell 中执行此命令：“pm grant %s android.permission.DUMP”</string>
     <string name="onboarding_adb_manual_step5">点击此应用中的“下一步”以继续。</string>
     <string name="onboarding_adb_manual_step5b">(可选) 您可以通过执行此命令永久跳过音频捕获权限提示：\'appops set %s PROJECT_MEDIA allow\'</string>
+    <string name="onboarding_adb_manual_step5c">(可选) 除了上一步，您也可以通过执行以下命令启用自动启动：\'appops set %s SYSTEM_ALERT_WINDOW allow\'</string>
     <string name="onboarding_adb_manual_step1_button">打开开发者设置</string>
     <string name="onboarding_perm_title">其它权限</string>
     <string name="onboarding_perm_caption">使用此应用需要额外的权限。请检查它们并点击“下一步”来授予它们。</string>
@@ -263,7 +268,15 @@
     <string name="audio_format_buffer_size">缓冲大小</string>
     <string name="audio_format_buffer_size_unit">&#xa0;样本</string>
     <string name="audio_format_buffer_size_warning_low_value">警告：过小的缓冲区大小可能会导致诸如卡顿等音频问题</string>
+    <string name="profiles_section_header">设备配置</string>
+    <string name="profiles_summary">每个设备的配置文件，自动切换</string>
+    <string name="profiles_enable">每个设备的配置文件</string>
+    <string name="profiles_enable_summary_on">每个设备的配置文件已启用</string>
+    <string name="profiles_enable_summary_off">每个设备的配置文件已禁用</string>
+    <string name="profiles_info_title">什么是每个设备的配置文件？</string>
     <string name="profiles_info">点击查看文档</string>
+    <string name="profiles_info_content">当启用此设置时，每个音频设备都被分配给一个单独的音频配置。\n当输出设备改变时，此应用将自动切换设备配置文件。 \n\n每个连接的新设备都以空白配置文件开始，然后您可以配置它或从另一个设备配置文件复制设置。\n\n注意：在启用此功能时，预设仅应用于活动的配置文件，非活动的配置文件保持不变。</string>
+    <string name="profiles_manage_hint">点击主界面上的“活动设备配置文件”按钮来复制或删除配置文件。</string>
     <string name="app_behavior">应用行为</string>
     <string name="exclude_app_from_recents">在最近任务中隐藏应用</string>
     <string name="exclude_app_from_recents_off">不在最近任务中隐藏应用</string>
@@ -271,6 +284,9 @@
     <string name="autostart_prompt_at_boot">在启动后提示捕获权限</string>
     <string name="autostart_prompt_at_boot_off">在启动后不显示通知</string>
     <string name="autostart_prompt_at_boot_on">在启动后显示通知</string>
+    <string name="autostart_service_at_boot">开机时自动启动</string>
+    <string name="autostart_service_at_boot_off">开机后不要自动启动服务</string>
+    <string name="autostart_service_at_boot_on">开机后自动启动服务</string>
     <string name="powersave">省电模式</string>
     <string name="powersave_suspend">空闲时挂起音频通道</string>
     <string name="powersave_suspend_off">即使没有播放内容也继续处理</string>
@@ -291,6 +307,11 @@
     <string name="troubleshooting_repair_assets_success">捆绑资源已恢复</string>
     <string name="misc_settings">更多选项</string>
     <string name="misc_settings_summary">崩溃报告，其它操作</string>
+    <string name="misc_permission_skip_prompt">跳过捕获权限提示</string>
+    <string name="misc_permission_auto_start">开机时自动启动效果引擎</string>
+    <string name="misc_permission_restart_setup">重新开始设置向导</string>
+    <string name="misc_permission_restart_setup_summary">授予缺失的可选权限</string>
+    <string name="misc_permission_header">可选的权限</string>
     <string name="assets">资源</string>
     <string name="network_services">网络服务</string>
     <string name="network_autoeq_api_url">AutoEQ API 后端 URL</string>
@@ -541,4 +562,16 @@
     <string name="backup_restore_mode_dirty">Dirty 恢复 (仅覆盖)</string>
     <string name="backup_in_progress">备份已在进行中</string>
     <!-- Multi-device profiles -->
+    <string name="group_wired_headphones">有线耳机</string>
+    <string name="group_bluetooth">蓝牙</string>
+    <string name="group_hdmi">HDMI</string>
+    <string name="group_speaker">内置扬声器</string>
+    <string name="group_usb">USB</string>
+    <string name="group_unknown">未知</string>
+    <string name="device_profile_status">活动设备配置文件</string>
+    <string name="device_profile_manage_copy">复制配置文件…</string>
+    <string name="device_profile_manage_delete">删除配置文件…</string>
+    <string name="device_profile_manage_copy_select_no_target">没有可用的配置文件</string>
+    <string name="device_profile_manage_copy_select">选择要复制的配置文件</string>
+    <string name="device_profile_manage_paste_select">选择要覆盖的配置文件</string>
 </resources>

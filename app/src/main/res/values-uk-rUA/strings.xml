@@ -176,7 +176,7 @@
     <string name="onboarding_root_enhanced_processing_setup_success">Розширена обробка налаштована</string>
     <string name="onboarding_adb_shizuku_title">Налаштування Shizuku</string>
     <string name="onboarding_adb_adb_title">Налаштування ADB</string>
-    <string name="onboarding_adb_caption">Ця програма вимагає спеціальних дозволів для вивантаження аудіополітики вашого пристрою. Будь ласка, дотримуйтесь інструкцій нижче.</string>
+    <string name="onboarding_adb_caption">Для роботи цієї програми потрібні спеціальні дозволи для вивантаження аудіополітики вашого пристрою. Будь ласка, дотримуйтесь інструкцій нижче.</string>
     <string name="onboarding_adb_shizuku_install_button">Встановити Shizuku</string>
     <string name="onboarding_adb_shizuku_install_button_done">Вже інстальовано</string>
     <string name="onboarding_adb_shizuku_install_instruction">Встановити Shizuku з Google Play.</string>
@@ -220,7 +220,7 @@
     <string name="limit_session_control_conflict_title">Вимкнення інших додатків для обробки аудіоефектів</string>
     <string name="limit_session_control_conflict">Додатки для обробки аудіоефектів, які використовують вбудований в Android ефект динамічної обробки, перешкоджають роботі цього додатка.</string>
     <string name="limit_unsupported_apps_title">Непідтримувані додатки</string>
-    <string name="limit_unsupported_apps">Додатки, які блокують запис внутрішнього аудіо, не будуть оброблені (наприклад, Spotify, Google Chrome).</string>
+    <string name="limit_unsupported_apps">Додатки, що блокують захоплення внутрішнього аудіо, залишаться необробленими (наприклад, Spotify, Google Chrome).</string>
     <string name="limit_hw_accel_title">Проблеми з апаратно прискореним відтворенням аудіо</string>
     <string name="limit_hw_accel">Апаратно прискорене (HW-accelerated) відтворення аудіо іноді може призводити до дублювання звуку або зупинки JamesDSP в деяких випадках. Будь ласка, додайте проблемний музичний плеєр до списку виключених додатків, щоб запобігти маршрутизації його звуку через JamesDSP.</string>
     <string name="limit_detect_delay_title">Затримка визначення аудіосесії</string>
@@ -228,7 +228,7 @@
     <string name="limit_latency_title">Підвищена затримка</string>
     <string name="limit_latency">Ця програма може додавати деяку затримку в аудіопотік. Ви можете внести програми для перегляду фільмів/відео до списку виключених додатків, щоб уникнути можливих проблем із синхронізацією звуку та відео.</string>
     <string name="limit_tested_devices_title">Протестовані пристрої</string>
-    <string name="limit_tested_devices">Виробник вашого пристрою міг внести зміни до аудіопідсистеми Android, які можуть порушити роботу додатка через використання не задокументованих API.\nДодаток тестувався на пристроях:\n• Samsung S20+ (Android 12)\n• Емулятор AOSP (Android 10-13)\n• Google Pixel 6 Pro (Android 13)</string>
+    <string name="limit_tested_devices">Зміни, внесені виробником вашого пристрою в аудіо-підсистему Android, можуть призвести до неполадок у роботі цього додатка через використання декількох недокументованих API.\nДодаток тестувався на пристроях:\n• Samsung S20+ (Android 12)\n• Емулятор AOSP (Android 10-13)\n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
     <string name="title_activity_settings">Параметри</string>
     <string name="session_exclude_restricted">Виключити непідтримувані додатки</string>
@@ -351,6 +351,7 @@
     <string name="appearance_app_theme">Колірний акцент теми</string>
     <string name="appearance_navigation_title">Навігація</string>
     <string name="appearance_nav_hide">Приховати панель навігації під час прокрутки</string>
+    <string name="appearance_show_icons">Показувати значки категорій</string>
     <string name="backup_settings">Резервне копіювання та відновлення</string>
     <string name="backup_settings_summary">Автоматичне і ручне резервне копіювання</string>
     <string name="backup_frequency">Частота резервного копіювання</string>

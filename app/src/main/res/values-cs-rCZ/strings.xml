@@ -89,8 +89,8 @@
     <string name="eq_preset_rb">R&amp;B</string>
     <string name="eq_preset_rock">Rock</string>
     <string name="eq_preset_vocal">Zvýraznění hlasu</string>
-    <string name="geq_enable">Ekvalizér s libovolnou kmitočtovou charakteristikou</string>
-    <string name="geq_nodes">Magnitudová odezva</string>
+    <string name="geq_enable">Ekvalizér s manipulovatelnými frekvenčními odezvami</string>
+    <string name="geq_nodes">Frekvenční odezva</string>
     <string name="bass_enable">Dynamické zesílení basů</string>
     <string name="bass_max_gain">Maximální zesílení</string>
     <string name="reverb_enable">Efekt virtuální místnosti</string>
@@ -108,7 +108,7 @@
     <string name="reverb_preset_plate_low">Nízký plech</string>
     <string name="reverb_preset_long_reverb1">Dlouhý dozvuk 1</string>
     <string name="reverb_preset_long_reverb2">Dlouhý dozvuk 2</string>
-    <string name="convolver_enable">Konvolátor</string>
+    <string name="convolver_enable">Efekt konvoluce</string>
     <string name="convolver_impulse">Impulzní odezva</string>
     <string name="convolver_advanced_editing">Pokročilé úpravy vlnového tvaru</string>
     <string name="convolver_convolution_mode">Optimalizace Impulzní odezvy</string>
@@ -351,6 +351,7 @@
     <string name="appearance_app_theme">Motiv aplikace</string>
     <string name="appearance_navigation_title">Navigace</string>
     <string name="appearance_nav_hide">Skrýt navigační lištu při posouvání</string>
+    <string name="appearance_show_icons">Zobrazovat ikony kategorií</string>
     <string name="backup_settings">Zálohování a obnovení</string>
     <string name="backup_settings_summary">Automatické &amp; manuální zálohování</string>
     <string name="backup_frequency">Frekvence zálohování</string>
@@ -408,10 +409,10 @@
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">Vybraný VDC soubor je poškozen. Vyberte prosím jiný.</string>
     <string name="message_irs_corrupt">Vybraná impulzní odezva je poškozená. Zvolte prosím jinou.</string>
-    <string name="message_convolver_advimp_invalid">Konvulátor: Pokročilé úpravy vln obsahují neplatné hodnoty.</string>
+    <string name="message_convolver_advimp_invalid">Efekt konvoluce: Pokročilé úpravy vln obsahují neplatné hodnoty.</string>
     <string name="message_liveprog_compile_fail">Spuštění Liveprog skriptu se nezdařilo. Vybraný skript je poškozen. Prosím použijte editor skriptu pro doladění a opravu chyb.</string>
     <!-- GraphicEQ editor -->
-    <string name="title_activity_geq">Magnitudová odezva</string>
+    <string name="title_activity_geq">Frekvenční odezva</string>
     <string name="geq_edit_as_string">Upravit jako řetězec</string>
     <string name="geq_autoeq">AutoEQ profily</string>
     <string name="gep_add_node">Přidat</string>
@@ -561,7 +562,7 @@
     <string name="backup_restore_mode_dirty">Špinavá obnova (pouze přepsat)</string>
     <string name="backup_in_progress">Zálohování již probíhá</string>
     <!-- Multi-device profiles -->
-    <string name="group_wired_headphones">Kabelové sluchátka</string>
+    <string name="group_wired_headphones">Kabelová sluchátka</string>
     <string name="group_bluetooth">Bluetooth</string>
     <string name="group_hdmi">HDMI</string>
     <string name="group_speaker">Interní reproduktor</string>

@@ -6,10 +6,14 @@
     <string name="action_revert">Reimposta ai valori predefiniti</string>
     <string name="action_blocked_apps">Applicazioni escluse</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">Servizio</string>
     <string name="notification_channel_service">Notifica di servizio</string>
     <string name="notification_channel_session_loss_alert">Avviso perdita di sessione</string>
     <string name="notification_channel_permission_prompt">Richiesta di autorizzazione</string>
     <string name="notification_channel_app_compat_alert">Avviso app non compatibile</string>
+    <string name="notification_group_backup">Backup e ripristino</string>
+    <string name="notification_channel_backup_progress">In corso</string>
+    <string name="notification_channel_backup_complete">Completato</string>
     <!-- Service notifications -->
     <string name="action_retry">Riprova</string>
     <string name="action_fix">Aggiorna</string>
@@ -21,35 +25,273 @@
     <string name="notification_processing_legacy">Tocca per aprire JamesDSP manager</string>
     <!-- Permission request notifications -->
     <string name="notification_request_permission_title">Per avviare JamesDSP è necessaria un\'azione utente</string>
+    <string name="notification_request_permission">Tocca per concedere l\'autorizzazione di acquisizione e abilitare l\'elaborazione audio di JamesDSP</string>
     <!-- Session control loss notifications -->
+    <string name="session_control_loss_toast">JamesDSP è stato interrotto a causa della perdita del controllo della sessione audio. Si prega di disabilitare altre applicazioni che utilizzano effetti audio.</string>
+    <string name="session_control_loss_notification_title">Elaborazione audio interrotta. Un\'altra applicazione sta interferendo con JamesDSP.</string>
+    <string name="session_control_loss_notification">Si prega di disabilitare tutte le altre applicazioni che forniscono effetti audio globali prima di riattivare JamesDSP.</string>
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_toast">JamesDSP si è interrotto a causa di app multimediali incompatibili. Controlla la notifica per risolvere questo problema.</string>
+    <string name="session_app_compat_notification_title">Elaborazione audio interrotta. Un\'altra applicazione sta interferendo con JamesDSP.</string>
+    <string name="session_app_compat_notification">Tocca questa notifica per risolvere il problema.</string>
     <!-- Capture permission revoked notifications -->
+    <string name="capture_permission_revoked_toast">JamesDSP è stato fermato perché è stato revocato il permesso di acquisizione audio.</string>
     <!-- General purpose -->
+    <string name="install">Installa</string>
+    <string name="update">Aggiorna</string>
+    <string name="unknown_error">Errore sconosciuto</string>
+    <string name="details">Dettagli</string>
+    <string name="actions">Azioni</string>
+    <string name="warning">Avviso</string>
+    <string name="success">Riuscito</string>
+    <string name="open">Apri</string>
+    <string name="close">Chiudi</string>
+    <string name="delete">Elimina</string>
+    <string name="copy">Copia</string>
+    <string name="paste">Incolla</string>
+    <string name="add">Aggiungi</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+    <string name="value_not_set">Non impostato</string>
+    <string name="undo">Annulla</string>
+    <string name="redo">Rifare</string>
+    <string name="no_activity_found">Nessuna attività trovata per gestire l\'azione</string>
+    <string name="permission_allowed">Consentito</string>
+    <string name="permission_not_allowed">Non consentito</string>
     <!-- Main screen -->
+    <string name="power_button_alt">Attiva/disattiva l\'elaborazione audio</string>
+    <string name="compressor_enable">Compressore automatico della gamma dinamica</string>
+    <string name="compressor_max_attack">Attacco massimo</string>
+    <string name="compressor_max_release">Rilascio massimo</string>
+    <string name="compressor_adapt_speed">Aggressività</string>
+    <string name="eq_enable">Equalizzatore FIR interpolante</string>
+    <string name="eq_filter_type">Tipo di filtro</string>
+    <string name="eq_interpolator">Interpolatore</string>
+    <string name="eq_filter_type_minimum">Fase minima</string>
+    <string name="eq_filter_type_linear">Fase lineare</string>
+    <string name="eq_interpolator_chip">Polinomio d\'interpolazione di Piecewise Cubic Hermite</string>
+    <string name="eq_interpolator_mha">Hiroshi Akima spline \"modificata\"</string>
+    <string name="eq_preset_acoustic">Acustico</string>
+    <string name="eq_preset_bass">Basso</string>
+    <string name="eq_preset_beats">Battiti</string>
+    <string name="eq_preset_classic">Classico</string>
+    <string name="eq_preset_clear">Pulisci</string>
+    <string name="tube_drive">Pre-amplificazione</string>
+    <string name="output_control_header">Controllo in uscita</string>
+    <string name="output_limiter_threshold">Soglia del limitatore</string>
+    <string name="output_limiter_release">Rilascio del limitatore</string>
+    <string name="output_control_postgain">Post guadagno</string>
+    <string name="stereowide_enable">Ampiezza del palcoscenico</string>
+    <string name="stereowide_level">Ampiezza</string>
+    <string name="stereowide_level_none">Nessuno</string>
+    <string name="stereowide_level_very_wide">Molto ampio</string>
+    <string name="stereowide_level_wide">Ampio</string>
+    <string name="stereowide_level_very_narrow">Molto stretto</string>
+    <string name="stereowide_level_narrow">Stretto</string>
+    <string name="crossfeed_enable">Crossfeed</string>
+    <string name="crossfeed_preset">Preimpostato</string>
+    <string name="crossfeed_preset_bs2b_weak">BS2B Debole</string>
+    <string name="crossfeed_preset_bs2b_strong">BS2B Forte</string>
+    <string name="crossfeed_preset_out_of_head">Fuori di testa</string>
+    <string name="crossfeed_preset_surround1">Surround #1</string>
+    <string name="crossfeed_preset_surround2">Surround #2</string>
+    <string name="crossfeed_preset_realistic_surround">Joe0Bloggs Surround Realistico</string>
     <!-- Onboarding -->
+    <string name="title_activity_onboarding">Processo d\'inserimento</string>
+    <string name="onboarding_back">Indietro</string>
+    <string name="onboarding_next">Avanti</string>
+    <string name="onboarding_finish">Fine</string>
+    <string name="onboarding_greeting">Benvenuto in RootlessJamesDSP!</string>
+    <string name="onboarding_caption">L\'assistente ti aiuterà a configurare questa applicazione.</string>
+    <string name="onboarding_warning">Attualmente, questa applicazione è incompleta e instabile. Si prega di notare che potrebbe non funzionare correttamente come previsto su alcuni dispositivi, in quanto essa utilizza API Android non progettati per l\'utilizzo da parte di terzi.</string>
+    <string name="onboarding_fix_permissions_title">Azione dell\'utente richiesta</string>
+    <string name="onboarding_fix_permissions">Uno o più permessi sono stati revocati da te o dal sistema.\nPer garantire il corretto funzionamento dell\'applicazione, è necessario concedere nuovamente questi permessi.\n\n Si prega di effettuare la configurazione guidata per concedere correttamente tutti i permessi necessari.</string>
+    <string name="onboarding_limitations_title">Limitazioni</string>
+    <string name="onboarding_limitations_unstable">Importante! Si prega di leggere attentamente le note prima di proseguire.</string>
+    <string name="onboarding_methods_title">Seleziona il metodo di configurazione</string>
+    <string name="onboarding_methods_root_title">Root</string>
+    <string name="onboarding_methods_shizuku_title">Shizuku</string>
+    <string name="onboarding_methods_unsupported_append">incompatibile</string>
+    <string name="onboarding_methods_adb_title">ADB</string>
     <!-- Rootless flavor -->
+    <string name="onboarding_methods_rootless_shizuku">\u25CF Raccomandato\n\u25CF Nessun computer esterno richiesto\n\u25CF Solo Android 11+</string>
+    <string name="onboarding_methods_rootless_adb">\u25CF Per gli utenti esperti\n\u25CF È richiesto l\'utilizzo del Computer e del cavo USB\n\u25CF Android 10+ supportato</string>
     <!-- Root flavor -->
+    <string name="onboarding_methods_root_root">\u25CF Raccomandato\n\u25CF Nessun utilizzo del computer esterno è richiesto\n\u25CF Per tutte le versioni di Android</string>
+    <string name="onboarding_methods_root_shizuku">\u25CF Raccomandato, se il root non è configurato\n\u25CF Nessun computer esterno è richiesto\n\u25CF Solo Android 11+</string>
+    <string name="onboarding_methods_root_adb">\u25CF Per gli utenti esperti\n\u25CF È richiesto l\'utilizzo del Computer e del cavo USB\n\u25CFPer tutte le versioni Android</string>
+    <string name="onboarding_root_shell_fail_title">Senza permessi di root</string>
+    <string name="onboarding_root_shell_fail">Nessun permesso di root disponibile. Si prega di utilizzare un altro metodo di configurazione.</string>
+    <string name="onboarding_root_shell_fail_unknown">Impossibile concedere l\'autorizzazione tramite root. Si prega di utilizzare un altro metodo di configurazione.</string>
+    <string name="onboarding_root_enhanced_processing_setup_success">L\'elaborazione migliorata è stata impostata</string>
+    <string name="onboarding_adb_shizuku_title">Configurazione Shizuku</string>
+    <string name="onboarding_adb_adb_title">Configurazione ADB</string>
+    <string name="onboarding_adb_caption">Questa app richiede permessi speciali per l\'acquisizione della politica audio del dispositivo. Si prega di seguire le istruzioni riportate di seguito.</string>
+    <string name="onboarding_adb_shizuku_install_button">Installa Shizuku</string>
+    <string name="onboarding_adb_shizuku_install_button_done">Già installato</string>
     <!-- Settings -->
     <string name="title_activity_settings">Impostazioni</string>
+    <string name="session_exclude_restricted">Escludi app non supportate</string>
+    <string name="session_exclude_restricted_off">Le applicazioni che bloccano la cattura dell\'audio resteranno silenziate (comportamento predefinito di Android)</string>
+    <string name="session_exclude_restricted_on">Le applicazioni che bloccano l\'acquisizione audio verranno escluse e resteranno non elaborate (raccomandato)</string>
+    <string name="session_detection_header">Rilevamento della sessione audio</string>
+    <string name="session_continuous_polling">Forza il polling continuo</string>
+    <string name="session_continuous_polling_off">Ascolta solo gli eventi di sessione dal sistema</string>
+    <string name="session_continuous_polling_on">Enumera continuamente le sessioni audio</string>
+    <string name="session_continuous_polling_rate">Intervallo di polling (ms)</string>
+    <string name="session_detection_method">Metodo di rilevamento di sessione preferito</string>
+    <string name="session_detection_method_audiopolicyservice">ServizioPoliticaAudio dump</string>
+    <string name="session_detection_method_audioservice">ServizioAudio dump (raccomandato)</string>
+    <string name="session_app_problem_ignore">Ignora problemi di compatibilità dell\'app</string>
+    <string name="session_loss_ignore">Ignora la perdita di controllo di sessione</string>
+    <string name="session_loss_ignore_off">Disabilitato, mantieni normalmente (raccomandato)</string>
+    <string name="session_loss_ignore_on">Non intraprendere alcuna azione (può causare audio duplicato)</string>
+    <string name="session_loss_ignore_warning">Abilitare questa impostazione quando un\'altra app di effetti audio prende il controllo di una sessione audio, potrebbe causare audio duplicato.\nSi prega di mantenere questa impostazione disabilitata a meno che non si riscontrino falsi eventi positivi di perdita di sessione.</string>
+    <string name="audio_format_header">Elaborazione audio</string>
+    <string name="audio_format_section_header">Formato audio preferito</string>
+    <string name="audio_format_processing_header">Opzioni di elaborazione audio</string>
+    <string name="audio_format_processing_legacy">Modalità alternativa</string>
+    <string name="audio_format_processing_legacy_on">Allega globalmente alla sessione 0 (deprecato)</string>
+    <string name="audio_format_processing_legacy_off">Allega individualmente per ogni applicazione</string>
+    <string name="audio_format_enhanced_processing">Elaborazione migliorata</string>
+    <string name="audio_format_enhanced_processing_on">Controllo per-app e supporto migliorato per le applicazioni abilitate</string>
+    <string name="audio_format_enhanced_processing_off">Processo di elaborazione migliorata disabilitato</string>
+    <string name="audio_format_enhanced_processing_info_title">Che cosa è il processo di elaborazione migliorata?</string>
+    <string name="audio_format_enhanced_processing_info">Tocca per visualizzare la documentazione</string>
+    <string name="audio_format_enhanced_processing_info_content">Quando il servizio è abilitato, è possibile escludere in modo selettivo e strettamente personale alcune applicazioni dall\'elaborazione audio migliorato fornito da JamesDSP. Utilizza il menù con i 3-puntini situato nell\'angolo in basso a destra, e seleziona la voce \'Applicazioni escluse\' per accedere a questa funzione.\n\nMentre la modalità alternativa è disabilitata, JamesDSP fornirà l\'elaborazione audio migliorato in tutte le applicazioni multimediali che inviano una trasmissione audio di sistema quando queste sono in riproduzione. Questo metodo è sicuramente piú vantaggioso rispetto alla modalità alternativa, poiché ogni applicazione ottiene da se il proprio motore d\'effetto audio da parte di JamesDSP, che si occuperà semplicemente di assegnarlo in modo del tutto automatico ad ogni singola applicazione, inoltre questa modalità oltre a consentire un controllo automatico maggiore dell\'elaborazione audio, ha anche il vantaggio di rendere più personalizzabile e del tutto individuale ogni singola applicazione multimediale. Diversamente, con la modalità alternativa attivata, tutte le applicazioni multimediali condividerebbero un singolo motore d\'elaborazione audio, che Android potrebbe deprecare in modo del tutto autonomo, poichè essendo quest\'ultimo poco controllabile perché basato su un singolo motore d\'elaborazione audio e quindi non individuale, questo processo potrebbe essere arrestato e non essere piú utilizzato dal sistema.\n\nSfortunatamente, non tutte le applicazioni multimediali processano in modo corretto il loro flusso audio, e pertanto c\'è il rischio di un funzionamento non corretto d\'elaborazione audio in uscita con la modalità alternativa disattivata. Per risolvere questo problema, è possibile abilitare l\'elaborazione avanzata. Invece di affidarsi a trasmissioni di sistema sulle nuove sessioni dei media, JamesDSP eseguirà autonomamente una scansione proattiva per le sessioni multimediali in corso, e consentirà un adeguato supporto per le applicazioni multimediali non cooperative, o che non sono attualmente supportate.</string>
+    <string name="audio_format_media_apps_need_restart">Dopo aver modificato questa impostazione per rendere effettivo il processo d\'elaborazione dell\'audio è necessario riavviare tutte le applicazioni multimediali in corso.</string>
+    <string name="audio_format_summary">Codifica audio preferita, dimensione del buffer</string>
+    <string name="audio_format_summary_root">Modalità alternativa, processo di elaborazione migliorato</string>
+    <string name="audio_format_encoding">Codifica audio</string>
+    <string name="audio_format_encoding_int16">16-bit PCM integrale</string>
+    <string name="audio_format_encoding_float">32-bit PCM mobile</string>
+    <string name="audio_format_buffer_size">Dimensione del buffer</string>
+    <string name="audio_format_buffer_size_unit">&#xa0;campioni</string>
+    <string name="audio_format_buffer_size_warning_low_value">Attenzione: Le piccole dimensioni del buffer possono causare problemi di clipping dell\'audio!</string>
+    <string name="profiles_section_header">Profili del dispositivo</string>
+    <string name="profiles_summary">Profili per dispositivo, commutazione automatica</string>
+    <string name="profiles_enable">Profili per dispositivo</string>
+    <string name="profiles_enable_summary_on">Profili per dispositivo abilitati</string>
+    <string name="profiles_enable_summary_off">Profili per dispositivo disabilitati</string>
+    <string name="profiles_info_title">Cosa sono i profili per dispositivo?</string>
+    <string name="profiles_info">Tocca per visualizzare la documentazione</string>
+    <string name="profiles_info_content">Mentre questa impostazione è abilitata, a ogni dispositivo audio viene assegnata una configurazione audio separata. Questa applicazione verrà assegnata automaticamente a uno dei profili del dispositivo quando il dispositivo d\'uscita cambia. \n\nOgni nuovo dispositivo collegato inizierà in modo predefinito con un profilo vuoto. È quindi possibile configurarlo autonomamente oppure è possibile copiare le impostazioni di un profilo da un\'altro dispositivo.\n\nNota: le preimpostazioni sono applicate solo al profilo attivo mentre questa funzionalità è abilitata. I profili inattivi rimarranno intatti.</string>
+    <string name="profiles_manage_hint">Tocca il pulsante \'Profilo del dispositivo attivo\' nella schermata principale per copiare o eliminare i profili.</string>
+    <string name="app_behavior">Comportamento dell\'applicazione</string>
+    <string name="exclude_app_from_recents">Escludi l\'app. dai recenti</string>
+    <string name="exclude_app_from_recents_off">Non escludere l\'app. dall\'elenco delle attività recenti</string>
+    <string name="exclude_app_from_recents_on">Escludi l\'app. dall\'elenco delle attività recenti</string>
+    <string name="credits_project_page_summary">Segnala i problemi, tieniti aggiornato e leggi il codice sorgente</string>
+    <string name="credits_project_play_page">Visita RootlessJamesDSP su Google Play</string>
+    <string name="credits_project_play_page_summary">Cerca per nuovi aggiornamenti</string>
+    <string name="credits_project_check_update">Controllo per nuovi aggiornamenti…</string>
+    <string name="credits_project_check_update_summary">Scarica e installa gli aggiornamenti se disponibili</string>
+    <string name="credits_project_translate">Contribuisci alle traduzioni</string>
+    <string name="credits_project_translate_summary">Aiutaci a tradurre l\'applicazione nella tua lingua</string>
+    <string name="credits_version">Versione app</string>
+    <string name="credits_build_info">Informazioni build</string>
+    <string name="appearance_section_header">Aspetto</string>
+    <string name="appearance_summary">Tema dell\'app, modalità scura puramente in nero</string>
+    <string name="appearance_title">Tema</string>
+    <string name="appearance_theme_mode">Modalità scura</string>
+    <string name="appearance_theme_mode_default">Segui il tema di sistema</string>
+    <string name="appearance_theme_mode_light">Spento</string>
+    <string name="appearance_theme_mode_dark">Acceso</string>
+    <string name="appearance_pure_black_mode">Modalità scura Amoled</string>
+    <string name="appearance_app_theme">Tema dell\'app</string>
+    <string name="appearance_navigation_title">Navigazione</string>
+    <string name="appearance_nav_hide">Nascondi la barra di navigazione durante lo scorrimento</string>
+    <string name="backup_settings">Backup e ripristino</string>
+    <string name="backup_settings_summary">Automatico &amp; backups manuali</string>
+    <string name="backup_frequency">Frequenza di backup</string>
+    <string name="backup_location">Percorso del backup</string>
+    <string name="backup_maximum">Massimi backups</string>
+    <string name="backup_never">Mai</string>
+    <string name="backup_12hour">Ogni 12 ore</string>
+    <string name="backup_24hour">Giornaliero</string>
+    <string name="backup_48hour">Ogni 2 giorni</string>
+    <string name="backup_weekly">Settimanale</string>
+    <string name="backup_select_location">Si prega di creare e selezionare un percorso di backup…</string>
     <!-- Theme names -->
+    <string name="theme_default">Predefinito</string>
+    <string name="theme_monet">Dinamico</string>
+    <string name="theme_greenapple">Mela Verde</string>
+    <string name="theme_strawberrydaiquiri">Fragola Daiquiri</string>
+    <string name="theme_honey">Miele</string>
+    <string name="theme_tealturquoise">Verde acqua &amp; Turchese</string>
+    <string name="theme_yinyang">Yin &amp; Yang</string>
+    <string name="theme_yotsuba">Yotsuba</string>
+    <string name="theme_tidalwave">Maremoto</string>
     <!-- File library preference -->
+    <string name="action_import">Importa</string>
+    <string name="filelibrary_hint_tap_and_hold">Tocca e tieni premuto un oggetto per più opzioni</string>
+    <string name="filelibrary_context_load">Carico</string>
+    <string name="filelibrary_context_edit">Modifica</string>
+    <string name="filelibrary_context_overwrite">Sovrascrivi</string>
+    <string name="filelibrary_context_rename">Rinomina</string>
+    <string name="filelibrary_context_share">Condividi…</string>
+    <string name="filelibrary_context_resample">Ricampiona offline</string>
+    <string name="filelibrary_context_duplicate">Duplica</string>
+    <string name="filelibrary_context_delete">Elimina</string>
+    <string name="filelibrary_context_new_preset">Nuovo</string>
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="gep_add_node">Aggiungi</string>
+    <string name="geq_frequency">Frequenza</string>
     <!-- AutoEQ GraphicEQ selector -->
+    <string name="geq_api_network_error">Connessione al server fallita. %1$s</string>
+    <string name="geq_api_network_error_details_code">Il server ha risposto con un codice d\'errore: %1$d</string>
+    <string name="autoeq_search">Cerca AutoEQ</string>
+    <string name="autoeq_enter_model">Inserisci il modello delle tue cuffie…</string>
+    <string name="autoeq_partial_results_warning">Mostra i primi %1$d risultati. Per favore perfeziona la tua ricerca per ottenere risultati migliori.</string>
+    <string name="autoeq_no_results">Nessun risultato trovato</string>
     <!-- Customizable liveprog script parameters -->
+    <string name="title_activity_liveprog_params">Parametri dello script personalizzabili</string>
+    <string name="action_restore_defaults">Ripristina i valori predefiniti</string>
     <!-- Liveprog script editor -->
+    <string name="title_activity_liveprog_editor">Editor dello script</string>
+    <string name="editor_find_and_replace">Trova/sostituisci…</string>
+    <string name="editor_docs">Aiuto</string>
+    <string name="editor_open_fail">Il file dello script non esiste o non può essere aperto.</string>
+    <string name="editor_run">Salva ed esegui</string>
+    <string name="editor_save">Salva</string>
+    <string name="editor_liveprog_enabled">Liveprog è stato attivato automaticamente.</string>
+    <string name="editor_replace_all">Sostituisci tutto</string>
+    <string name="editor_replacement">Sostituzione</string>
+    <string name="editor_find_next_match">Trova la prossima corrispondenza</string>
+    <string name="editor_find_previous_match">Trova la corrispondenza precedente</string>
+    <string name="editor_search_keyword">Cerca</string>
+    <string name="editor_source_position">%1$d:%2$d</string>
+    <string name="editor_engine_down_title">JamesDSP non è attivo</string>
+    <string name="editor_engine_down">Impossibile eseguire lo script perché JamesDSP è disabilitato. Si prega di attivare JamesDSP per eseguire gli script.</string>
+    <string name="editor_save_prompt_title">Salva i cambiamenti?</string>
+    <string name="editor_save_prompt">Il seguente script ha delle modifiche non salvate. Vuoi salvare le modifiche correnti oppure scartarle?</string>
+    <string name="editor_script_launched">Script avviato</string>
+    <string name="editor_cannot_undo">Niente da annullare.</string>
+    <string name="editor_cannot_redo">Nulla da ripristinare.</string>
+    <string name="editor_text_size">Dimensione del testo</string>
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Applicazioni escluse</string>
+    <string name="blocklist_add_exclusion_alt">Aggiungi l\'applicazione da escludere</string>
+    <string name="blocklist_delete_title">Rimuovi l\'applicazione selezionata?</string>
+    <string name="blocklist_delete">Vuoi rimuovere questa applicazione dalla lista di esclusione?</string>
+    <string name="blocklist_no_exclusions">Non ci sono applicazioni escluse</string>
+    <string name="blocklist_unsupported_apps">Applicazioni non supportate</string>
+    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>Questa applicazione non supporta le applicazioni che bloccano l'elaborazione di registrazione della loro uscita audio da parte di terzi. Per prevenire dall'eventuale silenziamento causato dalle restrizioni d'acquisizione dell'audio, quest'ultime vengono automaticamente escluse dall'elaborazione audio e non vengono reindirizzate.</p><p><u>Applicazioni interessate:</u><br/>%s</p>]]></string>
     <!-- Compatibility issue activity -->
+    <string name="title_activity_app_compat">Problema di compatibilità</string>
     <string name="app_compat_retry">Riprova</string>
+    <string name="app_compat_exclude">Escludere</string>
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
     <!-- App list -->
+    <string name="app_list_search">Cerca</string>
     <!-- Number box view -->
     <!-- Slider widget -->
     <!-- Revert confirmation -->
     <!-- File intent handler -->
     <!-- Translation notice box -->
+    <string name="translation_notice">Contribuisci alle traduzioni</string>
     <!-- Self-updates (Root) -->
     <!-- Backups -->
     <!-- Multi-device profiles -->
