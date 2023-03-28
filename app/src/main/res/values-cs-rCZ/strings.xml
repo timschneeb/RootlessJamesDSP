@@ -351,6 +351,7 @@
     <string name="appearance_app_theme">Motiv aplikace</string>
     <string name="appearance_navigation_title">Navigace</string>
     <string name="appearance_nav_hide">Skrýt navigační lištu při posouvání</string>
+    <string name="appearance_show_icons">Zobrazovat ikony kategorií</string>
     <string name="backup_settings">Zálohování a obnovení</string>
     <string name="backup_settings_summary">Automatické &amp; manuální zálohování</string>
     <string name="backup_frequency">Frekvence zálohování</string>
