@@ -45,6 +45,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.Result
 import me.timschneeberger.rootlessjamesdsp.utils.SdkCheck
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.AssetManagerExtensions.installPrivateAssets
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.broadcastPresetLoadEvent
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.check
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getAppName
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.registerLocalReceiver
@@ -655,8 +656,7 @@ class MainActivity : BaseActivity() {
                                 .apply()
 
                         delay(250L)
-                        sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
-                        sendLocalBroadcast(Intent(Constants.ACTION_PRESET_LOADED))
+                        broadcastPresetLoadEvent()
 
                         makeSnackbar(getString(R.string.intent_import_select_success, name)).show()
                     }

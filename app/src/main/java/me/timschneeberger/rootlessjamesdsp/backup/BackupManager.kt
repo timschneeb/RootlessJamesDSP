@@ -9,6 +9,7 @@ import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.broadcastPresetLoadEvent
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import me.timschneeberger.rootlessjamesdsp.utils.storage.Tar
@@ -154,8 +155,7 @@ class BackupManager(private val context: Context): KoinComponent {
 
             targetFolder.deleteRecursively()
 
-            context.sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
-            context.sendLocalBroadcast(Intent(Constants.ACTION_PRESET_LOADED))
+            context.broadcastPresetLoadEvent()
             context.sendLocalBroadcast(Intent(Constants.ACTION_BACKUP_RESTORED))
 
             if(enableDeviceProfiles)

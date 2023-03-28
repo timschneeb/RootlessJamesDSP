@@ -8,6 +8,7 @@ import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.backup.BackupManager
 import me.timschneeberger.rootlessjamesdsp.liveprog.EelParser
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.broadcastPresetLoadEvent
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
 import me.timschneeberger.rootlessjamesdsp.utils.storage.Tar
@@ -194,8 +195,7 @@ class Preset(val name: String, externalPath: File? = null): KoinComponent {
             // clean up
             targetFolder.deleteRecursively()
 
-            ctx.sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
-            ctx.sendLocalBroadcast(Intent(Constants.ACTION_PRESET_LOADED))
+            ctx.broadcastPresetLoadEvent()
 
             return metadata.toMutableMap()
         }

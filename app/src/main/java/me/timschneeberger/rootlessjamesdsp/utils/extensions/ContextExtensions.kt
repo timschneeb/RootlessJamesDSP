@@ -440,8 +440,12 @@ object ContextExtensions {
             }
 
         if(!silent) {
-            sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
-            sendLocalBroadcast(Intent(Constants.ACTION_PRESET_LOADED))
+            broadcastPresetLoadEvent()
         }
+    }
+
+    fun Context.broadcastPresetLoadEvent() {
+        sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
+        sendLocalBroadcast(Intent(Constants.ACTION_PRESET_LOADED))
     }
 }
