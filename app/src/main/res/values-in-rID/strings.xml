@@ -54,6 +54,8 @@
     <string name="undo">Urungkan</string>
     <string name="redo">Ulangi</string>
     <string name="no_activity_found">Tidak ada Activity untuk menangani aksi</string>
+    <string name="permission_allowed">Diizinkan</string>
+    <string name="permission_not_allowed">Tidak diizinkan</string>
     <!-- Main screen -->
     <string name="power_button_alt">Alihkan pemrosesan audio</string>
     <string name="compressor_enable">Dynamic range compressor otomatis</string>
@@ -172,6 +174,7 @@
     <string name="onboarding_adb_manual_step3">Tambahkan dan sambungkan perangkat USB ke WebADB.</string>
     <string name="onboarding_adb_manual_step4">Pergi ke \'Interactive Shell\' dan jalankan perintah berikut: \'pm grant %s android.permission.DUMP\'</string>
     <string name="onboarding_adb_manual_step5">Tap \'Berikutnya\' untuk melanjutkan.</string>
+    <string name="onboarding_adb_manual_step5c">(Opsional) Sebagai tambahan langkah sebelumnya, anda dapat mengaktifkan fitur auto-start dengan mengetik perintah berikut: appops set %s SYSTEM_ALERT_WINDOW allow\'</string>
     <string name="onboarding_adb_manual_step1_button">Buka pengaturan pengembang</string>
     <string name="onboarding_perm_title">Izin lainnya</string>
     <string name="onboarding_perm_caption">Izin tambahan dibutuhkan aplikasi ini. Lihat izin dan tekan \'Next\' untuk memberi izin.</string>
@@ -240,6 +243,8 @@
     <string name="autostart_prompt_at_boot">Minta izin menangkap setelah boot</string>
     <string name="autostart_prompt_at_boot_off">Jangan tampilkan pemberitahuan setelah booting</string>
     <string name="autostart_prompt_at_boot_on">Tampilkan pemberitahuan setelah booting</string>
+    <string name="autostart_service_at_boot">Jalankan setelah booting</string>
+    <string name="autostart_service_at_boot_off">Jangan jalankan service setelah booting</string>
     <string name="powersave">Hemat daya</string>
     <string name="powersave_suspend">Tangguhkan pipeline audio saat tidak digunakan</string>
     <string name="powersave_suspend_off">Tetap proses meskiupun tidak ada audio diputar</string>
@@ -297,6 +302,7 @@
     <string name="appearance_app_theme">Tema aplikasi</string>
     <string name="appearance_navigation_title">Navigasi</string>
     <string name="appearance_nav_hide">Sembunyikan bilah navigasi saat bergulir</string>
+    <string name="appearance_show_icons">Tampilkan icon kategori</string>
     <string name="backup_settings">Cadangkan dan pulihkan</string>
     <string name="backup_settings_summary">Pencadangan otomatis &amp; manual</string>
     <string name="backup_frequency">Frekuensi pencadangan</string>
