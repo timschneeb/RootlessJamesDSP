@@ -182,9 +182,18 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
             addAction(Constants.ACTION_DISCARD_AUTHORIZATION)
         })
 
-        if (!BuildConfig.ROOTLESS && isLegacyMode)
-            RootAudioProcessorService.updateLegacyMode(applicationContext, true)
-
+        try {
+            if (!BuildConfig.ROOTLESS && isLegacyMode)
+                RootAudioProcessorService.updateLegacyMode(applicationContext, true)
+        }
+        catch(ex: Exception) {
+            /* Throws ForegroundServiceStartNotAllowedException on Android 13 if
+             * the service cannot be started from this point and battery optimizations were not
+             * disabled. BootCompletedReceiver handles auto-start after boot.
+             */
+            Timber.e("Failed to launch service in legacy mode on startup")
+            Timber.i(ex)
+        }
         super.onCreate()
     }
 

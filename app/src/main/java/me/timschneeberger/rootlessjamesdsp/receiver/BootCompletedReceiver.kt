@@ -47,6 +47,8 @@ class BootCompletedReceiver : BroadcastReceiver(), KoinComponent {
                 !preferences.get<Boolean>(R.string.key_audioformat_processing)) {
                 RootAudioProcessorService.startServiceEnhanced(context)
             }
+            else if(preferences.get<Boolean>(R.string.key_audioformat_processing))
+                RootAudioProcessorService.updateLegacyMode(context, true)
         }
     }
 }
