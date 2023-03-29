@@ -215,6 +215,8 @@
     <string name="onboarding_perm_cast_caption">Ви повинні надати цьому додатку дозвіл на запис аудіоконтенту під час кожного запуску.</string>
     <string name="onboarding_perm_missing_title">Дозволи на виконання не надані</string>
     <string name="onboarding_perm_missing">Будь ласка, надайте всі запитані дозволи на виконання, щоб продовжити.\nЯкщо ви кілька разів відмовили в наданні дозволів, вам потрібно надати їх вручну в налаштуваннях системи.</string>
+    <string name="onboarding_perm_diag">Дозволити надсилати діагностичні звіти</string>
+    <string name="onboarding_perm_diag_caption">Ця програма надсилає звіти про збої та інші діагностичні дані, зокрема інформацію про інші активні програми, щоб я міг легше виявляти та розв\'язувати проблеми сумісності та помилки.</string>
     <string name="onboarding_finish_header">JamesDSP налаштовано!</string>
     <string name="onboarding_finish_caption">Якщо у вас виникли будь-які проблеми, будь ласка, відвідайте розділ налаштувань «Усунення неполадок».</string>
     <string name="limit_session_control_conflict_title">Вимкнення інших додатків для обробки аудіоефектів</string>
