@@ -112,7 +112,7 @@
     <string name="convolver_impulse">Импульсный отклик</string>
     <string name="convolver_advanced_editing">Редактирование формы сигнала</string>
     <string name="convolver_convolution_mode">Оптимизация импульсного отклика</string>
-    <string name="convolver_convolution_mode_original">Исходная</string>
+    <string name="convolver_convolution_mode_original">Оригинал</string>
     <string name="convolver_convolution_mode_shrink">Сжатие</string>
     <string name="convolver_convolution_mode_minimum_phase_shrink">Минимальное фазовое преобразование и сжатие</string>
     <string name="ddc_enable">ViPER-DDC</string>
@@ -215,6 +215,8 @@
     <string name="onboarding_perm_cast_caption">Вы должны предоставить этому приложению разрешение на запись аудиоконтента при каждом запуске.</string>
     <string name="onboarding_perm_missing_title">Разрешения на выполнение не предоставлены</string>
     <string name="onboarding_perm_missing">Пожалуйста, предоставьте все запрошенные разрешения на выполнение, чтобы продолжить.\nЕсли вы несколько раз отказали в предоставлении разрешений, вам нужно предоставить их вручную в настройках системы.</string>
+    <string name="onboarding_perm_diag">Разрешить отправку диагностических отчетов</string>
+    <string name="onboarding_perm_diag_caption">Это приложение отправляет отчеты о сбоях и другие диагностические данные, в том числе информацию о других активных приложениях, чтобы мне было легче обнаруживать и решать проблемы совместимости и ошибки.</string>
     <string name="onboarding_finish_header">JamesDSP настроен!</string>
     <string name="onboarding_finish_caption">Если у вас возникли какие-либо проблемы, пожалуйста, посетите раздел настроек «Устранение неисправностей».</string>
     <string name="limit_session_control_conflict_title">Отключение других приложений для обработки аудиоэффектов</string>
@@ -299,7 +301,7 @@
     <string name="troubleshooting_dump_summary">Сбор и сохранение данных для устранения неполадок</string>
     <string name="troubleshooting_dump_share_title">Поделиться дампом аудиосессии</string>
     <string name="troubleshooting_view_limitations">Технические ограничения</string>
-    <string name="troubleshooting_view_limitations_summary">Показать информацию об ограничениях этого приложения</string>
+    <string name="troubleshooting_view_limitations_summary">Показать подробную информацию об ограничениях данного приложения</string>
     <string name="troubleshooting_notification_access">Разрешить доступ к уведомлениям</string>
     <string name="troubleshooting_notification_access_summary">Обеспечивает более надежное обнаружение аудиосессий</string>
     <string name="troubleshooting_repair_assets">Восстановить встроенные IR, DDC и скрипты</string>
