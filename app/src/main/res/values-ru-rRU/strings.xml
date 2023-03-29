@@ -176,7 +176,7 @@
     <string name="onboarding_root_enhanced_processing_setup_success">Расширенная обработка настроена</string>
     <string name="onboarding_adb_shizuku_title">Настройка Shizuku</string>
     <string name="onboarding_adb_adb_title">Настройка ADB</string>
-    <string name="onboarding_adb_caption">Для работы этого приложения требуются специальные разрешения для выгрузки звуковой политики вашего устройства. Пожалуйста, следуйте инструкциям ниже.</string>
+    <string name="onboarding_adb_caption">Для работы данного приложения требуются специальные разрешения для выгрузки звуковой политики вашего устройства. Пожалуйста, следуйте инструкциям ниже.</string>
     <string name="onboarding_adb_shizuku_install_button">Установить Shizuku</string>
     <string name="onboarding_adb_shizuku_install_button_done">Уже установлено</string>
     <string name="onboarding_adb_shizuku_install_instruction">Установить Shizuku из Google Play.</string>
@@ -189,10 +189,10 @@
     <string name="onboarding_adb_shizuku_not_installed_title">Shizuku не установлен</string>
     <string name="onboarding_adb_shizuku_grant_fail_server_dead">Перед запросом разрешения необходимо запустить сервер Shizuku. Пожалуйста, вернитесь к шагу 2 этой инструкции.</string>
     <string name="onboarding_adb_shizuku_grant_fail_server_dead_title">Сервер Shizuku не запущен</string>
-    <string name="onboarding_adb_shizuku_grant_fail_version">Это приложение требует Shizuku версии 11 или выше. Пожалуйста, обновите Shizuku до последней версии.</string>
+    <string name="onboarding_adb_shizuku_grant_fail_version">Данное приложение требует Shizuku версии 11 или выше. Пожалуйста, обновите Shizuku до последней версии.</string>
     <string name="onboarding_adb_shizuku_grant_fail_version_title">Неподдерживаемая версия Shizuku</string>
     <string name="onboarding_adb_shizuku_grant_fail_denied_title">Разрешение отклонено</string>
-    <string name="onboarding_adb_shizuku_grant_fail_denied">Пожалуйста, предоставьте этому приложению доступ к Shizuku. Если вы ранее отказали в разрешении и всплывающее окно больше не появляется, вам может потребоваться открыть менеджер разрешений Shizuku, и предоставить доступ вручную.</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied">Пожалуйста, предоставьте данному приложению доступ к Shizuku. Если вы ранее отказали в разрешении и всплывающее окно больше не появляется, вам может потребоваться открыть менеджер разрешений Shizuku, и предоставить доступ вручную.</string>
     <string name="onboarding_adb_shizuku_no_dump_perm_title">Shizuku не удалось предоставить разрешения ADB</string>
     <string name="onboarding_adb_shizuku_no_dump_perm">Пожалуйста, подождите несколько секунд и попробуйте ещё раз. Если это не сработает, попробуйте альтернативный метод.</string>
     <string name="onboarding_adb_dump_not_granted_title">Разрешение не предоставлено</string>
@@ -212,15 +212,15 @@
     <string name="onboarding_perm_notification_title">Разрешение на отображение уведомлений</string>
     <string name="onboarding_perm_notification_caption">Требуется для получения важных обновлений статуса и информации о состоянии обработки JamesDSP.</string>
     <string name="onboarding_perm_cast_title">Трансляция/запись</string>
-    <string name="onboarding_perm_cast_caption">Вы должны предоставить этому приложению разрешение на запись аудиоконтента при каждом запуске.</string>
+    <string name="onboarding_perm_cast_caption">Вы должны предоставить данному приложению разрешение на запись аудиоконтента при каждом запуске.</string>
     <string name="onboarding_perm_missing_title">Разрешения на выполнение не предоставлены</string>
     <string name="onboarding_perm_missing">Пожалуйста, предоставьте все запрошенные разрешения на выполнение, чтобы продолжить.\nЕсли вы несколько раз отказали в предоставлении разрешений, вам нужно предоставить их вручную в настройках системы.</string>
     <string name="onboarding_perm_diag">Разрешить отправку диагностических отчетов</string>
-    <string name="onboarding_perm_diag_caption">Это приложение отправляет отчеты о сбоях и другие диагностические данные, в том числе информацию о других активных приложениях, чтобы мне было легче обнаруживать и решать проблемы совместимости и ошибки.</string>
+    <string name="onboarding_perm_diag_caption">Данное приложение отправляет отчеты о сбоях и другие диагностические данные, в том числе информацию о других активных приложениях, чтобы мне было легче обнаруживать и решать проблемы совместимости и ошибки.</string>
     <string name="onboarding_finish_header">JamesDSP настроен!</string>
     <string name="onboarding_finish_caption">Если у вас возникли какие-либо проблемы, пожалуйста, посетите раздел настроек «Устранение неисправностей».</string>
     <string name="limit_session_control_conflict_title">Отключение других приложений для обработки аудиоэффектов</string>
-    <string name="limit_session_control_conflict">Приложения для обработки аудиоэффектов, использующие встроенный в Android эффект динамической обработки, нарушают работу этого приложения.</string>
+    <string name="limit_session_control_conflict">Приложения для обработки аудиоэффектов, использующие встроенный в Android эффект динамической обработки, нарушают работу данного приложения.</string>
     <string name="limit_unsupported_apps_title">Неподдерживаемые приложения</string>
     <string name="limit_unsupported_apps">Приложения, блокирующие захват внутреннего аудио, останутся необработанными (например, Spotify, Google Chrome).</string>
     <string name="limit_hw_accel_title">Проблемы с аппаратно ускоренным воспроизведением аудио</string>
@@ -228,7 +228,7 @@
     <string name="limit_detect_delay_title">Задержка определения аудиосессии</string>
     <string name="limit_detect_delay"><![CDATA[После того как приложение открывает новую аудиосессию для воспроизведения звука, вы можете услышать повторяющийся или обрывистый звук на очень короткий период (примерно 250 мс).]]></string>
     <string name="limit_latency_title">Повышенная задержка</string>
-    <string name="limit_latency">Это приложение может добавлять некоторую задержку в аудиопоток. Вы можете внести программы для просмотра фильмов/видео в список исключенных приложений, чтобы избежать возможных проблем со синхронизацией звука и видео.</string>
+    <string name="limit_latency">Данное приложение может добавлять некоторую задержку в аудиопоток. Вы можете внести программы для просмотра фильмов/видео в список исключенных приложений, чтобы избежать возможных проблем со синхронизацией звука и видео.</string>
     <string name="limit_tested_devices_title">Проверенные устройства</string>
     <string name="limit_tested_devices">Изменения, внесенные производителем вашего устройства в аудио-подсистему Android, могут привести к неполадкам в работе данного приложения из-за использования нескольких недокументированных API.\nПриложение тестировалось на устройствах:\n• Samsung S20+ (Android 12)\n• Эмулятор AOSP (Android 10–13)\n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
@@ -277,7 +277,7 @@
     <string name="profiles_enable_summary_off">Отдельные профили для каждого устройства отключены</string>
     <string name="profiles_info_title">Что такое отдельные профили для каждого устройства?</string>
     <string name="profiles_info">Нажмите для просмотра документации</string>
-    <string name="profiles_info_content">При включении данной настройки каждому аудиоустройству назначается отдельная конфигурация звука. Приложение автоматически переключается между профилями при изменении выходного устройства. \n\nПри подключении нового аудиоустройства ему автоматически назначается пустой профиль. Вы можете настроить его или скопировать настройки из другого профиля. \n\nОбратите внимание: при включении данной опции, пресеты будут применяться только к активному профилю. Неактивные профили остаются без изменений.</string>
+    <string name="profiles_info_content">Когда этот параметр включен, каждому аудиоустройству назначается отдельная конфигурация звука. Приложение автоматически переключается между профилями при изменении выходного устройства. \n\nПри подключении нового аудиоустройства ему автоматически назначается пустой профиль. Вы можете настроить его или скопировать настройки из другого профиля. \n\nОбратите внимание: при включении данной опции, пресеты будут применяться только к активному профилю. Неактивные профили остаются без изменений.</string>
     <string name="profiles_manage_hint">Чтобы скопировать или удалить профили, нажмите кнопку «Активный профиль устройства» на главном экране.</string>
     <string name="app_behavior">Работа приложения</string>
     <string name="exclude_app_from_recents">Исключить приложение из недавних</string>
