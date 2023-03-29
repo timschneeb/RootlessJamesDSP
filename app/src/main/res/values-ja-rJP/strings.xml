@@ -12,9 +12,12 @@
     <string name="notification_channel_permission_prompt">権限リクエスト</string>
     <string name="notification_channel_app_compat_alert">互換性のないアプリのアラート</string>
     <string name="notification_group_backup">バックアップと復元</string>
+    <string name="notification_channel_backup_progress">処理中</string>
     <string name="notification_channel_backup_complete">完了</string>
     <!-- Service notifications -->
     <string name="action_retry">やり直す</string>
+    <string name="action_fix">問題の修正</string>
+    <string name="action_stop">停止</string>
     <string name="notification_processing">アクティブなアプリ： %1$s</string>
     <string name="notification_idle">オーディオ処理アイドル中</string>
     <string name="notification_processing_title">オーディオ処理がアクティブです</string>
@@ -36,15 +39,57 @@
     <!-- General purpose -->
     <string name="install">インストール</string>
     <string name="update">アップデート</string>
+    <string name="unknown_error">不明なエラー</string>
+    <string name="details">詳細</string>
+    <string name="actions">動作</string>
+    <string name="warning">警告</string>
+    <string name="success">成功</string>
+    <string name="open">開く</string>
+    <string name="close">閉じる</string>
     <string name="delete">削除</string>
     <string name="copy">コピー</string>
     <string name="paste">貼り付け</string>
+    <string name="add">追加</string>
     <string name="yes">はい</string>
     <string name="no">いいえ</string>
     <string name="value_not_set">未設定</string>
     <string name="undo">やり直し</string>
+    <string name="redo">やり直し</string>
     <string name="no_activity_found">アクションを処理するアクティビティが見つかりませんでした</string>
+    <string name="permission_allowed">許可されています</string>
+    <string name="permission_not_allowed">許可されていません</string>
     <!-- Main screen -->
+    <string name="power_button_alt">音声処理の切り替え</string>
+    <string name="compressor_enable">自動ダイナミック・レンジ・コンプレッサー</string>
+    <string name="compressor_adapt_speed">積極性</string>
+    <string name="eq_enable">補間型FIRイコライザー</string>
+    <string name="eq_filter_type">フィルタータイプ</string>
+    <string name="eq_interpolator">インターポレーター</string>
+    <string name="eq_interpolator_chip">区分的3次エルミート内挿多項式</string>
+    <string name="eq_interpolator_mha">改変された秋間スプライン</string>
+    <string name="eq_preset_acoustic">アコースティック</string>
+    <string name="eq_preset_bass">ベース</string>
+    <string name="eq_preset_beats">ビート</string>
+    <string name="eq_preset_classic">クラシック</string>
+    <string name="eq_preset_clear">クリア</string>
+    <string name="eq_preset_deep">ディープ</string>
+    <string name="eq_preset_dubstep">ダブステップ</string>
+    <string name="eq_preset_electronic">エレクトロニック</string>
+    <string name="eq_preset_flat">フラット</string>
+    <string name="eq_preset_hardstyle">ハードスタイル</string>
+    <string name="eq_preset_hiphop">ヒップホップ</string>
+    <string name="eq_preset_jazz">ジャズ</string>
+    <string name="eq_preset_metal">メタル</string>
+    <string name="eq_preset_movie">映画</string>
+    <string name="eq_preset_pop">ポップ</string>
+    <string name="eq_preset_rb">R&amp;B</string>
+    <string name="eq_preset_rock">ロック</string>
+    <string name="eq_preset_vocal">ボーカルブースター</string>
+    <string name="geq_enable">任意応答型イコライザー</string>
+    <string name="bass_enable">動的な低音ブースト</string>
+    <string name="bass_max_gain">最大ゲイン</string>
+    <string name="reverb_enable">仮想ルームエフェクト</string>
+    <string name="reverb_room_type">部屋のタイプ</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
@@ -56,6 +101,7 @@
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="gep_add_node">追加</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
