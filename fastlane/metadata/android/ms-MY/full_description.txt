@@ -1,10 +1,10 @@
-Use JamesDSP as a system-wide audio processing engine without any root access.
+JamesDSP sebagai enjin pemprosesan global audio tanpa sebarang kebenaran root.
 
-This app has several limitations that may be deal-breaking to some people; please read this whole document before using the app. Shizuku (Android 11+) or ADB access via a computer is required for the initial setup.
+Aplikasi ini mempunyai keterbatasan yang mungkin akan menyebabkan salah faham kepada sesetengah pihak; sila baca keseluruhan dokumen sebelum menggunakan aplikasi ini. Shizuku(Android 11+) atau ADB melalui komputer adalah diperlukan untuk persediaan awal.
 
-JamesDSP supports the following audio effects:
-* Limiter control
-* Output gain control
+JamesDSP menyokong kesan audio tersebut:
+* Penghad kawalan
+* Kawalan gandaan pengeluaran
 * Auto dynamic range compressor
 * Dynamic bass boost
 * Interpolating FIR equalizer

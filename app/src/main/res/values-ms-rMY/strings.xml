@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
+    <string name="action_presets">Praset</string>
+    <string name="action_revert">Kembali Ke Tetapan Asal</string>
+    <string name="action_blocked_apps">Kecualikan Aplikasi</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">Perkhidmatan</string>
+    <string name="notification_channel_service">Khidmat Pemberitahuan</string>
+    <string name="notification_channel_session_loss_alert">Amaran Sessi Yang Hilang</string>
     <!-- Service notifications -->
     <!-- Permission request notifications -->
     <!-- Session control loss notifications -->
@@ -21,6 +27,7 @@
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
     <!-- Blocklist -->
+    <string name="title_activity_blocklist">Kecualikan Aplikasi</string>
     <!-- Compatibility issue activity -->
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
