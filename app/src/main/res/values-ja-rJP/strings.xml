@@ -90,6 +90,7 @@
     <string name="bass_max_gain">最大ゲイン</string>
     <string name="reverb_enable">仮想ルームエフェクト</string>
     <string name="reverb_room_type">部屋のタイプ</string>
+    <string name="stereowide_level_none">なし</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
