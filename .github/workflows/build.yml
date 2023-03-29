@@ -23,6 +23,21 @@ jobs:
         flavor: [Rootless, Root]
         
     steps:
+      - run: echo "$OUT" > restore
+        shell: bash
+        env:
+          OUT: ${{ secrets.SIGNING_KEYSTORE }}
+       
+      - name: Restore
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+            username: 'tim'
+            server: 'srv1.timschneeberger.me'
+            ssh_private_key: ${{ secrets.DEPLOY_SSH_PRIVATE_KEY }} 
+            local_path: "restore"
+            remote_path: '/home/tim'
+            sftpArgs: '-o ConnectTimeout=5'
+    
       - id: flavor
         uses: ASzc/change-string-case-action@v5
         with:
@@ -76,7 +91,7 @@ jobs:
         run: |
           set -x
           echo "VERSION_TAG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
-
+       
       - name: Sign APKs
         uses: ilharp/sign-android-release@v1.0.4
         with:
