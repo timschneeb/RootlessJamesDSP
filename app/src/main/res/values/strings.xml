@@ -241,6 +241,8 @@
     <string name="onboarding_perm_cast_caption">You need to explicitly grant this app permission to record audio content every time it launches.</string>
     <string name="onboarding_perm_missing_title">Runtime permissions not granted</string>
     <string name="onboarding_perm_missing">Please grant all requested runtime permissions to continue.\nIf you repeatedly denied the permissions, you need to grant them manually in the system settings.</string>
+    <string name="onboarding_perm_diag">Allow sending diagnostic reports</string>
+    <string name="onboarding_perm_diag_caption">This app submits crash reports and other diagnostic data, including information about other active applications, to allow me to detect and solve compatibility issues and bugs easier.</string>
     <string name="onboarding_finish_header">JamesDSP is set-up!</string>
     <string name="onboarding_finish_caption">If you encounter any issues, please visit the troubleshooting options.</string>
 
