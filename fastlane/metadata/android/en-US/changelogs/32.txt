@@ -1,0 +1,4 @@
+* Added prominent disclosure about diagnostic reports to setup wizard
+* Added category icons (can be disabled in settings)
+* Several crash and bug fixes
+* Translation updates
