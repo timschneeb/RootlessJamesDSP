@@ -12,10 +12,11 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.core.view.setMargins
+import com.google.android.material.checkbox.MaterialCheckBox
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.ViewCardBinding
-import me.timschneeberger.rootlessjamesdsp.utils.extensions.asHtml
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.dpToPx
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.asHtml
 
 
 class Card @JvmOverloads constructor(
@@ -26,9 +27,20 @@ class Card @JvmOverloads constructor(
 ) : LinearLayout(context, attrs) {
 
     private var onButtonClickListener: (() -> Unit)? = null
+    private var onCheckChangedListener: ((Boolean) -> Unit)? = null
     private var onCloseClickListener: (() -> Unit)? = null
     private val binding: ViewCardBinding
 
+    var checkboxVisible: Boolean = true
+        set(value) {
+            field = value
+            binding.closeButtonLayout.isVisible = value
+            binding.checkbox.isVisible = value
+            binding.close.isVisible = false
+        }
+    var checkboxIsChecked: Boolean
+        get() = binding.checkbox.isChecked
+        set(value) { binding.checkbox.isChecked = value }
     var buttonEnabled: Boolean = true
         set(value) {
             field = value
@@ -46,6 +58,8 @@ class Card @JvmOverloads constructor(
         set(value) {
             field = value
             binding.closeButtonLayout.isVisible = value
+            binding.close.isVisible = value
+            binding.checkbox.isVisible = false
         }
     var titleText: String? = null
         set(value) {
@@ -97,6 +111,7 @@ class Card @JvmOverloads constructor(
         closeButtonVisible = a.getBoolean(R.styleable.Card_closeButtonVisible, false)
         buttonText = a.getString(R.styleable.Card_buttonText)
         buttonEnabled = a.getBoolean(R.styleable.Card_buttonEnabled, true)
+        checkboxVisible = a.getBoolean(R.styleable.Card_checkboxVisible, false)
         iconSrc = a.getResourceId(R.styleable.Card_iconSrc, 0)
         iconTint = a.getColorStateList(R.styleable.Card_iconTint)
 
@@ -121,7 +136,23 @@ class Card @JvmOverloads constructor(
             onCloseClickListener?.invoke()
         }
 
+        binding.root.setOnClickListener {
+            binding.checkbox.isChecked = !binding.checkbox.isChecked
+        }
+
         updateForeground()
+    }
+
+    override fun onAttachedToWindow() {
+        binding.checkbox.addOnCheckedStateChangedListener { _, state ->
+            onCheckChangedListener?.invoke(state == MaterialCheckBox.STATE_CHECKED)
+        }
+        super.onAttachedToWindow()
+    }
+
+    override fun onDetachedFromWindow() {
+        binding.checkbox.clearOnCheckedStateChangedListeners()
+        super.onDetachedFromWindow()
     }
 
     private fun updateForeground() {
@@ -136,6 +167,10 @@ class Card @JvmOverloads constructor(
 
     fun setOnButtonClickListener(listener: (() -> Unit)?) {
         onButtonClickListener = listener
+    }
+
+    fun setOnCheckChangedListener(listener: ((Boolean) -> Unit)?) {
+        onCheckChangedListener = listener
     }
 
     fun setOnCloseClickListener(listener: (() -> Unit)?) {

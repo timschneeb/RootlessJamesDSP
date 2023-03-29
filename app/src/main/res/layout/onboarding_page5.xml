@@ -46,6 +46,19 @@
             android:orientation="vertical">
 
             <me.timschneeberger.rootlessjamesdsp.view.Card
+                android:id="@+id/privacy_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:titleText="@string/onboarding_perm_diag"
+                app:bodyText="@string/onboarding_perm_diag_caption"
+                app:iconCentered="true"
+                app:iconSrc="@drawable/ic_twotone_privacy_tip_24dp"
+                app:iconTint="?attr/colorOnSurface"
+                app:checkboxVisible="true"
+                app:cardMargin="8dp" />
+
+
+            <me.timschneeberger.rootlessjamesdsp.view.Card
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:titleText="@string/onboarding_perm_microphone_title"
@@ -54,6 +67,7 @@
                 app:iconSrc="@drawable/ic_twotone_mic_24dp"
                 app:iconTint="?attr/colorOnSurface"
                 app:cardMargin="8dp" />
+
 
             <me.timschneeberger.rootlessjamesdsp.view.Card
                 android:id="@+id/onboarding_notification_permission"

@@ -37,6 +37,7 @@
         <attr name="closeButtonVisible" format="boolean" />
         <attr name="buttonText" format="string" />
         <attr name="buttonEnabled" format="boolean" />
+        <attr name="checkboxVisible" format="boolean" />
         <attr name="iconSrc" format="reference" />
         <attr name="iconTint" />
         <attr name="iconCentered" format="boolean" />

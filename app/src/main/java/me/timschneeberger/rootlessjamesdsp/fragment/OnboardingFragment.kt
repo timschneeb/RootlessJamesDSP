@@ -40,6 +40,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasRecordPermission
 import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
+import me.timschneeberger.rootlessjamesdsp.view.Card
 import org.koin.android.ext.android.inject
 import rikka.shizuku.Shizuku
 import timber.log.Timber
@@ -373,6 +374,14 @@ class OnboardingFragment : Fragment() {
             val pageBinding = binding.onboardingPage5
             if(!SdkCheck.isTiramisu) {
                 pageBinding.findViewById<View>(R.id.onboarding_notification_permission).visibility = View.GONE
+            }
+            pageBinding.findViewById<Card>(R.id.privacy_card).apply {
+                isVisible = !BuildConfig.FOSS_ONLY
+                checkboxIsChecked = prefsApp.get(R.string.key_share_crash_reports)
+                setOnCheckChangedListener {
+                    Timber.d("Should share crash reports? $it")
+                    prefsApp.set(R.string.key_share_crash_reports, it)
+                }
             }
         }
 
