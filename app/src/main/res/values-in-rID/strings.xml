@@ -188,6 +188,8 @@
     <string name="onboarding_perm_cast_caption">Anda harus memberikan izin ini untuk merekam audio setiap kali dijalankan.</string>
     <string name="onboarding_perm_missing_title">Izin penyimpanan ditolak</string>
     <string name="onboarding_perm_missing">Beri izin penyimpanan untuk melanjutkan.\nJika anda menolaknya terus menerus, anda harus memberi izin manual di pengaturan perangkat.</string>
+    <string name="onboarding_perm_diag">Izinkan mengirim laporan diagnosis</string>
+    <string name="onboarding_perm_diag_caption">Aplikasi akan mengirim laporan crash dan data diagnosis lainnya, termasuk informasi mengenai aplikasi lain yang aktif. Ini bertujuan untuk menyelesaikan masalah dan bug lebih mudah.</string>
     <string name="onboarding_finish_header">JamesDSP sudah diatur!</string>
     <string name="onboarding_finish_caption">Jika anda menemukan masalah, kunjungi opsi pemecahan masalah.</string>
     <string name="limit_session_control_conflict_title">Matikan audio effect lainnya</string>
