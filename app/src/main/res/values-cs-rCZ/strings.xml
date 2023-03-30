@@ -215,6 +215,8 @@
     <string name="onboarding_perm_cast_caption">Musíte této aplikaci výslovně udělit oprávnění k nahrávání zvukového obsahu pokaždé, když se spustí.</string>
     <string name="onboarding_perm_missing_title">Uživatelské oprávnění nebylo uděleno</string>
     <string name="onboarding_perm_missing">Pro pokračování prosím udělte všechna požadovaná uživatelská oprávnění.\nPokud jste oprávnění opakovaně zamítli, musíte je povolit ručně v nastavení systému.</string>
+    <string name="onboarding_perm_diag">Povolit odesílání diagnostických hlášení</string>
+    <string name="onboarding_perm_diag_caption">Tato aplikace posílá hlášení o selhání a další diagnostické údaje, včetně informací o jiných aktivních aplikacích, pro snazší rozpoznávání chyb a řešení problémů s kompatibilitou.</string>
     <string name="onboarding_finish_header">JamesDSP je připraven!</string>
     <string name="onboarding_finish_caption">Pokud narazíte na nějaké problémy, navštivte prosím možnosti řešení problémů.</string>
     <string name="limit_session_control_conflict_title">Zakažte další aplikace zvukových efektů</string>
