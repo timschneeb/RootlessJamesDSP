@@ -215,6 +215,8 @@
     <string name="onboarding_perm_cast_caption">تحتاج إلى منح هذا التطبيق إذن تسجيل محتوى الصوت في كل مرة يتم تشغيله.</string>
     <string name="onboarding_perm_missing_title">لم يتم منح أذونات وقت تشغيل</string>
     <string name="onboarding_perm_missing">الرجاء منح جميع أذونات وقت التشغيل المطلوبة للمتابعة.\nإذا كنت ترفض الأذونات مراراً، تحتاج إلى منحها يدوياً في إعدادات النظام.</string>
+    <string name="onboarding_perm_diag">السماح بإرسال تقارير التشخيص</string>
+    <string name="onboarding_perm_diag_caption">يقدم هذا التطبيق تقارير الأعطال والبيانات التشخيصية الأخرى، بما في ذلك المعلومات حول التطبيقات النشطة الأخرى، للسماح لي باكتشاف وحل مشاكل التوافق و الأخطاء أسهل.</string>
     <string name="onboarding_finish_header">تم إعداد JamesDSP!</string>
     <string name="onboarding_finish_caption">إذا واجهت أي مشكلة، يرجى زيارة خيارات استكشاف الأخطاء.</string>
     <string name="limit_session_control_conflict_title">تعطيل تطبيقات تأثير الصوت الأخرى</string>
