@@ -93,12 +93,21 @@
     <string name="reverb_preset_default">デフォルト</string>
     <string name="convolver_convolution_mode_original">オリジナル</string>
     <string name="stereowide_level_none">なし</string>
+    <string name="crossfeed_preset">プリセット</string>
     <!-- Onboarding -->
+    <string name="onboarding_methods_title">設定方法を選択</string>
     <!-- Rootless flavor -->
     <!-- Root flavor -->
+    <string name="onboarding_adb_shizuku_install_instruction">Google Playから「Shizuku」をインストールしてください。</string>
+    <string name="onboarding_perm_missing_title">動作に必要な権限が付与されていません</string>
+    <string name="limit_tested_devices_title">動作確認済みの端末</string>
     <!-- Settings -->
     <string name="title_activity_settings">設定</string>
     <string name="profiles_section_header">端末情報</string>
+    <string name="autostart_prompt_at_boot_off">起動後に通知を表示しない</string>
+    <string name="autostart_prompt_at_boot_on">起動後に通知を表示する</string>
+    <string name="credits_project_check_update">アップデートを確認しています...</string>
+    <string name="appearance_theme_mode">ダークモード</string>
     <string name="backup_settings">バックアップと復元</string>
     <!-- Theme names -->
     <string name="theme_default">デフォルト</string>
