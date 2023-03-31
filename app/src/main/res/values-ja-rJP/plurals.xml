@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <plurals name="unsupported_apps">
+        <item quantity="other">%d はサポートされていないアプリの為自動的に除外されました。詳細をついてはこちらをタップして下さい。</item>
+    </plurals>
+</resources>
