@@ -90,6 +90,8 @@
     <string name="bass_max_gain">最大ゲイン</string>
     <string name="reverb_enable">仮想ルームエフェクト</string>
     <string name="reverb_room_type">部屋のタイプ</string>
+    <string name="reverb_preset_default">デフォルト</string>
+    <string name="convolver_convolution_mode_original">オリジナル</string>
     <string name="stereowide_level_none">なし</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
@@ -99,6 +101,7 @@
     <string name="profiles_section_header">端末情報</string>
     <string name="backup_settings">バックアップと復元</string>
     <!-- Theme names -->
+    <string name="theme_default">デフォルト</string>
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
