@@ -215,6 +215,7 @@
     <string name="onboarding_perm_cast_caption">您需要明确授予此应用权限以便每次启动时录制音频内容。</string>
     <string name="onboarding_perm_missing_title">未授予运行时权限</string>
     <string name="onboarding_perm_missing">请授予所有请求的运行时权限以继续。\n如果您一再拒绝权限，您需要在系统设置中手动授予这些权限。</string>
+    <string name="onboarding_perm_diag">允许发送诊断报告</string>
     <string name="onboarding_finish_header">JamesDSP 已设置完毕！</string>
     <string name="onboarding_finish_caption">如果您遇到任何问题，请访问故障排查选项。</string>
     <string name="limit_session_control_conflict_title">禁止使用音频特效的应用</string>
