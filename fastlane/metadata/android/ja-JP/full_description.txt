@@ -20,12 +20,12 @@ JamesDSPが対応するオーディオエフェクト:
 Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration, you can search and import frequency responses that aim to correct your headphone to a neutral sound. Go to 'Arbitrary response equalizer > Magnitude response > AutoEQ profiles' to get started.
 
 制限事項
-* Apps blocking internal audio capture remain unprocessed (e.g., Spotify, Google Chrome)
+* 内部音声録音をブロックしているアプリは処理されません。 (Spotify、Google Chromeなど)
 * Apps using some types of HW-accelerated playback may cause issues and need to be manually excluded (e.g., some Unity games)
 * Cannot coexist with (some) other audio effect apps (e.g., Wavelet and other apps that make use of the `DynamicsProcessing` Android API)
 
 
-- Apps confirmed working:
+- アプリの動作を確認しました:
 * YouTube
 * YouTube Music
 * Amazon Music
@@ -36,7 +36,7 @@ Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration
 * ...
 
 - Unsupported apps include:
-* Spotify (Note: Spotify ReVanced patch is required to support Spotify)
+* Spotify (注意：SpotifyはReVancedパッチの適用が必要です)
 * Google Chrome
 * SoundCloud
 * ...
