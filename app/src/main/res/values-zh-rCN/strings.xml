@@ -18,7 +18,7 @@
     <string name="action_retry">重试</string>
     <string name="action_fix">修复问题</string>
     <string name="action_stop">停止</string>
-    <string name="notification_processing">活跃的应用：%1$s</string>
+    <string name="notification_processing">活动的应用：%1$s</string>
     <string name="notification_idle">没有需要处理的音频流</string>
     <string name="notification_processing_title">正在处理音频流</string>
     <string name="notification_processing_disabled_title">音频流未在处理或被禁用</string>
@@ -216,6 +216,7 @@
     <string name="onboarding_perm_missing_title">未授予运行时权限</string>
     <string name="onboarding_perm_missing">请授予所有请求的运行时权限以继续。\n如果您一再拒绝权限，您需要在系统设置中手动授予这些权限。</string>
     <string name="onboarding_perm_diag">允许发送诊断报告</string>
+    <string name="onboarding_perm_diag_caption">将提交崩溃报告和其他诊断数据（包含目标应用的信息），以便处理兼容性问题和漏洞。</string>
     <string name="onboarding_finish_header">JamesDSP 已设置完毕！</string>
     <string name="onboarding_finish_caption">如果您遇到任何问题，请访问故障排查选项。</string>
     <string name="limit_session_control_conflict_title">禁止使用音频特效的应用</string>
@@ -352,6 +353,7 @@
     <string name="appearance_app_theme">应用主题</string>
     <string name="appearance_navigation_title">底部导航栏</string>
     <string name="appearance_nav_hide">滚动时隐藏底部导航栏</string>
+    <string name="appearance_show_icons">显示类别图标</string>
     <string name="backup_settings">备份与恢复</string>
     <string name="backup_settings_summary">自动 &amp; 手动备份</string>
     <string name="backup_frequency">备份频率</string>
