@@ -61,16 +61,16 @@
     <!-- Main screen -->
     <string name="power_button_alt">切换音频处理</string>
     <string name="compressor_enable">自动动态范围压缩器</string>
-    <string name="compressor_max_attack">最大建立时间</string>
-    <string name="compressor_max_release">最大释放</string>
-    <string name="compressor_adapt_speed">释放强度</string>
-    <string name="eq_enable">内置 FIR 均衡器</string>
-    <string name="eq_filter_type">过滤类型</string>
+    <string name="compressor_max_attack">最长建立时间</string>
+    <string name="compressor_max_release">最长释放时间</string>
+    <string name="compressor_adapt_speed">激进度</string>
+    <string name="eq_enable">插值 FIR 均衡器</string>
+    <string name="eq_filter_type">过滤器类型</string>
     <string name="eq_interpolator">插值器</string>
-    <string name="eq_filter_type_minimum">最小段落</string>
-    <string name="eq_filter_type_linear">线性段落</string>
-    <string name="eq_interpolator_chip">Piecewise Cubic Hermite Interpolating Polynomial</string>
-    <string name="eq_interpolator_mha">Modified Hiroshi Akima spline</string>
+    <string name="eq_filter_type_minimum">最小相位</string>
+    <string name="eq_filter_type_linear">线性相位</string>
+    <string name="eq_interpolator_chip">分段三次 Hermite 插值</string>
+    <string name="eq_interpolator_mha">修正 Akima 样条插值</string>
     <string name="eq_preset_acoustic">原声</string>
     <string name="eq_preset_bass">低音</string>
     <string name="eq_preset_beats">节拍</string>
@@ -108,13 +108,13 @@
     <string name="reverb_preset_plate_low">Plate low</string>
     <string name="reverb_preset_long_reverb1">长混响 1</string>
     <string name="reverb_preset_long_reverb2">长混响 2</string>
-    <string name="convolver_enable">脉冲反馈</string>
-    <string name="convolver_impulse">脉冲反馈样本</string>
+    <string name="convolver_enable">卷积器</string>
+    <string name="convolver_impulse">脉冲响应</string>
     <string name="convolver_advanced_editing">高级波形编辑</string>
-    <string name="convolver_convolution_mode">脉冲反馈优化</string>
+    <string name="convolver_convolution_mode">脉冲响应优化</string>
     <string name="convolver_convolution_mode_original">原始</string>
-    <string name="convolver_convolution_mode_shrink">缩放</string>
-    <string name="convolver_convolution_mode_minimum_phase_shrink">最小段落转换与收缩</string>
+    <string name="convolver_convolution_mode_shrink">收缩</string>
+    <string name="convolver_convolution_mode_minimum_phase_shrink">最小相变和收缩</string>
     <string name="ddc_enable">ViPER-DDC</string>
     <string name="ddc_file">DDC 文件</string>
     <string name="liveprog_enable">实时编程 DSP</string>
@@ -125,12 +125,12 @@
     <string name="liveprog_no_script_selected">未选择脚本</string>
     <string name="liveprog_edit_header">编辑选中的脚本</string>
     <string name="liveprog_edit">在内置编辑器中打开活动脚本</string>
-    <string name="tube_enable">模拟模型</string>
+    <string name="tube_enable">数仿模拟</string>
     <string name="tube_drive">前置放大器</string>
-    <string name="output_control_header">输出控制器</string>
+    <string name="output_control_header">输出控制</string>
     <string name="output_limiter_threshold">限制器阈值</string>
-    <string name="output_limiter_release">限制器释放量</string>
-    <string name="output_control_postgain">回放增益</string>
+    <string name="output_limiter_release">限制器释放时间</string>
+    <string name="output_control_postgain">后增益</string>
     <string name="stereowide_enable">音阶宽度</string>
     <string name="stereowide_level">宽度</string>
     <string name="stereowide_level_none">常规</string>
@@ -411,7 +411,7 @@
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">选择的 VDC 文件已损坏，请重新选择其它文件。</string>
     <string name="message_irs_corrupt">选择的脉冲响应已损坏，请重新选择其它文件。</string>
-    <string name="message_convolver_advimp_invalid">脉冲反馈：高级波形编辑包含无效值。</string>
+    <string name="message_convolver_advimp_invalid">卷积器：高级波形编辑包含无效值。</string>
     <string name="message_liveprog_compile_fail">Liveprog 执行失败，选定的脚本已损坏，请使用脚本编辑器进行调试。</string>
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">强度响应</string>
