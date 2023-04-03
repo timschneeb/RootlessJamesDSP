@@ -60,8 +60,8 @@
     <string name="permission_not_allowed">不允许</string>
     <!-- Main screen -->
     <string name="power_button_alt">切换音频处理</string>
-    <string name="compressor_enable">动态压缩范围</string>
-    <string name="compressor_max_attack">最大侵入</string>
+    <string name="compressor_enable">自动动态范围压缩器</string>
+    <string name="compressor_max_attack">最大建立时间</string>
     <string name="compressor_max_release">最大释放</string>
     <string name="compressor_adapt_speed">释放强度</string>
     <string name="eq_enable">内置 FIR 均衡器</string>
