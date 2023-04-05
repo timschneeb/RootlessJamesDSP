@@ -17,15 +17,15 @@ JamesDSPが対応するオーディオエフェクト:
 * Crossfeed
 * Virtual room effect (reverb)
 
-Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration, you can search and import frequency responses that aim to correct your headphone to a neutral sound. Go to 'Arbitrary response equalizer > Magnitude response > AutoEQ profiles' to get started.
+Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration, you can search and import frequency responses that aim to correct your headphone to a neutral sound. 使用するには、｢Arbitrary response equalizer > Magnitude response > AutoEQ profiles' ｣に移動してください。
 
 制限事項
 * 内部音声録音をブロックしているアプリは処理されません。 (Spotify、Google Chromeなど)
-* Apps using some types of HW-accelerated playback may cause issues and need to be manually excluded (e.g., some Unity games)
-* Cannot coexist with (some) other audio effect apps (e.g., Wavelet and other apps that make use of the `DynamicsProcessing` Android API)
+* 一部のHWアクセラレーションによる再生を使用するアプリは問題を引き起こす可能性があり、手動で除外する必要があります。(例：一部のUnityゲーム)
+* (一部の) 他のオーディオエフェクトアプリとの共用はできません。(例: Wavelet や `DynamicsProcessing` Android API を使用したアプリ)
 
 
-- アプリの動作を確認しました:
+- 正常な動作が確認されたアプリ:
 * YouTube
 * YouTube Music
 * Amazon Music
@@ -35,7 +35,7 @@ Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration
 * Twitch
 * ...
 
-- Unsupported apps include:
+- サポートされていないアプリ:
 * Spotify (注意：ReVancedパッチの適用が必要です)
 * Google Chrome
 * SoundCloud
