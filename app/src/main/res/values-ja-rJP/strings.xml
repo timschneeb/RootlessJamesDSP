@@ -104,7 +104,12 @@
     <string name="onboarding_adb_shizuku_no_dump_perm_title">ShizukuはADB権限の付与に失敗しました</string>
     <string name="onboarding_adb_shizuku_no_dump_perm">数秒待ってからもう一度お試しください。それでも動作しない場合は、別の方法を試してみてください。</string>
     <string name="onboarding_adb_manual_step2">コンピュータのブラウザで https://app.webadb.com を開き (Chromeで最もよく機能します) USBを使用してデバイスをコンピュータに接続してください。</string>
+    <string name="onboarding_adb_manual_step5b">(オプション) このコマンドを実行することで、音声キャプチャの権限プロンプトをスキップできます。\'appops set %s PROJECT_MEDIA allow\' 
+(ADBを使用する場合 \'adb shell appops set me.timschneeberger.ootlessjamesdsp PROJECT_MEDIA allow\')</string>
+    <string name="onboarding_adb_manual_step5c">(オプション) 前の手順に加えて、次のコマンドを実行することで自動起動を有効にすることもできます。\'appops set %s SYSTEM_ALERT_WINDOW allow\'
+(ADBを使用する場合 \'adb shell appops set me.timschneeberger.rootlessjamesdsp SYSTEM_ALERT_WINDOW allow\')</string>
     <string name="onboarding_perm_missing_title">動作に必要な権限が付与されていません</string>
+    <string name="onboarding_finish_caption">問題が発生した場合は、トラブルシューティングを参照してください。</string>
     <string name="limit_tested_devices_title">動作確認済みの端末</string>
     <!-- Settings -->
     <string name="title_activity_settings">設定</string>
@@ -112,6 +117,8 @@
     <string name="session_loss_ignore">セッション制御の損失を無視する</string>
     <string name="session_loss_ignore_on">動作しない (音声が重複する可能性があります)</string>
     <string name="profiles_section_header">端末情報</string>
+    <string name="exclude_app_from_recents">最近使用したタスク一覧 (アプリ履歴) に表示しない</string>
+    <string name="exclude_app_from_recents_off">最近使用したタスク一覧 (アプリ履歴) から除外しない</string>
     <string name="autostart_prompt_at_boot_off">起動後に通知を表示しない</string>
     <string name="autostart_prompt_at_boot_on">起動後に通知を表示する</string>
     <string name="credits_project_check_update">アップデートを確認しています...</string>
@@ -120,7 +127,14 @@
     <!-- Theme names -->
     <string name="theme_default">デフォルト</string>
     <!-- File library preference -->
+    <string name="filelibrary_hint_tap_and_hold">タップするか長押しでオプションを表示できます</string>
+    <string name="filelibrary_context_overwrite">上書き</string>
+    <string name="filelibrary_unsupported_format_title">対応していないファイル形式です</string>
+    <string name="filelibrary_no_file_selected">ファイルが選択されていません</string>
+    <string name="filelibrary_renamed">｢%1$s｣に名前を変更しました</string>
+    <string name="filelibrary_deleted">%1$sを削除しました</string>
     <!-- JamesDSP engine messages -->
+    <string name="message_vdc_corrupt">選択したVDCファイルは破損しています。他のファイルを選択してください。</string>
     <!-- GraphicEQ editor -->
     <string name="gep_add_node">追加</string>
     <!-- AutoEQ GraphicEQ selector -->
