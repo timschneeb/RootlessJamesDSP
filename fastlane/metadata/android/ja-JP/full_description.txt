@@ -36,7 +36,7 @@ Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration
 * ...
 
 - Unsupported apps include:
-* Spotify (注意：SpotifyはReVancedパッチの適用が必要です)
+* Spotify (注意：ReVancedパッチの適用が必要です)
 * Google Chrome
 * SoundCloud
 * ...
