@@ -22,6 +22,7 @@
     <string name="notification_idle">ध्वनि प्रसंस्करण रुकी हुई है</string>
     <string name="notification_processing_title">ध्वनि प्रसंस्करण जीवित है</string>
     <string name="notification_processing_disabled_title">ध्वनि प्रसंस्करण बंद है</string>
+    <string name="notification_processing_legacy">Hindi</string>
     <!-- Permission request notifications -->
     <string name="notification_request_permission">JamesDSP की ध्वनि प्रसंस्करण प्रदान करें</string>
     <!-- Session control loss notifications -->
