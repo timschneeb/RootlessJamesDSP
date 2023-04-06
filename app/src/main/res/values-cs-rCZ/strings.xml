@@ -332,7 +332,7 @@
     <string name="translators">Překladatelé</string>
     <string name="credits_app">Vývojář aplikace &amp; implementace rootless</string>
     <string name="credits_dsp">Vývojář jádra algorytmu JamesDSP</string>
-    <string name="credits_project_page">Nasvštivte stránku projektu na GitHubu</string>
+    <string name="credits_project_page">Navštivte stránku projektu na GitHubu</string>
     <string name="credits_project_page_summary">Nahlašte chyby, Získejte další informace a přečtěte si zdrojový kód</string>
     <string name="credits_project_play_page">Navštivte RootlessJamesDSP na Google Play</string>
     <string name="credits_project_play_page_summary">Zkontrolujte dostupnost aktualizace</string>
