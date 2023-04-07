@@ -199,6 +199,10 @@
     <string name="onboarding_adb_manual_step1">Acesse as configurações de desenvolvimento ocultas do Android e ative a depuração USB. É necessário desbloquear estas configurações tocando várias vezes no número de build nas configurações do sistema.</string>
     <string name="onboarding_adb_manual_step2">Abra https://app.webadb.com no navegador do seu computador (funciona melhor no Chrome) e conecte seu dispositivo por USB ao computador.</string>
     <string name="onboarding_adb_manual_step3">Adicione e conecte o dispositivo USB no WebADB.</string>
+    <string name="onboarding_adb_manual_step4">Navegue até \'Interactive Shell\' e execute o seguinte comando no shell: \'pm grant %s android.permission.DUMP\'</string>
+    <string name="onboarding_adb_manual_step5">Toque em \"Avançar\" neste aplicativo para continuar.</string>
+    <string name="onboarding_adb_manual_step1_button">Abrir Configurações de Desenvolvimento</string>
+    <string name="onboarding_perm_title">Outras permissões</string>
     <!-- Settings -->
     <string name="title_activity_settings">Configurações</string>
     <string name="audio_format_header">Processamento do áudio</string>
@@ -229,6 +233,7 @@
     <string name="profiles_enable_summary_off">Perfis por dispositivo desabilitados</string>
     <string name="profiles_info_title">O que são perfis por dispositivo?</string>
     <string name="profiles_info">Toque para visualizar a documentação</string>
+    <string name="misc_permission_restart_setup">Reiniciar assistente de instalação</string>
     <string name="backup_settings">Backup e restauração</string>
     <!-- Theme names -->
     <string name="theme_default">Padrão</string>
