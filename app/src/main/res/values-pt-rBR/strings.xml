@@ -131,7 +131,7 @@
     <string name="output_limiter_threshold">Limite de Limitador</string>
     <string name="output_limiter_release">Liberação do limitador</string>
     <string name="output_control_postgain">Pós-ganho</string>
-    <string name="stereowide_enable">Amplitude do palco sonoro</string>
+    <string name="stereowide_enable">Amplitude de Estúdio</string>
     <string name="stereowide_level">Amplitude</string>
     <string name="stereowide_level_none">Nenhum</string>
     <string name="stereowide_level_very_wide">Muito amplo</string>
@@ -180,6 +180,9 @@
     <string name="onboarding_adb_shizuku_install_button">Instalar Shizuku</string>
     <string name="onboarding_adb_shizuku_install_button_done">Já instalado</string>
     <string name="onboarding_adb_shizuku_install_instruction">Instalar \'Shizuku\' do Google Play.</string>
+    <string name="onboarding_adb_shizuku_open_button">Iniciar Shizuku</string>
+    <string name="onboarding_adb_shizuku_open_button_done">Já está ativo</string>
+    <string name="onboarding_adb_shizuku_grant_instruction">Toque no botão e conceda a este aplicativo acesso ao Shizuku.</string>
     <string name="onboarding_adb_shizuku_grant_button">Conceder acesso</string>
     <string name="onboarding_adb_shizuku_not_installed">Shizuku ainda não está instalado. Baixe e instale-o a partir do Google Play primeiro.</string>
     <string name="onboarding_adb_shizuku_not_installed_title">Shizuku ainda não está instalado</string>
