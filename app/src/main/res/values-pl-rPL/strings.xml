@@ -6,6 +6,7 @@
     <string name="action_revert">Przywróć domyślne</string>
     <string name="action_blocked_apps">Wykluczone aplikacje</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">Obsługa</string>
     <string name="notification_channel_service">Powiadomienie serwisowe</string>
     <string name="notification_channel_session_loss_alert">Ostrzeżenie o utracie sesji</string>
     <string name="notification_channel_app_compat_alert">Ostrzeżenie o niekompatybilnej aplikacji</string>
