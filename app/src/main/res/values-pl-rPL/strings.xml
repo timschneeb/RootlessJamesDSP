@@ -143,9 +143,18 @@ Graphic eq</string>
     <string name="crossfeed_preset">Profil ustawień</string>
     <string name="crossfeed_preset_bs2b_weak">BS2B Słaby</string>
     <string name="crossfeed_preset_bs2b_strong">BS2B Silny</string>
+    <string name="crossfeed_preset_out_of_head">Poza głową</string>
+    <string name="crossfeed_preset_surround1">Dźwięk przestrzenny 1</string>
+    <string name="crossfeed_preset_surround2">Dźwięk przestrzenny 2</string>
+    <string name="crossfeed_preset_realistic_surround">Realistyczny dźwięk przestrzenny Joe0Bloggs</string>
     <!-- Onboarding -->
+    <string name="title_activity_onboarding">Proces Adaptacyjny</string>
+    <string name="onboarding_back">Wstecz</string>
+    <string name="onboarding_next">Następny</string>
+    <string name="onboarding_finish">Zakończ</string>
     <string name="onboarding_greeting">Witaj w RootlessJamesDSP!</string>
     <string name="onboarding_caption">Ten asystent pomoże Ci skonfigurować aplikację.</string>
+    <string name="onboarding_warning">Obecnie ta aplikacja jest niedokończona i niestabilna. Pamiętaj, że może nie działać na niektórych urządzeniach zgodnie z oczekiwaniami, ponieważ używa API Androida nie jest przeznaczone do użytku przez osoby trzecie.</string>
     <string name="onboarding_limitations_unstable">Ważne! Przeczytaj uważnie notatki przed kontynuowaniem.</string>
     <string name="onboarding_methods_title">Wybierz metodę instalacji</string>
     <string name="onboarding_methods_root_title">Root</string>
