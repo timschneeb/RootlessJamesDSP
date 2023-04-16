@@ -180,6 +180,7 @@
     <string name="onboarding_adb_shizuku_install_button">Instalar Shizuku</string>
     <string name="onboarding_adb_shizuku_install_button_done">Já instalado</string>
     <string name="onboarding_adb_shizuku_install_instruction">Instalar \'Shizuku\' do Google Play.</string>
+    <string name="onboarding_adb_shizuku_open_instruction">Inicie \'Shizuku\' e procure por \'<b>Iniciar via Depuração sem fio</b>\'. Toque no botão \'Emparelhamento\' e siga as instruções no aplicativo. Depois de emparelhar Shizuku com seu dispositivo, inicie o servidor Shizuku pressionando o botão \'Iniciar\' em seu aplicativo. Se você tiver problemas ao configurar o Shizuku, consulte o tutorial de configuração vinculado ao aplicativo.</string>
     <string name="onboarding_adb_shizuku_open_button">Iniciar Shizuku</string>
     <string name="onboarding_adb_shizuku_open_button_done">Já está ativo</string>
     <string name="onboarding_adb_shizuku_grant_instruction">Toque no botão e conceda a este aplicativo acesso ao Shizuku.</string>
@@ -203,6 +204,10 @@
     <string name="onboarding_adb_manual_step5">Toque em \"Avançar\" neste aplicativo para continuar.</string>
     <string name="onboarding_adb_manual_step1_button">Abrir Configurações de Desenvolvimento</string>
     <string name="onboarding_perm_title">Outras permissões</string>
+    <string name="onboarding_perm_caption">Permissões adicionais são necessárias para usar este aplicativo. Revise-os e toque em \'Avançar\' para concedê-los.</string>
+    <string name="onboarding_perm_microphone_title">Permissão de gravação de áudio</string>
+    <string name="onboarding_perm_microphone_caption">Necessário para gravar áudio interno. O microfone físico não está ativado.</string>
+    <string name="onboarding_perm_notification_title">Permissão de notificação</string>
     <!-- Settings -->
     <string name="title_activity_settings">Configurações</string>
     <string name="audio_format_header">Processamento do áudio</string>
