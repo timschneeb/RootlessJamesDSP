@@ -208,6 +208,20 @@
     <string name="onboarding_perm_microphone_title">Permissão de gravação de áudio</string>
     <string name="onboarding_perm_microphone_caption">Necessário para gravar áudio interno. O microfone físico não está ativado.</string>
     <string name="onboarding_perm_notification_title">Permissão de notificação</string>
+    <string name="onboarding_perm_notification_caption">Necessário para receber atualizações de estado importantes e informações sobre o estado de processamento do JamesDSP.</string>
+    <string name="onboarding_perm_cast_title">Permissão de transmissão/gravação</string>
+    <string name="onboarding_perm_cast_caption">Você precisa conceder permissão explícita a este aplicativo para gravar conteúdo de áudio sempre que for iniciado.</string>
+    <string name="onboarding_perm_missing_title">Permissões de tempo de execução não concedidas</string>
+    <string name="onboarding_perm_missing">Conceda todas as permissões de tempo de execução solicitadas para continuar.\nSe você negou repetidamente as permissões, precisará concedê-las manualmente nas configurações do sistema.</string>
+    <string name="onboarding_perm_diag">Permitir o envio de relatórios de diagnóstico</string>
+    <string name="onboarding_perm_diag_caption">Este aplicativo envia relatórios de falhas e outros dados de diagnóstico, incluindo informações sobre outros aplicativos ativos, para permitir que eu detecte e resolva problemas de compatibilidade e erros com mais facilidade.</string>
+    <string name="onboarding_finish_header">JamesDSP está configurado!</string>
+    <string name="onboarding_finish_caption">Se você encontrar algum problema, visite as opções de solução de problemas.</string>
+    <string name="limit_session_control_conflict_title">Desative outros aplicativos de efeitos de áudio</string>
+    <string name="limit_session_control_conflict">Os aplicativos de efeitos de áudio que usam o efeito de processamento dinâmico integrado do Android interferem neste aplicativo.</string>
+    <string name="limit_unsupported_apps_title">Aplicativos de mídia não compatíveis</string>
+    <string name="limit_unsupported_apps">Os aplicativos que bloqueiam a captura interna de áudio permanecem sem processamento (por exemplo, Spotify, Google Chrome).</string>
+    <string name="limit_hw_accel_title">Problemas de reprodução de áudio acelerados</string>
     <!-- Settings -->
     <string name="title_activity_settings">Configurações</string>
     <string name="audio_format_header">Processamento do áudio</string>
