@@ -155,6 +155,8 @@ Graphic eq</string>
     <string name="onboarding_greeting">Witaj w RootlessJamesDSP!</string>
     <string name="onboarding_caption">Ten asystent pomoże Ci skonfigurować aplikację.</string>
     <string name="onboarding_warning">Obecnie ta aplikacja jest niedokończona i niestabilna. Pamiętaj, że może nie działać na niektórych urządzeniach zgodnie z oczekiwaniami, ponieważ używa API Androida nie jest przeznaczone do użytku przez osoby trzecie.</string>
+    <string name="onboarding_fix_permissions_title">Działanie użytkownika jest wymagane</string>
+    <string name="onboarding_fix_permissions">Jedno lub więcej uprawnień zostało cofniętych przez Ciebie lub system\nW celu upewnienia się, że aplikacja zachowuje się poprawnie, musisz ponownie przyznać te uprawnienia\n\nZrób ponownie kreator konfiguracji, aby ponownie udzielić tych uprawnień.</string>
     <string name="onboarding_limitations_unstable">Ważne! Przeczytaj uważnie notatki przed kontynuowaniem.</string>
     <string name="onboarding_methods_title">Wybierz metodę instalacji</string>
     <string name="onboarding_methods_root_title">Root</string>
