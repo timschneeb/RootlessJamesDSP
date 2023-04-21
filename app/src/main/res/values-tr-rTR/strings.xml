@@ -6,10 +6,14 @@
     <string name="action_revert">Varsayılanlara sıfırla</string>
     <string name="action_blocked_apps">Hariç tutulan uygulamalar</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">Servis</string>
     <string name="notification_channel_service">Servis bildirimleri</string>
     <string name="notification_channel_session_loss_alert">Oturum kaybı uyarısı</string>
     <string name="notification_channel_permission_prompt">İzin isteği</string>
     <string name="notification_channel_app_compat_alert">Uyumsuz uygulama uyarısı</string>
+    <string name="notification_group_backup">Yedekle ve geri yükle</string>
+    <string name="notification_channel_backup_progress">Devam etmekte</string>
+    <string name="notification_channel_backup_complete">Tamamlandı</string>
     <!-- Service notifications -->
     <string name="action_retry">Yeniden dene</string>
     <string name="action_fix">Sorunu çöz</string>
@@ -35,11 +39,16 @@
     <!-- General purpose -->
     <string name="install">Yükle</string>
     <string name="update">Güncelle</string>
+    <string name="unknown_error">Bilinmeyen hata</string>
     <string name="details">Detaylar</string>
+    <string name="actions">Eylemler</string>
     <string name="warning">Uyarı</string>
     <string name="success">Başarılı</string>
     <string name="open">Aç</string>
     <string name="close">Kapat</string>
+    <string name="delete">Sil</string>
+    <string name="copy">Kopyala</string>
+    <string name="paste">Yapıştır</string>
     <string name="add">Ekle</string>
     <string name="yes">Evet</string>
     <string name="no">Hayır</string>
@@ -47,6 +56,8 @@
     <string name="undo">Geri al</string>
     <string name="redo">Yinele</string>
     <string name="no_activity_found">Etkileşimi işleyecek aktivite bulunamadı</string>
+    <string name="permission_allowed">İzin verildi</string>
+    <string name="permission_not_allowed">İzin verilmiyor</string>
     <!-- Main screen -->
     <string name="power_button_alt">Ses işlemeyi aç/kapat</string>
     <string name="compressor_max_attack">Maksimum saldırı</string>
@@ -61,8 +72,10 @@
     <string name="eq_preset_classic">Klasik</string>
     <string name="eq_preset_clear">Temizle</string>
     <string name="eq_preset_deep">Derin</string>
+    <string name="eq_preset_dubstep">Dubstep</string>
     <string name="eq_preset_electronic">Elektronik</string>
     <string name="eq_preset_flat">Düz</string>
+    <string name="eq_preset_hardstyle">Hardstyle</string>
     <string name="eq_preset_hiphop">Hip-Hop</string>
     <string name="eq_preset_jazz">Caz</string>
     <string name="eq_preset_metal">Metal</string>
@@ -87,7 +100,11 @@
     <string name="convolver_convolution_mode_shrink">Küçült</string>
     <string name="ddc_file">DDC dosyası</string>
     <string name="liveprog_enable">Canlı programlanabilir DSP</string>
+    <string name="liveprog_additional_params">Ek kod parametreleri</string>
+    <string name="liveprog_additional_params_not_supported">Seçilen kodun kişiselleştirilebilir parametreleri bulunmuyor</string>
     <string name="liveprog_not_found">Komut bulunamadı</string>
+    <string name="liveprog_no_script_selected">Kod seçili değil</string>
+    <string name="liveprog_edit_header">Seçilen kodu düzenle</string>
     <string name="tube_enable">Analog modelleme</string>
     <string name="output_control_header">Çıkış kontrolü</string>
     <string name="output_limiter_threshold">Sınırlayıcı eşiği</string>
@@ -159,6 +176,7 @@
     <string name="audio_format_enhanced_processing_info_title">Gelişmiş işleme nedir?</string>
     <string name="audio_format_enhanced_processing_info">Dokümentasyona bakmak için tıklayın</string>
     <string name="profiles_info">Dokümentasyona bakmak için tıklayın</string>
+    <string name="backup_settings">Yedekle ve geri yükle</string>
     <!-- Theme names -->
     <string name="theme_default">Varsayılan</string>
     <!-- File library preference -->
