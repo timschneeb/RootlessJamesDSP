@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <plurals name="nodes">
+        <item quantity="one">One
+%d düğüm</item>
+        <item quantity="other">Other
+%d düğümler</item>
+    </plurals>
+    <plurals name="unsupported_apps">
+        <item quantity="one">Bir
+%d desteklenmeyen uygulama otomatik olarak dışlandı. Ayrıntılar için dokun.</item>
+        <item quantity="other">Diğer
+%d desteklenmeyen uygulama otomatik olarak hariç tutulur. Ayrıntılar için dokun.</item>
+    </plurals>
+</resources>
