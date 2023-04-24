@@ -60,12 +60,17 @@
     <string name="permission_not_allowed">İzin verilmiyor</string>
     <!-- Main screen -->
     <string name="power_button_alt">Ses işlemeyi aç/kapat</string>
+    <string name="compressor_enable">Otomatik dinamik aralık kompresörü</string>
     <string name="compressor_max_attack">Maksimum saldırı</string>
     <string name="compressor_max_release">Maksimum yayınlama</string>
     <string name="compressor_adapt_speed">Agresiflik</string>
+    <string name="eq_enable">Enterpolasyonlu FIR ekolayzır</string>
     <string name="eq_filter_type">Filtre türü</string>
+    <string name="eq_interpolator">Enterpolatör</string>
     <string name="eq_filter_type_minimum">Minimum faz</string>
     <string name="eq_filter_type_linear">Çizgisel faz</string>
+    <string name="eq_interpolator_chip">Parçalı Kübik Hermite Enterpolasyon Polinomu</string>
+    <string name="eq_interpolator_mha">Değiştirilmiş Hiroshi Akima ayırıcı</string>
     <string name="eq_preset_acoustic">Akustik</string>
     <string name="eq_preset_bass">Bass</string>
     <string name="eq_preset_beats">Ritimler</string>
@@ -84,7 +89,10 @@
     <string name="eq_preset_rb">R&amp;B</string>
     <string name="eq_preset_rock">Rock</string>
     <string name="eq_preset_vocal">Ses Yükseltici</string>
+    <string name="geq_enable">Keyfi yanıt ekolayzır</string>
+    <string name="geq_nodes">Büyüklük yanıtı</string>
     <string name="bass_enable">Dinamik bass arttırıcısı</string>
+    <string name="bass_max_gain">Maksimum büyüklük</string>
     <string name="reverb_enable">Sanal oda efekti</string>
     <string name="reverb_room_type">Oda türü</string>
     <string name="reverb_preset_default">Varsayılan</string>
@@ -96,6 +104,14 @@
     <string name="reverb_preset_small_room2">Küçük oda 2</string>
     <string name="reverb_preset_medium_room1">Orta boyutta oda</string>
     <string name="reverb_preset_large_room1">Büyük oda</string>
+    <string name="reverb_preset_plate_high">Yüksek basınç</string>
+    <string name="reverb_preset_plate_low">Düşük basınç</string>
+    <string name="reverb_preset_long_reverb1">Uzun yankı 1</string>
+    <string name="reverb_preset_long_reverb2">Uzun yankı 2</string>
+    <string name="convolver_enable">Dönüştürücü</string>
+    <string name="convolver_impulse">Dürtü yanıtı</string>
+    <string name="convolver_advanced_editing">Gelişmiş dalga formu düzenleme</string>
+    <string name="convolver_convolution_mode">Darbe yanıtı optimizasyonu</string>
     <string name="convolver_convolution_mode_original">Orjinal</string>
     <string name="convolver_convolution_mode_shrink">Küçült</string>
     <string name="ddc_file">DDC dosyası</string>
@@ -182,6 +198,7 @@
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="title_activity_geq">Büyüklük yanıtı</string>
     <string name="gep_add_node">Ekle</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
