@@ -64,7 +64,7 @@
     <string name="compressor_max_attack">Maksimum saldırı</string>
     <string name="compressor_max_release">Maksimum yayınlama</string>
     <string name="compressor_adapt_speed">Agresiflik</string>
-    <string name="eq_enable">Enterpolasyonlu FIR ekolayzır</string>
+    <string name="eq_enable">Enterpolasyon FIR ekolayzır</string>
     <string name="eq_filter_type">Filtre türü</string>
     <string name="eq_interpolator">Enterpolatör</string>
     <string name="eq_filter_type_minimum">Minimum faz</string>
@@ -114,30 +114,40 @@
     <string name="convolver_convolution_mode">Darbe yanıtı optimizasyonu</string>
     <string name="convolver_convolution_mode_original">Orjinal</string>
     <string name="convolver_convolution_mode_shrink">Küçült</string>
+    <string name="convolver_convolution_mode_minimum_phase_shrink">Minimum faz dönüşümü ve büzülümü</string>
+    <string name="ddc_enable">ViPER-DDC</string>
     <string name="ddc_file">DDC dosyası</string>
     <string name="liveprog_enable">Canlı programlanabilir DSP</string>
+    <string name="liveprog_file">Canlı program ekleri</string>
     <string name="liveprog_additional_params">Ek kod parametreleri</string>
     <string name="liveprog_additional_params_not_supported">Seçilen kodun kişiselleştirilebilir parametreleri bulunmuyor</string>
     <string name="liveprog_not_found">Komut bulunamadı</string>
     <string name="liveprog_no_script_selected">Kod seçili değil</string>
     <string name="liveprog_edit_header">Seçilen kodu düzenle</string>
+    <string name="liveprog_edit">Etkin Eki yerleşik düzenleyicide aç</string>
     <string name="tube_enable">Analog modelleme</string>
+    <string name="tube_drive">Amfi</string>
     <string name="output_control_header">Çıkış kontrolü</string>
     <string name="output_limiter_threshold">Sınırlayıcı eşiği</string>
     <string name="output_limiter_release">Sınırlayıcı salma</string>
+    <string name="output_control_postgain">Son büyüklük</string>
+    <string name="stereowide_enable">Sahne genişliği</string>
     <string name="stereowide_level">Genişlik</string>
     <string name="stereowide_level_none">Hiçbiri</string>
     <string name="stereowide_level_very_wide">Aşırı geniş</string>
     <string name="stereowide_level_wide">Geniş</string>
     <string name="stereowide_level_very_narrow">Aşırı dar</string>
     <string name="stereowide_level_narrow">Dar</string>
+    <string name="crossfeed_enable">Çapraz destek</string>
     <string name="crossfeed_preset">Hazır ayar</string>
     <string name="crossfeed_preset_bs2b_weak">BS2B Zayıf</string>
     <string name="crossfeed_preset_bs2b_strong">BS2B Güçlü</string>
+    <string name="crossfeed_preset_out_of_head">Önceden ayarlanmış</string>
     <string name="crossfeed_preset_surround1">Surround 1</string>
     <string name="crossfeed_preset_surround2">Surround 2</string>
     <string name="crossfeed_preset_realistic_surround">Joe0Bloggs Gerçekçi surround</string>
     <!-- Onboarding -->
+    <string name="title_activity_onboarding">Katılım</string>
     <string name="onboarding_back">Geri</string>
     <string name="onboarding_next">İleri</string>
     <string name="onboarding_finish">Bitir</string>
@@ -165,10 +175,12 @@
     <string name="onboarding_root_shell_fail_unknown">Root ile izin verilemedi. Lütfen başka bir kurulum yöntemi deneyin.</string>
     <string name="onboarding_root_enhanced_processing_setup_success">Gelişmiş işleme kurulu</string>
     <string name="onboarding_adb_shizuku_title">Shizuku kurulumu</string>
+    <string name="onboarding_adb_adb_title">ADB kurulum</string>
     <string name="onboarding_adb_caption">Bu uygulama cihazınızın ses politikasını çöpe boşaltmak için özel izinler gerektirir. Lütfen aşağıdaki talimatları takip edin.</string>
     <string name="onboarding_adb_shizuku_install_button">Shizuku Yükle</string>
     <string name="onboarding_adb_shizuku_install_button_done">Zaten yüklenmiş</string>
     <string name="onboarding_adb_shizuku_install_instruction">Google Play Store\'dan \'Shizuku\' yükle.</string>
+    <string name="onboarding_adb_shizuku_open_instruction">\'Shizuku\'yu başlatın ve \'<b>Kablosuz Hata Ayıklama Yoluyla Başlat</b>\' öğesini arayın. \"Eşleştirme\" düğmesine dokunun ve uygulama içi talimatları izleyin. Shizuku\'yu cihazınızla eşleştirdikten sonra, uygulamada ki \'Başlat\' düğmesine basarak Shizuku sunucusunu başlatın. Shizuku\'yu kurarken sorunlarla karşılaşırsanız, lütfen uygulamada ki kurulum eğitimlerine bakın.</string>
     <string name="onboarding_adb_shizuku_open_button">Shizuku\'yu başlat</string>
     <string name="onboarding_adb_shizuku_open_button_done">Zaten aktifleştirilmiş</string>
     <string name="onboarding_adb_shizuku_grant_instruction">Düğmeye dokunun ve bu uygulamaya Shizuku için erişim verin.</string>
@@ -180,10 +192,42 @@
     <string name="onboarding_adb_shizuku_grant_fail_version">Bu uygulama Shizuku sürüm 11 veya sonrasını gerektirir. Lütfen Shizuku\'yu en son sürüme güncelleyin.</string>
     <string name="onboarding_adb_shizuku_grant_fail_version_title">Desteklenmeyen Shizuku sürümü</string>
     <string name="onboarding_adb_shizuku_grant_fail_denied_title">İzin reddedildi</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied">Lütfen bu uygulamaya, Shizuku\'ya erişim izni verin. Shizuku\'nun izin yöneticisini açmalısınız. Daha önce reddettiyseniz ve açılır pencere artık görünmüyorsa izni manuel olarak vermeniz gerekebilir.</string>
+    <string name="onboarding_adb_shizuku_no_dump_perm_title">Shizuku ya ADB izinleri verilemedi</string>
+    <string name="onboarding_adb_shizuku_no_dump_perm">Lütfen birkaç saniye bekleyin, ve tekrar deneyin. Hala çalışmıyorsa, alternatif yöntemi deneyin.</string>
+    <string name="onboarding_adb_dump_not_granted_title">İzin henüz verilmedi</string>
+    <string name="onboarding_adb_dump_not_granted">Lütfen önce talimatları izleyin ve tekrar deneyin. ADB erişimi henüz düzgün bir şekilde kurulmadı.</string>
+    <string name="onboarding_adb_manual_step1">Android\'in gizli geliştirme ayarlarına gidin ve USB hata ayıklamasını etkinleştirin. Sistem ayarlarında yapı numarasına birkaç kez dokunarak bu ayarların kilidini açmanız gerekir.</string>
+    <string name="onboarding_adb_manual_step2">Bilgisayarınızın tarayıcısında https://app.webadb.com adresini açın (en iyi Chrome\'da çalışır) ve cihazınızı USB kullanarak bilgisayara bağlayın.</string>
+    <string name="onboarding_adb_manual_step3">USB cihazını WebADB\'ye ekleyin ve bağlayın.</string>
+    <string name="onboarding_adb_manual_step4">\"Etkileşimli Shell\" e gidin ve kabukta şu komutu yürütün: \"pm grant %s android.permission.DUMP\"</string>
+    <string name="onboarding_adb_manual_step5">Devam etmek için bu uygulamada \'İleri\' ye dokunun.</string>
+    <string name="onboarding_adb_manual_step5b">(isteğe bağlı) şu komutu yürüterek ses yakalama izin isteklerini kalıcı olarak atlayabilirsiniz: \'appops set %s PROJECT_MEDIA allow\'</string>
+    <string name="onboarding_adb_manual_step5c">(isteğe bağlı) önceki adıma ek olarak, aşağıdaki komutu yürüterek otomatik başlatmayı da etkinleştirebilirsiniz: \'appops set %s SYSTEM_ALERT_WINDOW allow\'</string>
+    <string name="onboarding_adb_manual_step1_button">Geliştirme ayarlarını aç</string>
+    <string name="onboarding_perm_title">Diğer izinler</string>
+    <string name="onboarding_perm_caption">Bu uygulamayı kullanmak için ek izinler gereklidir. Lütfen onları gözden geçirin ve izin vermek için \'İleri\' ye dokunun.</string>
+    <string name="onboarding_perm_microphone_title">Ses kaydı izni</string>
+    <string name="onboarding_perm_microphone_caption">Dahili ses kaydı için gereklidir. Donanım mikrofonu etkinleştirilmemiş.</string>
+    <string name="onboarding_perm_notification_title">Bildirim izni</string>
     <string name="onboarding_perm_notification_caption">JamesDSP\'nin işlemesi hakkında önemli durum güncellemesi ve bilgi almak için gereklidir.</string>
+    <string name="onboarding_perm_cast_title">Yayın/kayıt izni</string>
+    <string name="onboarding_perm_cast_caption">Bu uygulama, her başlatıldığında ses içeriğini kaydetme izni vermeniz gerekir.</string>
+    <string name="onboarding_perm_missing_title">Çalışma zamanı için izinleri verilmedi</string>
+    <string name="onboarding_perm_missing">Lütfen devam etmek için istenen tüm çalışma zamanı izinlerini verin.\nİzinleri tekrar tekrar reddettiyseniz, bunları sistem ayarlarından manuel olarak vermeniz gerekir.</string>
+    <string name="onboarding_perm_diag">Teşhis raporlarının gönderilmesine izin ver</string>
+    <string name="onboarding_perm_diag_caption">Bu uygulama, uyumluluk sorunlarını ve hataları daha kolay tespit edip çözmeme olanak sağlamak için, diğer etkin uygulamalar hakkındaki bilgiler de dahil olmak üzere çökme raporları ve diğer teşhis verilerini göndermektedir.</string>
     <string name="onboarding_finish_header">JamesDSP kuruldu!</string>
     <string name="onboarding_finish_caption">Eğer bir hatayla karşılaşırsanız, lütfen sorun giderme ayarlarını kullanınız.</string>
     <string name="limit_session_control_conflict_title">Diğer ses efekti uygulamalarını devre dışı bırakın</string>
+    <string name="limit_session_control_conflict">Android\'in yerleşik Dinamik İşleme efektini kullanan ses efekti uygulamaları, bu uygulamaya müdahale eder.</string>
+    <string name="limit_unsupported_apps_title">Desteklenmeyen medya uygulamaları</string>
+    <string name="limit_unsupported_apps">Dahili ses yakalamayı engelleyen uygulamalar işlenmeden kaldırılır (ör. Spotify, Google Chrome).</string>
+    <string name="limit_hw_accel_title">HW ile hızlandırılmış ses çalma sorunları</string>
+    <string name="limit_hw_accel">Donanımla hızlandırılmış ses oynatma (hızlı parçalar) bazen yinelenen sese neden olabilir veya bazı durumlarda JamesDSP\'yi kapatabilir. JamesDSP\'nin yeniden yönlendirmesini önlemek için lütfen etkilenen müzik çaları hariç tutulan uygulamalar listesine ekleyin.</string>
+    <string name="limit_detect_delay_title">Ses alanı algılama gecikmesi</string>
+    <string name="limit_detect_delay"><![CDATA[Bir uygulama, sesi oynatmak için yeni bir medya oturumu açtıktan sonra, çok kısa bir süre için (yaklaşık <250ms) yinelenen veya kesilmiş ses duyabilirsiniz.]]></string>
+    <string name="limit_latency_title">Arttırılmış gecikme</string>
     <!-- Settings -->
     <string name="title_activity_settings">Ayarlar</string>
     <string name="audio_format_enhanced_processing">Geliştirilmiş işleme</string>
@@ -192,30 +236,144 @@
     <string name="audio_format_enhanced_processing_info_title">Gelişmiş işleme nedir?</string>
     <string name="audio_format_enhanced_processing_info">Dokümentasyona bakmak için tıklayın</string>
     <string name="profiles_info">Dokümentasyona bakmak için tıklayın</string>
+    <string name="credits_project_check_update">Yeni güncellemeleri kontrol edin…</string>
+    <string name="credits_project_check_update_summary">Varsa güncellemeleri indirin ve yükleyin</string>
+    <string name="credits_project_translate">Çevirilere katkıda bulunun</string>
+    <string name="credits_project_translate_summary">Bu uygulamayı dilinize çevirmemize yardımcı olun</string>
+    <string name="credits_version">Uygulama Sürümü</string>
+    <string name="credits_build_info">Derleme Bilgisi</string>
+    <string name="appearance_section_header">Dış Görünüm</string>
+    <string name="appearance_summary">Uygulama teması, saf siyah karanlık mod</string>
+    <string name="appearance_title">Tema</string>
+    <string name="appearance_theme_mode">Karanlık Mod</string>
+    <string name="appearance_theme_mode_default">Sistem temasını takip et</string>
+    <string name="appearance_theme_mode_light">Kapalı</string>
+    <string name="appearance_theme_mode_dark">Açık</string>
+    <string name="appearance_pure_black_mode">Saf Siyah Karanlık Mod</string>
+    <string name="appearance_app_theme">Uygulama Teması</string>
+    <string name="appearance_navigation_title">Gezinme</string>
+    <string name="appearance_nav_hide">Kaydırma sırasında gezinme çubuğunu gizle</string>
+    <string name="appearance_show_icons">Kategori simgelerini göster</string>
     <string name="backup_settings">Yedekle ve geri yükle</string>
+    <string name="backup_settings_summary">Otomatik &amp; manuel yedeklemeler</string>
+    <string name="backup_frequency">Yedekleme sıklığı</string>
+    <string name="backup_location">Yedekleme konumu</string>
+    <string name="backup_maximum">Maksimum yedekleme</string>
+    <string name="backup_never">Asla</string>
+    <string name="backup_12hour">12 saatte bir</string>
+    <string name="backup_24hour">Günlük</string>
+    <string name="backup_48hour">2 günde bir</string>
+    <string name="backup_weekly">Haftalık</string>
+    <string name="backup_select_location">Lütfen bir yedekleme dizini oluşturun ve seçin…</string>
     <!-- Theme names -->
     <string name="theme_default">Varsayılan</string>
+    <string name="theme_monet">Dinamik</string>
+    <string name="theme_greenapple">Yeşil Elma</string>
+    <string name="theme_strawberrydaiquiri">Çilekli kokteyl</string>
+    <string name="theme_honey">Bal</string>
+    <string name="theme_tealturquoise">Deniz mavisi &amp; Turkuaz</string>
+    <string name="theme_yinyang">Yin &amp; Yang</string>
+    <string name="theme_yotsuba">Yonca</string>
+    <string name="theme_tidalwave">Gelgit Dalgası</string>
     <!-- File library preference -->
+    <string name="action_import">İçe Aktar</string>
+    <string name="filelibrary_hint_tap_and_hold">Daha fazla seçenek için herhangi bir öğeye dokunun ve basılı tutun</string>
+    <string name="filelibrary_context_load">Yükle</string>
+    <string name="filelibrary_context_edit">Düzenle</string>
+    <string name="filelibrary_context_overwrite">Üzerine yaz</string>
+    <string name="filelibrary_context_rename">Yeniden adlandır</string>
+    <string name="filelibrary_context_share">Paylaş…</string>
+    <string name="filelibrary_context_resample">Çevrimdışı yeniden örnekleme</string>
+    <string name="filelibrary_context_duplicate">Kopyalama</string>
+    <string name="filelibrary_context_delete">Sil</string>
+    <string name="filelibrary_context_new_preset">Yeni</string>
+    <string name="filelibrary_context_new_preset_long">Yeni ön ayar</string>
+    <string name="filelibrary_unsupported_format_title">Desteklenmeyen dosya türü</string>
+    <string name="filelibrary_unsupported_format">Seçilen dosya doğru dosya uzantısına sahip değil.</string>
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">Büyüklük yanıtı</string>
     <string name="gep_add_node">Ekle</string>
     <!-- AutoEQ GraphicEQ selector -->
+    <string name="autoeq_enter_model">Kulaklık modelinizi girin…</string>
+    <string name="autoeq_partial_results_warning">İlk %1$d sonuç gösteriliyor. Daha alakalı sonuçlar elde etmek için lütfen aramanızda ince ayar yapın.</string>
+    <string name="autoeq_no_results">Sonuç bulunamadı</string>
     <!-- Customizable liveprog script parameters -->
+    <string name="title_activity_liveprog_params">Özelleştirilebilir komut dosyası parametreleri</string>
+    <string name="action_restore_defaults">Varsayılanları geri yükle</string>
     <!-- Liveprog script editor -->
+    <string name="title_activity_liveprog_editor">Komut dosyası düzenleyici</string>
+    <string name="editor_find_and_replace">Bul/değiştir…</string>
+    <string name="editor_docs">Yardım</string>
+    <string name="editor_open_fail">Komut dosyası mevcut değil veya açılamıyor.</string>
+    <string name="editor_run">Kaydet ve çalıştır</string>
+    <string name="editor_save">Kaydet</string>
+    <string name="editor_liveprog_enabled">Liveprog otomatik olarak açıldı.</string>
+    <string name="editor_replace_all">Hepsini değiştir</string>
+    <string name="editor_replacement">Yenisiyle değiştirilebilir</string>
+    <string name="editor_find_next_match">Sonraki eşleşmeyi bul</string>
+    <string name="editor_find_previous_match">Önceki eşleşmeyi bul</string>
+    <string name="editor_search_keyword">Ara</string>
+    <string name="editor_source_position">%1$d:%2$d</string>
+    <string name="editor_engine_down_title">JamesDSP aktif değil</string>
+    <string name="editor_engine_down">JamesDSP devre dışı olduğundan komut dosyası çalıştırılamıyor. Komut dosyalarını yürütmek için lütfen JamesDSP\'yi açın.</string>
+    <string name="editor_save_prompt_title">Değişiklikleri Kaydet?</string>
+    <string name="editor_save_prompt">Geçerli komut dosyasında kaydedilmemiş değişiklikler var. Değişikliklerinizi kaydetmek mi yoksa silmek mi istiyorsunuz?</string>
+    <string name="editor_script_launched">Komut dosyası başlatıldı</string>
+    <string name="editor_cannot_undo">Geri alınacak bir şey yok.</string>
+    <string name="editor_cannot_redo">Yeniden yapılacak bir şey yok.</string>
+    <string name="editor_text_size">Yazı boyutu</string>
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Hariç tutulan uygulamalar</string>
+    <string name="blocklist_add_exclusion_alt">Hariç tutulacak uygulama ekle</string>
+    <string name="blocklist_delete_title">Seçili uygulama kaldırılsın mı?</string>
+    <string name="blocklist_delete">Bu uygulamayı dışlama listesinden kaldırmak istiyor musunuz?</string>
+    <string name="blocklist_no_exclusions">Hariç tutulan uygulama yok</string>
+    <string name="blocklist_unsupported_apps">Desteklenmeyen uygulamalar</string>
+    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>Bu uygulama, üçüncü tarafların ses çıkışlarını kaydetmesini engelleyen işleme uygulamalarını desteklemez. Bu uygulamaların, yakalama kısıtlamaları nedeniyle sessize alınmasını önlemek için, otomatik olarak ses işlemeden çıkarılırlar ve yeniden yönlendirilmezler.</p><p><u>Etkilenen uygulamalar:</u><br/>%s </p>]]></string>
     <!-- Compatibility issue activity -->
+    <string name="title_activity_app_compat">Uyumluluk sorunu</string>
     <string name="app_compat_retry">Yeniden dene</string>
+    <string name="app_compat_exclude">Hariç tutulan</string>
+    <string name="app_compat_title">Yinelenen sesi önlemek için ses işleme askıya alındı</string>
+    <string name="app_compat_explanation">Aşağıdaki uygulama, RootlessJamesDSP\'nin ses yönlendirmesi üzerindeki kontrolünü kaybetmesine neden olduğu için desteklenmiyor:</string>
+    <string name="app_compat_instruction">Donanım hızlandırmayı veya Rootless JamesDSP ile çakışabilecek diğer ayarları devre dışı bırakabiliyorsanız lütfen uygulamanın ayarlarını kontrol edin ve \'Yeniden Dene\'ye dokunun.</string>
+    <string name="app_compat_instruction_exclude">Alternatif olarak, uyumsuz uygulamayı ses işlemenin dışında tutarak bu sorunu atlamak için \'Hariç Tut\'u seçin.</string>
+    <string name="app_compat_unknown_pkg_name">Bilinmeyen paket adı</string>
     <!-- Root: Library load failure -->
+    <string name="load_fail_header">Magisk modülü kurulu değil</string>
+    <string name="load_fail_card_title">Libjamesdsp.so yüklenemedi</string>
+    <string name="load_fail_card">Bu uygulamayı kullanmak için lütfen JamesDSP magisk modülünü kurun ve Android cihazınızı yeniden başlatın. Ayrıca yeniden başlattıktan sonra bu uygulamayı yeniden yüklemeniz gerekebilir.</string>
+    <string name="load_fail_rootless_card_title">Köksüz bir alternatif mi arıyorsunuz?</string>
+    <string name="load_fail_rootless_card">JamesDSP\'nin bu çeşidi, köklü/değiştirilmiş bir cihazla kullanılmak üzere tasarlanmıştır. Bazı sınırlamalara sahip kök olmayan bir alternatif de mevcuttur. Ayrıntılar için buraya dokunun.</string>
+    <string name="load_fail_arch_card_title">Modül zaten kurulu mu?</string>
+    <string name="load_fail_arch_card">Daha önce magisk modülünü kurduysanız kurulum sırasında yanlış ayarları seçmiş olabilirsiniz. Lütfen yeniden yükleyin ve Huawei uyumluluğunu etkinleştirmeyi deneyin (telefonunuz o üreticiden olmasa bile).</string>
     <!-- Enhanced processing -->
+    <string name="enhanced_processing_feature_unavailable">Özellik kullanılamıyor</string>
+    <string name="enhanced_processing_feature_unavailable_content">Bu özellik yalnızca ayarlarda \'gelişmiş işleme\' etkinleştirildiğinde kullanılabilir. Lütfen \'Ayarlar &gt; Ses işleme &gt; Gelişmiş işleme\' ve bu menüye erişmek için bu seçeneği etkinleştirin.\n\nNot: Eski mod etkinken \'Gelişmiş işleme\' kullanılamaz.</string>
+    <string name="enhanced_processing_missing_perm">Gelişmiş işleme, eksik bir izin nedeniyle devre dışı bırakıldı. Lütfen ayarlardan yeniden kurun.</string>
     <!-- App list -->
+    <string name="app_list_loading">Uygulamalar yükleniyor…</string>
+    <string name="app_list_search">Ara</string>
     <!-- Number box view -->
     <!-- Slider widget -->
     <!-- Revert confirmation -->
     <!-- File intent handler -->
     <!-- Translation notice box -->
+    <string name="translation_notice">Çevirilere katkıda bulunun</string>
     <!-- Self-updates (Root) -->
     <!-- Backups -->
     <!-- Multi-device profiles -->
+    <string name="group_wired_headphones">Kablolu kulaklıklar</string>
+    <string name="group_bluetooth">Bluetooth</string>
+    <string name="group_hdmi">HDMI</string>
+    <string name="group_speaker">Dahili hoparlör</string>
+    <string name="group_usb">USB</string>
+    <string name="group_unknown">Bilinmeyen</string>
+    <string name="device_profile_status">Aktif cihaz profili</string>
+    <string name="device_profile_manage_copy">Profili kopyala…</string>
+    <string name="device_profile_manage_delete">Profilleri sil…</string>
+    <string name="device_profile_manage_copy_select_no_target">Üzerine yazılacak profil yok</string>
+    <string name="device_profile_manage_copy_select">Kopyalanacak profili seçin</string>
+    <string name="device_profile_manage_paste_select">Üzerine yazılacak profilleri seçin</string>
 </resources>
