@@ -323,6 +323,19 @@
     <string name="network_autoeq_conntest_fail">Bağlantı testi başarısız oldu</string>
     <string name="network_autoeq_conntest_fail_summary">Sunucu doğru yanıt vermedi. https://github.com/ThePBone/AutoEqApi adresindeki yazılımın sunucuda doğru şekilde ayarlandığından emin olun.\n\nAğ hatası: %1$s\n\nBu ayarı varsayılan değere geri yüklemek istiyor musunuz?</string>
     <string name="about_settings">Hakkında</string>
+    <string name="about_settings_summary">Emektarlar, destek, güncellemeler</string>
+    <string name="privacy">Gizlilik</string>
+    <string name="privacy_share_crash_reports">Uygulama çökme raporlarını paylaşın</string>
+    <string name="privacy_share_crash_reports_on">Çökme raporlarını geliştiriciye gönderin</string>
+    <string name="privacy_share_crash_reports_off">Geliştiriciye çökme raporları göndermeyin</string>
+    <string name="credits">Emektarlar</string>
+    <string name="translators">Çevirmenler</string>
+    <string name="credits_app">Uygulama &amp; tarafından geliştirilen köksüz program</string>
+    <string name="credits_dsp">Tarafından geliştirilen JamesDSP çekirdek algoritma kitaplığı</string>
+    <string name="credits_project_page">GitHub\'da projenin web sitesini ziyaret edin</string>
+    <string name="credits_project_page_summary">Sorunları bildirin, kendinizi güncel tutun ve kaynak kodunu okuyun</string>
+    <string name="credits_project_play_page">Google Play\'de Rootless JamesDSP\'yi ziyaret edin</string>
+    <string name="credits_project_play_page_summary">Yeni güncellemeleri ara</string>
     <string name="credits_project_check_update">Yeni güncellemeleri kontrol edin…</string>
     <string name="credits_project_check_update_summary">Varsa güncellemeleri indirin ve yükleyin</string>
     <string name="credits_project_translate">Çevirilere katkıda bulunun</string>
@@ -377,6 +390,17 @@
     <string name="filelibrary_context_new_preset_long">Yeni ön ayar</string>
     <string name="filelibrary_unsupported_format_title">Desteklenmeyen dosya türü</string>
     <string name="filelibrary_unsupported_format">Seçilen dosya doğru dosya uzantısına sahip değil.</string>
+    <string name="filelibrary_corrupted_title">Desteklenmeyen veya bozuk dosya</string>
+    <string name="filelibrary_corrupted">Seçilen dosya kullanılabilir veri içermiyor veya bozuk.</string>
+    <string name="filelibrary_file_too_new">Seçilen dosya, bu uygulamanın daha yeni bir sürümüyle oluşturuldu ve yüklenemez. Devam etmek için lütfen bu uygulamayı güncelleyin.</string>
+    <string name="filelibrary_access_fail">Dizine erişilemedi</string>
+    <string name="filelibrary_is_backup_not_preset">Seçilen dosya bir ön ayar değil, bir yedekleme dosyasıdır. Geri yüklemek istiyorsanız lütfen yedekleme ayarlarına gidin.</string>
+    <string name="filelibrary_no_file_selected">Dosya seçilmedi</string>
+    <string name="filelibrary_new_file_name">Yeni dosya adı</string>
+    <string name="filelibrary_file_exists">Dosya zaten var</string>
+    <string name="filelibrary_resample_complete">%1$dHz olarak yeniden örneklendi</string>
+    <string name="filelibrary_resample_failed">Yeniden örnekleme başarısız oldu. Bozuk giriş dosyası?</string>
+    <string name="filelibrary_preset_overwritten">\'%1$s\' ön ayarının üzerine yazıldı</string>
     <string name="filelibrary_preset_created">\'%1$s\' ön ayarı oluşturuldu</string>
     <string name="filelibrary_preset_save_failed">Ön ayar kaydedilemedi</string>
     <string name="filelibrary_renamed">\'%1$s\' olarak yeniden adlandırıldı</string>
@@ -392,8 +416,35 @@
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">Büyüklük yanıtı</string>
     <string name="geq_edit_as_string">Dize olarak düzenle</string>
+    <string name="geq_autoeq">AutoEQ profilleri</string>
     <string name="gep_add_node">Ekle</string>
+    <string name="geq_preview">Ön izleme</string>
+    <string name="geq_preview_collapsed">Önizleme (genişletmek için dokunun)</string>
+    <string name="geq_edit_hint">GraphicEQ çekirdekleri</string>
+    <string name="geq_reset">Sıfırla</string>
+    <string name="geq_reset_confirm_title">Emin misin?</string>
+    <string name="geq_reset_confirm">GraphicEQ ayarlarınızı sıfırlamak istiyor musunuz?</string>
+    <string name="geq_node_editor">Çekirdek düzenleyici</string>
+    <string name="geq_node_list">Çekirdek listesi</string>
+    <string name="geq_no_nodes_defined">Tanımlanmış çekirdek yok</string>
+    <string name="geq_delete_node">Çekirdeği sil</string>
+    <string name="geq_go_back_to_node_list">Çekirdek listesine geri dön</string>
+    <string name="geq_next_node">Sonraki çekirdek</string>
+    <string name="geq_previous_node">Önceki çekirdek</string>
+    <string name="geq_done_spaced">&#160;&#160;Tamam&#160;</string>
+    <string name="geq_done">Tamam</string>
+    <string name="geq_cancel_spaced">&#160;&#160;Çıkar&#160;</string>
+    <string name="geq_cancel">Çıkar</string>
+    <string name="geq_discard_changes_title">Değişiklikleri iptal et ve çık?</string>
+    <string name="geq_discard_changes">Değerler geçerli veya boş değil. Değişiklikleriniz kaydedilemiyor.\nDeğişikliklerinizi silip çıkmak istiyor musunuz?</string>
+    <string name="geq_frequeny_range">1Hz ve 24000Hz arası değer</string>
+    <string name="geq_gain_range">-32dB ile 32dB arası değer</string>
+    <string name="geq_gain">Büyüklük</string>
+    <string name="geq_frequency">Sıklık</string>
     <!-- AutoEQ GraphicEQ selector -->
+    <string name="geq_api_network_error">Sunucuyla bağlantı başarısız. %1$s</string>
+    <string name="geq_api_network_error_details_code">Sunucu hata koduyla yanıt verdi: %1$d</string>
+    <string name="autoeq_search">Otomatik Eq araması</string>
     <string name="autoeq_enter_model">Kulaklık modelinizi girin…</string>
     <string name="autoeq_partial_results_warning">İlk %1$d sonuç gösteriliyor. Daha alakalı sonuçlar elde etmek için lütfen aramanızda ince ayar yapın.</string>
     <string name="autoeq_no_results">Sonuç bulunamadı</string>
@@ -454,14 +505,64 @@
     <!-- App list -->
     <string name="app_list_loading">Uygulamalar yükleniyor…</string>
     <string name="app_list_search">Ara</string>
+    <string name="app_list_icon_alt">Uygulama simgesi</string>
     <!-- Number box view -->
+    <string name="number_box_decrement">Azaltma</string>
+    <string name="number_box_increment">Artış</string>
     <!-- Slider widget -->
+    <string name="slider_dialog_title">Değeri düzenle</string>
+    <string name="slider_dialog_format_error">Geçersiz sayı biçimi. Değişiklikler uygulanmadı.</string>
+    <string name="slider_dialog_step_error">Değer, %1$d\'nin katı olmalıdır. Değişiklikler uygulanmadı.</string>
     <!-- Revert confirmation -->
+    <string name="revert_confirmation_title">Emin misin?</string>
+    <string name="revert_confirmation">Geçerli JamesDSP ön ayarınızı varsayılan değerlere sıfırlamak istiyor musunuz?</string>
     <!-- File intent handler -->
+    <string name="intent_import_preset">Hazır ayarı içe aktar</string>
+    <string name="intent_import_irs">İleti yanıtını içe aktar</string>
+    <string name="intent_import_vdc">VDC dosyasını içe aktar</string>
+    <string name="intent_import_liveprog">Liveprog komutunu içe aktar</string>
+    <string name="intent_import_mode_add">Yalnızca içe aktar</string>
+    <string name="intent_import_mode_select">İçe aktar ve etkinleştir</string>
+    <string name="intent_import_fail">\'%1$s\' dosyası içe aktarılamadı</string>
+    <string name="intent_import_success">\'%1$s\' dosyası içe aktarıldı</string>
+    <string name="intent_import_select_success">\'%1$s\' dosyası içe aktarıldı ve etkinleştirildi</string>
+    <string name="intent_import_error_file_uri">Dosya içe aktarılamadı. Desteklenmeyen dosya URI\'si.</string>
     <!-- Translation notice box -->
+    <string name="translation_notice_summary">Lütfen bu uygulamayı dilinize çevirmemize yardım edin! Crowdin\'deki proje sitesini ziyaret etmek için buraya dokunun.</string>
     <string name="translation_notice">Çevirilere katkıda bulunun</string>
     <!-- Self-updates (Root) -->
+    <string name="self_update_install_error">Güncelleme başarısız oldu</string>
+    <string name="self_update_download_fail">Güncelleme paketi indirilemedi. Lütfen internet bağlantınızı kontrol edin. Ayrıntılar: %1$s</string>
+    <string name="self_update_install_fail">Yükleme başarısız. %1$s</string>
+    <string name="self_update_finished">Güncelleme yüklendi. Uygulama şimdi yeniden başlatılıyor…</string>
+    <string name="self_update_no_updates">Şu anda yeni güncelleme yok</string>
+    <string name="self_update_notice">Yeni güncelleme mevcut (%1$s)</string>
+    <string name="self_update_notice_summary">Yeni güncellemeyi indirip yüklemek için buraya dokunun.</string>
+    <string name="self_update_notice_dismiss_install">Şimdi kur</string>
+    <string name="self_update_notice_dismiss_snooze">Bana daha sonra hatırlat</string>
+    <string name="self_update_notice_dismiss_skip">Bu güncellemeyi atla</string>
+    <string name="self_update_state_downloading">İndiriliyor…</string>
+    <string name="self_update_state_installing">Yükleniyor…</string>
     <!-- Backups -->
+    <string name="backup_restore_progress">Yedekleme geri yükleniyor</string>
+    <string name="backup_restore_error">Yedekleme geri yüklenemedi</string>
+    <string name="backup_restore_error_format">Desteklenmeyen veya bozuk yedekleme dosyası</string>
+    <string name="backup_restore_error_version_too_new">Yedek, bu uygulamanın daha yeni bir sürümüyle oluşturuldu ve yüklenemez. Devam etmek için lütfen bu uygulamayı güncelleyin.</string>
+    <string name="backup_restore_completed">Geri yükleme tamamlandı</string>
+    <string name="backup_create_completed">Yedek oluşturuldu</string>
+    <string name="backup_create_progress">Yedek oluşturma</string>
+    <string name="backup_create_error">Yedekleme başarısız oldu</string>
+    <string name="backup_manual_backup">Manuel yedekleme</string>
+    <string name="backup_create">Yedek oluştur</string>
+    <string name="backup_create_summary">Geçerli ayarları daha sonra geri yüklemek için kullanılabilir</string>
+    <string name="backup_restore">Yedeği geri yükle</string>
+    <string name="backup_restore_summary">Ayarları yedekleme dosyasından geri yükle</string>
+    <string name="backup_automatic_backup">Otomatik yedekleme</string>
+    <string name="backup_compat_info">Yedeklemeler, diğer sürümlerle maksimum uyumluluk için yalnızca dürtü yanıtlarını, komut dosyalarını, VDC dosyalarını, ön ayarları ve geçerli ses yapılandırmasını içerir.</string>
+    <string name="backup_restore_mode_title">Geri yükleme modu</string>
+    <string name="backup_restore_mode_clean">Temiz geri yükleme (mevcut tüm dosyaları silin)</string>
+    <string name="backup_restore_mode_dirty">Kirli geri yükleme (yalnızca üzerine yaz)</string>
+    <string name="backup_in_progress">Yedekleme zaten devam ediyor</string>
     <!-- Multi-device profiles -->
     <string name="group_wired_headphones">Kablolu kulaklıklar</string>
     <string name="group_bluetooth">Bluetooth</string>
