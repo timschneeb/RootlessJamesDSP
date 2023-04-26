@@ -131,7 +131,7 @@
     <string name="output_limiter_threshold">Limite de Limitador</string>
     <string name="output_limiter_release">Liberação do limitador</string>
     <string name="output_control_postgain">Pós-ganho</string>
-    <string name="stereowide_enable">Amplitude do palco sonoro</string>
+    <string name="stereowide_enable">Amplitude de Estúdio</string>
     <string name="stereowide_level">Amplitude</string>
     <string name="stereowide_level_none">Nenhum</string>
     <string name="stereowide_level_very_wide">Muito amplo</string>
@@ -180,6 +180,10 @@
     <string name="onboarding_adb_shizuku_install_button">Instalar Shizuku</string>
     <string name="onboarding_adb_shizuku_install_button_done">Já instalado</string>
     <string name="onboarding_adb_shizuku_install_instruction">Instalar \'Shizuku\' do Google Play.</string>
+    <string name="onboarding_adb_shizuku_open_instruction">Inicie \'Shizuku\' e procure por \'<b>Iniciar via Depuração sem fio</b>\'. Toque no botão \'Emparelhamento\' e siga as instruções no aplicativo. Depois de emparelhar Shizuku com seu dispositivo, inicie o servidor Shizuku pressionando o botão \'Iniciar\' em seu aplicativo. Se você tiver problemas ao configurar o Shizuku, consulte o tutorial de configuração vinculado ao aplicativo.</string>
+    <string name="onboarding_adb_shizuku_open_button">Iniciar Shizuku</string>
+    <string name="onboarding_adb_shizuku_open_button_done">Já está ativo</string>
+    <string name="onboarding_adb_shizuku_grant_instruction">Toque no botão e conceda a este aplicativo acesso ao Shizuku.</string>
     <string name="onboarding_adb_shizuku_grant_button">Conceder acesso</string>
     <string name="onboarding_adb_shizuku_not_installed">Shizuku ainda não está instalado. Baixe e instale-o a partir do Google Play primeiro.</string>
     <string name="onboarding_adb_shizuku_not_installed_title">Shizuku ainda não está instalado</string>
@@ -196,6 +200,28 @@
     <string name="onboarding_adb_manual_step1">Acesse as configurações de desenvolvimento ocultas do Android e ative a depuração USB. É necessário desbloquear estas configurações tocando várias vezes no número de build nas configurações do sistema.</string>
     <string name="onboarding_adb_manual_step2">Abra https://app.webadb.com no navegador do seu computador (funciona melhor no Chrome) e conecte seu dispositivo por USB ao computador.</string>
     <string name="onboarding_adb_manual_step3">Adicione e conecte o dispositivo USB no WebADB.</string>
+    <string name="onboarding_adb_manual_step4">Navegue até \'Interactive Shell\' e execute o seguinte comando no shell: \'pm grant %s android.permission.DUMP\'</string>
+    <string name="onboarding_adb_manual_step5">Toque em \"Avançar\" neste aplicativo para continuar.</string>
+    <string name="onboarding_adb_manual_step1_button">Abrir Configurações de Desenvolvimento</string>
+    <string name="onboarding_perm_title">Outras permissões</string>
+    <string name="onboarding_perm_caption">Permissões adicionais são necessárias para usar este aplicativo. Revise-os e toque em \'Avançar\' para concedê-los.</string>
+    <string name="onboarding_perm_microphone_title">Permissão de gravação de áudio</string>
+    <string name="onboarding_perm_microphone_caption">Necessário para gravar áudio interno. O microfone físico não está ativado.</string>
+    <string name="onboarding_perm_notification_title">Permissão de notificação</string>
+    <string name="onboarding_perm_notification_caption">Necessário para receber atualizações de estado importantes e informações sobre o estado de processamento do JamesDSP.</string>
+    <string name="onboarding_perm_cast_title">Permissão de transmissão/gravação</string>
+    <string name="onboarding_perm_cast_caption">Você precisa conceder permissão explícita a este aplicativo para gravar conteúdo de áudio sempre que for iniciado.</string>
+    <string name="onboarding_perm_missing_title">Permissões de tempo de execução não concedidas</string>
+    <string name="onboarding_perm_missing">Conceda todas as permissões de tempo de execução solicitadas para continuar.\nSe você negou repetidamente as permissões, precisará concedê-las manualmente nas configurações do sistema.</string>
+    <string name="onboarding_perm_diag">Permitir o envio de relatórios de diagnóstico</string>
+    <string name="onboarding_perm_diag_caption">Este aplicativo envia relatórios de falhas e outros dados de diagnóstico, incluindo informações sobre outros aplicativos ativos, para permitir que eu detecte e resolva problemas de compatibilidade e erros com mais facilidade.</string>
+    <string name="onboarding_finish_header">JamesDSP está configurado!</string>
+    <string name="onboarding_finish_caption">Se você encontrar algum problema, visite as opções de solução de problemas.</string>
+    <string name="limit_session_control_conflict_title">Desative outros aplicativos de efeitos de áudio</string>
+    <string name="limit_session_control_conflict">Os aplicativos de efeitos de áudio que usam o efeito de processamento dinâmico integrado do Android interferem neste aplicativo.</string>
+    <string name="limit_unsupported_apps_title">Aplicativos de mídia não compatíveis</string>
+    <string name="limit_unsupported_apps">Os aplicativos que bloqueiam a captura interna de áudio permanecem sem processamento (por exemplo, Spotify, Google Chrome).</string>
+    <string name="limit_hw_accel_title">Problemas de reprodução de áudio acelerados</string>
     <!-- Settings -->
     <string name="title_activity_settings">Configurações</string>
     <string name="audio_format_header">Processamento do áudio</string>
@@ -226,6 +252,7 @@
     <string name="profiles_enable_summary_off">Perfis por dispositivo desabilitados</string>
     <string name="profiles_info_title">O que são perfis por dispositivo?</string>
     <string name="profiles_info">Toque para visualizar a documentação</string>
+    <string name="misc_permission_restart_setup">Reiniciar assistente de instalação</string>
     <string name="backup_settings">Backup e restauração</string>
     <!-- Theme names -->
     <string name="theme_default">Padrão</string>

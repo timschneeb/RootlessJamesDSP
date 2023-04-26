@@ -59,13 +59,11 @@
     <string name="permission_not_allowed">Tidak diizinkan</string>
     <!-- Main screen -->
     <string name="power_button_alt">Alihkan pemrosesan audio</string>
-    <string name="compressor_enable">Dynamic range compressor otomatis</string>
     <string name="compressor_max_attack">Attack maksimum</string>
     <string name="compressor_max_release">Release maksimum</string>
     <string name="compressor_adapt_speed">Agresif</string>
     <string name="eq_enable">Interpolasi FIR Equalizer</string>
     <string name="eq_filter_type">Jenis Filter</string>
-    <string name="eq_interpolator_mha">Modifikasi spline Hiroshi Akima</string>
     <string name="eq_preset_acoustic">Akustik</string>
     <string name="eq_preset_classic">Klasik</string>
     <string name="eq_preset_clear">Jernih</string>
@@ -75,7 +73,7 @@
     <string name="eq_preset_vocal">Penguat Vokal</string>
     <string name="geq_enable">Respon Arbitrary Equalizer</string>
     <string name="geq_nodes">Respon Magnitude</string>
-    <string name="bass_enable">Peningkatan bass dinamis</string>
+    <string name="bass_enable">Bass boost dinamis</string>
     <string name="bass_max_gain">Gain maksimum</string>
     <string name="reverb_enable">Efek ruangan virtual</string>
     <string name="reverb_room_type">Jenis ruangan</string>
@@ -106,7 +104,6 @@
     <string name="tube_enable">Pemodelan analog</string>
     <string name="output_control_header">Kontrol output</string>
     <string name="output_limiter_threshold">Batas limiter</string>
-    <string name="stereowide_enable">Lebar panggung suara</string>
     <string name="stereowide_level">Kelebaran</string>
     <string name="stereowide_level_none">Tidak ada</string>
     <string name="stereowide_level_very_wide">Sangat luas</string>
@@ -188,6 +185,8 @@
     <string name="onboarding_perm_cast_caption">Anda harus memberikan izin ini untuk merekam audio setiap kali dijalankan.</string>
     <string name="onboarding_perm_missing_title">Izin penyimpanan ditolak</string>
     <string name="onboarding_perm_missing">Beri izin penyimpanan untuk melanjutkan.\nJika anda menolaknya terus menerus, anda harus memberi izin manual di pengaturan perangkat.</string>
+    <string name="onboarding_perm_diag">Izinkan mengirim laporan diagnosis</string>
+    <string name="onboarding_perm_diag_caption">Aplikasi akan mengirim laporan crash dan data diagnosis lainnya, termasuk informasi mengenai aplikasi lain yang aktif. Ini bertujuan untuk menyelesaikan masalah dan bug lebih mudah.</string>
     <string name="onboarding_finish_header">JamesDSP sudah diatur!</string>
     <string name="onboarding_finish_caption">Jika anda menemukan masalah, kunjungi opsi pemecahan masalah.</string>
     <string name="limit_session_control_conflict_title">Matikan audio effect lainnya</string>
@@ -230,7 +229,7 @@
     <string name="audio_format_enhanced_processing_off">Pemrosesan yang ditingkatkan nonaktif</string>
     <string name="audio_format_enhanced_processing_info_title">Apa itu Pemrosesan yang ditingkatkan?</string>
     <string name="audio_format_enhanced_processing_info">Tap untuk melihat rincian</string>
-    <string name="audio_format_enhanced_processing_info_content">Saat Pemrosesan Ditingkatkan diaktifkan, anda bisa memilih aplikasi yang ingin dikecualikan dari JamesDSP. Gunakan 3-dot menu di pojok bawah dan pilih \'Pengecualian Aplikasi\' untuk mengakses fitur ini.\n\nSaat Mode Legacy dinonaktifkan, JamesDSP bergantung pada aplikasi media yang mengirim System Broadcast saat mereka memulai pemutaran suara. Ini merupakan sebuah kelebihan dari Mode Legacy karena setiap aplikasi mendapat effect engine JamesDSP masing-masing untuk setiap aplikasi, yang memungkinkan kontrol lebih halus. Jika tidak, Mode Legacy akan diaktifkan dan semua aplikasi akan berbagi satu processing engine, yang sudah usang dan seharusnya tidak digunakan lagi menurut Android. \n\nSayangnya, tidak semua aplikasi media melakukannya dengan benar. Oleh karena itu, mode ini tidak bekerja dengan baik saat Mode Legacy dinonaktifkan. Untuk memperbaiki ini, anda bisa mengaktifkan Pemrosesan Ditingkatkan. Daripada bergantung pada system broadcast, JamesDSP akan memindai sesi media baru secara aktif dan memungkinkan dukungan pada aplikasi media yang tidak kooperatif.</string>
+    <string name="audio_format_enhanced_processing_info_content">Saat Pemrosesan Ditingkatkan diaktifkan, anda bisa memilih aplikasi yang ingin dikecualikan dari JamesDSP. Gunakan 3-dot menu di pojok bawah dan pilih \'Aplikasi Dikecualikan\' untuk mengakses fitur ini.\n\nSaat Mode Legacy dinonaktifkan, JamesDSP bergantung pada aplikasi media yang mengirim System Broadcast saat mereka memulai pemutaran suara. Ini merupakan sebuah kelebihan dari Mode Legacy karena setiap aplikasi mendapat effect engine JamesDSP masing-masing untuk setiap aplikasi, yang memungkinkan kontrol lebih halus. Jika tidak, Mode Legacy akan diaktifkan dan semua aplikasi akan berbagi satu processing engine, yang sudah usang dan seharusnya tidak digunakan lagi menurut Android. \n\nSayangnya, tidak semua aplikasi media melakukannya dengan benar. Oleh karena itu, mode ini tidak bekerja dengan baik saat Mode Legacy dinonaktifkan. Untuk memperbaiki ini, anda bisa mengaktifkan Pemrosesan Ditingkatkan. Daripada bergantung pada system broadcast, JamesDSP akan memindai sesi media baru secara aktif dan memungkinkan dukungan pada aplikasi media yang tidak kooperatif.</string>
     <string name="audio_format_media_apps_need_restart">Anda harus memuat ulang semua aplikasi media setelah mengubah pengaturan ini untuk melanjutkan.</string>
     <string name="audio_format_summary">Pengodean audio pilihan, ukuran buffer</string>
     <string name="audio_format_summary_root">Mode Legacy, pemrosesan yang ditingkatkan</string>
@@ -248,9 +247,9 @@
     <string name="profiles_info_content">Saat opsi ini diaktifkan, setiap perangkat audio akan mendapat konfigurasi terpisah. Aplikasi akan berganti secara otomatis ke setiap profil perangkat saat opsi output berubah.\n\nSetiap perangkat baru yang terhubung akan dimulai dengan profil kosong, anda bisa melakukan konfigurasi atau menyalin profil dari perangkat lain.\n\nCatatan: Preset hanya dapat diterapkan pada perangkat yang aktif saat fitur ini digunakan. Perangkat nonaktif tidak akan dirubah.</string>
     <string name="profiles_manage_hint">Tap tombol \'Aktifkan profil perangkat\' di layar utama untuk menyalin atau menghapus profil.</string>
     <string name="app_behavior">Perilaku aplikasi</string>
-    <string name="exclude_app_from_recents">Kecualikan aplikasi dari Recents</string>
-    <string name="exclude_app_from_recents_off">Jangan kecualikan dari daftar Recent</string>
-    <string name="exclude_app_from_recents_on">Kecualikan aplikasi dari Recent</string>
+    <string name="exclude_app_from_recents">Kecualikan aplikasi dari Recent</string>
+    <string name="exclude_app_from_recents_off">Aplikasi tidak kecualikan dari Recent</string>
+    <string name="exclude_app_from_recents_on">Aplikasi dikecualikan dari recent</string>
     <string name="autostart_prompt_at_boot">Minta izin menangkap setelah boot</string>
     <string name="autostart_prompt_at_boot_off">Jangan tampilkan pemberitahuan setelah booting</string>
     <string name="autostart_prompt_at_boot_on">Tampilkan pemberitahuan setelah booting</string>
@@ -303,7 +302,7 @@
     <string name="credits_project_page_summary">Laporkan masalah, pastikan anda terus update dan lihat source code</string>
     <string name="credits_project_play_page">Kunjungi RootlessJamesDSP di Play Store</string>
     <string name="credits_project_play_page_summary">Periksa pembaruan</string>
-    <string name="credits_project_check_update">Memeriksa pembaruan…</string>
+    <string name="credits_project_check_update">Periksa pembaruan…</string>
     <string name="credits_project_check_update_summary">Unduh dan pasang pembaruan jika tersedia</string>
     <string name="credits_project_translate">Kontribusi penerjemahan</string>
     <string name="credits_project_translate_summary">Bantu kami menerjemahkan aplikasi ke bahasa anda</string>
@@ -515,7 +514,7 @@
     <string name="backup_restore">Pulihkan cadangan</string>
     <string name="backup_restore_summary">Pulihkan pengaturan dari file cadangan</string>
     <string name="backup_automatic_backup">Pencadangan otomatis</string>
-    <string name="backup_compat_info">Pencadangan hanya termasuk Respon Impulse, skrip, File VDC, Presetz dan konfigurasi audio saat ini untuk kompatibilitas dengan versi lainnya.</string>
+    <string name="backup_compat_info">Pencadangan hanya termasuk Respon Impulse, skrip, File VDC, Preset dan konfigurasi audio saat ini untuk kompatibilitas dengan versi lainnya.</string>
     <string name="backup_restore_mode_title">Mode pemulihan</string>
     <string name="backup_restore_mode_clean">Bersihkan pemulihan (hapus semua file)</string>
     <string name="backup_restore_mode_dirty">Pemulihan dirty (hanya timpa)</string>

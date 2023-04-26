@@ -1,46 +1,46 @@
-Use JamesDSP as a system-wide audio processing engine without any root access.
+JamesDSP'yi herhangi bir root erişimi olmadan sistem çapında bir ses işleme motoru olarak kullanın.
 
-This app has several limitations that may be deal-breaking to some people; please read this whole document before using the app. Shizuku (Android 11+) or ADB access via a computer is required for the initial setup.
+Bu uygulamanın, bazı insanlar için anlaşmayı bozabilecek çeşitli sınırlamaları vardır; lütfen uygulamayı kullanmadan önce bu belgenin tamamını okuyun. İlk kurulum için bir bilgisayar aracılığıyla Shizuku (Android 11+) veya ADB erişimi gereklidir.
 
-JamesDSP supports the following audio effects:
-* Limiter control
-* Output gain control
-* Auto dynamic range compressor
-* Dynamic bass boost
-* Interpolating FIR equalizer
-* Arbitrary response equalizer (Graphic EQ)
+JamesDSP aşağıdaki ses efektlerini destekler:
+* Sınırlayıcı kontrolü
+* Çıkış büyüklük kontrolü
+* Otomatik dinamik aralık kompresörü
+* Dinamik bas güçlendirme
+* Enterpolasyonlu FIR ekolayzır
+* Keyfi yanıt ekolayzır (Grafik EQ)
 * ViPER-DDC
-* Convolver
-* Live-programmable DSP (scripting engine for audio effects)
-* Analog modelling
-* Soundstage wideness
-* Crossfeed
-* Virtual room effect (reverb)
+* Dönüştürücü
+* Canlı programlanabilir DSP (ses efektleri için komut dosyası motoru)
+* Analog modelleme
+* Ses sahnesi genişliği
+* Çapraz destekleme
+* Sanal oda efekti (yankı)
 
-Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration, you can search and import frequency responses that aim to correct your headphone to a neutral sound. Go to 'Arbitrary response equalizer > Magnitude response > AutoEQ profiles' to get started.
+Ek olarak, bu uygulama doğrudan AutoEQ ile entegre olur. AutoEQ entegrasyonunu kullanarak, kulaklığınızı nötr bir sese düzeltmeyi amaçlayan frekans yanıtlarını arayabilir ve içe aktarabilirsiniz. Başlamak için 'Keyfi yanıt ekolayzır > Büyüklük yanıtı > AutoEQ profilleri'ne gidin.
 
---- Limitations
-* Apps blocking internal audio capture remain unprocessed (e.g., Spotify, Google Chrome)
-* Apps using some types of HW-accelerated playback may cause issues and need to be manually excluded (e.g., some Unity games)
-* Cannot coexist with (some) other audio effect apps (e.g., Wavelet and other apps that make use of the `DynamicsProcessing` Android API)
+--- Sınırlamalar
+* Dahili ses yakalamayı engelleyen uygulamalar işlenmeden kalır (ör. Spotify, Google Chrome)
+* Donanım hızlandırmalı oynatmanın bazı türlerini kullanan uygulamalar sorunlara neden olabilir ve manuel olarak hariç tutulmaları gerekir (ör. bazı Unity oyunları)
+* Diğer (bazı) ses efekti uygulamalarıyla (ör. Wavelet ve `DynamicsProcessing` Android API' sini kullanan diğer uygulamalar) birlikte bulunamaz
 
 
-- Apps confirmed working:
+- Uygulamaların çalıştığı doğrulandı:
 * YouTube
-* YouTube Music
-* Amazon Music
+* YouTube Müzik
+* Amazon Müzik
 * Deezer
 * Poweramp
 * Substreamer
 * Twitch
 * ...
 
-- Unsupported apps include:
-* Spotify (Note: Spotify ReVanced patch is required to support Spotify)
+- Desteklenmeyen uygulamalar şunları içerir:
+* Spotify (Not: Spotify'ı desteklemek için Spotify ReVanced yaması gereklidir)
 * Google Chrome
 * SoundCloud
 * ...
 
---- Translation
-Please help us translate this app here: https://crowdin.com/project/rootlessjamesdsp
-To request a new language that isn't enabled on Crowdin yet, please open an issue here on GitHub and I will turn it on.
+--- Tercüme
+Lütfen bu uygulamayı buraya çevirmemize yardım edin: https://crowdin.com/project/rootlessjamesdsp
+Henüz Crowdin'de etkin olmayan yeni bir dil istemek için lütfen burada GitHub'da bir sorun açın, ben de açayım.

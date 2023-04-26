@@ -215,6 +215,8 @@
     <string name="onboarding_perm_cast_caption">Sie müssen dieser App explizit die Berechtigung zur Aufnahme von Audioinhalten bei jedem Start gewähren.</string>
     <string name="onboarding_perm_missing_title">Laufzeitberechtigungen nicht gewährt</string>
     <string name="onboarding_perm_missing">Bitte erteilen Sie alle angeforderten Laufzeitberechtigungen.\nWenn Sie die Berechtigungen wiederholt verweigert haben, müssen Sie diese manuell in den Systemeinstellungen erteilen.</string>
+    <string name="onboarding_perm_diag">Erlaube das Senden von Diagnoseberichten</string>
+    <string name="onboarding_perm_diag_caption">Diese App sendet Absturzberichte und andere Diagnosedaten, einschließlich Informationen über andere aktive Anwendungen, damit ich Kompatibilitätsprobleme und Fehler leichter erkennen und lösen kann.</string>
     <string name="onboarding_finish_header">JamesDSP ist eingerichtet!</string>
     <string name="onboarding_finish_caption">Falls Probleme auftreten, besuchen Sie bitte die Fehlerbehebungsoptionen.</string>
     <string name="limit_session_control_conflict_title">Andere Audioeffekt-Apps deaktivieren</string>
