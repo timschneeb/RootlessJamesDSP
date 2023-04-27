@@ -1,2 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <plurals name="nodes">
+        <item quantity="one">%d węzeł</item>
+        <item quantity="few">%d węzeł</item>
+        <item quantity="many">%d Węzły</item>
+        <item quantity="other">%d Węzły</item>
+    </plurals>
+    <plurals name="custom_parameters">
+        <item quantity="one">%d konfigurowalny parametr</item>
+        <item quantity="few">%d Parametry Konfigurowalne</item>
+        <item quantity="many">%d konfigurowalny parametr</item>
+        <item quantity="other">%d konfigurowalne parametry</item>
+    </plurals>
+    <plurals name="unsupported_apps">
+        <item quantity="one">%d nieobsługiwana aplikacja została automatycznie wyłączona. Dotknij, aby uzyskać szczegóły.</item>
+        <item quantity="few">%d nieobsługiwana aplikacja została automatycznie wykluczona. Dotknij, aby uzyskać szczegółowe informacje.</item>
+        <item quantity="many">%d nieobsługiwana aplikacja została automatycznie wykluczona. Dotknij, aby uzyskać szczegółowe informacje.</item>
+        <item quantity="other">%d unsupported apps have been automatically excluded. Tap for details.</item>
+    </plurals>
+</resources>
