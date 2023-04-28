@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Параметри</string>
     <string name="action_presets">Пресети</string>
     <string name="action_revert">Відновити типові налаштування</string>
     <string name="action_blocked_apps">Виключені додатки</string>
