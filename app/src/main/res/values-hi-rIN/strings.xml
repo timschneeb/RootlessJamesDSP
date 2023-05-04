@@ -22,14 +22,25 @@
     <string name="notification_idle">ध्वनि प्रसंस्करण रुकी हुई है</string>
     <string name="notification_processing_title">ध्वनि प्रसंस्करण जीवित है</string>
     <string name="notification_processing_disabled_title">ध्वनि प्रसंस्करण बंद है</string>
+    <string name="notification_processing_legacy">JamesDSP मैनेजर खोलने के लिए टैप करें</string>
     <!-- Permission request notifications -->
+    <string name="notification_request_permission_title">JamesDSP को लॉन्च करने के लिए उपयोगकर्ता कार्रवाई आवश्यक है</string>
     <string name="notification_request_permission">JamesDSP की ध्वनि प्रसंस्करण प्रदान करें</string>
     <!-- Session control loss notifications -->
     <string name="session_control_loss_toast">JamesDSP रुक गई है। कृपया दूसरे ध्वनि नियंत्रण करने वाले एप्स को बंद करे।</string>
+    <string name="session_control_loss_notification_title">ऑडियो प्रोसेस करना बंद कर दिया गया. कोई अन्य ऐप्लिकेशन JamesDSP के साथ हस्तक्षेप कर रहा है.</string>
+    <string name="session_control_loss_notification">JamesDSP को पुन: सक्षम करने से पहले कृपया अन्य सभी ऐप्स को अक्षम कर दें जो वैश्विक ऑडियो प्रभाव प्रदान करते हैं।</string>
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_toast">असंगत मीडिया ऐप के कारण JamesDSP रुक गया। कृपया इस समस्या के समाधान के लिए नोटिफिकेशन देखें।</string>
     <string name="session_app_compat_notification_title">ध्वनि प्रसंस्करण रूकी हुई है‌ ‌। कोई अन्य ऐप जेम्सडिसपी के साथ हस्तक्षेप कर रहा है।</string>
+    <string name="session_app_compat_notification">समस्या का समाधान करने के लिए इस सूचना पर टैप करें.</string>
     <!-- Capture permission revoked notifications -->
+    <string name="capture_permission_revoked_toast">JamesDSP को रोक दिया गया है क्योंकि ऑडियो कैप्चर की अनुमति रद्द कर दी गई थी।</string>
     <!-- General purpose -->
+    <string name="install">स्थापित करना</string>
+    <string name="update">अद्यतन</string>
+    <string name="unknown_error">अज्ञात त्रुटि</string>
+    <string name="details">विवरण</string>
     <!-- Main screen -->
     <string name="eq_preset_acoustic">ध्वनिक</string>
     <string name="eq_preset_electronic">इलेक्ट्रॉनिक</string>
