@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">设置</string>
     <string name="action_presets">Presets</string>
     <string name="action_revert">重置为默认</string>
     <string name="action_blocked_apps">排除的应用</string>
@@ -109,9 +109,9 @@
     <string name="reverb_preset_long_reverb1">长混响 1</string>
     <string name="reverb_preset_long_reverb2">长混响 2</string>
     <string name="convolver_enable">卷积器</string>
-    <string name="convolver_impulse">脉冲响应</string>
+    <string name="convolver_impulse">冲激响应</string>
     <string name="convolver_advanced_editing">高级波形编辑</string>
-    <string name="convolver_convolution_mode">脉冲响应优化</string>
+    <string name="convolver_convolution_mode">冲激响应优化</string>
     <string name="convolver_convolution_mode_original">原始</string>
     <string name="convolver_convolution_mode_shrink">收缩</string>
     <string name="convolver_convolution_mode_minimum_phase_shrink">最小相变和收缩</string>
@@ -232,7 +232,7 @@
     <string name="limit_tested_devices_title">已测试的设备</string>
     <string name="limit_tested_devices">您的设备制造商对 Android 的音频系统所作的更改会非常容易地破坏这个应用的相关功能，因为它使用了几个无身份验证的 API。\n以下是经过测试的设备：\n• 三星 S20+ \(Android 12\)\nAOSP 模拟器 \(Android 10-13\)\n• Google Pixel 6 Pro \(Android 13\)</string>
     <!-- Settings -->
-    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_settings">设置</string>
     <string name="session_exclude_restricted">排除不支持的效果</string>
     <string name="session_exclude_restricted_off">阻止音频捕获的应用保持静音 (默认 Android 行为)</string>
     <string name="session_exclude_restricted_on">阻止音频捕获的应用被排除并保持未处理 (推荐)</string>
@@ -519,7 +519,7 @@
     <string name="revert_confirmation">您想要将您当前的 JamesDSP 预设重置为默认值吗？</string>
     <!-- File intent handler -->
     <string name="intent_import_preset">导入预设</string>
-    <string name="intent_import_irs">导入脉冲响应</string>
+    <string name="intent_import_irs">导入冲激响应</string>
     <string name="intent_import_vdc">导入 VDC 文件</string>
     <string name="intent_import_liveprog">导入 Liveprog 脚本</string>
     <string name="intent_import_mode_add">仅导入</string>
@@ -559,7 +559,7 @@
     <string name="backup_restore">恢复备份</string>
     <string name="backup_restore_summary">从备份文件还原设置</string>
     <string name="backup_automatic_backup">自动备份</string>
-    <string name="backup_compat_info">备份仅包括脉冲响应、脚本、VDC 文件、预设和当前音频配置，以最大程度地兼容其它版本。</string>
+    <string name="backup_compat_info">备份仅包括冲激响应、脚本、VDC 文件、预设和当前音频配置，以最大程度地与其他版本兼容。</string>
     <string name="backup_restore_mode_title">还原模式</string>
     <string name="backup_restore_mode_clean">清理恢复 (删除所有现有文件)</string>
     <string name="backup_restore_mode_dirty">Dirty 恢复 (仅覆盖)</string>
