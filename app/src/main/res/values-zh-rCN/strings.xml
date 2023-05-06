@@ -2,7 +2,7 @@
 <resources>
     <!-- Main menu bar -->
     <string name="action_settings">设置</string>
-    <string name="action_presets">Presets</string>
+    <string name="action_presets">预设</string>
     <string name="action_revert">重置为默认</string>
     <string name="action_blocked_apps">排除的应用</string>
     <!-- Notification channels -->
