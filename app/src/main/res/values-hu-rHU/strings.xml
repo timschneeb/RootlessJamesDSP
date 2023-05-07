@@ -70,6 +70,8 @@ Törlés</string>
     <string name="eq_interpolator">Interpolátor</string>
     <string name="eq_filter_type_minimum">Minimális fázis</string>
     <string name="eq_filter_type_linear">Lineáris fázis</string>
+    <string name="eq_interpolator_chip">Darabos hermitikus kocka többtagú interpoláció</string>
+    <string name="eq_interpolator_mha">Módosított Hiroshi Akima spline</string>
     <string name="eq_preset_acoustic">Akusztikus</string>
     <string name="eq_preset_bass">Basszus</string>
     <string name="eq_preset_beats">Ritmus</string>
