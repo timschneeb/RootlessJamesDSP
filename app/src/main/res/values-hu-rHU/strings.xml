@@ -67,6 +67,9 @@ Törlés</string>
     <string name="compressor_adapt_speed">Agresszivitás</string>
     <string name="eq_enable">Interpolárció FIR equalizer</string>
     <string name="eq_filter_type">Szűrőtípus</string>
+    <string name="eq_interpolator">Interpolátor</string>
+    <string name="eq_filter_type_minimum">Minimális fázis</string>
+    <string name="eq_filter_type_linear">Lineáris fázis</string>
     <string name="eq_preset_acoustic">Akusztikus</string>
     <string name="eq_preset_bass">Basszus</string>
     <string name="eq_preset_beats">Ritmus</string>
