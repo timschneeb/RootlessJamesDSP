@@ -46,6 +46,10 @@
     <string name="success">Siker</string>
     <string name="open">Megnyitás</string>
     <string name="close">Bezárás</string>
+    <string name="delete">Gomb: Törlés
+Törlés</string>
+    <string name="copy">Másolás</string>
+    <string name="paste">Beilleszt</string>
     <string name="add">Hozzáadás</string>
     <string name="yes">Igen</string>
     <string name="no">Nem</string>
@@ -53,12 +57,16 @@
     <string name="undo">Visszavonás</string>
     <string name="redo">Mégis végrehajt</string>
     <string name="no_activity_found">Nem található cselekvés a tett kezeléséhez</string>
+    <string name="permission_allowed">Engedélyezve</string>
+    <string name="permission_not_allowed">Nincs engedélyezve</string>
     <!-- Main screen -->
     <string name="power_button_alt">Hang feldolgozás bekapcsolása</string>
     <string name="compressor_enable">Automatikus dinamikus tömörítő tartomány</string>
     <string name="compressor_max_attack">Maximum támadás</string>
     <string name="compressor_max_release">Maximum engedés</string>
     <string name="compressor_adapt_speed">Agresszivitás</string>
+    <string name="eq_enable">Interpolárció FIR equalizer</string>
+    <string name="eq_filter_type">Szűrőtípus</string>
     <string name="eq_preset_acoustic">Akusztikus</string>
     <string name="eq_preset_bass">Basszus</string>
     <string name="eq_preset_beats">Ritmus</string>
