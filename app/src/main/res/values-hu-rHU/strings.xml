@@ -87,7 +87,16 @@ Törlés</string>
     <string name="eq_preset_metal">Metál</string>
     <string name="eq_preset_movie">Film</string>
     <string name="eq_preset_pop">Pop</string>
+    <string name="eq_preset_rb">R&amp;B</string>
     <string name="eq_preset_rock">Rock</string>
+    <string name="eq_preset_vocal">Énekhang Kiemelés</string>
+    <string name="geq_enable">Tetszőleges hangszínszabályzói átvitel</string>
+    <string name="geq_nodes">Magnitúdó jelleggörbe</string>
+    <string name="bass_enable">Dinamikus mélyhang kiemelés</string>
+    <string name="bass_max_gain">Maximális erősítés</string>
+    <string name="reverb_enable">Virtuális szoba hatás</string>
+    <string name="reverb_room_type">Szoba típusa</string>
+    <string name="reverb_preset_default">Alapértelmezett</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
@@ -95,9 +104,11 @@ Törlés</string>
     <string name="title_activity_settings">Beállítások</string>
     <string name="backup_settings">Mentés és visszaállítás</string>
     <!-- Theme names -->
+    <string name="theme_default">Alapértelmezett</string>
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="title_activity_geq">Magnitúdó jelleggörbe</string>
     <string name="gep_add_node">Hozzáadás</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
