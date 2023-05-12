@@ -5,7 +5,15 @@
     <string name="action_presets">Có sẵn</string>
     <string name="action_revert">Đặt lại về mặc định</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">Dịch vụ</string>
+    <string name="notification_channel_service">Thông báo dịch vụ</string>
+    <string name="notification_group_backup">Sao lưu và khôi phục</string>
+    <string name="notification_channel_backup_progress">Đang tiến hành</string>
+    <string name="notification_channel_backup_complete">Hoàn thành</string>
     <!-- Service notifications -->
+    <string name="action_retry">Thử lại</string>
+    <string name="action_fix">Sửa vấn đề</string>
+    <string name="action_stop">Dừng</string>
     <!-- Permission request notifications -->
     <!-- Session control loss notifications -->
     <!-- App compatibility issue notifications -->
@@ -17,6 +25,7 @@
     <!-- Root flavor -->
     <!-- Settings -->
     <string name="title_activity_settings">Cài đặt</string>
+    <string name="backup_settings">Sao lưu và khôi phục</string>
     <!-- Theme names -->
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
@@ -26,6 +35,7 @@
     <!-- Liveprog script editor -->
     <!-- Blocklist -->
     <!-- Compatibility issue activity -->
+    <string name="app_compat_retry">Thử lại</string>
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
     <!-- App list -->
