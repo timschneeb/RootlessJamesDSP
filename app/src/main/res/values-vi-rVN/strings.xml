@@ -3,6 +3,7 @@
     <!-- Main menu bar -->
     <string name="action_settings">Cài đặt</string>
     <string name="action_presets">Có sẵn</string>
+    <string name="action_revert">Đặt lại về mặc định</string>
     <!-- Notification channels -->
     <!-- Service notifications -->
     <!-- Permission request notifications -->
