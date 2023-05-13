@@ -7,6 +7,7 @@
     <!-- Notification channels -->
     <string name="notification_group_service">Dịch vụ</string>
     <string name="notification_channel_service">Thông báo dịch vụ</string>
+    <string name="notification_channel_permission_prompt">Yêu cầu cấp quyền</string>
     <string name="notification_group_backup">Sao lưu và khôi phục</string>
     <string name="notification_channel_backup_progress">Đang tiến hành</string>
     <string name="notification_channel_backup_complete">Hoàn thành</string>
