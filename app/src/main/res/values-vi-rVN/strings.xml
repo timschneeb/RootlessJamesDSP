@@ -15,7 +15,9 @@
     <string name="action_retry">Thử lại</string>
     <string name="action_fix">Sửa vấn đề</string>
     <string name="action_stop">Dừng</string>
+    <string name="notification_processing_legacy">Nhấn để mở trình quản lý JamesDSP</string>
     <!-- Permission request notifications -->
+    <string name="notification_request_permission_title">Cần hành động của người dùng để khởi chạy JamesDSP</string>
     <!-- Session control loss notifications -->
     <!-- App compatibility issue notifications -->
     <!-- Capture permission revoked notifications -->
