@@ -2,7 +2,7 @@
 <resources>
     <!-- Main menu bar -->
     <string name="action_settings">Ustawienia</string>
-    <string name="action_presets">Ustawienie</string>
+    <string name="action_presets">Profil ustawień</string>
     <string name="action_revert">Przywróć domyślne</string>
     <string name="action_blocked_apps">Wykluczone aplikacje</string>
     <!-- Notification channels -->
