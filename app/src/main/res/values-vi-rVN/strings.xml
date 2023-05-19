@@ -15,13 +15,20 @@
     <string name="action_retry">Thử lại</string>
     <string name="action_fix">Sửa vấn đề</string>
     <string name="action_stop">Dừng</string>
+    <string name="notification_processing">Ứng dụng hoạt động: %1$s</string>
     <string name="notification_processing_legacy">Nhấn để mở trình quản lý JamesDSP</string>
     <!-- Permission request notifications -->
     <string name="notification_request_permission_title">Cần hành động của người dùng để khởi chạy JamesDSP</string>
+    <string name="notification_request_permission">Nhấn để cấp quyền chụp và bật xử lý âm thanh của JamesDSP</string>
     <!-- Session control loss notifications -->
+    <string name="session_control_loss_toast">JamesDSP đã dừng do mất kiểm soát phiên âm thanh. Vui lòng tắt các ứng dụng hiệu ứng âm thanh khác.</string>
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_notification">Chạm vào thông báo này để giải quyết vấn đề.</string>
     <!-- Capture permission revoked notifications -->
     <!-- General purpose -->
+    <string name="install">Cài đặt</string>
+    <string name="update">Cập nhật</string>
+    <string name="unknown_error">Lỗi không xác định</string>
     <!-- Main screen -->
     <!-- Onboarding -->
     <!-- Rootless flavor -->
