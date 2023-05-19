@@ -29,7 +29,26 @@
     <string name="install">Cài đặt</string>
     <string name="update">Cập nhật</string>
     <string name="unknown_error">Lỗi không xác định</string>
+    <string name="details">Chi tiết</string>
+    <string name="actions">Hành động</string>
+    <string name="warning">Cảnh báo</string>
+    <string name="success">Thành công</string>
+    <string name="open">Mở</string>
+    <string name="close">Đóng</string>
+    <string name="delete">Xoá</string>
+    <string name="copy">Sao chép</string>
+    <string name="paste">Dán</string>
+    <string name="add">Thêm</string>
+    <string name="yes">Có</string>
+    <string name="no">Không</string>
+    <string name="value_not_set">Chưa đặt</string>
+    <string name="undo">Hoàn tác</string>
+    <string name="redo">Làm lại</string>
+    <string name="no_activity_found">Không tìm thấy Hoạt động nào để xử lý hành động</string>
+    <string name="permission_allowed">Cho phép</string>
+    <string name="permission_not_allowed">Không cho phép</string>
     <!-- Main screen -->
+    <string name="eq_filter_type">Kiểu lọc</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
@@ -40,6 +59,7 @@
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="gep_add_node">Thêm</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
