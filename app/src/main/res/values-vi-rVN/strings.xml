@@ -49,6 +49,23 @@
     <string name="permission_not_allowed">Không cho phép</string>
     <!-- Main screen -->
     <string name="eq_filter_type">Kiểu lọc</string>
+    <string name="eq_preset_bass">Bass</string>
+    <string name="eq_preset_beats">Beats</string>
+    <string name="eq_preset_classic">Cổ điển</string>
+    <string name="eq_preset_clear">Xoá</string>
+    <string name="eq_preset_deep">Sâu</string>
+    <string name="eq_preset_electronic">Điện tử</string>
+    <string name="eq_preset_flat">Phẳng</string>
+    <string name="eq_preset_hiphop">Hip-Hop</string>
+    <string name="eq_preset_jazz">Jazz</string>
+    <string name="eq_preset_metal">Metal</string>
+    <string name="eq_preset_movie">Phim</string>
+    <string name="eq_preset_pop">Pop</string>
+    <string name="eq_preset_rb">R&amp;B</string>
+    <string name="eq_preset_rock">Rock</string>
+    <string name="eq_preset_vocal">Tăng giọng hát</string>
+    <string name="geq_enable">Arbitrary response equalizer</string>
+    <string name="geq_nodes">Phản ứng cường độ</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
@@ -59,6 +76,7 @@
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="title_activity_geq">Phản ứng cường độ</string>
     <string name="gep_add_node">Thêm</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
