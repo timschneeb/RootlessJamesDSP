@@ -69,7 +69,7 @@
     <string name="eq_interpolator">插值器</string>
     <string name="eq_filter_type_minimum">最小相位</string>
     <string name="eq_filter_type_linear">线性相位</string>
-    <string name="eq_interpolator_chip">分段三次 Hermite 插值</string>
+    <string name="eq_interpolator_chip">分段三次埃尔米特插值</string>
     <string name="eq_interpolator_mha">修正 Akima 样条插值</string>
     <string name="eq_preset_acoustic">原声</string>
     <string name="eq_preset_bass">低音</string>
@@ -89,8 +89,8 @@
     <string name="eq_preset_rb">R&amp;B</string>
     <string name="eq_preset_rock">摇滚</string>
     <string name="eq_preset_vocal">人声强化</string>
-    <string name="geq_enable">任意响应均衡器</string>
-    <string name="geq_nodes">强度响应</string>
+    <string name="geq_enable">任意幅频响均衡器</string>
+    <string name="geq_nodes">幅度响应</string>
     <string name="bass_enable">动态低音提升</string>
     <string name="bass_max_gain">最大增益</string>
     <string name="reverb_enable">虚拟场效果</string>
@@ -109,9 +109,9 @@
     <string name="reverb_preset_long_reverb1">长混响 1</string>
     <string name="reverb_preset_long_reverb2">长混响 2</string>
     <string name="convolver_enable">卷积器</string>
-    <string name="convolver_impulse">脉冲响应</string>
+    <string name="convolver_impulse">冲激响应</string>
     <string name="convolver_advanced_editing">高级波形编辑</string>
-    <string name="convolver_convolution_mode">脉冲响应优化</string>
+    <string name="convolver_convolution_mode">冲激响应优化</string>
     <string name="convolver_convolution_mode_original">原始</string>
     <string name="convolver_convolution_mode_shrink">收缩</string>
     <string name="convolver_convolution_mode_minimum_phase_shrink">最小相变和收缩</string>
@@ -321,7 +321,7 @@
     <string name="network_autoeq_conntest_running">测试与服务器的连接…</string>
     <string name="network_autoeq_conntest_done">连接测试成功</string>
     <string name="network_autoeq_conntest_fail">连接测试失败</string>
-    <string name="network_autoeq_conntest_fail_summary">服务器响应不正确。请确保应用在 https://github.com/ThePBone/AutoEqApi 上设置正确。\n\n网络错误： %1$s\n\n您想要恢复此设置为默认值吗？</string>
+    <string name="network_autoeq_conntest_fail_summary">服务器没有正确响应。 请确保 https://github.com/ThePBone/AutoEqApi 上的软件已在服务器上正确设置。\n\n网络错误：%1$s\n\n是否要将此设置恢复为默认值？</string>
     <string name="about_settings">关于</string>
     <string name="about_settings_summary">鸣谢、支持与更新</string>
     <string name="privacy">隐私</string>
@@ -410,11 +410,11 @@
     <string name="filelibrary_no_presets">没有已保存的预设，点击“添加”以创建一个新预设。</string>
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">选择的 VDC 文件已损坏，请重新选择其它文件。</string>
-    <string name="message_irs_corrupt">选择的脉冲响应已损坏，请重新选择其它文件。</string>
+    <string name="message_irs_corrupt">选定的冲激响应已损坏，请另选一个。</string>
     <string name="message_convolver_advimp_invalid">卷积器：高级波形编辑包含无效值。</string>
     <string name="message_liveprog_compile_fail">Liveprog 执行失败，选定的脚本已损坏，请使用脚本编辑器进行调试。</string>
     <!-- GraphicEQ editor -->
-    <string name="title_activity_geq">强度响应</string>
+    <string name="title_activity_geq">幅度响应</string>
     <string name="geq_edit_as_string">作为字符串编辑</string>
     <string name="geq_autoeq">AutoEQ 配置</string>
     <string name="gep_add_node">添加</string>
@@ -442,7 +442,7 @@
     <string name="geq_gain">增益</string>
     <string name="geq_frequency">频率</string>
     <!-- AutoEQ GraphicEQ selector -->
-    <string name="geq_api_network_error">无法连接到服务器 %1$s</string>
+    <string name="geq_api_network_error">无法连接服务器。%1$s</string>
     <string name="geq_api_network_error_details_code">服务器响应错误代码：%1$d</string>
     <string name="autoeq_search">AutoEQ 搜索</string>
     <string name="autoeq_enter_model">输入您的耳机型号…</string>
@@ -519,7 +519,7 @@
     <string name="revert_confirmation">您想要将您当前的 JamesDSP 预设重置为默认值吗？</string>
     <!-- File intent handler -->
     <string name="intent_import_preset">导入预设</string>
-    <string name="intent_import_irs">导入脉冲响应</string>
+    <string name="intent_import_irs">导入冲激响应</string>
     <string name="intent_import_vdc">导入 VDC 文件</string>
     <string name="intent_import_liveprog">导入 Liveprog 脚本</string>
     <string name="intent_import_mode_add">仅导入</string>
@@ -559,7 +559,7 @@
     <string name="backup_restore">恢复备份</string>
     <string name="backup_restore_summary">从备份文件还原设置</string>
     <string name="backup_automatic_backup">自动备份</string>
-    <string name="backup_compat_info">备份仅包括脉冲响应、脚本、VDC 文件、预设和当前音频配置，以最大程度地兼容其它版本。</string>
+    <string name="backup_compat_info">备份仅包括冲激响应、脚本、VDC 文件、预设和当前音频配置，以最大程度地与其他版本兼容。</string>
     <string name="backup_restore_mode_title">还原模式</string>
     <string name="backup_restore_mode_clean">清理恢复 (删除所有现有文件)</string>
     <string name="backup_restore_mode_dirty">Dirty 恢复 (仅覆盖)</string>

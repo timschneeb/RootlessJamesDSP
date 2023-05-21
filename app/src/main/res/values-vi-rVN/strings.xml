@@ -3,28 +3,87 @@
     <!-- Main menu bar -->
     <string name="action_settings">Cài đặt</string>
     <string name="action_presets">Có sẵn</string>
+    <string name="action_revert">Đặt lại về mặc định</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">Dịch vụ</string>
+    <string name="notification_channel_service">Thông báo dịch vụ</string>
+    <string name="notification_channel_permission_prompt">Yêu cầu cấp quyền</string>
+    <string name="notification_group_backup">Sao lưu và khôi phục</string>
+    <string name="notification_channel_backup_progress">Đang tiến hành</string>
+    <string name="notification_channel_backup_complete">Hoàn thành</string>
     <!-- Service notifications -->
+    <string name="action_retry">Thử lại</string>
+    <string name="action_fix">Sửa vấn đề</string>
+    <string name="action_stop">Dừng</string>
+    <string name="notification_processing">Ứng dụng hoạt động: %1$s</string>
+    <string name="notification_processing_legacy">Nhấn để mở trình quản lý JamesDSP</string>
     <!-- Permission request notifications -->
+    <string name="notification_request_permission_title">Cần hành động của người dùng để khởi chạy JamesDSP</string>
+    <string name="notification_request_permission">Nhấn để cấp quyền chụp và bật xử lý âm thanh của JamesDSP</string>
     <!-- Session control loss notifications -->
+    <string name="session_control_loss_toast">JamesDSP đã dừng do mất kiểm soát phiên âm thanh. Vui lòng tắt các ứng dụng hiệu ứng âm thanh khác.</string>
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_notification">Chạm vào thông báo này để giải quyết vấn đề.</string>
     <!-- Capture permission revoked notifications -->
     <!-- General purpose -->
+    <string name="install">Cài đặt</string>
+    <string name="update">Cập nhật</string>
+    <string name="unknown_error">Lỗi không xác định</string>
+    <string name="details">Chi tiết</string>
+    <string name="actions">Hành động</string>
+    <string name="warning">Cảnh báo</string>
+    <string name="success">Thành công</string>
+    <string name="open">Mở</string>
+    <string name="close">Đóng</string>
+    <string name="delete">Xoá</string>
+    <string name="copy">Sao chép</string>
+    <string name="paste">Dán</string>
+    <string name="add">Thêm</string>
+    <string name="yes">Có</string>
+    <string name="no">Không</string>
+    <string name="value_not_set">Chưa đặt</string>
+    <string name="undo">Hoàn tác</string>
+    <string name="redo">Làm lại</string>
+    <string name="no_activity_found">Không tìm thấy Hoạt động nào để xử lý hành động</string>
+    <string name="permission_allowed">Cho phép</string>
+    <string name="permission_not_allowed">Không cho phép</string>
     <!-- Main screen -->
+    <string name="eq_filter_type">Kiểu lọc</string>
+    <string name="eq_preset_bass">Bass</string>
+    <string name="eq_preset_beats">Beats</string>
+    <string name="eq_preset_classic">Cổ điển</string>
+    <string name="eq_preset_clear">Xoá</string>
+    <string name="eq_preset_deep">Sâu</string>
+    <string name="eq_preset_electronic">Điện tử</string>
+    <string name="eq_preset_flat">Phẳng</string>
+    <string name="eq_preset_hiphop">Hip-Hop</string>
+    <string name="eq_preset_jazz">Jazz</string>
+    <string name="eq_preset_metal">Metal</string>
+    <string name="eq_preset_movie">Phim</string>
+    <string name="eq_preset_pop">Pop</string>
+    <string name="eq_preset_rb">R&amp;B</string>
+    <string name="eq_preset_rock">Rock</string>
+    <string name="eq_preset_vocal">Tăng giọng hát</string>
+    <string name="geq_enable">Arbitrary response equalizer</string>
+    <string name="geq_nodes">Phản ứng cường độ</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
     <!-- Settings -->
     <string name="title_activity_settings">Cài đặt</string>
+    <string name="backup_settings">Sao lưu và khôi phục</string>
     <!-- Theme names -->
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="title_activity_geq">Phản ứng cường độ</string>
+    <string name="gep_add_node">Thêm</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
     <!-- Blocklist -->
     <!-- Compatibility issue activity -->
+    <string name="app_compat_retry">Thử lại</string>
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
     <!-- App list -->

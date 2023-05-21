@@ -1,2 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <plurals name="nodes">
+        <item quantity="one">%d nod</item>
+        <item quantity="few">%d noduri</item>
+        <item quantity="other">%d noduri</item>
+    </plurals>
+    <plurals name="custom_parameters">
+        <item quantity="one">%d parametru personalizabil</item>
+        <item quantity="few">%d parametre personalizabile</item>
+        <item quantity="other">%d parametre personalizabile</item>
+    </plurals>
+    <plurals name="unsupported_apps">
+        <item quantity="one">%d aplicație nesuportată a fost exclusă automat. Atingeți pentru detalii.</item>
+        <item quantity="few">%d aplicațiile nesuportate au fost excluse automat. Atingeți pentru detalii.</item>
+        <item quantity="other">%d aplicațiile nesuportate au fost excluse automat. Atingeți pentru detalii.</item>
+    </plurals>
+</resources>

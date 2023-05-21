@@ -22,16 +22,60 @@
     <string name="notification_idle">ध्वनि प्रसंस्करण रुकी हुई है</string>
     <string name="notification_processing_title">ध्वनि प्रसंस्करण जीवित है</string>
     <string name="notification_processing_disabled_title">ध्वनि प्रसंस्करण बंद है</string>
+    <string name="notification_processing_legacy">JamesDSP मैनेजर खोलने के लिए टैप करें</string>
     <!-- Permission request notifications -->
+    <string name="notification_request_permission_title">JamesDSP को लॉन्च करने के लिए उपयोगकर्ता कार्रवाई आवश्यक है</string>
     <string name="notification_request_permission">JamesDSP की ध्वनि प्रसंस्करण प्रदान करें</string>
     <!-- Session control loss notifications -->
     <string name="session_control_loss_toast">JamesDSP रुक गई है। कृपया दूसरे ध्वनि नियंत्रण करने वाले एप्स को बंद करे।</string>
+    <string name="session_control_loss_notification_title">ऑडियो प्रोसेस करना बंद कर दिया गया. कोई अन्य ऐप्लिकेशन JamesDSP के साथ हस्तक्षेप कर रहा है.</string>
+    <string name="session_control_loss_notification">JamesDSP को पुन: सक्षम करने से पहले कृपया अन्य सभी ऐप्स को अक्षम कर दें जो वैश्विक ऑडियो प्रभाव प्रदान करते हैं।</string>
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_toast">असंगत मीडिया ऐप के कारण JamesDSP रुक गया। कृपया इस समस्या के समाधान के लिए नोटिफिकेशन देखें।</string>
     <string name="session_app_compat_notification_title">ध्वनि प्रसंस्करण रूकी हुई है‌ ‌। कोई अन्य ऐप जेम्सडिसपी के साथ हस्तक्षेप कर रहा है।</string>
+    <string name="session_app_compat_notification">समस्या का समाधान करने के लिए इस सूचना पर टैप करें.</string>
     <!-- Capture permission revoked notifications -->
+    <string name="capture_permission_revoked_toast">JamesDSP को रोक दिया गया है क्योंकि ऑडियो कैप्चर की अनुमति रद्द कर दी गई थी।</string>
     <!-- General purpose -->
+    <string name="install">स्थापित करना</string>
+    <string name="update">अद्यतन</string>
+    <string name="unknown_error">अज्ञात त्रुटि</string>
+    <string name="details">विवरण</string>
+    <string name="actions">कार्रवाई</string>
+    <string name="warning">चेतावनी</string>
+    <string name="success">सफलता</string>
+    <string name="open">खुला</string>
+    <string name="close">बंद करना</string>
+    <string name="delete">मिटाना</string>
+    <string name="copy">प्रतिलिपि</string>
+    <string name="paste">पेस्ट करें</string>
+    <string name="add">जोड़ना</string>
+    <string name="yes">हाँ</string>
+    <string name="no">नहीं</string>
+    <string name="value_not_set">सेट नहीं</string>
+    <string name="undo">पूर्ववत</string>
+    <string name="redo">फिर से करना</string>
+    <string name="no_activity_found">कार्रवाई को प्रबंधित करने के लिए कोई गतिविधि नहीं मिली</string>
+    <string name="permission_allowed">अनुमत</string>
+    <string name="permission_not_allowed">अनुमति नहीं</string>
     <!-- Main screen -->
+    <string name="power_button_alt">ऑडियो प्रोसेसिंग टॉगल करें</string>
+    <string name="compressor_enable">ऑटो गतिशील रेंज कंप्रेसर</string>
+    <string name="compressor_max_attack">अधिकतम हमला</string>
+    <string name="compressor_max_release">अधिकतम रिलीज</string>
+    <string name="compressor_adapt_speed">आक्रामकता</string>
+    <string name="eq_enable">इंटरपोलिंग एफआईआर इक्वलाइज़र</string>
+    <string name="eq_filter_type">फ़िल्टर प्रकार</string>
+    <string name="eq_interpolator">क्षेपक करनेवाला</string>
+    <string name="eq_filter_type_minimum">न्यूनतम चरण</string>
+    <string name="eq_filter_type_linear">रैखिक चरण</string>
+    <string name="eq_interpolator_chip">पीसवाइज क्यूबिक हर्मिट इंटरपोलिंग पॉलीनोमियल</string>
+    <string name="eq_interpolator_mha">हिरोशी अंतरिक्ष रीढ़</string>
     <string name="eq_preset_acoustic">ध्वनिक</string>
+    <string name="eq_preset_bass">बास</string>
+    <string name="eq_preset_beats">धड़कता है</string>
+    <string name="eq_preset_classic">क्लासिक</string>
+    <string name="eq_preset_clear">साफ़</string>
     <string name="eq_preset_electronic">इलेक्ट्रॉनिक</string>
     <string name="eq_preset_flat">फ्लैट</string>
     <string name="eq_preset_hardstyle">हार्ड-स्टाइल</string>
@@ -56,6 +100,7 @@
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="gep_add_node">जोड़ना</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->

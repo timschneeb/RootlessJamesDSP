@@ -2,7 +2,7 @@
 <resources>
     <!-- Main menu bar -->
     <string name="action_settings">Ustawienia</string>
-    <string name="action_presets">Predefiniowane ustawienie</string>
+    <string name="action_presets">Profil ustawień</string>
     <string name="action_revert">Przywróć domyślne</string>
     <string name="action_blocked_apps">Wykluczone aplikacje</string>
     <!-- Notification channels -->
@@ -426,6 +426,8 @@ Graphic eq</string>
     <string name="geq_reset_confirm_title">Jesteś pewny?</string>
     <string name="geq_reset_confirm">Czy chcesz zresetować ustawienia graficzne?</string>
     <string name="geq_node_editor">Edytor węzłów</string>
+    <string name="geq_node_list">Node list</string>
+    <string name="geq_no_nodes_defined">Brak przypisanych kategorii</string>
     <string name="geq_cancel_spaced">&#160;&#160;Odrzuć&#160;</string>
     <string name="geq_cancel">Odrzuć</string>
     <string name="geq_discard_changes_title">Czy odrzucić zmiany i wyjść?</string>
