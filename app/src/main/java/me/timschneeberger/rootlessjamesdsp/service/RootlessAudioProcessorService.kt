@@ -16,7 +16,6 @@ import androidx.lifecycle.asLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
-import me.timschneeberger.rootlessjamesdsp.utils.notifications.Notifications
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.flavor.CrashlyticsImpl
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspLocalEngine
@@ -37,14 +36,15 @@ import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SAMPLE_RATE_UP
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_HARD_REBOOT_CORE
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_RELOAD_LIVEPROG
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_SOFT_REBOOT_CORE
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getParcelableAs
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.unregisterLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasRecordPermission
-import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
+import me.timschneeberger.rootlessjamesdsp.utils.notifications.Notifications
 import me.timschneeberger.rootlessjamesdsp.utils.notifications.ServiceNotificationHelper
-import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getParcelableAs
+import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import org.koin.android.ext.android.inject
 import timber.log.Timber
@@ -588,7 +588,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
 
         Timber.d("Using buffer size $bufferSize")
 
-        AudioTrack.Builder()
+        return AudioTrack.Builder()
             .setAudioFormat(format)
             .setTransferMode(AudioTrack.MODE_STREAM)
             .setAudioAttributes(attributesBuilder.build())
