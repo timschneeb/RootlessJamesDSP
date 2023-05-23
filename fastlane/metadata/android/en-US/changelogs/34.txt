@@ -1,0 +1,2 @@
+* Translation updates
+* Fixed various crashes and bugs
