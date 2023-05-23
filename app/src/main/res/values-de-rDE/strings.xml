@@ -58,6 +58,7 @@
     <string name="no_activity_found">Keine App gefunden, um diese Aktion zu behandeln</string>
     <string name="permission_allowed">Erlaubt</string>
     <string name="permission_not_allowed">Nicht erlaubt</string>
+    <string name="error_projection_api_missing">Ihr Gerätehersteller hat die internen Audio-Aufnahme-APIs deaktiviert. Diese Anwendung kann ohne sie nicht funktionieren.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Audioverarbeitung umschalten</string>
     <string name="compressor_enable">Automatischer Dynamikbereichskompressor</string>
