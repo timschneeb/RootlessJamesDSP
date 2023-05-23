@@ -66,6 +66,7 @@
     <string name="no_activity_found">No Activity found to handle action</string>
     <string name="permission_allowed">Allowed</string>
     <string name="permission_not_allowed">Not allowed</string>
+    <string name="error_projection_api_missing">Your device manufacturer has disabled the internal audio recording APIs. This application cannot work without them.</string>
 
     <!-- Main screen -->
     <string name="power_button_alt">Toggle audio processing</string>
