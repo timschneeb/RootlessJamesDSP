@@ -8,6 +8,7 @@ import androidx.preference.Preference.SummaryProvider
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.model.preset.Preset
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
+import timber.log.Timber
 import java.io.File
 import java.io.InputStream
 
@@ -147,8 +148,11 @@ class FileLibraryPreference(context: Context, attrs: AttributeSet?) :
         fun createFullPathCompat(context: Context, path: String): String {
             return if(path.startsWith("/"))
                 path
-            else
-                context.getExternalFilesDir(null)!!.absolutePath + "/" + path
+            else {
+                val externalDir = context.getExternalFilesDir(null)
+                externalDir ?: Timber.e("getExternalFilesDir returned null")
+                externalDir?.let { it.absolutePath + "/" + path } ?: ""
+            }
         }
         fun createFullPathNullCompat(context: Context, path: String?): String? {
             path ?: return null
