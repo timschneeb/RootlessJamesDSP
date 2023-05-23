@@ -123,6 +123,10 @@ class ProfileManager : BroadcastReceiver(), RoutingObserver.RoutingChangedCallba
                             Timber.e("Illegal state: preset does not exist")
                             Timber.i(ex)
                         }
+                        catch (ex: Exception) {
+                            Timber.e("Preset is corrupted")
+                            Timber.i(ex)
+                        }
                     }
                 }
             }
@@ -152,6 +156,11 @@ class ProfileManager : BroadcastReceiver(), RoutingObserver.RoutingChangedCallba
             }
             catch (ex: FileNotFoundException) {
                 Timber.w("load: preset does not exist yet")
+                Timber.i(ex)
+                context.restoreDspSettings()
+            }
+            catch (ex: Exception) {
+                Timber.e("Profile is corrupted")
                 Timber.i(ex)
                 context.restoreDspSettings()
             }
