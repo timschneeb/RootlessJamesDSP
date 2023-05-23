@@ -58,6 +58,7 @@
     <string name="no_activity_found">لم يتم العثور على نشاط لمعالجة الإجراء</string>
     <string name="permission_allowed">مسموح</string>
     <string name="permission_not_allowed">غير مسموح به</string>
+    <string name="error_projection_api_missing">قامت شركة تصنيع جهازك بتعطيل API تسجيل الصوت الداخلي. لا يمكن لهذا التطبيق أن يعمل بدونهم.</string>
     <!-- Main screen -->
     <string name="power_button_alt">تشغيل معالجة الصوت</string>
     <string name="compressor_enable">ضغط النطاق الديناميكي التلقائي</string>
