@@ -18,6 +18,7 @@ import kotlinx.coroutines.SupervisorJob
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.utils.notifications.Notifications
 import me.timschneeberger.rootlessjamesdsp.R
+import me.timschneeberger.rootlessjamesdsp.flavor.CrashlyticsImpl
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspLocalEngine
 import me.timschneeberger.rootlessjamesdsp.interop.ProcessorMessageHandler
 import me.timschneeberger.rootlessjamesdsp.model.IEffectSession
@@ -557,9 +558,9 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
 
     private fun buildAudioTrack(encoding: Int, sampleRate: Int, bufferSizeBytes: Int): AudioTrack {
         val attributesBuilder = AudioAttributes.Builder()
-                .setUsage(AudioAttributes.USAGE_UNKNOWN)
-                .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
-                .setFlags(0)
+            .setUsage(AudioAttributes.USAGE_UNKNOWN)
+            .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
+            .setFlags(0)
 
         sdkAbove(Build.VERSION_CODES.Q) {
             attributesBuilder.setAllowedCapturePolicy(AudioAttributes.ALLOW_CAPTURE_BY_NONE)
@@ -659,11 +660,21 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         const val EXTRA_APP_COMPAT_INTERNAL_CALL = "appCompatInternalCall"
 
         fun start(context: Context, data: Intent?) {
-            context.startForegroundService(ServiceNotificationHelper.createStartIntent(context, data))
+            try {
+                context.startForegroundService(ServiceNotificationHelper.createStartIntent(context, data))
+            }
+            catch(ex: Exception) {
+                CrashlyticsImpl.recordException(ex)
+            }
         }
 
         fun stop(context: Context) {
-            context.startForegroundService(ServiceNotificationHelper.createStopIntent(context))
+            try {
+                context.startForegroundService(ServiceNotificationHelper.createStopIntent(context))
+            }
+            catch(ex: Exception) {
+                CrashlyticsImpl.recordException(ex)
+            }
         }
     }
 }
