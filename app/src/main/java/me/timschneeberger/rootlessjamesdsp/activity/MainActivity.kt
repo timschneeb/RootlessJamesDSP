@@ -522,7 +522,13 @@ class MainActivity : BaseActivity() {
             RootlessAudioProcessorService.start(this, app.mediaProjectionStartIntent)
             return
         }
-        capturePermissionLauncher.launch(mediaProjectionManager.createScreenCaptureIntent())
+        try {
+            capturePermissionLauncher.launch(mediaProjectionManager.createScreenCaptureIntent())
+        }
+        catch (ex: ActivityNotFoundException) {
+            toast(getString(R.string.error_projection_api_missing))
+            Timber.e(ex)
+        }
     }
 
     private var processorMessageReceiver: BroadcastReceiver = object : BroadcastReceiver() {

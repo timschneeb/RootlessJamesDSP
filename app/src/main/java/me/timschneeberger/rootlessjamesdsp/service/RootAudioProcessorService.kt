@@ -240,23 +240,40 @@ class RootAudioProcessorService : BaseAudioProcessorService(), KoinComponent,
                 return
             }
 
-            sdkAbove(Build.VERSION_CODES.O) {
-                context.startForegroundService(intent)
-            }.below {
-                context.startService(intent)
+            try {
+                sdkAbove(Build.VERSION_CODES.O) {
+                    context.startForegroundService(intent)
+                }.below {
+                    context.startService(intent)
+                }
+            }
+            catch (ex: Exception) {
+                Timber.e("Failed to start service. Try to disable battery optimizations")
+                Timber.e(ex)
             }
         }
 
         fun startServiceEnhanced(context: Context) {
-            Intent(context, RootAudioProcessorService::class.java)
-                .apply { this.action = ACTION_START_ENHANCED_PROCESSING }
-                .run { startService(context, this) }
+            try {
+                Intent(context, RootAudioProcessorService::class.java)
+                    .apply { this.action = ACTION_START_ENHANCED_PROCESSING }
+                    .run { startService(context, this) }
+            }
+            catch (ex: Exception) {
+                Timber.e("Failed to start service. Try to disable battery optimizations")
+                Timber.e(ex)
+            }
         }
 
         fun stopService(context: Context) {
-            Intent(context, RootAudioProcessorService::class.java)
-                .apply { this.action = ACTION_STOP }
-                .run { startService(context, this) }
+            try {
+                Intent(context, RootAudioProcessorService::class.java)
+                    .apply { this.action = ACTION_STOP }
+                    .run { startService(context, this) }
+            }
+            catch(ex: Exception) {
+                Timber.e(ex)
+            }
         }
 
         fun updateLegacyMode(context: Context, enable: Boolean) {

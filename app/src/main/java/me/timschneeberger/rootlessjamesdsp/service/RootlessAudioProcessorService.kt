@@ -16,8 +16,8 @@ import androidx.lifecycle.asLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
-import me.timschneeberger.rootlessjamesdsp.utils.notifications.Notifications
 import me.timschneeberger.rootlessjamesdsp.R
+import me.timschneeberger.rootlessjamesdsp.flavor.CrashlyticsImpl
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspLocalEngine
 import me.timschneeberger.rootlessjamesdsp.interop.ProcessorMessageHandler
 import me.timschneeberger.rootlessjamesdsp.model.IEffectSession
@@ -36,14 +36,15 @@ import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SAMPLE_RATE_UP
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_HARD_REBOOT_CORE
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_RELOAD_LIVEPROG
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_SOFT_REBOOT_CORE
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getParcelableAs
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.unregisterLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasRecordPermission
-import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
+import me.timschneeberger.rootlessjamesdsp.utils.notifications.Notifications
 import me.timschneeberger.rootlessjamesdsp.utils.notifications.ServiceNotificationHelper
-import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getParcelableAs
+import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import org.koin.android.ext.android.inject
 import timber.log.Timber
@@ -424,12 +425,14 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
                 "HAL buffer size (bytes): ${determineBufferSize()}")
 
         // Create recorder and track
-        val track = buildAudioTrack(encodingFormat, sampleRate, bufferSizeBytes)
-        var recorder = try {
-            buildAudioRecord(encodingFormat, sampleRate, bufferSizeBytes)
+        var recorder: AudioRecord
+        val track: AudioTrack
+        try {
+            recorder = buildAudioRecord(encodingFormat, sampleRate, bufferSizeBytes)
+            track = buildAudioTrack(encodingFormat, sampleRate, bufferSizeBytes)
         }
         catch(ex: Exception) {
-            Timber.e("Failed to create initial audio record")
+            Timber.e("Failed to create initial audio record/track")
             Timber.e(ex)
             stopSelf()
             return
@@ -557,9 +560,9 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
 
     private fun buildAudioTrack(encoding: Int, sampleRate: Int, bufferSizeBytes: Int): AudioTrack {
         val attributesBuilder = AudioAttributes.Builder()
-                .setUsage(AudioAttributes.USAGE_UNKNOWN)
-                .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
-                .setFlags(0)
+            .setUsage(AudioAttributes.USAGE_UNKNOWN)
+            .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
+            .setFlags(0)
 
         sdkAbove(Build.VERSION_CODES.Q) {
             attributesBuilder.setAllowedCapturePolicy(AudioAttributes.ALLOW_CAPTURE_BY_NONE)
@@ -659,11 +662,21 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         const val EXTRA_APP_COMPAT_INTERNAL_CALL = "appCompatInternalCall"
 
         fun start(context: Context, data: Intent?) {
-            context.startForegroundService(ServiceNotificationHelper.createStartIntent(context, data))
+            try {
+                context.startForegroundService(ServiceNotificationHelper.createStartIntent(context, data))
+            }
+            catch(ex: Exception) {
+                CrashlyticsImpl.recordException(ex)
+            }
         }
 
         fun stop(context: Context) {
-            context.startForegroundService(ServiceNotificationHelper.createStopIntent(context))
+            try {
+                context.startForegroundService(ServiceNotificationHelper.createStopIntent(context))
+            }
+            catch(ex: Exception) {
+                CrashlyticsImpl.recordException(ex)
+            }
         }
     }
 }

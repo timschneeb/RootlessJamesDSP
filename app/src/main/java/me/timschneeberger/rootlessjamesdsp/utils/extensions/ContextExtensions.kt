@@ -38,6 +38,7 @@ import me.timschneeberger.rootlessjamesdsp.databinding.DialogTextinputBinding
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getApplicationInfoCompat
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getPackageInfoCompat
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
 import timber.log.Timber
 import java.io.File
 import kotlin.math.roundToInt
@@ -145,15 +146,20 @@ object ContextExtensions {
     @SuppressLint("BatteryLife")
     fun Context.requestIgnoreBatteryOptimizations() {
         if (!BuildConfig.ROOTLESS && !getSystemService<PowerManager>()!!.isIgnoringBatteryOptimizations(packageName)) {
-            startActivity(Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS,
-                Uri.parse("package:$packageName")))
+            try {
+                startActivity(Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS,
+                    Uri.parse("package:$packageName")))
+            }
+            catch(ex: ActivityNotFoundException) {
+                toast(getString(R.string.no_activity_found))
+            }
         }
     }
 
     // Very simple & naive app cloner checks; please don't use multiple instances at once
     private val PKGNAME_REFS = setOf("bWUudGltc2NobmVlYmVyZ2VyLnJvb3RsZXNzamFtZXNkc3A=",
-                                     "bWUudGltc2NobmVlYmVyZ2VyLnJvb3RsZXNzamFtZXNkc3AuZGVidWc=",
-                                     "amFtZXMuZHNw", "amFtZXMuZHNwLmRlYnVn")
+        "bWUudGltc2NobmVlYmVyZ2VyLnJvb3RsZXNzamFtZXNkc3AuZGVidWc=",
+        "amFtZXMuZHNw", "amFtZXMuZHNwLmRlYnVn")
     private val APPNAME_REFS = setOf("Um9vdGxlc3NKYW1lc0RTUA==", "SmFtZXNEU1A=")
     fun Context.check(): Int {
         val appName = getAppName()
@@ -238,7 +244,7 @@ object ContextExtensions {
         suffix: String?,
         callback: ((String?) -> Unit)
     ) {
-       showInputAlert(layoutInflater, getString(title), getString(hint), value, isNumberInput, suffix, callback)
+        showInputAlert(layoutInflater, getString(title), getString(hint), value, isNumberInput, suffix, callback)
     }
 
     fun Context.showInputAlert(
