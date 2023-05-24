@@ -92,7 +92,7 @@ NOTE: Tested with Spotify version `8.7.48.1062` and `8.7.68.568`
 ## Differences to other rootless FX apps
 
 Regular rootless audio effect apps on the Play Store all essentially work the same way:
-Android has several default audio effects built into its operating system that apps can use without any special permissions. Here's a list of those: https://developer.android.com/reference/android/media/audiofx/AudioEffect.
+Android has several default audio effects built into its operating system that these apps can use without any special permissions. Here's a list of those: https://developer.android.com/reference/android/media/audiofx/AudioEffect.
 
 Being restricted to these default built-in audio effects is problematic if you want to implement any advanced custom effects such as Viper or JDSP, because Android does not allow apps to access & modify the audio stream directly.
 
