@@ -89,6 +89,20 @@ NOTE: Tested with Spotify version `8.7.48.1062` and `8.7.68.568`
 4. Start the patching process and install the patched APK once it is done.
 5. You can now use Spotify with RootlessJamesDSP.
 
+## Differences to other rootless FX apps
+
+Regular rootless audio effect apps on the Play Store all essentially work the same way:
+Android has several default audio effects built into its operating system that apps can use without any special permissions. Here's a list of those: https://developer.android.com/reference/android/media/audiofx/AudioEffect.
+
+Being restricted to these default built-in audio effects is problematic if you want to implement any advanced custom effects such as Viper or JDSP, because Android does not allow apps to access & modify the audio stream directly.
+
+To work around this problem, RootlessJamesDSP uses a bunch of tricks to gain full access to the audio stream of other apps. This is done via Android's internal audio capture.
+This allows RootlessJamesDSP to apply its custom audio effects directly without relying on Android's built-in effects.
+
+Unfortunately, these tricks are not 100% reliable and introduce some limitations.
+Apps such as Spotify block internal audio capture (they don't want people to record their songs), and because of that, RootlessJamesDSP cannot directly access the audio stream of that app.
+This is the reason why a special patch is required to disable this DRM restriction inside Spotify's app. Patches for other apps with these DRM restrictions do not exist, but are possible to do.
+
 ## Translations
 
 This application can be translated via Crowdin: https://crowdin.com/project/rootlessjamesdsp
