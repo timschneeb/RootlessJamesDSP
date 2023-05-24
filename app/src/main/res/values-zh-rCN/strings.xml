@@ -58,6 +58,7 @@
     <string name="no_activity_found">没有找到处理此 URL 的活动</string>
     <string name="permission_allowed">允许</string>
     <string name="permission_not_allowed">不允许</string>
+    <string name="error_projection_api_missing">您的设备制造商已禁用内部录音 API。 没有它们，此应用程序无法工作。</string>
     <!-- Main screen -->
     <string name="power_button_alt">切换音频处理</string>
     <string name="compressor_enable">自动动态范围压缩器</string>
