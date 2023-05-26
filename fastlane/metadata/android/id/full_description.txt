@@ -4,7 +4,7 @@ Aplikasi ini punya beberapa keterbatasan yang mungkin melanggar beberapa kesepak
 
 JamesDSP mendukung audio effect berikut:
 * Kontrol limiter
-* Output gain control
+* Kontrol gain output
 * Auto dynamic range compressor
 * Dynamic bass boost
 * Interpolating FIR equalizer
