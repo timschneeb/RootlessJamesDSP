@@ -145,9 +145,37 @@ Törlés</string>
     <string name="crossfeed_preset_bs2b_weak">BS2B Gyenge</string>
     <string name="crossfeed_preset_bs2b_strong">BS2B Erős</string>
     <string name="crossfeed_preset_out_of_head">Fejen kívüli</string>
+    <string name="crossfeed_preset_surround1">Surround 1</string>
+    <string name="crossfeed_preset_surround2">Surround 2</string>
+    <string name="crossfeed_preset_realistic_surround">Joe0Blogg Realisztikus térhangzása</string>
     <!-- Onboarding -->
+    <string name="onboarding_back">Vissza</string>
+    <string name="onboarding_next">Tovább</string>
+    <string name="onboarding_finish">Kész</string>
+    <string name="onboarding_greeting">Üdv a RootlessJamesDSP-ben!</string>
+    <string name="onboarding_caption">Ez az asszisztens segít beállítani az appot.</string>
+    <string name="onboarding_warning">Jelenleg ez az alkalmazás befejezettlen és instabil. Kérlek vedd figyelembe hogy néhány eszközön nem feltétlenül működik az elvártak alapján, mivel olyan Android API-kat használ, amiket nem harmadik felek általi használatra terveztek.</string>
+    <string name="onboarding_fix_permissions_title">Felhasználói beavatkozás szükséges</string>
+    <string name="onboarding_fix_permissions">Egy vagy több engedély visszavonásra került általad vagy a rendszer által.\nAhhoz, hogy biztosítsd az alkalmazás működését, újra meg kell adnod ezeket az engedélyeket.\n\nKérlek menj végig újra a beállítási varázslón, hogy újra megadd ezeket az engedélyeket.</string>
+    <string name="onboarding_limitations_title">Korlátozások</string>
+    <string name="onboarding_limitations_unstable">Fontos! Kérlek olvasd el figyelmesen a megjegyzéseket mielőtt folytatod.</string>
+    <string name="onboarding_methods_title">Válaszd ki a beállítás módját</string>
+    <string name="onboarding_methods_root_title">Root</string>
+    <string name="onboarding_methods_shizuku_title">Shizuku</string>
+    <string name="onboarding_methods_unsupported_append">inkompatibilis</string>
+    <string name="onboarding_methods_adb_title">ADB</string>
     <!-- Rootless flavor -->
+    <string name="onboarding_methods_rootless_shizuku">\u25CF Ajánlott\n\u25CF Nincs szükség külső számítógépre\n\u25CF Csak Android 11 felett</string>
+    <string name="onboarding_methods_rootless_adb">\u25CF Haladó felhasználóknak\n\u25CF Számítógép és USB kábel szükséges\n\u25CF Android 10 felett támogatott</string>
     <!-- Root flavor -->
+    <string name="onboarding_methods_root_root">\u25CF Ajánlott\n\u25CF Nincs szükség külső számítógépre\n\u25CF Minden Android verzió</string>
+    <string name="onboarding_methods_root_shizuku">\u25CF Ajánlott, ha nincs Root beállítva\n\u25CF Nincs szükség külső számítógépre\n\u25CF Csak Android 11 felett</string>
+    <string name="onboarding_methods_root_adb">\u25CF Haladó felhasználóknak\n\u25CF Számítógép és USB kábel szükséges\n\u25CF Minden Android verzió</string>
+    <string name="onboarding_root_shell_fail_title">Nincs Root hozzáférés</string>
+    <string name="onboarding_root_shell_fail">Nincs Root hozzáférés. Kérlek válassz másik beállítási módot.</string>
+    <string name="onboarding_root_shell_fail_unknown">Az engedély biztosítása Root-tal sikertelen. Kérlek használj másik beállítási módot.</string>
+    <string name="onboarding_adb_shizuku_title">Beállítás Shizukuval</string>
+    <string name="onboarding_adb_adb_title">Beállítás ADB-vel</string>
     <string name="onboarding_adb_shizuku_grant_fail_server_dead_title">A Shizuku szerver nem fut</string>
     <string name="onboarding_adb_shizuku_grant_fail_version">Az alkalmazáshoz a Shizuku 11-es vagy újabb verziója szükséges. Kérjük, frissítse a Shizukut a legújabb verzióra.</string>
     <string name="onboarding_adb_shizuku_grant_fail_version_title">Nem támogatott Shizuku verzió</string>
