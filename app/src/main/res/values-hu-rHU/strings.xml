@@ -59,6 +59,7 @@ Törlés</string>
     <string name="no_activity_found">Nem található cselekvés a tett kezeléséhez</string>
     <string name="permission_allowed">Engedélyezve</string>
     <string name="permission_not_allowed">Nincs engedélyezve</string>
+    <string name="error_projection_api_missing">Az eszközöd gyártója letiltotta a belső audiót felvevő API-kat. Ez az alkalmazás nem működik ezek nélkül.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Hang feldolgozás bekapcsolása</string>
     <string name="compressor_enable">Automatikus dinamikus tömörítő tartomány</string>
@@ -136,6 +137,14 @@ Törlés</string>
     <string name="stereowide_level">Szélesség</string>
     <string name="stereowide_level_none">Egyik sem</string>
     <string name="stereowide_level_very_wide">Nagyon széles</string>
+    <string name="stereowide_level_wide">Széles</string>
+    <string name="stereowide_level_very_narrow">Nagyon szűk</string>
+    <string name="stereowide_level_narrow">Szűk</string>
+    <string name="crossfeed_enable">Crossfeed</string>
+    <string name="crossfeed_preset">Séma</string>
+    <string name="crossfeed_preset_bs2b_weak">BS2B Gyenge</string>
+    <string name="crossfeed_preset_bs2b_strong">BS2B Erős</string>
+    <string name="crossfeed_preset_out_of_head">Fejen kívüli</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
