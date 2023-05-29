@@ -58,6 +58,7 @@
     <string name="no_activity_found">アクションを処理するアクティビティが見つかりませんでした</string>
     <string name="permission_allowed">許可されています</string>
     <string name="permission_not_allowed">許可されていません</string>
+    <string name="error_projection_api_missing">お使いのデバイスの製造元は、内部音声録音APIを無効にしています。このアプリケーションは、それらがないと動作出来ません。</string>
     <!-- Main screen -->
     <string name="power_button_alt">音声処理の切り替え</string>
     <string name="compressor_enable">自動ダイナミック・レンジ・コンプレッサー</string>
@@ -92,6 +93,8 @@
     <string name="reverb_room_type">部屋のタイプ</string>
     <string name="reverb_preset_default">デフォルト</string>
     <string name="convolver_convolution_mode_original">オリジナル</string>
+    <string name="liveprog_not_found">スクリプトが見つかりませんでした</string>
+    <string name="liveprog_no_script_selected">スクリプトが選択されていません</string>
     <string name="liveprog_edit_header">選択したスクリプトを編集します</string>
     <string name="stereowide_level_none">なし</string>
     <string name="crossfeed_preset">プリセット</string>
