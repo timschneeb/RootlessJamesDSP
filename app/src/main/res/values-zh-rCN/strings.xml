@@ -90,7 +90,7 @@
     <string name="eq_preset_rb">R&amp;B</string>
     <string name="eq_preset_rock">摇滚</string>
     <string name="eq_preset_vocal">人声强化</string>
-    <string name="geq_enable">任意幅频响均衡器</string>
+    <string name="geq_enable">任意响应均衡器</string>
     <string name="geq_nodes">幅度响应</string>
     <string name="bass_enable">动态低音提升</string>
     <string name="bass_max_gain">最大增益</string>
