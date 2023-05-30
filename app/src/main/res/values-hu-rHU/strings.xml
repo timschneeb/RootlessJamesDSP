@@ -176,6 +176,14 @@ Törlés</string>
     <string name="onboarding_root_shell_fail_unknown">Az engedély biztosítása Root-tal sikertelen. Kérlek használj másik beállítási módot.</string>
     <string name="onboarding_adb_shizuku_title">Beállítás Shizukuval</string>
     <string name="onboarding_adb_adb_title">Beállítás ADB-vel</string>
+    <string name="onboarding_adb_shizuku_install_button">Shizuku letöltése</string>
+    <string name="onboarding_adb_shizuku_install_button_done">Már telepítve</string>
+    <string name="onboarding_adb_shizuku_open_button">Shizuku futtatása</string>
+    <string name="onboarding_adb_shizuku_open_button_done">Már aktív</string>
+    <string name="onboarding_adb_shizuku_grant_button">Hozzáférés engedélyezése</string>
+    <string name="onboarding_adb_shizuku_not_installed">A shizuku még nincs letöltve. Kérlek először töltsd le a Google Playről.</string>
+    <string name="onboarding_adb_shizuku_not_installed_title">A Shizuku még nincs letöltve</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead">Kérlek indítsd el a Shizuku szervert mielőtt hozzáférést kérsz. Menj vissza az útmutató 2. lépésére.</string>
     <string name="onboarding_adb_shizuku_grant_fail_server_dead_title">A Shizuku szerver nem fut</string>
     <string name="onboarding_adb_shizuku_grant_fail_version">Az alkalmazáshoz a Shizuku 11-es vagy újabb verziója szükséges. Kérjük, frissítse a Shizukut a legújabb verzióra.</string>
     <string name="onboarding_adb_shizuku_grant_fail_version_title">Nem támogatott Shizuku verzió</string>
