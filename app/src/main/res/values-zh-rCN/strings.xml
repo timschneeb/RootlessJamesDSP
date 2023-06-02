@@ -105,8 +105,8 @@
     <string name="reverb_preset_small_room2">小房间 2</string>
     <string name="reverb_preset_medium_room1">中等房间</string>
     <string name="reverb_preset_large_room1">大型房间</string>
-    <string name="reverb_preset_plate_high">Plate high</string>
-    <string name="reverb_preset_plate_low">Plate low</string>
+    <string name="reverb_preset_plate_high">高屋顶</string>
+    <string name="reverb_preset_plate_low">低屋顶</string>
     <string name="reverb_preset_long_reverb1">长混响 1</string>
     <string name="reverb_preset_long_reverb2">长混响 2</string>
     <string name="convolver_enable">卷积器</string>
@@ -116,7 +116,7 @@
     <string name="convolver_convolution_mode_original">原始</string>
     <string name="convolver_convolution_mode_shrink">收缩</string>
     <string name="convolver_convolution_mode_minimum_phase_shrink">最小相变和收缩</string>
-    <string name="ddc_enable">ViPER-DDC</string>
+    <string name="ddc_enable">ViPER-DDC 音效</string>
     <string name="ddc_file">DDC 文件</string>
     <string name="liveprog_enable">实时编程 DSP</string>
     <string name="liveprog_file">Liveprog 脚本</string>
@@ -141,8 +141,8 @@
     <string name="stereowide_level_narrow">较窄</string>
     <string name="crossfeed_enable">通道交叉</string>
     <string name="crossfeed_preset">预设</string>
-    <string name="crossfeed_preset_bs2b_weak">BS2B Weak</string>
-    <string name="crossfeed_preset_bs2b_strong">BS2B Strong</string>
+    <string name="crossfeed_preset_bs2b_weak">弱BS2B</string>
+    <string name="crossfeed_preset_bs2b_strong">强BS2B</string>
     <string name="crossfeed_preset_out_of_head">Out of head</string>
     <string name="crossfeed_preset_surround1">环绕声 1</string>
     <string name="crossfeed_preset_surround2">环绕声 2</string>
@@ -154,9 +154,9 @@
     <string name="onboarding_finish">完成</string>
     <string name="onboarding_greeting">欢迎使用 RootlessJamesDSP！</string>
     <string name="onboarding_caption">这个向导将帮助您设置此应用。</string>
-    <string name="onboarding_warning">目前这个应用尚未完成，也不稳定，它可能无法在某些设备上运行，因为它使用了 Android API，无法被第三方使用。</string>
+    <string name="onboarding_warning">目前这个应用仍在开发阶段，十分不稳定。它可能无法在某些设备上运行，因为本应用使用的一些 Android API 在某些魔改系统上不可用。</string>
     <string name="onboarding_fix_permissions_title">需要手动操作</string>
-    <string name="onboarding_fix_permissions">您或系统取消了一个或多个权限。\n为了确保此应用的行为正确，您需要再次授予这些权限。\n\n请重做设置向导以重新授予这些权限。</string>
+    <string name="onboarding_fix_permissions">您或系统取消了一个或多个权限。\n为了确保此应用的行为正确，您需要再次授予这些权限。\n\n请重新运行设置向导以授予这些权限。</string>
     <string name="onboarding_limitations_title">局限性</string>
     <string name="onboarding_limitations_unstable">重要提示：请在继续之前仔细阅读相关说明。</string>
     <string name="onboarding_methods_title">选择设置方式</string>
@@ -224,17 +224,17 @@
     <string name="limit_session_control_conflict">使用 Android 内置动态处理效果的应用会干扰此应用。</string>
     <string name="limit_unsupported_apps_title">不支持的媒体应用</string>
     <string name="limit_unsupported_apps">无法处理阻止内部音频捕获的应用 (例如 Spotify、Google Chrome)。</string>
-    <string name="limit_hw_accel_title">HW 加速音频播放问题</string>
+    <string name="limit_hw_accel_title">硬件加速音频播放问题</string>
     <string name="limit_hw_accel">硬件加速音频回放 (快速音轨) 有时会导致重复音频或在某些情况下杀死 JamesDSP。\n请将受影响的音乐播放器添加到被排除的应用列表中，以防止 JamesDSP 重新连接。</string>
     <string name="limit_detect_delay_title">音频会话检测延迟</string>
     <string name="limit_detect_delay"><![CDATA[在一个应用打开新的媒体会话以播放音频，您可能会在很短的时间内听到重复或中断的音频 \(约 < 250 毫秒\)]]></string>
     <string name="limit_latency_title">音频延迟补偿</string>
-    <string name="limit_latency">此应用可能会添加一些延迟到音频流，您可以将电影、视频应用添加到排除列表中，以通过不处理它们来阻止 AV-desync。</string>
+    <string name="limit_latency">此应用可能会添加一些延迟到音频流，您可以将电影、视频应用添加到排除列表中，以通过不处理它们来防止音视频不同步。</string>
     <string name="limit_tested_devices_title">已测试的设备</string>
     <string name="limit_tested_devices">您的设备制造商对 Android 的音频系统所作的更改会非常容易地破坏这个应用的相关功能，因为它使用了几个无身份验证的 API。\n以下是经过测试的设备：\n• 三星 S20+ \(Android 12\)\nAOSP 模拟器 \(Android 10-13\)\n• Google Pixel 6 Pro \(Android 13\)</string>
     <!-- Settings -->
     <string name="title_activity_settings">设置</string>
-    <string name="session_exclude_restricted">排除不支持的效果</string>
+    <string name="session_exclude_restricted">排除不支持的程序</string>
     <string name="session_exclude_restricted_off">阻止音频捕获的应用保持静音 (默认 Android 行为)</string>
     <string name="session_exclude_restricted_on">阻止音频捕获的应用被排除并保持未处理 (推荐)</string>
     <string name="session_detection_header">音频会话检测延迟</string>
@@ -369,13 +369,13 @@
     <!-- Theme names -->
     <string name="theme_default">默认</string>
     <string name="theme_monet">动态</string>
-    <string name="theme_greenapple">Green Apple</string>
-    <string name="theme_strawberrydaiquiri">Strawberry Daiquiri</string>
-    <string name="theme_honey">Honey</string>
-    <string name="theme_tealturquoise">Teal &amp; Turquoise</string>
-    <string name="theme_yinyang">Yin &amp; Yang</string>
-    <string name="theme_yotsuba">Yotsuba</string>
-    <string name="theme_tidalwave">Tidal Wave</string>
+    <string name="theme_greenapple">青苹果绿</string>
+    <string name="theme_strawberrydaiquiri">草莓德贵丽红</string>
+    <string name="theme_honey">蜂蜜黄</string>
+    <string name="theme_tealturquoise">青绿色</string>
+    <string name="theme_yinyang">阴阳&amp; 黑白</string>
+    <string name="theme_yotsuba">四葉橙</string>
+    <string name="theme_tidalwave">潮汐蓝</string>
     <!-- File library preference -->
     <string name="action_import">导入</string>
     <string name="filelibrary_hint_tap_and_hold">长按条目以显示更多选项</string>
@@ -411,7 +411,7 @@
     <string name="filelibrary_no_presets">没有已保存的预设，点击“添加”以创建一个新预设。</string>
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">选择的 VDC 文件已损坏，请重新选择其它文件。</string>
-    <string name="message_irs_corrupt">选定的冲激响应已损坏，请另选一个。</string>
+    <string name="message_irs_corrupt">选定的冲激响应文件已损坏，请另选一个。</string>
     <string name="message_convolver_advimp_invalid">卷积器：高级波形编辑包含无效值。</string>
     <string name="message_liveprog_compile_fail">Liveprog 执行失败，选定的脚本已损坏，请使用脚本编辑器进行调试。</string>
     <!-- GraphicEQ editor -->
