@@ -12,8 +12,8 @@
     <string name="notification_channel_permission_prompt">权限请求</string>
     <string name="notification_channel_app_compat_alert">不兼容的应用警告</string>
     <string name="notification_group_backup">备份与恢复</string>
-    <string name="notification_channel_backup_progress">进行中</string>
-    <string name="notification_channel_backup_complete">完成</string>
+    <string name="notification_channel_backup_progress">正在备份</string>
+    <string name="notification_channel_backup_complete">备份完成</string>
     <!-- Service notifications -->
     <string name="action_retry">重试</string>
     <string name="action_fix">修复问题</string>
@@ -87,7 +87,7 @@
     <string name="eq_preset_metal">金属</string>
     <string name="eq_preset_movie">电影</string>
     <string name="eq_preset_pop">流行</string>
-    <string name="eq_preset_rb">R&amp;B</string>
+    <string name="eq_preset_rb">节奏布鲁斯</string>
     <string name="eq_preset_rock">摇滚</string>
     <string name="eq_preset_vocal">人声强化</string>
     <string name="geq_enable">任意响应均衡器</string>
@@ -95,7 +95,7 @@
     <string name="bass_enable">动态低音提升</string>
     <string name="bass_max_gain">最大增益</string>
     <string name="reverb_enable">虚拟场效果</string>
-    <string name="reverb_room_type">场类型</string>
+    <string name="reverb_room_type">空间类型</string>
     <string name="reverb_preset_default">默认</string>
     <string name="reverb_preset_small_hall1">小型大厅 1</string>
     <string name="reverb_preset_small_hall2">小型大厅 2</string>
