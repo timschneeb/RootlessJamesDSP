@@ -6,6 +6,7 @@
     <string name="action_revert">Restablecer predeterminados</string>
     <string name="action_blocked_apps">Apps excluidas</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">Servicio</string>
     <string name="notification_channel_service">Notificación del servicio</string>
     <string name="notification_channel_session_loss_alert">Alerta de pérdida de sesiones</string>
     <string name="notification_channel_permission_prompt">Solicitud de solicitud de permiso</string>
