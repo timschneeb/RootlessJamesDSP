@@ -301,17 +301,45 @@
     <string name="filelibrary_file_exists">El archivo ya existe</string>
     <string name="filelibrary_resample_complete">Remuestreado a %1$dHz</string>
     <string name="filelibrary_resample_failed">Falló el remuestreo. ¿Archivo de entrada dañado?</string>
+    <string name="filelibrary_preset_overwritten">Preajuste \'%1$s\' sobreescrito</string>
+    <string name="filelibrary_preset_created">Preajuste \'%1$s\' creado</string>
+    <string name="filelibrary_preset_save_failed">Error al guardar el preajuste</string>
+    <string name="filelibrary_renamed">Renombrado a \'%1$s\'</string>
+    <string name="filelibrary_deleted">%1$s ha sido eliminado</string>
+    <string name="filelibrary_preset_loaded">Preajuste \'%1$s\' cargado</string>
+    <string name="filelibrary_preset_load_failed">El archivo \'%1$s\' no es compatible con esta aplicación</string>
+    <string name="filelibrary_no_presets">No hay preajustes guardados. Pulse \'Añadir\' para crear uno nuevo.</string>
     <!-- JamesDSP engine messages -->
+    <string name="message_vdc_corrupt">El archivo VDC seleccionado está dañado. Por favor, elija otro.</string>
+    <string name="message_irs_corrupt">La respuesta de impulso seleccionada está dañada. Por favor, elija otra.</string>
+    <string name="message_convolver_advimp_invalid">Convolver: La edición avanzada de waveform contiene valores no válidos.</string>
+    <string name="message_liveprog_compile_fail">La ejecución de Liveprog ha fallado. El script seleccionado está dañado. Por favor, utilice el editor de scripts para la depuración.</string>
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">Respuesta de magnitud</string>
+    <string name="geq_edit_as_string">Editar como string</string>
     <string name="geq_autoeq">Perfiles de AutoEQ</string>
     <string name="gep_add_node">Agregar</string>
     <string name="geq_preview">Vista previa</string>
+    <string name="geq_preview_collapsed">Vista previa (toque para ampliar)</string>
     <string name="geq_edit_hint">Nodos GraphicEQ</string>
     <string name="geq_reset">Restablecer</string>
     <string name="geq_reset_confirm_title">¿Está seguro?</string>
     <string name="geq_reset_confirm">¿Desea restablecer la configuración de GraphicEQ?</string>
     <string name="geq_node_editor">Editor de nodos</string>
+    <string name="geq_node_list">Lista de nodos</string>
+    <string name="geq_no_nodes_defined">No hay nodos definidos</string>
+    <string name="geq_delete_node">Eliminar nodo</string>
+    <string name="geq_go_back_to_node_list">Volver a lista de nodos</string>
+    <string name="geq_next_node">Próximo nodo</string>
+    <string name="geq_previous_node">Nodo anterior</string>
+    <string name="geq_done_spaced">&#160;&#160;Hecho&#160;</string>
+    <string name="geq_done">Hecho</string>
+    <string name="geq_cancel_spaced">&#160;&#160;Descartar&#160;</string>
+    <string name="geq_cancel">Descartar</string>
+    <string name="geq_discard_changes_title">¿Descartar cambios y salir?</string>
+    <string name="geq_discard_changes">Los valores no son válidos o están vacíos. Los cambios no se pueden guardar.\n¿Desea descartar los cambios y salir?</string>
+    <string name="geq_frequeny_range">Valor entre 1Hz y 24000Hz</string>
+    <string name="geq_gain_range">Valor entre -32dB y 32dB</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
