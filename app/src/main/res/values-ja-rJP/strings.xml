@@ -93,6 +93,8 @@
     <string name="reverb_room_type">部屋のタイプ</string>
     <string name="reverb_preset_default">デフォルト</string>
     <string name="convolver_convolution_mode_original">オリジナル</string>
+    <string name="ddc_file">DDC ファイル</string>
+    <string name="liveprog_additional_params">スクリプトの追加パラメータ</string>
     <string name="liveprog_not_found">スクリプトが見つかりませんでした</string>
     <string name="liveprog_no_script_selected">スクリプトが選択されていません</string>
     <string name="liveprog_edit_header">選択したスクリプトを編集します</string>
