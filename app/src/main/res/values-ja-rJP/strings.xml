@@ -174,9 +174,16 @@
     <string name="appearance_title">テーマ</string>
     <string name="appearance_theme_mode">ダークモード</string>
     <string name="backup_settings">バックアップと復元</string>
+    <string name="backup_settings_summary">自動 &amp; 手動バックアップ</string>
     <string name="backup_frequency">バックアップ間隔</string>
     <string name="backup_location">バックアップの保存場所</string>
     <string name="backup_maximum">最大バックアップ数</string>
+    <string name="backup_never">しない</string>
+    <string name="backup_12hour">12時間毎</string>
+    <string name="backup_24hour">1日毎</string>
+    <string name="backup_48hour">2日毎</string>
+    <string name="backup_weekly">1週間毎</string>
+    <string name="backup_select_location">バックアップディレクトリを作成して選択してください…</string>
     <!-- Theme names -->
     <string name="theme_default">デフォルト</string>
     <!-- File library preference -->
@@ -207,7 +214,21 @@
     <!-- Translation notice box -->
     <!-- Self-updates (Root) -->
     <!-- Backups -->
+    <string name="backup_restore_progress">バックアップから復元中</string>
+    <string name="backup_restore_error">バックアップからの復元に失敗しました</string>
+    <string name="backup_restore_error_format">サポートされていないまたは破損したバックアップファイル</string>
+    <string name="backup_restore_error_version_too_new">新しいバージョンでバックアップが作成されているため、読み込むことができません。続行するにはアプリを更新してください。</string>
+    <string name="backup_restore_completed">復元が完了しました</string>
+    <string name="backup_create_completed">バックアップが作成されました</string>
+    <string name="backup_create_progress">バックアップを作成中</string>
+    <string name="backup_create_error">バックアップに失敗しました</string>
     <string name="backup_manual_backup">手動バックアップ</string>
+    <string name="backup_create">バックアップを作成</string>
+    <string name="backup_create_summary">後で現在の設定を復元するために使用できます</string>
+    <string name="backup_restore">バックアップから復元</string>
+    <string name="backup_restore_summary">バックアップファイルから設定を復元</string>
     <string name="backup_automatic_backup">自動バックアップ</string>
+    <string name="backup_restore_mode_title">復元モード</string>
+    <string name="backup_in_progress">すでにバックアップの処理中です</string>
     <!-- Multi-device profiles -->
 </resources>
