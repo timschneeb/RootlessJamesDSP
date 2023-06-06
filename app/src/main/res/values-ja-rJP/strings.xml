@@ -174,6 +174,9 @@
     <string name="appearance_title">テーマ</string>
     <string name="appearance_theme_mode">ダークモード</string>
     <string name="backup_settings">バックアップと復元</string>
+    <string name="backup_frequency">バックアップ間隔</string>
+    <string name="backup_location">バックアップの保存場所</string>
+    <string name="backup_maximum">最大バックアップ数</string>
     <!-- Theme names -->
     <string name="theme_default">デフォルト</string>
     <!-- File library preference -->
@@ -204,5 +207,7 @@
     <!-- Translation notice box -->
     <!-- Self-updates (Root) -->
     <!-- Backups -->
+    <string name="backup_manual_backup">手動バックアップ</string>
+    <string name="backup_automatic_backup">自動バックアップ</string>
     <!-- Multi-device profiles -->
 </resources>
