@@ -172,6 +172,7 @@
     <string name="autostart_prompt_at_boot_off">起動後に通知を表示しない</string>
     <string name="autostart_prompt_at_boot_on">起動後に通知を表示する</string>
     <string name="troubleshooting">トラブルシューティング</string>
+    <string name="about_settings">このアプリについて</string>
     <string name="credits_project_check_update">アップデートを確認しています...</string>
     <string name="appearance_section_header">外観</string>
     <string name="appearance_title">テーマ</string>
