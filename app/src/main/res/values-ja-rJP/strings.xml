@@ -61,7 +61,7 @@
     <string name="error_projection_api_missing">お使いのデバイスの製造元は、内部音声録音APIを無効にしています。このアプリケーションは、それらがないと動作出来ません。</string>
     <!-- Main screen -->
     <string name="power_button_alt">音声処理の切り替え</string>
-    <string name="compressor_enable">自動ダイナミック・レンジ・コンプレッサー</string>
+    <string name="compressor_enable">自動ダイナミックレンジコンプレッサー</string>
     <string name="compressor_adapt_speed">積極性</string>
     <string name="eq_enable">補間型FIRイコライザー</string>
     <string name="eq_filter_type">フィルタータイプ</string>
@@ -123,8 +123,15 @@
     <string name="crossfeed_preset_realistic_surround">Joe0Bloggs 現実的なサラウンド</string>
     <!-- Onboarding -->
     <string name="title_activity_onboarding">オンボーディング</string>
+    <string name="onboarding_back">戻る</string>
+    <string name="onboarding_next">次へ</string>
+    <string name="onboarding_greeting">RootlessJamesDSPへようこそ！</string>
+    <string name="onboarding_caption">アシスタントがセットアップをお手伝いします。</string>
+    <string name="onboarding_warning">現在、このアプリケーションは未完成で不安定です。 第三者が使用するために設計されていないAndroid APIを使用しているため、一部のデバイスでは期待通りに動作しない可能性があります。</string>
     <string name="onboarding_limitations_unstable">重要! 続行する前に注意事項をよくお読みください。</string>
     <string name="onboarding_methods_title">設定方法を選択</string>
+    <string name="onboarding_methods_shizuku_title">Shizuku</string>
+    <string name="onboarding_methods_adb_title">ADB</string>
     <!-- Rootless flavor -->
     <!-- Root flavor -->
     <string name="onboarding_adb_caption">このアプリは、お使いのデバイスのオーディオポリシーをダンプするための特別な許可を必要とします。以下の説明に従ってください。</string>
@@ -157,6 +164,8 @@
 (ADBを使用する場合 \'adb shell appops set me.timschneeberger.rootlessjamesdsp SYSTEM_ALERT_WINDOW allow\')</string>
     <string name="onboarding_perm_missing_title">動作に必要な権限が付与されていません</string>
     <string name="onboarding_finish_caption">問題が発生した場合は、トラブルシューティングを参照してください。</string>
+    <string name="limit_session_control_conflict_title">他のオーディオエフェクトアプリの無効化</string>
+    <string name="limit_latency_title">遅延の増加</string>
     <string name="limit_tested_devices_title">動作確認済みの端末</string>
     <!-- Settings -->
     <string name="title_activity_settings">設定</string>
