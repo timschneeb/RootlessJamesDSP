@@ -109,10 +109,10 @@
     <string name="reverb_preset_plate_low">低屋顶</string>
     <string name="reverb_preset_long_reverb1">长混响 1</string>
     <string name="reverb_preset_long_reverb2">长混响 2</string>
-    <string name="convolver_enable">卷积器</string>
-    <string name="convolver_impulse">冲激响应</string>
+    <string name="convolver_enable">脉冲反馈</string>
+    <string name="convolver_impulse">脉冲反馈样本</string>
     <string name="convolver_advanced_editing">高级波形编辑</string>
-    <string name="convolver_convolution_mode">冲激响应优化</string>
+    <string name="convolver_convolution_mode">脉冲反馈优化</string>
     <string name="convolver_convolution_mode_original">原始</string>
     <string name="convolver_convolution_mode_shrink">收缩</string>
     <string name="convolver_convolution_mode_minimum_phase_shrink">最小相变和收缩</string>
@@ -411,8 +411,8 @@
     <string name="filelibrary_no_presets">没有已保存的预设，点击“添加”以创建一个新预设。</string>
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">选择的 VDC 文件已损坏，请重新选择其它文件。</string>
-    <string name="message_irs_corrupt">选定的冲激响应文件已损坏，请另选一个。</string>
-    <string name="message_convolver_advimp_invalid">卷积器：高级波形编辑包含无效值。</string>
+    <string name="message_irs_corrupt">选择的脉冲响应文件已损坏，请重新选择其它文件。</string>
+    <string name="message_convolver_advimp_invalid">脉冲反馈：高级波形编辑包含无效值。</string>
     <string name="message_liveprog_compile_fail">Liveprog 执行失败，选定的脚本已损坏，请使用脚本编辑器进行调试。</string>
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">幅度响应</string>
@@ -520,7 +520,7 @@
     <string name="revert_confirmation">您想要将您当前的 JamesDSP 预设重置为默认值吗？</string>
     <!-- File intent handler -->
     <string name="intent_import_preset">导入预设</string>
-    <string name="intent_import_irs">导入冲激响应</string>
+    <string name="intent_import_irs">导入脉冲响应</string>
     <string name="intent_import_vdc">导入 VDC 文件</string>
     <string name="intent_import_liveprog">导入 Liveprog 脚本</string>
     <string name="intent_import_mode_add">仅导入</string>
@@ -560,7 +560,7 @@
     <string name="backup_restore">恢复备份</string>
     <string name="backup_restore_summary">从备份文件还原设置</string>
     <string name="backup_automatic_backup">自动备份</string>
-    <string name="backup_compat_info">备份仅包括冲激响应、脚本、VDC 文件、预设和当前音频配置，以最大程度地与其他版本兼容。</string>
+    <string name="backup_compat_info">备份仅包括脉冲响应、脚本、VDC 文件、预设和当前音频配置，以最大程度地兼容其它版本。</string>
     <string name="backup_restore_mode_title">还原模式</string>
     <string name="backup_restore_mode_clean">清理恢复 (删除所有现有文件)</string>
     <string name="backup_restore_mode_dirty">Dirty 恢复 (仅覆盖)</string>
