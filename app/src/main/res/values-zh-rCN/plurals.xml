@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <plurals name="nodes">
-        <item quantity="other">%d nodes</item>
+        <item quantity="other">%d 个节点</item>
     </plurals>
     <plurals name="custom_parameters">
         <item quantity="other">%d 个自定义参数</item>
