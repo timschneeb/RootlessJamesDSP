@@ -201,6 +201,7 @@
     <string name="appearance_theme_mode_default">システムのテーマに従う</string>
     <string name="appearance_theme_mode_light">オフ</string>
     <string name="appearance_theme_mode_dark">オン</string>
+    <string name="appearance_pure_black_mode">真っ黒モード</string>
     <string name="backup_settings">バックアップと復元</string>
     <string name="backup_settings_summary">自動 &amp; 手動バックアップ</string>
     <string name="backup_frequency">バックアップ間隔</string>
@@ -214,12 +215,13 @@
     <string name="backup_select_location">バックアップディレクトリを作成して選択してください…</string>
     <!-- Theme names -->
     <string name="theme_default">デフォルト</string>
-    <string name="theme_greenapple">青リンゴ</string>
+    <string name="theme_greenapple">青林檎</string>
     <string name="theme_strawberrydaiquiri">ストロベリーダイキリ</string>
-    <string name="theme_honey">ハチミツ</string>
-    <string name="theme_tealturquoise">ティール &amp; ターコイズ</string>
+    <string name="theme_honey">蜂蜜</string>
+    <string name="theme_tealturquoise">青緑 &amp; 土耳古石</string>
     <string name="theme_yinyang">陰陽</string>
-    <string name="theme_tidalwave">満潮</string>
+    <string name="theme_yotsuba">四葉</string>
+    <string name="theme_tidalwave">海の波</string>
     <!-- File library preference -->
     <string name="action_import">インポート</string>
     <string name="filelibrary_hint_tap_and_hold">タップするか長押しでオプションを表示できます</string>
@@ -231,6 +233,7 @@
     <string name="filelibrary_context_new_preset">新規</string>
     <string name="filelibrary_context_new_preset_long">新規プリセット</string>
     <string name="filelibrary_unsupported_format_title">対応していないファイル形式です</string>
+    <string name="filelibrary_corrupted_title">対応していないか破損したファイル</string>
     <string name="filelibrary_no_file_selected">ファイルが選択されていません</string>
     <string name="filelibrary_new_file_name">新しいファイル名</string>
     <string name="filelibrary_preset_created">プリセット \'%1$s\' が作成されました</string>
@@ -249,6 +252,7 @@
     <string name="blocklist_delete_title">選択したアプリをリストから削除しますか?</string>
     <string name="blocklist_delete">このアプリを除外リストから削除しますか？</string>
     <string name="blocklist_no_exclusions">除外するアプリはありません</string>
+    <string name="blocklist_unsupported_apps">対応していないアプリ</string>
     <!-- Compatibility issue activity -->
     <string name="app_compat_retry">やり直す</string>
     <!-- Root: Library load failure -->
@@ -263,7 +267,7 @@
     <!-- Backups -->
     <string name="backup_restore_progress">バックアップから復元中</string>
     <string name="backup_restore_error">バックアップからの復元に失敗しました</string>
-    <string name="backup_restore_error_format">サポートされていないまたは破損したバックアップファイル</string>
+    <string name="backup_restore_error_format">対応していないか破損したバックアップファイル</string>
     <string name="backup_restore_error_version_too_new">新しいバージョンでバックアップが作成されているため、読み込むことができません。続行するにはアプリを更新してください。</string>
     <string name="backup_restore_completed">復元が完了しました</string>
     <string name="backup_create_completed">バックアップが作成されました</string>
