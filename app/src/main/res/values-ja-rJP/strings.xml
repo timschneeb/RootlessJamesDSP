@@ -162,9 +162,11 @@
 (ADBを使用する場合 \'adb shell appops set me.timschneeberger.ootlessjamesdsp PROJECT_MEDIA allow\')</string>
     <string name="onboarding_adb_manual_step5c">(オプション) 前の手順に加えて、次のコマンドを実行することで自動起動を有効にすることもできます。\'appops set %s SYSTEM_ALERT_WINDOW allow\'
 (ADBを使用する場合 \'adb shell appops set me.timschneeberger.rootlessjamesdsp SYSTEM_ALERT_WINDOW allow\')</string>
+    <string name="onboarding_adb_manual_step1_button">開発者オプションを開く</string>
     <string name="onboarding_perm_missing_title">動作に必要な権限が付与されていません</string>
     <string name="onboarding_finish_caption">問題が発生した場合は、トラブルシューティングを参照してください。</string>
     <string name="limit_session_control_conflict_title">他のオーディオエフェクトアプリの無効化</string>
+    <string name="limit_session_control_conflict">Android内蔵のDynamic Processingエフェクトを使用したオーディオエフェクトアプリは、このアプリに干渉します。</string>
     <string name="limit_latency_title">遅延の増加</string>
     <string name="limit_tested_devices_title">動作確認済みの端末</string>
     <!-- Settings -->
