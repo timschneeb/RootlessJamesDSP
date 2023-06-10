@@ -125,9 +125,12 @@
     <string name="title_activity_onboarding">オンボーディング</string>
     <string name="onboarding_back">戻る</string>
     <string name="onboarding_next">次へ</string>
+    <string name="onboarding_finish">完了</string>
     <string name="onboarding_greeting">RootlessJamesDSPへようこそ！</string>
     <string name="onboarding_caption">アシスタントがセットアップをお手伝いします。</string>
     <string name="onboarding_warning">現在、このアプリケーションは未完成で不安定です。 第三者が使用するために設計されていないAndroid APIを使用しているため、一部のデバイスでは期待通りに動作しない可能性があります。</string>
+    <string name="onboarding_fix_permissions_title">ユーザーアクションが必要です</string>
+    <string name="onboarding_fix_permissions">あなたまたはシステムによって1つまたは複数の権限が取り消されました。\nアプリが正常に動作するようにするには、これらの権限を再度許可する必要があります。 \n\nこれらの権限を再度許可するためにセットアップウィザードをやり直してください。</string>
     <string name="onboarding_limitations_unstable">重要! 続行する前に注意事項をよくお読みください。</string>
     <string name="onboarding_methods_title">設定方法を選択</string>
     <string name="onboarding_methods_shizuku_title">Shizuku</string>
@@ -163,11 +166,17 @@
     <string name="onboarding_adb_manual_step5c">(オプション) 前の手順に加えて、次のコマンドを実行することで自動起動を有効にすることもできます。\'appops set %s SYSTEM_ALERT_WINDOW allow\'
 (ADBを使用する場合 \'adb shell appops set me.timschneeberger.rootlessjamesdsp SYSTEM_ALERT_WINDOW allow\')</string>
     <string name="onboarding_adb_manual_step1_button">開発者オプションを開く</string>
+    <string name="onboarding_perm_microphone_title">音声録音の権限</string>
+    <string name="onboarding_perm_cast_title">キャスト/録画の権限</string>
     <string name="onboarding_perm_missing_title">動作に必要な権限が付与されていません</string>
+    <string name="onboarding_finish_header">JamesDSPのセットアップが完了しました!</string>
     <string name="onboarding_finish_caption">問題が発生した場合は、トラブルシューティングを参照してください。</string>
     <string name="limit_session_control_conflict_title">他のオーディオエフェクトアプリの無効化</string>
     <string name="limit_session_control_conflict">Android内蔵のDynamic Processingエフェクトを使用したオーディオエフェクトアプリは、このアプリに干渉します。</string>
+    <string name="limit_unsupported_apps_title">対応していないメディアアプリ</string>
+    <string name="limit_unsupported_apps">内部音声録音をブロックしているアプリは処理されません。 (Spotify、Google Chromeなど)</string>
     <string name="limit_latency_title">遅延の増加</string>
+    <string name="limit_latency">このアプリは、音声の遅延を増加させる可能性があります。 除外リストに映画/ビデオアプリを追加し、処理させないようにすることで、映像と音声の同期ズレを防ぐことができます。</string>
     <string name="limit_tested_devices_title">動作確認済みの端末</string>
     <!-- Settings -->
     <string name="title_activity_settings">設定</string>
@@ -185,6 +194,7 @@
     <string name="troubleshooting">トラブルシューティング</string>
     <string name="about_settings">このアプリについて</string>
     <string name="credits_project_check_update">アップデートを確認しています...</string>
+    <string name="credits_version">アプリのバージョン</string>
     <string name="appearance_section_header">外観</string>
     <string name="appearance_title">テーマ</string>
     <string name="appearance_theme_mode">ダークモード</string>
@@ -204,13 +214,29 @@
     <string name="backup_select_location">バックアップディレクトリを作成して選択してください…</string>
     <!-- Theme names -->
     <string name="theme_default">デフォルト</string>
+    <string name="theme_greenapple">青リンゴ</string>
+    <string name="theme_strawberrydaiquiri">ストロベリーダイキリ</string>
+    <string name="theme_honey">ハチミツ</string>
+    <string name="theme_tealturquoise">ティール &amp; ターコイズ</string>
+    <string name="theme_yinyang">陰陽</string>
+    <string name="theme_tidalwave">満潮</string>
     <!-- File library preference -->
+    <string name="action_import">インポート</string>
     <string name="filelibrary_hint_tap_and_hold">タップするか長押しでオプションを表示できます</string>
     <string name="filelibrary_context_overwrite">上書き</string>
+    <string name="filelibrary_context_rename">名前の変更</string>
+    <string name="filelibrary_context_share">共有…</string>
+    <string name="filelibrary_context_duplicate">複製</string>
+    <string name="filelibrary_context_delete">削除</string>
+    <string name="filelibrary_context_new_preset">新規</string>
+    <string name="filelibrary_context_new_preset_long">新規プリセット</string>
     <string name="filelibrary_unsupported_format_title">対応していないファイル形式です</string>
     <string name="filelibrary_no_file_selected">ファイルが選択されていません</string>
+    <string name="filelibrary_new_file_name">新しいファイル名</string>
+    <string name="filelibrary_preset_created">プリセット \'%1$s\' が作成されました</string>
     <string name="filelibrary_renamed">｢%1$s｣に名前を変更しました</string>
     <string name="filelibrary_deleted">%1$sを削除しました</string>
+    <string name="filelibrary_no_presets">プリセットが保存されていません。新しいプリセットを作成するには「追加」をタップしてください。</string>
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">選択したVDCファイルは破損しています。他のファイルを選択してください。</string>
     <!-- GraphicEQ editor -->
@@ -220,6 +246,9 @@
     <!-- Liveprog script editor -->
     <!-- Blocklist -->
     <string name="title_activity_blocklist">除外するアプリ</string>
+    <string name="blocklist_delete_title">選択したアプリをリストから削除しますか?</string>
+    <string name="blocklist_delete">このアプリを除外リストから削除しますか？</string>
+    <string name="blocklist_no_exclusions">除外するアプリはありません</string>
     <!-- Compatibility issue activity -->
     <string name="app_compat_retry">やり直す</string>
     <!-- Root: Library load failure -->
