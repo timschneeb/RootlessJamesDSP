@@ -58,6 +58,7 @@
     <string name="no_activity_found">Nenhuma atividade encontrada para executar a ação</string>
     <string name="permission_allowed">Permitido</string>
     <string name="permission_not_allowed">Não permitido</string>
+    <string name="error_projection_api_missing">O fabricante do seu dispositivo desativou a API interna de gravação de áudio. Este aplicativo não pode funcionar sem eles.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Ativar/desativar processamento de áudio</string>
     <string name="compressor_enable">Compressor automático dinâmico de faixa</string>
@@ -277,6 +278,33 @@
     <string name="profiles_enable_summary_off">Perfis por dispositivo desabilitados</string>
     <string name="profiles_info_title">O que são perfis por dispositivo?</string>
     <string name="profiles_info">Toque para visualizar a documentação</string>
+    <string name="profiles_info_content">Enquanto esta configuração estiver ativada, cada dispositivo de áudio será atribuído a uma configuração de áudio separada. Este aplicativo irá alternar automaticamente entre os perfis do dispositivo quando o dispositivo de saída for alterado.\n\nCada novo dispositivo que está conectado começa com um perfil em branco. Você pode então configurá-lo ou copiar configurações a partir de outro perfil de dispositivo.\n\nNota: as predefinições só são aplicadas ao perfil ativo enquanto este recurso estiver ativado. Perfis inativos permanecerão intocados.</string>
+    <string name="profiles_manage_hint">Toque no botão \'Perfil de dispositivo Ativo\' na tela principal para copiar ou excluir perfis.</string>
+    <string name="app_behavior">Comportamento do aplicativo</string>
+    <string name="exclude_app_from_recents">Excluir aplicativo de recentes</string>
+    <string name="exclude_app_from_recents_off">Não excluir aplicativo da lista de tarefas recentes</string>
+    <string name="exclude_app_from_recents_on">Excluir aplicativo da lista de tarefas recentes</string>
+    <string name="autostart_prompt_at_boot">Solicitar permissão de captura após a inicialização</string>
+    <string name="autostart_prompt_at_boot_off">Não mostrar notificação após a inicialização</string>
+    <string name="autostart_prompt_at_boot_on">Mostrar notificação após a inicialização</string>
+    <string name="autostart_service_at_boot">Executar após a inicialização</string>
+    <string name="autostart_service_at_boot_off">Não iniciar serviço automaticamente após a inicialização</string>
+    <string name="autostart_service_at_boot_on">Iniciar o serviço automaticamente após a inicialização</string>
+    <string name="powersave">Economia de energia</string>
+    <string name="powersave_suspend">Suspender pipeline de áudio quando estiver ocioso</string>
+    <string name="powersave_suspend_off">Mantenha o processamento mesmo quando nenhum conteúdo estiver sendo reproduzido</string>
+    <string name="powersave_suspend_on">Pausar pipeline de áudio para economizar o consumo de energia</string>
+    <string name="troubleshooting">Resolução de problemas</string>
+    <string name="troubleshooting_summary">Opções avançadas, documentação, diagnósticos</string>
+    <string name="troubleshooting_docs">Documentação</string>
+    <string name="troubleshooting_actions">Opções diversas</string>
+    <string name="troubleshooting_dump">Exportar dump da sessão de áudio…</string>
+    <string name="troubleshooting_dump_summary">Coletar e salvar dados de resolução de problemas</string>
+    <string name="troubleshooting_dump_share_title">Compartilhar dump da sessão de áudio...</string>
+    <string name="troubleshooting_view_limitations">Limitações técnicas</string>
+    <string name="troubleshooting_view_limitations_summary">Mostrar detalhes sobre as limitações deste aplicativo</string>
+    <string name="troubleshooting_notification_access">Permitir acesso às notificações para melhor detecção de sessão</string>
+    <string name="troubleshooting_notification_access_summary">Permite uma detecção de sessão de áudio mais confiável</string>
     <string name="misc_permission_restart_setup">Reiniciar assistente de instalação</string>
     <string name="backup_settings">Backup e restauração</string>
     <!-- Theme names -->
