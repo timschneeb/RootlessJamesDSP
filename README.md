@@ -94,7 +94,7 @@ The `remove-screen-capture-restriction` patch is universal and can also be used 
 The patch cannot remove capture restrictions for apps that use the native AAudio C++ API for playback. 
 
 1. Download and install the [ReVanced manager APK](https://github.com/revanced/revanced-manager/releases) 
-2. Open ReVanced Manager, tap on 'Select an application' and press the 'Storage' action button on the bottom-right corner.
+2. Open ReVanced Manager, tap on 'Select an application' and press the 'Storage' action button in the bottom-right corner.
 3. Select your APK using the file picker.
 4. Enable the `remove-screen-capture-restriction` patch.
 5. Start the patching process and install the patched APK once it is done. Make sure to uninstall the unpatched app if it is installed, otherwise you will run into a signature conflict during installtion.
