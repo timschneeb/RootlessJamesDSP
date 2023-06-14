@@ -77,17 +77,29 @@ Tested on:
 * Google Pixel 6 Pro (Android 13)
 
 ## Spotify support patch
+> **Note** This patch is universal and may also work with other apps than Spotify.
+
 You can only use Spotify with this application if you patch the Spotify app.
 The setup is very easy:
 
 1. Download and install the [ReVanced manager APK](https://github.com/revanced/revanced-manager/releases) 
 2. Install the unpatched Spotify app
-
-NOTE: Tested with Spotify version `8.7.48.1062` and `8.7.68.568`
-
-3. Open ReVanced Manager, select Spotify and enable the `disable-capture-restriction` patch.
+3. Open ReVanced Manager, select Spotify and enable the `remove-screen-capture-restriction` patch.
 4. Start the patching process and install the patched APK once it is done.
 5. You can now use Spotify with RootlessJamesDSP.
+
+### Patching other unsupported apps
+
+The `remove-screen-capture-restriction` patch is universal and can also be used with custom APKs other than Spotify.
+The patch cannot remove capture restrictions for apps that use the native AAudio C++ API for playback. 
+
+1. Download and install the [ReVanced manager APK](https://github.com/revanced/revanced-manager/releases) 
+2. Open ReVanced Manager, tap on 'Select an application' and press the 'Storage' action button on the bottom-right corner.
+3. Select your APK using the file picker.
+4. Enable the `remove-screen-capture-restriction` patch.
+5. Start the patching process and install the patched APK once it is done. Make sure to uninstall the unpatched app if it is installed, otherwise you will run into a signature conflict during installtion.
+
+> **Warning** If the patched app crashes on startup (or refuses to work properly), it is likely that the app uses signature checks or other protections against tampering. In that case, additional patches that disable these anti-tampering checks would need to be created by hand.
 
 ## Differences to other rootless FX apps
 
