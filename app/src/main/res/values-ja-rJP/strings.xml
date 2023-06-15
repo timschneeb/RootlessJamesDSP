@@ -161,14 +161,24 @@
     <string name="onboarding_adb_manual_step1">Androidの開発者オプションに移動し、USBデバッグを有効にします。システム設定のビルド番号を数回タップして、これらの設定を解除する必要があります。</string>
     <string name="onboarding_adb_manual_step2">コンピュータのブラウザで https://app.webadb.com を開き (Chromeで最もよく機能します) USBを使用してデバイスをコンピュータに接続してください。</string>
     <string name="onboarding_adb_manual_step3">WebADBでUSBデバイスを追加して接続します。</string>
+    <string name="onboarding_adb_manual_step4">「インタラクティブシェル」に移動し、シェル内で次のコマンドを実行します。 \'pm grant %s android.permission.DUMP\'</string>
+    <string name="onboarding_adb_manual_step5">このアプリで「次へ」をタップして続行します。</string>
     <string name="onboarding_adb_manual_step5b">(オプション) このコマンドを実行することで、音声キャプチャの権限プロンプトをスキップできます。\'appops set %s PROJECT_MEDIA allow\' 
 (ADBを使用する場合 \'adb shell appops set me.timschneeberger.ootlessjamesdsp PROJECT_MEDIA allow\')</string>
     <string name="onboarding_adb_manual_step5c">(オプション) 前の手順に加えて、次のコマンドを実行することで自動起動を有効にすることもできます。\'appops set %s SYSTEM_ALERT_WINDOW allow\'
 (ADBを使用する場合 \'adb shell appops set me.timschneeberger.rootlessjamesdsp SYSTEM_ALERT_WINDOW allow\')</string>
     <string name="onboarding_adb_manual_step1_button">開発者オプションを開く</string>
+    <string name="onboarding_perm_title">その他の権限</string>
+    <string name="onboarding_perm_caption">このアプリケーションを使用するには、追加の権限が必要です。権限を確認し、「次へ」をタップして許可してください。</string>
     <string name="onboarding_perm_microphone_title">音声録音の権限</string>
+    <string name="onboarding_perm_microphone_caption">内部音声を録音するために必要です。ハードウェアマイクは有効になっていません。</string>
+    <string name="onboarding_perm_notification_title">通知のアクセス許可</string>
+    <string name="onboarding_perm_notification_caption">JamesDSPの処理状態に関する重要なステータスアップデートと情報を受信するために必要です。</string>
     <string name="onboarding_perm_cast_title">キャスト/録画の権限</string>
+    <string name="onboarding_perm_cast_caption">このアプリが起動するたびに、音声コンテンツを録音する権限を明示的に与える必要があります。</string>
     <string name="onboarding_perm_missing_title">動作に必要な権限が付与されていません</string>
+    <string name="onboarding_perm_missing">続行するには、要求されたすべての実行権限を付与してください。\n権限を繰り返し拒否した場合は、システム設定で手動で許可する必要があります。</string>
+    <string name="onboarding_perm_diag">診断レポートの送信を許可</string>
     <string name="onboarding_finish_header">JamesDSPのセットアップが完了しました!</string>
     <string name="onboarding_finish_caption">問題が発生した場合は、トラブルシューティングを参照してください。</string>
     <string name="limit_session_control_conflict_title">他のオーディオエフェクトアプリの無効化</string>
@@ -180,6 +190,7 @@
     <string name="limit_tested_devices_title">動作確認済みの端末</string>
     <!-- Settings -->
     <string name="title_activity_settings">設定</string>
+    <string name="session_continuous_polling">連続ポーリングを強制する</string>
     <string name="session_app_problem_ignore">アプリの互換性問題を無視する</string>
     <string name="session_loss_ignore">セッション制御の損失を無視する</string>
     <string name="session_loss_ignore_on">動作しない (音声が重複する可能性があります)</string>
