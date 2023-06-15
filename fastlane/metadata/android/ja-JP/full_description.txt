@@ -17,7 +17,7 @@ JamesDSPが対応するオーディオエフェクト:
 * Crossfeed
 * Virtual room effect (reverb)
 
-Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration, you can search and import frequency responses that aim to correct your headphone to a neutral sound. 使用するには、｢Arbitrary response equalizer > Magnitude response > AutoEQ profiles' ｣に移動してください。
+さらに、このアプリはAutoEQと直接統合しています。 AutoEQの統合を使用すると、ヘッドホンをニュートラルな音に補正することを目的とした周波数応答を検索してインポートすることができます。 使用するには、｢Arbitrary response equalizer > Magnitude response > AutoEQ profiles' ｣に移動してください。
 
 制限事項
 * 内部音声録音をブロックしているアプリは処理されません。 (Spotify、Google Chromeなど)
