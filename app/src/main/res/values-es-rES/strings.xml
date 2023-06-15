@@ -254,6 +254,13 @@
     <string name="audio_format_section_header">Formato de audio preferido</string>
     <string name="audio_format_processing_header">Opciones de procesamiento de audio</string>
     <string name="audio_format_processing_legacy">Modo de compatibilidad</string>
+    <string name="audio_format_processing_legacy_on">Adjuntar globalmente a la sesión 0 (obsoleto)</string>
+    <string name="audio_format_processing_legacy_off">Adjuntar individualmente a cada aplicación</string>
+    <string name="audio_format_enhanced_processing">Procesamiento mejorado</string>
+    <string name="audio_format_enhanced_processing_on">Control por aplicación y soporte mejorado para aplicaciones habilitado</string>
+    <string name="audio_format_enhanced_processing_off">Procesamiento mejorado deshabilitado</string>
+    <string name="audio_format_enhanced_processing_info_title">¿Qué es el procesamiento mejorado?</string>
+    <string name="audio_format_enhanced_processing_info">Pulse para ver la documentación</string>
     <string name="profiles_enable">Perfiles por dispositivo</string>
     <string name="profiles_enable_summary_on">Perfiles por dispositivo habilitados</string>
     <string name="profiles_enable_summary_off">Perfiles por dispositivo deshabilitados</string>
