@@ -41,6 +41,6 @@ JamesDSPが対応するオーディオエフェクト:
 * SoundCloud
 * ...
 
---- Translation
-Please help us translate this app here: https://crowdin.com/project/rootlessjamesdsp
+翻訳
+このアプリの翻訳にご協力ください!: https://crowdin.com/project/rootlessjamesdsp
 To request a new language that isn't enabled on Crowdin yet, please open an issue here on GitHub and I will turn it on.
