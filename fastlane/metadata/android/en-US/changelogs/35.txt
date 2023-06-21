@@ -1,0 +1,3 @@
+* Translation updates
+* Fixed bug that caused the 'Contribute translations' message to be unresponsive
+* Fixed various crashes and bugs
