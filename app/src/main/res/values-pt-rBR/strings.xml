@@ -58,6 +58,7 @@
     <string name="no_activity_found">Nenhuma atividade encontrada para executar a ação</string>
     <string name="permission_allowed">Permitido</string>
     <string name="permission_not_allowed">Não permitido</string>
+    <string name="error_projection_api_missing">O fabricante do seu dispositivo desativou a API interna de gravação de áudio. Este aplicativo não pode funcionar sem eles.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Ativar/desativar processamento de áudio</string>
     <string name="compressor_enable">Compressor automático dinâmico de faixa</string>
@@ -277,15 +278,115 @@
     <string name="profiles_enable_summary_off">Perfis por dispositivo desabilitados</string>
     <string name="profiles_info_title">O que são perfis por dispositivo?</string>
     <string name="profiles_info">Toque para visualizar a documentação</string>
+    <string name="profiles_info_content">Enquanto esta configuração estiver ativada, cada dispositivo de áudio será atribuído a uma configuração de áudio separada. Este aplicativo irá alternar automaticamente entre os perfis do dispositivo quando o dispositivo de saída for alterado.\n\nCada novo dispositivo que está conectado começa com um perfil em branco. Você pode então configurá-lo ou copiar configurações a partir de outro perfil de dispositivo.\n\nNota: as predefinições só são aplicadas ao perfil ativo enquanto este recurso estiver ativado. Perfis inativos permanecerão intocados.</string>
+    <string name="profiles_manage_hint">Toque no botão \'Perfil de dispositivo Ativo\' na tela principal para copiar ou excluir perfis.</string>
+    <string name="app_behavior">Comportamento do aplicativo</string>
+    <string name="exclude_app_from_recents">Excluir aplicativo de recentes</string>
+    <string name="exclude_app_from_recents_off">Não excluir aplicativo da lista de tarefas recentes</string>
+    <string name="exclude_app_from_recents_on">Excluir aplicativo da lista de tarefas recentes</string>
+    <string name="autostart_prompt_at_boot">Solicitar permissão de captura após a inicialização</string>
+    <string name="autostart_prompt_at_boot_off">Não mostrar notificação após a inicialização</string>
+    <string name="autostart_prompt_at_boot_on">Mostrar notificação após a inicialização</string>
+    <string name="autostart_service_at_boot">Executar após a inicialização</string>
+    <string name="autostart_service_at_boot_off">Não iniciar serviço automaticamente após a inicialização</string>
+    <string name="autostart_service_at_boot_on">Iniciar o serviço automaticamente após a inicialização</string>
+    <string name="powersave">Economia de energia</string>
+    <string name="powersave_suspend">Suspender pipeline de áudio quando estiver ocioso</string>
+    <string name="powersave_suspend_off">Mantenha o processamento mesmo quando nenhum conteúdo estiver sendo reproduzido</string>
+    <string name="powersave_suspend_on">Pausar pipeline de áudio para economizar o consumo de energia</string>
+    <string name="troubleshooting">Resolução de problemas</string>
+    <string name="troubleshooting_summary">Opções avançadas, documentação, diagnósticos</string>
+    <string name="troubleshooting_docs">Documentação</string>
+    <string name="troubleshooting_actions">Opções diversas</string>
+    <string name="troubleshooting_dump">Exportar dump da sessão de áudio…</string>
+    <string name="troubleshooting_dump_summary">Coletar e salvar dados de resolução de problemas</string>
+    <string name="troubleshooting_dump_share_title">Compartilhar dump da sessão de áudio...</string>
+    <string name="troubleshooting_view_limitations">Limitações técnicas</string>
+    <string name="troubleshooting_view_limitations_summary">Mostrar detalhes sobre as limitações deste aplicativo</string>
+    <string name="troubleshooting_notification_access">Permitir acesso às notificações para melhor detecção de sessão</string>
+    <string name="troubleshooting_notification_access_summary">Permite uma detecção de sessão de áudio mais confiável</string>
+    <string name="troubleshooting_repair_assets">Restaurar empacotados de IRS, DC e scripts</string>
+    <string name="troubleshooting_repair_assets_summary">Descompactar os arquivos pré-carregados se você os perder</string>
+    <string name="troubleshooting_repair_assets_success">Os itens empacotados foram restaurados</string>
+    <string name="misc_settings">Diversos</string>
+    <string name="misc_settings_summary">Relatórios de erros, outras ações</string>
+    <string name="misc_permission_skip_prompt">Ignorar solicitação de permissão de captura</string>
+    <string name="misc_permission_auto_start">Auto-iniciar o mecanismo de efeito na inicialização</string>
     <string name="misc_permission_restart_setup">Reiniciar assistente de instalação</string>
+    <string name="misc_permission_restart_setup_summary">Conceder permissões opcionais faltantes</string>
+    <string name="misc_permission_header">Permissões opcionais</string>
+    <string name="assets">Itens</string>
+    <string name="network_services">Serviços de rede</string>
+    <string name="network_autoeq_api_url">URL de API AutoEQ</string>
+    <string name="network_invalid_url">Formato de URL inválido</string>
+    <string name="network_autoeq_conntest_running">Testando a conexão ao servidor…</string>
+    <string name="network_autoeq_conntest_done">Teste de conexão bem sucedida</string>
+    <string name="network_autoeq_conntest_fail">Falha no teste de conexão</string>
+    <string name="network_autoeq_conntest_fail_summary">O servidor não respondeu corretamente. Certifique-se de que o software em https://github.com/ThePBone/AutoEqApi está configurado corretamente no servidor.\n\nErro de rede: %1$s\n\nDeseja restaurar esta configuração para o valor padrão?</string>
+    <string name="about_settings">Sobre</string>
+    <string name="about_settings_summary">Créditos, suporte, atualizações</string>
+    <string name="privacy">Privacidade</string>
+    <string name="privacy_share_crash_reports">Compartilhar relatórios de erros do aplicativo</string>
+    <string name="privacy_share_crash_reports_on">Enviar relatório de erros para o desenvolvedor</string>
+    <string name="privacy_share_crash_reports_off">Não envie relatórios de falha para o desenvolvedor</string>
+    <string name="credits">Créditos</string>
+    <string name="translators">Tradutores</string>
+    <string name="credits_app">Aplicativo &amp; implementação rootless desenvolvida por</string>
+    <string name="credits_dsp">Biblioteca do algoritmo core do JamesDSP desenvolvida por</string>
+    <string name="credits_project_page">Visitar site do projeto no GitHub</string>
+    <string name="credits_project_page_summary">Relatar problemas, mantenha-se atualizado e leia o código-fonte</string>
+    <string name="credits_project_play_page">Acesse RootlessJamesDSP no Google Play</string>
+    <string name="credits_project_play_page_summary">Procurar por novas atualizações</string>
+    <string name="credits_project_check_update">Verificar se há novas atualizações…</string>
+    <string name="credits_project_check_update_summary">Baixar e instalar atualizações se disponível</string>
+    <string name="credits_project_translate">Contribuir com traduções</string>
+    <string name="credits_project_translate_summary">Ajude-nos a traduzir este aplicativo para o seu idioma</string>
+    <string name="credits_version">Versão do aplicativo</string>
+    <string name="credits_build_info">Informações do build</string>
+    <string name="appearance_section_header">Aparência</string>
+    <string name="appearance_summary">Tema do aplicativo, modo escuro puro AMOLED</string>
+    <string name="appearance_title">Tema</string>
+    <string name="appearance_theme_mode">Modo escuro</string>
+    <string name="appearance_theme_mode_default">Seguir tema do sistema</string>
+    <string name="appearance_theme_mode_light">Desativado</string>
+    <string name="appearance_theme_mode_dark">Ativado</string>
+    <string name="appearance_pure_black_mode">Modo escuro preto puro AMOLED</string>
+    <string name="appearance_app_theme">Tema do aplicativo</string>
+    <string name="appearance_navigation_title">Navegação</string>
+    <string name="appearance_nav_hide">Ocultar barra de navegação ao rolar</string>
+    <string name="appearance_show_icons">Mostrar ícones de categorias</string>
     <string name="backup_settings">Backup e restauração</string>
+    <string name="backup_settings_summary">Automático &amp; backups manuais</string>
+    <string name="backup_frequency">Frequência de backup</string>
+    <string name="backup_location">Local de backup</string>
     <!-- Theme names -->
     <string name="theme_default">Padrão</string>
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
+    <string name="message_liveprog_compile_fail">A execução do Liveprog falhou. O script selecionado está corrompido. Por favor, use o editor de scripts para depuração.</string>
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">Resposta de Magnitude</string>
+    <string name="geq_edit_as_string">Editar como string</string>
+    <string name="geq_autoeq">Perfis do AutoEQ</string>
     <string name="gep_add_node">Adicionar</string>
+    <string name="geq_preview">Pré-visualizar</string>
+    <string name="geq_preview_collapsed">Pré-visualizar (toque para expandir)</string>
+    <string name="geq_edit_hint">Nós GraphicEQ</string>
+    <string name="geq_reset">Redefinir</string>
+    <string name="geq_reset_confirm_title">Você tem certeza?</string>
+    <string name="geq_reset_confirm">Você deseja redefinir suas configurações do GraphicEQ?</string>
+    <string name="geq_node_editor">Editor de nó</string>
+    <string name="geq_node_list">Lista de nós</string>
+    <string name="geq_no_nodes_defined">Nenhum nó definido</string>
+    <string name="geq_delete_node">Excluir nó</string>
+    <string name="geq_go_back_to_node_list">Voltar para a lista de nós</string>
+    <string name="geq_next_node">Próximo nó</string>
+    <string name="geq_previous_node">Nó anterior</string>
+    <string name="geq_done_spaced">&#160;&#160;Concluído&#160;</string>
+    <string name="geq_done">Concluído</string>
+    <string name="geq_cancel_spaced">&#160;&#160;Descartar&#160;</string>
+    <string name="geq_cancel">Descartar</string>
+    <string name="geq_discard_changes_title">Descartar modificações e sair?</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
@@ -299,8 +400,10 @@
     <!-- Number box view -->
     <!-- Slider widget -->
     <!-- Revert confirmation -->
+    <string name="revert_confirmation_title">Você tem certeza?</string>
     <!-- File intent handler -->
     <!-- Translation notice box -->
+    <string name="translation_notice">Contribuir com traduções</string>
     <!-- Self-updates (Root) -->
     <!-- Backups -->
     <!-- Multi-device profiles -->

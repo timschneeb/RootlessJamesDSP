@@ -58,6 +58,7 @@
     <string name="no_activity_found">Не найдено ни одного Activity для обработки данного действия</string>
     <string name="permission_allowed">Разрешено</string>
     <string name="permission_not_allowed">Запрещено</string>
+    <string name="error_projection_api_missing">Производитель вашего устройства отключил внутренние API для записи звука. Это приложение не может работать без них.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Переключить обработку аудио</string>
     <string name="compressor_enable">Автоматический компрессор динамического диапазона</string>

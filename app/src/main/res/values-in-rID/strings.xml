@@ -335,6 +335,7 @@
     <string name="theme_monet">Dinamis</string>
     <string name="theme_greenapple">Apel Hijau</string>
     <string name="theme_honey">Madu</string>
+    <string name="theme_yinyang">Yin &amp; Yang</string>
     <!-- File library preference -->
     <string name="action_import">Impor</string>
     <string name="filelibrary_hint_tap_and_hold">Tap dan tahan item apa saja untuk opsi lanjutan</string>
@@ -521,7 +522,9 @@
     <string name="backup_in_progress">Pencadangan sedang diproses</string>
     <!-- Multi-device profiles -->
     <string name="group_wired_headphones">Headset Kabel</string>
+    <string name="group_hdmi">HDMI</string>
     <string name="group_speaker">Speaker internal</string>
+    <string name="group_usb">USB</string>
     <string name="group_unknown">Tidak Dikenal</string>
     <string name="device_profile_status">Profil perangkat aktif</string>
     <string name="device_profile_manage_copy">Salin profil…</string>

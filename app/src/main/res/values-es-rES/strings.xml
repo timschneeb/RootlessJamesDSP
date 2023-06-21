@@ -6,10 +6,14 @@
     <string name="action_revert">Restablecer predeterminados</string>
     <string name="action_blocked_apps">Apps excluidas</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">Servicio</string>
     <string name="notification_channel_service">Notificación del servicio</string>
     <string name="notification_channel_session_loss_alert">Alerta de pérdida de sesiones</string>
     <string name="notification_channel_permission_prompt">Solicitud de solicitud de permiso</string>
     <string name="notification_channel_app_compat_alert">Alerta de aplicación incompatible</string>
+    <string name="notification_group_backup">Copia de seguridad y restauración</string>
+    <string name="notification_channel_backup_progress">En curso</string>
+    <string name="notification_channel_backup_complete">Completado</string>
     <!-- Service notifications -->
     <string name="action_retry">Reintentarlo</string>
     <string name="action_fix">Arreglar problema</string>
@@ -35,11 +39,16 @@
     <!-- General purpose -->
     <string name="install">Instalar</string>
     <string name="update">Actualizar</string>
+    <string name="unknown_error">Error desconocido</string>
     <string name="details">Detalles</string>
+    <string name="actions">Acciones</string>
     <string name="warning">Advertencia</string>
     <string name="success">Éxito</string>
     <string name="open">Abrir</string>
     <string name="close">Cerrado</string>
+    <string name="delete">Eliminar</string>
+    <string name="copy">Copiar</string>
+    <string name="paste">Pegar</string>
     <string name="add">Agregar</string>
     <string name="yes">Sí</string>
     <string name="no">Nº</string>
@@ -47,6 +56,9 @@
     <string name="undo">Deshacer</string>
     <string name="redo">Rehacer</string>
     <string name="no_activity_found">No se ha encontrado actividad para manejar la acción</string>
+    <string name="permission_allowed">Permitido</string>
+    <string name="permission_not_allowed">No permitido</string>
+    <string name="error_projection_api_missing">El fabricante de tu dispositivo ha desactivado las APIs internas de grabación de audio. Esta aplicación no puede funcionar sin ellas.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Cambiar procesamiento de audio</string>
     <string name="compressor_enable">Rango de Compresión Dinámica</string>
@@ -191,6 +203,8 @@
     <string name="onboarding_adb_manual_step3">Agregue y conecte el dispositivo USB en WebADB.</string>
     <string name="onboarding_adb_manual_step4">Navegue hasta la \'Shell Interactivo\' y ejecute el siguiente comando en la shell: \'pm grant %s android.permission.DUMP\'</string>
     <string name="onboarding_adb_manual_step5">Toque \'Siguiente\' en esta aplicación para continuar.</string>
+    <string name="onboarding_adb_manual_step5b">(Opcional) Puedes omitir permanentemente las peticiones de permisos de captura de audio ejecutando este comando: \'appops set %s PROJECT_MEDIA allow\'</string>
+    <string name="onboarding_adb_manual_step5c">(Opcional) Además del paso anterior, también puedes habilitar el inicio automático ejecutando el siguiente comando: \'appops set %s SYSTEM_ALERT_WINDOW allow\'</string>
     <string name="onboarding_adb_manual_step1_button">Abra las configuraciones de desarrollador</string>
     <string name="onboarding_perm_title">Otros permisos</string>
     <string name="onboarding_perm_caption">Se requieren permisos adicionales para usar esta aplicación. Por favor revíselos y toque \'Siguiente\' para otorgarlos.</string>
@@ -202,6 +216,8 @@
     <string name="onboarding_perm_cast_caption">Debes otorgar explícitamente permiso a esta aplicación para grabar contenido de audio cada vez que se inicie.</string>
     <string name="onboarding_perm_missing_title">Permisos de ejecución no concedido</string>
     <string name="onboarding_perm_missing">Por favor otorgue todos los permisos solicitados de ejecución para continuar.\nSi ha denegado repetidamente los permisos, debe otorgarlos manualmente en la configuración del sistema.</string>
+    <string name="onboarding_perm_diag">Permitir el envío de informes de diagnóstico</string>
+    <string name="onboarding_perm_diag_caption">Esta aplicación envía informes de fallos y otros datos de diagnóstico, incluyendo información sobre otras aplicaciones activas, para permitirme detectar y resolver problemas de compatibilidad y errores más fácilmente.</string>
     <string name="onboarding_finish_header">JamesDSP está configurado!</string>
     <string name="onboarding_finish_caption">Si encuentras algún problema, por favor visita las opciones de solución de problemas.</string>
     <string name="limit_session_control_conflict_title">Desactive otras aplicaciones de efectos de audio</string>
@@ -210,18 +226,158 @@
     <string name="limit_unsupported_apps">Las aplicaciones que bloquean la captura interna de audio permanecen sin procesar (Ej., Spotify, Google Chrome).</string>
     <string name="limit_hw_accel_title">Problemas de reproducción de audio acelerada por HW</string>
     <string name="limit_hw_accel">La reproducción de audio acelerada por HW (pistas rápidas) puede a veces causar audio duplicado o cerrar a JamesDSP en algunas circunstancias. Añade el reproductor de música afectado a la lista de aplicaciones excluidas para evitar que JamesDSP lo redirija.</string>
+    <string name="limit_detect_delay_title">Retraso en detección de sesión de audio</string>
+    <string name="limit_detect_delay"><![CDATA[Después de que una aplicación ha abierto una nueva sesión multimedia para reproducir audio, se puede escuchar audio duplicado o cortado durante un período muy corto (alrededor de <250ms).]]></string>
+    <string name="limit_latency_title">Aumento de latencia</string>
+    <string name="limit_latency">Esta aplicación puede añadir un poco de retraso a la transmisión de audio. Puede añadir aplicaciones multimedia/de streaming a la lista de exclusión para prevenir la desincronización entre audio y video.</string>
+    <string name="limit_tested_devices_title">Dispositivos probados</string>
+    <string name="limit_tested_devices">Los cambios realizados al subsistema de audio de Android por el fabricante de tu dispositivo pueden romper fácilmente esta aplicación porque utiliza algunas API indocumentadas.\nSe ha probado en estos dispositivos:\n• Samsung S20+ (Android 12)\n• Emulator AOSP (Android 10–13)\n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
     <string name="title_activity_settings">Settings</string>
+    <string name="session_exclude_restricted">Excluir aplicaciones no compatibles</string>
+    <string name="session_exclude_restricted_off">Las aplicaciones que bloquean captura de audio permanecen silenciadas (comportamiento predeterminado de Android)</string>
+    <string name="session_exclude_restricted_on">Las aplicaciones que bloquean la captura de audio están excluidas y no se procesan (recomendado)</string>
+    <string name="session_detection_header">Detección de sesión de audio</string>
+    <string name="session_continuous_polling">Forzar el sondeo continuo</string>
+    <string name="session_continuous_polling_off">Solo escuchar para eventos de sesión del sistema</string>
+    <string name="session_continuous_polling_on">Listar sesiones de audio continuamente</string>
+    <string name="session_continuous_polling_rate">Intervalo de sondeo (ms)</string>
+    <string name="session_detection_method">Método de detección de sesión preferido</string>
+    <string name="session_detection_method_audiopolicyservice">AudioPolicyService dump</string>
+    <string name="session_detection_method_audioservice">AudioService dump (recomendado)</string>
+    <string name="session_app_problem_ignore">Ignorar problemas de compatibilidad de aplicaciones</string>
+    <string name="session_loss_ignore">Ignorar pérdida de control de la sesión</string>
+    <string name="session_loss_ignore_off">Deshabilitado, manejar normalmente (recomendado)</string>
+    <string name="session_loss_ignore_on">No realizar ninguna acción (puede causar audio duplicado)</string>
+    <string name="session_loss_ignore_warning">Habilitar este ajuste puede causar audio duplicado cuando otra aplicación de efectos de audio toma el control de una sesión de audio.\nPor favor, mantenga esta opción desactivada a menos que encuentre eventos de pérdida de sesión falsos positivos.</string>
+    <string name="audio_format_header">Procesamiento de audio</string>
+    <string name="audio_format_section_header">Formato de audio preferido</string>
+    <string name="audio_format_processing_header">Opciones de procesamiento de audio</string>
+    <string name="audio_format_processing_legacy">Modo de compatibilidad</string>
+    <string name="audio_format_processing_legacy_on">Adjuntar globalmente a la sesión 0 (obsoleto)</string>
+    <string name="audio_format_processing_legacy_off">Adjuntar individualmente a cada aplicación</string>
+    <string name="audio_format_enhanced_processing">Procesamiento mejorado</string>
+    <string name="audio_format_enhanced_processing_on">Control por aplicación y soporte mejorado para aplicaciones habilitado</string>
+    <string name="audio_format_enhanced_processing_off">Procesamiento mejorado deshabilitado</string>
+    <string name="audio_format_enhanced_processing_info_title">¿Qué es el procesamiento mejorado?</string>
+    <string name="audio_format_enhanced_processing_info">Pulse para ver la documentación</string>
+    <string name="audio_format_enhanced_processing_info_content">Cuando el procesamiento mejorado está activado, puede excluir selectivamente a ciertas aplicaciones de ser procesadas por JamesDSP. Utilice el menú de 3 puntos en la esquina inferior derecha y seleccione \'Aplicaciones excluidas\' para acceder a esta función.\n\nMientras que el modo de compatibilidad está deshabilitado, JamesDSP depende de las aplicaciones multimedia para enviar una emisión del sistema cuando inicien la reproducción. Esta es una ventaja sobre el modo de compatibilidad porque cada aplicación obtiene su propio motor de efectos JamesDSP asignado, lo que permite un control más detallado. De lo contrario, con el modo de compatibilidad encendido, todas las aplicaciones compartirían un solo motor de procesamiento, que Android desaprueba y no debería ser usado más.\n\nDesafortunadamente, no todas las aplicaciones multimedia hacen esto correctamente y, por lo tanto, no funcionarían correctamente con el modo de compatibilidad deshabilitado. Para resolver este problema, puede habilitar el procesamiento mejorado. En lugar de depender de las transmisiones del sistema sobre las sesiones de nuevos medios, JamesDSP escaneará proactivamente las sesiones de medios por sí mismo y permitirá el soporte adecuado para aplicaciones de medios no cooperativas.</string>
+    <string name="audio_format_media_apps_need_restart">Necesita reiniciar todas las aplicaciones multimedia activas después de cambiar esta configuración para reanudar el procesamiento de audio.</string>
+    <string name="audio_format_summary">Codificación de audio preferida, tamaño de búfer</string>
+    <string name="audio_format_summary_root">Modo de compatibilidad, procesamiento mejorado</string>
+    <string name="audio_format_encoding">Codificación de audio</string>
+    <string name="audio_format_encoding_int16">PCM entero de 16 bits</string>
+    <string name="audio_format_encoding_float">PCM de 32 bits punto flotante</string>
+    <string name="audio_format_buffer_size">Tamaño de búfer</string>
+    <string name="audio_format_buffer_size_unit">&#xa0;muestras</string>
+    <string name="audio_format_buffer_size_warning_low_value">Advertencia: ¡Los tamaños bajos de búfer pueden causar problemas de audio como clipping!</string>
+    <string name="profiles_section_header">Perfiles de dispositivo</string>
+    <string name="profiles_summary">Perfiles por dispositivo, cambio automático</string>
+    <string name="profiles_enable">Perfiles por dispositivo</string>
+    <string name="profiles_enable_summary_on">Perfiles por dispositivo habilitados</string>
+    <string name="profiles_enable_summary_off">Perfiles por dispositivo deshabilitados</string>
+    <string name="profiles_info_title">¿Qué son los perfiles por dispositivo?</string>
+    <string name="profiles_info">Pulse para ver la documentación</string>
+    <string name="profiles_info_content">Mientras esta opción está activada, a cada dispositivo de audio se le asigna una configuración de audio separada. Esta aplicación cambiará automáticamente entre los perfiles del dispositivo cuando el dispositivo de salida cambie. \n\nCada nuevo dispositivo conectado comienza con un perfil en blanco. A continuación, puede configurarlo o copiar la configuración desde otro perfil de dispositivo.\n\nNota: Los preajustes sólo se aplican al perfil activo mientras esta función está activada. Los perfiles inactivos permanecen intactos.</string>
+    <string name="profiles_manage_hint">Pulse el botón \'Perfil del dispositivo activo\' en la pantalla principal para copiar o borrar perfiles.</string>
+    <string name="app_behavior">Comportamiento de la aplicación</string>
+    <string name="exclude_app_from_recents">Excluir aplicación de recientes</string>
+    <string name="exclude_app_from_recents_off">No excluir aplicación de la lista de tareas recientes</string>
+    <string name="exclude_app_from_recents_on">Excluir aplicación de la lista de tareas recientes</string>
+    <string name="autostart_prompt_at_boot">Solicitar permiso para capturar después del arranque</string>
     <string name="autostart_prompt_at_boot_off">No mostrar notificación después del arranque</string>
+    <string name="autostart_prompt_at_boot_on">Mostrar notificación después del arranque</string>
+    <string name="autostart_service_at_boot">Iniciar después del arranque</string>
+    <string name="autostart_service_at_boot_off">No iniciar el servicio automáticamente después del arranque</string>
+    <string name="autostart_service_at_boot_on">Iniciar el servicio automáticamente después del arranque</string>
+    <string name="powersave">Ahorro de energía</string>
+    <string name="powersave_suspend">Suspender pipeline de audio mientras esté inactivo</string>
+    <string name="powersave_suspend_off">Seguir procesando incluso cuando no se reproduce ningún contenido</string>
+    <string name="powersave_suspend_on">Pausar pipeline de audio para ahorrar energía</string>
+    <string name="troubleshooting">Solución de problemas</string>
+    <string name="troubleshooting_summary">Opciones avanzadas, documentación, diagnóstico</string>
+    <string name="troubleshooting_docs">Documentación</string>
+    <string name="troubleshooting_actions">Acciones variadas</string>
     <string name="appearance_theme_mode">Modo oscuro</string>
+    <string name="backup_settings">Copia de seguridad y restauración</string>
+    <string name="backup_24hour">Diariamente</string>
+    <string name="backup_48hour">Cada 2 días</string>
+    <string name="backup_weekly">Semanalmente</string>
+    <string name="backup_select_location">Por favor, cree y seleccione una carpeta para la copia de seguridad…</string>
     <!-- Theme names -->
     <string name="theme_default">Defecto</string>
+    <string name="theme_monet">Dinámico</string>
+    <string name="theme_greenapple">Manzana Verde</string>
+    <string name="theme_strawberrydaiquiri">Daiquiri de Fresa</string>
+    <string name="theme_honey">Miel</string>
+    <string name="theme_tealturquoise">Verde azulado &amp; Turquesa</string>
+    <string name="theme_yinyang">Yin &amp; Yang</string>
+    <string name="theme_yotsuba">Yotsuba</string>
+    <string name="theme_tidalwave">Marea</string>
     <!-- File library preference -->
+    <string name="action_import">Importar</string>
+    <string name="filelibrary_hint_tap_and_hold">Tocar y mantener cualquier ítem para más opciones</string>
+    <string name="filelibrary_context_load">Cargar</string>
+    <string name="filelibrary_context_edit">Editar</string>
+    <string name="filelibrary_context_overwrite">Sobreescribir</string>
+    <string name="filelibrary_context_rename">Renombrar</string>
+    <string name="filelibrary_context_share">Compartir…</string>
+    <string name="filelibrary_context_resample">Remuestreo sin conexión</string>
+    <string name="filelibrary_context_duplicate">Duplicar</string>
+    <string name="filelibrary_context_delete">Eliminar</string>
+    <string name="filelibrary_context_new_preset">Nuevo</string>
+    <string name="filelibrary_context_new_preset_long">Nuevo preajuste</string>
+    <string name="filelibrary_unsupported_format_title">Tipo de archivo no compatible</string>
+    <string name="filelibrary_unsupported_format">El archivo seleccionado no tiene la extensión de archivo correcta.</string>
+    <string name="filelibrary_corrupted_title">Archivo no soportado o dañado</string>
+    <string name="filelibrary_corrupted">El archivo seleccionado no contiene datos utilizables o está dañado.</string>
+    <string name="filelibrary_file_too_new">El archivo seleccionado fue creado con una versión más reciente de esta aplicación y no se puede cargar. Por favor, actualice esta aplicación para continuar.</string>
+    <string name="filelibrary_access_fail">Error al acceder al directorio</string>
+    <string name="filelibrary_is_backup_not_preset">El archivo seleccionado es una copia de seguridad, no un preajuste. Por favor, vaya a la configuración de la copia de seguridad si desea restaurarlo.</string>
+    <string name="filelibrary_no_file_selected">Ningún archivo seleccionado</string>
+    <string name="filelibrary_new_file_name">Nombre del nuevo archivo</string>
+    <string name="filelibrary_file_exists">El archivo ya existe</string>
+    <string name="filelibrary_resample_complete">Remuestreado a %1$dHz</string>
+    <string name="filelibrary_resample_failed">Falló el remuestreo. ¿Archivo de entrada dañado?</string>
+    <string name="filelibrary_preset_overwritten">Preajuste \'%1$s\' sobreescrito</string>
+    <string name="filelibrary_preset_created">Preajuste \'%1$s\' creado</string>
+    <string name="filelibrary_preset_save_failed">Error al guardar el preajuste</string>
+    <string name="filelibrary_renamed">Renombrado a \'%1$s\'</string>
+    <string name="filelibrary_deleted">%1$s ha sido eliminado</string>
+    <string name="filelibrary_preset_loaded">Preajuste \'%1$s\' cargado</string>
+    <string name="filelibrary_preset_load_failed">El archivo \'%1$s\' no es compatible con esta aplicación</string>
+    <string name="filelibrary_no_presets">No hay preajustes guardados. Pulse \'Añadir\' para crear uno nuevo.</string>
     <!-- JamesDSP engine messages -->
+    <string name="message_vdc_corrupt">El archivo VDC seleccionado está dañado. Por favor, elija otro.</string>
+    <string name="message_irs_corrupt">La respuesta de impulso seleccionada está dañada. Por favor, elija otra.</string>
+    <string name="message_convolver_advimp_invalid">Convolver: La edición avanzada de waveform contiene valores no válidos.</string>
+    <string name="message_liveprog_compile_fail">La ejecución de Liveprog ha fallado. El script seleccionado está dañado. Por favor, utilice el editor de scripts para la depuración.</string>
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">Respuesta de magnitud</string>
+    <string name="geq_edit_as_string">Editar como string</string>
     <string name="geq_autoeq">Perfiles de AutoEQ</string>
     <string name="gep_add_node">Agregar</string>
+    <string name="geq_preview">Vista previa</string>
+    <string name="geq_preview_collapsed">Vista previa (toque para ampliar)</string>
+    <string name="geq_edit_hint">Nodos GraphicEQ</string>
+    <string name="geq_reset">Restablecer</string>
+    <string name="geq_reset_confirm_title">¿Está seguro?</string>
+    <string name="geq_reset_confirm">¿Desea restablecer la configuración de GraphicEQ?</string>
+    <string name="geq_node_editor">Editor de nodos</string>
+    <string name="geq_node_list">Lista de nodos</string>
+    <string name="geq_no_nodes_defined">No hay nodos definidos</string>
+    <string name="geq_delete_node">Eliminar nodo</string>
+    <string name="geq_go_back_to_node_list">Volver a lista de nodos</string>
+    <string name="geq_next_node">Próximo nodo</string>
+    <string name="geq_previous_node">Nodo anterior</string>
+    <string name="geq_done_spaced">&#160;&#160;Hecho&#160;</string>
+    <string name="geq_done">Hecho</string>
+    <string name="geq_cancel_spaced">&#160;&#160;Descartar&#160;</string>
+    <string name="geq_cancel">Descartar</string>
+    <string name="geq_discard_changes_title">¿Descartar cambios y salir?</string>
+    <string name="geq_discard_changes">Los valores no son válidos o están vacíos. Los cambios no se pueden guardar.\n¿Desea descartar los cambios y salir?</string>
+    <string name="geq_frequeny_range">Valor entre 1Hz y 24000Hz</string>
+    <string name="geq_gain_range">Valor entre -32dB y 32dB</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
@@ -257,6 +413,7 @@
     <!-- Number box view -->
     <!-- Slider widget -->
     <!-- Revert confirmation -->
+    <string name="revert_confirmation_title">¿Está seguro?</string>
     <!-- File intent handler -->
     <!-- Translation notice box -->
     <!-- Self-updates (Root) -->

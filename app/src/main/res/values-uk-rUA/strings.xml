@@ -58,6 +58,7 @@
     <string name="no_activity_found">Не знайдено жодного Activity для обробки цієї дії</string>
     <string name="permission_allowed">Дозволено</string>
     <string name="permission_not_allowed">Заборонено</string>
+    <string name="error_projection_api_missing">Виробник вашого пристрою вимкнув внутрішні API для запису звуку. Ця програма не може працювати без них.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Перемкнути обробку аудіо</string>
     <string name="compressor_enable">Автоматичний компресор динамічного діапазону</string>

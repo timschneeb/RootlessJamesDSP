@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <plurals name="nodes">
+        <item quantity="other">%d 個のノード</item>
+    </plurals>
+    <plurals name="custom_parameters">
+        <item quantity="other">%d 個のカスタマイズ可能なパラメータ</item>
+    </plurals>
     <plurals name="unsupported_apps">
         <item quantity="other">%d 個のアプリはサポートされていないため、自動的に除外されました。詳細をついてはこちらをタップして下さい。</item>
     </plurals>

@@ -1,2 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <plurals name="custom_parameters">
+        <item quantity="one">%d testreszabható paraméter</item>
+        <item quantity="other">%d testreszabható paraméterek</item>
+    </plurals>
+    <plurals name="unsupported_apps">
+        <item quantity="one">%d nem támogatott alkalmazás kizárva. Koppints a részletekért.</item>
+        <item quantity="other">%d nem támogatott alkalmazások kizárva. Koppints a részletekért.</item>
+    </plurals>
+</resources>

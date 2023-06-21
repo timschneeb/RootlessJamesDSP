@@ -1,21 +1,21 @@
 Gunakan JamesDSP sebagai pemroses audio global tanpa akses root.
 
-Aplikasi ini punya beberapa keterbatasan yang mungkin melanggar beberapa kesepakatan bagi beberapa orang; baca seluruh dokumentasi sebelum menggunakan. Dibutuhkan Shizuku (Android 11+) atau ADB via komputer untuk inisialisasi.
+Aplikasi ini punya beberapa keterbatasan yang mungkin tidak dapat diterima bagi beberapa orang; mohon baca seluruh dokumentasi sebelum menggunakan. Dibutuhkan Shizuku (Android 11+) atau ADB via komputer untuk inisialisasi.
 
 JamesDSP mendukung audio effect berikut:
 * Kontrol limiter
-* Output gain control
-* Auto dynamic range compressor
+* Kontrol gain output
+* Kompresor dynamic range otomatis
 * Dynamic bass boost
 * Interpolating FIR equalizer
 * Arbitrary response equalizer (Graphic EQ)
 * ViPER-DDC
 * Convolver
 * Live-programmable DSP (mesin scripting untuk audio effect)
-* Analog modelling
-* Soundstage wideness
+* Pemodelan analog
+* Lebar soundstage
 * Crossfeed
-* Virtual room effect (reverb)
+* Efek ruangan virtual (reverb)
 
 Sebagai tambahan, aplikasi ini terintegrasi langsung dengan AutoEQ. Dengan AutoEQ, anda dapat mencari dan mengimpor respon frekuensi untuk memperbaiki suara netral headset anda. Buka 'Arbitrary response equalizer > Respon Magnitude > Profil AutoEQ' untuk memulai.
 
@@ -42,5 +42,5 @@ Sebagai tambahan, aplikasi ini terintegrasi langsung dengan AutoEQ. Dengan AutoE
 * ...
 
 --- Terjemahan
-Bantu kami menerjemahkan aplikasi in di sinii: https://crowdin.com/project/rootlessjamesdsp
+Bantu kami menerjemahkan aplikasi ini disini: https://crowdin.com/project/rootlessjamesdsp
 Untuk meminta bahasa baru yang belum ada di Crowdin, buka GitHub issue dan saya akan mengaktifkannya.
