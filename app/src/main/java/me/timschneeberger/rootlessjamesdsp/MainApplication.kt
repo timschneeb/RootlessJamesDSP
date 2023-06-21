@@ -245,7 +245,7 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
                     detectLeakedSqlLiteObjects()
                     detectContentUriWithoutPermission()
                     penaltyLog()
-                    penaltyDeath()
+                    // penaltyDeath()
                 }
                 .build()
         )

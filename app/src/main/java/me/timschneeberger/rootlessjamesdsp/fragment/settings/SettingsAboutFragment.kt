@@ -14,8 +14,8 @@ import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.flavor.UpdateManager
 import me.timschneeberger.rootlessjamesdsp.model.Translator
-import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
 import me.timschneeberger.rootlessjamesdsp.utils.Result
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
 import org.koin.android.ext.android.inject
 import java.util.Locale
 
@@ -62,12 +62,12 @@ class SettingsAboutFragment : SettingsBaseFragment() {
 
                 setOnPreferenceClickListener {
                     if(tls.size == 1)
-                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://crowdin.com/profile/${tls[0].user}")))
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://crowdin.com/profile/${tls[0].username}")))
                     else {
                         this@SettingsAboutFragment.context?.let { ctx ->
                             MaterialAlertDialogBuilder(ctx)
                                 .setItems(tls.map { it.name }.toTypedArray()) { dialogInterface, i ->
-                                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://crowdin.com/profile/${tls[i].user}")))
+                                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://crowdin.com/profile/${tls[i].username}")))
                                     dialogInterface.dismiss()
                                 }
                                 .setTitle(title)

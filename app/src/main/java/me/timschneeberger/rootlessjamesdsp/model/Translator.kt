@@ -11,11 +11,15 @@ import timber.log.Timber
 data class Translator(
     val id: String,
     val name: String,
-    val user: String,
+    val username: String,
+    val picture: String,
     val translated: Int,
     val approved: Int,
-    val languages: List<String>
+    val languages: List<Language>
 ) {
+    @Serializable
+    data class Language(val id: String, val name: String)
+
     companion object {
         fun readLanguageMap(context: Context): Map<String, List<Translator>> {
             val languageMap = mutableMapOf<String, MutableList<Translator>>()
@@ -25,9 +29,11 @@ data class Translator(
                     // At least 8 words
                     if (tl.translated < 8)
                         return@forEach
-                    tl.languages.forEach next@{ lang ->
+                    tl.languages.forEach next@{ langObj ->
+                        val lang = langObj.id
+
                         // Fix: only display my name for German, not all languages
-                        if (tl.user == "ThePBone" && lang != "de")
+                        if (tl.username == "ThePBone" && lang != "de")
                             return@next
 
                         if (languageMap[lang] == null)
