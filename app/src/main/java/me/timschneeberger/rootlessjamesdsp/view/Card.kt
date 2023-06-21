@@ -29,6 +29,7 @@ class Card @JvmOverloads constructor(
     private var onButtonClickListener: (() -> Unit)? = null
     private var onCheckChangedListener: ((Boolean) -> Unit)? = null
     private var onCloseClickListener: (() -> Unit)? = null
+    private var onClickListener: (() -> Unit)? = null
     private val binding: ViewCardBinding
 
     var checkboxVisible: Boolean = true
@@ -137,6 +138,7 @@ class Card @JvmOverloads constructor(
         }
 
         binding.root.setOnClickListener {
+            onClickListener?.invoke()
             binding.checkbox.isChecked = !binding.checkbox.isChecked
         }
 
@@ -175,5 +177,9 @@ class Card @JvmOverloads constructor(
 
     fun setOnCloseClickListener(listener: (() -> Unit)?) {
         onCloseClickListener = listener
+    }
+
+    fun setOnRootClickListener(listener: (() -> Unit)?) {
+        onClickListener = listener
     }
 }

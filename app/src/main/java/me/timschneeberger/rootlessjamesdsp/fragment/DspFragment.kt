@@ -19,6 +19,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import org.koin.android.ext.android.inject
 import timber.log.Timber
+import java.util.Locale
 
 class DspFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListener {
     private val prefsApp: Preferences.App by inject()
@@ -46,7 +47,7 @@ class DspFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListen
         binding = FragmentDspBinding.inflate(layoutInflater, container, false)
 
         binding.translationNotice.setOnCloseClickListener(::hideTranslationNotice)
-        binding.translationNotice.setOnClickListener {
+        binding.translationNotice.setOnRootClickListener {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://crowdin.com/project/rootlessjamesdsp")))
             hideTranslationNotice()
         }
@@ -54,13 +55,15 @@ class DspFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListen
         binding.updateNotice.setOnCloseClickListener {
             updateNoticeOnCloseClick?.invoke()
         }
-        binding.updateNotice.setOnClickListener {
+        binding.updateNotice.setOnRootClickListener {
             updateNoticeOnClick?.invoke()
         }
 
         // Should show notice?
+        Timber.e(Locale.getDefault().language.toString())
         binding.translationNotice.isVisible =
-            prefsVar.get<Long>(R.string.key_snooze_translation_notice) < (System.currentTimeMillis() / 1000L)
+           prefsVar.get<Long>(R.string.key_snooze_translation_notice) < (System.currentTimeMillis() / 1000L) &&
+                    !Locale.getDefault().language.equals("en")
         binding.updateNotice.isVisible = false
 
         val transition = LayoutTransition()
