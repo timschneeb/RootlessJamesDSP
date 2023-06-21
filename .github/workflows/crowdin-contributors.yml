@@ -20,11 +20,13 @@ jobs:
 
     - name: Generate Crowdin Contributors data
       uses: andrii-bodnar/action-crowdin-contributors@v1.0.1
+      id: contributors
       with:
         contributors_per_line: 6
         max_contributors: 32
         image_size: 64
         min_words_contributed: 1
+        include_languages: true
         crowdin_project_link: https://crowdin.com/project/rootlessjamesdsp
       env:
         CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
