@@ -2,13 +2,16 @@
 <resources>
     <!-- Main menu bar -->
     <string name="action_settings">Asetukset</string>
+    <string name="action_presets">Esiasetukset</string>
     <string name="action_revert">Palauta oletukset</string>
     <!-- Notification channels -->
     <string name="notification_group_service">Palvelu</string>
+    <string name="notification_group_backup">Varmuuskopiointi ja palautus</string>
     <string name="notification_channel_backup_complete">Valmis</string>
     <!-- Service notifications -->
     <string name="action_retry">Yritä uudelleen</string>
     <string name="action_fix">Korjaa Ongelma</string>
+    <string name="notification_processing">Aktiiviset sovellukset: %1$s</string>
     <!-- Permission request notifications -->
     <!-- Session control loss notifications -->
     <!-- App compatibility issue notifications -->
@@ -34,6 +37,16 @@
     <string name="permission_allowed">Sallittu</string>
     <string name="permission_not_allowed">Ei sallittu</string>
     <!-- Main screen -->
+    <string name="eq_preset_acoustic">Akustinen</string>
+    <string name="eq_preset_bass">Basso</string>
+    <string name="eq_preset_classic">Klassinen</string>
+    <string name="eq_preset_deep">Syvä</string>
+    <string name="eq_preset_dubstep">Dubstep</string>
+    <string name="eq_preset_electronic">Elektroninen</string>
+    <string name="eq_preset_flat">Tasainen</string>
+    <string name="eq_preset_hardstyle">Hardstyle</string>
+    <string name="eq_preset_hiphop">HipHop</string>
+    <string name="eq_preset_jazz">Jazz</string>
     <string name="eq_preset_metal">Metalli</string>
     <string name="eq_preset_movie">Elokuva</string>
     <string name="eq_preset_pop">Poppi</string>
@@ -56,7 +69,16 @@
     <string name="convolver_convolution_mode_original">Alkuperäinen</string>
     <string name="ddc_enable">ViPER-DDC</string>
     <string name="ddc_file">DDC-tiedosto</string>
+    <string name="stereowide_level_none">Ei mitään</string>
+    <string name="stereowide_level_very_wide">Erittäin leveä</string>
+    <string name="stereowide_level_wide">Leveä</string>
+    <string name="stereowide_level_very_narrow">Erittäin kapea</string>
+    <string name="stereowide_level_narrow">Kapea</string>
+    <string name="crossfeed_preset">Esivalinta</string>
     <!-- Onboarding -->
+    <string name="onboarding_back">Takaisin</string>
+    <string name="onboarding_next">Seuraava</string>
+    <string name="onboarding_finish">Valmis</string>
     <string name="onboarding_limitations_title">Rajoitukset</string>
     <string name="onboarding_limitations_unstable">Tärkeä! Lue muistiinpanot huolellisesti ennen jatkamista.</string>
     <string name="onboarding_methods_shizuku_title">Shizuku</string>
@@ -64,29 +86,127 @@
     <string name="onboarding_methods_adb_title">ADB</string>
     <!-- Rootless flavor -->
     <!-- Root flavor -->
+    <string name="onboarding_adb_shizuku_grant_button">Myönnä pääsy</string>
+    <string name="onboarding_adb_shizuku_not_installed">Shizuku ei ole vielä asennettu. Lataa ja asenna se Google Playsta ensin.</string>
+    <string name="onboarding_adb_shizuku_not_installed_title">Shizuku ei ole vielä asennettu</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead">Käynnistä Shizuku-palvelin ennen kuin pyydät lupaa. Palaa takaisin ohjeistuksen vaiheeseen 2.</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead_title">Shizuku-palvelin ei ole käynnissä</string>
+    <string name="onboarding_adb_shizuku_grant_fail_version">Tämä sovellus vaatii Shizuku version 11 tai uudemman. Päivitä Shizuku uusimpaan versioon.</string>
+    <string name="onboarding_adb_shizuku_grant_fail_version_title">Ei tuettu Shizuku versio</string>
+    <string name="limit_tested_devices_title">Testatut laitteet</string>
     <!-- Settings -->
     <string name="title_activity_settings">Asetukset</string>
+    <string name="audio_format_buffer_size">Puskurin koko</string>
+    <string name="autostart_service_at_boot">Avaa käynnistyksen jälkeen</string>
+    <string name="autostart_service_at_boot_off">Älä aloita palvelua automaattisesti käynnistyksen jälkeen</string>
+    <string name="autostart_service_at_boot_on">Aloita palvelu automaattisesti käynnistyksen jälkeen</string>
+    <string name="powersave">Virransäästö</string>
+    <string name="troubleshooting_view_limitations">Tekniset rajoitukset</string>
+    <string name="misc_settings">Sekalaista</string>
+    <string name="network_autoeq_conntest_fail">Yhteyden testaus epäonnistui</string>
+    <string name="about_settings">Tietoja</string>
+    <string name="privacy">Yksityisyys</string>
+    <string name="translators">Kääntäjät</string>
+    <string name="credits_project_check_update">Tarkista uudet päivitykset…</string>
+    <string name="credits_project_check_update_summary">Lataa ja asenna päivitykset, jos saatavilla</string>
+    <string name="credits_project_translate">Avusta Kääntämisessä</string>
+    <string name="credits_project_translate_summary">Auta meitä kääntämään tämä sovellus omalle kielellesi</string>
+    <string name="credits_version">Sovellusversio</string>
+    <string name="appearance_section_header">Ulkoasu</string>
+    <string name="appearance_title">Teema</string>
+    <string name="appearance_theme_mode">Tumma tila</string>
+    <string name="appearance_theme_mode_default">Noudata järjestelmän teemaa</string>
+    <string name="appearance_theme_mode_light">Pois Päältä</string>
+    <string name="appearance_theme_mode_dark">Päällä</string>
+    <string name="appearance_app_theme">Sovelluksen teema</string>
+    <string name="backup_settings">Varmuuskopiointi ja palautus</string>
+    <string name="backup_never">Ei koskaan</string>
+    <string name="backup_12hour">12 tunnin välein</string>
+    <string name="backup_24hour">Päivittäinen</string>
+    <string name="backup_48hour">Joka toinen päivä</string>
+    <string name="backup_weekly">Viikottain</string>
     <!-- Theme names -->
     <string name="theme_default">Oletus</string>
+    <string name="theme_yinyang">Yin &amp; Yang</string>
+    <string name="theme_yotsuba">Yotsuba</string>
+    <string name="theme_tidalwave">Tidal Wave</string>
     <!-- File library preference -->
+    <string name="action_import">Tuo</string>
+    <string name="filelibrary_context_load">Lataa</string>
+    <string name="filelibrary_context_edit">Muokkaa</string>
+    <string name="filelibrary_context_overwrite">Korvaa</string>
+    <string name="filelibrary_context_rename">Nimeä uudelleen</string>
+    <string name="filelibrary_context_share">Jaa…</string>
+    <string name="filelibrary_context_duplicate">Kaksoiskappale</string>
+    <string name="filelibrary_context_delete">Poista</string>
+    <string name="filelibrary_context_new_preset">Uusi</string>
+    <string name="filelibrary_context_new_preset_long">Uusi esiasetus</string>
+    <string name="filelibrary_no_file_selected">Ei valittua tiedostoa</string>
+    <string name="filelibrary_new_file_name">Uusi tiedoston nimi</string>
+    <string name="filelibrary_file_exists">Tiedosto on jo olemassa</string>
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="geq_edit_as_string">Muokkaa merkkijonona</string>
     <string name="gep_add_node">Lisää</string>
+    <string name="geq_reset">Nollaa</string>
+    <string name="geq_reset_confirm_title">Oletko varma?</string>
+    <string name="geq_done">Valmis</string>
+    <string name="geq_cancel">Hylkää</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
+    <string name="editor_docs">Ohje</string>
+    <string name="editor_save">Tallenna</string>
+    <string name="editor_replace_all">Korvaa kaikki</string>
+    <string name="editor_find_next_match">Etsi seuraava osuma</string>
+    <string name="editor_find_previous_match">Etsi edellinen osuma</string>
+    <string name="editor_search_keyword">Hae</string>
+    <string name="editor_text_size">Tekstin koko</string>
     <!-- Blocklist -->
     <!-- Compatibility issue activity -->
     <string name="app_compat_retry">Yritä uudelleen</string>
     <!-- Root: Library load failure -->
+    <string name="load_fail_header">Magisk-moduulia ei ole asennettu</string>
     <!-- Enhanced processing -->
+    <string name="enhanced_processing_feature_unavailable">Ominaisuus ei ole käytettävissä</string>
     <!-- App list -->
+    <string name="app_list_loading">Ladataan sovelluksia…</string>
+    <string name="app_list_search">Hae</string>
+    <string name="app_list_icon_alt">Sovelluskuvake</string>
     <!-- Number box view -->
+    <string name="number_box_decrement">Vähennys</string>
+    <string name="number_box_increment">Lisäys</string>
     <!-- Slider widget -->
+    <string name="slider_dialog_title">Muokkaa arvoa</string>
     <!-- Revert confirmation -->
+    <string name="revert_confirmation_title">Oletko varma?</string>
     <!-- File intent handler -->
     <!-- Translation notice box -->
+    <string name="translation_notice">Avusta Kääntämisessä</string>
     <!-- Self-updates (Root) -->
+    <string name="self_update_install_error">Päivitys epäonnistui</string>
+    <string name="self_update_notice_dismiss_install">Asenna nyt</string>
+    <string name="self_update_notice_dismiss_snooze">Muistuta myöhemmin</string>
+    <string name="self_update_notice_dismiss_skip">Ohita tämä päivitys</string>
+    <string name="self_update_state_downloading">Ladataan…</string>
+    <string name="self_update_state_installing">Asennetaan…</string>
     <!-- Backups -->
+    <string name="backup_create_error">Varmuuskopiointi epäonnistui</string>
+    <string name="backup_manual_backup">Manuaalinen varmuuskopiointi</string>
+    <string name="backup_create">Luo varmuuskopio</string>
+    <string name="backup_restore">Palauta varmuuskopio</string>
+    <string name="backup_restore_summary">Palauta asetukset varmuuskopiotiedostosta</string>
+    <string name="backup_automatic_backup">Automaattinen varmuuskopiointi</string>
     <!-- Multi-device profiles -->
+    <string name="group_wired_headphones">Langalliset kuulokkeet</string>
+    <string name="group_bluetooth">Bluetooth</string>
+    <string name="group_hdmi">HDMI</string>
+    <string name="group_speaker">Sisäinen kaiutin</string>
+    <string name="group_usb">USB</string>
+    <string name="group_unknown">Tuntematon</string>
+    <string name="device_profile_status">Aktiivisen laitteen profiili</string>
+    <string name="device_profile_manage_copy">Kopioi profiili…</string>
+    <string name="device_profile_manage_delete">Poista profiilit…</string>
+    <string name="device_profile_manage_copy_select">Valitse kopioitava profiili</string>
+    <string name="device_profile_manage_paste_select">Valitse korvattavat profiilit</string>
 </resources>
