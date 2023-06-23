@@ -1,27 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
+    <string name="action_settings">Asetukset</string>
+    <string name="action_revert">Palauta oletukset</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">Palvelu</string>
+    <string name="notification_channel_backup_complete">Valmis</string>
     <!-- Service notifications -->
+    <string name="action_retry">Yritä uudelleen</string>
+    <string name="action_fix">Korjaa Ongelma</string>
     <!-- Permission request notifications -->
     <!-- Session control loss notifications -->
     <!-- App compatibility issue notifications -->
     <!-- Capture permission revoked notifications -->
     <!-- General purpose -->
+    <string name="install">Asenna</string>
+    <string name="update">Päivitä</string>
+    <string name="unknown_error">Tuntematon virhe</string>
+    <string name="details">Tiedot</string>
+    <string name="actions">Toiminnot</string>
+    <string name="warning">Varoitus</string>
+    <string name="open">Avaa</string>
+    <string name="close">Sulje</string>
+    <string name="delete">Poista</string>
+    <string name="copy">Kopioi</string>
+    <string name="paste">Liitä</string>
+    <string name="add">Lisää</string>
+    <string name="yes">Kyllä</string>
+    <string name="no">Ei</string>
+    <string name="value_not_set">Ei asetettu</string>
+    <string name="undo">Kumoa</string>
+    <string name="redo">Tee uudelleen</string>
+    <string name="permission_allowed">Sallittu</string>
+    <string name="permission_not_allowed">Ei sallittu</string>
     <!-- Main screen -->
+    <string name="eq_preset_metal">Metalli</string>
+    <string name="eq_preset_movie">Elokuva</string>
+    <string name="eq_preset_pop">Poppi</string>
+    <string name="eq_preset_rb">R&amp;B</string>
+    <string name="eq_preset_rock">Rock</string>
+    <string name="eq_preset_vocal">Laulun korostus</string>
+    <string name="bass_enable">Dynaaminen basson tehostus</string>
+    <string name="reverb_room_type">Huoneen tyyppi</string>
+    <string name="reverb_preset_default">Oletus</string>
+    <string name="reverb_preset_small_hall1">Pieni sali 1</string>
+    <string name="reverb_preset_small_hall2">Pieni sali 2</string>
+    <string name="reverb_preset_medium_hall2">Keskikokoinen sali</string>
+    <string name="reverb_preset_large_hall1">Suuri sali</string>
+    <string name="reverb_preset_small_room1">Pieni huone 1</string>
+    <string name="reverb_preset_small_room2">Pieni huone 2</string>
+    <string name="reverb_preset_medium_room1">Keskikokoinen huone</string>
+    <string name="reverb_preset_large_room1">Iso huone</string>
+    <string name="reverb_preset_long_reverb1">Pitkä kaiku 1</string>
+    <string name="reverb_preset_long_reverb2">Pitkä kaiku 2</string>
+    <string name="convolver_convolution_mode_original">Alkuperäinen</string>
+    <string name="ddc_enable">ViPER-DDC</string>
+    <string name="ddc_file">DDC-tiedosto</string>
     <!-- Onboarding -->
+    <string name="onboarding_limitations_title">Rajoitukset</string>
+    <string name="onboarding_limitations_unstable">Tärkeä! Lue muistiinpanot huolellisesti ennen jatkamista.</string>
+    <string name="onboarding_methods_shizuku_title">Shizuku</string>
+    <string name="onboarding_methods_unsupported_append">yhteensopimaton</string>
+    <string name="onboarding_methods_adb_title">ADB</string>
     <!-- Rootless flavor -->
     <!-- Root flavor -->
     <!-- Settings -->
+    <string name="title_activity_settings">Asetukset</string>
     <!-- Theme names -->
+    <string name="theme_default">Oletus</string>
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="gep_add_node">Lisää</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
     <!-- Blocklist -->
     <!-- Compatibility issue activity -->
+    <string name="app_compat_retry">Yritä uudelleen</string>
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
     <!-- App list -->
