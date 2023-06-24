@@ -132,7 +132,7 @@
     <string name="output_limiter_threshold">Limite de Limitador</string>
     <string name="output_limiter_release">Liberação do limitador</string>
     <string name="output_control_postgain">Pós-ganho</string>
-    <string name="stereowide_enable">Amplitude de Estúdio</string>
+    <string name="stereowide_enable">Amplificação de Estúdio</string>
     <string name="stereowide_level">Amplitude</string>
     <string name="stereowide_level_none">Nenhum</string>
     <string name="stereowide_level_very_wide">Muito amplo</string>
@@ -359,9 +359,25 @@
     <string name="backup_settings_summary">Automático &amp; backups manuais</string>
     <string name="backup_frequency">Frequência de backup</string>
     <string name="backup_location">Local de backup</string>
+    <string name="backup_maximum">Máximo de backups</string>
+    <string name="backup_never">Nunca</string>
+    <string name="backup_12hour">A cada 12 horas</string>
+    <string name="backup_24hour">Diariamente</string>
+    <string name="backup_48hour">A cada 2 dias</string>
+    <string name="backup_weekly">Semanalmente</string>
+    <string name="backup_select_location">Por favor, crie e selecione um diretório de backup…</string>
     <!-- Theme names -->
     <string name="theme_default">Padrão</string>
+    <string name="theme_monet">Dinâmico</string>
+    <string name="theme_greenapple">Maçã Verde</string>
+    <string name="theme_strawberrydaiquiri">Morango Daiquiri</string>
+    <string name="theme_honey">Honey</string>
+    <string name="theme_tealturquoise">Azul-petróleo &amp; Turquesa</string>
+    <string name="theme_yinyang">Yin &amp; Yang</string>
+    <string name="theme_yotsuba">Yotsuba</string>
+    <string name="theme_tidalwave">Tidal Wave</string>
     <!-- File library preference -->
+    <string name="action_import">Importar</string>
     <!-- JamesDSP engine messages -->
     <string name="message_liveprog_compile_fail">A execução do Liveprog falhou. O script selecionado está corrompido. Por favor, use o editor de scripts para depuração.</string>
     <!-- GraphicEQ editor -->
