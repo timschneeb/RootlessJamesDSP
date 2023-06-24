@@ -393,6 +393,19 @@
     <string name="filelibrary_unsupported_format">O arquivo selecionado não tem a extensão correta.</string>
     <string name="filelibrary_corrupted_title">Arquivo incompatível ou corrompido</string>
     <string name="filelibrary_corrupted">O arquivo selecionado não contém dados utilizáveis ou está corrompido.</string>
+    <string name="filelibrary_file_too_new">O arquivo selecionado foi criado com uma versão mais recente deste aplicativo e não pode ser carregado. Por favor, atualize este aplicativo para continuar.</string>
+    <string name="filelibrary_access_fail">Falha ao acessar a pasta</string>
+    <string name="filelibrary_is_backup_not_preset">O arquivo selecionado é um arquivo de backup, não uma predefinição. Por favor, vá para as configurações de backup se você quiser restaurá-lo.</string>
+    <string name="filelibrary_no_file_selected">Nenhum arquivo selecionado</string>
+    <string name="filelibrary_new_file_name">Novo nome do arquivo</string>
+    <string name="filelibrary_file_exists">O arquivo já existe</string>
+    <string name="filelibrary_resample_complete">Reamostrado para %1$dHz</string>
+    <string name="filelibrary_resample_failed">A reamostragem falhou. Arquivo de entrada corrompido?</string>
+    <string name="filelibrary_preset_overwritten">Predefinição %1$s sobrescrita</string>
+    <string name="filelibrary_preset_created">Predefinição \'%1$s\' criada</string>
+    <string name="filelibrary_preset_save_failed">Erro ao salvar predefinição</string>
+    <string name="filelibrary_renamed">Renomeado para \'%1$s\'</string>
+    <string name="filelibrary_deleted">\'%1$s\' excluído</string>
     <!-- JamesDSP engine messages -->
     <string name="message_liveprog_compile_fail">A execução do Liveprog falhou. O script selecionado está corrompido. Por favor, use o editor de scripts para depuração.</string>
     <!-- GraphicEQ editor -->
