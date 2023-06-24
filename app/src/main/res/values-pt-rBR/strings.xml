@@ -391,6 +391,8 @@
     <string name="filelibrary_context_new_preset_long">Nova predefinição</string>
     <string name="filelibrary_unsupported_format_title">Tipo de arquivo incompatível</string>
     <string name="filelibrary_unsupported_format">O arquivo selecionado não tem a extensão correta.</string>
+    <string name="filelibrary_corrupted_title">Arquivo incompatível ou corrompido</string>
+    <string name="filelibrary_corrupted">O arquivo selecionado não contém dados utilizáveis ou está corrompido.</string>
     <!-- JamesDSP engine messages -->
     <string name="message_liveprog_compile_fail">A execução do Liveprog falhou. O script selecionado está corrompido. Por favor, use o editor de scripts para depuração.</string>
     <!-- GraphicEQ editor -->
