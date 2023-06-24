@@ -378,6 +378,19 @@
     <string name="theme_tidalwave">Tidal Wave</string>
     <!-- File library preference -->
     <string name="action_import">Importar</string>
+    <string name="filelibrary_hint_tap_and_hold">Toque e segure qualquer item para mais opções</string>
+    <string name="filelibrary_context_load">Carregar</string>
+    <string name="filelibrary_context_edit">Editar</string>
+    <string name="filelibrary_context_overwrite">Sobrescrever</string>
+    <string name="filelibrary_context_rename">Renomear</string>
+    <string name="filelibrary_context_share">Compartilhar…</string>
+    <string name="filelibrary_context_resample">Reamostragem off-line</string>
+    <string name="filelibrary_context_duplicate">Duplicar</string>
+    <string name="filelibrary_context_delete">Excluir</string>
+    <string name="filelibrary_context_new_preset">Novo</string>
+    <string name="filelibrary_context_new_preset_long">Nova predefinição</string>
+    <string name="filelibrary_unsupported_format_title">Tipo de arquivo incompatível</string>
+    <string name="filelibrary_unsupported_format">O arquivo selecionado não tem a extensão correta.</string>
     <!-- JamesDSP engine messages -->
     <string name="message_liveprog_compile_fail">A execução do Liveprog falhou. O script selecionado está corrompido. Por favor, use o editor de scripts para depuração.</string>
     <!-- GraphicEQ editor -->
