@@ -97,16 +97,16 @@
     <string name="reverb_enable">虚拟场效果</string>
     <string name="reverb_room_type">空间类型</string>
     <string name="reverb_preset_default">默认</string>
-    <string name="reverb_preset_small_hall1">小型大厅 1</string>
-    <string name="reverb_preset_small_hall2">小型大厅 2</string>
-    <string name="reverb_preset_medium_hall2">中型大厅</string>
-    <string name="reverb_preset_large_hall1">大型大厅</string>
-    <string name="reverb_preset_small_room1">小房间 1</string>
-    <string name="reverb_preset_small_room2">小房间 2</string>
-    <string name="reverb_preset_medium_room1">中等房间</string>
+    <string name="reverb_preset_small_hall1">小厅一</string>
+    <string name="reverb_preset_small_hall2">小厅二</string>
+    <string name="reverb_preset_medium_hall2">中厅</string>
+    <string name="reverb_preset_large_hall1">大厅</string>
+    <string name="reverb_preset_small_room1">小型房间一</string>
+    <string name="reverb_preset_small_room2">小型房间二</string>
+    <string name="reverb_preset_medium_room1">中型房间</string>
     <string name="reverb_preset_large_room1">大型房间</string>
-    <string name="reverb_preset_plate_high">高屋顶</string>
-    <string name="reverb_preset_plate_low">低屋顶</string>
+    <string name="reverb_preset_plate_high">板式高频</string>
+    <string name="reverb_preset_plate_low">板式低频</string>
     <string name="reverb_preset_long_reverb1">长混响 1</string>
     <string name="reverb_preset_long_reverb2">长混响 2</string>
     <string name="convolver_enable">脉冲反馈</string>
@@ -118,7 +118,7 @@
     <string name="convolver_convolution_mode_minimum_phase_shrink">最小相变和收缩</string>
     <string name="ddc_enable">ViPER-DDC 音效</string>
     <string name="ddc_file">DDC 文件</string>
-    <string name="liveprog_enable">实时编程 DSP</string>
+    <string name="liveprog_enable">实时可编程 DSP</string>
     <string name="liveprog_file">Liveprog 脚本</string>
     <string name="liveprog_additional_params">附加脚本参数</string>
     <string name="liveprog_additional_params_not_supported">所选脚本没有可自定义的参数</string>
@@ -144,8 +144,8 @@
     <string name="crossfeed_preset_bs2b_weak">弱BS2B</string>
     <string name="crossfeed_preset_bs2b_strong">强BS2B</string>
     <string name="crossfeed_preset_out_of_head">Out of head</string>
-    <string name="crossfeed_preset_surround1">环绕声 1</string>
-    <string name="crossfeed_preset_surround2">环绕声 2</string>
+    <string name="crossfeed_preset_surround1">环绕一</string>
+    <string name="crossfeed_preset_surround2">环绕二</string>
     <string name="crossfeed_preset_realistic_surround">Joe0Blogs 现实环绕模式</string>
     <!-- Onboarding -->
     <string name="title_activity_onboarding">启动向导</string>
