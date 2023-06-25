@@ -369,9 +369,9 @@
     <!-- Theme names -->
     <string name="theme_default">默认</string>
     <string name="theme_monet">动态</string>
-    <string name="theme_greenapple">青苹果绿</string>
+    <string name="theme_greenapple">青苹果</string>
     <string name="theme_strawberrydaiquiri">草莓德贵丽红</string>
-    <string name="theme_honey">蜂蜜黄</string>
+    <string name="theme_honey">蜂蜜</string>
     <string name="theme_tealturquoise">青绿色</string>
     <string name="theme_yinyang">阴阳&amp; 黑白</string>
     <string name="theme_yotsuba">四葉橙</string>
