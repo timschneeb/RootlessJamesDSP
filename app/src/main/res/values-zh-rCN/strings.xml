@@ -95,7 +95,7 @@
     <string name="bass_enable">动态低音提升</string>
     <string name="bass_max_gain">最大增益</string>
     <string name="reverb_enable">虚拟场效果</string>
-    <string name="reverb_room_type">空间类型</string>
+    <string name="reverb_room_type">场类型</string>
     <string name="reverb_preset_default">默认</string>
     <string name="reverb_preset_small_hall1">小厅一</string>
     <string name="reverb_preset_small_hall2">小厅二</string>
@@ -132,21 +132,21 @@
     <string name="output_limiter_threshold">限制器阈值</string>
     <string name="output_limiter_release">限制器释放时间</string>
     <string name="output_control_postgain">后增益</string>
-    <string name="stereowide_enable">音阶宽度</string>
+    <string name="stereowide_enable">声场宽度</string>
     <string name="stereowide_level">宽度</string>
     <string name="stereowide_level_none">常规</string>
     <string name="stereowide_level_very_wide">非常宽</string>
     <string name="stereowide_level_wide">较宽</string>
     <string name="stereowide_level_very_narrow">极窄</string>
     <string name="stereowide_level_narrow">较窄</string>
-    <string name="crossfeed_enable">通道交叉</string>
+    <string name="crossfeed_enable">交叉馈送</string>
     <string name="crossfeed_preset">预设</string>
-    <string name="crossfeed_preset_bs2b_weak">弱BS2B</string>
-    <string name="crossfeed_preset_bs2b_strong">强BS2B</string>
+    <string name="crossfeed_preset_bs2b_weak">BS2B 弱</string>
+    <string name="crossfeed_preset_bs2b_strong">BS2B 强</string>
     <string name="crossfeed_preset_out_of_head">Out of head</string>
     <string name="crossfeed_preset_surround1">环绕一</string>
     <string name="crossfeed_preset_surround2">环绕二</string>
-    <string name="crossfeed_preset_realistic_surround">Joe0Blogs 现实环绕模式</string>
+    <string name="crossfeed_preset_realistic_surround">Joe0Bloggs 逼真的环绕</string>
     <!-- Onboarding -->
     <string name="title_activity_onboarding">启动向导</string>
     <string name="onboarding_back">上一步</string>
