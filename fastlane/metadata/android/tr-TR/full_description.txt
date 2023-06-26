@@ -35,7 +35,7 @@ Ek olarak, bu uygulama doğrudan AutoEQ ile entegre olur. AutoEQ entegrasyonunu 
 * Twitch
 * ...
 
-- Desteklenmeyen uygulamalar şunları içerir:
+- Desteklenmeyen uygulamalar şunlardır:
 * Spotify (Not: Spotify'ı desteklemek için Spotify ReVanced yaması gereklidir)
 * Google Chrome
 * SoundCloud
