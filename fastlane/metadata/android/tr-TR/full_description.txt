@@ -43,4 +43,4 @@ Ek olarak, bu uygulama doğrudan AutoEQ ile entegre olur. AutoEQ entegrasyonunu 
 
 --- Tercüme
 Lütfen bu uygulamayı buraya çevirmemize yardım edin: https://crowdin.com/project/rootlessjamesdsp
-Henüz Crowdin'de etkin olmayan yeni bir dil istemek için lütfen burada GitHub'da bir sorun açın, ben de açayım.
+Crowdin'de henüz etkinleştirilmemiş yeni bir dil istemek için lütfen burada GitHub'da bir sorun oluşturun, onu etkinleştireceğim.
