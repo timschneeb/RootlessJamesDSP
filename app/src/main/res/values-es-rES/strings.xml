@@ -298,6 +298,7 @@
     <string name="troubleshooting_summary">Opciones avanzadas, documentación, diagnóstico</string>
     <string name="troubleshooting_docs">Documentación</string>
     <string name="troubleshooting_actions">Acciones variadas</string>
+    <string name="troubleshooting_dump">Exporte la información de audio de esta sesión…</string>
     <string name="appearance_theme_mode">Modo oscuro</string>
     <string name="backup_settings">Copia de seguridad y restauración</string>
     <string name="backup_24hour">Diariamente</string>
