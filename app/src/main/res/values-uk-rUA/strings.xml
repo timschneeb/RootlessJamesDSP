@@ -2,24 +2,24 @@
 <resources>
     <!-- Main menu bar -->
     <string name="action_settings">Параметри</string>
-    <string name="action_presets">Попередні налаштування</string>
-    <string name="action_revert">Відновлення</string>
-    <string name="action_blocked_apps">Заблоковані додатки</string>
+    <string name="action_presets">Пресети</string>
+    <string name="action_revert">Відновити типові налаштування</string>
+    <string name="action_blocked_apps">Виключені додатки</string>
     <!-- Notification channels -->
-    <string name="notification_group_service">Підтримка</string>
-    <string name="notification_channel_service">Повідомлення допомоги</string>
-    <string name="notification_channel_session_loss_alert">Втрачений сигнал</string>
-    <string name="notification_channel_permission_prompt">Запит на отримання дозволу</string>
-    <string name="notification_channel_app_compat_alert">Сповіщення про несумісну програму</string>
-    <string name="notification_group_backup">Резервне копіювання і відновлення</string>
-    <string name="notification_channel_backup_progress">У виконанні</string>
-    <string name="notification_channel_backup_complete">Успішне виконання</string>
+    <string name="notification_group_service">Сервіс</string>
+    <string name="notification_channel_service">Повідомлення про роботу сервісу</string>
+    <string name="notification_channel_session_loss_alert">Сповіщення про втрату сесії</string>
+    <string name="notification_channel_permission_prompt">Запит на отримання дозволів</string>
+    <string name="notification_channel_app_compat_alert">Сповіщення про несумісний додаток</string>
+    <string name="notification_group_backup">Резервне копіювання та відновлення</string>
+    <string name="notification_channel_backup_progress">В роботі</string>
+    <string name="notification_channel_backup_complete">Виконано</string>
     <!-- Service notifications -->
-    <string name="action_retry">Повторіть спробу</string>
-    <string name="action_fix">Виправлення</string>
+    <string name="action_retry">Повторити</string>
+    <string name="action_fix">Виправити проблему</string>
     <string name="action_stop">Зупинити</string>
-    <string name="notification_processing">Обробка: %1$s</string>
-    <string name="notification_idle">Звукові сповіщення неактивні</string>
+    <string name="notification_processing">Активні додатки: %1$s</string>
+    <string name="notification_idle">Очікування аудіосесії</string>
     <string name="notification_processing_title">Обробка аудіо увімкнена</string>
     <string name="notification_processing_disabled_title">Обробка аудіо вимкнена</string>
     <string name="notification_processing_legacy">Натисніть, щоб відкрити менеджер JamesDSP</string>
@@ -355,7 +355,7 @@
     <string name="appearance_navigation_title">Навігація</string>
     <string name="appearance_nav_hide">Приховати панель навігації під час прокрутки</string>
     <string name="appearance_show_icons">Показувати значки категорій</string>
-    <string name="backup_settings">Резервне копіювання і відновлення</string>
+    <string name="backup_settings">Резервне копіювання та відновлення</string>
     <string name="backup_settings_summary">Автоматичне і ручне резервне копіювання</string>
     <string name="backup_frequency">Частота резервного копіювання</string>
     <string name="backup_location">Розташування резервних копій</string>
