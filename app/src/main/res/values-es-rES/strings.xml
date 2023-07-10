@@ -51,7 +51,7 @@
     <string name="paste">Pegar</string>
     <string name="add">Agregar</string>
     <string name="yes">Sí</string>
-    <string name="no">Nº</string>
+    <string name="no">No</string>
     <string name="value_not_set">No establecido</string>
     <string name="undo">Deshacer</string>
     <string name="redo">Rehacer</string>
@@ -459,7 +459,13 @@
     <string name="editor_open_fail">El archivo de script no existe o no se puede abrir.</string>
     <string name="editor_run">Guardar y ejecutar</string>
     <string name="editor_save">Guardar</string>
+    <string name="editor_liveprog_enabled">Liveprog se ha activado automáticamente.</string>
+    <string name="editor_replace_all">Reemplazar todo</string>
     <string name="editor_search_keyword">Buscar</string>
+    <string name="editor_source_position">%1$d:%2$d</string>
+    <string name="editor_engine_down_title">JamesDSP no está activo</string>
+    <string name="editor_save_prompt_title">¿Guardar cambios?</string>
+    <string name="editor_save_prompt">El script actual tiene cambios sin guardar. ¿Desea guardar los cambios o descartarlos?</string>
     <string name="editor_script_launched">Script iniciado</string>
     <string name="editor_cannot_undo">Nada que deshacer.</string>
     <string name="editor_cannot_redo">Nada que rehacer.</string>
@@ -491,6 +497,7 @@
     <string name="load_fail_arch_card">Si ya has instalado el módulo Magisk, es posible que hayas seleccionado la configuración incorrecta durante la instalación. Por favor, reinstala el módulo y trata de habilitar la compatibilidad con Huawei (aunque tu teléfono no sea de ese fabricante).</string>
     <!-- Enhanced processing -->
     <string name="enhanced_processing_feature_unavailable">Función no disponible</string>
+    <string name="enhanced_processing_feature_unavailable_content">Esta función solo está disponible cuando \"procesamiento mejorado\" está activado en los ajustes. Vaya a \"Ajustes &gt; Procesamiento de audio &gt; Procesamiento mejorado\" y active esa opción para acceder a este menú.\n\nNota: \'Procesamiento mejorado\' no se puede usar mientras el modo de compatibilidad está activado.</string>
     <!-- App list -->
     <string name="app_list_search">Buscar</string>
     <string name="app_list_icon_alt">Ícono de la app</string>
@@ -503,6 +510,7 @@
     <string name="translation_notice">Contribuir con las traducciones</string>
     <!-- Self-updates (Root) -->
     <string name="self_update_install_error">Actualización fallida</string>
+    <string name="self_update_no_updates">No hay actualizaciones disponibles en este momento</string>
     <string name="self_update_notice_dismiss_install">Instalar ahora</string>
     <string name="self_update_notice_dismiss_snooze">Recordar más tarde</string>
     <string name="self_update_notice_dismiss_skip">Omitir esta actualización</string>
