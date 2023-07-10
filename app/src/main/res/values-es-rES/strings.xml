@@ -74,7 +74,7 @@
     <string name="eq_interpolator_mha">Curva modificada de Hiroshi Akima</string>
     <string name="eq_preset_acoustic">Acústica</string>
     <string name="eq_preset_bass">Graves</string>
-    <string name="eq_preset_beats">Ritmos:</string>
+    <string name="eq_preset_beats">Ritmos</string>
     <string name="eq_preset_classic">Clásica</string>
     <string name="eq_preset_clear">Claro</string>
     <string name="eq_preset_deep">Deep</string>
@@ -83,12 +83,12 @@
     <string name="eq_preset_flat">Planos</string>
     <string name="eq_preset_hardstyle">Estilo difícil</string>
     <string name="eq_preset_hiphop">Hip-Hop</string>
-    <string name="eq_preset_jazz">爵士乐</string>
-    <string name="eq_preset_metal">Metals</string>
+    <string name="eq_preset_jazz">Jazz</string>
+    <string name="eq_preset_metal">Metal</string>
     <string name="eq_preset_movie">Película</string>
-    <string name="eq_preset_pop">Popar</string>
+    <string name="eq_preset_pop">Pop</string>
     <string name="eq_preset_rb">R&amp;B</string>
-    <string name="eq_preset_rock">Poca</string>
+    <string name="eq_preset_rock">Rock</string>
     <string name="eq_preset_vocal">Booster vocal</string>
     <string name="geq_enable">Ecualizador de respuestas arbitrarias</string>
     <string name="geq_nodes">Respuesta de magnitud</string>
@@ -408,7 +408,7 @@
     <string name="filelibrary_deleted">%1$s ha sido eliminado</string>
     <string name="filelibrary_preset_loaded">Preajuste \'%1$s\' cargado</string>
     <string name="filelibrary_preset_load_failed">El archivo \'%1$s\' no es compatible con esta aplicación</string>
-    <string name="filelibrary_no_presets">No hay preajustes guardados. Pulse \'Añadir\' para crear uno nuevo.</string>
+    <string name="filelibrary_no_presets">No hay preajustes guardados. Pulse \'Agregar\' para crear uno nuevo.</string>
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">El archivo VDC seleccionado está dañado. Por favor, elija otro.</string>
     <string name="message_irs_corrupt">La respuesta de impulso seleccionada está dañada. Por favor, elija otra.</string>
@@ -461,9 +461,13 @@
     <string name="editor_save">Guardar</string>
     <string name="editor_liveprog_enabled">Liveprog se ha activado automáticamente.</string>
     <string name="editor_replace_all">Reemplazar todo</string>
+    <string name="editor_replacement">Reemplazo</string>
+    <string name="editor_find_next_match">Buscar la siguiente coincidencia</string>
+    <string name="editor_find_previous_match">Buscar coincidencia anterior</string>
     <string name="editor_search_keyword">Buscar</string>
     <string name="editor_source_position">%1$d:%2$d</string>
     <string name="editor_engine_down_title">JamesDSP no está activo</string>
+    <string name="editor_engine_down">No se puede ejecutar el script porque JamesDSP está desactivado. Por favor, active JamesDSP para ejecutar scripts.</string>
     <string name="editor_save_prompt_title">¿Guardar cambios?</string>
     <string name="editor_save_prompt">El script actual tiene cambios sin guardar. ¿Desea guardar los cambios o descartarlos?</string>
     <string name="editor_script_launched">Script iniciado</string>
@@ -498,19 +502,43 @@
     <!-- Enhanced processing -->
     <string name="enhanced_processing_feature_unavailable">Función no disponible</string>
     <string name="enhanced_processing_feature_unavailable_content">Esta función solo está disponible cuando \"procesamiento mejorado\" está activado en los ajustes. Vaya a \"Ajustes &gt; Procesamiento de audio &gt; Procesamiento mejorado\" y active esa opción para acceder a este menú.\n\nNota: \'Procesamiento mejorado\' no se puede usar mientras el modo de compatibilidad está activado.</string>
+    <string name="enhanced_processing_missing_perm">El procesamiento mejorado se ha desactivado debido a que falta un permiso. Por favor, vuelva a configurarlo en ajustes.</string>
     <!-- App list -->
+    <string name="app_list_loading">Cargando aplicaciones…</string>
     <string name="app_list_search">Buscar</string>
     <string name="app_list_icon_alt">Ícono de la app</string>
     <!-- Number box view -->
+    <string name="number_box_decrement">Reducir</string>
+    <string name="number_box_increment">Aumentar</string>
     <!-- Slider widget -->
+    <string name="slider_dialog_title">Editar valor</string>
+    <string name="slider_dialog_format_error">Formato de número inválido. Cambios no aplicados.</string>
+    <string name="slider_dialog_step_error">El valor debe ser un múltiplo de %1$d. Cambios no aplicados.</string>
     <!-- Revert confirmation -->
     <string name="revert_confirmation_title">¿Está seguro?</string>
+    <string name="revert_confirmation">¿Desea restablecer el preajuste actual de JamesDSP a los valores por defecto?</string>
     <!-- File intent handler -->
+    <string name="intent_import_preset">Importar preajuste</string>
+    <string name="intent_import_irs">Importar respuesta de impulso</string>
+    <string name="intent_import_vdc">Importar archivo VDC</string>
+    <string name="intent_import_liveprog">Importar script Liveprog</string>
+    <string name="intent_import_mode_add">Solo importar</string>
+    <string name="intent_import_mode_select">Importar y activar</string>
+    <string name="intent_import_fail">Error al importar archivo \'%1$s\'</string>
+    <string name="intent_import_success">Archivo \'%1$s\' importado</string>
+    <string name="intent_import_select_success">Archivo \'%1$s\' importado y activado</string>
+    <string name="intent_import_error_file_uri">Error al importar archivo. URI de archivo no soportado.</string>
     <!-- Translation notice box -->
+    <string name="translation_notice_summary">¡Ayúdanos a traducir esta aplicación a tu idioma! Pulsa aquí para visitar la página del proyecto en Crowdin.</string>
     <string name="translation_notice">Contribuir con las traducciones</string>
     <!-- Self-updates (Root) -->
     <string name="self_update_install_error">Actualización fallida</string>
+    <string name="self_update_download_fail">Error al descargar paquete de actualización. Por favor, compruebe su conexión a internet. Detalles: %1$s</string>
+    <string name="self_update_install_fail">Instalación fallida. %1$s</string>
+    <string name="self_update_finished">Actualización instalada. La aplicación se está reiniciando…</string>
     <string name="self_update_no_updates">No hay actualizaciones disponibles en este momento</string>
+    <string name="self_update_notice">Nueva actualización disponible (%1$s)</string>
+    <string name="self_update_notice_summary">Pulse aquí para descargar e instalar la nueva actualización.</string>
     <string name="self_update_notice_dismiss_install">Instalar ahora</string>
     <string name="self_update_notice_dismiss_snooze">Recordar más tarde</string>
     <string name="self_update_notice_dismiss_skip">Omitir esta actualización</string>
