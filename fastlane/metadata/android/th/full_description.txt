@@ -1,14 +1,14 @@
-Use JamesDSP as a system-wide audio processing engine without any root access.
+ใช้ JamesDSP เป็นเครื่องมือประมวลผลเสียงทั้งระบบโดยไม่ต้องเข้าถึงรูท
 
-This app has several limitations that may be deal-breaking to some people; please read this whole document before using the app. Shizuku (Android 11+) or ADB access via a computer is required for the initial setup.
+แอปนี้มีข้อจำกัดหลายอย่างที่อาจทำลายข้อตกลงสำหรับบางคน โปรดอ่านเอกสารทั้งหมดนี้ก่อนใช้แอพ จำเป็นต้องมีการเข้าถึง Shizuku (Android 11+) หรือ ADB ผ่านคอมพิวเตอร์สำหรับการตั้งค่าเริ่มต้น
 
-JamesDSP supports the following audio effects:
-* Limiter control
-* Output gain control
-* Auto dynamic range compressor
-* Dynamic bass boost
-* Interpolating FIR equalizer
-* Arbitrary response equalizer (Graphic EQ)
+JamesDSP รองรับเอฟเฟกต์เสียงต่อไปนี้:
+* การควบคุมตัว จำกัด
+* การควบคุมอัตราขยายเอาต์พุต
+* คอมเพรสเซอร์ช่วงไดนามิกอัตโนมัติ
+* เพิ่มเสียงเบสแบบไดนามิก
+* การแก้ไขอีควอไลเซอร์ FIR
+* อีควอไลเซอร์ตอบสนองโดยพลการ
 * ViPER-DDC
 * Convolver
 * Live-programmable DSP (scripting engine for audio effects)
