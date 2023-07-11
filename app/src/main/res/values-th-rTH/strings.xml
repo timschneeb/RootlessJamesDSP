@@ -3,28 +3,99 @@
     <!-- Main menu bar -->
     <string name="action_settings">การตั้งค่า</string>
     <string name="action_presets">ค่าที่ตั้งไว้แล้ว</string>
+    <string name="action_revert">คืนค่าเริ่มต้น</string>
+    <string name="action_blocked_apps"> แอพที่ยกเว้น</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">บริการ</string>
+    <string name="notification_channel_service">การแจ้งเตือนบริการ</string>
+    <string name="notification_channel_session_loss_alert">การแจ้งเตือนการสูญเสียเซสชัน</string>
+    <string name="notification_channel_permission_prompt">ขออนุญาตพร้อมท์</string>
+    <string name="notification_channel_app_compat_alert">การแจ้งเตือนแอปที่เข้ากันไม่ได้</string>
+    <string name="notification_group_backup">การสำรองข้อมูลและคืนค่า</string>
+    <string name="notification_channel_backup_progress">กำลังดำเนินการ</string>
+    <string name="notification_channel_backup_complete">สมบูรณ์</string>
     <!-- Service notifications -->
+    <string name="action_retry">ลองอีกครั้ง</string>
+    <string name="action_fix">แก้ไขปัญหา</string>
+    <string name="action_stop">หยุด</string>
+    <string name="notification_processing">แอปที่ใช้งานอยู่: %1$s</string>
+    <string name="notification_idle">ไม่ได้ใช้งานการประมวลผลเสียง</string>
+    <string name="notification_processing_title">กำลังประมวลผลเสียงอยู่</string>
+    <string name="notification_processing_disabled_title">ปิดใช้งานการประมวลผลเสียง</string>
+    <string name="notification_processing_legacy">แตะเพื่อเปิด JamesDSP manager</string>
     <!-- Permission request notifications -->
+    <string name="notification_request_permission_title">ผู้ใช้ต้องดำเนินการเพื่อเปิดใช้ JamesDSP</string>
+    <string name="notification_request_permission">แตะเพื่อให้สิทธิ์การจับภาพและเปิดใช้งานการประมวลผลเสียงของ JamesDSP</string>
     <!-- Session control loss notifications -->
+    <string name="session_control_loss_toast">JamesDSP หยุดทำงานเนื่องจากสูญเสียการควบคุมเซสชันเสียง โปรดปิดใช้งานแอปเอฟเฟ็กต์เสียงอื่นๆ</string>
+    <string name="session_control_loss_notification_title">การประมวลผลเสียงหยุดลง แอปอื่นรบกวนการทำงานของ JamesDSP</string>
+    <string name="session_control_loss_notification">โปรดปิดใช้งานแอปอื่นๆ ทั้งหมดที่มีเอฟเฟ็กต์เสียงส่วนกลางก่อนที่จะเปิดใช้ JamesDSP อีกครั้ง</string>
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_toast">JamesDSP หยุดทำงานเนื่องจากแอปสื่อที่เข้ากันไม่ได้ โปรดตรวจสอบการแจ้งเตือนเพื่อแก้ไขปัญหานี้</string>
+    <string name="session_app_compat_notification_title">การประมวลผลเสียงหยุดลง แอปอื่นรบกวนการทำงานของ JamesDSP</string>
+    <string name="session_app_compat_notification">แตะการแจ้งเตือนนี้เพื่อแก้ไขปัญหา</string>
     <!-- Capture permission revoked notifications -->
+    <string name="capture_permission_revoked_toast">JamesDSP หยุดทำงานเนื่องจากสิทธิ์ในการบันทึกเสียงถูกเพิกถอน</string>
     <!-- General purpose -->
+    <string name="install">ติดตั้ง</string>
+    <string name="update">อัปเดต</string>
+    <string name="unknown_error">ข้อผิดพลาดที่ไม่รู้จัก</string>
+    <string name="details">รายละเอียด</string>
+    <string name="actions">การกระทำ</string>
+    <string name="warning">คำเตือน</string>
+    <string name="success">สำเร็จ</string>
+    <string name="open">เปิด</string>
+    <string name="close">ปิด</string>
+    <string name="delete">ลบ</string>
+    <string name="copy">คัดลอก</string>
+    <string name="paste">วาง</string>
+    <string name="add">เพิ่ม</string>
+    <string name="yes">ใช่</string>
+    <string name="no">ไม่</string>
+    <string name="value_not_set">ไม่ได้ตั้งค่า</string>
+    <string name="undo">เลิกทำ</string>
+    <string name="redo">ทำซ้ำ</string>
+    <string name="no_activity_found">ไม่พบกิจกรรมที่จะจัดการการดำเนินการ</string>
+    <string name="permission_allowed">อนุญาต</string>
+    <string name="permission_not_allowed">ไม่อนุญาต</string>
+    <string name="error_projection_api_missing">ผู้ผลิตอุปกรณ์ของคุณได้ปิดใช้งาน API การบันทึกเสียงภายใน แอปพลิเคชันนี้ไม่สามารถทำงานได้หากไม่มี</string>
     <!-- Main screen -->
+    <string name="power_button_alt">สลับการประมวลผลเสียง</string>
+    <string name="compressor_enable">compressor ช่วงไดนามิกอัตโนมัติ</string>
+    <string name="compressor_max_attack">ขีดสุด</string>
+    <string name="compressor_max_release">ปล่อยสูงสุด</string>
+    <string name="compressor_adapt_speed">Aggressiveness</string>
+    <string name="eq_enable">การแก้ไขอีควอไลเซอร์ FIR</string>
+    <string name="eq_filter_type">ประเภทตัวกรอง</string>
+    <string name="eq_interpolator">อินเตอร์โพเลเตอร์</string>
+    <string name="eq_filter_type_minimum">เฟสขั้นต่ำ</string>
+    <string name="eq_filter_type_linear">เฟสเชิงเส้น</string>
+    <string name="eq_interpolator_chip">ชิ้นตามลูกบาศก์ Hermite Interpolating</string>
+    <string name="eq_interpolator_mha">Modified Hiroshi Akima spline</string>
+    <string name="eq_preset_acoustic">อะคูสติก</string>
+    <string name="eq_preset_bass">เบส</string>
+    <string name="eq_preset_beats">จังหวะ</string>
+    <string name="eq_preset_classic">คลาสสิค</string>
+    <string name="eq_preset_clear">ชัดเจน-ใส</string>
+    <string name="eq_preset_deep">ลึก</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
     <!-- Settings -->
     <string name="title_activity_settings">การตั้งค่า</string>
+    <string name="backup_settings">การสำรองข้อมูลและคืนค่า</string>
     <!-- Theme names -->
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="gep_add_node">เพิ่ม</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
     <!-- Blocklist -->
+    <string name="title_activity_blocklist"> แอพที่ยกเว้น</string>
     <!-- Compatibility issue activity -->
+    <string name="app_compat_retry">ลองอีกครั้ง</string>
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
     <!-- App list -->
