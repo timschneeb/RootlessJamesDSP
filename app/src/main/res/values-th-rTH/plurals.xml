@@ -1,2 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <plurals name="nodes">
+        <item quantity="other">หนึ่ง
+ %d โหนด
+ อื่น
+ %d โหนด</item>
+    </plurals>
+    <plurals name="custom_parameters">
+        <item quantity="other">หนึ่ง
+ %d พารามิเตอร์ที่ปรับแต่งได้
+ อื่น
+ %d พารามิเตอร์ที่ปรับแต่งได้</item>
+    </plurals>
+    <plurals name="unsupported_apps">
+        <item quantity="other">หนึ่ง
+ %d แอปที่ไม่รองรับได้รับการยกเว้นโดยอัตโนมัติ  แตะเพื่อดูรายละเอียด
+ อื่น
+ %d แอปที่ไม่รองรับได้รับการยกเว้นโดยอัตโนมัติ  แตะเพื่อดูรายละเอียด</item>
+    </plurals>
+</resources>
