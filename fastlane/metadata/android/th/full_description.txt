@@ -10,22 +10,22 @@ JamesDSP รองรับเอฟเฟกต์เสียงต่อไ�
 * การแก้ไขอีควอไลเซอร์ FIR
 * อีควอไลเซอร์ตอบสนองโดยพลการ
 * ViPER-DDC
-* Convolver
-* Live-programmable DSP (scripting engine for audio effects)
-* Analog modelling
-* Soundstage wideness
-* Crossfeed
-* Virtual room effect (reverb)
+* คอนเวอร์เตอร์
+* DSP ที่ตั้งโปรแกรมได้แบบสด (โปรแกรมสร้างสคริปต์สำหรับเอฟเฟ็กต์เสียง)
+* การสร้างแบบจำลองอะนาล็อก
+* ความกว้างของเวทีเสียง
+* ครอสฟีด
+* เอฟเฟกต์ห้องเสมือนจริง (พัดโบก)
 
-Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration, you can search and import frequency responses that aim to correct your headphone to a neutral sound. Go to 'Arbitrary response equalizer > Magnitude response > AutoEQ profiles' to get started.
+นอกจากนี้ แอปนี้ยังทำงานร่วมกับ AutoEQ โดยตรง เมื่อใช้การรวม AutoEQ คุณสามารถค้นหาและนำเข้าการตอบสนองความถี่ที่มีจุดมุ่งหมายเพื่อแก้ไขหูฟังของคุณให้เป็นเสียงที่เป็นกลาง ไปที่ 'อีควอไลเซอร์การตอบสนองตามอำเภอใจ > การตอบสนองขนาด > โปรไฟล์ AutoEQ' เพื่อเริ่มต้น
 
---- Limitations
-* Apps blocking internal audio capture remain unprocessed (e.g., Spotify, Google Chrome)
-* Apps using some types of HW-accelerated playback may cause issues and need to be manually excluded (e.g., some Unity games)
-* Cannot coexist with (some) other audio effect apps (e.g., Wavelet and other apps that make use of the `DynamicsProcessing` Android API)
+--- ข้อจำกัด
+* แอปที่บล็อกการบันทึกเสียงภายในยังไม่ประมวลผล (เช่น Spotify, Google Chrome)
+* แอปที่ใช้การเล่นแบบเร่ง HW บางประเภทอาจทำให้เกิดปัญหาและจำเป็นต้องแยกออกด้วยตนเอง (เช่น เกม Unity บางเกม)
+* ไม่สามารถอยู่ร่วมกับแอพเอฟเฟกต์เสียงอื่นๆ (บางแอพ) (เช่น Wavelet และแอพอื่นๆ ที่ใช้ Android API `DynamicsProcessing`)
 
 
-- Apps confirmed working:
+- แอปยืนยันว่าใช้งานได้:
 * YouTube
 * YouTube Music
 * Amazon Music
@@ -35,12 +35,12 @@ Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration
 * Twitch
 * ...
 
-- Unsupported apps include:
-* Spotify (Note: Spotify ReVanced patch is required to support Spotify)
+- แอพที่ไม่รองรับได้แก่:
+* Spotify (หมายเหตุ: จำเป็นต้องมีโปรแกรมแก้ไข Spotify ReVanced เพื่อรองรับ Spotify)
 * Google Chrome
 * SoundCloud
 * ...
 
---- Translation
-Please help us translate this app here: https://crowdin.com/project/rootlessjamesdsp
-To request a new language that isn't enabled on Crowdin yet, please open an issue here on GitHub and I will turn it on.
+--- แปล
+โปรดช่วยเราแปลแอปนี้ที่นี่: https://crowdin.com/project/rootlessjamesdsp
+หากต้องการขอภาษาใหม่ที่ยังไม่เปิดใช้งานบน Crowdin โปรดเปิดปัญหาที่นี่ใน GitHub แล้วฉันจะเปิดใช้งานให้
