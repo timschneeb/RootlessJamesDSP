@@ -124,9 +124,25 @@
     <string name="liveprog_additional_params_not_supported">สคริปต์ที่เลือกไม่มีพารามิเตอร์ที่ปรับแต่งได้</string>
     <string name="liveprog_not_found">ไม่พบสคริปต์</string>
     <string name="liveprog_no_script_selected">ยังไม่ได้เลือกบท</string>
+    <string name="liveprog_edit_header">แก้ไขสคริปต์ที่เลือก</string>
+    <string name="liveprog_edit">เปิดสคริปต์ที่ใช้งานในตัวแก้ไขในตัว</string>
+    <string name="tube_enable">การสร้างแบบจำลองอะนาล็อก</string>
+    <string name="tube_drive">พรีแอมป์</string>
+    <string name="output_control_header">การควบคุมอัตราขยายเอาต์พุต</string>
+    <string name="output_limiter_threshold">ขีด จำกัด</string>
+    <string name="output_limiter_release">ปล่อยลิมิตเตอร์</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
+    <string name="onboarding_adb_shizuku_install_instruction">คีย์: onboarding_adb_shizuku_install_instruction
+ onboarding_adb_shizuku_install_instruction</string>
+    <string name="onboarding_adb_shizuku_open_instruction">เรียกใช้ \'Shizuku\' และมองหา \'<b>Start via Wireless Debugging</b>\'  แตะปุ่ม \'จับคู่\' และทำตามคำแนะนำในแอป  หลังจากจับคู่ Shizuku กับอุปกรณ์ของคุณแล้ว ให้เริ่มเซิร์ฟเวอร์ Shizuku โดยกดปุ่ม \'Start\' ในแอป  หากคุณพบปัญหาขณะตั้งค่า Shizuku โปรดดูบทช่วยสอนการตั้งค่าที่ลิงก์อยู่ในแอป</string>
+    <string name="onboarding_adb_shizuku_open_button">Launch Shizuku</string>
+    <string name="onboarding_adb_shizuku_open_button_done">ใช้งานได้แล้ว</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead">โปรดเริ่มเซิร์ฟเวอร์ Shizuku ก่อนขออนุญาต  กลับไปที่คำแนะนำขั้นตอนที่ 2</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead_title">เซิร์ฟเวอร์ Shizuku ไม่ทำงาน</string>
+    <string name="onboarding_adb_shizuku_grant_fail_version">แอปพลิเคชันนี้ต้องการ Shizuku เวอร์ชัน 11 หรือใหม่กว่า โปรดอัปเดต Shizuku เป็นเวอร์ชันล่าสุด</string>
+    <string name="onboarding_adb_shizuku_grant_fail_version_title">เวอร์ชัน Shizuku ที่ไม่รองรับ</string>
     <!-- Settings -->
     <string name="title_activity_settings">การตั้งค่า</string>
     <string name="backup_settings">การสำรองข้อมูลและคืนค่า</string>
