@@ -131,6 +131,7 @@
     <string name="output_control_header">การควบคุมอัตราขยายเอาต์พุต</string>
     <string name="output_limiter_threshold">ขีด จำกัด</string>
     <string name="output_limiter_release">ปล่อยลิมิตเตอร์</string>
+    <string name="output_control_postgain">ได้รับโพสต์</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
@@ -143,6 +144,9 @@
     <string name="onboarding_adb_shizuku_grant_fail_server_dead_title">เซิร์ฟเวอร์ Shizuku ไม่ทำงาน</string>
     <string name="onboarding_adb_shizuku_grant_fail_version">แอปพลิเคชันนี้ต้องการ Shizuku เวอร์ชัน 11 หรือใหม่กว่า โปรดอัปเดต Shizuku เป็นเวอร์ชันล่าสุด</string>
     <string name="onboarding_adb_shizuku_grant_fail_version_title">เวอร์ชัน Shizuku ที่ไม่รองรับ</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied_title">ปฏิเสธการอนุญาต</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied">โปรดให้สิทธิ์การเข้าถึงแอปพลิเคชันนี้แก่ Shizuku คุณอาจต้องเปิดตัวจัดการสิทธิ์ของ Shizuku และอนุญาตสิทธิ์ด้วยตนเอง หากคุณเคยปฏิเสธและป๊อปอัปไม่แสดงอีกต่อไป</string>
+    <string name="onboarding_adb_shizuku_no_dump_perm_title">Shizuku ล้มเหลวในการให้สิทธิ์ ADB</string>
     <!-- Settings -->
     <string name="title_activity_settings">การตั้งค่า</string>
     <string name="backup_settings">การสำรองข้อมูลและคืนค่า</string>
