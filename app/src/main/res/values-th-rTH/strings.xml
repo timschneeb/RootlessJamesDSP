@@ -78,6 +78,52 @@
     <string name="eq_preset_classic">คลาสสิค</string>
     <string name="eq_preset_clear">ชัดเจน-ใส</string>
     <string name="eq_preset_deep">ลึก</string>
+    <string name="eq_preset_dubstep">ดับสเต็ป</string>
+    <string name="eq_preset_electronic">อิเล็กทรอนิกส์</string>
+    <string name="eq_preset_flat">เรียบ</string>
+    <string name="eq_preset_hardstyle">ฮาร์ดสไตล์</string>
+    <string name="eq_preset_hiphop">ฮิปฮอป</string>
+    <string name="eq_preset_jazz">แจ๊ส</string>
+    <string name="eq_preset_metal">เมทัล</string>
+    <string name="eq_preset_movie">ภาพยนตร์</string>
+    <string name="eq_preset_pop">ป๊อป</string>
+    <string name="eq_preset_rb">R&amp;B</string>
+    <string name="eq_preset_rock">ร็อค</string>
+    <string name="eq_preset_vocal">เพิ่มเสียงร้อง</string>
+    <string name="geq_enable">อีควอไลเซอร์ตอบสนองโดยพลการ</string>
+    <string name="geq_nodes">การตอบสนองขนาด</string>
+    <string name="bass_enable">เพิ่มเสียงเบสแบบไดนามิก</string>
+    <string name="bass_max_gain">ได้รับสุงสุด</string>
+    <string name="reverb_enable">เอฟเฟกต์จำลองห้อง</string>
+    <string name="reverb_room_type">ประเภทห้อง</string>
+    <string name="reverb_preset_default">ค่าเริ่มต้น</string>
+    <string name="reverb_preset_small_hall1">ห้องโถงเล็ก 1</string>
+    <string name="reverb_preset_small_hall2">ห้องโถงเล็ก 2</string>
+    <string name="reverb_preset_medium_hall2">ห้องโถงขนาดกลาง</string>
+    <string name="reverb_preset_large_hall1">ห้องโถงขนาดใหญ่</string>
+    <string name="reverb_preset_small_room1">ห้องขนาดเล็ก 1</string>
+    <string name="reverb_preset_small_room2">ห้องขนาดเล็ก 2</string>
+    <string name="reverb_preset_medium_room1">ห้องขนาดกลาง</string>
+    <string name="reverb_preset_large_room1">ห้องขนาดใหญ่</string>
+    <string name="reverb_preset_plate_high">จานสูง</string>
+    <string name="reverb_preset_plate_low">จานต่ำ</string>
+    <string name="reverb_preset_long_reverb1">รีเวิร์บยาว 1</string>
+    <string name="reverb_preset_long_reverb2">รีเวิร์บยาว 2</string>
+    <string name="convolver_enable">คอนเวอร์เตอร์</string>
+    <string name="convolver_impulse">การตอบสนองแรงกระตุ้น</string>
+    <string name="convolver_advanced_editing">การแก้ไขรูปคลื่นขั้นสูง</string>
+    <string name="convolver_convolution_mode">การเพิ่มประสิทธิภาพการตอบสนองแรงกระตุ้น</string>
+    <string name="convolver_convolution_mode_original">ต้นฉบับ</string>
+    <string name="convolver_convolution_mode_shrink">หด</string>
+    <string name="convolver_convolution_mode_minimum_phase_shrink">การแปลงเฟสขั้นต่ำและการลดขนาด</string>
+    <string name="ddc_enable">ViPER-DDC</string>
+    <string name="ddc_file">ไฟล์ DDC</string>
+    <string name="liveprog_enable">DSP ที่ตั้งโปรแกรมได้แบบสด</string>
+    <string name="liveprog_file">สคริปต์ Liveprog</string>
+    <string name="liveprog_additional_params">พารามิเตอร์สคริปต์เพิ่มเติม</string>
+    <string name="liveprog_additional_params_not_supported">สคริปต์ที่เลือกไม่มีพารามิเตอร์ที่ปรับแต่งได้</string>
+    <string name="liveprog_not_found">ไม่พบสคริปต์</string>
+    <string name="liveprog_no_script_selected">ยังไม่ได้เลือกบท</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
@@ -85,9 +131,11 @@
     <string name="title_activity_settings">การตั้งค่า</string>
     <string name="backup_settings">การสำรองข้อมูลและคืนค่า</string>
     <!-- Theme names -->
+    <string name="theme_default">ค่าเริ่มต้น</string>
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="title_activity_geq">การตอบสนองขนาด</string>
     <string name="gep_add_node">เพิ่ม</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
