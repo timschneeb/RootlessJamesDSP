@@ -61,15 +61,8 @@
     <string name="error_projection_api_missing">قامت شركة تصنيع جهازك بتعطيل API تسجيل الصوت الداخلي. لا يمكن لهذا التطبيق أن يعمل بدونهم.</string>
     <!-- Main screen -->
     <string name="power_button_alt">تشغيل معالجة الصوت</string>
-    <string name="compressor_enable">ضغط النطاق الديناميكي التلقائي</string>
-    <string name="compressor_max_attack">الحد الأقصى للهجوم</string>
-    <string name="compressor_max_release">الحد الأقصى للإصدار</string>
-    <string name="compressor_adapt_speed">العدوانية</string>
-    <string name="eq_enable">معادل معلومات FIR</string>
     <string name="eq_filter_type">نوع التصفية</string>
     <string name="eq_interpolator">مستقطب</string>
-    <string name="eq_filter_type_minimum">المرحلة الأدنى</string>
-    <string name="eq_filter_type_linear">المرحلة الخطية</string>
     <string name="eq_interpolator_chip">بوليينوميت، البوليونوماتيك المكعب</string>
     <string name="eq_interpolator_mha">منحنى هيروشي أكيما المعدل</string>
     <string name="eq_preset_acoustic">الصوتية</string>
