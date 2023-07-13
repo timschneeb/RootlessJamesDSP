@@ -1,0 +1,6 @@
+* Dynamic range compander effect added
+* Multimodal equalizer effect added (replaces old EQ)
+* Removed weird spiky sound for vacuum tube simulation
+* Convolution modules use automatic benchmarking (in the background) to optimize performance
+* Several bug fixes and minor performance improvements
+* Translation updates
