@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <plurals name="nodes">
+        <item quantity="one">%d nodo</item>
+        <item quantity="other">%d nodos</item>
+    </plurals>
     <plurals name="custom_parameters">
         <item quantity="one">%d parámetro personalizable</item>
         <item quantity="other">%d parámetro personalizable</item>

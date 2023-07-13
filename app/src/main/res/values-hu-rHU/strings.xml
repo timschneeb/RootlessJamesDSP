@@ -62,15 +62,8 @@ Törlés</string>
     <string name="error_projection_api_missing">Az eszközöd gyártója letiltotta a belső audiót felvevő API-kat. Ez az alkalmazás nem működik ezek nélkül.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Hang feldolgozás bekapcsolása</string>
-    <string name="compressor_enable">Automatikus dinamikus tömörítő tartomány</string>
-    <string name="compressor_max_attack">Maximum támadás</string>
-    <string name="compressor_max_release">Maximum engedés</string>
-    <string name="compressor_adapt_speed">Agresszivitás</string>
-    <string name="eq_enable">Interpolárció FIR equalizer</string>
     <string name="eq_filter_type">Szűrőtípus</string>
     <string name="eq_interpolator">Interpolátor</string>
-    <string name="eq_filter_type_minimum">Minimális fázis</string>
-    <string name="eq_filter_type_linear">Lineáris fázis</string>
     <string name="eq_interpolator_chip">Darabos hermitikus kocka többtagú interpoláció</string>
     <string name="eq_interpolator_mha">Módosított Hiroshi Akima spline</string>
     <string name="eq_preset_acoustic">Akusztikus</string>
@@ -262,4 +255,5 @@ Törlés</string>
     <!-- Self-updates (Root) -->
     <!-- Backups -->
     <!-- Multi-device profiles -->
+    <!-- Root version check -->
 </resources>

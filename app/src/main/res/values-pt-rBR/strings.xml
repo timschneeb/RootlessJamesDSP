@@ -61,15 +61,8 @@
     <string name="error_projection_api_missing">O fabricante do seu dispositivo desativou a API interna de gravação de áudio. Este aplicativo não pode funcionar sem eles.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Ativar/desativar processamento de áudio</string>
-    <string name="compressor_enable">Compressor automático dinâmico de faixa</string>
-    <string name="compressor_max_attack">Ataque máximo</string>
-    <string name="compressor_max_release">Liberação máxima</string>
-    <string name="compressor_adapt_speed">Agressividade</string>
-    <string name="eq_enable">Interpolação do equalizador FIR</string>
     <string name="eq_filter_type">Tipo de filtro</string>
     <string name="eq_interpolator">Interpolador</string>
-    <string name="eq_filter_type_minimum">Fase mínima</string>
-    <string name="eq_filter_type_linear">Fase linear</string>
     <string name="eq_interpolator_chip">Interpolação Polinomial de Hermite Cúbica em partes</string>
     <string name="eq_interpolator_mha">Spline de Hiroshi Akima modificada</string>
     <string name="eq_preset_acoustic">Acústico</string>
@@ -132,7 +125,7 @@
     <string name="output_limiter_threshold">Limite de Limitador</string>
     <string name="output_limiter_release">Liberação do limitador</string>
     <string name="output_control_postgain">Pós-ganho</string>
-    <string name="stereowide_enable">Amplitude de Estúdio</string>
+    <string name="stereowide_enable">Amplificação de Estúdio</string>
     <string name="stereowide_level">Amplitude</string>
     <string name="stereowide_level_none">Nenhum</string>
     <string name="stereowide_level_very_wide">Muito amplo</string>
@@ -359,9 +352,53 @@
     <string name="backup_settings_summary">Automático &amp; backups manuais</string>
     <string name="backup_frequency">Frequência de backup</string>
     <string name="backup_location">Local de backup</string>
+    <string name="backup_maximum">Máximo de backups</string>
+    <string name="backup_never">Nunca</string>
+    <string name="backup_12hour">A cada 12 horas</string>
+    <string name="backup_24hour">Diariamente</string>
+    <string name="backup_48hour">A cada 2 dias</string>
+    <string name="backup_weekly">Semanalmente</string>
+    <string name="backup_select_location">Por favor, crie e selecione um diretório de backup…</string>
     <!-- Theme names -->
     <string name="theme_default">Padrão</string>
+    <string name="theme_monet">Dinâmico</string>
+    <string name="theme_greenapple">Maçã Verde</string>
+    <string name="theme_strawberrydaiquiri">Morango Daiquiri</string>
+    <string name="theme_honey">Honey</string>
+    <string name="theme_tealturquoise">Azul-petróleo &amp; Turquesa</string>
+    <string name="theme_yinyang">Yin &amp; Yang</string>
+    <string name="theme_yotsuba">Yotsuba</string>
+    <string name="theme_tidalwave">Tidal Wave</string>
     <!-- File library preference -->
+    <string name="action_import">Importar</string>
+    <string name="filelibrary_hint_tap_and_hold">Toque e segure qualquer item para mais opções</string>
+    <string name="filelibrary_context_load">Carregar</string>
+    <string name="filelibrary_context_edit">Editar</string>
+    <string name="filelibrary_context_overwrite">Sobrescrever</string>
+    <string name="filelibrary_context_rename">Renomear</string>
+    <string name="filelibrary_context_share">Compartilhar…</string>
+    <string name="filelibrary_context_resample">Reamostragem off-line</string>
+    <string name="filelibrary_context_duplicate">Duplicar</string>
+    <string name="filelibrary_context_delete">Excluir</string>
+    <string name="filelibrary_context_new_preset">Novo</string>
+    <string name="filelibrary_context_new_preset_long">Nova predefinição</string>
+    <string name="filelibrary_unsupported_format_title">Tipo de arquivo incompatível</string>
+    <string name="filelibrary_unsupported_format">O arquivo selecionado não tem a extensão correta.</string>
+    <string name="filelibrary_corrupted_title">Arquivo incompatível ou corrompido</string>
+    <string name="filelibrary_corrupted">O arquivo selecionado não contém dados utilizáveis ou está corrompido.</string>
+    <string name="filelibrary_file_too_new">O arquivo selecionado foi criado com uma versão mais recente deste aplicativo e não pode ser carregado. Por favor, atualize este aplicativo para continuar.</string>
+    <string name="filelibrary_access_fail">Falha ao acessar a pasta</string>
+    <string name="filelibrary_is_backup_not_preset">O arquivo selecionado é um arquivo de backup, não uma predefinição. Por favor, vá para as configurações de backup se você quiser restaurá-lo.</string>
+    <string name="filelibrary_no_file_selected">Nenhum arquivo selecionado</string>
+    <string name="filelibrary_new_file_name">Novo nome do arquivo</string>
+    <string name="filelibrary_file_exists">O arquivo já existe</string>
+    <string name="filelibrary_resample_complete">Reamostrado para %1$dHz</string>
+    <string name="filelibrary_resample_failed">A reamostragem falhou. Arquivo de entrada corrompido?</string>
+    <string name="filelibrary_preset_overwritten">Predefinição %1$s sobrescrita</string>
+    <string name="filelibrary_preset_created">Predefinição \'%1$s\' criada</string>
+    <string name="filelibrary_preset_save_failed">Erro ao salvar predefinição</string>
+    <string name="filelibrary_renamed">Renomeado para \'%1$s\'</string>
+    <string name="filelibrary_deleted">\'%1$s\' excluído</string>
     <!-- JamesDSP engine messages -->
     <string name="message_liveprog_compile_fail">A execução do Liveprog falhou. O script selecionado está corrompido. Por favor, use o editor de scripts para depuração.</string>
     <!-- GraphicEQ editor -->
@@ -407,4 +444,5 @@
     <!-- Self-updates (Root) -->
     <!-- Backups -->
     <!-- Multi-device profiles -->
+    <!-- Root version check -->
 </resources>

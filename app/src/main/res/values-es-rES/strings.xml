@@ -45,13 +45,13 @@
     <string name="warning">Advertencia</string>
     <string name="success">Éxito</string>
     <string name="open">Abrir</string>
-    <string name="close">Cerrado</string>
+    <string name="close">Cerrar</string>
     <string name="delete">Eliminar</string>
     <string name="copy">Copiar</string>
     <string name="paste">Pegar</string>
     <string name="add">Agregar</string>
     <string name="yes">Sí</string>
-    <string name="no">Nº</string>
+    <string name="no">No</string>
     <string name="value_not_set">No establecido</string>
     <string name="undo">Deshacer</string>
     <string name="redo">Rehacer</string>
@@ -61,20 +61,13 @@
     <string name="error_projection_api_missing">El fabricante de tu dispositivo ha desactivado las APIs internas de grabación de audio. Esta aplicación no puede funcionar sin ellas.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Cambiar procesamiento de audio</string>
-    <string name="compressor_enable">Rango de Compresión Dinámica</string>
-    <string name="compressor_max_attack">Máximo de ataques</string>
-    <string name="compressor_max_release">Máxima liberación</string>
-    <string name="compressor_adapt_speed">Agresividad</string>
-    <string name="eq_enable">Ecualizador de FIR interpolando</string>
     <string name="eq_filter_type">Tipo de filtro:</string>
     <string name="eq_interpolator">Interpolador</string>
-    <string name="eq_filter_type_minimum">Fase minima</string>
-    <string name="eq_filter_type_linear">Fase lineal</string>
     <string name="eq_interpolator_chip">Polinomio interpolante de Hermita cúbica en sentido de las Piezas</string>
     <string name="eq_interpolator_mha">Curva modificada de Hiroshi Akima</string>
     <string name="eq_preset_acoustic">Acústica</string>
     <string name="eq_preset_bass">Graves</string>
-    <string name="eq_preset_beats">Ritmos:</string>
+    <string name="eq_preset_beats">Ritmos</string>
     <string name="eq_preset_classic">Clásica</string>
     <string name="eq_preset_clear">Claro</string>
     <string name="eq_preset_deep">Deep</string>
@@ -83,12 +76,12 @@
     <string name="eq_preset_flat">Planos</string>
     <string name="eq_preset_hardstyle">Estilo difícil</string>
     <string name="eq_preset_hiphop">Hip-Hop</string>
-    <string name="eq_preset_jazz">爵士乐</string>
-    <string name="eq_preset_metal">Metals</string>
+    <string name="eq_preset_jazz">Jazz</string>
+    <string name="eq_preset_metal">Metal</string>
     <string name="eq_preset_movie">Película</string>
-    <string name="eq_preset_pop">Popar</string>
+    <string name="eq_preset_pop">Pop</string>
     <string name="eq_preset_rb">R&amp;B</string>
-    <string name="eq_preset_rock">Poca</string>
+    <string name="eq_preset_rock">Rock</string>
     <string name="eq_preset_vocal">Booster vocal</string>
     <string name="geq_enable">Ecualizador de respuestas arbitrarias</string>
     <string name="geq_nodes">Respuesta de magnitud</string>
@@ -298,8 +291,70 @@
     <string name="troubleshooting_summary">Opciones avanzadas, documentación, diagnóstico</string>
     <string name="troubleshooting_docs">Documentación</string>
     <string name="troubleshooting_actions">Acciones variadas</string>
+    <string name="troubleshooting_dump">Exporte la información de audio de esta sesión…</string>
+    <string name="troubleshooting_dump_summary">Colectar y guarda los datos para solucionar problemas</string>
+    <string name="troubleshooting_dump_share_title">Comparte la información de audio de esta sesión..</string>
+    <string name="troubleshooting_view_limitations">Limitaciones técnicales</string>
+    <string name="troubleshooting_view_limitations_summary">Mostré los detalles sobre las limitaciones de esta aplicación</string>
+    <string name="troubleshooting_notification_access">Permitir acceso a las notificaciones para detectar su sesión más fácilmente</string>
+    <string name="troubleshooting_notification_access_summary">Esto permite una mejor detección de sesión de audio</string>
+    <string name="troubleshooting_repair_assets">Restaurar IRS, DDC y scripts</string>
+    <string name="troubleshooting_repair_assets_summary">Abre los datos precargados si los perdiste</string>
+    <string name="troubleshooting_repair_assets_success">Los activos han sido restaurados</string>
+    <string name="misc_settings">Misceláneo</string>
+    <string name="misc_settings_summary">Reportes, otras acciones</string>
+    <string name="misc_permission_skip_prompt">Omitir aviso de permisos de captura</string>
+    <string name="misc_permission_auto_start">Empece los efectos al encender su teléfono</string>
+    <string name="misc_permission_restart_setup">Reinicie autoconfiguración</string>
+    <string name="misc_permission_restart_setup_summary">Otorgar permisos adicionales que faltan</string>
+    <string name="misc_permission_header">Permisos opcionales</string>
+    <string name="assets">Activos</string>
+    <string name="network_services">Servicios de red</string>
+    <string name="network_autoeq_api_url">URL de backend de la API AutoEQ</string>
+    <string name="network_invalid_url">Este URL es Inválido</string>
+    <string name="network_autoeq_conntest_running">Probando conexión al servidor…</string>
+    <string name="network_autoeq_conntest_done">Prueba de conexión satisfactoria</string>
+    <string name="network_autoeq_conntest_fail">Prueba de conexión fallida</string>
+    <string name="network_autoeq_conntest_fail_summary">El servidor no respondió correctamente. Asegúrese de que el software en https://github.com/ThePBone/AutoEqApi está correctamente configurado en el servidor.\n\nError de red: %1$s\n\n¿Desea restaurar esta configuración al valor predeterminado?</string>
+    <string name="about_settings">Acerca de</string>
+    <string name="about_settings_summary">Créditos, soporte, actualizaciones</string>
+    <string name="privacy">Privacidad</string>
+    <string name="privacy_share_crash_reports">Compartir reportes de errores de aplicación</string>
+    <string name="privacy_share_crash_reports_on">Enviar reportes de errores al desarrollador</string>
+    <string name="privacy_share_crash_reports_off">No enviar reportes de errores al desarrollador</string>
+    <string name="credits">Créditos</string>
+    <string name="translators">Traductores</string>
+    <string name="credits_app">Implementación de aplicación &amp; rootless desarrollada por</string>
+    <string name="credits_dsp">Biblioteca de algoritmos de núcleo JamesDSP desarrollada por</string>
+    <string name="credits_project_page">Visite el sitio web del proyecto en GitHub</string>
+    <string name="credits_project_page_summary">Reportar problemas, mantenerse al día y leer el código fuente</string>
+    <string name="credits_project_play_page">Visite RootlessJamesDSP en Google Play</string>
+    <string name="credits_project_play_page_summary">Buscar actualizaciones</string>
+    <string name="credits_project_check_update">Buscar actualizaciones…</string>
+    <string name="credits_project_check_update_summary">Descarga e instala actualizaciones si están disponibles</string>
+    <string name="credits_project_translate">Contribuir con las traducciones</string>
+    <string name="credits_project_translate_summary">Ayúdanos a traducir la app en tu idioma</string>
+    <string name="credits_version">Versión de la aplicación</string>
+    <string name="credits_build_info">Información de compilación</string>
+    <string name="appearance_section_header">Apariencia</string>
+    <string name="appearance_summary">Tema de la aplicación, modo negro puro</string>
+    <string name="appearance_title">Tema</string>
     <string name="appearance_theme_mode">Modo oscuro</string>
+    <string name="appearance_theme_mode_default">Seguir tema del sistema</string>
+    <string name="appearance_theme_mode_light">Desactivado</string>
+    <string name="appearance_theme_mode_dark">Activado</string>
+    <string name="appearance_pure_black_mode">Modo noche negro puro</string>
+    <string name="appearance_app_theme">Tema de la aplicación</string>
+    <string name="appearance_navigation_title">Navegación</string>
+    <string name="appearance_nav_hide">Ocultar barra de navegación al desplazar</string>
+    <string name="appearance_show_icons">Mostrar iconos de categorías</string>
     <string name="backup_settings">Copia de seguridad y restauración</string>
+    <string name="backup_settings_summary">Copias de seguridad automáticas &amp; manuales</string>
+    <string name="backup_frequency">Frecuencia de copia de seguridad</string>
+    <string name="backup_location">Ubicación de la copia de seguridad</string>
+    <string name="backup_maximum">Máximo de copias de seguridad</string>
+    <string name="backup_never">Nunca</string>
+    <string name="backup_12hour">Cada 12 horas</string>
     <string name="backup_24hour">Diariamente</string>
     <string name="backup_48hour">Cada 2 días</string>
     <string name="backup_weekly">Semanalmente</string>
@@ -346,7 +401,7 @@
     <string name="filelibrary_deleted">%1$s ha sido eliminado</string>
     <string name="filelibrary_preset_loaded">Preajuste \'%1$s\' cargado</string>
     <string name="filelibrary_preset_load_failed">El archivo \'%1$s\' no es compatible con esta aplicación</string>
-    <string name="filelibrary_no_presets">No hay preajustes guardados. Pulse \'Añadir\' para crear uno nuevo.</string>
+    <string name="filelibrary_no_presets">No hay preajustes guardados. Pulse \'Agregar\' para crear uno nuevo.</string>
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">El archivo VDC seleccionado está dañado. Por favor, elija otro.</string>
     <string name="message_irs_corrupt">La respuesta de impulso seleccionada está dañada. Por favor, elija otra.</string>
@@ -378,10 +433,40 @@
     <string name="geq_discard_changes">Los valores no son válidos o están vacíos. Los cambios no se pueden guardar.\n¿Desea descartar los cambios y salir?</string>
     <string name="geq_frequeny_range">Valor entre 1Hz y 24000Hz</string>
     <string name="geq_gain_range">Valor entre -32dB y 32dB</string>
+    <string name="geq_gain">Ganancia</string>
+    <string name="geq_frequency">Frecuencia</string>
     <!-- AutoEQ GraphicEQ selector -->
+    <string name="geq_api_network_error">Error al conectar al servidor. %1$s</string>
+    <string name="geq_api_network_error_details_code">Servidor respondió con código de error: %1$d</string>
+    <string name="autoeq_search">Búsqueda de AutoEQ</string>
+    <string name="autoeq_enter_model">Introducir modelo de auriculares…</string>
+    <string name="autoeq_partial_results_warning">Mostrando los primeros %1$d resultados. Por favor, ajuste su búsqueda para obtener resultados más relevantes.</string>
+    <string name="autoeq_no_results">No se encontraron resultados</string>
     <!-- Customizable liveprog script parameters -->
+    <string name="title_activity_liveprog_params">Parámetros de script personalizables</string>
+    <string name="action_restore_defaults">Restaurar predeterminados</string>
     <!-- Liveprog script editor -->
+    <string name="title_activity_liveprog_editor">Editor de scripts</string>
+    <string name="editor_find_and_replace">Buscar/reemplazar…</string>
+    <string name="editor_docs">Ayuda</string>
+    <string name="editor_open_fail">El archivo de script no existe o no se puede abrir.</string>
+    <string name="editor_run">Guardar y ejecutar</string>
+    <string name="editor_save">Guardar</string>
+    <string name="editor_liveprog_enabled">Liveprog se ha activado automáticamente.</string>
+    <string name="editor_replace_all">Reemplazar todo</string>
+    <string name="editor_replacement">Reemplazo</string>
+    <string name="editor_find_next_match">Buscar la siguiente coincidencia</string>
+    <string name="editor_find_previous_match">Buscar coincidencia anterior</string>
+    <string name="editor_search_keyword">Buscar</string>
+    <string name="editor_source_position">%1$d:%2$d</string>
+    <string name="editor_engine_down_title">JamesDSP no está activo</string>
+    <string name="editor_engine_down">No se puede ejecutar el script porque JamesDSP está desactivado. Por favor, active JamesDSP para ejecutar scripts.</string>
+    <string name="editor_save_prompt_title">¿Guardar cambios?</string>
+    <string name="editor_save_prompt">El script actual tiene cambios sin guardar. ¿Desea guardar los cambios o descartarlos?</string>
+    <string name="editor_script_launched">Script iniciado</string>
+    <string name="editor_cannot_undo">Nada que deshacer.</string>
     <string name="editor_cannot_redo">Nada que rehacer.</string>
+    <string name="editor_text_size">Tamaño del texto</string>
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Apps excluidas</string>
     <string name="blocklist_add_exclusion_alt">Añadir aplicación para excluir</string>
@@ -409,14 +494,81 @@
     <string name="load_fail_arch_card">Si ya has instalado el módulo Magisk, es posible que hayas seleccionado la configuración incorrecta durante la instalación. Por favor, reinstala el módulo y trata de habilitar la compatibilidad con Huawei (aunque tu teléfono no sea de ese fabricante).</string>
     <!-- Enhanced processing -->
     <string name="enhanced_processing_feature_unavailable">Función no disponible</string>
+    <string name="enhanced_processing_feature_unavailable_content">Esta función solo está disponible cuando \"procesamiento mejorado\" está activado en los ajustes. Vaya a \"Ajustes &gt; Procesamiento de audio &gt; Procesamiento mejorado\" y active esa opción para acceder a este menú.\n\nNota: \'Procesamiento mejorado\' no se puede usar mientras el modo de compatibilidad está activado.</string>
+    <string name="enhanced_processing_missing_perm">El procesamiento mejorado se ha desactivado debido a que falta un permiso. Por favor, vuelva a configurarlo en ajustes.</string>
     <!-- App list -->
+    <string name="app_list_loading">Cargando aplicaciones…</string>
+    <string name="app_list_search">Buscar</string>
+    <string name="app_list_icon_alt">Ícono de la app</string>
     <!-- Number box view -->
+    <string name="number_box_decrement">Reducir</string>
+    <string name="number_box_increment">Aumentar</string>
     <!-- Slider widget -->
+    <string name="slider_dialog_title">Editar valor</string>
+    <string name="slider_dialog_format_error">Formato de número inválido. Cambios no aplicados.</string>
+    <string name="slider_dialog_step_error">El valor debe ser un múltiplo de %1$d. Cambios no aplicados.</string>
     <!-- Revert confirmation -->
     <string name="revert_confirmation_title">¿Está seguro?</string>
+    <string name="revert_confirmation">¿Desea restablecer el preajuste actual de JamesDSP a los valores por defecto?</string>
     <!-- File intent handler -->
+    <string name="intent_import_preset">Importar preajuste</string>
+    <string name="intent_import_irs">Importar respuesta de impulso</string>
+    <string name="intent_import_vdc">Importar archivo VDC</string>
+    <string name="intent_import_liveprog">Importar script Liveprog</string>
+    <string name="intent_import_mode_add">Solo importar</string>
+    <string name="intent_import_mode_select">Importar y activar</string>
+    <string name="intent_import_fail">Error al importar archivo \'%1$s\'</string>
+    <string name="intent_import_success">Archivo \'%1$s\' importado</string>
+    <string name="intent_import_select_success">Archivo \'%1$s\' importado y activado</string>
+    <string name="intent_import_error_file_uri">Error al importar archivo. URI de archivo no soportado.</string>
     <!-- Translation notice box -->
+    <string name="translation_notice_summary">¡Ayúdanos a traducir esta aplicación a tu idioma! Pulsa aquí para visitar la página del proyecto en Crowdin.</string>
+    <string name="translation_notice">Contribuir con las traducciones</string>
     <!-- Self-updates (Root) -->
+    <string name="self_update_install_error">Actualización fallida</string>
+    <string name="self_update_download_fail">Error al descargar paquete de actualización. Por favor, compruebe su conexión a internet. Detalles: %1$s</string>
+    <string name="self_update_install_fail">Instalación fallida. %1$s</string>
+    <string name="self_update_finished">Actualización instalada. La aplicación se está reiniciando…</string>
+    <string name="self_update_no_updates">No hay actualizaciones disponibles en este momento</string>
+    <string name="self_update_notice">Nueva actualización disponible (%1$s)</string>
+    <string name="self_update_notice_summary">Pulse aquí para descargar e instalar la nueva actualización.</string>
+    <string name="self_update_notice_dismiss_install">Instalar ahora</string>
+    <string name="self_update_notice_dismiss_snooze">Recordar más tarde</string>
+    <string name="self_update_notice_dismiss_skip">Omitir esta actualización</string>
+    <string name="self_update_state_downloading">Descargando…</string>
+    <string name="self_update_state_installing">Instalando…</string>
     <!-- Backups -->
+    <string name="backup_restore_progress">Restaurando copia de seguridad</string>
+    <string name="backup_restore_error">Error al restaurar copia de seguridad</string>
+    <string name="backup_restore_error_format">Copia de seguridad no soportada o corrupta</string>
+    <string name="backup_restore_error_version_too_new">La copia de seguridad ha sido creada con una versión más reciente de esta aplicación y no se puede cargar. Por favor, actualice la aplicación para continuar.</string>
+    <string name="backup_restore_completed">Restauración completa</string>
+    <string name="backup_create_completed">Copia de seguridad creada</string>
+    <string name="backup_create_progress">Creando copia de seguridad</string>
+    <string name="backup_create_error">Copia de seguridad fallida</string>
+    <string name="backup_manual_backup">Copia de seguridad manual</string>
+    <string name="backup_create">Crear copia de seguridad</string>
+    <string name="backup_create_summary">Puede usarse para restaurar la configuración actual más tarde</string>
+    <string name="backup_restore">Restaurar copia de seguridad</string>
+    <string name="backup_restore_summary">Restaurar configuración desde copia de seguridad</string>
+    <string name="backup_automatic_backup">Copia de seguridad automática</string>
+    <string name="backup_compat_info">Las copias de seguridad solo incluyen respuestas de impulso, scripts, archivos VDC, preajustes y la configuración de audio actual para máxima compatibilidad con otras versiones.</string>
+    <string name="backup_restore_mode_title">Modo de restauración</string>
+    <string name="backup_restore_mode_clean">Restauración limpia (elimina todos los archivos existentes)</string>
+    <string name="backup_restore_mode_dirty">Restauración sucia (solo sobrescribir)</string>
+    <string name="backup_in_progress">Copia de seguridad ya en progreso</string>
     <!-- Multi-device profiles -->
+    <string name="group_wired_headphones">Auriculares con cable</string>
+    <string name="group_bluetooth">Bluetooth</string>
+    <string name="group_hdmi">HDMI</string>
+    <string name="group_speaker">Altavoz interno</string>
+    <string name="group_usb">USB</string>
+    <string name="group_unknown">Desconocido</string>
+    <string name="device_profile_status">Perfil de dispositivo activo</string>
+    <string name="device_profile_manage_copy">Copiar perfil…</string>
+    <string name="device_profile_manage_delete">Eliminar perfiles…</string>
+    <string name="device_profile_manage_copy_select_no_target">No hay perfiles disponibles para sobrescribir</string>
+    <string name="device_profile_manage_copy_select">Seleccionar perfil a copiar</string>
+    <string name="device_profile_manage_paste_select">Seleccionar perfiles a sobrescribir</string>
+    <!-- Root version check -->
 </resources>

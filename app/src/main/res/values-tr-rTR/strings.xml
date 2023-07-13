@@ -61,15 +61,8 @@
     <string name="error_projection_api_missing">Cihaz üreticiniz, dahili ses kaydı API\'lerini devre dışı bırakmış. Bu uygulama onlar olmadan çalışamaz.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Ses işlemeyi aç/kapat</string>
-    <string name="compressor_enable">Otomatik dinamik aralık kompresörü</string>
-    <string name="compressor_max_attack">Maksimum saldırı</string>
-    <string name="compressor_max_release">Maksimum yayınlama</string>
-    <string name="compressor_adapt_speed">Agresiflik</string>
-    <string name="eq_enable">Enterpolasyon FIR ekolayzır</string>
     <string name="eq_filter_type">Filtre türü</string>
     <string name="eq_interpolator">Enterpolatör</string>
-    <string name="eq_filter_type_minimum">Minimum faz</string>
-    <string name="eq_filter_type_linear">Çizgisel faz</string>
     <string name="eq_interpolator_chip">Parçalı Kübik Hermite Enterpolasyon Polinomu</string>
     <string name="eq_interpolator_mha">Değiştirilmiş Hiroshi Akima ayırıcı</string>
     <string name="eq_preset_acoustic">Akustik</string>
@@ -577,4 +570,5 @@
     <string name="device_profile_manage_copy_select_no_target">Üzerine yazılacak profil yok</string>
     <string name="device_profile_manage_copy_select">Kopyalanacak profili seçin</string>
     <string name="device_profile_manage_paste_select">Üzerine yazılacak profilleri seçin</string>
+    <!-- Root version check -->
 </resources>
