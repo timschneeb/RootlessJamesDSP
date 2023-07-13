@@ -61,15 +61,8 @@
     <string name="error_projection_api_missing">Виробник вашого пристрою вимкнув внутрішні API для запису звуку. Ця програма не може працювати без них.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Перемкнути обробку аудіо</string>
-    <string name="compressor_enable">Автоматичний компресор динамічного діапазону</string>
-    <string name="compressor_max_attack">Час атаки</string>
-    <string name="compressor_max_release">Час релізу</string>
-    <string name="compressor_adapt_speed">Агресивність</string>
-    <string name="eq_enable">Інтерполюючий FIR-еквалайзер</string>
     <string name="eq_filter_type">Тип фільтра</string>
     <string name="eq_interpolator">Інтерполятор</string>
-    <string name="eq_filter_type_minimum">Мінімальна фаза</string>
-    <string name="eq_filter_type_linear">Лінійна фаза</string>
     <string name="eq_interpolator_chip">Кусково-кубічний інтерполяційний поліном Ерміта</string>
     <string name="eq_interpolator_mha">Модифікований сплайн Хіросі Акіма</string>
     <string name="eq_preset_acoustic">Acoustic</string>
