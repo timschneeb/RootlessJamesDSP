@@ -61,15 +61,8 @@
     <string name="error_projection_api_missing">您的设备制造商已禁用内部录音 API。 没有它们，此应用程序无法工作。</string>
     <!-- Main screen -->
     <string name="power_button_alt">切换音频处理</string>
-    <string name="compressor_enable">自动动态范围压缩器</string>
-    <string name="compressor_max_attack">最长建立时间</string>
-    <string name="compressor_max_release">最长释放时间</string>
-    <string name="compressor_adapt_speed">激进度</string>
-    <string name="eq_enable">插值 FIR 均衡器</string>
     <string name="eq_filter_type">滤波器类型</string>
     <string name="eq_interpolator">插值器</string>
-    <string name="eq_filter_type_minimum">最小相位</string>
-    <string name="eq_filter_type_linear">线性相位</string>
     <string name="eq_interpolator_chip">分段三次埃尔米特插值</string>
     <string name="eq_interpolator_mha">改良 Hiroshi Akima 样条</string>
     <string name="eq_preset_acoustic">原声</string>
