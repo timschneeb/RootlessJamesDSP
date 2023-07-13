@@ -570,4 +570,5 @@
     <string name="device_profile_manage_copy_select_no_target">No hay perfiles disponibles para sobrescribir</string>
     <string name="device_profile_manage_copy_select">Seleccionar perfil a copiar</string>
     <string name="device_profile_manage_paste_select">Seleccionar perfiles a sobrescribir</string>
+    <!-- Root version check -->
 </resources>
