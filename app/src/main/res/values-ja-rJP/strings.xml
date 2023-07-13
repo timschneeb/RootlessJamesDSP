@@ -307,4 +307,5 @@
     <string name="backup_restore_mode_title">復元モード</string>
     <string name="backup_in_progress">すでにバックアップの処理中です</string>
     <!-- Multi-device profiles -->
+    <!-- Root version check -->
 </resources>
