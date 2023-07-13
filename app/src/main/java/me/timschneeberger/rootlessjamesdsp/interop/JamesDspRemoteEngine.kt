@@ -7,12 +7,12 @@ import android.content.IntentFilter
 import android.media.audiofx.AudioEffect
 import android.media.audiofx.AudioEffectHidden
 import me.timschneeberger.rootlessjamesdsp.interop.structure.EelVmVariable
+import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.AudioEffectExtensions.getParameterInt
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.AudioEffectExtensions.setParameter
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.AudioEffectExtensions.setParameterCharBuffer
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.AudioEffectExtensions.setParameterFloatArray
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.AudioEffectExtensions.setParameterImpulseResponseBuffer
-import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.unregisterLocalReceiver
@@ -126,15 +126,16 @@ class JamesDspRemoteEngine(
         ) == AudioEffect.SUCCESS
     }
 
-    override fun setCompressor(
+    override fun setCompanderInternal(
         enable: Boolean,
-        maxAttack: Float,
-        maxRelease: Float,
-        adaptSpeed: Float,
+        timeConstant: Float,
+        granularity: Int,
+        tfTransforms: Int,
+        bands: DoubleArray
     ): Boolean {
         return (effect.setParameterFloatArray(
             115,
-            floatArrayOf(maxAttack, maxRelease, adaptSpeed)
+            floatArrayOf(timeConstant, granularity.toFloat(), tfTransforms.toFloat()) + bands.map { it.toFloat() }
         ) == AudioEffect.SUCCESS) and (effect.setParameter(1200, enable.toShort()) == AudioEffect.SUCCESS)
     }
 
@@ -177,7 +178,7 @@ class JamesDspRemoteEngine(
         return ret and (effect.setParameter(1206, enable.toShort()) == AudioEffect.SUCCESS)
     }
 
-    override fun setFirEqualizerInternal(
+    override fun setMultiEqualizerInternal(
         enable: Boolean,
         filterType: Int,
         interpolationMode: Int,
@@ -187,14 +188,10 @@ class JamesDspRemoteEngine(
 
         if (enable) {
             val properties = floatArrayOf(
-                if(filterType == 1) 1.0f else -1.0f,
+                filterType.toFloat(),
                 if(interpolationMode == 1) 1.0f else -1.0f
-            )
-
-            val bandsF = FloatArray(bands.size)
-            bands.forEachIndexed { i, x -> bandsF[i] = x.toFloat() }
-
-            ret = effect.setParameterFloatArray(116, properties + bandsF) == AudioEffect.SUCCESS
+            ) + bands.map { it.toFloat() }
+            ret = effect.setParameterFloatArray(116, properties) == AudioEffect.SUCCESS
         }
 
         return ret and (effect.setParameter(1202, enable.toShort()) == AudioEffect.SUCCESS)

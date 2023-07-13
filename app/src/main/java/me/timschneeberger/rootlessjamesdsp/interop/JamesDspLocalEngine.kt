@@ -68,11 +68,6 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
         return JamesDspWrapper.setLimiter(handle, threshold, release) and JamesDspWrapper.setPostGain(handle, postGain)
     }
 
-    override fun setCompressor(enable: Boolean, maxAttack: Float, maxRelease: Float, adaptSpeed: Float): Boolean
-    {
-        return JamesDspWrapper.setCompressor(handle, enable, maxAttack, maxRelease, adaptSpeed)
-    }
-
     override fun setReverb(enable: Boolean, preset: Int): Boolean
     {
         return JamesDspWrapper.setReverb(handle, enable, preset)
@@ -103,13 +98,23 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
         return JamesDspWrapper.setVacuumTube(handle, enable, level)
     }
 
-    override fun setFirEqualizerInternal(
+    override fun setMultiEqualizerInternal(
         enable: Boolean,
         filterType: Int,
         interpolationMode: Int,
         bands: DoubleArray
     ): Boolean {
-        return JamesDspWrapper.setFirEqualizer(handle, enable, filterType, interpolationMode, bands)
+        return JamesDspWrapper.setMultiEqualizer(handle, enable, filterType, interpolationMode, bands)
+    }
+
+    override fun setCompanderInternal(
+        enable: Boolean,
+        timeConstant: Float,
+        granularity: Int,
+        tfTransforms: Int,
+        bands: DoubleArray
+    ): Boolean {
+        return JamesDspWrapper.setCompander(handle, enable, timeConstant, granularity, tfTransforms, bands)
     }
 
     override fun setVdcInternal(enable: Boolean, vdc: String): Boolean {

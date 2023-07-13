@@ -62,11 +62,12 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
             val limiterThreshold = cache.get(R.string.key_limiter_threshold, -0.1f)
             val limiterRelease = cache.get(R.string.key_limiter_release, 60f)
 
-            cache.select(Constants.PREF_COMPRESSOR)
-            val compEnabled = cache.get(R.string.key_compression_enable, false)
-            val compMaxAtk = cache.get(R.string.key_compression_max_atk, 30f)
-            val compMaxRel = cache.get(R.string.key_compression_max_rel, 200f)
-            val compAdaptSpeed = cache.get(R.string.key_compression_adapt_speed, 800f)
+            cache.select(Constants.PREF_COMPANDER)
+            val compEnabled = cache.get(R.string.key_compander_enable, false)
+            val compTimeConst = cache.get(R.string.key_compander_timeconstant, 0.22f)
+            val compGranularity = cache.get(R.string.key_compander_granularity, 2f).toInt()
+            val compTfTransforms = cache.get(R.string.key_compander_tftransforms, "0").toInt()
+            val compResponse = cache.get(R.string.key_compander_response, "95.0;200.0;400.0;800.0;1600.0;3400.0;7500.0;0;0;0;0;0;0;0")
 
             cache.select(Constants.PREF_BASS)
             val bassEnabled = cache.get(R.string.key_bass_enable, false)
@@ -118,9 +119,9 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
 
                 val result = when (it) {
                     Constants.PREF_OUTPUT -> setOutputControl(limiterThreshold, limiterRelease, outputPostGain)
-                    Constants.PREF_COMPRESSOR -> setCompressor(compEnabled, compMaxAtk, compMaxRel, compAdaptSpeed)
+                    Constants.PREF_COMPANDER -> setCompander(compEnabled, compTimeConst, compGranularity, compTfTransforms, compResponse)
                     Constants.PREF_BASS -> setBassBoost(bassEnabled, bassMaxGain)
-                    Constants.PREF_EQ -> setFirEqualizer(eqEnabled, eqFilterType, eqInterpolationMode, eqBands)
+                    Constants.PREF_EQ -> setMultiEqualizer(eqEnabled, eqFilterType, eqInterpolationMode, eqBands)
                     Constants.PREF_GEQ -> setGraphicEq(geqEnabled, geqBands)
                     Constants.PREF_REVERB -> setReverb(reverbEnabled, reverbPreset)
                     Constants.PREF_STEREOWIDE -> setStereoEnhancement(swEnabled, swMode)
@@ -142,7 +143,7 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
         }
     }
 
-    fun setFirEqualizer(enable: Boolean, filterType: Int, interpolationMode: Int, bands: String): Boolean
+    fun setMultiEqualizer(enable: Boolean, filterType: Int, interpolationMode: Int, bands: String): Boolean
     {
         val doubleArray = DoubleArray(30)
         val array = bands.split(";")
@@ -156,7 +157,24 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
             doubleArray[i] = number
         }
 
-        return setFirEqualizerInternal(enable, filterType, interpolationMode, doubleArray)
+        return setMultiEqualizerInternal(enable, filterType, interpolationMode, doubleArray)
+    }
+
+    fun setCompander(enable: Boolean, timeConstant: Float, granularity: Int, tfTransforms: Int, bands: String): Boolean
+    {
+        val doubleArray = DoubleArray(14)
+        val array = bands.split(";")
+        for((i, str) in array.withIndex())
+        {
+            val number = str.toDoubleOrNull()
+            if(number == null) {
+                Timber.e("setCompander: malformed string")
+                return false
+            }
+            doubleArray[i] = number
+        }
+
+        return setCompanderInternal(enable, timeConstant, granularity, tfTransforms, doubleArray)
     }
 
     fun setVdc(enable: Boolean, vdcPath: String): Boolean
@@ -276,7 +294,6 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
 
     // Effect config
     abstract fun setOutputControl(threshold: Float, release: Float, postGain: Float): Boolean
-    abstract fun setCompressor(enable: Boolean, maxAttack: Float, maxRelease: Float, adaptSpeed: Float): Boolean
     abstract fun setReverb(enable: Boolean, preset: Int): Boolean
     abstract fun setCrossfeed(enable: Boolean, mode: Int): Boolean
     abstract fun setCrossfeedCustom(enable: Boolean, fcut: Int, feed: Int): Boolean
@@ -284,7 +301,8 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
     abstract fun setStereoEnhancement(enable: Boolean, level: Float): Boolean
     abstract fun setVacuumTube(enable: Boolean, level: Float): Boolean
 
-    protected abstract fun setFirEqualizerInternal(enable: Boolean, filterType: Int, interpolationMode: Int, bands: DoubleArray): Boolean
+    protected abstract fun setMultiEqualizerInternal(enable: Boolean, filterType: Int, interpolationMode: Int, bands: DoubleArray): Boolean
+    protected abstract fun setCompanderInternal(enable: Boolean, timeConstant: Float, granularity: Int, tfTransforms: Int, bands: DoubleArray): Boolean
     protected abstract fun setVdcInternal(enable: Boolean, vdc: String): Boolean
     protected abstract fun setConvolverInternal(enable: Boolean, impulseResponse: FloatArray, irChannels: Int, irFrames: Int): Boolean
     protected abstract fun setGraphicEqInternal(enable: Boolean, bands: String): Boolean

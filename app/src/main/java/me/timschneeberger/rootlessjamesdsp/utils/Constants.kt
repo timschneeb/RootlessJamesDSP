@@ -9,7 +9,7 @@ object Constants {
 
     // DSP-relevant preference namespaces
     const val PREF_BASS = "dsp_bass"
-    const val PREF_COMPRESSOR = "dsp_compressor"
+    const val PREF_COMPANDER = "dsp_compander"
     const val PREF_CONVOLVER = "dsp_convolver"
     const val PREF_CROSSFEED = "dsp_crossfeed"
     const val PREF_DDC = "dsp_ddc"

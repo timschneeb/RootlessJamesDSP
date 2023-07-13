@@ -22,8 +22,11 @@ find_library( # Sets the name of the path variable.
         # you want CMake to locate.
         log)
 
+target_include_directories(jdspimprestoolbox PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../libjamesdsp/Main/libjamesdsp/jni/jamesdsp/jdsp/)
+
 target_link_libraries( # Specifies the target library.
         jdspimprestoolbox
+        jamesdsp
 
         # Links the target library to the log library
         # included in the NDK.

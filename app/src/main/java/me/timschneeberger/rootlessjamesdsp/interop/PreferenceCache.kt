@@ -1,6 +1,7 @@
 package me.timschneeberger.rootlessjamesdsp.interop
 
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.annotation.StringRes
 import me.timschneeberger.rootlessjamesdsp.flavor.CrashlyticsImpl
 import kotlin.reflect.KClass
@@ -48,6 +49,14 @@ class PreferenceCache(val context: Context) {
     }
 
     companion object {
+        @Suppress("DEPRECATION")
+        fun getPreferences(
+            context: Context,
+            namespace: String,
+        ): SharedPreferences {
+            return context.getSharedPreferences(namespace, Context.MODE_MULTI_PROCESS)
+        }
+
         @Suppress("UNCHECKED_CAST")
         fun <T : Any> uncachedGet(
             context: Context,
@@ -57,8 +66,7 @@ class PreferenceCache(val context: Context) {
             type: KClass<T>
         ): T {
             val name = context.getString(nameRes)
-            @Suppress("DEPRECATION")
-            val prefs = context.getSharedPreferences(namespace, Context.MODE_MULTI_PROCESS)
+            val prefs = getPreferences(context, namespace)
             val current: T = when(type) {
                 Boolean::class -> prefs.getBoolean(name, default as Boolean) as T
                 String::class -> prefs.getString(name, default as String) as T

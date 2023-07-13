@@ -1,12 +1,18 @@
 package me.timschneeberger.rootlessjamesdsp.fragment
 
-import android.content.*
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.XmlRes
-import androidx.preference.*
+import androidx.preference.Preference
 import androidx.preference.Preference.SummaryProvider
+import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.PreferenceScreen
 import androidx.recyclerview.widget.RecyclerView
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.activity.GraphicEqualizerActivity
@@ -14,6 +20,7 @@ import me.timschneeberger.rootlessjamesdsp.activity.LiveprogEditorActivity
 import me.timschneeberger.rootlessjamesdsp.activity.LiveprogParamsActivity
 import me.timschneeberger.rootlessjamesdsp.adapter.RoundedRipplePreferenceGroupAdapter
 import me.timschneeberger.rootlessjamesdsp.liveprog.EelParser
+import me.timschneeberger.rootlessjamesdsp.preference.CompanderPreference
 import me.timschneeberger.rootlessjamesdsp.preference.EqualizerPreference
 import me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
 import me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
@@ -26,6 +33,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import timber.log.Timber
+import kotlin.math.roundToInt
 
 
 class PreferenceGroupFragment : PreferenceFragmentCompat(), KoinComponent {
@@ -72,6 +80,19 @@ class PreferenceGroupFragment : PreferenceFragmentCompat(), KoinComponent {
         requireContext().registerLocalReceiver(receiver, IntentFilter(Constants.ACTION_PRESET_LOADED))
 
         when(args.getInt(BUNDLE_XML_RES)) {
+            R.xml.dsp_compander_preferences -> {
+                findPreference<MaterialSeekbarPreference>(getString(R.string.key_compander_granularity))?.valueLabelOverride =
+                    fun(it: Float): String {
+                        return when(it.roundToInt()) {
+                            0 -> getString(R.string.compander_granularity_very_low)
+                            1 -> getString(R.string.compander_granularity_low)
+                            2 -> getString(R.string.compander_granularity_medium)
+                            3 -> getString(R.string.compander_granularity_high)
+                            4 -> getString(R.string.compander_granularity_extreme)
+                            else -> it.roundToInt().toString()
+                        }
+                    }
+            }
             R.xml.dsp_stereowide_preferences -> {
                 findPreference<MaterialSeekbarPreference>(getString(R.string.key_stereowide_mode))?.valueLabelOverride =
                     fun(it: Float): String {
@@ -200,6 +221,11 @@ class PreferenceGroupFragment : PreferenceFragmentCompat(), KoinComponent {
         when (preference) {
             is EqualizerPreference -> {
                 val dialogFragment = EqualizerDialogFragment.newInstance(preference.key)
+                dialogFragment.setTargetFragment(this, 0)
+                dialogFragment.show(parentFragmentManager, null)
+            }
+            is CompanderPreference -> {
+                val dialogFragment = CompanderDialogFragment.newInstance(preference.key)
                 dialogFragment.setTargetFragment(this, 0)
                 dialogFragment.show(parentFragmentManager, null)
             }

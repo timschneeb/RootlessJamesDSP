@@ -25,6 +25,32 @@ object JdspImpResToolbox {
         response: FloatArray
     ): Int
 
+    external fun ComputeCompResponse(
+        freq: DoubleArray,
+        gain: DoubleArray,
+        queryPts: Int,
+        dispFreq: DoubleArray,
+        response: FloatArray
+    )
+
+    external fun ComputeIIREqualizerCplx(
+        srate: Int,
+        order: Int,
+        freq: DoubleArray,
+        gain: DoubleArray,
+        nPts: Int,
+        dispFreq: DoubleArray,
+        cplxRe: DoubleArray,
+        cplxIm: DoubleArray
+    )
+
+    external fun ComputeIIREqualizerResponse(
+        nPts: Int,
+        cplxRe: DoubleArray,
+        cplxIm: DoubleArray,
+        response: FloatArray,
+    )
+
     init {
         System.loadLibrary("jdspimprestoolbox")
     }

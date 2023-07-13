@@ -20,7 +20,7 @@ find_library( # Sets the name of the path variable.
         # you want CMake to locate.
         log)
 
-target_include_directories(jamesdsp-wrapper PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/libjamesdsp-subtree/Main/libjamesdsp/jni/jamesdsp/jdsp/)
+target_include_directories(jamesdsp-wrapper PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/libjamesdsp/Main/libjamesdsp/jni/jamesdsp/jdsp/)
 target_include_directories(jamesdsp-wrapper PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/libjdspimptoolbox/main)
 target_include_directories(jamesdsp-wrapper PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/libcrashlytics-connector)
 

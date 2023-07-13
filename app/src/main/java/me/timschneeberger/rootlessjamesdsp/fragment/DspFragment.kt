@@ -77,8 +77,8 @@ class DspFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListen
                     R.xml.dsp_output_control_preferences
                 ))
             .replace(
-                R.id.card_compressor, PreferenceGroupFragment.newInstance(Constants.PREF_COMPRESSOR,
-                    R.xml.dsp_compressor_preferences
+                R.id.card_compressor, PreferenceGroupFragment.newInstance(Constants.PREF_COMPANDER,
+                    R.xml.dsp_compander_preferences
                 ))
             .replace(
                 R.id.card_bass, PreferenceGroupFragment.newInstance(Constants.PREF_BASS,

@@ -2,7 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include "interpolation.h"
+
+#include <jdsp_header.h>
+
 void channel_splitFloat(float *buffer, unsigned int num_frames, float **chan_buffers, unsigned int num_channels)
 {
 	unsigned int i, samples = num_frames * num_channels;
@@ -15,17 +17,7 @@ void channel_joinFloat(float **chan_buffers, unsigned int num_channels, float *b
 	for (i = 0; i < samples; i++)
 		buffer[i] = chan_buffers[i % num_channels][i / num_channels];
 }
-unsigned long upper_power_of_two(unsigned long v)
-{
-	v--;
-	v |= v >> 1;
-	v |= v >> 2;
-	v |= v >> 4;
-	v |= v >> 8;
-	v |= v >> 16;
-	v++;
-	return v;
-}
+
 unsigned int LLIntegerLog2(unsigned int v)
 {
 	unsigned int i = 0;
@@ -57,84 +49,6 @@ void LLsinHalfTblFloat(float *dst, unsigned int n)
 	const double twopi_over_n = 6.283185307179586476925286766559 / n;
 	for (unsigned int i = 0; i < n; ++i)
 		dst[i] = (float)sin(twopi_over_n * i);
-}
-void LLdiscreteHartleyFloat(float *A, const unsigned int nPoints, const float *sinTab)
-{
-	unsigned int i, j, n, n2, theta_inc, nptDiv2;
-	float alpha, beta;
-	// FHT - stage 1 and 2 (2 and 4 points)
-	for (i = 0; i < nPoints; i += 4)
-	{
-		const float	x0 = A[i];
-		const float	x1 = A[i + 1];
-		const float	x2 = A[i + 2];
-		const float	x3 = A[i + 3];
-		const float	y0 = x0 + x1;
-		const float	y1 = x0 - x1;
-		const float	y2 = x2 + x3;
-		const float	y3 = x2 - x3;
-		A[i] = y0 + y2;
-		A[i + 2] = y0 - y2;
-		A[i + 1] = y1 + y3;
-		A[i + 3] = y1 - y3;
-	}
-	// FHT - stage 3 (8 points)
-	for (i = 0; i < nPoints; i += 8)
-	{
-		alpha = A[i];
-		beta = A[i + 4];
-		A[i] = alpha + beta;
-		A[i + 4] = alpha - beta;
-		alpha = A[i + 2];
-		beta = A[i + 6];
-		A[i + 2] = alpha + beta;
-		A[i + 6] = alpha - beta;
-		alpha = A[i + 1];
-		const float beta1 = 0.70710678118654752440084436210485f*(A[i + 5] + A[i + 7]);
-		const float beta2 = 0.70710678118654752440084436210485f*(A[i + 5] - A[i + 7]);
-		A[i + 1] = alpha + beta1;
-		A[i + 5] = alpha - beta1;
-		alpha = A[i + 3];
-		A[i + 3] = alpha + beta2;
-		A[i + 7] = alpha - beta2;
-	}
-	n = 16;
-	n2 = 8;
-	theta_inc = nPoints >> 4;
-	nptDiv2 = nPoints >> 2;
-	while (n <= nPoints)
-	{
-		for (i = 0; i < nPoints; i += n)
-		{
-			unsigned int theta = theta_inc;
-			const unsigned int n4 = n2 >> 1;
-			alpha = A[i];
-			beta = A[i + n2];
-			A[i] = alpha + beta;
-			A[i + n2] = alpha - beta;
-			alpha = A[i + n4];
-			beta = A[i + n2 + n4];
-			A[i + n4] = alpha + beta;
-			A[i + n2 + n4] = alpha - beta;
-			for (j = 1; j < n4; j++)
-			{
-				float	sinval = sinTab[theta];
-				float	cosval = sinTab[theta + nptDiv2];
-				float	alpha1 = A[i + j];
-				float	alpha2 = A[i - j + n2];
-				float	beta1 = A[i + j + n2] * cosval + A[i - j + n] * sinval;
-				float	beta2 = A[i + j + n2] * sinval - A[i - j + n] * cosval;
-				theta += theta_inc;
-				A[i + j] = alpha1 + beta1;
-				A[i + j + n2] = alpha1 - beta1;
-				A[i - j + n2] = alpha2 + beta2;
-				A[i - j + n] = alpha2 - beta2;
-			}
-		}
-		n <<= 1;
-		n2 <<= 1;
-		theta_inc >>= 1;
-	}
 }
 typedef struct
 {
@@ -398,7 +312,8 @@ void circshift(float *x, int n, int k)
 	k < 0 ? shift(x, -k, n) : shift(x, n - k, n);
 }
 #define NUMPTS 15
-ierper pch1, pch2;
+#define NUMPTS_DRS (7)
+ierper pch1, pch2, pch3;
 __attribute__((constructor)) static void initialize(void)
 {
 	if (decompressedCoefficients)
@@ -406,7 +321,8 @@ __attribute__((constructor)) static void initialize(void)
 	decompressedCoefficients = (float*)malloc(22438 * sizeof(float));
 	decompressResamplerMQ(compressedCoeffMQ, decompressedCoefficients);
 	initIerper(&pch1, NUMPTS + 2);
-	initIerper(&pch2, NUMPTS + 2);
+    initIerper(&pch2, NUMPTS + 2);
+    initIerper(&pch3, NUMPTS_DRS + 2);
 }
 __attribute__((destructor)) static void destruction(void)
 {
@@ -414,6 +330,7 @@ __attribute__((destructor)) static void destruction(void)
 	decompressedCoefficients = 0;
 	freeIerper(&pch1);
 	freeIerper(&pch2);
+    freeIerper(&pch3);
 }
 void JamesDSPOfflineResampling(float const *in, float *out, size_t lenIn, size_t lenOut, int channels, double src_ratio, int resampleQuality)
 {
@@ -715,4 +632,78 @@ JNIEXPORT jint JNICALL Java_me_timschneeberger_rootlessjamesdsp_interop_JdspImpR
 	(*env)->ReleaseDoubleArrayElements(env, dispFreq, javadispFreqPtr, 0);
 	(*env)->SetFloatArrayRegion(env, response, 0, queryPts, javaResponsePtr);
 	return 0;
+}
+
+JNIEXPORT void JNICALL Java_me_timschneeberger_rootlessjamesdsp_interop_JdspImpResToolbox_ComputeCompResponse(JNIEnv *env, jobject obj, jdoubleArray jfreq, jdoubleArray jgain, jint queryPts, jdoubleArray dispFreq, jfloatArray response)
+{
+    double freqComp[NUMPTS_DRS + 2];
+    double gainComp[NUMPTS_DRS + 2];
+
+    jdouble *javaFreqPtr = (jdouble*) (*env)->GetDoubleArrayElements(env, jfreq, 0);
+    jdouble *javaGainPtr = (jdouble*) (*env)->GetDoubleArrayElements(env, jgain, 0);
+    jdouble *javadispFreqPtr = (jdouble*) (*env)->GetDoubleArrayElements(env, dispFreq, 0);
+    jfloat *javaResponsePtr = (jfloat*) (*env)->GetFloatArrayElements(env, response, 0);
+
+    memcpy(freqComp + 1, javaFreqPtr, NUMPTS_DRS * sizeof(double));
+    memcpy(gainComp + 1, javaGainPtr, NUMPTS_DRS * sizeof(double));
+    (*env)->ReleaseDoubleArrayElements(env, jfreq, javaFreqPtr, 0);
+    (*env)->ReleaseDoubleArrayElements(env, jgain, javaGainPtr, 0);
+
+    freqComp[0] = 0.0;
+    gainComp[0] = gainComp[1];
+    freqComp[NUMPTS_DRS + 1] = 24000.0;
+    gainComp[NUMPTS_DRS + 1] = gainComp[NUMPTS_DRS];
+    makima(&pch3, freqComp, gainComp, NUMPTS_DRS + 2, 1, 1);
+    ierper *lerpPtr = &pch3;
+    for (int i = 0; i < queryPts; i++)
+        javaResponsePtr[i] = (float)getValueAt(&lerpPtr->cb, javadispFreqPtr[i]);
+
+    (*env)->ReleaseDoubleArrayElements(env, dispFreq, javadispFreqPtr, 0);
+    (*env)->SetFloatArrayRegion(env, response, 0, queryPts, javaResponsePtr);
+}
+
+JNIEXPORT void JNICALL Java_me_timschneeberger_rootlessjamesdsp_interop_JdspImpResToolbox_ComputeIIREqualizerCplx(JNIEnv *env, jobject obj, jint srate, jint order, jdoubleArray jfreq, jdoubleArray jgain, jint nPts, jdoubleArray jdispFreq, jdoubleArray jcplxRe, jdoubleArray jcplxIm)
+{
+    jdouble *freqs = (jdouble*) (*env)->GetDoubleArrayElements(env, jfreq, 0);
+    jdouble *gains = (jdouble*) (*env)->GetDoubleArrayElements(env, jgain, 0);
+    jdouble *dispFreq = (jdouble*) (*env)->GetDoubleArrayElements(env, jdispFreq, 0);
+    jdouble *cplxRe = (jdouble*) (*env)->GetDoubleArrayElements(env, jcplxRe, 0);
+    jdouble *cplxIm = (jdouble*) (*env)->GetDoubleArrayElements(env, jcplxIm, 0);
+
+    for (int i = 0; i < nPts; i++)
+    {
+        cplxRe[i] = 1;
+        cplxIm[i] = 0;
+    }
+
+    for (int i = 0; i < NUMPTS - 1; i++)
+    {
+        double dB = gains[i + 1] - gains[i];
+        double designFreq;
+        if (i)
+            designFreq = (freqs[i + 1] + freqs[i]) * 0.5;
+        else
+            designFreq = freqs[i];
+        double overallGain = i == 0 ? gains[i] : 0.0;
+        HSHOResponse(48000.0, designFreq, (unsigned int)order, dB, overallGain, nPts, dispFreq, cplxRe, cplxIm);
+    }
+
+    (*env)->SetDoubleArrayRegion(env, jcplxRe, 0, nPts, cplxRe);
+    (*env)->SetDoubleArrayRegion(env, jcplxIm, 0, nPts, cplxIm);
+    (*env)->ReleaseDoubleArrayElements(env, jfreq, freqs, 0);
+    (*env)->ReleaseDoubleArrayElements(env, jgain, gains, 0);
+    (*env)->ReleaseDoubleArrayElements(env, jdispFreq, dispFreq, 0);
+}
+
+JNIEXPORT void JNICALL Java_me_timschneeberger_rootlessjamesdsp_interop_JdspImpResToolbox_ComputeIIREqualizerResponse(JNIEnv *env, jobject obj, jint nPts, jdoubleArray jcplxRe, jdoubleArray jcplxIm, jfloatArray jresponse)
+{
+    jdouble *cplxRe = (jdouble*) (*env)->GetDoubleArrayElements(env, jcplxRe, 0);
+    jdouble *cplxIm = (jdouble*) (*env)->GetDoubleArrayElements(env, jcplxIm, 0);
+    jfloat *response = (jfloat*) (*env)->GetFloatArrayElements(env, jresponse, 0);
+    for(int i = 0; i < nPts; i++) {
+        response[i] = 20.0f * log10f(hypot(cplxRe[i], cplxIm[i]));
+    }
+    (*env)->SetFloatArrayRegion(env, jresponse, 0, nPts, response);
+    (*env)->ReleaseDoubleArrayElements(env, jcplxRe, cplxRe, 0);
+    (*env)->ReleaseDoubleArrayElements(env, jcplxIm, cplxIm, 0);
 }

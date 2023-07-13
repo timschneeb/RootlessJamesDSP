@@ -296,36 +296,36 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setPostGain(JNI
 }
 
 extern "C" JNIEXPORT jboolean JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setFirEqualizer(JNIEnv *env, jobject obj, jlong self,
-                                                                                jboolean enable, jint filterType, jint interpolationMode,
-                                                                                jdoubleArray bands)
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setMultiEqualizer(JNIEnv *env, jobject obj, jlong self,
+                                                                                   jboolean enable, jint filterType, jint interpolationMode,
+                                                                                   jdoubleArray bands)
 {
     DECLARE_DSP_B
 
     if(env->GetArrayLength(bands) != 30)
     {
-        LOGE("JamesDspWrapper::setFirEqualizer: Invalid EQ data. 30 semicolon-separated fields expected, "
+        LOGE("JamesDspWrapper::setMultiEqualizer: Invalid EQ data. 30 semicolon-separated fields expected, "
                       "found %d fields instead.", env->GetArrayLength(bands));
         return false;
     }
 
     if(bands == nullptr)
     {
-        LOGW("JamesDspWrapper::setFirEqualizer: EQ band pointer is NULL. Disabling EQ");
-        FIREqualizerDisable(dsp);
+        LOGW("JamesDspWrapper::setMultiEqualizer: EQ band pointer is NULL. Disabling EQ");
+        MultimodalEqualizerDisable(dsp);
         return true;
     }
 
     if(enable)
     {
         auto* nativeBands = (env->GetDoubleArrayElements(bands, nullptr));
-        FIREqualizerAxisInterpolation(dsp, interpolationMode, filterType, nativeBands, nativeBands + 15);
+        MultimodalEqualizerAxisInterpolation(dsp, interpolationMode, filterType, nativeBands, nativeBands + 15);
         env->ReleaseDoubleArrayElements(bands, nativeBands, JNI_ABORT);
-        FIREqualizerEnable(dsp);
+        MultimodalEqualizerEnable(dsp, 1);
     }
     else
     {
-        FIREqualizerDisable(dsp);
+        MultimodalEqualizerDisable(dsp);
     }
     return true;
 }
@@ -341,7 +341,7 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setVdc(JNIEnv *
         DDCStringParser(dsp, (char*)nativeString);
         env->ReleaseStringUTFChars(vdcContents, nativeString);
 
-        int ret = DDCEnable(dsp);
+        int ret = DDCEnable(dsp, 1);
         if (ret <= 0)
         {
             LOGE("JamesDspWrapper::setVdc: Call to DDCEnable(wrapper->dsp) failed. Invalid DDC parameter?");
@@ -360,14 +360,32 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setVdc(JNIEnv *
 }
 
 extern "C" JNIEXPORT jboolean JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setCompressor(JNIEnv *env, jobject obj, jlong self,
-                                                                              jboolean enable, jfloat maxAttack, jfloat maxRelease, float adaptSpeed)
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setCompander(JNIEnv *env, jobject obj, jlong self,
+                                                                              jboolean enable, jfloat timeConstant, jint granularity, jint tfresolution, jdoubleArray bands)
 {
     DECLARE_DSP_B
+
+    if(env->GetArrayLength(bands) != 14)
+    {
+        LOGE("JamesDspWrapper::setCompander: Invalid compander data. 14 semicolon-separated fields expected, "
+             "found %d fields instead.", env->GetArrayLength(bands));
+        return false;
+    }
+
+    if(bands == nullptr)
+    {
+        LOGW("JamesDspWrapper::setCompander: Compander band pointer is NULL. Disabling compander");
+        MultimodalEqualizerDisable(dsp);
+        return true;
+    }
+
     if(enable)
     {
-        CompressorSetParam(dsp, maxAttack, maxRelease, adaptSpeed);
-        CompressorEnable(dsp);
+        CompressorSetParam(dsp, timeConstant, granularity, tfresolution);
+        auto* nativeBands = (env->GetDoubleArrayElements(bands, nullptr));
+        CompressorSetGain(dsp, nativeBands, nativeBands + 7, 1);
+        env->ReleaseDoubleArrayElements(bands, nativeBands, JNI_ABORT);
+        CompressorEnable(dsp, 1);
     }
     else
     {
@@ -419,7 +437,7 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setConvolver(JN
         Convolver1DDisable(dsp);
 
         auto* nativeImpulse = (env->GetFloatArrayElements(impulseResponse, nullptr));
-        success = Convolver1DLoadImpulseResponse(dsp, nativeImpulse, irChannels, irFrames);
+        success = Convolver1DLoadImpulseResponse(dsp, nativeImpulse, irChannels, irFrames, 1);
         env->ReleaseFloatArrayElements(impulseResponse, nativeImpulse, JNI_ABORT);
     }
 
@@ -454,7 +472,7 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setGraphicEq(JN
         ArbitraryResponseEqualizerStringParser(dsp, (char*)nativeString);
         env->ReleaseStringUTFChars(graphicEq, nativeString);
 
-        ArbitraryResponseEqualizerEnable(dsp);
+        ArbitraryResponseEqualizerEnable(dsp, 1);
     }
     else
         ArbitraryResponseEqualizerDisable(dsp);
@@ -479,7 +497,7 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setCrossfeed(JN
     }
 
     if(enable)
-        CrossfeedEnable(dsp);
+        CrossfeedEnable(dsp, 1);
     else
         CrossfeedDisable(dsp);
 

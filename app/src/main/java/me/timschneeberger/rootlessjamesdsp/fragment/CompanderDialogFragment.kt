@@ -9,19 +9,16 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.content.edit
 import androidx.preference.PreferenceDialogFragmentCompat
-import com.google.android.material.chip.Chip
-import me.timschneeberger.rootlessjamesdsp.R
-import me.timschneeberger.rootlessjamesdsp.databinding.PreferenceEqualizerDialogBinding
-import me.timschneeberger.rootlessjamesdsp.interop.PreferenceCache
-import me.timschneeberger.rootlessjamesdsp.preference.EqualizerPreference
+import me.timschneeberger.rootlessjamesdsp.databinding.PreferenceCompanderDialogBinding
+import me.timschneeberger.rootlessjamesdsp.preference.CompanderPreference
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.unregisterLocalReceiver
-import me.timschneeberger.rootlessjamesdsp.view.EqualizerSurface
+import me.timschneeberger.rootlessjamesdsp.view.CompanderSurface
 
-class EqualizerDialogFragment : PreferenceDialogFragmentCompat() {
+class CompanderDialogFragment : PreferenceDialogFragmentCompat() {
 
-    private var equalizer: EqualizerSurface? = null
+    private var compander: CompanderSurface? = null
     private lateinit var mLevels: DoubleArray
     private lateinit var mOldSetting: String
 
@@ -38,15 +35,15 @@ class EqualizerDialogFragment : PreferenceDialogFragmentCompat() {
 
         mOldSetting = savedInstanceState?.getString("oldSetting")
             ?: preference.sharedPreferences
-            ?.getString(preference.key, (preference as EqualizerPreference).initialValue) ?: ""
+            ?.getString(preference.key, (preference as CompanderPreference).initialValue) ?: ""
 
         mLevels = savedInstanceState?.getDoubleArray("levels") ?: mOldSetting
             .split(";")
-            .drop(15)
+            .drop(7)
             .dropLastWhile(String::isEmpty)
             .map { it.toDoubleOrNull() ?: 0.0 }
             .toDoubleArray()
-            .copyOf(15)
+            .copyOf(7)
 
         requireContext().registerLocalReceiver(broadcastReceiver, IntentFilter(Constants.ACTION_PRESET_LOADED))
     }
@@ -56,15 +53,15 @@ class EqualizerDialogFragment : PreferenceDialogFragmentCompat() {
     @SuppressLint("ClickableViewAccessibility")
     override fun onBindDialogView(view: View) {
         super.onBindDialogView(view)
-        val binding = PreferenceEqualizerDialogBinding.bind(view)
-        equalizer = binding.equalizerSurface
-        equalizer!!.areKnobsVisible = true
-        equalizer!!.setOnTouchListener { v, event ->
-            val minDb = equalizer!!.minDb
-            val maxDb = equalizer!!.maxDb
-            val band = equalizer!!.findClosest(event.x)
+        val binding = PreferenceCompanderDialogBinding.bind(view)
+        compander = binding.companderSurface
+        compander!!.areKnobsVisible = true
+        compander!!.setOnTouchListener { v, event ->
+            val minDb = compander!!.minDb
+            val maxDb = compander!!.maxDb
+            val band = compander!!.findClosest(event.x)
             var level = event.y / v.height * (minDb - maxDb) - minDb
-            if (level > -0.05 && level < 0.0) {
+            if (level > -0.02 && level < 0.0) {
                 level = 0.0
             } else if (level > maxDb) {
                 level = maxDb
@@ -77,35 +74,7 @@ class EqualizerDialogFragment : PreferenceDialogFragmentCompat() {
             true
         }
 
-        val type = PreferenceCache.uncachedGet(requireContext(), Constants.PREF_EQ, R.string.key_eq_filter_type, "0").toIntOrNull() ?: 0
-        equalizer!!.mode = if(type == 0) EqualizerSurface.Mode.Fir else EqualizerSurface.Mode.Iir
-        equalizer!!.iirOrder = when(type) {
-            1 -> 4
-            2 -> 6
-            3 -> 8
-            4 -> 10
-            else -> 12
-        }
-
-        mLevels.forEachIndexed(equalizer!!::setBand)
-
-        (preference as EqualizerPreference).entries.forEachIndexed { index, charSequence ->
-            val chip =
-                Chip(requireContext(), null,
-                    com.google.android.material.R.style.Widget_Material3_Chip_Assist_Elevated)
-                    .apply {
-                    text = charSequence
-                    setOnClickListener {
-                        (preference as EqualizerPreference).entryValues[index]
-                            .split(";")
-                            .dropLastWhile(String::isEmpty)
-                            .map { it.toDoubleOrNull() ?: 0.0 }
-                            .forEachIndexed(::updateBand)
-                            .also { applyCurrentSetting() }
-                    }
-                }
-        binding.equalizerPresets.addView(chip, index)
-        }
+        mLevels.forEachIndexed(compander!!::setBand)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -117,7 +86,7 @@ class EqualizerDialogFragment : PreferenceDialogFragmentCompat() {
 
     override fun onDialogClosed(positiveResult: Boolean) {
         if (positiveResult) {
-            val array = EqualizerSurface.SCALE + mLevels
+            val array = CompanderSurface.SCALE + mLevels
             val value = array.joinToString(";")
             if (preference.callChangeListener(value)) {
                 applySetting(value)
@@ -128,32 +97,32 @@ class EqualizerDialogFragment : PreferenceDialogFragmentCompat() {
     }
 
     private fun applyCurrentSetting() {
-        applySetting((EqualizerSurface.SCALE + mLevels).joinToString(";"))
+        applySetting((CompanderSurface.SCALE + mLevels).joinToString(";"))
     }
 
     private fun applySetting(value: String) {
         preference.preferenceManager.sharedPreferences?.edit(commit = true) {
             putString(preference.key, value)
         }
-        (preference as EqualizerPreference).updateFromPreferences()
+        (preference as CompanderPreference).updateFromPreferences()
     }
 
     private fun updateBand(i: Int, gain: Double) {
         mLevels[i] = gain
-        equalizer!!.setBand(i, gain)
+        compander!!.setBand(i, gain)
     }
 
     override fun onDestroy() {
         requireContext().unregisterLocalReceiver(broadcastReceiver)
         super.onDestroy()
-        equalizer = null
+        compander = null
     }
 
     companion object {
         private const val BUNDLE_KEY = "key"
 
-        fun newInstance(key: String): EqualizerDialogFragment {
-            val fragment = EqualizerDialogFragment()
+        fun newInstance(key: String): CompanderDialogFragment {
+            val fragment = CompanderDialogFragment()
             fragment.arguments = Bundle().apply {
                 putString(BUNDLE_KEY, key)
             }

@@ -71,16 +71,28 @@
     <!-- Main screen -->
     <string name="power_button_alt">Toggle audio processing</string>
 
-    <string name="compressor_enable">Auto dynamic range compressor</string>
-    <string name="compressor_max_attack">Maximum attack</string>
-    <string name="compressor_max_release">Maximum release</string>
-    <string name="compressor_adapt_speed">Aggressiveness</string>
+    <string name="compander_enable">Dynamic range compander</string>
+    <string name="compander_timeconstant">Time constant</string>
+    <string name="compander_granularity">Granularity</string>
+    <string name="compander_granularity_very_low">Very low</string>
+    <string name="compander_granularity_low">Low</string>
+    <string name="compander_granularity_medium">Medium</string>
+    <string name="compander_granularity_high">High</string>
+    <string name="compander_granularity_extreme">Extreme</string>
+    <string name="compander_tftransforms">Time-frequency transform</string>
+    <string name="compander_tftransforms_stft">Uniform (Short-time Fourier)</string>
+    <string name="compander_tftransforms_continuous_wavelet">Multiresolution (Continuous wavelet)</string>
+    <string name="compander_tftransforms_time_domain">Multiresolution (Time domain)</string>
 
-    <string name="eq_enable">Interpolating FIR equalizer</string>
+    <string name="eq_enable">Multimodal equalizer</string>
     <string name="eq_filter_type">Filter type</string>
     <string name="eq_interpolator">Interpolator</string>
-    <string name="eq_filter_type_minimum">Minimum phase</string>
-    <string name="eq_filter_type_linear">Linear phase</string>
+    <string name="eq_filter_type_fir_minimum">FIR Minimum phase</string>
+    <string name="eq_filter_type_iir_4_order">IIR 4th order</string>
+    <string name="eq_filter_type_iir_6_order">IIR 6th order</string>
+    <string name="eq_filter_type_iir_8_order">IIR 8th order</string>
+    <string name="eq_filter_type_iir_10_order">IIR 10th order</string>
+    <string name="eq_filter_type_iir_12_order">IIR 12th order</string>
     <string name="eq_interpolator_chip">Piecewise Cubic Hermite Interpolating Polynomial</string>
     <string name="eq_interpolator_mha">Modified Hiroshi Akima spline</string>
     <string name="eq_preset_acoustic">Acoustic</string>

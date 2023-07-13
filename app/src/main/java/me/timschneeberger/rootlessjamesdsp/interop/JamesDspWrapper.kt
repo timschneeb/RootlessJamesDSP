@@ -2,7 +2,6 @@ package me.timschneeberger.rootlessjamesdsp.interop
 
 import me.timschneeberger.rootlessjamesdsp.interop.structure.EelVmVariable
 import me.timschneeberger.rootlessjamesdsp.model.ProcessorMessage
-import java.util.ArrayList
 
 typealias JamesDspHandle = Long
 
@@ -26,9 +25,9 @@ object JamesDspWrapper {
     // Effect config
     external fun setLimiter(self: JamesDspHandle, threshold: Float, release: Float): Boolean
     external fun setPostGain(self: JamesDspHandle, postGain: Float): Boolean
-    external fun setFirEqualizer(self: JamesDspHandle, enable: Boolean, filterType: Int, interpolationMode: Int, bands: DoubleArray): Boolean
+    external fun setMultiEqualizer(self: JamesDspHandle, enable: Boolean, filterType: Int, interpolationMode: Int, bands: DoubleArray): Boolean
     external fun setVdc(self: JamesDspHandle, enable: Boolean, vdcContents: String): Boolean
-    external fun setCompressor(self: JamesDspHandle, enable: Boolean, maxAttack: Float, maxRelease: Float, adaptSpeed: Float): Boolean
+    external fun setCompander(self: JamesDspHandle, enable: Boolean, timeConstant: Float, granularity: Int, tfResolution: Int, bands: DoubleArray): Boolean
     external fun setReverb(self: JamesDspHandle, enable: Boolean, preset: Int): Boolean
     external fun setConvolver(self: JamesDspHandle, enable: Boolean, impulseResponse: FloatArray, irChannels: Int, irFrames: Int): Boolean
     external fun setGraphicEq(self: JamesDspHandle, enable: Boolean, graphicEq: String): Boolean

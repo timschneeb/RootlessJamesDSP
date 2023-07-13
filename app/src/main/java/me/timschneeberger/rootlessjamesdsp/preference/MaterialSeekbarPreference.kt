@@ -23,7 +23,7 @@ import kotlin.math.abs
 import kotlin.math.min
 import kotlin.math.roundToInt
 
-
+// TODO stepValue is broken in recyclerview!!!
 class MaterialSeekbarPreference : Preference {
     var mSeekBarValue/* synthetic access */ = 0f
     var mMin/* synthetic access */ = 0f
@@ -172,15 +172,12 @@ class MaterialSeekbarPreference : Preference {
         mSeekBar.addOnSliderTouchListener(mSeekBarTouchListener)
         mSeekBar.valueFrom = mMin
         mSeekBar.valueTo = mMax
-        // If the increment is not zero, use that. Otherwise, use the default mKeyProgressIncrement
+        // Ignore: If the increment is not zero, use that. Otherwise, use the default mKeyProgressIncrement
         // in AbsSeekBar when it's zero. This default increment value is set by AbsSeekBar
         // after calling setMax. That's why it's important to call setKeyProgressIncrement after
         // calling setMax() since setMax() can change the increment value.
-        if (mSeekBarIncrement != 0f) {
-            mSeekBar.stepSize = mSeekBarIncrement
-        } else {
-            mSeekBarIncrement = mSeekBar.stepSize
-        }
+        mSeekBar.stepSize = mSeekBarIncrement
+
         mSeekBar.value = validateValue(mSeekBarValue)
         updateLabelValue(mSeekBarValue)
         mSeekBar.isEnabled = isEnabled

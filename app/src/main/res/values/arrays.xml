@@ -110,13 +110,21 @@
     </string-array>
 
     <string-array name="eq_filter_types" translatable="false">
-        <item>@string/eq_filter_type_minimum</item>
-        <item>@string/eq_filter_type_linear</item>
+        <item>@string/eq_filter_type_fir_minimum</item>
+        <item>@string/eq_filter_type_iir_4_order</item>
+        <item>@string/eq_filter_type_iir_6_order</item>
+        <item>@string/eq_filter_type_iir_8_order</item>
+        <item>@string/eq_filter_type_iir_10_order</item>
+        <item>@string/eq_filter_type_iir_12_order</item>
     </string-array>
 
     <string-array name="eq_filter_types_values" translatable="false">
         <item>0</item>
         <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
     </string-array>
 
     <string-array name="eq_interpolators" translatable="false">
@@ -145,6 +153,18 @@
         <item>3</item>
         <item>4</item>
         <item>5</item>
+    </string-array>
+
+    <string-array name="compander_tf_transforms" translatable="false">
+        <item>@string/compander_tftransforms_stft</item>
+        <item>@string/compander_tftransforms_continuous_wavelet</item>
+        <item>@string/compander_tftransforms_time_domain</item>
+    </string-array>
+
+    <string-array name="compander_tf_transforms_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
     </string-array>
 
     <string-array name="convolver_convolution_mode" translatable="false">

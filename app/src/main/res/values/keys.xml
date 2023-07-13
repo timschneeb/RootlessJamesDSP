@@ -81,10 +81,11 @@
     <string name="key_profile_active" translatable="false">profile_active</string> <!-- static -->
 
     <!-- DSP -->
-    <string name="key_compression_enable" translatable="false">compression_enable</string>
-    <string name="key_compression_max_atk" translatable="false">compression_max_atk</string>
-    <string name="key_compression_max_rel" translatable="false">compression_max_rel</string>
-    <string name="key_compression_adapt_speed" translatable="false">compression_adapt_speed</string>
+    <string name="key_compander_enable" translatable="false">compander_enable</string>
+    <string name="key_compander_timeconstant" translatable="false">compander_timeconstant</string>
+    <string name="key_compander_granularity" translatable="false">compander_granularity</string>
+    <string name="key_compander_tftransforms" translatable="false">compander_tftransforms</string>
+    <string name="key_compander_response" translatable="false">compander_response</string>
 
     <string name="key_bass_enable" translatable="false">bass_enable</string>
     <string name="key_bass_max_gain" translatable="false">bass_max_gain</string>
