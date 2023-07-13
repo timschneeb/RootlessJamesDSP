@@ -60,15 +60,8 @@
     <string name="permission_not_allowed">Non consentito</string>
     <!-- Main screen -->
     <string name="power_button_alt">Attiva/disattiva l\'elaborazione audio</string>
-    <string name="compressor_enable">Compressore automatico della gamma dinamica</string>
-    <string name="compressor_max_attack">Attacco massimo</string>
-    <string name="compressor_max_release">Rilascio massimo</string>
-    <string name="compressor_adapt_speed">Aggressività</string>
-    <string name="eq_enable">Equalizzatore FIR interpolante</string>
     <string name="eq_filter_type">Tipo di filtro</string>
     <string name="eq_interpolator">Interpolatore</string>
-    <string name="eq_filter_type_minimum">Fase minima</string>
-    <string name="eq_filter_type_linear">Fase lineare</string>
     <string name="eq_interpolator_chip">Polinomio d\'interpolazione di Piecewise Cubic Hermite</string>
     <string name="eq_interpolator_mha">Hiroshi Akima spline \"modificata\"</string>
     <string name="eq_preset_acoustic">Acustico</string>
