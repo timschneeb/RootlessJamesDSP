@@ -29,14 +29,14 @@
             app:seekBarIncrement="1"
             app:showSeekBarValue="true"
             app:iconSpaceReserved="false"/>
-        <ListPreference
+        <!-- TODO enable when libjamesdsp supports it <ListPreference
             android:key="@string/key_compander_tftransforms"
             android:title="@string/compander_tftransforms"
             android:defaultValue="0"
             android:entries="@array/compander_tf_transforms"
             android:entryValues="@array/compander_tf_transforms_values"
             app:useSimpleSummaryProvider="true"
-            app:iconSpaceReserved="false"/>
+            app:iconSpaceReserved="false"/>-->
         <me.timschneeberger.rootlessjamesdsp.preference.CompanderPreference
             android:key="@string/key_compander_response"
             android:defaultValue="95.0;200.0;400.0;800.0;1600.0;3400.0;7500.0;0;0;0;0;0;0;0"
