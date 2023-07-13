@@ -61,15 +61,8 @@
     <string name="error_projection_api_missing">Производитель вашего устройства отключил внутренние API для записи звука. Это приложение не может работать без них.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Переключить обработку аудио</string>
-    <string name="compressor_enable">Автоматический компрессор динамического диапазона</string>
-    <string name="compressor_max_attack">Время атаки</string>
-    <string name="compressor_max_release">Время релиза</string>
-    <string name="compressor_adapt_speed">Агрессивность</string>
-    <string name="eq_enable">Интерполирующий FIR-эквалайзер</string>
     <string name="eq_filter_type">Тип фильтра</string>
     <string name="eq_interpolator">Интерполятор</string>
-    <string name="eq_filter_type_minimum">Минимальная фаза</string>
-    <string name="eq_filter_type_linear">Линейная фаза</string>
     <string name="eq_interpolator_chip">Кусочно-кубический интерполяционный полином Эрмита</string>
     <string name="eq_interpolator_mha">Модифицированный сплайн Хироши Акимы</string>
     <string name="eq_preset_acoustic">Acoustic</string>
