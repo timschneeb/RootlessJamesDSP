@@ -60,15 +60,8 @@
     <string name="permission_not_allowed">अनुमति नहीं</string>
     <!-- Main screen -->
     <string name="power_button_alt">ऑडियो प्रोसेसिंग टॉगल करें</string>
-    <string name="compressor_enable">ऑटो गतिशील रेंज कंप्रेसर</string>
-    <string name="compressor_max_attack">अधिकतम हमला</string>
-    <string name="compressor_max_release">अधिकतम रिलीज</string>
-    <string name="compressor_adapt_speed">आक्रामकता</string>
-    <string name="eq_enable">इंटरपोलिंग एफआईआर इक्वलाइज़र</string>
     <string name="eq_filter_type">फ़िल्टर प्रकार</string>
     <string name="eq_interpolator">क्षेपक करनेवाला</string>
-    <string name="eq_filter_type_minimum">न्यूनतम चरण</string>
-    <string name="eq_filter_type_linear">रैखिक चरण</string>
     <string name="eq_interpolator_chip">पीसवाइज क्यूबिक हर्मिट इंटरपोलिंग पॉलीनोमियल</string>
     <string name="eq_interpolator_mha">हिरोशी अंतरिक्ष रीढ़</string>
     <string name="eq_preset_acoustic">ध्वनिक</string>
