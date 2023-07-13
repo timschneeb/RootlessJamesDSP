@@ -61,15 +61,8 @@
     <string name="error_projection_api_missing">Výrobce vašeho zařízení zakázal interní API pro nahrávání zvuku. Tato aplikace bez nich nemůže fungovat.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Přepnout zpracování zvuku</string>
-    <string name="compressor_enable">Automatický kompresor dynamického rozsahu</string>
-    <string name="compressor_max_attack">Maximální útok</string>
-    <string name="compressor_max_release">Maximální uvolnění</string>
-    <string name="compressor_adapt_speed">Agresivita</string>
-    <string name="eq_enable">Interpolační FIR ekvalizér</string>
     <string name="eq_filter_type">Typ filtru</string>
     <string name="eq_interpolator">Interpolátor</string>
-    <string name="eq_filter_type_minimum">Minimální fáze</string>
-    <string name="eq_filter_type_linear">Lineární fáze</string>
     <string name="eq_interpolator_chip">Kusově kubický Hermitův interpolační polynom</string>
     <string name="eq_interpolator_mha">Upravená Hiroshiho Akimova interpolovaná křivka</string>
     <string name="eq_preset_acoustic">Akustický</string>
