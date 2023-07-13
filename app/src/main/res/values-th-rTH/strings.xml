@@ -61,15 +61,8 @@
     <string name="error_projection_api_missing">ผู้ผลิตอุปกรณ์ของคุณได้ปิดใช้งาน API การบันทึกเสียงภายใน แอปพลิเคชันนี้ไม่สามารถทำงานได้หากไม่มี</string>
     <!-- Main screen -->
     <string name="power_button_alt">สลับการประมวลผลเสียง</string>
-    <string name="compressor_enable">compressor ช่วงไดนามิกอัตโนมัติ</string>
-    <string name="compressor_max_attack">ขีดสุด</string>
-    <string name="compressor_max_release">ปล่อยสูงสุด</string>
-    <string name="compressor_adapt_speed">Aggressiveness</string>
-    <string name="eq_enable">การแก้ไขอีควอไลเซอร์ FIR</string>
     <string name="eq_filter_type">ประเภทตัวกรอง</string>
     <string name="eq_interpolator">อินเตอร์โพเลเตอร์</string>
-    <string name="eq_filter_type_minimum">เฟสขั้นต่ำ</string>
-    <string name="eq_filter_type_linear">เฟสเชิงเส้น</string>
     <string name="eq_interpolator_chip">ชิ้นตามลูกบาศก์ Hermite Interpolating</string>
     <string name="eq_interpolator_mha">Modified Hiroshi Akima spline</string>
     <string name="eq_preset_acoustic">อะคูสติก</string>
