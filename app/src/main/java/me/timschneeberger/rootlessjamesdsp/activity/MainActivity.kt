@@ -265,9 +265,17 @@ class MainActivity : BaseActivity() {
                         requestCapturePermission()
                     }
                 }
-                else if (!BuildConfig.ROOTLESS && JamesDspRemoteEngine.isPluginInstalled()) {
-                    binding.powerToggle.isToggled = !binding.powerToggle.isToggled
-                    prefsApp.set(R.string.key_powered_on, binding.powerToggle.isToggled)
+                else if (!BuildConfig.ROOTLESS) {
+                    when(JamesDspRemoteEngine.isPluginInstalled() ) {
+                        JamesDspRemoteEngine.PluginState.Available -> {
+                            binding.powerToggle.isToggled = !binding.powerToggle.isToggled
+                            prefsApp.set(R.string.key_powered_on, binding.powerToggle.isToggled)
+                        }
+                        JamesDspRemoteEngine.PluginState.Unsupported -> {
+                            toast(getString(R.string.version_mismatch_root_toast))
+                        }
+                        else -> {}
+                    }
                 }
             }
         })
@@ -294,8 +302,22 @@ class MainActivity : BaseActivity() {
         }
 
         // Root: show error if plugin unavailable
-        if(!BuildConfig.ROOTLESS && !JamesDspRemoteEngine.isPluginInstalled()) {
-            showLibraryLoadError()
+        if(!BuildConfig.ROOTLESS) {
+            when(JamesDspRemoteEngine.isPluginInstalled()) {
+                JamesDspRemoteEngine.PluginState.Unavailable -> showLibraryLoadError()
+                JamesDspRemoteEngine.PluginState.Unsupported -> {
+                    prefsApp.set(R.string.key_powered_on, false)
+                    showYesNoAlert(
+                        getString(R.string.version_mismatch_root),
+                        getString(R.string.version_mismatch_root_description)
+                    ) {
+                        if(it) {
+                            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://zackptg5.com/android.php")))
+                        }
+                    }
+                }
+                else -> {}
+            }
         }
 
         /* Root: require battery optimizations turned off when legacy mode is disabled,

@@ -18,7 +18,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.MainApplication
-import me.timschneeberger.rootlessjamesdsp.utils.notifications.Notifications
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspRemoteEngine
 import me.timschneeberger.rootlessjamesdsp.model.IEffectSession
@@ -29,8 +28,9 @@ import me.timschneeberger.rootlessjamesdsp.session.root.OnRootSessionChangeListe
 import me.timschneeberger.rootlessjamesdsp.session.root.RootSessionDumpManager
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sendLocalBroadcast
-import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
+import me.timschneeberger.rootlessjamesdsp.utils.notifications.Notifications
 import me.timschneeberger.rootlessjamesdsp.utils.notifications.ServiceNotificationHelper
+import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import org.koin.android.ext.android.inject
 import org.koin.core.component.KoinComponent
@@ -118,7 +118,7 @@ class RootAudioProcessorService : BaseAudioProcessorService(), KoinComponent,
         if (intent == null)
             return START_STICKY
 
-        if(!JamesDspRemoteEngine.isPluginInstalled()) {
+        if(JamesDspRemoteEngine.isPluginInstalled() == JamesDspRemoteEngine.PluginState.Unavailable) {
             Timber.e("onStartCommand: Ignoring command because plugin is not installed")
             stopSelf()
             return START_NOT_STICKY
@@ -235,7 +235,7 @@ class RootAudioProcessorService : BaseAudioProcessorService(), KoinComponent,
             Timber.d("startService: intent=$intent")
 
             // Prevent launch if plugin missing
-            if(!JamesDspRemoteEngine.isPluginInstalled()) {
+            if(JamesDspRemoteEngine.isPluginInstalled() == JamesDspRemoteEngine.PluginState.Unavailable) {
                 Timber.e("Service launch cancelled. Plugin not installed.")
                 return
             }

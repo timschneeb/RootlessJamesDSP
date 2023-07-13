@@ -251,21 +251,35 @@ class JamesDspRemoteEngine(
     val allocatedBlockLength: Int
         get() = effect.getParameterInt(20000) ?: -1
 
+    enum class PluginState {
+        Unavailable,
+        Available,
+        Unsupported
+    }
+
     companion object {
         private val EFFECT_TYPE_CUSTOM = UUID.fromString("f98765f4-c321-5de6-9a45-123459495ab2")
         private val EFFECT_JAMESDSP = UUID.fromString("f27317f4-c984-4de6-9a90-545759495bf2")
 
-        fun isPluginInstalled(): Boolean {
+        fun isPluginInstalled(): PluginState {
             return try {
                 AudioEffect
                     .queryEffects()
                     .orEmpty()
                     .filter { it.uuid == EFFECT_JAMESDSP }
-                    .firstOrNull { it.name.contains("JamesDSP") } != null
+                    .firstOrNull { it.name.contains("JamesDSP") }
+                    .let {
+                        if(it == null)
+                            PluginState.Unavailable
+                        else if(it.name.contains("v3"))
+                            PluginState.Unsupported
+                        else
+                            PluginState.Available
+                    }
             } catch (e: Exception) {
                 Timber.e("isPluginInstalled: exception raised")
                 Timber.e(e)
-                false
+                PluginState.Unavailable
             }
         }
     }
