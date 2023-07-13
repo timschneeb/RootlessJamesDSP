@@ -60,15 +60,8 @@
     <string name="permission_not_allowed">Niedozwolone</string>
     <!-- Main screen -->
     <string name="power_button_alt">Przełącz przetwarzanie dźwięku</string>
-    <string name="compressor_enable">Kompresja zakresu dynamiki</string>
-    <string name="compressor_max_attack">Maks czas załączenia</string>
-    <string name="compressor_max_release">Maks czas rozłączenia</string>
-    <string name="compressor_adapt_speed">Agresywność</string>
-    <string name="eq_enable">Interpolacja korektora FIR</string>
     <string name="eq_filter_type">Filter type</string>
     <string name="eq_interpolator">Interpolator</string>
-    <string name="eq_filter_type_minimum">Minimalna faza</string>
-    <string name="eq_filter_type_linear">Liniowa faza</string>
     <string name="eq_interpolator_chip">Częściowo Interpolacja Hermitu sześciennego wielomianu</string>
     <string name="eq_interpolator_mha">Zmodyfikowany Hiroshi Akima spline</string>
     <string name="eq_preset_acoustic">Akustyka</string>
