@@ -61,15 +61,8 @@
     <string name="error_projection_api_missing">Ihr Gerätehersteller hat die internen Audio-Aufnahme-APIs deaktiviert. Diese Anwendung kann ohne sie nicht funktionieren.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Audioverarbeitung umschalten</string>
-    <string name="compressor_enable">Automatischer Dynamikbereichskompressor</string>
-    <string name="compressor_max_attack">Maximale Attack-Zeit</string>
-    <string name="compressor_max_release">Maximale Release-Zeit</string>
-    <string name="compressor_adapt_speed">Aggressivität</string>
-    <string name="eq_enable">Interpolierender FIR-Equalizer</string>
     <string name="eq_filter_type">Filtertyp</string>
     <string name="eq_interpolator">Interpolator</string>
-    <string name="eq_filter_type_minimum">Minimale Phase</string>
-    <string name="eq_filter_type_linear">Lineare Phase</string>
     <string name="eq_interpolator_chip">Stückweise kubische Hermite-Interpolation Polynomiale</string>
     <string name="eq_interpolator_mha">Modifizierte Hiroshi Akima-Spline</string>
     <string name="eq_preset_acoustic">Akustisch</string>
