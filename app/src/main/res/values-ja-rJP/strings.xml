@@ -61,15 +61,8 @@
     <string name="error_projection_api_missing">お使いのデバイスの製造元は、内部音声録音APIを無効にしています。このアプリケーションは、それらがないと動作出来ません。</string>
     <!-- Main screen -->
     <string name="power_button_alt">音声処理の切り替え</string>
-    <string name="compressor_enable">自動ダイナミックレンジコンプレッサー</string>
-    <string name="compressor_max_attack">最大アタック</string>
-    <string name="compressor_max_release">最大リリース</string>
-    <string name="compressor_adapt_speed">積極性</string>
-    <string name="eq_enable">補間型FIRイコライザー</string>
     <string name="eq_filter_type">フィルタータイプ</string>
     <string name="eq_interpolator">インターポレーター</string>
-    <string name="eq_filter_type_minimum">最小フェーズ</string>
-    <string name="eq_filter_type_linear">線形フェーズ</string>
     <string name="eq_interpolator_chip">区分的3次エルミート内挿多項式</string>
     <string name="eq_interpolator_mha">改変された秋間スプライン</string>
     <string name="eq_preset_acoustic">アコースティック</string>
