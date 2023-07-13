@@ -61,15 +61,8 @@
     <string name="error_projection_api_missing">El fabricante de tu dispositivo ha desactivado las APIs internas de grabación de audio. Esta aplicación no puede funcionar sin ellas.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Cambiar procesamiento de audio</string>
-    <string name="compressor_enable">Rango de Compresión Dinámica</string>
-    <string name="compressor_max_attack">Máximo de ataques</string>
-    <string name="compressor_max_release">Máxima liberación</string>
-    <string name="compressor_adapt_speed">Agresividad</string>
-    <string name="eq_enable">Ecualizador de FIR interpolando</string>
     <string name="eq_filter_type">Tipo de filtro:</string>
     <string name="eq_interpolator">Interpolador</string>
-    <string name="eq_filter_type_minimum">Fase minima</string>
-    <string name="eq_filter_type_linear">Fase lineal</string>
     <string name="eq_interpolator_chip">Polinomio interpolante de Hermita cúbica en sentido de las Piezas</string>
     <string name="eq_interpolator_mha">Curva modificada de Hiroshi Akima</string>
     <string name="eq_preset_acoustic">Acústica</string>
