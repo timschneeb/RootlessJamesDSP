@@ -59,10 +59,6 @@
     <string name="permission_not_allowed">Tidak diizinkan</string>
     <!-- Main screen -->
     <string name="power_button_alt">Alihkan pemrosesan audio</string>
-    <string name="compressor_max_attack">Attack maksimum</string>
-    <string name="compressor_max_release">Release maksimum</string>
-    <string name="compressor_adapt_speed">Agresif</string>
-    <string name="eq_enable">Interpolasi FIR Equalizer</string>
     <string name="eq_filter_type">Jenis Filter</string>
     <string name="eq_preset_acoustic">Akustik</string>
     <string name="eq_preset_classic">Klasik</string>
