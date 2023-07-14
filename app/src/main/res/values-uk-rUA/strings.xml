@@ -62,6 +62,8 @@
     <!-- Main screen -->
     <string name="power_button_alt">Перемкнути обробку аудіо</string>
     <string name="compander_enable">Компандер динамічного діапазону</string>
+    <string name="compander_timeconstant">Константа часу</string>
+    <string name="compander_granularity">Деталізація</string>
     <string name="compander_granularity_very_low">Дуже низька</string>
     <string name="compander_granularity_low">Низька</string>
     <string name="compander_granularity_medium">Середня</string>
@@ -69,6 +71,8 @@
     <string name="compander_granularity_extreme">Екстремальна</string>
     <string name="compander_tftransforms">Часово-частотне перетворення</string>
     <string name="compander_tftransforms_stft">Рівномірне (швидке перетворення Фур\'є)</string>
+    <string name="compander_tftransforms_continuous_wavelet">Мультироздільність (безперервний вейвлет)</string>
+    <string name="compander_tftransforms_time_domain">Мультироздільність (в області часу)</string>
     <string name="eq_enable">Мультимодальний еквалайзер</string>
     <string name="eq_filter_type">Тип фільтра</string>
     <string name="eq_interpolator">Інтерполятор</string>
@@ -347,7 +351,7 @@
     <string name="credits_project_play_page_summary">Пошук нових оновлень</string>
     <string name="credits_project_check_update">Перевірити наявність оновлень…</string>
     <string name="credits_project_check_update_summary">Оновити додаток до останньої версії</string>
-    <string name="credits_project_translate">Допомога з перекладом</string>
+    <string name="credits_project_translate">Допомогти з перекладом</string>
     <string name="credits_project_translate_summary">Допоможіть нам перекласти додаток вашою мовою</string>
     <string name="credits_version">Версія додатка</string>
     <string name="credits_build_info">Інформація про збірку</string>
@@ -405,7 +409,7 @@
     <string name="filelibrary_access_fail">Не вдалося отримати доступ до каталогу</string>
     <string name="filelibrary_is_backup_not_preset">Вибраний файл є файлом резервної копії, а не пресетом. Якщо ви хочете виконати відновлення налаштувань, перейдіть до параметрів резервного копіювання.</string>
     <string name="filelibrary_no_file_selected">Файл не вибрано</string>
-    <string name="filelibrary_new_file_name">Нова назва файлу</string>
+    <string name="filelibrary_new_file_name">Нове ім\'я файлу</string>
     <string name="filelibrary_file_exists">Файл вже існує</string>
     <string name="filelibrary_resample_complete">Ресемпльовано до %1$dHz</string>
     <string name="filelibrary_resample_failed">Помилка ресемплінгу. Пошкоджений вхідний файл?</string>
