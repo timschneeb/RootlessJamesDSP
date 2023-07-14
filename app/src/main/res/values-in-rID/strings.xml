@@ -2,9 +2,9 @@
 <resources>
     <!-- Main menu bar -->
     <string name="action_settings">Pengaturan</string>
-    <string name="action_presets">Preset</string>
+    <string name="action_presets">Prasetel</string>
     <string name="action_revert">Setel ulang ke bawaan</string>
-    <string name="action_blocked_apps">Aplikasi Dikecualikan</string>
+    <string name="action_blocked_apps">Aplikasi yang dikecualikan</string>
     <!-- Notification channels -->
     <string name="notification_group_service">Layanan</string>
     <string name="notification_channel_service">Layanan Notifikasi</string>
@@ -430,7 +430,7 @@
     <string name="editor_cannot_redo">Tidak ada yang diulang.</string>
     <string name="editor_text_size">Ukuran teks</string>
     <!-- Blocklist -->
-    <string name="title_activity_blocklist">Aplikasi Dikecualikan</string>
+    <string name="title_activity_blocklist">Aplikasi yang dikecualikan</string>
     <string name="blocklist_add_exclusion_alt">Tambahkan aplikasi ke pengecualian</string>
     <string name="blocklist_delete_title">Hapus aplikasi dipilih?</string>
     <string name="blocklist_delete">Apa anda ingin menghapus aplikasi dari pengecualian?</string>
