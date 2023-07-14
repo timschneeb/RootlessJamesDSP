@@ -67,6 +67,8 @@
     <string name="compander_granularity_medium">Средняя</string>
     <string name="compander_granularity_high">Высокая</string>
     <string name="compander_granularity_extreme">Экстремальная</string>
+    <string name="compander_tftransforms">Временно-частотное преобразование</string>
+    <string name="compander_tftransforms_stft">Равномерное (кратковременное преобразование Фурье)</string>
     <string name="eq_enable">Мультимодальный эквалайзер</string>
     <string name="eq_filter_type">Тип фильтра</string>
     <string name="eq_interpolator">Интерполятор</string>
