@@ -63,7 +63,7 @@
     <string name="power_button_alt">Перемкнути обробку аудіо</string>
     <string name="compander_enable">Компандер динамічного діапазону</string>
     <string name="compander_timeconstant">Константа часу</string>
-    <string name="compander_granularity">Деталізація</string>
+    <string name="compander_granularity">Гранулярність</string>
     <string name="compander_granularity_very_low">Дуже низька</string>
     <string name="compander_granularity_low">Низька</string>
     <string name="compander_granularity_medium">Середня</string>
