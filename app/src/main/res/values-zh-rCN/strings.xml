@@ -591,4 +591,7 @@
     <string name="device_profile_manage_copy_select">选择要复制的配置文件</string>
     <string name="device_profile_manage_paste_select">选择要覆盖的配置文件</string>
     <!-- Root version check -->
+    <string name="version_mismatch_root">JamesDSP的Magisk模块需要更新</string>
+    <string name="version_mismatch_root_description">已安装的 JamesDSP Magisk 模块版本太旧。\n\n请下载最新的 JamesDSP 模块并在 Magisk 中安装。\n请注意，安装 Magisk 模块时官方的 JamesDSP 应用将会替换此应用。\n\n您想现在访问 Magisk 模块的下载网站吗？</string>
+    <string name="version_mismatch_root_toast">启动失败。已安装的 JamesDSP Magisk 模块版本过旧，不再被此应用支持。</string>
 </resources>
