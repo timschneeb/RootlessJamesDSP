@@ -68,7 +68,9 @@
     <string name="compander_granularity_high">Высокая</string>
     <string name="compander_granularity_extreme">Экстремальная</string>
     <string name="compander_tftransforms">Временно-частотное преобразование</string>
-    <string name="compander_tftransforms_stft">Равномерное (кратковременное преобразование Фурье)</string>
+    <string name="compander_tftransforms_stft">Равномерное (быстрое преобразование Фурье)</string>
+    <string name="compander_tftransforms_continuous_wavelet">Мультиразрешение (непрерывный вейвлет)</string>
+    <string name="compander_tftransforms_time_domain">Мультиразрешение (во временной области)</string>
     <string name="eq_enable">Мультимодальный эквалайзер</string>
     <string name="eq_filter_type">Тип фильтра</string>
     <string name="eq_interpolator">Интерполятор</string>
