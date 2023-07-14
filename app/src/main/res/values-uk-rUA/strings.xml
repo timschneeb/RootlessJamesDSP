@@ -61,8 +61,21 @@
     <string name="error_projection_api_missing">Виробник вашого пристрою вимкнув внутрішні API для запису звуку. Ця програма не може працювати без них.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Перемкнути обробку аудіо</string>
+    <string name="compander_enable">Компандер динамічного діапазону</string>
+    <string name="compander_granularity_very_low">Дуже низька</string>
+    <string name="compander_granularity_low">Низька</string>
+    <string name="compander_granularity_medium">Середня</string>
+    <string name="compander_granularity_high">Висока</string>
+    <string name="compander_granularity_extreme">Екстремальна</string>
+    <string name="eq_enable">Мультимодальний еквалайзер</string>
     <string name="eq_filter_type">Тип фільтра</string>
     <string name="eq_interpolator">Інтерполятор</string>
+    <string name="eq_filter_type_fir_minimum">Мінімальна фаза FIR</string>
+    <string name="eq_filter_type_iir_4_order">IIR 4-го порядку</string>
+    <string name="eq_filter_type_iir_6_order">IIR 6-го порядку</string>
+    <string name="eq_filter_type_iir_8_order">IIR 8-го порядку</string>
+    <string name="eq_filter_type_iir_10_order">IIR 10-го порядку</string>
+    <string name="eq_filter_type_iir_12_order">IIR 12-го порядку</string>
     <string name="eq_interpolator_chip">Кусково-кубічний інтерполяційний поліном Ерміта</string>
     <string name="eq_interpolator_mha">Модифікований сплайн Хіросі Акіма</string>
     <string name="eq_preset_acoustic">Acoustic</string>
