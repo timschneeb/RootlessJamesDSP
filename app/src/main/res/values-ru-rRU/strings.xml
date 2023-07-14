@@ -571,4 +571,7 @@
     <string name="device_profile_manage_copy_select">Выберите профиль для копирования</string>
     <string name="device_profile_manage_paste_select">Выберите профили для перезаписи</string>
     <!-- Root version check -->
+    <string name="version_mismatch_root">Пакет JamesDSP для Magisk требует обновления</string>
+    <string name="version_mismatch_root_description">Установленный на вашем устройстве пакет JamesDSP для Magisk устарел и больше не поддерживается этим приложением.\n\nПожалуйста, загрузите самый последний ZIP-файл пакета JamesDSP для Magisk и установите его через Magisk.\nОбратите внимание, что пакет Magisk может заменить это приложение на официальное приложение JamesDSP.\n\nХотите посетить веб-сайт загрузки пакетов Magisk сейчас?</string>
+    <string name="version_mismatch_root_toast">Не удалось запустить. Установленный пакет JamesDSP для Magisk устарел и больше не поддерживается этим приложением.</string>
 </resources>
