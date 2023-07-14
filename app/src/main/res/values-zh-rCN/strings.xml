@@ -64,7 +64,7 @@
     <string name="compander_enable">动态范围压缩扩展器</string>
     <string name="compander_timeconstant">时间常数</string>
     <string name="compander_granularity">粒度</string>
-    <string name="compander_granularity_very_low">非常低</string>
+    <string name="compander_granularity_very_low">极低</string>
     <string name="compander_granularity_low">低</string>
     <string name="compander_granularity_medium">中等</string>
     <string name="compander_granularity_high">高</string>
@@ -77,11 +77,11 @@
     <string name="eq_filter_type">滤波器类型</string>
     <string name="eq_interpolator">插值器</string>
     <string name="eq_filter_type_fir_minimum">FIR 最小相位</string>
-    <string name="eq_filter_type_iir_4_order">IIR 4阶</string>
-    <string name="eq_filter_type_iir_6_order">IIR 6阶</string>
-    <string name="eq_filter_type_iir_8_order">IIR 8阶</string>
-    <string name="eq_filter_type_iir_10_order">IIR 10阶</string>
-    <string name="eq_filter_type_iir_12_order">IIR 12阶</string>
+    <string name="eq_filter_type_iir_4_order">IIR 四阶</string>
+    <string name="eq_filter_type_iir_6_order">IIR 六阶</string>
+    <string name="eq_filter_type_iir_8_order">IIR 八阶</string>
+    <string name="eq_filter_type_iir_10_order">IIR 十阶</string>
+    <string name="eq_filter_type_iir_12_order">IIR 十二阶</string>
     <string name="eq_interpolator_chip">分段三次埃尔米特插值</string>
     <string name="eq_interpolator_mha">改良 Hiroshi Akima 样条</string>
     <string name="eq_preset_acoustic">原声</string>
