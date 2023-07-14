@@ -62,6 +62,8 @@
     <!-- Main screen -->
     <string name="power_button_alt">Переключить обработку аудио</string>
     <string name="compander_enable">Компандер динамического диапазона</string>
+    <string name="compander_timeconstant">Константа времени</string>
+    <string name="compander_granularity">Детализация</string>
     <string name="compander_granularity_very_low">Очень низкая</string>
     <string name="compander_granularity_low">Низкая</string>
     <string name="compander_granularity_medium">Средняя</string>
@@ -70,7 +72,7 @@
     <string name="compander_tftransforms">Временно-частотное преобразование</string>
     <string name="compander_tftransforms_stft">Равномерное (быстрое преобразование Фурье)</string>
     <string name="compander_tftransforms_continuous_wavelet">Мультиразрешение (непрерывный вейвлет)</string>
-    <string name="compander_tftransforms_time_domain">Мультиразрешение (во временной области)</string>
+    <string name="compander_tftransforms_time_domain">Мультиразрешение (в области времени)</string>
     <string name="eq_enable">Мультимодальный эквалайзер</string>
     <string name="eq_filter_type">Тип фильтра</string>
     <string name="eq_interpolator">Интерполятор</string>
