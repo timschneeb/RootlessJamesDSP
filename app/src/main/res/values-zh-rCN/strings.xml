@@ -61,8 +61,27 @@
     <string name="error_projection_api_missing">您的设备制造商已禁用内部录音 API。 没有它们，此应用程序无法工作。</string>
     <!-- Main screen -->
     <string name="power_button_alt">切换音频处理</string>
+    <string name="compander_enable">动态范围压缩扩展器</string>
+    <string name="compander_timeconstant">时间常数</string>
+    <string name="compander_granularity">粒度</string>
+    <string name="compander_granularity_very_low">极低</string>
+    <string name="compander_granularity_low">低</string>
+    <string name="compander_granularity_medium">中等</string>
+    <string name="compander_granularity_high">高</string>
+    <string name="compander_granularity_extreme">极高</string>
+    <string name="compander_tftransforms">时频变换</string>
+    <string name="compander_tftransforms_stft">均匀（短时傅里叶）</string>
+    <string name="compander_tftransforms_continuous_wavelet">多分辨率（连续小波）</string>
+    <string name="compander_tftransforms_time_domain">多分辨率（时域）</string>
+    <string name="eq_enable">多模态均衡器</string>
     <string name="eq_filter_type">滤波器类型</string>
     <string name="eq_interpolator">插值器</string>
+    <string name="eq_filter_type_fir_minimum">FIR 最小相位</string>
+    <string name="eq_filter_type_iir_4_order">IIR 四阶</string>
+    <string name="eq_filter_type_iir_6_order">IIR 六阶</string>
+    <string name="eq_filter_type_iir_8_order">IIR 八阶</string>
+    <string name="eq_filter_type_iir_10_order">IIR 十阶</string>
+    <string name="eq_filter_type_iir_12_order">IIR 十二阶</string>
     <string name="eq_interpolator_chip">分段三次埃尔米特插值</string>
     <string name="eq_interpolator_mha">改良 Hiroshi Akima 样条</string>
     <string name="eq_preset_acoustic">原声</string>
@@ -572,4 +591,7 @@
     <string name="device_profile_manage_copy_select">选择要复制的配置文件</string>
     <string name="device_profile_manage_paste_select">选择要覆盖的配置文件</string>
     <!-- Root version check -->
+    <string name="version_mismatch_root">JamesDSP的Magisk模块需要更新</string>
+    <string name="version_mismatch_root_description">已安装的 JamesDSP Magisk 模块版本太旧。\n\n请下载最新的 JamesDSP 模块并在 Magisk 中安装。\n请注意，安装 Magisk 模块时官方的 JamesDSP 应用将会替换此应用。\n\n您想现在访问 Magisk 模块的下载网站吗？</string>
+    <string name="version_mismatch_root_toast">启动失败。已安装的 JamesDSP Magisk 模块版本过旧，不再被此应用支持。</string>
 </resources>

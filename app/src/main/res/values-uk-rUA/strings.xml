@@ -61,8 +61,27 @@
     <string name="error_projection_api_missing">Виробник вашого пристрою вимкнув внутрішні API для запису звуку. Ця програма не може працювати без них.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Перемкнути обробку аудіо</string>
+    <string name="compander_enable">Компандер динамічного діапазону</string>
+    <string name="compander_timeconstant">Константа часу</string>
+    <string name="compander_granularity">Гранулярність</string>
+    <string name="compander_granularity_very_low">Дуже низька</string>
+    <string name="compander_granularity_low">Низька</string>
+    <string name="compander_granularity_medium">Середня</string>
+    <string name="compander_granularity_high">Висока</string>
+    <string name="compander_granularity_extreme">Екстремальна</string>
+    <string name="compander_tftransforms">Часово-частотне перетворення</string>
+    <string name="compander_tftransforms_stft">Рівномірне (швидке перетворення Фур\'є)</string>
+    <string name="compander_tftransforms_continuous_wavelet">Мультироздільність (безперервний вейвлет)</string>
+    <string name="compander_tftransforms_time_domain">Мультироздільність (в області часу)</string>
+    <string name="eq_enable">Мультимодальний еквалайзер</string>
     <string name="eq_filter_type">Тип фільтра</string>
     <string name="eq_interpolator">Інтерполятор</string>
+    <string name="eq_filter_type_fir_minimum">Мінімальна фаза FIR</string>
+    <string name="eq_filter_type_iir_4_order">IIR 4-го порядку</string>
+    <string name="eq_filter_type_iir_6_order">IIR 6-го порядку</string>
+    <string name="eq_filter_type_iir_8_order">IIR 8-го порядку</string>
+    <string name="eq_filter_type_iir_10_order">IIR 10-го порядку</string>
+    <string name="eq_filter_type_iir_12_order">IIR 12-го порядку</string>
     <string name="eq_interpolator_chip">Кусково-кубічний інтерполяційний поліном Ерміта</string>
     <string name="eq_interpolator_mha">Модифікований сплайн Хіросі Акіма</string>
     <string name="eq_preset_acoustic">Acoustic</string>
@@ -332,7 +351,7 @@
     <string name="credits_project_play_page_summary">Пошук нових оновлень</string>
     <string name="credits_project_check_update">Перевірити наявність оновлень…</string>
     <string name="credits_project_check_update_summary">Оновити додаток до останньої версії</string>
-    <string name="credits_project_translate">Допомога з перекладом</string>
+    <string name="credits_project_translate">Допомогти з перекладом</string>
     <string name="credits_project_translate_summary">Допоможіть нам перекласти додаток вашою мовою</string>
     <string name="credits_version">Версія додатка</string>
     <string name="credits_build_info">Інформація про збірку</string>
@@ -390,7 +409,7 @@
     <string name="filelibrary_access_fail">Не вдалося отримати доступ до каталогу</string>
     <string name="filelibrary_is_backup_not_preset">Вибраний файл є файлом резервної копії, а не пресетом. Якщо ви хочете виконати відновлення налаштувань, перейдіть до параметрів резервного копіювання.</string>
     <string name="filelibrary_no_file_selected">Файл не вибрано</string>
-    <string name="filelibrary_new_file_name">Нова назва файлу</string>
+    <string name="filelibrary_new_file_name">Нове ім\'я файлу</string>
     <string name="filelibrary_file_exists">Файл вже існує</string>
     <string name="filelibrary_resample_complete">Ресемпльовано до %1$dHz</string>
     <string name="filelibrary_resample_failed">Помилка ресемплінгу. Пошкоджений вхідний файл?</string>
@@ -571,4 +590,7 @@
     <string name="device_profile_manage_copy_select">Виберіть профіль для копіювання</string>
     <string name="device_profile_manage_paste_select">Виберіть профілі для перезапису</string>
     <!-- Root version check -->
+    <string name="version_mismatch_root">Пакет JamesDSP для Magisk потребує оновлення</string>
+    <string name="version_mismatch_root_description">Встановлений на вашому пристрої пакет JamesDSP для Magisk застарів і більше не підтримується цим застосунком.\n\nБудь ласка, отримайте останню версію ZIP-файлу пакета JamesDSP для Magisk та встановіть його через Magisk.\nЗверніть увагу, що пакет Magisk може замінити цей додаток офіційним застосунком JamesDSP.\n\nБажаєте відвідати веб-сайт для завантаження пакетів Magisk зараз?</string>
+    <string name="version_mismatch_root_toast">Не вдалося запустити. Встановлений пакет JamesDSP для Magisk застарів і більше не підтримується цим застосунком.</string>
 </resources>

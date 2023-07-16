@@ -61,8 +61,27 @@
     <string name="error_projection_api_missing">Производитель вашего устройства отключил внутренние API для записи звука. Это приложение не может работать без них.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Переключить обработку аудио</string>
+    <string name="compander_enable">Компандер динамического диапазона</string>
+    <string name="compander_timeconstant">Константа времени</string>
+    <string name="compander_granularity">Гранулярность</string>
+    <string name="compander_granularity_very_low">Очень низкая</string>
+    <string name="compander_granularity_low">Низкая</string>
+    <string name="compander_granularity_medium">Средняя</string>
+    <string name="compander_granularity_high">Высокая</string>
+    <string name="compander_granularity_extreme">Экстремальная</string>
+    <string name="compander_tftransforms">Временно-частотное преобразование</string>
+    <string name="compander_tftransforms_stft">Равномерное (быстрое преобразование Фурье)</string>
+    <string name="compander_tftransforms_continuous_wavelet">Мультиразрешение (непрерывный вейвлет)</string>
+    <string name="compander_tftransforms_time_domain">Мультиразрешение (в области времени)</string>
+    <string name="eq_enable">Мультимодальный эквалайзер</string>
     <string name="eq_filter_type">Тип фильтра</string>
     <string name="eq_interpolator">Интерполятор</string>
+    <string name="eq_filter_type_fir_minimum">Минимальная фаза FIR</string>
+    <string name="eq_filter_type_iir_4_order">IRR 4-го порядка</string>
+    <string name="eq_filter_type_iir_6_order">IRR 6-го порядка</string>
+    <string name="eq_filter_type_iir_8_order">IRR 8-го порядка</string>
+    <string name="eq_filter_type_iir_10_order">IRR 10-го порядка</string>
+    <string name="eq_filter_type_iir_12_order">IRR 12-го порядка</string>
     <string name="eq_interpolator_chip">Кусочно-кубический интерполяционный полином Эрмита</string>
     <string name="eq_interpolator_mha">Модифицированный сплайн Хироши Акимы</string>
     <string name="eq_preset_acoustic">Acoustic</string>
@@ -571,4 +590,7 @@
     <string name="device_profile_manage_copy_select">Выберите профиль для копирования</string>
     <string name="device_profile_manage_paste_select">Выберите профили для перезаписи</string>
     <!-- Root version check -->
+    <string name="version_mismatch_root">Пакет JamesDSP для Magisk требует обновления</string>
+    <string name="version_mismatch_root_description">Установленный на вашем устройстве пакет JamesDSP для Magisk устарел и больше не поддерживается этим приложением.\n\nПожалуйста, загрузите самый последний ZIP-файл пакета JamesDSP для Magisk и установите его через Magisk.\nОбратите внимание, что пакет Magisk может заменить это приложение на официальное приложение JamesDSP.\n\nХотите посетить веб-сайт загрузки пакетов Magisk сейчас?</string>
+    <string name="version_mismatch_root_toast">Не удалось запустить. Установленный пакет JamesDSP для Magisk устарел и больше не поддерживается этим приложением.</string>
 </resources>
