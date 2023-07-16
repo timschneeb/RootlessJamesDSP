@@ -14,6 +14,8 @@ import me.timschneeberger.rootlessjamesdsp.model.GraphicEqNodeList
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.unregisterLocalReceiver
+import timber.log.Timber
+import java.util.MissingFormatArgumentException
 
 class GraphicEqualizerPreference : Preference {
 
@@ -81,6 +83,13 @@ class GraphicEqualizerPreference : Preference {
         nodes.deserialize(value)
 
         binding?.layoutEqualizer?.setNodes(nodes)
-        binding?.nodeCount?.text = context.resources.getQuantityString(R.plurals.nodes, nodes.size, nodes.size)
+        try {
+            binding?.nodeCount?.text =
+                context.resources.getQuantityString(R.plurals.nodes, nodes.size, nodes.size)
+        }
+        catch (ex: MissingFormatArgumentException) {
+            Timber.e(ex)
+            binding?.nodeCount?.text = context.getString(R.string.geq_node_editor)
+        }
     }
 }
