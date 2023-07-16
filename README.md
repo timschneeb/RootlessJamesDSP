@@ -155,14 +155,21 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
         <br />
         <sub><b>Tim Schneeberger (ThePBone)</b></sub></a>
       <br />
-      <sub><b>21948 words</b></sub>
+      <sub><b>22200 words</b></sub>
     </td>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/netrunner-exe"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15209210/medium/dabb33b18a6eb0e59cee34e448d81e40.jpg" />
         <br />
         <sub><b>Oleksandr Tkachenko (netrunner-exe)</b></sub></a>
       <br />
-      <sub><b>6819 words</b></sub>
+      <sub><b>13556 words</b></sub>
+    </td>
+    <td align="center" valign="top">
+      <a href="https://crowdin.com/profile/rex07"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/13820943/medium/5b5499d4f13f168e0eab0499857a831e.jpeg" />
+        <br />
+        <sub><b>Rex_sa (rex07)</b></sub></a>
+      <br />
+      <sub><b>3449 words</b></sub>
     </td>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/FrameXX"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/14591682/medium/071f9d859dc36f9281f6f84b9c18c852.png" />
@@ -170,13 +177,6 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
         <sub><b>FrameXX</b></sub></a>
       <br />
       <sub><b>3367 words</b></sub>
-    </td>
-    <td align="center" valign="top">
-      <a href="https://crowdin.com/profile/rex07"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/13820943/medium/5b5499d4f13f168e0eab0499857a831e.jpeg" />
-        <br />
-        <sub><b>Rex_sa (rex07)</b></sub></a>
-      <br />
-      <sub><b>3323 words</b></sub>
     </td>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/fankesyooni"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15676501/medium/6ee6d7e4c63bfb0f90dc5088a5ff0efd.jpg" />
@@ -234,7 +234,7 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
         <br />
         <sub><b>zhiq liu (liziq)</b></sub></a>
       <br />
-      <sub><b>1041 words</b></sub>
+      <sub><b>1084 words</b></sub>
     </td>
   </tr>
   <tr>
@@ -334,6 +334,13 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
       <sub><b>225 words</b></sub>
     </td>
     <td align="center" valign="top">
+      <a href="https://crowdin.com/profile/Andy-Dunne"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15858259/medium/6620b32c17f830d32fc65324ac5310c3.png" />
+        <br />
+        <sub><b>Andy-Dunne</b></sub></a>
+      <br />
+      <sub><b>224 words</b></sub>
+    </td>
+    <td align="center" valign="top">
       <a href="https://crowdin.com/profile/Tymwitko"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15706765/medium/a2288209d82b78b8e8d959c009382086_default.png" />
         <br />
         <sub><b>Tymwitko</b></sub></a>
@@ -348,13 +355,6 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
       <sub><b>183 words</b></sub>
     </td>
     <td align="center" valign="top">
-      <a href="https://crowdin.com/profile/Andy-Dunne"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15858259/medium/6620b32c17f830d32fc65324ac5310c3.png" />
-        <br />
-        <sub><b>Andy-Dunne</b></sub></a>
-      <br />
-      <sub><b>141 words</b></sub>
-    </td>
-    <td align="center" valign="top">
       <a href="https://crowdin.com/profile/dev_trace"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15729737/medium/f515d9ef1eeb393759e7180bc700afc2_default.png" />
         <br />
         <sub><b>dev_trace</b></sub></a>
@@ -362,27 +362,27 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
       <sub><b>140 words</b></sub>
     </td>
     <td align="center" valign="top">
+      <a href="https://crowdin.com/profile/mpolin"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15871907/medium/af802355a40a11ea70c5c803e8966d80_default.png" />
+        <br />
+        <sub><b>Muchlis Polin (mpolin)</b></sub></a>
+      <br />
+      <sub><b>135 words</b></sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top">
       <a href="https://crowdin.com/profile/Jamil.M.Gomez"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/13442100/medium/70d15cc33101a9739868321b10543f18.png" />
         <br />
         <sub><b>Jamil M. Gomez (Jamil.M.Gomez)</b></sub></a>
       <br />
       <sub><b>131 words</b></sub>
     </td>
-  </tr>
-  <tr>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/abrohim786"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15371752/medium/4eb10305c456678b72d115a0d56cbd73.jpg" />
         <br />
         <sub><b>ツ๛abrohim๛ (abrohim786)</b></sub></a>
       <br />
       <sub><b>131 words</b></sub>
-    </td>
-    <td align="center" valign="top">
-      <a href="https://crowdin.com/profile/hdjhdjdhhd"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15827641/medium/7107713177a07d8be770c500772567e9_default.png" />
-        <br />
-        <sub><b>Đỗ Hải Anh (hdjhdjdhhd)</b></sub></a>
-      <br />
-      <sub><b>119 words</b></sub>
     </td>
   </tr>
 </table><a href="https://crowdin.com/project/rootlessjamesdsp" target="_blank">Translate in Crowdin 🚀</a>
