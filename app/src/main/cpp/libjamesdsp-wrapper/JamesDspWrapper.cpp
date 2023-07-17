@@ -63,7 +63,7 @@ inline int32_t arySearch(int32_t *array, int32_t N, int32_t x)
 }
 
 #define FLOIDX 20000
-inline void* GetStringForIndex(eel_string_context_state *st, float val, int32_t write)
+/*inline void* GetStringForIndex(eel_string_context_state *st, float val, int32_t write)
 {
     auto castedValue = (int32_t)(val + 0.5f);
     if (castedValue < FLOIDX)
@@ -79,7 +79,7 @@ inline void* GetStringForIndex(eel_string_context_state *st, float val, int32_t 
     }
     else
         return (void*)&st->m_literal_strings[idx];
-}
+}*/
 
 extern "C" JNIEXPORT jlong JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_alloc(JNIEnv *env, jobject obj, jobject callback)
@@ -614,7 +614,8 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_enumerateEelVar
     {
         for (int j = 0; j < NSEEL_VARS_PER_BLOCK; j++)
         {
-            const char *valid = (char*)GetStringForIndex(ctx->m_string_context, ctx->varTable_Values[i][j], 0);
+            // TODO fix string handling (broke after last libjamesdsp update)
+            const char *valid = nullptr;//(char*)GetStringForIndex(ctx->region_context, ctx->varTable_Values[i][j], 1);
             bool isString = valid;
 
             if (ctx->varTable_Names[i][j])
@@ -653,9 +654,8 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_manipulateEelVa
                 continue;
             }
 
-
-            char *validString = (char*)GetStringForIndex(ctx->m_string_context, ctx->varTable_Values[i][j], 0);
-            if(validString)
+            const char *valid = nullptr;//(char*)GetStringForIndex(ctx->region_context, ctx->varTable_Values[i][j], 1);
+            if(valid)
             {
                 LOGE("JamesDspWrapper::manipulateEelVariable: variable '%s' is a string; currently only numerical variables can be manipulated", nativeName);
                 env->ReleaseStringUTFChars(name, nativeName);
