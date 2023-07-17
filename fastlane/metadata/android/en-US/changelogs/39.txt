@@ -1,0 +1,5 @@
+* Disabled new background benchmark operations to prevent crashes
+* Updated libjamesdsp
+* EEL engine updated
+* Minor bug fixes
+* Translation updates
