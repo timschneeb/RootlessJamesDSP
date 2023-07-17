@@ -18,8 +18,8 @@
     <string name="action_retry">重试</string>
     <string name="action_fix">修复问题</string>
     <string name="action_stop">停止</string>
-    <string name="notification_processing">活动应用：%1$s</string>
-    <string name="notification_idle">音频处理空闲</string>
+    <string name="notification_processing">活跃应用：%1$s</string>
+    <string name="notification_idle">音频流处理空闲</string>
     <string name="notification_processing_title">音频处理活动中</string>
     <string name="notification_processing_disabled_title">音频处理被禁用</string>
     <string name="notification_processing_legacy">点击打开 JamesDSP 管理器</string>
