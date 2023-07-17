@@ -125,7 +125,8 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_alloc(JNIEnv *e
         return 1;
     }
 
-    JamesDSPGlobalMemoryAllocation();
+    bool do_benchmark = 0;
+    JamesDSPGlobalMemoryAllocation(do_benchmark);
     JamesDSPInit(_dsp, 128, 48000);
 
     if(!JamesDSPGetMutexStatus(_dsp))
