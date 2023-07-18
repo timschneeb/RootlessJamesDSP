@@ -61,13 +61,32 @@
     <string name="error_projection_api_missing">O fabricante do seu dispositivo desativou a API interna de gravação de áudio. Este aplicativo não pode funcionar sem eles.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Ativar/desativar processamento de áudio</string>
+    <string name="compander_enable">Compressor de Faixa Dinâmica</string>
+    <string name="compander_timeconstant">Constante de tempo</string>
+    <string name="compander_granularity">Granularidade</string>
+    <string name="compander_granularity_very_low">Muito baixo</string>
+    <string name="compander_granularity_low">Baixo</string>
+    <string name="compander_granularity_medium">Médio</string>
+    <string name="compander_granularity_high">Alto</string>
+    <string name="compander_granularity_extreme">Extremo</string>
+    <string name="compander_tftransforms">Transformação de tempo-frequência</string>
+    <string name="compander_tftransforms_stft">Uniforme (Fourier)</string>
+    <string name="compander_tftransforms_continuous_wavelet">Multi-resolução (Onda contínua)</string>
+    <string name="compander_tftransforms_time_domain">Multi-resolução (domínio de tempo)</string>
+    <string name="eq_enable">Equalizador Multimodal</string>
     <string name="eq_filter_type">Tipo de filtro</string>
     <string name="eq_interpolator">Interpolador</string>
+    <string name="eq_filter_type_fir_minimum">Fase Mínima (FIR)</string>
+    <string name="eq_filter_type_iir_4_order">IIR Quarta ordem</string>
+    <string name="eq_filter_type_iir_6_order">IIR sexta ordem</string>
+    <string name="eq_filter_type_iir_8_order">IIR oitava ordem</string>
+    <string name="eq_filter_type_iir_10_order">IIR décima ordem</string>
+    <string name="eq_filter_type_iir_12_order">IIR décima segunda ordem</string>
     <string name="eq_interpolator_chip">Interpolação Polinomial de Hermite Cúbica em partes</string>
-    <string name="eq_interpolator_mha">Spline de Hiroshi Akima modificada</string>
+    <string name="eq_interpolator_mha">Hiroshi Akima spline modificada</string>
     <string name="eq_preset_acoustic">Acústico</string>
-    <string name="eq_preset_bass">Baixo</string>
-    <string name="eq_preset_beats">Beats</string>
+    <string name="eq_preset_bass">Grave</string>
+    <string name="eq_preset_beats">Batidas</string>
     <string name="eq_preset_classic">Clássico</string>
     <string name="eq_preset_clear">Nítido</string>
     <string name="eq_preset_deep">Profundo</string>
@@ -399,7 +418,13 @@
     <string name="filelibrary_preset_save_failed">Erro ao salvar predefinição</string>
     <string name="filelibrary_renamed">Renomeado para \'%1$s\'</string>
     <string name="filelibrary_deleted">\'%1$s\' excluído</string>
+    <string name="filelibrary_preset_loaded">Predefinição \"%1$s\" carregada</string>
+    <string name="filelibrary_preset_load_failed">Arquivo \'%1$s\' não é compatível com este aplicativo</string>
+    <string name="filelibrary_no_presets">Nenhuma predefinição foi salva. Toque em \'Adicionar\' para criar uma.</string>
     <!-- JamesDSP engine messages -->
+    <string name="message_vdc_corrupt">O arquivo VDC selecionado está corrompido. Por favor, escolha outro.</string>
+    <string name="message_irs_corrupt">Resposta de impulso selecionada está corrompida. Por favor, escolha outra.</string>
+    <string name="message_convolver_advimp_invalid">Convolver: A edição de waveform avançada contém valores inválidos.</string>
     <string name="message_liveprog_compile_fail">A execução do Liveprog falhou. O script selecionado está corrompido. Por favor, use o editor de scripts para depuração.</string>
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">Resposta de Magnitude</string>
@@ -424,25 +449,117 @@
     <string name="geq_cancel_spaced">&#160;&#160;Descartar&#160;</string>
     <string name="geq_cancel">Descartar</string>
     <string name="geq_discard_changes_title">Descartar modificações e sair?</string>
+    <string name="geq_discard_changes">Os valores não são válidos ou vazios. Suas alterações não podem ser salvas.\nDescartar alterações e sair?</string>
+    <string name="geq_frequeny_range">Valor entre 1Hz e 24000Hz</string>
+    <string name="geq_gain_range">Valor entre -32dB e 32dB</string>
+    <string name="geq_gain">Ganho</string>
+    <string name="geq_frequency">Frequência</string>
     <!-- AutoEQ GraphicEQ selector -->
+    <string name="geq_api_network_error">Falha ao conectar ao servidor.%1$s</string>
+    <string name="geq_api_network_error_details_code">Servidor respondeu com erro: %1$d</string>
+    <string name="autoeq_search">AutoEQ buscar</string>
+    <string name="autoeq_enter_model">Insira o modelo do fone de ouvido…</string>
+    <string name="autoeq_partial_results_warning">Mostrando resultados %1$d. Por favor, ajuste sua pesquisa para obter resultados mais relevantes.</string>
+    <string name="autoeq_no_results">Nenhum resultado encontrado</string>
     <!-- Customizable liveprog script parameters -->
+    <string name="title_activity_liveprog_params">Parâmetros de script personalizáveis</string>
+    <string name="action_restore_defaults">Restaurar padrões</string>
     <!-- Liveprog script editor -->
+    <string name="title_activity_liveprog_editor">Editor de Scripts</string>
+    <string name="editor_find_and_replace">Localizar/Substituir…</string>
+    <string name="editor_docs">Ajuda</string>
+    <string name="editor_open_fail">Arquivo de script não existe ou não pode ser aberto.</string>
+    <string name="editor_run">Salvar e executar</string>
+    <string name="editor_save">Salvar</string>
+    <string name="editor_liveprog_enabled">Liveprog foi ativada automaticamente.</string>
+    <string name="editor_replace_all">Substituir tudo</string>
+    <string name="editor_replacement">Substituição</string>
+    <string name="editor_find_next_match">Localizar próxima</string>
+    <string name="editor_find_previous_match">Localizar anterior</string>
+    <string name="editor_search_keyword">Buscar</string>
+    <string name="editor_source_position">%1$d:%2$d</string>
+    <string name="editor_engine_down_title">JamesDSP não está ativo</string>
+    <string name="editor_engine_down">Não é possível executar o script porque o JamesDSP está desativado. Por favor, ative o JamesDSP para executar scripts.</string>
+    <string name="editor_save_prompt_title">Salvar alterações?</string>
+    <string name="editor_save_prompt">O script atual tem alterações não salvas. Você deseja salvar as alterações ou descartá-las?</string>
+    <string name="editor_script_launched">Script executado</string>
+    <string name="editor_cannot_undo">Nada para desfazer.</string>
+    <string name="editor_cannot_redo">Nada para refazer.</string>
+    <string name="editor_text_size">Tamanho do texto</string>
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Apps excluídos</string>
+    <string name="blocklist_add_exclusion_alt">Adicionar aplicativo para excluir</string>
+    <string name="blocklist_delete_title">Remover apps selecionados?</string>
+    <string name="blocklist_delete">Deseja remover este app da lista de exclusão?</string>
+    <string name="blocklist_no_exclusions">Nenhum app excluído</string>
+    <string name="blocklist_unsupported_apps">Aplicativos não suportados</string>
+    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>Este app não suporta apps que bloqueiam a gravação do áudio deles. Para prevenir que esses apps sejam silenciados eles serão automaticamente excluídos do processamento de áudio.</p><p><u>Apps afetados:</u><br/>%s</p>]]></string>
     <!-- Compatibility issue activity -->
+    <string name="title_activity_app_compat">Problema de compatibilidade</string>
     <string name="app_compat_retry">Tente novamente</string>
+    <string name="app_compat_exclude">Excluir</string>
+    <string name="app_compat_title">O processamento de áudio foi suspenso para evitar a duplicação de áudio</string>
+    <string name="app_compat_explanation">O seguinte app não é suportado porque faz com que RootlessJamesDSP perca o controle do roteamento de áudio:</string>
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
     <!-- App list -->
+    <string name="app_list_search">Buscar</string>
     <!-- Number box view -->
     <!-- Slider widget -->
     <!-- Revert confirmation -->
     <string name="revert_confirmation_title">Você tem certeza?</string>
     <!-- File intent handler -->
     <!-- Translation notice box -->
+    <string name="translation_notice_summary">Por favor, ajude-nos a traduzir este aplicativo para seu idioma! Toque aqui para visitar o site do projeto no Crowdin.</string>
     <string name="translation_notice">Contribuir com traduções</string>
     <!-- Self-updates (Root) -->
+    <string name="self_update_install_error">Falha ao atualizar</string>
+    <string name="self_update_download_fail">Falha ao baixar o pacote de atualização. Por favor, verifique sua conexão com a internet. Detalhes: %1$s</string>
+    <string name="self_update_install_fail">Falha na instalação. %1$s</string>
+    <string name="self_update_finished">Atualização instalada. O aplicativo sera reinicializado…</string>
+    <string name="self_update_no_updates">Não há atualizações disponíveis no momento</string>
+    <string name="self_update_notice">Nova atualização disponível (%1$s)</string>
+    <string name="self_update_notice_summary">Toque aqui para baixar e instalar a atualização.</string>
+    <string name="self_update_notice_dismiss_install">Instalar agora</string>
+    <string name="self_update_notice_dismiss_snooze">Lembrar depois</string>
+    <string name="self_update_notice_dismiss_skip">Ignorar atualização</string>
+    <string name="self_update_state_downloading">Baixando…</string>
+    <string name="self_update_state_installing">Instalando…</string>
     <!-- Backups -->
+    <string name="backup_restore_progress">Restaurando backup</string>
+    <string name="backup_restore_error">Falha ao restaurar backup</string>
+    <string name="backup_restore_error_format">Arquivo incompatível ou corrompido</string>
+    <string name="backup_restore_error_version_too_new">O arquivo selecionado foi criado com uma versão mais recente deste aplicativo e não pode ser carregado. Por favor, atualize este aplicativo para continuar.</string>
+    <string name="backup_restore_completed">Restauração concluída</string>
+    <string name="backup_create_completed">Backup criado</string>
+    <string name="backup_create_progress">Criando backup</string>
+    <string name="backup_create_error">Backup falhou</string>
+    <string name="backup_manual_backup">Backup manual</string>
+    <string name="backup_create">Criar Backup</string>
+    <string name="backup_create_summary">Pode ser usado para restaurar as configurações atuais mais tarde</string>
+    <string name="backup_restore">Restaurar backup</string>
+    <string name="backup_restore_summary">Restaurar configurações de um arquivo de backup</string>
+    <string name="backup_automatic_backup">Backup automático</string>
+    <string name="backup_compat_info">Backups incluem somente respostas de impulso, scripts, arquivos VDC, presets e a atual configuração de áudio para máxima compatibilidade com outras versões.</string>
+    <string name="backup_restore_mode_title">Modo de restauração</string>
+    <string name="backup_restore_mode_clean">Limpar restauração (apagar todos os arquivos existentes)</string>
+    <string name="backup_restore_mode_dirty">Restauração suja (apenas sobrescrever)</string>
+    <string name="backup_in_progress">O backup já está em andamento</string>
     <!-- Multi-device profiles -->
+    <string name="group_wired_headphones">Fones de ouvido</string>
+    <string name="group_bluetooth">Bluetooth</string>
+    <string name="group_hdmi">HDMI</string>
+    <string name="group_speaker">Alto-falante interno</string>
+    <string name="group_usb">USB</string>
+    <string name="group_unknown">Desconhecido</string>
+    <string name="device_profile_status">Perfil de dispositivo ativo</string>
+    <string name="device_profile_manage_copy">Copiar perfil…</string>
+    <string name="device_profile_manage_delete">Excluir perfil…</string>
+    <string name="device_profile_manage_copy_select_no_target">Nenhum perfil para substituir disponível</string>
+    <string name="device_profile_manage_copy_select">Selecione perfil para copiar</string>
+    <string name="device_profile_manage_paste_select">Selecione perfis para sobrescrever</string>
     <!-- Root version check -->
+    <string name="version_mismatch_root">Pacote magisk JamesDSP requer uma atualização</string>
+    <string name="version_mismatch_root_description">O pacote de magisk JamesDSP instalado no seu dispositivo está desatualizado e não é mais suportado por este aplicativo.\n\nPor favor, obtenha o mais recente ZIP do JamesDSP magisk e instale-o via Magisk.\nNote que o pacote magisk pode substituir este app pelo aplicativo oficial JamesDSP\n\nVocê quer visitar o site de download para os pacotes Magisk agora?</string>
+    <string name="version_mismatch_root_toast">Falha ao iniciar. O pacote de magisk JamesDSP instalado é muito antigo e não é mais suportado por este aplicativo.</string>
 </resources>
