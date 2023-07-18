@@ -1,4 +1,4 @@
-Use JamesDSP as a system-wide audio processing engine without any root access.
+Use Equalizador James como equalizador do sistema sem acesso raiz.
 
 This app has several limitations that may be deal-breaking to some people; please read this whole document before using the app. Shizuku (Android 11+) or ADB access via a computer is required for the initial setup.
 
