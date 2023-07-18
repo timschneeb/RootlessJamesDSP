@@ -1,31 +1,31 @@
 Use Equalizador James como equalizador do sistema sem acesso raiz.
 
-This app has several limitations that may be deal-breaking to some people; please read this whole document before using the app. Shizuku (Android 11+) or ADB access via a computer is required for the initial setup.
+Este aplicativo tem várias limitações que podem ser decepcionante para algumas pessoas. Por favor, leia este documento antes de usar o aplicativo. Shizuku (Android 11+) ou acesso ao ADB através de um computador são necessários para a configuração inicial.
 
-JamesDSP supports the following audio effects:
-* Limiter control
-* Output gain control
-* Auto dynamic range compressor
-* Dynamic bass boost
-* Interpolating FIR equalizer
-* Arbitrary response equalizer (Graphic EQ)
-* ViPER-DDC
-* Convolver
-* Live-programmable DSP (scripting engine for audio effects)
-* Analog modelling
-* Soundstage wideness
+Equalizador James suporta os seguintes efeitos de áudio:
+Controle de volume
+* Controle do ganho de saída
+* Compressor de Faixa Dinâmica
+* Controle do grave
+* Equalizador de impulso
+* Equalizador de resposta arbitrária (Equalizador Gráfico)
+* VIPER-DDC
+* Convolução
+* DSP programável ao vivo (mecanismo de definição de efeitos de áudio)
+* Modelagem analógica
+* Amplificação de Estúdio
 * Crossfeed
-* Virtual room effect (reverb)
+* Efeito de sala virtual (ressonância)
 
-Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration, you can search and import frequency responses that aim to correct your headphone to a neutral sound. Go to 'Arbitrary response equalizer > Magnitude response > AutoEQ profiles' to get started.
+Além disso, este aplicativo se integra diretamente com o AutoEQ. Usando a integração AutoEQ, você pode procurar e importar frequências que busquem corrigir seu fone de ouvido a um som neutro. Vá para 'Equalizador de resposta arbitrária > Resposta Magnitude > Perfis de AutoEQ' para começar.
 
---- Limitations
-* Apps blocking internal audio capture remain unprocessed (e.g., Spotify, Google Chrome)
-* Apps using some types of HW-accelerated playback may cause issues and need to be manually excluded (e.g., some Unity games)
-* Cannot coexist with (some) other audio effect apps (e.g., Wavelet and other apps that make use of the `DynamicsProcessing` Android API)
+--- Limitações
+* Os aplicativos que bloqueiam a captura interna de áudio permanecem sem processamento (por exemplo, Spotify, Google Chrome)
+* Aplicativos usando alguns modos de reprodução acelerada por HW podem causar problemas e precisar ser excluído manualmente (por exemplo, alguns jogos Unity)
+* Não é possível coexistir com (poucos) outros aplicativos de efeito de áudio (por exemplo, Wavelet e outros aplicativos que utilizam a API do Android "DynamicsProcessing")
 
 
-- Apps confirmed working:
+_ Aplicativos confirmados funcionando:
 * YouTube
 * YouTube Music
 * Amazon Music
@@ -35,12 +35,12 @@ Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration
 * Twitch
 * ...
 
-- Unsupported apps include:
-* Spotify (Note: Spotify ReVanced patch is required to support Spotify)
+_ Aplicativos não suportados incluem:
+* Spotify (Nota: patch do Spotify ReVanced é necessário para suportar o Spotify)
 * Google Chrome
 * SoundCloud
 * ...
 
---- Translation
-Please help us translate this app here: https://crowdin.com/project/rootlessjamesdsp
-To request a new language that isn't enabled on Crowdin yet, please open an issue here on GitHub and I will turn it on.
+--- Tradução
+Ajude-nos a traduzir este app aqui: https://crowdin.com/project/rootlessjamesdsp
+Para solicitar um novo idioma que ainda não está habilitado no Crowdin, abra um "issue" aqui no GitHub e vou ativá-lo.
