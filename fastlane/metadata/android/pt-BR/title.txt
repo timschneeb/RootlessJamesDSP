@@ -1,1 +1,1 @@
-RootlessJamesDSP
+Equalizador James
