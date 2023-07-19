@@ -21,15 +21,15 @@
     <string name="notification_processing">活跃应用：%1$s</string>
     <string name="notification_idle">音频流处理空闲</string>
     <string name="notification_processing_title">音频处理活动中</string>
-    <string name="notification_processing_disabled_title">音频处理被禁用</string>
+    <string name="notification_processing_disabled_title">音频流未在处理或被禁用</string>
     <string name="notification_processing_legacy">点击打开 JamesDSP 管理器</string>
     <!-- Permission request notifications -->
     <string name="notification_request_permission_title">启动 JamesDSP 需要用户操作</string>
     <string name="notification_request_permission">点击以授予捕获权限并启用 JamesDSP 的音频处理</string>
     <!-- Session control loss notifications -->
-    <string name="session_control_loss_toast">JamesDSP 因音频会话控制丢失而停止。 请禁用其他音频效果应用。</string>
+    <string name="session_control_loss_toast">JamesDSP 因音频会话控制丢失而停止，请禁用其它同类型的音效处理应用。</string>
     <string name="session_control_loss_notification_title">音频处理停止。 另一个应用程序正在干扰 JamesDSP。</string>
-    <string name="session_control_loss_notification">请在重新启用 JamesDSP 之前禁用所有提供全局音频效果的应用程序。</string>
+    <string name="session_control_loss_notification">请在重新启用 JamesDSP 之前禁用其它提供全局音效的所有应用。</string>
     <!-- App compatibility issue notifications -->
     <string name="session_app_compat_toast">JamesDSP 因不兼容的媒体应用程序而停止。 请检查通知以解决此问题。</string>
     <string name="session_app_compat_notification_title">音频处理停止。 另一个应用程序正在干扰 JamesDSP。</string>
@@ -151,14 +151,14 @@
     <string name="stereowide_level_wide">较宽</string>
     <string name="stereowide_level_very_narrow">极窄</string>
     <string name="stereowide_level_narrow">较窄</string>
-    <string name="crossfeed_enable">交叉馈送</string>
+    <string name="crossfeed_enable">交叉反馈</string>
     <string name="crossfeed_preset">预设</string>
     <string name="crossfeed_preset_bs2b_weak">BS2B 弱</string>
     <string name="crossfeed_preset_bs2b_strong">BS2B 强</string>
     <string name="crossfeed_preset_out_of_head">Out of head</string>
     <string name="crossfeed_preset_surround1">环绕一</string>
     <string name="crossfeed_preset_surround2">环绕二</string>
-    <string name="crossfeed_preset_realistic_surround">Joe0Bloggs 逼真的环绕</string>
+    <string name="crossfeed_preset_realistic_surround">Joe0Blogs 现实环绕模式</string>
     <!-- Onboarding -->
     <string name="title_activity_onboarding">启动向导</string>
     <string name="onboarding_back">上一步</string>
@@ -232,7 +232,7 @@
     <string name="onboarding_perm_diag_caption">提交此应用程序崩溃报告和其他诊断数据，包括有关其他活动应用程序的信息，使我能够更轻松地检测和解决兼容性问题和错误。</string>
     <string name="onboarding_finish_header">JamesDSP 已设置完毕！</string>
     <string name="onboarding_finish_caption">如果您遇到任何问题，请访问故障排查选项。</string>
-    <string name="limit_session_control_conflict_title">禁用其他音频效果应用程序</string>
+    <string name="limit_session_control_conflict_title">禁用其它音频效果应用</string>
     <string name="limit_session_control_conflict">使用 Android 内置动态处理效果的音频效果应用程序会干扰此应用程序。</string>
     <string name="limit_unsupported_apps_title">不支持的媒体应用</string>
     <string name="limit_unsupported_apps">无法处理阻止内部音频捕获的应用 (例如 Spotify、Google Chrome)。</string>
