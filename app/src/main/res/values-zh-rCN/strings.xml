@@ -61,7 +61,7 @@
     <string name="error_projection_api_missing">您的设备制造商已禁用内部录音 API。 没有它们，此应用程序无法工作。</string>
     <!-- Main screen -->
     <string name="power_button_alt">切换音频处理</string>
-    <string name="compander_enable">动态范围压缩扩展器</string>
+    <string name="compander_enable">动态范围压扩器</string>
     <string name="compander_timeconstant">时间常数</string>
     <string name="compander_granularity">粒度</string>
     <string name="compander_granularity_very_low">极低</string>
