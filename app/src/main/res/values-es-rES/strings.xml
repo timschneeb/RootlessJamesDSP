@@ -61,6 +61,16 @@
     <string name="error_projection_api_missing">El fabricante de tu dispositivo ha desactivado las APIs internas de grabación de audio. Esta aplicación no puede funcionar sin ellas.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Cambiar procesamiento de audio</string>
+    <string name="compander_enable">Compresor de rango dinámico</string>
+    <string name="compander_timeconstant">Constante de tiempo</string>
+    <string name="compander_granularity">Granularidad</string>
+    <string name="compander_granularity_very_low">Muy baja</string>
+    <string name="compander_granularity_low">Baja</string>
+    <string name="compander_granularity_medium">Media</string>
+    <string name="compander_granularity_high">Alta</string>
+    <string name="compander_granularity_extreme">Extrema</string>
+    <string name="compander_tftransforms">Transformación de frecuencia y tiempo</string>
+    <string name="eq_enable">Ecualizador multimodal</string>
     <string name="eq_filter_type">Tipo de filtro:</string>
     <string name="eq_interpolator">Interpolador</string>
     <string name="eq_interpolator_chip">Polinomio interpolante de Hermita cúbica en sentido de las Piezas</string>
