@@ -19,7 +19,7 @@
     <string name="action_fix">修复问题</string>
     <string name="action_stop">停止</string>
     <string name="notification_processing">活跃应用：%1$s</string>
-    <string name="notification_idle">音频流处理空闲</string>
+    <string name="notification_idle">没有需要处理的音频流</string>
     <string name="notification_processing_title">音频处理活动中</string>
     <string name="notification_processing_disabled_title">音频流未在处理或被禁用</string>
     <string name="notification_processing_legacy">点击打开 JamesDSP 管理器</string>
@@ -273,7 +273,7 @@
     <string name="audio_format_enhanced_processing_off">增强处理已禁用</string>
     <string name="audio_format_enhanced_processing_info_title">什么是增强处理？</string>
     <string name="audio_format_enhanced_processing_info">点击查看文档</string>
-    <string name="audio_format_enhanced_processing_info_content">启用增强处理后，您可以有选择地排除某些应用程序由 JamesDSP 处理。使用右下角的三点菜单并选择“排除的应用程序”来访问此功能。\n\n禁用旧模式时，JamesDSP 依靠媒体应用程序在开始播放时发送系统广播。与传统模式相比，这是一个优势，因为每个应用程序都分配有自己的 JamesDSP 效果引擎，从而可以进行更细粒度的控制。否则，在启用旧模式的情况下，所有应用程序将共享一个处理引擎，Android 已弃用该处理引擎，不应再使用该引擎。\n\n不幸的是，并非所有媒体应用程序都能正确执行此操作，因此在禁用旧模式的情况下无法正常运行。要解决此问题，您可以启用增强处理。 JamesDSP 不会依赖系统广播有关新媒体会话的信息，而是会自行主动扫描媒体会话，并为不合作的媒体应用程序提供适当的支持。</string>
+    <string name="audio_format_enhanced_processing_info_content">启用增强处理后，您可以选择性地将某些应用排除在 JamesDSP 处理中。 使用右下角的菜单选择“排除应用”访问此功能。\n\n虽然传统模式已禁用，但 JamesDSP 依靠媒体应用程序在开始播放时发送系统广播。 这是一个优于传统模式的优势，因为每个应用都能获得分配给它自己的 JamesDSP 效果引擎，这样可以进行更精细的控制。 否则，随着传统模式的开启，所有应用都会共享一个单一的处理引擎，Android 系统会弃用且不会再使用。\n\n不幸的是，并非所有的媒体应用都完美支持，因此在传统模式下无法正常工作。 为了解决这个问题，您可以启用增强处理。 不要依靠系统广播新的媒体协议。 JamesDSP 本身将主动扫描媒体协议，并为不适配的媒体应用提供适当支持。</string>
     <string name="audio_format_media_apps_need_restart">更改此设置后，您需要重新启动所有活动的媒体应用程序才能恢复音频处理。</string>
     <string name="audio_format_summary">首选音频编码，缓冲大小</string>
     <string name="audio_format_summary_root">传统模式，增强处理</string>
