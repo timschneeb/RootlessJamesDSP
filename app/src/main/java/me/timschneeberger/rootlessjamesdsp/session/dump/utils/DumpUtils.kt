@@ -10,11 +10,11 @@ import java.io.IOException
 import java.io.InputStreamReader
 
 object DumpUtils {
-    fun dumpLines(context: Context, service: String): List<String>? {
-        return dumpAll(context, service)?.lines()
+    fun dumpLines(context: Context, service: String, args: Array<String> = arrayOf<String>()): List<String>? {
+        return dumpAll(context, service, args)?.lines()
     }
 
-    fun dumpAll(context: Context, service: String): String? {
+    fun dumpAll(context: Context, service: String, args: Array<String> = arrayOf<String>()): String? {
         if(!context.hasDumpPermission())
             return null
 
@@ -28,7 +28,7 @@ object DumpUtils {
                 Timber.wtf("Service '$service' does not exist")
                 return null
             }
-            serviceBinder.dumpAsync(writePipe.fileDescriptor, arrayOf<String>())
+            serviceBinder.dumpAsync(writePipe.fileDescriptor, args)
             writePipe.close()
 
             val fd = FileInputStream(readPipe.fileDescriptor)
@@ -50,6 +50,5 @@ object DumpUtils {
             Timber.wtf(ex)
             return null
         }
-
     }
 }

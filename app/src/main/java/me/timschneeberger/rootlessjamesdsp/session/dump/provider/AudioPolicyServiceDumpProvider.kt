@@ -2,13 +2,13 @@ package me.timschneeberger.rootlessjamesdsp.session.dump.provider
 
 import android.content.Context
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
+import me.timschneeberger.rootlessjamesdsp.model.AudioSessionDumpEntry
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.AudioPolicyServiceDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.utils.DumpUtils
-import me.timschneeberger.rootlessjamesdsp.model.AudioSessionDumpEntry
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getPackageNameFromUid
 import timber.log.Timber
-import java.util.*
+import java.util.Locale
 
 class AudioPolicyServiceDumpProvider : ISessionDumpProvider {
 

@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.MainApplication
-import me.timschneeberger.rootlessjamesdsp.utils.notifications.Notifications
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.activity.MainActivity
 import me.timschneeberger.rootlessjamesdsp.databinding.FragmentAppCompatibilityBinding
@@ -26,6 +25,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.get
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getAppIcon
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getAppNameFromUidSafe
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getPackageNameFromUid
+import me.timschneeberger.rootlessjamesdsp.utils.notifications.Notifications
 import timber.log.Timber
 import java.util.Timer
 import kotlin.concurrent.schedule

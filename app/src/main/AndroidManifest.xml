@@ -13,10 +13,13 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
-    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" tools:ignore="QueryAllPackagesPermission" />
     <uses-permission android:name="android.permission.DUMP" tools:ignore="ProtectedPermissions" />
 
     <uses-feature android:name="android.hardware.audio.output" />
+
+    <queries>
+        <package android:name="moe.shizuku.privileged.api" />
+    </queries>
 
     <application
         android:name=".MainApplication"

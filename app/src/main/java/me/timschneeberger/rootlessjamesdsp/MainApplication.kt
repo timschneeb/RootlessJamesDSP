@@ -120,7 +120,6 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
             .build())
         Timber.i("====> Application starting up")
 
-        // TODO: use cache
         val dumpFile = File(filesDir, "dump.txt")
         if(dumpFile.exists()) {
             dumpFile.delete()

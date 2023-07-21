@@ -28,8 +28,8 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.ge
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getAppNameFromUidSafe
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showAlert
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showYesNoAlert
-import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.asHtml
+import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import org.koin.android.ext.android.inject
 
 class BlocklistFragment : Fragment() {
