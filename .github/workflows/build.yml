@@ -132,7 +132,7 @@ jobs:
             server: 'srv1.timschneeberger.me'
             ssh_private_key: ${{ secrets.DEPLOY_SSH_PRIVATE_KEY }} 
             local_path: "app/build/outputs/apk/${{ steps.flavor.outputs.lowercase }}Full/${{ env.BUILD_TYPE }}/*universal-${{ env.BUILD_TYPE }}-signed.apk"
-            remote_path: '/srv/http/nightly.timschneeberger.me/rootlessjamesdsp-rootfull'
+            remote_path: '/srv/http/nightly.timschneeberger.me/jamesdsp-rootfull'
             sftpArgs: '-o ConnectTimeout=5'
        
       - name: Changelog
