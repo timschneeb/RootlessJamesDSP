@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <plurals name="nodes">
-        <item quantity="one">%d düğüm</item>
-        <item quantity="other">%d düğümler</item>
+        <item quantity="one">One
+%d düğüm</item>
+        <item quantity="other">Other
+%d düğümler</item>
     </plurals>
     <plurals name="custom_parameters">
         <item quantity="one">%d özelleştirilebilir parametre</item>
         <item quantity="other">%d özelleştirilebilir parametre</item>
     </plurals>
     <plurals name="unsupported_apps">
-        <item quantity="one">%d desteklenmeyen uygulama otomatik olarak dışlandı. Ayrıntılar için dokun.</item>
-        <item quantity="other">%d desteklenmeyen uygulama otomatik olarak hariç tutulur. Ayrıntılar için dokun.</item>
+        <item quantity="one">Bir
+%d desteklenmeyen uygulama otomatik olarak dışlandı. Ayrıntılar için dokun.</item>
+        <item quantity="other">Diğer
+%d desteklenmeyen uygulama otomatik olarak hariç tutulur. Ayrıntılar için dokun.</item>
     </plurals>
 </resources>
