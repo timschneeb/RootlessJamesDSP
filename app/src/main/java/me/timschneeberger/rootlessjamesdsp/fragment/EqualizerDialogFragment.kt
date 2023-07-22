@@ -18,6 +18,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.unregisterLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.view.EqualizerSurface
+import timber.log.Timber
 
 class EqualizerDialogFragment : PreferenceDialogFragmentCompat() {
 
@@ -27,8 +28,14 @@ class EqualizerDialogFragment : PreferenceDialogFragmentCompat() {
 
     private val broadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
-            when(intent?.action) {
-                Constants.ACTION_PRESET_LOADED -> dismiss()
+            try {
+                when (intent?.action) {
+                    Constants.ACTION_PRESET_LOADED -> dismiss()
+                }
+            }
+            catch(ex: IllegalStateException) {
+                // Catch illegal state exception when dismissing after onSaveInstanceState
+                Timber.w(ex)
             }
         }
     }
