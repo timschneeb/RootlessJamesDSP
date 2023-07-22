@@ -126,6 +126,7 @@
     <string name="convolver_advanced_editing">Modifica avanzata dei dati</string>
     <string name="convolver_convolution_mode">Ottimizzazione della risposta d\'impulso</string>
     <string name="convolver_convolution_mode_original">Originale</string>
+    <string name="convolver_convolution_mode_shrink">Restringi</string>
     <string name="tube_drive">Pre-amplificazione</string>
     <string name="output_control_header">Controllo in uscita</string>
     <string name="output_limiter_threshold">Soglia del limitatore</string>
