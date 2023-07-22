@@ -6,7 +6,7 @@ If you want to use this app with the JamesDSP magisk module on a rooted device, 
 
 1. Install the JamesDSP magisk module if not already done.
 2. Uninstall the original JamesDSP app.
-3. Download the latest APK from this release server: https://nightly.timschneeberger.me/rootlessjamesdsp-rootfull/
+3. Download the latest APK from this release server: https://nightly.timschneeberger.me/jamesdsp-rootfull/
 6. Install the APK.
 7. Make sure to close and restart any music app that is currently active (or simply reboot your device).
 8. Done. You should now be able to use the app normally.
