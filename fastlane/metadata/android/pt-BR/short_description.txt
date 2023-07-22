@@ -1,1 +1,1 @@
-System-wide JamesDSP audio processing engine for non-rooted Android devices.
+Equalizador do sistema James para dispositivos Android sem raiz.

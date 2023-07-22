@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
-    <string name="action_settings">Settings</string>
-    <string name="action_presets">Configuraciones</string>
+    <string name="action_settings">Configuración</string>
+    <string name="action_presets">Preajustes</string>
     <string name="action_revert">Restablecer predeterminados</string>
     <string name="action_blocked_apps">Apps excluidas</string>
     <!-- Notification channels -->
@@ -61,8 +61,27 @@
     <string name="error_projection_api_missing">El fabricante de tu dispositivo ha desactivado las APIs internas de grabación de audio. Esta aplicación no puede funcionar sin ellas.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Cambiar procesamiento de audio</string>
+    <string name="compander_enable">Compresor de rango dinámico</string>
+    <string name="compander_timeconstant">Constante de tiempo</string>
+    <string name="compander_granularity">Granularidad</string>
+    <string name="compander_granularity_very_low">Muy baja</string>
+    <string name="compander_granularity_low">Baja</string>
+    <string name="compander_granularity_medium">Media</string>
+    <string name="compander_granularity_high">Alta</string>
+    <string name="compander_granularity_extreme">Extrema</string>
+    <string name="compander_tftransforms">Transformación de frecuencia y tiempo</string>
+    <string name="compander_tftransforms_stft">Uniforme (Fourier de tiempo corto)</string>
+    <string name="compander_tftransforms_continuous_wavelet">Multiresolución (Onda continua)</string>
+    <string name="compander_tftransforms_time_domain">Multiresolución (Dominio de tiempo)</string>
+    <string name="eq_enable">Ecualizador multimodal</string>
     <string name="eq_filter_type">Tipo de filtro:</string>
     <string name="eq_interpolator">Interpolador</string>
+    <string name="eq_filter_type_fir_minimum">FIR de fase mínima</string>
+    <string name="eq_filter_type_iir_4_order">IIR de cuarta orden</string>
+    <string name="eq_filter_type_iir_6_order">IIR de sexta orden</string>
+    <string name="eq_filter_type_iir_8_order">IIR de octava orden</string>
+    <string name="eq_filter_type_iir_10_order">IIR de décima orden</string>
+    <string name="eq_filter_type_iir_12_order">IIR de decimosegunda orden</string>
     <string name="eq_interpolator_chip">Polinomio interpolante de Hermita cúbica en sentido de las Piezas</string>
     <string name="eq_interpolator_mha">Curva modificada de Hiroshi Akima</string>
     <string name="eq_preset_acoustic">Acústica</string>
@@ -226,7 +245,7 @@
     <string name="limit_tested_devices_title">Dispositivos probados</string>
     <string name="limit_tested_devices">Los cambios realizados al subsistema de audio de Android por el fabricante de tu dispositivo pueden romper fácilmente esta aplicación porque utiliza algunas API indocumentadas.\nSe ha probado en estos dispositivos:\n• Samsung S20+ (Android 12)\n• Emulator AOSP (Android 10–13)\n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
-    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_settings">Configuración</string>
     <string name="session_exclude_restricted">Excluir aplicaciones no compatibles</string>
     <string name="session_exclude_restricted_off">Las aplicaciones que bloquean captura de audio permanecen silenciadas (comportamiento predeterminado de Android)</string>
     <string name="session_exclude_restricted_on">Las aplicaciones que bloquean la captura de audio están excluidas y no se procesan (recomendado)</string>
@@ -571,4 +590,7 @@
     <string name="device_profile_manage_copy_select">Seleccionar perfil a copiar</string>
     <string name="device_profile_manage_paste_select">Seleccionar perfiles a sobrescribir</string>
     <!-- Root version check -->
+    <string name="version_mismatch_root">El paquete magisk de JamesDSP requiere una actualización</string>
+    <string name="version_mismatch_root_description">El paquete magisk de JamesDSP instalado en su dispositivo está desactualizado y ya no es compatible con esta aplicación.\n\nObtenga el último paquete ZIP de magisk JamesDSP e instálelo a través de Magisk.\nTenga en cuenta que el paquete magisk puede reemplazar esta aplicación con la aplicación oficial JamesDSP.\n\n¿Quiere visitar la web de descarga de los paquetes Magisk ahora?</string>
+    <string name="version_mismatch_root_toast">Error al iniciar. El paquete magisk de JamesDSP instalado es demasiado viejo y ya no está soportado por esta aplicación.</string>
 </resources>
