@@ -1,0 +1,3 @@
+* libjamesdsp updated
+    * Compander time-freqeuncy transform parameter added
+* Several minor bug fixes
