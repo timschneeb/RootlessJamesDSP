@@ -148,12 +148,13 @@ class BlocklistFragment : Fragment() {
                 }
 
                 this@BlocklistFragment.binding.notice.isVisible = restrictedApps.isNotEmpty()
-                this@BlocklistFragment.binding.noticeLabel.text =
-                    requireContext().resources.getQuantityString(
+                context?.let {
+                    this@BlocklistFragment.binding.noticeLabel.text = it.resources.getQuantityString(
                         R.plurals.unsupported_apps,
                         restrictedApps.size,
                         restrictedApps.size
                     )
+                }
             }
         }
     }
