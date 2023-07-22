@@ -78,7 +78,7 @@ class BlocklistFragment : Fragment() {
         binding.recyclerview.adapter = adapter
         binding.recyclerview.layoutManager = LinearLayoutManager(requireContext())
 
-        binding.notice.isVisible = BuildConfig.ROOTLESS
+        binding.notice.isVisible = false
         binding.notice.setOnClickListener {
             requireContext().showAlert(
                 getString(R.string.blocklist_unsupported_apps),
