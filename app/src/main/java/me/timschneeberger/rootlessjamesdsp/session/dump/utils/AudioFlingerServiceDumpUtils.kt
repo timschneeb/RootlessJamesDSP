@@ -83,9 +83,9 @@ object AudioFlingerServiceDumpUtils {
                         30 -> {
                             val match = tableBodyRegex30.find(s)
                             if(match != null){
-                                val sid = match.groups[1]?.value?.toInt()
-                                val pid = match.groups[3]?.value?.toInt()
-                                val uid = match.groups[4]?.value?.toInt()
+                                val sid = match.groups[1]?.value?.toIntOrNull()
+                                val pid = match.groups[3]?.value?.toIntOrNull()
+                                val uid = match.groups[4]?.value?.toIntOrNull()
                                 if(sid != null && pid != null)
                                 {
                                     dataset.add(Dataset(sid, pid, uid))
