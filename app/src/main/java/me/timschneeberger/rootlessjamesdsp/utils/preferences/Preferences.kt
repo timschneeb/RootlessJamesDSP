@@ -77,6 +77,11 @@ class Preferences(val context: Context) {
                     },
                     BuildConfig.APPLICATION_ID
                 )
+
+                if(defaultRes == 0) {
+                    throw IllegalStateException("Preference key '$key' has no default set")
+                }
+
                 (when(type) {
                     Boolean::class -> context.resources.getBoolean(defaultRes)
                     String::class -> context.resources.getString(defaultRes)
