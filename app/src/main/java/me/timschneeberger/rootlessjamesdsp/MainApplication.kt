@@ -157,6 +157,16 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
             CrashlyticsImpl.setCustomKey("buildType", BuildConfig.BUILD_TYPE)
             CrashlyticsImpl.setCustomKey("buildCommit", BuildConfig.COMMIT_SHA)
             CrashlyticsImpl.setCustomKey("flavor", BuildConfig.FLAVOR)
+            try {
+                CrashlyticsImpl.setCustomKey(
+                    "language",
+                    resources.configuration.locales.get(0).language
+                )
+            }
+            catch (ex: Exception) {
+                // Just in case the locale array is empty
+                Timber.e(ex)
+            }
         }
 
         /**
