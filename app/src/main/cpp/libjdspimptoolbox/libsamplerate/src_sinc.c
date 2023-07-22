@@ -108,6 +108,10 @@ sinc_set_converter (SRC_PRIVATE *psrc, int src_enum)
 	temp_filter.sinc_magic_marker = SINC_MAGIC_MARKER ;
 	temp_filter.channels = psrc->channels ;
 
+    temp_filter.coeffs = decompressedCoefficients;
+    temp_filter.coeff_half_len = 22438 - 2;
+    temp_filter.index_inc = 491;
+
 	if (psrc->channels > ARRAY_LEN (temp_filter.left_calc))
 		return SRC_ERR_BAD_CHANNEL_COUNT ;
 	else if (psrc->channels == 1)
@@ -134,10 +138,6 @@ sinc_set_converter (SRC_PRIVATE *psrc, int src_enum)
 		psrc->vari_process = sinc_multichan_vari_process ;
 		} ;
 	psrc->reset = sinc_reset ;
-
-	temp_filter.coeffs = decompressedCoefficients;
-	temp_filter.coeff_half_len = 22438 - 2;
-	temp_filter.index_inc = 491;
 
 	/*
 	** FIXME : This needs to be looked at more closely to see if there is
