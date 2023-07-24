@@ -122,9 +122,9 @@
     <string name="reverb_preset_long_reverb1">长混响 1</string>
     <string name="reverb_preset_long_reverb2">长混响 2</string>
     <string name="convolver_enable">脉冲反馈</string>
-    <string name="convolver_impulse">脉冲反馈样本</string>
+    <string name="convolver_impulse">冲激响应/滤波器</string>
     <string name="convolver_advanced_editing">高级波形编辑</string>
-    <string name="convolver_convolution_mode">脉冲反馈优化</string>
+    <string name="convolver_convolution_mode">冲激响应优化</string>
     <string name="convolver_convolution_mode_original">原始</string>
     <string name="convolver_convolution_mode_shrink">收缩</string>
     <string name="convolver_convolution_mode_minimum_phase_shrink">最小相变和收缩</string>
