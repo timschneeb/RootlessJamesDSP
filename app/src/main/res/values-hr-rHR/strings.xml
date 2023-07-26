@@ -58,6 +58,7 @@
     <string name="no_activity_found">Nema pronađenih Aktivnosti za rukovanje radnjom</string>
     <string name="permission_allowed">Dopušteno</string>
     <string name="permission_not_allowed">Nije dopušteno</string>
+    <string name="error_projection_api_missing">Proizvođač vašeg uređaja je onemogućio API za interno snimanje zvuka. Ova aplikacija ne može raditi bez njih.</string>
     <!-- Main screen -->
     <string name="reverb_preset_small_hall1">Mala dvorana 1</string>
     <string name="reverb_preset_small_hall2">Mala dvorana 2</string>
