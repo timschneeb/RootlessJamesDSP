@@ -60,6 +60,16 @@
     <string name="permission_not_allowed">Nije dopušteno</string>
     <string name="error_projection_api_missing">Proizvođač vašeg uređaja je onemogućio API za interno snimanje zvuka. Ova aplikacija ne može raditi bez njih.</string>
     <!-- Main screen -->
+    <string name="power_button_alt">Toggle audio processing</string>
+    <string name="compander_enable">Dynamic range compander</string>
+    <string name="compander_timeconstant">Vremenska konstanta</string>
+    <string name="compander_granularity">Granularity</string>
+    <string name="compander_granularity_very_low">Vrlo niska</string>
+    <string name="compander_granularity_low">Low</string>
+    <string name="compander_granularity_medium">Medium</string>
+    <string name="compander_granularity_high">\"Training intensity is too high, 
+ Please avoid excessive training.\"</string>
+    <string name="compander_granularity_extreme">Extreme</string>
     <string name="reverb_preset_small_hall1">Mala dvorana 1</string>
     <string name="reverb_preset_small_hall2">Mala dvorana 2</string>
     <string name="reverb_preset_medium_hall2">Srednja dvorana</string>
