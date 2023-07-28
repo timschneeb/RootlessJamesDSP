@@ -4,13 +4,13 @@
     <string name="action_settings">设置</string>
     <string name="action_presets">预设</string>
     <string name="action_revert">重置为默认</string>
-    <string name="action_blocked_apps">排除的应用</string>
+    <string name="action_blocked_apps">排除的应用程序</string>
     <!-- Notification channels -->
     <string name="notification_group_service">服务</string>
     <string name="notification_channel_service">服务通知</string>
     <string name="notification_channel_session_loss_alert">会话丢失警告</string>
     <string name="notification_channel_permission_prompt">权限请求</string>
-    <string name="notification_channel_app_compat_alert">不兼容的应用警告</string>
+    <string name="notification_channel_app_compat_alert">不兼容的应用程序警告</string>
     <string name="notification_group_backup">备份与恢复</string>
     <string name="notification_channel_backup_progress">进行中</string>
     <string name="notification_channel_backup_complete">完成</string>
@@ -18,7 +18,7 @@
     <string name="action_retry">重试</string>
     <string name="action_fix">修复问题</string>
     <string name="action_stop">停止</string>
-    <string name="notification_processing">活跃应用：%1$s</string>
+    <string name="notification_processing">活动的应用程序：%1$s</string>
     <string name="notification_idle">没有需要处理的音频流</string>
     <string name="notification_processing_title">音频处理活动中</string>
     <string name="notification_processing_disabled_title">音频流未在处理或被禁用</string>
@@ -32,7 +32,7 @@
     <string name="session_control_loss_notification">请在重新启用 JamesDSP 之前禁用其它提供全局音效的所有应用。</string>
     <!-- App compatibility issue notifications -->
     <string name="session_app_compat_toast">JamesDSP 因不兼容的媒体应用程序而停止。 请检查通知以解决此问题。</string>
-    <string name="session_app_compat_notification_title">音频处理停止。 另一个应用程序正在干扰 JamesDSP。</string>
+    <string name="session_app_compat_notification_title">音频处理停止。另一个应用程序正在干扰 JamesDSP。</string>
     <string name="session_app_compat_notification">点击此通知以解决这个问题。</string>
     <!-- Capture permission revoked notifications -->
     <string name="capture_permission_revoked_toast">JamesDSP 已停止，因为音频捕获权限被撤销。</string>
@@ -165,10 +165,10 @@
     <string name="onboarding_next">下一步</string>
     <string name="onboarding_finish">完成</string>
     <string name="onboarding_greeting">欢迎使用 RootlessJamesDSP！</string>
-    <string name="onboarding_caption">这个向导将帮助您设置此应用。</string>
+    <string name="onboarding_caption">该向导将帮助您设置此应用程序。</string>
     <string name="onboarding_warning">目前，该应用程序尚未完成且不稳定。 请注意，它可能无法按预期在某些设备上运行，因为它使用的 Android API 并非专为第三方使用而设计。</string>
     <string name="onboarding_fix_permissions_title">需要手动操作</string>
-    <string name="onboarding_fix_permissions">您或系统撤销了一项或多项权限。\n为了确保此应用正常运行，您需要再次授予这些权限。\n\n请重做设置向导以重新授予这些权限。</string>
+    <string name="onboarding_fix_permissions">您或系统撤销了一项或多项权限。\n为了确保此应用程序正常运行，您需要再次授予这些权限。\n\n请重做设置向导以重新授予这些权限。</string>
     <string name="onboarding_limitations_title">局限性</string>
     <string name="onboarding_limitations_unstable">重要提示：请在继续之前仔细阅读相关说明。</string>
     <string name="onboarding_methods_title">选择设置方式</string>
@@ -189,11 +189,11 @@
     <string name="onboarding_root_enhanced_processing_setup_success">增强处理已禁用</string>
     <string name="onboarding_adb_shizuku_title">使用 Shizuku</string>
     <string name="onboarding_adb_adb_title">使用 ADB</string>
-    <string name="onboarding_adb_caption">此应用程序需要特殊权限才能转储设备的音频策略。 请按照以下说明进行操作。</string>
+    <string name="onboarding_adb_caption">此应用程序需要特殊权限才能转储设备的音频策略。请按照以下说明进行操作。</string>
     <string name="onboarding_adb_shizuku_install_button">安装 Shizuku</string>
     <string name="onboarding_adb_shizuku_install_button_done">已经安装</string>
     <string name="onboarding_adb_shizuku_install_instruction">从 Google Play 安装 Shizuku。</string>
-    <string name="onboarding_adb_shizuku_open_instruction">启动“Shizuku”并查找“<b>通过无线调试启动</b>”。 点击“配对”按钮并按照应用程序内的说明进行操作。 将 Shizuku 与您的设备配对后，点击应用程序中的“开始”按钮启动 Shizuku 服务器。 如果您在设置 Shizuku 时遇到问题，请参阅应用程序中链接的设置教程。</string>
+    <string name="onboarding_adb_shizuku_open_instruction">启动“Shizuku”并找到“<b>通过无线调试启动</b>”。点击“配对”按钮并按照应用程序内的说明进行操作。将 Shizuku 与您的设备配对后，点击应用程序中的“开始”按钮启动 Shizuku 服务。如果您在设置 Shizuku 时遇到问题，请参阅应用程序中链接的设置教程。</string>
     <string name="onboarding_adb_shizuku_open_button">启动 Shizuku</string>
     <string name="onboarding_adb_shizuku_open_button_done">已经激活</string>
     <string name="onboarding_adb_shizuku_grant_instruction">点击按钮并授予此应用程序对 Shizuku 的访问权限。</string>
@@ -210,13 +210,13 @@
     <string name="onboarding_adb_shizuku_no_dump_perm">请等待几秒钟，然后再试一次。如果它仍然不能工作，请尝试替代方法。</string>
     <string name="onboarding_adb_dump_not_granted_title">尚未授予权限</string>
     <string name="onboarding_adb_dump_not_granted">请先按照说明再试一次，ADB 访问尚未正确设置。</string>
-    <string name="onboarding_adb_manual_step1">转到 Android 的隐藏开发设置并启用 USB 调试，您需要通过多次点击系统设置中的版本号来解锁这些设置。</string>
-    <string name="onboarding_adb_manual_step2">在您的电脑浏览器中打开 https://app.webadb.com (推荐使用 Chrome)，并将您的设备使用 USB 连接到计算机。</string>
+    <string name="onboarding_adb_manual_step1">进入 Android 隐藏的开发者选项设置并启用 USB 调试。您需要通过多次点击系统设置中的内部版本号来解锁这些设置。</string>
+    <string name="onboarding_adb_manual_step2">在电脑浏览器中打开 https://app.webadb.com（在 Chrome 中效果最佳），然后使用 USB 将设备连接到电脑。</string>
     <string name="onboarding_adb_manual_step3">在 WebADB 中添加并连接 USB 设备。</string>
     <string name="onboarding_adb_manual_step4">导航到“Interactive Shell”并在 shell 中执行此命令：“pm grant %s android.permission.DUMP”</string>
     <string name="onboarding_adb_manual_step5">在此应用程序中点击“下一步”以继续。</string>
-    <string name="onboarding_adb_manual_step5b">(可选) 您可以通过执行此命令永久跳过音频捕获权限提示：\'appops set %s PROJECT_MEDIA allow\'</string>
-    <string name="onboarding_adb_manual_step5c">(可选) 除了上一步，您也可以通过执行以下命令启用自动启动：\'appops set %s SYSTEM_ALERT_WINDOW allow\'</string>
+    <string name="onboarding_adb_manual_step5b">（可选）您可以通过执行以下命令永久跳过音频捕获权限提示：\'appops set %s PROJECT_MEDIA allow\'</string>
+    <string name="onboarding_adb_manual_step5c">（可选）除了上一步之外，您还可以通过执行以下命令来启用自动启动：\'appops set %s SYSTEM_ALERT_WINDOW allow\'</string>
     <string name="onboarding_adb_manual_step1_button">打开开发者设置</string>
     <string name="onboarding_perm_title">其它权限</string>
     <string name="onboarding_perm_caption">使用此应用程序需要额外的权限。 请查看它们并点击“下一步”以授予它们。</string>
@@ -234,8 +234,8 @@
     <string name="onboarding_finish_caption">如果您遇到任何问题，请访问故障排查选项。</string>
     <string name="limit_session_control_conflict_title">禁用其它音频效果应用</string>
     <string name="limit_session_control_conflict">使用 Android 内置动态处理效果的音频效果应用程序会干扰此应用程序。</string>
-    <string name="limit_unsupported_apps_title">不支持的媒体应用</string>
-    <string name="limit_unsupported_apps">无法处理阻止内部音频捕获的应用 (例如 Spotify、Google Chrome)。</string>
+    <string name="limit_unsupported_apps_title">不支持的媒体应用程序</string>
+    <string name="limit_unsupported_apps">阻止内部音频捕获的应用程序仍未处理（例如 Spotify、谷歌浏览器）。</string>
     <string name="limit_hw_accel_title">硬件加速音频播放问题</string>
     <string name="limit_hw_accel">硬件加速音频播放（快轨）有时可能会导致重复音频或在某些情况下杀死 JamesDSP。 请将受影响的音乐播放器添加到排除的应用程序列表中，以防止 JamesDSP 重新路由它。</string>
     <string name="limit_detect_delay_title">音频会话检测延迟</string>
@@ -246,7 +246,7 @@
     <string name="limit_tested_devices">设备制造商对 Android 音频子系统所做的更改很容易破坏此应用程序，因为它使用了一些未记录的 API。\n它已在以下设备上进行了测试：\n• Samsung S20+ (Android 12)\n• AOSP 模拟器 (Android 10-13)\n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
     <string name="title_activity_settings">设置</string>
-    <string name="session_exclude_restricted">排除不支持的程序</string>
+    <string name="session_exclude_restricted">排除不支持的应用程序</string>
     <string name="session_exclude_restricted_off">阻止音频捕获的应用程序保持静音（默认 Android 行为）</string>
     <string name="session_exclude_restricted_on">阻止音频捕获的应用程序被排除并保持不被处理（推荐）</string>
     <string name="session_detection_header">音频会话检测延迟</string>
@@ -293,9 +293,9 @@
     <string name="profiles_info_content">启用此设置后，每个音频设备都会分配一个单独的音频配置。 当输出设备更改时，此应用程序将自动在设备配置文件之间切换。  \n\n连接的每个新设备都以空白配置文件开始。 然后，您可以配置它或从另一个设备配置文件复制设置。\n\n注意：启用此功能时，预设仅应用于活动配置文件。 不活动的配置文件保持不变。</string>
     <string name="profiles_manage_hint">点击主界面上的“活动设备配置文件”按钮来复制或删除配置文件。</string>
     <string name="app_behavior">应用行为</string>
-    <string name="exclude_app_from_recents">在最近任务中隐藏应用</string>
-    <string name="exclude_app_from_recents_off">不在最近任务中隐藏应用</string>
-    <string name="exclude_app_from_recents_on">已在最近任务中隐藏应用</string>
+    <string name="exclude_app_from_recents">从最近使用的应用程序中排除</string>
+    <string name="exclude_app_from_recents_off">不要从最近的任务列表中排除应用程序</string>
+    <string name="exclude_app_from_recents_on">从最近的任务列表中排除应用程序</string>
     <string name="autostart_prompt_at_boot">在启动后提示捕获权限</string>
     <string name="autostart_prompt_at_boot_off">在启动后不显示通知</string>
     <string name="autostart_prompt_at_boot_on">在启动后显示通知</string>
@@ -343,9 +343,9 @@
     <string name="privacy_share_crash_reports_off">不要向开发人员发送崩溃报告</string>
     <string name="credits">鸣谢</string>
     <string name="translators">译者</string>
-    <string name="credits_app">App &amp; rootless 依赖提供</string>
-    <string name="credits_dsp">JamesDSP 核心算法库提供</string>
-    <string name="credits_project_page">在 GitHub 上查看项目主页</string>
+    <string name="credits_app">应用程序和无 root 实施开发</string>
+    <string name="credits_dsp">JamesDSP 核心算法库开发</string>
+    <string name="credits_project_page">在 GitHub 上访问项目网站</string>
     <string name="credits_project_page_summary">报告问题、保持更新并查看源码</string>
     <string name="credits_project_play_page">在 Google Play 上查看 RootlessJamesDSP</string>
     <string name="credits_project_play_page_summary">检查更新</string>
@@ -356,9 +356,9 @@
     <string name="credits_version">应用版本</string>
     <string name="credits_build_info">构建信息</string>
     <string name="appearance_section_header">外观</string>
-    <string name="appearance_summary">应用主题，纯黑夜间模式</string>
+    <string name="appearance_summary">应用主题，纯黑深色模式</string>
     <string name="appearance_title">主题</string>
-    <string name="appearance_theme_mode">夜间模式</string>
+    <string name="appearance_theme_mode">深色模式</string>
     <string name="appearance_theme_mode_default">跟随系统主题</string>
     <string name="appearance_theme_mode_light">关闭</string>
     <string name="appearance_theme_mode_dark">打开</string>
@@ -493,16 +493,16 @@
     <string name="blocklist_delete_title">删除选中的应用？</string>
     <string name="blocklist_delete">您想要从排除列表中删除此应用吗？</string>
     <string name="blocklist_no_exclusions">没有被排除的应用</string>
-    <string name="blocklist_unsupported_apps">不支持的应用</string>
-    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>此应用不支持处理阻止第三方录制音频输出的应用。 为了防止这些应用因为捕获限制而被静音，它们被自动排除在音频处理之外，并且不会被改变处理方式。</p><p><u>受影响的应用：</u><br/>%s</p>]]></string>
+    <string name="blocklist_unsupported_apps">不支持的应用程序</string>
+    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>此应用程序不支持阻止第三方录制其音频输出的处理应用程序。 为了防止这些应用程序因其捕获限制而被静音，它们会自动从音频处理中排除，并且不会重新路由。</p><p><u>受影响的应用程序：</u><br/>%s</p>]]></string>
     <!-- Compatibility issue activity -->
     <string name="title_activity_app_compat">兼容性问题</string>
     <string name="app_compat_retry">重试</string>
     <string name="app_compat_exclude">排除</string>
     <string name="app_compat_title">音频处理已暂停，以防止重复音频</string>
-    <string name="app_compat_explanation">以下应用不支持，因为它会导致 RootlessJamesDSP 失去对其音频处理方式的控制：</string>
-    <string name="app_compat_instruction">如果您可以禁用 HW-size 或其它可能干扰 RootlessJamesDSP 的设置并点击重试，请检查应用的设置。</string>
-    <string name="app_compat_instruction_exclude">或者，选择“排除”来绕过这个问题，将不兼容的应用排除在音频处理之外。</string>
+    <string name="app_compat_explanation">以下应用程序不受支持，因为它会导致 RootlessJamesDSP 失去对其音频路由的控制：</string>
+    <string name="app_compat_instruction">请检查应用程序的设置是否可以禁用硬件加速或其他可能干扰 RootlessJamesDSP 的设置，然后点击“重试”。</string>
+    <string name="app_compat_instruction_exclude">或者，选择“排除”通过从音频处理中排除不兼容的应用程序来绕过此问题。</string>
     <string name="app_compat_unknown_pkg_name">未知应用包名</string>
     <!-- Root: Library load failure -->
     <string name="load_fail_header">Magisk 模块未安装</string>
@@ -517,9 +517,9 @@
     <string name="enhanced_processing_feature_unavailable_content">此功能仅在设置中启用\"增强处理\"时才可用。 请转到“设置 &gt; 音频处理 &gt; 增强处理”并启用此选项以访问此菜单。\n\n注意：启用传统模式时无法使用“增强处理”。</string>
     <string name="enhanced_processing_missing_perm">由于缺少权限，增强处理已被禁用。请在设置中重新设置。</string>
     <!-- App list -->
-    <string name="app_list_loading">正在加载应用...</string>
+    <string name="app_list_loading">正在加载应用程序...</string>
     <string name="app_list_search">搜索</string>
-    <string name="app_list_icon_alt">应用图标</string>
+    <string name="app_list_icon_alt">应用程序图标</string>
     <!-- Number box view -->
     <string name="number_box_decrement">递减</string>
     <string name="number_box_increment">递增</string>
