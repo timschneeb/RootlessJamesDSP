@@ -278,8 +278,8 @@
     <string name="audio_format_summary">首选音频编码，缓冲大小</string>
     <string name="audio_format_summary_root">传统模式，增强处理</string>
     <string name="audio_format_encoding">音频编码</string>
-    <string name="audio_format_encoding_int16">16 位 整型 PCM</string>
-    <string name="audio_format_encoding_float">32 位 浮点型 PCM</string>
+    <string name="audio_format_encoding_int16">16 位整数 PCM</string>
+    <string name="audio_format_encoding_float">32 位浮点 PCM</string>
     <string name="audio_format_buffer_size">缓冲大小</string>
     <string name="audio_format_buffer_size_unit">&#xa0;样本</string>
     <string name="audio_format_buffer_size_warning_low_value">警告：缓冲区大小过低可能会导致音频问题，例如削波！</string>
@@ -311,8 +311,8 @@
     <string name="troubleshooting_docs">文档</string>
     <string name="troubleshooting_actions">更多选项</string>
     <string name="troubleshooting_dump">导出音频会话转储…</string>
-    <string name="troubleshooting_dump_summary">收集故障排查数据</string>
-    <string name="troubleshooting_dump_share_title">导出音频会话转储…..</string>
+    <string name="troubleshooting_dump_summary">收集和保存故障排查数据</string>
+    <string name="troubleshooting_dump_share_title">分享音频会话转储</string>
     <string name="troubleshooting_view_limitations">技术局限性</string>
     <string name="troubleshooting_view_limitations_summary">显示有关此应用程序限制的详细信息</string>
     <string name="troubleshooting_notification_access">授予通知使用权以更好地使用会话检测功能</string>
@@ -325,7 +325,7 @@
     <string name="misc_permission_skip_prompt">跳过捕获权限提示</string>
     <string name="misc_permission_auto_start">开机自动启动效果引擎</string>
     <string name="misc_permission_restart_setup">重新开始设置向导</string>
-    <string name="misc_permission_restart_setup_summary">授予缺失的可选权限</string>
+    <string name="misc_permission_restart_setup_summary">授予缺少的可选权限</string>
     <string name="misc_permission_header">可选的权限</string>
     <string name="assets">资源</string>
     <string name="network_services">网络服务</string>
@@ -412,7 +412,7 @@
     <string name="filelibrary_new_file_name">新文件名</string>
     <string name="filelibrary_file_exists">文件已存在</string>
     <string name="filelibrary_resample_complete">重置为 %1$d Hz</string>
-    <string name="filelibrary_resample_failed">重采样失败。输入文件是否已损坏？</string>
+    <string name="filelibrary_resample_failed">重采样失败。损坏的输入文件？</string>
     <string name="filelibrary_preset_overwritten">预设“%1$s”被覆盖</string>
     <string name="filelibrary_preset_created">预设“%1$s”已创建</string>
     <string name="filelibrary_preset_save_failed">保存预设失败</string>
@@ -432,7 +432,7 @@
     <string name="geq_autoeq">AutoEQ 配置文件</string>
     <string name="gep_add_node">添加</string>
     <string name="geq_preview">预览</string>
-    <string name="geq_preview_collapsed">预览 (点击以展开)</string>
+    <string name="geq_preview_collapsed">预览（点击展开）</string>
     <string name="geq_edit_hint">GraphicEQ 节点</string>
     <string name="geq_reset">重置</string>
     <string name="geq_reset_confirm_title">您确定吗？</string>
@@ -449,9 +449,9 @@
     <string name="geq_cancel_spaced">&#160;&#160;舍弃&#160;</string>
     <string name="geq_cancel">舍弃</string>
     <string name="geq_discard_changes_title">舍弃更改并退出吗？</string>
-    <string name="geq_discard_changes">值无效或为空。您的更改无法保存。\n您想要舍弃您的更改并退出吗？</string>
-    <string name="geq_frequeny_range">值介于 1 Hz 与 24000 Hz 之间</string>
-    <string name="geq_gain_range">值介于 -32 dB 与 32 dB 之间</string>
+    <string name="geq_discard_changes">值无效或为空。您的更改无法保存。\n是否要放弃更改并退出？</string>
+    <string name="geq_frequeny_range">1Hz 到 24000Hz 之间的值</string>
+    <string name="geq_gain_range">-32dB 到 32dB 之间的值</string>
     <string name="geq_gain">增益</string>
     <string name="geq_frequency">频率</string>
     <!-- AutoEQ GraphicEQ selector -->
@@ -459,8 +459,8 @@
     <string name="geq_api_network_error_details_code">服务器响应错误代码：%1$d</string>
     <string name="autoeq_search">AutoEQ 搜索</string>
     <string name="autoeq_enter_model">输入您的耳机型号…</string>
-    <string name="autoeq_partial_results_warning">显示前 %1$d 个结果，请微调您的搜索以获得更多相关的结果。</string>
-    <string name="autoeq_no_results">未找到结果</string>
+    <string name="autoeq_partial_results_warning">显示前 %1$d 个结果。请微调您的搜索以获得更相关的结果。</string>
+    <string name="autoeq_no_results">没有找到结果</string>
     <!-- Customizable liveprog script parameters -->
     <string name="title_activity_liveprog_params">可自定义脚本参数</string>
     <string name="action_restore_defaults">重置为默认</string>
@@ -479,20 +479,19 @@
     <string name="editor_search_keyword">查找</string>
     <string name="editor_source_position">%1$d:%2$d</string>
     <string name="editor_engine_down_title">JamesDSP 未激活</string>
-    <string name="editor_engine_down">无法运行脚本，因为 JamesDSP 已禁用。请打开 JamesDSP 再执行脚本。</string>
-    <string name="editor_save_prompt_title">是否保存更改？</string>
-    <string name="editor_save_prompt">当前操作包含尚未保存的更改。
-您想要应用还是放弃这些更改？</string>
+    <string name="editor_engine_down">由于 JamesDSP 已禁用，无法运行脚本。请打开 JamesDSP 执行脚本。</string>
+    <string name="editor_save_prompt_title">保存更改？</string>
+    <string name="editor_save_prompt">当前的脚本有未保存的更改。您要保存更改还是丢弃？</string>
     <string name="editor_script_launched">脚本已启动</string>
-    <string name="editor_cannot_undo">没有可撤消的操作。</string>
-    <string name="editor_cannot_redo">没有可重做的操作。</string>
-    <string name="editor_text_size">字体大小</string>
+    <string name="editor_cannot_undo">没有什么可以撤消的。</string>
+    <string name="editor_cannot_redo">没有什么可以重做的。</string>
+    <string name="editor_text_size">文本大小</string>
     <!-- Blocklist -->
-    <string name="title_activity_blocklist">排除的应用</string>
-    <string name="blocklist_add_exclusion_alt">添加要排除的应用</string>
-    <string name="blocklist_delete_title">删除选中的应用？</string>
-    <string name="blocklist_delete">您想要从排除列表中删除此应用吗？</string>
-    <string name="blocklist_no_exclusions">没有被排除的应用</string>
+    <string name="title_activity_blocklist">排除的应用程序</string>
+    <string name="blocklist_add_exclusion_alt">添加排除的应用程序</string>
+    <string name="blocklist_delete_title">删除选定的应用程序？</string>
+    <string name="blocklist_delete">您想从排除列表中删除此应用程序吗？</string>
+    <string name="blocklist_no_exclusions">没有排除的应用程序</string>
     <string name="blocklist_unsupported_apps">不支持的应用程序</string>
     <string name="blocklist_unsupported_apps_message"><![CDATA[<p>此应用程序不支持阻止第三方录制其音频输出的处理应用程序。 为了防止这些应用程序因其捕获限制而被静音，它们会自动从音频处理中排除，并且不会重新路由。</p><p><u>受影响的应用程序：</u><br/>%s</p>]]></string>
     <!-- Compatibility issue activity -->
@@ -503,21 +502,21 @@
     <string name="app_compat_explanation">以下应用程序不受支持，因为它会导致 RootlessJamesDSP 失去对其音频路由的控制：</string>
     <string name="app_compat_instruction">请检查应用程序的设置是否可以禁用硬件加速或其他可能干扰 RootlessJamesDSP 的设置，然后点击“重试”。</string>
     <string name="app_compat_instruction_exclude">或者，选择“排除”通过从音频处理中排除不兼容的应用程序来绕过此问题。</string>
-    <string name="app_compat_unknown_pkg_name">未知应用包名</string>
+    <string name="app_compat_unknown_pkg_name">未知的包名</string>
     <!-- Root: Library load failure -->
-    <string name="load_fail_header">Magisk 模块未安装</string>
+    <string name="load_fail_header">未安装 Magisk 模块</string>
     <string name="load_fail_card_title">加载 libjamesdsp.so 失败</string>
-    <string name="load_fail_card">请安装 JamesDSP Magisk 模块并重启您的 Android 设备以使用此应用，您也可能需要在重启后重新安装此应用。</string>
-    <string name="load_fail_rootless_card_title">需要免 Root 方案吗？</string>
-    <string name="load_fail_rootless_card">JamesDSP 可用于 Root/modified 设备，还有一些免 Root 的选项可用，点击此处查看详情。</string>
-    <string name="load_fail_arch_card_title">已安装模块？</string>
-    <string name="load_fail_arch_card">如果您已经安装了 Magisk 模块，您可能在安装过程中选择了错误的设置，请重新安装并尝试启用 Huawei 兼容性 (即使您的手机不是来自该制造商)。</string>
+    <string name="load_fail_card">请安装 JamesDSP Magisk 模块并重新启动您的 Android 设备以使用此应用程序，您可能还需要在重新启动后重新安装此应用程序。</string>
+    <string name="load_fail_rootless_card_title">寻找免 Root 的替代方案？</string>
+    <string name="load_fail_rootless_card">这个 JamesDSP 变体旨在与已 root 或修改的设备一起使用。还提供了一些带限制的无 root 替代方案。点击此处了解详情。</string>
+    <string name="load_fail_arch_card_title">模块已经安装？</string>
+    <string name="load_fail_arch_card">如果您已经安装了 Magisk 模块，您可能在安装过程中选择了错误的设置。请重新安装并尝试启用华为兼容性（即使您的手机不是来自该制造商的）。</string>
     <!-- Enhanced processing -->
     <string name="enhanced_processing_feature_unavailable">功能不可用</string>
     <string name="enhanced_processing_feature_unavailable_content">此功能仅在设置中启用\"增强处理\"时才可用。 请转到“设置 &gt; 音频处理 &gt; 增强处理”并启用此选项以访问此菜单。\n\n注意：启用传统模式时无法使用“增强处理”。</string>
     <string name="enhanced_processing_missing_perm">由于缺少权限，增强处理已被禁用。请在设置中重新设置。</string>
     <!-- App list -->
-    <string name="app_list_loading">正在加载应用程序...</string>
+    <string name="app_list_loading">加载应用程序...</string>
     <string name="app_list_search">搜索</string>
     <string name="app_list_icon_alt">应用程序图标</string>
     <!-- Number box view -->
@@ -525,11 +524,11 @@
     <string name="number_box_increment">递增</string>
     <!-- Slider widget -->
     <string name="slider_dialog_title">编辑值</string>
-    <string name="slider_dialog_format_error">无效的数字格式，更改未应用。</string>
-    <string name="slider_dialog_step_error">值必须是 %1$d 的倍数，更改未应用。</string>
+    <string name="slider_dialog_format_error">数字格式无效。未应用更改。</string>
+    <string name="slider_dialog_step_error">值必须是 %1$d 的倍数。未应用更改。</string>
     <!-- Revert confirmation -->
     <string name="revert_confirmation_title">您确定吗？</string>
-    <string name="revert_confirmation">您想要将您当前的 JamesDSP 预设重置为默认值吗？</string>
+    <string name="revert_confirmation">是否要将当前的 JamesDSP 预设重置为默认值？</string>
     <!-- File intent handler -->
     <string name="intent_import_preset">导入预设</string>
     <string name="intent_import_irs">导入脉冲响应</string>
