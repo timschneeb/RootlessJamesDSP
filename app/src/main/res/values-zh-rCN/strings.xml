@@ -28,10 +28,10 @@
     <string name="notification_request_permission">点击以授予捕获权限并启用 JamesDSP 的音频处理</string>
     <!-- Session control loss notifications -->
     <string name="session_control_loss_toast">JamesDSP 因音频会话控制丢失而停止，请禁用其它同类型的音效处理应用。</string>
-    <string name="session_control_loss_notification_title">音频处理停止。 另一个应用程序正在干扰 JamesDSP。</string>
+    <string name="session_control_loss_notification_title">音频处理停止。另一个应用程序正在干扰 JamesDSP。</string>
     <string name="session_control_loss_notification">请在重新启用 JamesDSP 之前禁用其它提供全局音效的所有应用。</string>
     <!-- App compatibility issue notifications -->
-    <string name="session_app_compat_toast">JamesDSP 因不兼容的媒体应用程序而停止。 请检查通知以解决此问题。</string>
+    <string name="session_app_compat_toast">JamesDSP 因不兼容的媒体应用程序而停止。请检查通知以解决此问题。</string>
     <string name="session_app_compat_notification_title">音频处理停止。另一个应用程序正在干扰 JamesDSP。</string>
     <string name="session_app_compat_notification">点击此通知以解决这个问题。</string>
     <!-- Capture permission revoked notifications -->
@@ -58,7 +58,7 @@
     <string name="no_activity_found">未找到处理动作的活动</string>
     <string name="permission_allowed">允许</string>
     <string name="permission_not_allowed">不允许</string>
-    <string name="error_projection_api_missing">您的设备制造商已禁用内部录音 API。 没有它们，此应用程序无法工作。</string>
+    <string name="error_projection_api_missing">您的设备制造商已禁用内部录音 API。没有它们，此应用程序无法工作。</string>
     <!-- Main screen -->
     <string name="power_button_alt">切换音频处理</string>
     <string name="compander_enable">动态范围压扩器</string>
@@ -283,12 +283,12 @@
     <string name="audio_format_buffer_size">缓冲大小</string>
     <string name="audio_format_buffer_size_unit">&#xa0;样本</string>
     <string name="audio_format_buffer_size_warning_low_value">警告：过小的缓冲区大小可能会导致诸如卡顿等音频问题</string>
-    <string name="profiles_section_header">设备配置</string>
-    <string name="profiles_summary">每个设备的配置文件，自动切换</string>
-    <string name="profiles_enable">每个设备的配置文件</string>
-    <string name="profiles_enable_summary_on">每个设备的配置文件已启用</string>
-    <string name="profiles_enable_summary_off">每个设备的配置文件已禁用</string>
-    <string name="profiles_info_title">什么是每个设备的配置文件？</string>
+    <string name="profiles_section_header">设备配置文件</string>
+    <string name="profiles_summary">按设备配置，自动切换</string>
+    <string name="profiles_enable">按设备配置</string>
+    <string name="profiles_enable_summary_on">按设备配置已启用</string>
+    <string name="profiles_enable_summary_off">按设备配置已禁用</string>
+    <string name="profiles_info_title">什么是按设备配置？</string>
     <string name="profiles_info">点击查看文档</string>
     <string name="profiles_info_content">启用此设置后，每个音频设备都会分配一个单独的音频配置。 当输出设备更改时，此应用程序将自动在设备配置文件之间切换。  \n\n连接的每个新设备都以空白配置文件开始。 然后，您可以配置它或从另一个设备配置文件复制设置。\n\n注意：启用此功能时，预设仅应用于活动配置文件。 不活动的配置文件保持不变。</string>
     <string name="profiles_manage_hint">点击主界面上的“活动设备配置文件”按钮来复制或删除配置文件。</string>
@@ -368,16 +368,16 @@
     <string name="appearance_nav_hide">滚动时隐藏底部导航栏</string>
     <string name="appearance_show_icons">显示类别图标</string>
     <string name="backup_settings">备份与恢复</string>
-    <string name="backup_settings_summary">自动 &amp; 手动备份</string>
+    <string name="backup_settings_summary">自动和手动备份</string>
     <string name="backup_frequency">备份频率</string>
     <string name="backup_location">备份位置</string>
     <string name="backup_maximum">最大备份数量</string>
     <string name="backup_never">从不</string>
-    <string name="backup_12hour">每隔 12 小时</string>
-    <string name="backup_24hour">每天</string>
+    <string name="backup_12hour">每 12 小时</string>
+    <string name="backup_24hour">每日</string>
     <string name="backup_48hour">每 2 天</string>
     <string name="backup_weekly">每周</string>
-    <string name="backup_select_location">请创建并选择一个备份目录…</string>
+    <string name="backup_select_location">请创建并选择备份目录…</string>
     <!-- Theme names -->
     <string name="theme_default">默认</string>
     <string name="theme_monet">动态</string>
@@ -407,7 +407,7 @@
     <string name="filelibrary_corrupted">选中的文件中没有可用的数据或数据已损坏。</string>
     <string name="filelibrary_file_too_new">选中的文件是用此应用的新版本创建的，无法加载，请更新此应用以继续。</string>
     <string name="filelibrary_access_fail">创建目录失败</string>
-    <string name="filelibrary_is_backup_not_preset">选中的文件是备份文件，而不是预设文件，如果您想要还原它，请转到备份设置。</string>
+    <string name="filelibrary_is_backup_not_preset">所选文件是备份文件，而不是预设。如果要还原，请转到备份设置。</string>
     <string name="filelibrary_no_file_selected">未选择文件</string>
     <string name="filelibrary_new_file_name">新文件名</string>
     <string name="filelibrary_file_exists">文件已存在</string>
