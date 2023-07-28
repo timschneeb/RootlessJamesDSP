@@ -317,7 +317,7 @@
     <string name="troubleshooting_view_limitations_summary">显示有关此应用程序限制的详细信息</string>
     <string name="troubleshooting_notification_access">授予通知使用权以更好地使用会话检测功能</string>
     <string name="troubleshooting_notification_access_summary">启用更可靠的音频会话检测</string>
-    <string name="troubleshooting_repair_assets">还原捆绑的 IRS、DDC 和脚本</string>
+    <string name="troubleshooting_repair_assets">恢复捆绑的 IRS、DDC 和脚本</string>
     <string name="troubleshooting_repair_assets_summary">解包预加载 (如果已丢失)</string>
     <string name="troubleshooting_repair_assets_success">捆绑资源已恢复</string>
     <string name="misc_settings">更多选项</string>
