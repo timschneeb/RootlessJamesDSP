@@ -119,8 +119,8 @@
     <string name="reverb_preset_large_room1">大型房间</string>
     <string name="reverb_preset_plate_high">板式高频</string>
     <string name="reverb_preset_plate_low">板式低频</string>
-    <string name="reverb_preset_long_reverb1">长混响 1</string>
-    <string name="reverb_preset_long_reverb2">长混响 2</string>
+    <string name="reverb_preset_long_reverb1">长混响一</string>
+    <string name="reverb_preset_long_reverb2">长混响二</string>
     <string name="convolver_enable">脉冲反馈</string>
     <string name="convolver_impulse">冲激响应/滤波器</string>
     <string name="convolver_advanced_editing">高级波形编辑</string>
