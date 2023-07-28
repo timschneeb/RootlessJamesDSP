@@ -239,7 +239,7 @@
     <string name="limit_hw_accel_title">硬件加速音频播放问题</string>
     <string name="limit_hw_accel">硬件加速音频播放（快轨）有时可能会导致重复音频或在某些情况下杀死 JamesDSP。 请将受影响的音乐播放器添加到排除的应用程序列表中，以防止 JamesDSP 重新路由它。</string>
     <string name="limit_detect_delay_title">音频会话检测延迟</string>
-    <string name="limit_detect_delay"><![CDATA[应用程序打开新媒体会话来播放音频后，您可能会在很短的时间内（大约 <250 毫秒）听到重复或中断的音频。]]></string>
+    <string name="limit_detect_delay"><![CDATA[应用程序打开新媒体会话来播放音频后，您可能会在很短的时间内（大约 \<250 毫秒）听到重复或中断的音频。]]></string>
     <string name="limit_latency_title">音频延迟补偿</string>
     <string name="limit_latency">此应用程序可能会增加音频流的一些延迟。 您可以将电影、视频应用程序添加到排除列表中，以通过不处理它们来防止音视频不同步。</string>
     <string name="limit_tested_devices_title">已测试的设备</string>
@@ -273,7 +273,7 @@
     <string name="audio_format_enhanced_processing_off">增强处理已禁用</string>
     <string name="audio_format_enhanced_processing_info_title">什么是增强处理？</string>
     <string name="audio_format_enhanced_processing_info">点击查看文档</string>
-    <string name="audio_format_enhanced_processing_info_content">启用增强处理后，您可以选择性地将某些应用排除在 JamesDSP 处理中。 使用右下角的菜单选择“排除应用”访问此功能。\n\n虽然传统模式已禁用，但 JamesDSP 依靠媒体应用程序在开始播放时发送系统广播。 这是一个优于传统模式的优势，因为每个应用都能获得分配给它自己的 JamesDSP 效果引擎，这样可以进行更精细的控制。 否则，随着传统模式的开启，所有应用都会共享一个单一的处理引擎，Android 系统会弃用且不会再使用。\n\n不幸的是，并非所有的媒体应用都完美支持，因此在传统模式下无法正常工作。 为了解决这个问题，您可以启用增强处理。 不要依靠系统广播新的媒体协议。 JamesDSP 本身将主动扫描媒体协议，并为不适配的媒体应用提供适当支持。</string>
+    <string name="audio_format_enhanced_processing_info_content">启用增强处理后，您可以有选择地排除某些应用程序，使其不被 JamesDSP 处理。使用右下角的三点菜单并选择“排除的应用程序”来访问此功能。\n\n当此模式被禁用时，JamesDSP 依靠媒体应用程序在开始播放时发送系统广播。与旧模式相比，这是一个优势，因为每个应用程序都分配有自己的 JamesDSP 效果引擎，从而可以进行更细粒度的控制。否则，在启用旧模式的情况下，所有应用程序将共享一个处理引擎，Android 已弃用该引擎，不应再使用该引擎。\n\n不幸的是，并非所有媒体应用程序都能正确执行此操作，因此在旧模式的情况下无法正常运行。要解决此问题，您可以启用增强处理。JamesDSP 不会依赖系统广播有关新媒体会话的信息，而是会自行主动扫描媒体会话，并为不适配的媒体应用程序提供适当的支持。</string>
     <string name="audio_format_media_apps_need_restart">更改此设置后，您需要重新启动所有活动的媒体应用程序才能恢复音频处理。</string>
     <string name="audio_format_summary">首选音频编码，缓冲大小</string>
     <string name="audio_format_summary_root">传统模式，增强处理</string>
@@ -429,7 +429,7 @@
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">幅度响应</string>
     <string name="geq_edit_as_string">作为字符串编辑</string>
-    <string name="geq_autoeq">AutoEQ 配置</string>
+    <string name="geq_autoeq">AutoEQ 配置文件</string>
     <string name="gep_add_node">添加</string>
     <string name="geq_preview">预览</string>
     <string name="geq_preview_collapsed">预览 (点击以展开)</string>
