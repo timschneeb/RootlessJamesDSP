@@ -61,6 +61,7 @@
     <string name="error_projection_api_missing">お使いのデバイスの製造元は、内部音声録音APIを無効にしています。このアプリケーションは、それらがないと動作出来ません。</string>
     <!-- Main screen -->
     <string name="power_button_alt">音声処理の切り替え</string>
+    <string name="compander_enable">ダイナミックレンジ・コンパンダー</string>
     <string name="eq_filter_type">フィルタータイプ</string>
     <string name="eq_interpolator">インターポレーター</string>
     <string name="eq_interpolator_chip">区分的3次エルミート内挿多項式</string>
@@ -150,6 +151,9 @@
     <string name="onboarding_methods_adb_title">ADB</string>
     <!-- Rootless flavor -->
     <!-- Root flavor -->
+    <string name="onboarding_root_shell_fail_title">ルートアクセスなし</string>
+    <string name="onboarding_root_shell_fail">ルートアクセスがありません。別のセットアップ方法を使用してください。</string>
+    <string name="onboarding_root_shell_fail_unknown">Rootによる権限の付与に失敗しました。他の設定方法を使用してください。</string>
     <string name="onboarding_adb_caption">このアプリは、お使いのデバイスのオーディオポリシーをダンプするための特別な許可を必要とします。以下の説明に従ってください。</string>
     <string name="onboarding_adb_shizuku_install_button">Shizuku をインストール</string>
     <string name="onboarding_adb_shizuku_install_button_done">インストール済み</string>
@@ -192,25 +196,39 @@
     <string name="onboarding_perm_missing_title">動作に必要な権限が付与されていません</string>
     <string name="onboarding_perm_missing">続行するには、要求されたすべての実行権限を付与してください。\n権限を繰り返し拒否した場合は、システム設定で手動で許可する必要があります。</string>
     <string name="onboarding_perm_diag">診断レポートの送信を許可</string>
+    <string name="onboarding_perm_diag_caption">このアプリは、他のアクティブなアプリケーションに関する情報を含むクラッシュレポートやその他の診断データを送信します。互換性の問題やバグを簡単に検出して解決できるようにするためです。</string>
     <string name="onboarding_finish_header">JamesDSPのセットアップが完了しました!</string>
     <string name="onboarding_finish_caption">問題が発生した場合は、トラブルシューティングを参照してください。</string>
     <string name="limit_session_control_conflict_title">他のオーディオエフェクトアプリの無効化</string>
     <string name="limit_session_control_conflict">Android内蔵のDynamic Processingエフェクトを使用したオーディオエフェクトアプリは、このアプリに干渉します。</string>
     <string name="limit_unsupported_apps_title">対応していないメディアアプリ</string>
     <string name="limit_unsupported_apps">内部音声録音をブロックしているアプリは処理されません。 (Spotify、Google Chromeなど)</string>
+    <string name="limit_hw_accel_title">HWアクセラレーションによるオーディオ再生の問題</string>
+    <string name="limit_hw_accel">HWアクセラレーションによるオーディオ再生(ファストトラック) は、状況によってはオーディオの重複を引き起こしたり、JamesDSPを強制終了させることがあります。JamesDSPによる再ルーティングを防ぐため、影響を受ける音楽プレーヤーを除外アプリリストに追加してください。</string>
+    <string name="limit_detect_delay"><![CDATA[アプリがオーディオを再生するために新しいメディアセッションを開いた後、非常に短い期間（約250ミリ秒未満）、オーディオが重複したり途切れたりすることがあります。]]></string>
     <string name="limit_latency_title">遅延の増加</string>
     <string name="limit_latency">このアプリは、音声の遅延を増加させる可能性があります。 除外リストに映画/ビデオアプリを追加し、処理させないようにすることで、映像と音声の同期ズレを防ぐことができます。</string>
     <string name="limit_tested_devices_title">動作確認済みの端末</string>
+    <string name="limit_tested_devices">デバイスメーカーによってAndroidのオーディオサブシステムに加えられた変更は、ドキュメント化されていないAPIをいくつか使用しているため、このアプリを簡単に壊してしまう可能性があります。\nこれらのデバイスでテストされています:\n• Samsung S20+ (Android 12)\n• AOSP Emulator (Android 10-13)\n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
     <string name="title_activity_settings">設定</string>
+    <string name="session_exclude_restricted">サポートされていないアプリを除外</string>
+    <string name="session_exclude_restricted_off">オーディオキャプチャをブロックするアプリはミュートのまま（Androidのデフォルトの動作）</string>
+    <string name="session_exclude_restricted_on">オーディオキャプチャをブロックしているアプリは除外され、未処理のままとなる（推奨）</string>
+    <string name="session_detection_header">オーディオセッションの検出</string>
     <string name="session_continuous_polling">連続ポーリングを強制する</string>
+    <string name="session_continuous_polling_off">システムからのセッションイベントのみ待ち受ける</string>
     <string name="session_app_problem_ignore">アプリの互換性問題を無視する</string>
     <string name="session_loss_ignore">セッション制御の損失を無視する</string>
     <string name="session_loss_ignore_on">動作しない (音声が重複する可能性があります)</string>
     <string name="audio_format_header">オーディオ処理</string>
+    <string name="audio_format_enhanced_processing_off">高度な処理は無効です</string>
+    <string name="audio_format_enhanced_processing_info_title">高度な処理とは？</string>
+    <string name="audio_format_enhanced_processing_info">タップしてドキュメントを表示</string>
     <string name="audio_format_buffer_size">バッファサイズ</string>
     <string name="audio_format_buffer_size_unit">&#xa0;サンプル</string>
     <string name="profiles_section_header">端末情報</string>
+    <string name="profiles_info">タップしてドキュメントを表示</string>
     <string name="exclude_app_from_recents">最近使用したタスク一覧 (アプリ履歴) に表示しない</string>
     <string name="exclude_app_from_recents_off">最近使用したタスク一覧 (アプリ履歴) から除外しない</string>
     <string name="autostart_prompt_at_boot_off">起動後に通知を表示しない</string>
