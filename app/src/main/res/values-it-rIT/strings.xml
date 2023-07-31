@@ -127,6 +127,7 @@
     <string name="convolver_convolution_mode">Ottimizzazione della risposta d\'impulso</string>
     <string name="convolver_convolution_mode_original">Originale</string>
     <string name="convolver_convolution_mode_shrink">Restringi</string>
+    <string name="liveprog_additional_params">Parametri di script aggiuntivi</string>
     <string name="tube_drive">Pre-amplificazione</string>
     <string name="output_control_header">Controllo in uscita</string>
     <string name="output_limiter_threshold">Soglia del limitatore</string>
@@ -180,6 +181,7 @@
     <string name="onboarding_adb_caption">Questa app richiede permessi speciali per l\'acquisizione della politica audio del dispositivo. Si prega di seguire le istruzioni riportate di seguito.</string>
     <string name="onboarding_adb_shizuku_install_button">Installa Shizuku</string>
     <string name="onboarding_adb_shizuku_install_button_done">Già installato</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied_title">Permesso negato</string>
     <string name="onboarding_adb_shizuku_no_dump_perm_title">Shizuku non ha concesso i permessi ADB</string>
     <string name="onboarding_perm_notification_title">Permesso alle notifiche</string>
     <string name="onboarding_perm_notification_caption">Necessario per ricevere importanti aggiornamenti sullo stato e informazioni sullo stato di elaborazione di JamesDSP.</string>
