@@ -254,24 +254,26 @@ class MainActivity : BaseActivity() {
         binding.powerToggle.toggleOnClick = false
         binding.powerToggle.setOnToggleClickListener(object : FloatingToggleButton.OnToggleClickListener{
             override fun onClick() {
+                sdkAbove(Build.VERSION_CODES.R) {
+                    binding.powerToggle.performHapticFeedback(
+                        if(binding.powerToggle.isToggled)
+                            HapticFeedbackConstants.CONFIRM
+                        else
+                            HapticFeedbackConstants.REJECT
+                    )
+                }
+
                 if(SdkCheck.isQ && isRootless()) {
                     if (binding.powerToggle.isToggled) {
                         // Currently on, let's turn it off
                         RootlessAudioProcessorService.stop(this@MainActivity)
                         binding.powerToggle.isToggled = false
-
-                        sdkAbove(Build.VERSION_CODES.R) {
-                            binding.powerToggle.performHapticFeedback(HapticFeedbackConstants.REJECT)
-                        }
                     } else {
                         // Currently off, let's turn it on
-                        sdkAbove(Build.VERSION_CODES.R) {
-                            binding.powerToggle.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
-                        }
                         requestCapturePermission()
                     }
                 }
-                else if (!isRootless()) {
+                else if (isRoot()) {
                     when(JamesDspRemoteEngine.isPluginInstalled() ) {
                         JamesDspRemoteEngine.PluginState.Available -> {
                             binding.powerToggle.isToggled = !binding.powerToggle.isToggled
