@@ -38,6 +38,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.to
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasDumpPermission
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasNotificationPermission
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasRecordPermission
+import me.timschneeberger.rootlessjamesdsp.utils.isRootless
 import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import me.timschneeberger.rootlessjamesdsp.view.Card
@@ -581,8 +582,8 @@ class OnboardingFragment : Fragment() {
 
         page.step4.isVisible = selectedSetupMethod == SetupMethods.Adb
         page.step5.isVisible = selectedSetupMethod == SetupMethods.Adb
-        page.step5bOptional.isVisible = selectedSetupMethod == SetupMethods.Adb && BuildConfig.ROOTLESS
-        page.step5cOptional.isVisible = selectedSetupMethod == SetupMethods.Adb && BuildConfig.ROOTLESS
+        page.step5bOptional.isVisible = selectedSetupMethod == SetupMethods.Adb && isRootless()
+        page.step5cOptional.isVisible = selectedSetupMethod == SetupMethods.Adb && isRootless()
 
         if(selectedSetupMethod == SetupMethods.Shizuku) {
             val installed = requireContext().isPackageInstalled(SHIZUKU_PKG)

@@ -75,7 +75,7 @@ class Preferences(val context: Context) {
                         Float::class -> "integer"
                         else -> throw IllegalArgumentException("Unknown type ${type.qualifiedName}")
                     },
-                    BuildConfig.APPLICATION_ID
+                    context.packageName
                 )
 
                 if(defaultRes == 0) {

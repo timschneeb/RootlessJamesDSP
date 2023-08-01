@@ -26,7 +26,7 @@ import kotlinx.coroutines.withContext
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.MainApplication
 import me.timschneeberger.rootlessjamesdsp.R
-import me.timschneeberger.rootlessjamesdsp.databinding.ActivityMainBinding
+import me.timschneeberger.rootlessjamesdsp.databinding.ActivityDspMainBinding
 import me.timschneeberger.rootlessjamesdsp.databinding.ContentMainBinding
 import me.timschneeberger.rootlessjamesdsp.flavor.CrashlyticsImpl
 import me.timschneeberger.rootlessjamesdsp.flavor.UpdateManager
@@ -59,6 +59,9 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.to
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.unregisterLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasDumpPermission
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasRecordPermission
+import me.timschneeberger.rootlessjamesdsp.utils.isPlugin
+import me.timschneeberger.rootlessjamesdsp.utils.isRoot
+import me.timschneeberger.rootlessjamesdsp.utils.isRootless
 import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import me.timschneeberger.rootlessjamesdsp.utils.storage.StorageUtils
 import me.timschneeberger.rootlessjamesdsp.view.FloatingToggleButton
@@ -71,7 +74,7 @@ import kotlin.concurrent.schedule
 
 class MainActivity : BaseActivity() {
     /* UI bindings */
-    lateinit var binding: ActivityMainBinding
+    lateinit var binding: ActivityDspMainBinding
     private lateinit var bindingContent: ContentMainBinding
     private lateinit var dspFragment: DspFragment
 
@@ -95,7 +98,7 @@ class MainActivity : BaseActivity() {
                 processorService = (service as BaseAudioProcessorService.LocalBinder).service
                 processorServiceBound = true
 
-                if (BuildConfig.ROOTLESS)
+                if (isRootless())
                     binding.powerToggle.isToggled = true
             }
 
@@ -112,11 +115,11 @@ class MainActivity : BaseActivity() {
         override fun onReceive(context: Context, intent: Intent) {
             when (intent.action) {
                 Constants.ACTION_SERVICE_STOPPED -> {
-                    if(BuildConfig.ROOTLESS)
+                    if(isRootless())
                         binding.powerToggle.isToggled = false
                 }
                 Constants.ACTION_SERVICE_STARTED -> {
-                    if(BuildConfig.ROOTLESS)
+                    if(isRootless())
                         binding.powerToggle.isToggled = true
                 }
             }
@@ -135,7 +138,7 @@ class MainActivity : BaseActivity() {
         assets.installPrivateAssets(this, force = firstBoot)
 
         mediaProjectionManager = getSystemService<MediaProjectionManager>()!!
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityDspMainBinding.inflate(layoutInflater)
         bindingContent = ContentMainBinding.inflate(layoutInflater)
 
         val check = applicationContext.check()
@@ -170,7 +173,7 @@ class MainActivity : BaseActivity() {
             showLibraryLoadError()
 
         // Rootless: Check permissions and launch onboarding if required
-        if(SdkCheck.isQ && BuildConfig.ROOTLESS && (!hasDumpPermission() || !hasRecordPermission())) {
+        if(SdkCheck.isQ && isRootless() && (!hasDumpPermission() || !hasRecordPermission())) {
             Timber.i("Launching onboarding (first boot: $firstBoot)")
 
             startActivity(Intent(this, OnboardingActivity::class.java).apply {
@@ -194,10 +197,13 @@ class MainActivity : BaseActivity() {
         // Inflate bottom right menu
         binding.bar.inflateMenu(R.menu.menu_main_bottom)
 
+        if(isPlugin())
+            binding.bar.menu.removeItem(R.id.action_blocklist)
+
         binding.bar.setOnMenuItemClickListener { arg0 ->
             when (arg0.itemId) {
                 R.id.action_blocklist -> {
-                    if(!app.isEnhancedProcessing && !BuildConfig.ROOTLESS) {
+                    if(!app.isEnhancedProcessing && isRoot()) {
                         showAlert(
                             R.string.enhanced_processing_feature_unavailable,
                             R.string.enhanced_processing_feature_unavailable_content
@@ -248,7 +254,7 @@ class MainActivity : BaseActivity() {
         binding.powerToggle.toggleOnClick = false
         binding.powerToggle.setOnToggleClickListener(object : FloatingToggleButton.OnToggleClickListener{
             override fun onClick() {
-                if(SdkCheck.isQ && BuildConfig.ROOTLESS) {
+                if(SdkCheck.isQ && isRootless()) {
                     if (binding.powerToggle.isToggled) {
                         // Currently on, let's turn it off
                         RootlessAudioProcessorService.stop(this@MainActivity)
@@ -265,7 +271,7 @@ class MainActivity : BaseActivity() {
                         requestCapturePermission()
                     }
                 }
-                else if (!BuildConfig.ROOTLESS) {
+                else if (!isRootless()) {
                     when(JamesDspRemoteEngine.isPluginInstalled() ) {
                         JamesDspRemoteEngine.PluginState.Available -> {
                             binding.powerToggle.isToggled = !binding.powerToggle.isToggled
@@ -277,14 +283,17 @@ class MainActivity : BaseActivity() {
                         else -> {}
                     }
                 }
+                else if(isPlugin()) {
+                    // TODO implement plugin mode
+                }
             }
         })
 
-        if (SdkCheck.isQ && BuildConfig.ROOTLESS) {
+        if (SdkCheck.isQ && isRootless()) {
             capturePermissionLauncher = registerForActivityResult(
                 ActivityResultContracts.StartActivityForResult()
             ) { result ->
-                if (result.resultCode == RESULT_OK && BuildConfig.ROOTLESS) {
+                if (result.resultCode == RESULT_OK && isRootless()) {
                     app.mediaProjectionStartIntent = result.data
                     binding.powerToggle.isToggled = true
                     RootlessAudioProcessorService.start(this, result.data)
@@ -295,14 +304,14 @@ class MainActivity : BaseActivity() {
         }
 
         // Rootless: request capture permission instantly, if redirected from onboarding
-        if (SdkCheck.isQ && BuildConfig.ROOTLESS) {
+        if (SdkCheck.isQ && isRootless()) {
             if (intent.getBooleanExtra(EXTRA_FORCE_SHOW_CAPTURE_PROMPT, false)) {
                 requestCapturePermission()
             }
         }
 
         // Root: show error if plugin unavailable
-        if(!BuildConfig.ROOTLESS) {
+        if(isRoot()) {
             when(JamesDspRemoteEngine.isPluginInstalled()) {
                 JamesDspRemoteEngine.PluginState.Unavailable -> showLibraryLoadError()
                 JamesDspRemoteEngine.PluginState.Unsupported -> {
@@ -322,12 +331,12 @@ class MainActivity : BaseActivity() {
 
         /* Root: require battery optimizations turned off when legacy mode is disabled,
            otherwise, the service will be block from launching from background */
-        if (!BuildConfig.ROOTLESS && !(application as MainApplication).isLegacyMode) {
+        if (isRoot() && !(application as MainApplication).isLegacyMode) {
             requestIgnoreBatteryOptimizations()
         }
 
         // Root: request notification permission on Android 13 because the onboarding is not used for root
-        if (!BuildConfig.ROOTLESS && SdkCheck.isTiramisu) {
+        if (isRoot() && SdkCheck.isTiramisu) {
             runtimePermissionLauncher = registerForActivityResult(
                 ActivityResultContracts.RequestMultiplePermissions()
             ) { isGranted ->
@@ -344,7 +353,7 @@ class MainActivity : BaseActivity() {
 
         sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
 
-        if(!BuildConfig.ROOTLESS && app.isEnhancedProcessing) {
+        if(isRoot() && app.isEnhancedProcessing) {
             if(!hasDumpPermission()) {
                 Timber.e("Dump permission for enhanced processing lost")
                 toast(getString(R.string.enhanced_processing_missing_perm))
@@ -370,7 +379,7 @@ class MainActivity : BaseActivity() {
         if(key == getString(R.string.key_appearance_nav_hide)) {
             binding.bar.hideOnScroll = prefsApp.get(R.string.key_appearance_nav_hide)
         }
-        else if(key == getString(R.string.key_powered_on) && !hasLoadFailed && !BuildConfig.ROOTLESS) {
+        else if(key == getString(R.string.key_powered_on) && !hasLoadFailed && !isRootless()) {
             binding.powerToggle.isToggled = prefsApp.get(R.string.key_powered_on)
         }
 
@@ -419,12 +428,12 @@ class MainActivity : BaseActivity() {
         super.onResume()
         prefsVar.set(R.string.key_is_activity_active, true)
 
-        if(BuildConfig.ROOTLESS)
+        if(isRootless())
             binding.powerToggle.isToggled = processorService != null
     }
 
     private fun checkForUpdates() {
-        if(BuildConfig.ROOTLESS ||
+        if(!isRoot() ||
             prefsVar.get<Long>(R.string.key_update_check_timeout) > (System.currentTimeMillis() / 1000L)) {
             Timber.d("Update check rejected due to flavor or timeout")
             return
@@ -467,7 +476,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun dismissUpdate() {
-        if(BuildConfig.ROOTLESS)
+        if(!isRoot())
             return
 
         MaterialAlertDialogBuilder(this)
@@ -510,7 +519,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun bindProcessorService() {
-        if (BuildConfig.ROOTLESS) {
+        if (isRootless()) {
             sdkAbove(Build.VERSION_CODES.Q) {
                 Intent(this, RootlessAudioProcessorService::class.java).also { intent ->
                     val ret = bindService(intent, processorServiceConnection, 0)
@@ -520,7 +529,7 @@ class MainActivity : BaseActivity() {
                 }
             }
         }
-        else if (!BuildConfig.ROOTLESS) {
+        else if (isRoot()) {
             Intent(this, RootAudioProcessorService::class.java).also { intent ->
                 bindService(intent, processorServiceConnection, 0)
             }
@@ -539,7 +548,7 @@ class MainActivity : BaseActivity() {
 
     @RequiresApi(Build.VERSION_CODES.Q)
     fun requestCapturePermission() {
-        if(app.mediaProjectionStartIntent != null && BuildConfig.ROOTLESS) {
+        if(app.mediaProjectionStartIntent != null && isRootless()) {
             binding.powerToggle.isToggled = true
             RootlessAudioProcessorService.start(this, app.mediaProjectionStartIntent)
             return

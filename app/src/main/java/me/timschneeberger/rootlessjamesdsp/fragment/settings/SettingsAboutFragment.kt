@@ -16,6 +16,7 @@ import me.timschneeberger.rootlessjamesdsp.flavor.UpdateManager
 import me.timschneeberger.rootlessjamesdsp.model.Translator
 import me.timschneeberger.rootlessjamesdsp.utils.Result
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
+import me.timschneeberger.rootlessjamesdsp.utils.isRoot
 import org.koin.android.ext.android.inject
 import java.util.Locale
 
@@ -44,8 +45,8 @@ class SettingsAboutFragment : SettingsBaseFragment() {
 
         buildInfo?.summary = "$type build (${BuildConfig.FLAVOR_dependencies}) @${BuildConfig.COMMIT_SHA} (compiled at ${BuildConfig.BUILD_TIME})"
 
-        googlePlay?.isVisible = BuildConfig.ROOTLESS
-        selfCheckUpdates?.isVisible = !BuildConfig.ROOTLESS
+        googlePlay?.isVisible = !isRoot()
+        selfCheckUpdates?.isVisible = isRoot()
         selfCheckUpdates?.setOnPreferenceClickListener {
             checkForUpdates()
             true
@@ -83,7 +84,7 @@ class SettingsAboutFragment : SettingsBaseFragment() {
     }
 
     private fun checkForUpdates() {
-        if(BuildConfig.ROOTLESS)
+        if(!isRoot())
             return
 
         CoroutineScope(Dispatchers.Default).launch {

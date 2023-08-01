@@ -44,6 +44,8 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sh
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showYesNoAlert
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.unregisterLocalReceiver
+import me.timschneeberger.rootlessjamesdsp.utils.isRoot
+import me.timschneeberger.rootlessjamesdsp.utils.isRootless
 import timber.log.Timber
 import java.util.Locale
 import java.util.regex.Pattern
@@ -247,7 +249,8 @@ class LiveprogEditorActivity : BaseActivity() {
         }
 
         // If service down or in case of root, if engine disabled, show warning message
-        if(BaseAudioProcessorService.activeServices <= 0 || (!BuildConfig.ROOTLESS && prefsApp.get<Boolean>(R.string.key_powered_on))) {
+        // TODO: plugin mode -> is activeServices zero?
+        if(BaseAudioProcessorService.activeServices <= 0 || (!isRootless() && prefsApp.get<Boolean>(R.string.key_powered_on))) {
             this.showAlert(R.string.editor_engine_down_title, R.string.editor_engine_down)
         }
         else {

@@ -4,11 +4,12 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.provider.Settings
-import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.activity.EngineLauncherActivity
 import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasProjectMediaAppOp
+import me.timschneeberger.rootlessjamesdsp.utils.isRoot
+import me.timschneeberger.rootlessjamesdsp.utils.isRootless
 import me.timschneeberger.rootlessjamesdsp.utils.notifications.ServiceNotificationHelper
 import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import org.koin.core.component.KoinComponent
@@ -23,7 +24,7 @@ class BootCompletedReceiver : BroadcastReceiver(), KoinComponent {
         if (intent.action != Intent.ACTION_BOOT_COMPLETED)
             return
 
-        if(BuildConfig.ROOTLESS) {
+        if(isRootless()) {
             if (!preferences.get<Boolean>(R.string.key_autostart_prompt_at_boot))
                 return
 
@@ -41,7 +42,7 @@ class BootCompletedReceiver : BroadcastReceiver(), KoinComponent {
 
             ServiceNotificationHelper.pushPermissionPromptNotification(context)
         }
-        else {
+        else if(isRoot()) {
             // Root version: if enhanced processing mode is on, we need to start the service manually
             if(preferences.get<Boolean>(R.string.key_audioformat_enhanced_processing) &&
                 !preferences.get<Boolean>(R.string.key_audioformat_processing)) {
