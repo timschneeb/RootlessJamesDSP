@@ -284,7 +284,8 @@ class MainActivity : BaseActivity() {
                     }
                 }
                 else if(isPlugin()) {
-                    // TODO implement plugin mode
+                    binding.powerToggle.isToggled = !binding.powerToggle.isToggled
+                    prefsApp.set(R.string.key_powered_on, binding.powerToggle.isToggled)
                 }
             }
         })
