@@ -1,6 +1,7 @@
 package me.timschneeberger.rootlessjamesdsp.flavor.updates
 
 import android.app.Service
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.pm.PackageInstaller
 import android.os.IBinder
@@ -27,7 +28,12 @@ class SessionInstallerService : Service() {
                 it.putExtra(Intent.EXTRA_INSTALLER_PACKAGE_NAME, "com.android.vending")
                 it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
-                startActivity(it)
+                try {
+                    startActivity(it)
+                }
+                catch (ex: ActivityNotFoundException) {
+                    toast(R.string.no_activity_found)
+                }
             }
         } else {
             notifyStatus(intent)
