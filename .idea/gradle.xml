@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/hidden-api-stubs" />
           </set>
         </option>
+        <option name="resolveExternalAnnotations" value="false" />
       </GradleProjectSettings>
     </option>
   </component>

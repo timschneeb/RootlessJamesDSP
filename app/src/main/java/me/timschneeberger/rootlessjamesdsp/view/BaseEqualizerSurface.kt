@@ -15,6 +15,7 @@ import androidx.core.content.withStyledAttributes
 import androidx.core.os.bundleOf
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getParcelableAs
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.prettyNumberFormat
+import timber.log.Timber
 import java.util.Locale
 import kotlin.math.abs
 import kotlin.math.exp
@@ -231,6 +232,11 @@ abstract class BaseEqualizerSurface(
     }
 
     fun setBand(i: Int, value: Double) {
+        if(i < 0 || i >= bandsNum) {
+            Timber.e("setBand($i): $i is out of range")
+            return
+        }
+
         mLevels[i] = value
         postInvalidate()
     }
