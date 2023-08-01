@@ -7,6 +7,8 @@ import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.ActivityOnboardingBinding
 import me.timschneeberger.rootlessjamesdsp.fragment.OnboardingFragment
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showAlert
+import me.timschneeberger.rootlessjamesdsp.utils.isRoot
+import me.timschneeberger.rootlessjamesdsp.utils.isRootless
 
 
 class OnboardingActivity : BaseActivity(){
@@ -33,7 +35,8 @@ class OnboardingActivity : BaseActivity(){
             .commit()
 
         // Root: onboarding currently not required, except when setting up DUMP permission for enhanced processing
-        if(!BuildConfig.ROOTLESS && !intent.getBooleanExtra(EXTRA_ROOT_SETUP_DUMP_PERM, false)) {
+        // Plugin: no setup required
+        if(!isRootless() && !intent.getBooleanExtra(EXTRA_ROOT_SETUP_DUMP_PERM, false)) {
             this.finish()
             return
         }

@@ -34,6 +34,8 @@ import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.ProfileManager
 import me.timschneeberger.rootlessjamesdsp.utils.RoutingObserver
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.registerLocalReceiver
+import me.timschneeberger.rootlessjamesdsp.utils.isRoot
+import me.timschneeberger.rootlessjamesdsp.utils.isRootless
 import me.timschneeberger.rootlessjamesdsp.utils.notifications.Notifications
 import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
@@ -52,7 +54,7 @@ import java.util.Date
 import java.util.Locale
 
 
-class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChangeListener {
+open class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChangeListener {
     init {
         sdkAbove(Build.VERSION_CODES.P) {
             HiddenApiBypass.addHiddenApiExemptions("L")
@@ -87,7 +89,7 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
                         engineSampleRate = intent.getFloatExtra(Constants.EXTRA_SAMPLE_RATE, 0f)
                     }
                     Constants.ACTION_DISCARD_AUTHORIZATION -> {
-                        if(BuildConfig.ROOTLESS) {
+                        if(isRootless()) {
                             Timber.i("mediaProjectionStartIntent discarded")
                             mediaProjectionStartIntent = null
                         }
@@ -192,7 +194,7 @@ class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChang
         })
 
         try {
-            if (!BuildConfig.ROOTLESS && isLegacyMode)
+            if (isRoot() && isLegacyMode)
                 RootAudioProcessorService.updateLegacyMode(applicationContext, true)
         }
         catch(ex: Exception) {

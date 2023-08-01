@@ -11,7 +11,6 @@ import androidx.core.content.getSystemService
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.MainApplication
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.activity.MainActivity
@@ -25,6 +24,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.get
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getAppIcon
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getAppNameFromUidSafe
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getPackageNameFromUid
+import me.timschneeberger.rootlessjamesdsp.utils.isRootless
 import me.timschneeberger.rootlessjamesdsp.utils.notifications.Notifications
 import timber.log.Timber
 import java.util.Timer
@@ -80,7 +80,7 @@ class AppCompatibilityFragment : Fragment() {
             Timber.d("Requesting retry")
 
             projectIntent?.let {
-                if (BuildConfig.ROOTLESS && SdkCheck.isQ)
+                if (isRootless() && SdkCheck.isQ)
                     RootlessAudioProcessorService.start(requireContext(), it)
             }
 
@@ -100,7 +100,7 @@ class AppCompatibilityFragment : Fragment() {
 
             Timer("Reboot", false).schedule(100L) {
                 projectIntent?.let {
-                    if (BuildConfig.ROOTLESS && SdkCheck.isQ)
+                    if (isRootless() && SdkCheck.isQ)
                         RootlessAudioProcessorService.start(requireContext(), it)
                 }
 

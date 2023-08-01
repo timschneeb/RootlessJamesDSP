@@ -7,6 +7,7 @@ import me.timschneeberger.rootlessjamesdsp.session.dump.data.AudioPolicyServiceD
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.utils.DumpUtils
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getPackageNameFromUid
+import me.timschneeberger.rootlessjamesdsp.utils.isRootless
 import timber.log.Timber
 import java.util.Locale
 
@@ -63,7 +64,7 @@ class AudioPolicyServiceDumpProvider : ISessionDumpProvider {
             val pkgName = it2.groups[2]?.value?.replace("shared:", "") ?: return@regexLoop
             val allowed = it2.groups[1]?.value?.trim()?.lowercase(Locale.ROOT) == "true"
             captureAllowLog[pkgName] = allowed
-            if (!allowed && BuildConfig.ROOTLESS) {
+            if (!allowed && isRootless()) {
                 Timber.v("Playback capture restricted by $pkgName")
             }
         }

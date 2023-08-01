@@ -16,6 +16,8 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.se
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showAlert
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasDumpPermission
+import me.timschneeberger.rootlessjamesdsp.utils.isRoot
+import me.timschneeberger.rootlessjamesdsp.utils.isRootless
 import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import org.koin.android.ext.android.inject
 import timber.log.Timber
@@ -35,10 +37,10 @@ class SettingsAudioFormatFragment : SettingsBaseFragment() {
         setPreferencesFromResource(R.xml.app_audio_format_preferences, rootKey)
 
         // Root: Hide audio format category
-        encoding?.parent?.isVisible = BuildConfig.ROOTLESS
+        encoding?.parent?.isVisible = isRootless()
 
         // Rootless: Hide audio processing category
-        legacyMode?.parent?.isVisible = !BuildConfig.ROOTLESS
+        legacyMode?.parent?.isVisible = isRoot()
         legacyMode?.setOnPreferenceChangeListener { _, newValue ->
             if (!(newValue as Boolean))
                 requireContext().requestIgnoreBatteryOptimizations()

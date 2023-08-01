@@ -38,7 +38,8 @@ import me.timschneeberger.rootlessjamesdsp.databinding.DialogTextinputBinding
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getApplicationInfoCompat
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getPackageInfoCompat
-import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
+import me.timschneeberger.rootlessjamesdsp.utils.isPlugin
+import me.timschneeberger.rootlessjamesdsp.utils.isRootless
 import timber.log.Timber
 import java.io.File
 import kotlin.math.roundToInt
@@ -145,7 +146,7 @@ object ContextExtensions {
 
     @SuppressLint("BatteryLife")
     fun Context.requestIgnoreBatteryOptimizations() {
-        if (!BuildConfig.ROOTLESS && !getSystemService<PowerManager>()!!.isIgnoringBatteryOptimizations(packageName)) {
+        if (!isRootless() && !getSystemService<PowerManager>()!!.isIgnoringBatteryOptimizations(packageName)) {
             try {
                 startActivity(Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS,
                     Uri.parse("package:$packageName")))
@@ -163,6 +164,7 @@ object ContextExtensions {
     private val APPNAME_REFS = setOf("Um9vdGxlc3NKYW1lc0RTUA==", "SmFtZXNEU1A=")
     fun Context.check(): Int {
         val appName = getAppName()
+        if(isPlugin()) return 0
         if(PKGNAME_REFS.none { decode(it) == packageName }) return 1
         if(APPNAME_REFS.none { decode(it) == appName }) return 2
         if(!BuildConfig.DEBUG && packageName.contains("debug")) return 3

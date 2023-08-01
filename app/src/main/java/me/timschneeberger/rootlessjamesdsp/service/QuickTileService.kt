@@ -16,6 +16,8 @@ import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.unregisterLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasProjectMediaAppOp
+import me.timschneeberger.rootlessjamesdsp.utils.isRoot
+import me.timschneeberger.rootlessjamesdsp.utils.isRootless
 import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import org.koin.android.ext.android.inject
@@ -65,8 +67,8 @@ class QuickTileService : TileService(),
     }
 
     private fun isEffectEnabled(): Boolean {
-        return (BuildConfig.ROOTLESS && BaseAudioProcessorService.activeServices > 0) ||
-                (!BuildConfig.ROOTLESS && preferences.get<Boolean>(R.string.key_powered_on))
+        return (isRootless() && BaseAudioProcessorService.activeServices > 0) ||
+                (!isRootless() && preferences.get<Boolean>(R.string.key_powered_on))
     }
 
     private fun updateState() {
@@ -84,7 +86,7 @@ class QuickTileService : TileService(),
             }
             .also {
                 // If projection permission request needs to be shown, collapse status bar
-                if(BuildConfig.ROOTLESS && app.mediaProjectionStartIntent == null && !hasProjectMediaAppOp())
+                if(isRootless() && app.mediaProjectionStartIntent == null && !hasProjectMediaAppOp())
                     startActivityAndCollapse(it)
                 else
                     startActivity(it)
@@ -98,9 +100,9 @@ class QuickTileService : TileService(),
 
         val toggled = qsTile?.let { it.state != Tile.STATE_ACTIVE } ?: return
 
-        // Root
-        if(!BuildConfig.ROOTLESS) {
-            if(BaseAudioProcessorService.activeServices <= 0) {
+        // Root/plugin
+        if(!isRootless()) {
+            if(isRoot() && BaseAudioProcessorService.activeServices <= 0) {
                 launchService()
             }
             preferences.set(R.string.key_powered_on, toggled)

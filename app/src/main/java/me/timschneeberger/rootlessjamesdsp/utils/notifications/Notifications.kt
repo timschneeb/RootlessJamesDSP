@@ -10,6 +10,7 @@ import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.buildNotificationChannel
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.buildNotificationChannelGroup
+import me.timschneeberger.rootlessjamesdsp.utils.isRootless
 
 /**
  * Class to manage the basic information of all the notifications used in the app.
@@ -93,7 +94,7 @@ object Notifications {
             )
         )
 
-        if(BuildConfig.ROOTLESS) {
+        if(isRootless()) {
             notificationService.createNotificationChannelsCompat(
                 listOf(
                     buildNotificationChannel(CHANNEL_SERVICE_SESSION_LOSS, IMPORTANCE_HIGH) {

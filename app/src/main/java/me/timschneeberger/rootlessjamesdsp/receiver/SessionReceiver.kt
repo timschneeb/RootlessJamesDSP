@@ -10,13 +10,15 @@ import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.session.rootless.RootlessSessionDatabase
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sendLocalBroadcast
+import me.timschneeberger.rootlessjamesdsp.utils.isPlugin
+import me.timschneeberger.rootlessjamesdsp.utils.isRoot
 import timber.log.Timber
 
 class SessionReceiver : BroadcastReceiver() {
 
     @SuppressLint("BinaryOperationInTimber")
     override fun onReceive(context: Context?, intent: Intent?) {
-        if (intent == null || context == null) {
+        if (isPlugin() || intent == null || context == null) {
             return
         }
 
@@ -37,7 +39,7 @@ class SessionReceiver : BroadcastReceiver() {
                 }
         )
 
-        if(!BuildConfig.ROOTLESS) {
+        if(isRoot()) {
             Intent(context, RootAudioProcessorService::class.java)
                 .apply { this.action = intent.action }
                 .apply { putExtras(intent) }

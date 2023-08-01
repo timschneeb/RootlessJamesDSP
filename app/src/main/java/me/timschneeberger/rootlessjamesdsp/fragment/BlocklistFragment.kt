@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.MainApplication
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.adapter.AppBlocklistAdapter
@@ -29,6 +28,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.ge
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showAlert
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showYesNoAlert
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.asHtml
+import me.timschneeberger.rootlessjamesdsp.utils.isRootless
 import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import org.koin.android.ext.android.inject
 
@@ -130,7 +130,7 @@ class BlocklistFragment : Fragment() {
     }
 
     private fun updateUnsupportedApps() {
-        if(BuildConfig.ROOTLESS) {
+        if(isRootless()) {
             policyPollingScope.launch {
                 val isAllowed = preferences.get<Boolean>(R.string.key_session_exclude_restricted)
 

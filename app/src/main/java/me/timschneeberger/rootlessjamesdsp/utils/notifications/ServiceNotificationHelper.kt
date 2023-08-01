@@ -22,6 +22,7 @@ import me.timschneeberger.rootlessjamesdsp.service.RootlessAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.utils.SdkCheck
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getAppName
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getAppNameFromUid
+import me.timschneeberger.rootlessjamesdsp.utils.isRootless
 import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -78,7 +79,7 @@ object ServiceNotificationHelper: KoinComponent {
     fun createServiceNotification(context: Context, sessions: Array<IEffectSession>): Notification {
         val apps = sessions.distinct().joinToString(", ") {
             // Rootless uses UIDs primarily internally, while Root has a guaranteed package name
-            if(BuildConfig.ROOTLESS) {
+            if(isRootless()) {
                 context.getAppNameFromUid(it.uid)
                     ?: it.packageName
             }
@@ -90,7 +91,7 @@ object ServiceNotificationHelper: KoinComponent {
         }
 
         // Rootless: if service active it is always processing audio
-        val enabled = BuildConfig.ROOTLESS || preferences.get<Boolean>(R.string.key_powered_on)
+        val enabled = isRootless() || preferences.get<Boolean>(R.string.key_powered_on)
 
         return createServiceNotification(context,
             context.getString(
@@ -129,7 +130,7 @@ object ServiceNotificationHelper: KoinComponent {
         )
         .setOngoing(true)
         .apply {
-            if(BuildConfig.ROOTLESS)
+            if(isRootless())
                 addAction(createStopAction(context))
         }
         .build()
@@ -205,7 +206,7 @@ object ServiceNotificationHelper: KoinComponent {
             context,
             R.string.action_stop,
             R.drawable.ic_close_24dp,
-            if (SdkCheck.isQ && BuildConfig.ROOTLESS) {
+            if (SdkCheck.isQ && isRootless()) {
                 with(Intent(context, RootlessAudioProcessorService::class.java)) {
                     action = RootlessAudioProcessorService.ACTION_STOP
                     this
@@ -256,7 +257,7 @@ object ServiceNotificationHelper: KoinComponent {
 
 
     fun createStopIntent(ctx: Context) =
-        if (SdkCheck.isQ && BuildConfig.ROOTLESS) {
+        if (SdkCheck.isQ && isRootless()) {
             with(Intent(ctx, RootlessAudioProcessorService::class.java)) {
                 action = RootlessAudioProcessorService.ACTION_STOP
                 this
@@ -265,7 +266,7 @@ object ServiceNotificationHelper: KoinComponent {
         else throw IllegalStateException()
 
     fun createStartIntent(ctx: Context, mediaProjectionData: Intent? = null) =
-        if (SdkCheck.isQ && BuildConfig.ROOTLESS) {
+        if (SdkCheck.isQ && isRootless()) {
             with(Intent(ctx, RootlessAudioProcessorService::class.java)) {
                 action = RootlessAudioProcessorService.ACTION_START
                 putExtra(RootlessAudioProcessorService.EXTRA_MEDIA_PROJECTION_DATA, mediaProjectionData)

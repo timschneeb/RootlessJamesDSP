@@ -20,6 +20,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sh
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showYesNoAlert
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasProjectMediaAppOp
+import me.timschneeberger.rootlessjamesdsp.utils.isRootless
 import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import org.koin.android.ext.android.inject
 import java.util.Locale
@@ -102,8 +103,8 @@ class SettingsMiscFragment : SettingsBaseFragment() {
 
         crashReports?.parent?.isVisible = !BuildConfig.FOSS_ONLY
         debugDatabase?.parent?.isVisible = BuildConfig.DEBUG
-        autoStartNotify?.isVisible = BuildConfig.ROOTLESS
-        permRestartSetup?.parent?.isVisible = BuildConfig.ROOTLESS
+        autoStartNotify?.isVisible = isRootless()
+        permRestartSetup?.parent?.isVisible = isRootless()
     }
 
     override fun onResume() {
@@ -112,7 +113,7 @@ class SettingsMiscFragment : SettingsBaseFragment() {
     }
 
     private fun updatePermissionStates() {
-        if(!BuildConfig.ROOTLESS)
+        if(!isRootless())
             return
 
         val allowSkipPrompt = context?.hasProjectMediaAppOp() == true
