@@ -61,6 +61,8 @@
     <string name="error_projection_api_missing">ผู้ผลิตอุปกรณ์ของคุณได้ปิดใช้งาน API การบันทึกเสียงภายใน แอปพลิเคชันนี้ไม่สามารถทำงานได้หากไม่มี</string>
     <!-- Main screen -->
     <string name="power_button_alt">สลับการประมวลผลเสียง</string>
+    <string name="compander_enable">Dynamic range compander</string>
+    <string name="compander_timeconstant">Time constant</string>
     <string name="eq_filter_type">ประเภทตัวกรอง</string>
     <string name="eq_interpolator">อินเตอร์โพเลเตอร์</string>
     <string name="eq_interpolator_chip">ชิ้นตามลูกบาศก์ Hermite Interpolating</string>
