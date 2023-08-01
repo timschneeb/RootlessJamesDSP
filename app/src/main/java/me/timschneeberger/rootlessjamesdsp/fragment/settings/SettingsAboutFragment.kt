@@ -16,6 +16,7 @@ import me.timschneeberger.rootlessjamesdsp.flavor.UpdateManager
 import me.timschneeberger.rootlessjamesdsp.model.Translator
 import me.timschneeberger.rootlessjamesdsp.utils.Result
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
+import me.timschneeberger.rootlessjamesdsp.utils.isPlugin
 import me.timschneeberger.rootlessjamesdsp.utils.isRoot
 import org.koin.android.ext.android.inject
 import java.util.Locale
@@ -35,7 +36,7 @@ class SettingsAboutFragment : SettingsBaseFragment() {
         setPreferencesFromResource(R.xml.app_about_preferences, rootKey)
 
         version?.summary = BuildConfig.VERSION_NAME
-        buildInfo?.isVisible = BuildConfig.DEBUG || BuildConfig.PREVIEW
+        buildInfo?.isVisible = BuildConfig.DEBUG || BuildConfig.PREVIEW || isPlugin()
         val type = if(BuildConfig.PREVIEW)
             "Preview"
         else if(BuildConfig.DEBUG)
