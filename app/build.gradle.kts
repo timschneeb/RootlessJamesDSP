@@ -1,7 +1,7 @@
 import com.google.firebase.crashlytics.buildtools.gradle.CrashlyticsExtension
 
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("com.google.gms.google-services")
@@ -12,60 +12,31 @@ plugins {
 }
 
 android {
-    val SUPPORTED_ABIS = setOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
     compileSdk = AndroidConfig.compileSdk
-    project.setProperty("archivesBaseName", "RootlessJamesDSP-v${AndroidConfig.versionName}")
 
     defaultConfig {
-        targetSdk = AndroidConfig.targetSdk
-        versionCode = AndroidConfig.versionCode
-        versionName = AndroidConfig.versionName
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "COMMIT_COUNT", "\"${getCommitCount()}\"")
         buildConfigField("String", "COMMIT_SHA", "\"${getGitSha()}\"")
         buildConfigField("String", "BUILD_TIME", "\"${getBuildTime()}\"")
         buildConfigField("boolean", "PREVIEW", "false")
+        buildConfigField("boolean", "FOSS_ONLY", "true")
+        buildConfigField("boolean", "ROOTLESS", "false")
+        buildConfigField("boolean", "EMBEDDED", "true")
+        buildConfigField("String", "APPLICATION_ID", "\"me.timschneeberger.rootlessjamesdsp\"")
+        buildConfigField("String", "VERSION_NAME", "\"PLUGIN_MODE\"")
+        buildConfigField("int", "VERSION_CODE", "1")
+
+        targetSdk = AndroidConfig.targetSdk
 
         externalNativeBuild {
             cmake {
                 arguments.addAll(listOf("-DANDROID_ARM_NEON=ON"))
             }
         }
-
-        ndk {
-            abiFilters += SUPPORTED_ABIS
-        }
     }
 
-    buildTypes {
-        getByName("debug") {
-            applicationIdSuffix = ".debug"
-            versionNameSuffix = "-${getCommitCount()}"
-            manifestPlaceholders["crashlyticsCollectionEnabled"] = "false"
-        }
-        getByName("release") {
-            manifestPlaceholders += mapOf("crashlyticsCollectionEnabled" to "true")
-            configure<CrashlyticsExtension> {
-                nativeSymbolUploadEnabled = true
-                mappingFileUploadEnabled = false
-            }
-
-            //proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
-            isMinifyEnabled = false
-            isShrinkResources = false
-            signingConfig = signingConfigs.getByName("debug")
-        }
-        create("preview") {
-            initWith(getByName("release"))
-            buildConfigField("boolean", "PREVIEW", "true")
-
-            val debugType = getByName("debug")
-            versionNameSuffix = debugType.versionNameSuffix
-            matchingFallbacks.add("release")
-        }
-    }
+    android.defaultConfig.externalNativeBuild.cmake.arguments += "-DNO_CRASHLYTICS=1"
 
     flavorDimensions += "version"
     flavorDimensions += "dependencies"
@@ -82,37 +53,18 @@ android {
 
         create("rootless") {
             dimension = "version"
-
-            manifestPlaceholders["label"] = "RootlessJamesDSP"
-            applicationId = "me.timschneeberger.rootlessjamesdsp"
-            AndroidConfig.minSdk = 29
-            minSdk = AndroidConfig.minSdk
             buildConfigField("boolean", "ROOTLESS", "true")
+            buildConfigField("boolean", "PLUGIN", "false")
         }
         create("root") {
             dimension = "version"
-
-            manifestPlaceholders["label"] = "JamesDSP"
-            project.setProperty("archivesBaseName", "JamesDSP-v${AndroidConfig.versionName}-${AndroidConfig.versionCode}")
-            applicationId = "james.dsp"
-            AndroidConfig.minSdk = 26
-            minSdk = AndroidConfig.minSdk
             buildConfigField("boolean", "ROOTLESS", "false")
+            buildConfigField("boolean", "PLUGIN", "false")
         }
-    }
-
-    sourceSets {
-        // Use different app icon for non-release builds
-        getByName("debug").res.srcDirs("src/debug/res")
-    }
-
-    // Export multiple CPU architecture split apks
-    splits {
-        abi {
-            isEnable = true
-            reset()
-            include(*SUPPORTED_ABIS.toTypedArray())
-            isUniversalApk = true
+        create("plugin") {
+            dimension = "version"
+            buildConfigField("boolean", "ROOTLESS", "false")
+            buildConfigField("boolean", "PLUGIN", "true")
         }
     }
 
@@ -142,7 +94,7 @@ android {
     externalNativeBuild {
         cmake {
             path = file("src/main/cpp/CMakeLists.txt")
-            version = "3.18.1"
+            version = "3.27.1"
         }
     }
     namespace = "me.timschneeberger.rootlessjamesdsp"
@@ -214,7 +166,7 @@ dependencies {
     implementation("androidx.room:room-ktx:$roomVersion")
 
     // Script editor
-    implementation(project(":codeview"))
+    implementation(project(":jamesdsp:codeview"))
 
     // Shizuku
     implementation("dev.rikka.shizuku:api:${AndroidConfig.shizukuVersion}")
@@ -229,16 +181,14 @@ dependencies {
     // Hidden APIs
     implementation("dev.rikka.tools.refine:runtime:${AndroidConfig.rikkaRefineVersion}")
     implementation("org.lsposed.hiddenapibypass:hiddenapibypass:4.3")
-    compileOnly(project(":hidden-api-refined"))
-    implementation(project(":hidden-api-impl"))
+    compileOnly(project(":jamesdsp:hidden-api-refined"))
+    implementation(project(":jamesdsp:hidden-api-impl"))
 
     // Debug utilities
     debugImplementation("com.squareup.leakcanary:leakcanary-android:2.10")
     debugImplementation("com.plutolib:pluto:2.0.9")
-    "previewImplementation"("com.plutolib:pluto-no-op:2.0.9")
     releaseImplementation("com.plutolib:pluto-no-op:2.0.9")
     debugImplementation("com.plutolib.plugins:bundle-core:2.0.9")
-    "previewImplementation"("com.plutolib.plugins:bundle-core-no-op:2.0.9")
     releaseImplementation("com.plutolib.plugins:bundle-core-no-op:2.0.9")
 
     // Unit tests

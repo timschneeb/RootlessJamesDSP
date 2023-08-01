@@ -5,11 +5,6 @@ plugins {
 android {
     compileSdk = AndroidConfig.compileSdk
 
-    defaultConfig {
-        minSdk = AndroidConfig.minSdk
-        targetSdk = AndroidConfig.targetSdk
-    }
-
     buildTypes {
         release {
             isShrinkResources = false
@@ -26,6 +21,6 @@ android {
 
 dependencies {
     implementation("dev.rikka.shizuku:api:${AndroidConfig.shizukuVersion}")
-    compileOnly(project(":hidden-api-stubs"))
-    compileOnly(project(":hidden-api-refined"))
+    compileOnly(project(":jamesdsp:hidden-api-stubs"))
+    compileOnly(project(":jamesdsp:hidden-api-refined"))
 }
