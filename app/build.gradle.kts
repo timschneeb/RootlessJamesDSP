@@ -156,8 +156,8 @@ afterEvaluate {
     getTasksByName("assembleRootlessFullRelease", false).firstOrNull()?.finalizedBy("uploadCrashlyticsSymbolFileRootlessFullRelease")
     getTasksByName("assembleRootFullRelease", false).firstOrNull()?.finalizedBy("uploadCrashlyticsSymbolFileRootFullRelease")
 
-    getTasksByName("assembleRootlessFullPreview", false).first().finalizedBy("uploadCrashlyticsSymbolFileRootlessFullRelease")
-    getTasksByName("assembleRootFullPreview", false).first().finalizedBy("uploadCrashlyticsSymbolFileRootFullRelease")
+    getTasksByName("assembleRootlessFullPreview", false).firstOrNull()?.finalizedBy("uploadCrashlyticsSymbolFileRootlessFullRelease")
+    getTasksByName("assembleRootFullPreview", false).firstOrNull()?.finalizedBy("uploadCrashlyticsSymbolFileRootFullRelease")
 }
 
 dependencies {
