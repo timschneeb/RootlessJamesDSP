@@ -26,7 +26,7 @@ android {
         buildConfigField("boolean", "ROOTLESS", "false")
         buildConfigField("boolean", "EMBEDDED", "true")
         buildConfigField("String", "APPLICATION_ID", "\"me.timschneeberger.rootlessjamesdsp\"")
-        buildConfigField("String", "VERSION_NAME", "\"PLUGIN_MODE\"")
+        buildConfigField("String", "VERSION_NAME", "\"${getBuildTime()} [PLUGIN_MODE]\"")
         buildConfigField("int", "VERSION_CODE", "1")
 
         targetSdk = AndroidConfig.targetSdk

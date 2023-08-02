@@ -5,6 +5,11 @@ plugins {
 android {
     compileSdk = AndroidConfig.compileSdk
 
+    defaultConfig {
+        minSdk = AndroidConfig.minSdk
+        targetSdk = AndroidConfig.targetSdk
+    }
+
     buildTypes {
         release {
             isShrinkResources = false
