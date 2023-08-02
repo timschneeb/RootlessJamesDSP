@@ -16,6 +16,8 @@ android {
 
     defaultConfig {
 
+        minSdk = 26
+
         buildConfigField("String", "COMMIT_COUNT", "\"${getCommitCount()}\"")
         buildConfigField("String", "COMMIT_SHA", "\"${getGitSha()}\"")
         buildConfigField("String", "BUILD_TIME", "\"${getBuildTime()}\"")
