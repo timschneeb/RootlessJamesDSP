@@ -44,6 +44,8 @@
         <activity
             android:name=".activity.MainActivity"
             android:exported="true"
+            android:icon="@mipmap/ic_dsp_launcher"
+            android:label="${label}"
             android:theme="@style/Theme.RootlessJamesDSP"
             android:windowSoftInputMode="adjustPan">
 
