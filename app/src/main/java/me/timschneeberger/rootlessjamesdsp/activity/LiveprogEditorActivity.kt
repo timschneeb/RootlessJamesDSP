@@ -254,7 +254,7 @@ class LiveprogEditorActivity : BaseActivity() {
             // Root/Rootless: if no services are active
             (!isPlugin() && BaseAudioProcessorService.activeServices <= 0) ||
             // Root/Plugin: if power button off
-            (!isRootless() && prefsApp.get<Boolean>(R.string.key_powered_on))
+            (!isRootless() && !prefsApp.get<Boolean>(R.string.key_powered_on))
         ) {
             this.showAlert(R.string.editor_engine_down_title, R.string.editor_engine_down)
         }
