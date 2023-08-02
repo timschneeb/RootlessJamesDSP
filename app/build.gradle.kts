@@ -27,6 +27,7 @@ android {
         buildConfigField("String", "COMMIT_SHA", "\"${getGitSha()}\"")
         buildConfigField("String", "BUILD_TIME", "\"${getBuildTime()}\"")
         buildConfigField("boolean", "PREVIEW", "false")
+        buildConfigField("boolean", "PLUGIN", "false")
 
         externalNativeBuild {
             cmake {
