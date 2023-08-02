@@ -21,9 +21,24 @@
         <package android:name="moe.shizuku.privileged.api" />
     </queries>
 
-    <application android:appCategory="audio">
+    <application
+        android:name=".MainApplication"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:hasFragileUserData="true"
+        android:icon="@mipmap/ic_dsp_launcher"
+        android:label="${label}"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.RootlessJamesDSP"
+        android:appCategory="audio"
+        tools:targetApi="s">
 
         <profileable android:shell="true"/>
+
+        <meta-data
+            android:name="firebase_crashlytics_collection_enabled"
+            android:value="${crashlyticsCollectionEnabled}" />
 
         <!-- Activities -->
         <activity
