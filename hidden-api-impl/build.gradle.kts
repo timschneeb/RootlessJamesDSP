@@ -26,6 +26,6 @@ android {
 
 dependencies {
     implementation("dev.rikka.shizuku:api:${AndroidConfig.shizukuVersion}")
-    compileOnly(project(":jamesdsp:hidden-api-stubs"))
-    compileOnly(project(":jamesdsp:hidden-api-refined"))
+    compileOnly(project(":hidden-api-stubs"))
+    compileOnly(project(":hidden-api-refined"))
 }

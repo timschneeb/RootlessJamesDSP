@@ -96,7 +96,7 @@ android {
     externalNativeBuild {
         cmake {
             path = file("src/main/cpp/CMakeLists.txt")
-            version = "3.27.1"
+            version = "3.22.1"
         }
     }
     namespace = "me.timschneeberger.rootlessjamesdsp"
@@ -109,8 +109,8 @@ afterEvaluate {
     getTasksByName("assembleRootlessFullRelease", false).firstOrNull()?.finalizedBy("uploadCrashlyticsSymbolFileRootlessFullRelease")
     getTasksByName("assembleRootFullRelease", false).firstOrNull()?.finalizedBy("uploadCrashlyticsSymbolFileRootFullRelease")
 
-    //getTasksByName("assembleRootlessFullPreview", false).first().finalizedBy("uploadCrashlyticsSymbolFileRootlessFullRelease")
-    //getTasksByName("assembleRootFullPreview", false).first().finalizedBy("uploadCrashlyticsSymbolFileRootFullRelease")
+    getTasksByName("assembleRootlessFullPreview", false).firstOrNull()?.finalizedBy("uploadCrashlyticsSymbolFileRootlessFullRelease")
+    getTasksByName("assembleRootFullPreview", false).firstOrNull()?.finalizedBy("uploadCrashlyticsSymbolFileRootFullRelease")
 }
 
 dependencies {
@@ -168,7 +168,7 @@ dependencies {
     implementation("androidx.room:room-ktx:$roomVersion")
 
     // Script editor
-    implementation(project(":jamesdsp:codeview"))
+    implementation(project(":codeview"))
 
     // Shizuku
     implementation("dev.rikka.shizuku:api:${AndroidConfig.shizukuVersion}")
@@ -183,8 +183,8 @@ dependencies {
     // Hidden APIs
     implementation("dev.rikka.tools.refine:runtime:${AndroidConfig.rikkaRefineVersion}")
     implementation("org.lsposed.hiddenapibypass:hiddenapibypass:4.3")
-    compileOnly(project(":jamesdsp:hidden-api-refined"))
-    implementation(project(":jamesdsp:hidden-api-impl"))
+    compileOnly(project(":hidden-api-refined"))
+    implementation(project(":hidden-api-impl"))
 
     // Debug utilities
     debugImplementation("com.squareup.leakcanary:leakcanary-android:2.10")
