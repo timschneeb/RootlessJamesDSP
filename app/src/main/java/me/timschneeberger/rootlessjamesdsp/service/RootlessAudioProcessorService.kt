@@ -449,7 +449,9 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
                 ServiceNotificationHelper.pushServiceNotification(applicationContext, arrayOf())
 
                 val floatBuffer = FloatArray(bufferSize)
+                val floatOutBuffer = FloatArray(bufferSize)
                 val shortBuffer = ShortArray(bufferSize)
+                val shortOutBuffer = ShortArray(bufferSize)
                 while (!isProcessorDisposing) {
                     if(recreateRecorderRequested) {
                         recreateRecorderRequested = false
@@ -503,13 +505,13 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
                     // Choose encoding and process data
                     if(encoding == AudioEncoding.PcmShort) {
                         recorder.read(shortBuffer, 0, shortBuffer.size, AudioRecord.READ_BLOCKING)
-                        val output = engine.processInt16(shortBuffer)
-                        track.write(output, 0, output.size, AudioTrack.WRITE_BLOCKING)
+                        engine.processInt16(shortBuffer, shortOutBuffer)
+                        track.write(shortOutBuffer, 0, shortOutBuffer.size, AudioTrack.WRITE_BLOCKING)
                     }
                     else {
                         recorder.read(floatBuffer, 0, floatBuffer.size, AudioRecord.READ_BLOCKING)
-                        val output = engine.processFloat(floatBuffer)
-                        track.write(output, 0, output.size, AudioTrack.WRITE_BLOCKING)
+                        engine.processFloat(floatBuffer, floatOutBuffer)
+                        track.write(floatOutBuffer, 0, floatOutBuffer.size, AudioTrack.WRITE_BLOCKING)
                     }
                 }
             } catch (e: IOException) {
