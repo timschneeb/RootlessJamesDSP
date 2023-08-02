@@ -8,6 +8,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.se
 import timber.log.Timber
 import java.util.Timer
 import kotlin.concurrent.schedule
+import kotlin.reflect.jvm.internal.impl.renderer.ClassifierNamePolicy.SHORT
 
 class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspCallbacks? = null) : JamesDspBaseEngine(context, callbacks) {
     var handle: JamesDspHandle = JamesDspWrapper.alloc(callbacks ?: DummyCallbacks())
@@ -33,34 +34,52 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
     }
 
     // Processing
-    fun processInt16(input: ShortArray): ShortArray
+    fun processInt16(input: ShortArray, output: ShortArray, offset: Int = -1, length: Int = -1)
     {
         if(!enabled || handle == 0L)
         {
-            return input
+            if(offset < 0 && length < 0) {
+                input.copyInto(output)
+            }
+            else {
+                input.copyInto(output, 0, offset, offset + length)
+            }
         }
-
-        return JamesDspWrapper.processInt16(handle, input)
+        else {
+            JamesDspWrapper.processInt16(handle, input, output, offset, length)
+        }
     }
 
-    fun processInt32(input: IntArray): IntArray
+    fun processInt32(input: IntArray, output: IntArray, offset: Int = -1, length: Int = -1)
     {
         if(!enabled || handle == 0L)
         {
-            return input
+            if(offset < 0 && length < 0) {
+                input.copyInto(output)
+            }
+            else {
+                input.copyInto(output, 0, offset, offset + length)
+            }
         }
-
-        return JamesDspWrapper.processInt32(handle, input)
+        else {
+            JamesDspWrapper.processInt32(handle, input, output, offset, length)
+        }
     }
 
-    fun processFloat(input: FloatArray): FloatArray
+    fun processFloat(input: FloatArray, output: FloatArray, offset: Int = -1, length: Int = -1)
     {
         if(!enabled || handle == 0L)
         {
-            return input
+            if(offset < 0 && length < 0) {
+                input.copyInto(output)
+            }
+            else {
+                input.copyInto(output, 0, offset, offset + length)
+            }
         }
-
-        return JamesDspWrapper.processFloat(handle, input)
+        else {
+            JamesDspWrapper.processFloat(handle, input, output, offset, length)
+        }
     }
 
     // Effect config

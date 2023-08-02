@@ -187,39 +187,45 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_isHandleValid(J
 }
 
 extern "C"
-JNIEXPORT jshortArray JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_processInt16(JNIEnv *env, jobject obj, jlong self, jshortArray inputObj)
+JNIEXPORT void JNICALL
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_processInt16(JNIEnv *env, jobject obj, jlong self, jshortArray inputObj, jshortArray outputObj, jint offset, jint size)
 {
-    // Return inputObj if DECLARE failed
-    DECLARE_DSP(inputObj)
+    DECLARE_DSP_V
 
-    auto inputLength = env->GetArrayLength(inputObj);
-    auto outputObj = env->NewShortArray(inputLength);
+    jsize inputLength;
+    if(size < 0)
+        inputLength = env->GetArrayLength(inputObj);
+    else
+        inputLength = size;
+    if(offset < 0)
+        offset = 0;
 
     auto input = env->GetShortArrayElements(inputObj, nullptr);
     auto output = env->GetShortArrayElements(outputObj, nullptr);
-    dsp->processInt16Multiplexd(dsp, input, output, inputLength / 2);
+    dsp->processInt16Multiplexd(dsp, input + offset, output, inputLength / 2);
     env->ReleaseShortArrayElements(inputObj, input, JNI_ABORT);
     env->ReleaseShortArrayElements(outputObj, output, 0);
-    return outputObj;
 }
 
 extern "C"
-JNIEXPORT jintArray JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_processInt32(JNIEnv *env, jobject obj, jlong self, jintArray inputObj)
+JNIEXPORT void JNICALL
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_processInt32(JNIEnv *env, jobject obj, jlong self, jintArray inputObj, jintArray outputObj, jint offset, jint size)
 {
-    // Return inputObj if DECLARE failed
-    DECLARE_DSP(inputObj)
+    DECLARE_DSP_V
 
-    auto inputLength = env->GetArrayLength(inputObj);
-    auto outputObj = env->NewIntArray(inputLength);
+    jsize inputLength;
+    if(size < 0)
+        inputLength = env->GetArrayLength(inputObj);
+    else
+        inputLength = size;
+    if(offset < 0)
+        offset = 0;
 
     auto input = env->GetIntArrayElements(inputObj, nullptr);
     auto output = env->GetIntArrayElements(outputObj, nullptr);
-    dsp->processInt32Multiplexd(dsp, input, output, inputLength / 2);
+    dsp->processInt32Multiplexd(dsp, input + offset, output, inputLength / 2);
     env->ReleaseIntArrayElements(inputObj, input, JNI_ABORT);
     env->ReleaseIntArrayElements(outputObj, output, 0);
-    return outputObj;
 }
 
 extern "C"
@@ -261,23 +267,26 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_processInt8U24(
 }
 
 extern "C"
-JNIEXPORT jfloatArray JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_processFloat(JNIEnv *env, jobject obj, jlong self, jfloatArray inputObj)
+JNIEXPORT void JNICALL
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_processFloat(JNIEnv *env, jobject obj, jlong self, jfloatArray inputObj, jfloatArray outputObj, jint offset, jint size)
 {
-    // Return inputObj if DECLARE failed
-    DECLARE_DSP(inputObj)
+    DECLARE_DSP_V
 
-    auto inputLength = env->GetArrayLength(inputObj);
-    auto outputObj = env->NewFloatArray(inputLength);
+    jsize inputLength;
+    if(size < 0)
+        inputLength = env->GetArrayLength(inputObj);
+    else
+        inputLength = size;
+    if(offset < 0)
+        offset = 0;
 
     auto input = env->GetFloatArrayElements(inputObj, nullptr);
     auto output = env->GetFloatArrayElements(outputObj, nullptr);
 
-    dsp->processFloatMultiplexd(dsp, input, output, inputLength / 2);
+    dsp->processFloatMultiplexd(dsp, input + offset, output, inputLength / 2);
 
     env->ReleaseFloatArrayElements(inputObj, input, JNI_ABORT);
     env->ReleaseFloatArrayElements(outputObj, output, 0);
-    return outputObj;
 }
 
 extern "C" JNIEXPORT jboolean JNICALL

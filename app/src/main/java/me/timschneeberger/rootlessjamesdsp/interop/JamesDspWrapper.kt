@@ -12,12 +12,11 @@ object JamesDspWrapper {
     external fun isHandleValid(self: JamesDspHandle): Boolean
 
     // Processing (interleaved)
-    external fun processInt16(self: JamesDspHandle, input: ShortArray): ShortArray
+    external fun processInt16(self: JamesDspHandle, input: ShortArray, output: ShortArray, offset: Int = -1, length: Int = -1)
     external fun processInt8U24(self: JamesDspHandle, input: IntArray): IntArray
     external fun processInt24Packed(self: JamesDspHandle, input: BooleanArray): BooleanArray
-
-    external fun processInt32(self: JamesDspHandle, input: IntArray): IntArray
-    external fun processFloat(self: JamesDspHandle, input: FloatArray): FloatArray
+    external fun processInt32(self: JamesDspHandle, input: IntArray, output: IntArray, offset: Int = -1, length: Int = -1)
+    external fun processFloat(self: JamesDspHandle, input: FloatArray, output: FloatArray, offset: Int = -1, length: Int = -1)
 
     // Engine config
     external fun setSamplingRate(self: JamesDspHandle, sampleRate: Float, forceRefresh: Boolean)
