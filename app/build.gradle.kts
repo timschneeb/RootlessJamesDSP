@@ -26,7 +26,7 @@ android {
         buildConfigField("boolean", "ROOTLESS", "false")
         buildConfigField("String", "APPLICATION_ID", "\"me.timschneeberger.rootlessjamesdsp\"")
         buildConfigField("String", "VERSION_NAME", "\"${getPluginVersion()} [PLUGIN_MODE]\"")
-        buildConfigField("int", "VERSION_CODE", "1")
+        buildConfigField("int", "VERSION_CODE", "40")
 
         targetSdk = AndroidConfig.targetSdk
 
