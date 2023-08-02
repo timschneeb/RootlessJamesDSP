@@ -27,7 +27,7 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:hasFragileUserData="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_dsp_launcher"
         android:label="${label}"
         android:supportsRtl="true"
         android:theme="@style/Theme.RootlessJamesDSP"
