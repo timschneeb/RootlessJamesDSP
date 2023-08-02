@@ -16,7 +16,7 @@ android {
 
     defaultConfig {
 
-        minSdk = 26
+        minSdk = AndroidConfig.minSdk
 
         buildConfigField("String", "COMMIT_COUNT", "\"${getCommitCount()}\"")
         buildConfigField("String", "COMMIT_SHA", "\"${getGitSha()}\"")
@@ -38,6 +38,19 @@ android {
     }
 
     android.defaultConfig.externalNativeBuild.cmake.arguments += "-DNO_CRASHLYTICS=1"
+
+    buildTypes {
+        getByName("debug") {
+        }
+        getByName("release") {
+        }
+        create("preview") {
+            initWith(getByName("release"))
+            buildConfigField("boolean", "PREVIEW", "true")
+
+            matchingFallbacks.add("release")
+        }
+    }
 
     flavorDimensions += "version"
     flavorDimensions += "dependencies"
@@ -64,6 +77,9 @@ android {
         }
         create("plugin") {
             dimension = "version"
+
+            AndroidConfig.minSdk = 26
+            minSdk = AndroidConfig.minSdk
             buildConfigField("boolean", "ROOTLESS", "false")
             buildConfigField("boolean", "PLUGIN", "true")
         }
@@ -188,8 +204,10 @@ dependencies {
     // Debug utilities
     debugImplementation("com.squareup.leakcanary:leakcanary-android:2.10")
     debugImplementation("com.plutolib:pluto:2.0.9")
+    "previewImplementation"("com.plutolib:pluto-no-op:2.0.9")
     releaseImplementation("com.plutolib:pluto-no-op:2.0.9")
     debugImplementation("com.plutolib.plugins:bundle-core:2.0.9")
+    "previewImplementation"("com.plutolib.plugins:bundle-core-no-op:2.0.9")
     releaseImplementation("com.plutolib.plugins:bundle-core-no-op:2.0.9")
 
     // Unit tests
