@@ -89,6 +89,7 @@ android {
             AndroidConfig.minSdk = 29
             minSdk = AndroidConfig.minSdk
             buildConfigField("boolean", "ROOTLESS", "true")
+            buildConfigField("boolean", "PLUGIN", "false")
         }
         create("root") {
             dimension = "version"
@@ -99,6 +100,15 @@ android {
             AndroidConfig.minSdk = 26
             minSdk = AndroidConfig.minSdk
             buildConfigField("boolean", "ROOTLESS", "false")
+            buildConfigField("boolean", "PLUGIN", "false")
+        }
+        create("plugin") {
+            dimension = "version"
+
+            AndroidConfig.minSdk = 26
+            minSdk = AndroidConfig.minSdk
+            buildConfigField("boolean", "ROOTLESS", "false")
+            buildConfigField("boolean", "PLUGIN", "true")
         }
     }
 
