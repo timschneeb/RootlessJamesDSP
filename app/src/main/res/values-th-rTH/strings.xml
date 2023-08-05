@@ -442,9 +442,35 @@
     <string name="geq_node_list">รายการโหนด</string>
     <string name="geq_no_nodes_defined">ไม่ได้กำหนดโหนด</string>
     <string name="geq_delete_node">ลบโหนด</string>
+    <string name="geq_go_back_to_node_list">กลับไปที่รายการโหนด</string>
+    <string name="geq_next_node">โหนดถัดไป</string>
+    <string name="geq_previous_node">โหนดก่อนหน้า</string>
+    <string name="geq_done_spaced">&#160;&#160;เสร็จสิ้น&#160;</string>
+    <string name="geq_done">เสร็จสิ้น</string>
+    <string name="geq_cancel_spaced">&#160;&#160;ทิ้ง&#160;</string>
+    <string name="geq_cancel">ทิ้ง</string>
+    <string name="geq_discard_changes_title">ละทิ้งการเปลี่ยนแปลงและออก</string>
+    <string name="geq_discard_changes">ค่าไม่ถูกต้องหรือว่างเปล่า  ไม่สามารถบันทึกการเปลี่ยนแปลงของคุณ\nคุณต้องการยกเลิกการเปลี่ยนแปลงและออกหรือไม่</string>
+    <string name="geq_frequeny_range">ค่าระหว่าง 1Hz ถึง 24000Hz</string>
+    <string name="geq_gain_range">ค่าระหว่าง -32dB ถึง 32dB</string>
+    <string name="geq_gain">ได้รับ</string>
+    <string name="geq_frequency">ความถี่</string>
     <!-- AutoEQ GraphicEQ selector -->
+    <string name="geq_api_network_error">ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์</string>
+    <string name="geq_api_network_error_details_code">เซิร์ฟเวอร์ตอบกลับด้วยรหัสข้อผิดพลาด: %1$d</string>
+    <string name="autoeq_search">ค้นหา AutoEQ</string>
+    <string name="autoeq_enter_model">ใส่รุ่นหูฟังของคุณ…</string>
+    <string name="autoeq_partial_results_warning">กำลังแสดงผลลัพธ์ %1$d แรก  โปรดปรับแต่งการค้นหาของคุณอย่างละเอียดเพื่อให้ได้ผลลัพธ์ที่เกี่ยวข้องมากขึ้น</string>
+    <string name="autoeq_no_results">ไม่พบผลลัพธ์</string>
     <!-- Customizable liveprog script parameters -->
+    <string name="title_activity_liveprog_params"> พารามิเตอร์ที่ปรับแต่งได้</string>
+    <string name="action_restore_defaults">คืนค่าเริ่มต้น</string>
     <!-- Liveprog script editor -->
+    <string name="title_activity_liveprog_editor">แก้ไขสคริปต์ </string>
+    <string name="editor_find_and_replace">ค้นหา/แทนที่…</string>
+    <string name="editor_docs">ช่วยเหลือ</string>
+    <string name="editor_open_fail">ไม่มีไฟล์สคริปต์หรือไม่สามารถเปิดได้ </string>
+    <string name="editor_run">บันทึกและเรียกใช้ </string>
     <string name="editor_save">บันทึก</string>
     <string name="editor_liveprog_enabled">Liveprog ถูกเปิดใช้งานโดยอัตโนมัติ</string>
     <string name="editor_replace_all">แทนที่ทั้งหมด</string>
@@ -507,11 +533,60 @@
     <!-- File intent handler -->
     <string name="intent_import_preset">นำเข้าที่ตั้งไว้ล่วงหน้า</string>
     <string name="intent_import_irs">นำเข้าการตอบสนองแรงกระตุ้น</string>
+    <string name="intent_import_vdc">นำเข้าไฟล์ VDC</string>
+    <string name="intent_import_liveprog">นำเข้าสคริปต์ Liveprog</string>
+    <string name="intent_import_mode_add">ที่นำเข้าเท่านั้น</string>
+    <string name="intent_import_mode_select">นำเข้าและเปิดใช้งาน</string>
+    <string name="intent_import_fail">การนำเข้า %1$s ล้มเหลว</string>
+    <string name="intent_import_success">นำเข้าไฟล์ \'%1$s\' แล้ว</string>
+    <string name="intent_import_select_success">ไฟล์ \'%1$s\' นำเข้าและเปิดใช้งานแล้ว</string>
+    <string name="intent_import_error_file_uri">นำเข้าไฟล์ไม่สำเร็จ  URI ไฟล์ที่ไม่รองรับ</string>
     <!-- Translation notice box -->
+    <string name="translation_notice_summary">โปรดช่วยเราแปลแอพนี้เป็นภาษาของคุณ!  แตะที่นี่เพื่อเยี่ยมชมไซต์โครงการบน Crowdin</string>
     <string name="translation_notice">ร่วมแปล</string>
     <!-- Self-updates (Root) -->
+    <string name="self_update_install_error">อัปเดตล้มเหลว</string>
+    <string name="self_update_download_fail">ดาวน์โหลดแพ็คเกจอัพเดทไม่สำเร็จ  โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ  รายละเอียด: %1$s</string>
+    <string name="self_update_install_fail">การติดตั้งล้มเหลว.  %1$s</string>
+    <string name="self_update_finished">ติดตั้งการอัปเดตแล้ว  แอพกำลังรีสตาร์ท ...</string>
+    <string name="self_update_no_updates">ไม่มีการอัปเดตใหม่ในขณะนี้ </string>
+    <string name="self_update_notice">มีการอัปเดตใหม่ (%1$s)</string>
+    <string name="self_update_notice_summary">แตะที่นี่เพื่อดาวน์โหลดและติดตั้งการอัปเดตใหม่</string>
+    <string name="self_update_notice_dismiss_install">ติดตั้งเดี๋ยวนี้</string>
+    <string name="self_update_notice_dismiss_snooze">เตือนฉันในภายหลัง</string>
+    <string name="self_update_notice_dismiss_skip">ข้ามการอัปเดต</string>
+    <string name="self_update_state_downloading">กำลังดาวน์โหลด...</string>
+    <string name="self_update_state_installing">กำลังติดตั้ง…</string>
     <!-- Backups -->
+    <string name="backup_restore_progress">การคืนค่าการสำรองข้อมูล</string>
+    <string name="backup_restore_error">กู้คืนการสำรองข้อมูลล้มเหลว</string>
+    <string name="backup_restore_error_format">ไฟล์ไม่รองรับหรือเสียหาย</string>
+    <string name="backup_restore_error_version_too_new">มีการสร้างข้อมูลสำรองด้วยเวอร์ชันที่ใหม่กว่าของแอปพลิเคชันนี้ และไม่สามารถโหลดได้  โปรดอัปเดตแอปนี้เพื่อดำเนินการต่อ</string>
+    <string name="backup_restore_completed">การกู้คืนเสร็จสมบูรณ์</string>
+    <string name="backup_create_completed">สร้างข้อมูลสำรองแล้ว</string>
+    <string name="backup_create_progress">สร้างสำเนาสำรอง</string>
+    <string name="backup_create_error">สำรองข้อมูล​ไม่สำเร็จ!</string>
+    <string name="backup_manual_backup">สำรองข้อมูลด้วยตนเอง</string>
+    <string name="backup_create">สร้างข้อมูลสำรอง</string>
+    <string name="backup_create_summary">สามารถใช้เพื่อเรียกคืนการตั้งค่าปัจจุบันในภายหลัง</string>
+    <string name="backup_restore">คืนค่าการสำรองข้อมูล</string>
+    <string name="backup_restore_summary">คืนค่าการตั้งค่าจากไฟล์สำรอง</string>
+    <string name="backup_automatic_backup">สำรองข้อมูลอัตโนมัติ</string>
+    <string name="backup_compat_info">การสำรองข้อมูลประกอบด้วยการตอบสนองแบบอิมพัลส์ สคริปต์ ไฟล์ VDC ค่าที่ตั้งไว้ล่วงหน้า และการกำหนดค่าเสียงปัจจุบันเพื่อความเข้ากันได้สูงสุดกับเวอร์ชันอื่นๆ</string>
+    <string name="backup_restore_mode_title">โหมดการคืนค่า</string>
+    <string name="backup_restore_mode_clean">ล้างการคืนค่า (ลบไฟล์ที่มีอยู่ทั้งหมด)</string>
+    <string name="backup_restore_mode_dirty">การคืนค่าสกปรก (เขียนทับเท่านั้น)</string>
+    <string name="backup_in_progress">กำลังสำรองข้อมูลอยู่</string>
     <!-- Multi-device profiles -->
+    <string name="group_wired_headphones">หูฟังแบบมีสาย</string>
+    <string name="group_bluetooth">บลูทูธ</string>
+    <string name="group_hdmi">HDMI</string>
+    <string name="group_speaker">ลำโพงภายใน</string>
+    <string name="group_usb">USB</string>
+    <string name="group_unknown">ไม่รู้จัก</string>
+    <string name="device_profile_status">โปรไฟล์อุปกรณ์ที่ใช้งานอยู่</string>
+    <string name="device_profile_manage_copy">คัดลอกโปรไฟล์…</string>
+    <string name="device_profile_manage_delete">ลบโปรไฟล์…</string>
     <string name="device_profile_manage_copy_select_no_target">ไม่มีโปรไฟล์ที่จะเขียนทับ</string>
     <string name="device_profile_manage_copy_select">เลือกโปรไฟล์ที่จะคัดลอก</string>
     <string name="device_profile_manage_paste_select">เลือกโปรไฟล์ที่จะเขียนทับ</string>
