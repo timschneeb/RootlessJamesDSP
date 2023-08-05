@@ -218,6 +218,7 @@
     <string name="session_detection_header">オーディオセッションの検出</string>
     <string name="session_continuous_polling">連続ポーリングを強制する</string>
     <string name="session_continuous_polling_off">システムからのセッションイベントのみ待ち受ける</string>
+    <string name="session_continuous_polling_rate">ポーリング間隔 (ミリ秒)</string>
     <string name="session_app_problem_ignore">アプリの互換性問題を無視する</string>
     <string name="session_loss_ignore">セッション制御の損失を無視する</string>
     <string name="session_loss_ignore_on">動作しない (音声が重複する可能性があります)</string>
@@ -242,9 +243,20 @@
     <string name="exclude_app_from_recents_off">最近使用したタスク一覧 (アプリ履歴) から除外しない</string>
     <string name="autostart_prompt_at_boot_off">起動後に通知を表示しない</string>
     <string name="autostart_prompt_at_boot_on">起動後に通知を表示する</string>
+    <string name="powersave">省電力</string>
+    <string name="powersave_suspend">アイドル時に音声パイプラインを一時停止する</string>
+    <string name="powersave_suspend_on">省電力のため、音声パイプラインを一時停止する</string>
     <string name="troubleshooting">トラブルシューティング</string>
     <string name="about_settings">このアプリについて</string>
+    <string name="about_settings_summary">クレジット、サポート、更新情報</string>
+    <string name="credits">クレジット</string>
+    <string name="translators">翻訳者</string>
+    <string name="credits_project_page">GitHubのプロジェクトページを開く</string>
+    <string name="credits_project_play_page">Google PlayのRootlessJamesDSPページを開く</string>
+    <string name="credits_project_play_page_summary">新しいアップデートを確認</string>
     <string name="credits_project_check_update">アップデートを確認しています...</string>
+    <string name="credits_project_translate">翻訳に貢献</string>
+    <string name="credits_project_translate_summary">このアプリの翻訳にご協力ください！</string>
     <string name="credits_version">アプリのバージョン</string>
     <string name="appearance_section_header">外観</string>
     <string name="appearance_summary">アプリのテーマ、真っ黒モード</string>
@@ -255,6 +267,9 @@
     <string name="appearance_theme_mode_dark">オン</string>
     <string name="appearance_pure_black_mode">真っ黒モード</string>
     <string name="appearance_app_theme">アプリのテーマ</string>
+    <string name="appearance_navigation_title">ナビゲーション</string>
+    <string name="appearance_nav_hide">スクロール時にナビゲーションバーを隠す</string>
+    <string name="appearance_show_icons">カテゴリのアイコンを表示</string>
     <string name="backup_settings">バックアップと復元</string>
     <string name="backup_settings_summary">自動 &amp; 手動バックアップ</string>
     <string name="backup_frequency">バックアップ間隔</string>
@@ -318,6 +333,7 @@
     <!-- Revert confirmation -->
     <!-- File intent handler -->
     <!-- Translation notice box -->
+    <string name="translation_notice">翻訳に貢献</string>
     <!-- Self-updates (Root) -->
     <!-- Backups -->
     <string name="backup_restore_progress">バックアップから復元中</string>
