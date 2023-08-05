@@ -63,8 +63,25 @@
     <string name="power_button_alt">สลับการประมวลผลเสียง</string>
     <string name="compander_enable">Dynamic range compander</string>
     <string name="compander_timeconstant">Time constant</string>
+    <string name="compander_granularity">ความละเอียด</string>
+    <string name="compander_granularity_very_low">ต่ำมาก</string>
+    <string name="compander_granularity_low">ต่ำ</string>
+    <string name="compander_granularity_medium">ปานกลาง</string>
+    <string name="compander_granularity_high">สูง</string>
+    <string name="compander_granularity_extreme">สูงมาก</string>
+    <string name="compander_tftransforms">การแปลงความถี่เวลา</string>
+    <string name="compander_tftransforms_stft">เครื่องแบบ (ฟูเรียร์แบบสั้น)</string>
+    <string name="compander_tftransforms_continuous_wavelet">หลายความละเอียด (เวฟเล็ตต่อเนื่อง)</string>
+    <string name="compander_tftransforms_time_domain">ความละเอียดหลายระดับ (โดเมนเวลา)</string>
+    <string name="eq_enable">อีควอไลเซอร์หลายรูปแบบ</string>
     <string name="eq_filter_type">ประเภทตัวกรอง</string>
     <string name="eq_interpolator">อินเตอร์โพเลเตอร์</string>
+    <string name="eq_filter_type_fir_minimum">เฟสขั้นต่ำ</string>
+    <string name="eq_filter_type_iir_4_order">IIR ลำดับที่ 4</string>
+    <string name="eq_filter_type_iir_6_order">IIR ลำดับที่ 6</string>
+    <string name="eq_filter_type_iir_8_order">IIR ลำดับที่ 8</string>
+    <string name="eq_filter_type_iir_10_order">IIR ลำดับที่ 10</string>
+    <string name="eq_filter_type_iir_12_order">IIR ลำดับที่ 12</string>
     <string name="eq_interpolator_chip">ชิ้นตามลูกบาศก์ Hermite Interpolating</string>
     <string name="eq_interpolator_mha">Modified Hiroshi Akima spline</string>
     <string name="eq_preset_acoustic">อะคูสติก</string>
@@ -127,7 +144,26 @@
     <string name="output_limiter_threshold">ขีด จำกัด</string>
     <string name="output_limiter_release">ปล่อยลิมิตเตอร์</string>
     <string name="output_control_postgain">ได้รับโพสต์</string>
+    <string name="stereowide_enable">ความกว้างของเวทีเสียง</string>
+    <string name="stereowide_level">ความกว้าง</string>
+    <string name="stereowide_level_none">ไม่มี</string>
+    <string name="stereowide_level_very_wide">กว้างมาก</string>
+    <string name="stereowide_level_wide">กว้าง</string>
+    <string name="stereowide_level_very_narrow">แคบมาก</string>
+    <string name="stereowide_level_narrow">แคบ</string>
+    <string name="crossfeed_enable">ครอสฟีด</string>
+    <string name="crossfeed_preset">ตั้งค่าล่วงหน้า</string>
+    <string name="crossfeed_preset_bs2b_weak">BS2B อ่อนแอ</string>
+    <string name="crossfeed_preset_bs2b_strong">BS2B แข็งแกร่ง</string>
+    <string name="crossfeed_preset_out_of_head">ออกจากหัว</string>
+    <string name="crossfeed_preset_surround1">รอบทิศทาง 1</string>
+    <string name="crossfeed_preset_surround2">รอบทิศทาง 2</string>
+    <string name="crossfeed_preset_realistic_surround">Joe0Bloggs สมจริงรอบทิศทาง</string>
     <!-- Onboarding -->
+    <string name="title_activity_onboarding">Onboarding</string>
+    <string name="onboarding_back">กลับ</string>
+    <string name="onboarding_next">ถัดไป</string>
+    <string name="onboarding_finish">เสร็จ</string>
     <!-- Rootless flavor -->
     <!-- Root flavor -->
     <string name="onboarding_adb_shizuku_install_instruction">คีย์: onboarding_adb_shizuku_install_instruction
