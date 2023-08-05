@@ -301,33 +301,222 @@
     <string name="autostart_prompt_at_boot_off">ไม่แสดงการแจ้งเตือนหลังจากบู๊ต</string>
     <string name="autostart_prompt_at_boot_on">แสดงการแจ้งเตือนหลังจากบู๊ต</string>
     <string name="autostart_service_at_boot">เปิดตัวหลังจากบูต</string>
+    <string name="autostart_service_at_boot_off">อย่าเริ่มบริการโดยอัตโนมัติหลังจากบู๊ต</string>
+    <string name="autostart_service_at_boot_on">เริ่มบริการโดยอัตโนมัติหลังจากบู๊ต</string>
+    <string name="powersave">ประหยัดพลังงาน</string>
+    <string name="powersave_suspend">ระงับท่อส่งเสียงในขณะที่ไม่ได้ใช้งาน</string>
+    <string name="powersave_suspend_off">ประมวลผลต่อไปแม้ในขณะที่ไม่มีเนื้อหากำลังเล่นอยู่</string>
+    <string name="powersave_suspend_on">หยุดท่อเสียงชั่วคราวเพื่อประหยัดพลังงาน</string>
+    <string name="troubleshooting">การแก้ไขปัญหา</string>
+    <string name="troubleshooting_summary">ตัวเลือกขั้นสูง เอกสารประกอบ การวินิจฉัย</string>
+    <string name="troubleshooting_docs">เอกสาร</string>
+    <string name="troubleshooting_actions">ตัวเลือกเบ็ดเตล็ด</string>
+    <string name="troubleshooting_dump">ส่งออกดัมพ์เซสชันเสียง…</string>
+    <string name="troubleshooting_dump_summary">เก็บข้อมูลการแก้ปัญหา</string>
+    <string name="troubleshooting_dump_share_title">ส่งออกดัมพ์เซสชันเสียง…..</string>
+    <string name="troubleshooting_view_limitations">ขีดจำกัดด้านเทคนิคของ VTEX</string>
+    <string name="troubleshooting_view_limitations_summary">แสดงรายละเอียดเกี่ยวกับข้อจำกัดของแอพนี้ </string>
+    <string name="troubleshooting_notification_access">อนุญาตการเข้าถึงการแจ้งเตือนเพื่อการตรวจจับเซสชันที่ดีขึ้น</string>
+    <string name="troubleshooting_notification_access_summary">เปิดใช้งานการตรวจจับเซสชันเสียงที่เชื่อถือได้มากขึ้น</string>
+    <string name="troubleshooting_repair_assets">กู้คืน IRS, DDC และสคริปต์ที่รวมไว้ </string>
+    <string name="troubleshooting_repair_assets_summary">แกะเนื้อหาที่โหลดไว้ล่วงหน้าหากคุณทำหาย</string>
+    <string name="troubleshooting_repair_assets_success">ค่าที่กำหนดเอาไว้ถูกเรียกคืนแล้ว</string>
+    <string name="misc_settings">เบ็ดเตล็ด</string>
+    <string name="misc_settings_summary">รายงานข้อขัดข้อง การดำเนินการอื่นๆ</string>
+    <string name="misc_permission_skip_prompt">ข้ามพรอมต์การอนุญาตให้จับภาพ</string>
+    <string name="misc_permission_auto_start">เอ็นจิ้นเอฟเฟกต์สตาร์ทอัตโนมัติเมื่อบู๊ต</string>
+    <string name="misc_permission_restart_setup">รีสตาร์ทวิซาร์ดการตั้งค่า</string>
+    <string name="misc_permission_restart_setup_summary">ให้สิทธิ์เพิ่มเติมที่ขาดหายไป</string>
+    <string name="misc_permission_header">สิทธิ์เพิ่มเติม</string>
+    <string name="assets">สินทรัพย์</string>
+    <string name="network_services">บริการเครือข่าย</string>
+    <string name="network_autoeq_api_url">URL แบ็กเอนด์ AutoEQ API</string>
+    <string name="network_invalid_url">รูปแบบ URL ไม่ถูกต้อง</string>
+    <string name="network_autoeq_conntest_running">กำลังทดสอบการเชื่อมต่อกับเซิร์ฟเวอร์…</string>
+    <string name="network_autoeq_conntest_done">การทดสอบการเชื่อมต่อสำเร็จ!</string>
+    <string name="network_autoeq_conntest_fail">การทดสอบการเชื่อมต่อล้มเหลว</string>
+    <string name="network_autoeq_conntest_fail_summary">เซิร์ฟเวอร์ตอบสนองไม่ถูกต้อง  ตรวจสอบว่าซอฟต์แวร์ที่ https://github.com/ThePBone/AutoEqApi ได้รับการตั้งค่าอย่างถูกต้องบนเซิร์ฟเวอร์\n\nข้อผิดพลาดของเครือข่าย: %1$s\n\nคุณต้องการคืนค่าการตั้งค่านี้เป็นค่าเริ่มต้นหรือไม่</string>
+    <string name="about_settings">เกี่ยวกับเรา</string>
+    <string name="about_settings_summary">เครดิต การสนับสนุน การอัปเดต</string>
+    <string name="privacy">ความเป็นส่วนตัว</string>
+    <string name="privacy_share_crash_reports">แบ่งปันรายงานข้อขัดข้องของแอปพลิเคชัน</string>
+    <string name="privacy_share_crash_reports_on">ส่งรายงานข้อขัดข้องไปยังผู้พัฒนา</string>
+    <string name="privacy_share_crash_reports_off">อย่าส่งรายงานข้อขัดข้องไปยังผู้พัฒนา</string>
+    <string name="credits">เครดิต</string>
+    <string name="translators">ผู้แปลภาษา</string>
+    <string name="credits_app">แอพ &amp;  การใช้งานแบบไม่มี Root พัฒนาโดย</string>
+    <string name="credits_dsp">ไลบรารีอัลกอริทึมหลักของ JamesDSP ที่พัฒนาโดย</string>
+    <string name="credits_project_page">เยี่ยมชมเว็บไซต์โครงการบน GitHub</string>
+    <string name="credits_project_page_summary">รายงานปัญหา อัปเดตตัวเองอยู่เสมอ และอ่านซอร์สโค้ด</string>
+    <string name="credits_project_play_page">เยี่ยมชม RootlessJamesDSP บน Google Play</string>
+    <string name="credits_project_play_page_summary">ค้นหาการอัพเดต</string>
+    <string name="credits_project_check_update">ตรวจสอบการอัปเดตใหม่…</string>
     <string name="credits_project_check_update_summary">ดาวน์โหลดและติดตั้งการอัปเดตหากมี</string>
+    <string name="credits_project_translate">ร่วมแปล</string>
+    <string name="credits_project_translate_summary">ช่วยเราแปลแอพนี้เป็นภาษาของคุณ</string>
+    <string name="credits_version">เวอร์ชันแอปพลิเคชัน</string>
+    <string name="credits_build_info">สร้างข้อมูล</string>
+    <string name="appearance_section_header">ลักษณะ</string>
+    <string name="appearance_summary">ธีมแอพ โหมดมืดดำบริสุทธิ์ </string>
+    <string name="appearance_title">ธีม</string>
+    <string name="appearance_theme_mode">โหมดมืด</string>
+    <string name="appearance_theme_mode_default">ตามธีมระบบ</string>
+    <string name="appearance_theme_mode_light">ปิด</string>
+    <string name="appearance_theme_mode_dark">เปิด</string>
+    <string name="appearance_pure_black_mode">โหมดมืดดำสนิท</string>
+    <string name="appearance_app_theme">ธีมแอพ</string>
+    <string name="appearance_navigation_title">การนำทาง</string>
+    <string name="appearance_nav_hide">ซ่อนแถบนำทางในการเลื่อน</string>
+    <string name="appearance_show_icons">แสดงไอคอนหมวดหมู่</string>
     <string name="backup_settings">การสำรองข้อมูลและคืนค่า</string>
+    <string name="backup_settings_summary">อัตโนมัติ &amp;  การสำรองข้อมูลด้วยตนเอง</string>
+    <string name="backup_frequency">ความถี่ในการสำรองข้อมูล</string>
+    <string name="backup_location">เลือกตำแหน่งการสำรองข้อมูล</string>
+    <string name="backup_maximum">การสำรองข้อมูลสูงสุด</string>
+    <string name="backup_never">ไม่เคย</string>
+    <string name="backup_12hour">ทุก 12 ชั่วโมง</string>
+    <string name="backup_24hour">รายวัน</string>
+    <string name="backup_48hour">ทุกๆ 2 วัน</string>
+    <string name="backup_weekly">รายสัปดาห์</string>
+    <string name="backup_select_location">โปรดสร้างและเลือกไดเร็กทอรีสำรอง...</string>
     <!-- Theme names -->
     <string name="theme_default">ค่าเริ่มต้น</string>
+    <string name="theme_monet">ไดนามิก</string>
+    <string name="theme_greenapple">แอปเปิลเขียว</string>
+    <string name="theme_strawberrydaiquiri">สตอเบอรี่ไดกิวรี่</string>
+    <string name="theme_honey">น้ำผึ้ง</string>
+    <string name="theme_tealturquoise">นกเป็ดน้ำ &amp;  สีฟ้าคราม</string>
+    <string name="theme_yinyang">หยิน&amp;หยาง</string>
+    <string name="theme_yotsuba">สี่ใบ</string>
+    <string name="theme_tidalwave">คลื่นยักษ์ </string>
     <!-- File library preference -->
+    <string name="action_import">นําเข้า</string>
+    <string name="filelibrary_hint_tap_and_hold">แตะรายการใดก็ได้ค้างไว้เพื่อดูตัวเลือกเพิ่มเติม</string>
+    <string name="filelibrary_context_load">โหลด</string>
+    <string name="filelibrary_context_edit">แก้ไข</string>
+    <string name="filelibrary_context_overwrite">เขียนทับ</string>
+    <string name="filelibrary_context_rename">เปลี่ยนชื่อ</string>
+    <string name="filelibrary_context_share">แบ่งปัน…</string>
+    <string name="filelibrary_context_resample">ตัวอย่างออฟไลน์ </string>
+    <string name="filelibrary_context_duplicate">ทำซ้ำ</string>
+    <string name="filelibrary_context_delete">ลบ</string>
+    <string name="filelibrary_context_new_preset">ใหม่</string>
+    <string name="filelibrary_context_new_preset_long">ค่าที่กำหนดล่วงหน้าใหม่</string>
+    <string name="filelibrary_unsupported_format_title">ไม่รองรับชนิดของไฟล์นี้</string>
+    <string name="filelibrary_unsupported_format">ไฟล์ที่เลือกไม่มีนามสกุลไฟล์ที่ถูกต้อง</string>
+    <string name="filelibrary_corrupted_title">ไฟล์ไม่รองรับหรือเสียหาย</string>
+    <string name="filelibrary_corrupted">ไฟล์ที่เลือกไม่มีข้อมูลที่ใช้งานได้หรือเสียหาย</string>
+    <string name="filelibrary_file_too_new">ไฟล์ที่เลือกถูกสร้างขึ้นด้วยเวอร์ชันที่ใหม่กว่าของแอปพลิเคชันนี้ และไม่สามารถโหลดได้  โปรดอัปเดตแอปนี้เพื่อดำเนินการต่อ</string>
+    <string name="filelibrary_access_fail">ไม่สามารถเข้าถึงไดเร็กทอรี</string>
+    <string name="filelibrary_is_backup_not_preset">ไฟล์ที่เลือกเป็นไฟล์สำรอง ไม่ใช่ไฟล์ที่ตั้งไว้ล่วงหน้า  โปรดไปที่การตั้งค่าการสำรองข้อมูลหากคุณต้องการกู้คืน</string>
+    <string name="filelibrary_no_file_selected">ไม่ได้เลือกไฟล์</string>
+    <string name="filelibrary_new_file_name">ชื่อไฟล์ใหม่</string>
+    <string name="filelibrary_file_exists">มีไฟล์อยู่แล้ว</string>
+    <string name="filelibrary_resample_complete">สุ่มตัวอย่างใหม่เป็น %1$dHz</string>
+    <string name="filelibrary_resample_failed">การสุ่มตัวอย่างซ้ำล้มเหลว  ไฟล์อินพุตเสียหาย?</string>
+    <string name="filelibrary_preset_overwritten">ตั้งค่าล่วงหน้า \'%1$s\' เขียนทับ</string>
+    <string name="filelibrary_preset_created">ตั้งค่าล่วงหน้า \'%1$s\' แล้ว</string>
+    <string name="filelibrary_preset_save_failed">ไม่สามารถบันทึกค่าที่ตั้งไว้ล่วงหน้าได้ </string>
+    <string name="filelibrary_renamed">เปลี่ยนชื่อเป็น \'%1$s\'</string>
+    <string name="filelibrary_deleted">ลบ \'%1$s\' แล้ว</string>
+    <string name="filelibrary_preset_loaded">ตั้งค่าล่วงหน้า \'%1$s\' แล้ว</string>
+    <string name="filelibrary_preset_load_failed">ไฟล์ \'%1$s\' เข้ากันไม่ได้กับแอปนี้ </string>
+    <string name="filelibrary_no_presets">ไม่มีการบันทึกค่าที่ตั้งไว้ล่วงหน้า  แตะ \'เพิ่ม\' เพื่อสร้างใหม่</string>
     <!-- JamesDSP engine messages -->
+    <string name="message_vdc_corrupt">ไฟล์ VDC ที่เลือกเสียหาย  โปรดเลือกรายการอื่น</string>
+    <string name="message_irs_corrupt">การตอบสนองแรงกระตุ้นที่เลือกเสียหาย  โปรดเลือกรายการอื่น</string>
+    <string name="message_convolver_advimp_invalid">Convolver: การแก้ไขรูปคลื่นขั้นสูงมีค่าที่ไม่ถูกต้อง</string>
+    <string name="message_liveprog_compile_fail">การดำเนินการ Liveprog ล้มเหลว  สคริปต์ที่เลือกเสียหาย  โปรดใช้โปรแกรมแก้ไขสคริปต์สำหรับการดีบัก</string>
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">การตอบสนองขนาด</string>
+    <string name="geq_edit_as_string">แก้ไขเป็นสตริง</string>
+    <string name="geq_autoeq">โปรไฟล์ AutoEQ</string>
     <string name="gep_add_node">เพิ่ม</string>
+    <string name="geq_preview">ดูตัวอย่าง</string>
+    <string name="geq_preview_collapsed">ดูตัวอย่าง (แตะเพื่อขยาย)</string>
+    <string name="geq_edit_hint">โหนด GraphicEQ</string>
+    <string name="geq_reset">รีเซ็ต</string>
+    <string name="geq_reset_confirm_title">คุณแน่ใจไหม?</string>
+    <string name="geq_reset_confirm">คุณต้องการรีเซ็ตการตั้งค่า GraphicEQ ของคุณหรือไม่</string>
+    <string name="geq_node_editor">ตัวแก้ไขโหนด</string>
+    <string name="geq_node_list">รายการโหนด</string>
+    <string name="geq_no_nodes_defined">ไม่ได้กำหนดโหนด</string>
+    <string name="geq_delete_node">ลบโหนด</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
+    <string name="editor_save">บันทึก</string>
+    <string name="editor_liveprog_enabled">Liveprog ถูกเปิดใช้งานโดยอัตโนมัติ</string>
+    <string name="editor_replace_all">แทนที่ทั้งหมด</string>
+    <string name="editor_replacement">เปลี่ยน</string>
+    <string name="editor_find_next_match">จับคู่</string>
+    <string name="editor_find_previous_match">จับคู่ก่อนหน้า</string>
+    <string name="editor_search_keyword">ค้นหา</string>
+    <string name="editor_source_position">%1$d:%2$d</string>
+    <string name="editor_engine_down_title">JamesDSP ไม่ทำงาน</string>
+    <string name="editor_engine_down">ไม่สามารถเรียกใช้สคริปต์ได้เนื่องจาก JamesDSP ถูกปิดใช้งาน  โปรดเปิด JamesDSP เพื่อเรียกใช้สคริปต์ </string>
+    <string name="editor_save_prompt_title">บันทึก การแก้ไข</string>
+    <string name="editor_save_prompt">สคริปต์ปัจจุบันมีการเปลี่ยนแปลงที่ไม่ได้บันทึก  คุณต้องการบันทึกการเปลี่ยนแปลงหรือยกเลิกหรือไม่</string>
+    <string name="editor_script_launched">เปิดตัวสคริปต์ </string>
+    <string name="editor_cannot_undo">ไม่มีอะไรจะเลิกทำ</string>
+    <string name="editor_cannot_redo">ไม่มีอะไรต้องทำซ้ำ</string>
+    <string name="editor_text_size">ขนาดข้อความ</string>
     <!-- Blocklist -->
     <string name="title_activity_blocklist"> แอพที่ยกเว้น</string>
+    <string name="blocklist_add_exclusion_alt">เพิ่มแอปพลิเคชันที่จะไม่รวม</string>
+    <string name="blocklist_delete_title">นำแอปที่เลือกออกไหม</string>
+    <string name="blocklist_delete">คุณต้องการนำแอปนี้ออกจากรายการยกเว้นหรือไม่</string>
+    <string name="blocklist_no_exclusions">ไม่มีแอปที่ยกเว้น</string>
+    <string name="blocklist_unsupported_apps">แอปสื่อที่ไม่รองรับ</string>
     <string name="blocklist_unsupported_apps_message"><![CDATA[<p>แอปนี้ไม่รองรับแอปประมวลผลที่บล็อกบุคคลที่สามไม่ให้บันทึกเอาต์พุตเสียงของตน  เพื่อป้องกันไม่ให้แอปเหล่านี้ถูกปิดเสียงเนื่องจากข้อจำกัดในการจับภาพ แอปเหล่านี้จะถูกแยกออกจากการประมวลผลเสียงโดยอัตโนมัติและไม่ถูกเปลี่ยนเส้นทาง</p><p><u>แอปที่ได้รับผลกระทบ:</u><br/>%s  </p>]]></string>
     <!-- Compatibility issue activity -->
+    <string name="title_activity_app_compat">ปัญหาความเข้ากันได้</string>
     <string name="app_compat_retry">ลองอีกครั้ง</string>
+    <string name="app_compat_exclude">ไม่รวม</string>
+    <string name="app_compat_title">การประมวลผลเสียงถูกระงับเพื่อป้องกันเสียงที่ซ้ำกัน</string>
+    <string name="app_compat_explanation">แอปต่อไปนี้ไม่ได้รับการสนับสนุนเนื่องจากทำให้ RootlessJamesDSP สูญเสียการควบคุมการกำหนดเส้นทางเสียง:</string>
+    <string name="app_compat_instruction">โปรดตรวจสอบการตั้งค่าของแอป หากคุณสามารถปิดใช้งานการเร่ง HW หรือการตั้งค่าอื่นๆ ที่อาจรบกวน RootlessJamesDSP และแตะ \'ลองอีกครั้ง\'</string>
+    <string name="app_compat_instruction_exclude">หรืออีกทางหนึ่ง เลือก \'ยกเว้น\' เพื่อข้ามปัญหานี้โดยยกเว้นแอปที่เข้ากันไม่ได้ออกจากการประมวลผลเสียง</string>
+    <string name="app_compat_unknown_pkg_name">แพ็กเกจที่ไม่รู้จัก</string>
     <!-- Root: Library load failure -->
+    <string name="load_fail_header">ไม่ได้ติดตั้ง Magisk module</string>
+    <string name="load_fail_card_title">โหลด libjamesdsp.so ไม่สำเร็จ</string>
+    <string name="load_fail_card">โปรดติดตั้งโมดูล Magisk ของ JamesDSP และรีบูตอุปกรณ์ Android ของคุณเพื่อใช้แอปพลิเคชันนี้  คุณอาจต้องติดตั้งแอปนี้ใหม่หลังจากรีบูต</string>
+    <string name="load_fail_rootless_card_title">กำลังมองหาทางเลือกอื่นที่ไม่มี Root?</string>
+    <string name="load_fail_rootless_card">JamesDSP รสชาตินี้ออกแบบมาเพื่อใช้กับอุปกรณ์ที่ Root/ดัดแปลง  นอกจากนี้ยังมีทางเลือกอื่นที่ไม่ใช่ Root พร้อมข้อจำกัดบางประการ  แตะที่นี่เพื่อดูรายละเอียด</string>
+    <string name="load_fail_arch_card_title">ติดตั้งโมดูลแล้ว?</string>
+    <string name="load_fail_arch_card">หากคุณติดตั้งโมดูล magisk แล้ว คุณอาจเลือกการตั้งค่าผิดระหว่างการติดตั้ง  โปรดติดตั้งใหม่และลองเปิดใช้งานความเข้ากันได้ของ Huawei (แม้ว่าโทรศัพท์ของคุณจะไม่ได้มาจากผู้ผลิตรายนั้นก็ตาม)</string>
     <!-- Enhanced processing -->
+    <string name="enhanced_processing_feature_unavailable">คุณลักษณะไม่พร้อมใช้งาน</string>
+    <string name="enhanced_processing_feature_unavailable_content">คุณลักษณะนี้ใช้ได้เฉพาะเมื่อเปิดใช้งาน \'การประมวลผลขั้นสูง\' ในการตั้งค่า  โปรดไปที่ \'การตั้งค่า &gt;  การประมวลผลเสียง &gt;  การประมวลผลขั้นสูง\' และเปิดใช้งานตัวเลือกนั้นเพื่อเข้าถึงเมนูนี้\n\nหมายเหตุ: ไม่สามารถใช้ \'การประมวลผลขั้นสูง\' ในขณะที่เปิดใช้งานโหมดเดิม</string>
+    <string name="enhanced_processing_missing_perm">การประมวลผลขั้นสูงถูกปิดใช้งานเนื่องจากไม่มีสิทธิ์  โปรดตั้งค่าใหม่ในการตั้งค่า</string>
     <!-- App list -->
+    <string name="app_list_loading">กำลังโหลดแอป …</string>
+    <string name="app_list_search">ค้นหา</string>
+    <string name="app_list_icon_alt">ไอคอนแอป</string>
     <!-- Number box view -->
+    <string name="number_box_decrement">ลดลง</string>
+    <string name="number_box_increment">เพิ่มขึ้น</string>
     <!-- Slider widget -->
+    <string name="slider_dialog_title">แก้ไขค่า</string>
+    <string name="slider_dialog_format_error">รูปแบบตัวเลขไม่ถูกต้อง  การเปลี่ยนแปลงไม่ได้ใช้ </string>
+    <string name="slider_dialog_step_error">ค่าต้องเป็นผลคูณของ %1$d  การเปลี่ยนแปลงไม่ได้ใช้ </string>
     <!-- Revert confirmation -->
+    <string name="revert_confirmation_title">คุณแน่ใจไหม?</string>
+    <string name="revert_confirmation">คุณต้องการรีเซ็ตการตั้งค่าล่วงหน้าของ JamesDSP ปัจจุบันเป็นค่าเริ่มต้นหรือไม่</string>
     <!-- File intent handler -->
+    <string name="intent_import_preset">นำเข้าที่ตั้งไว้ล่วงหน้า</string>
+    <string name="intent_import_irs">นำเข้าการตอบสนองแรงกระตุ้น</string>
     <!-- Translation notice box -->
+    <string name="translation_notice">ร่วมแปล</string>
     <!-- Self-updates (Root) -->
     <!-- Backups -->
     <!-- Multi-device profiles -->
+    <string name="device_profile_manage_copy_select_no_target">ไม่มีโปรไฟล์ที่จะเขียนทับ</string>
+    <string name="device_profile_manage_copy_select">เลือกโปรไฟล์ที่จะคัดลอก</string>
+    <string name="device_profile_manage_paste_select">เลือกโปรไฟล์ที่จะเขียนทับ</string>
     <!-- Root version check -->
+    <string name="version_mismatch_root">แพ็คเกจ Magisk JamesDSP ต้องการการอัปเดต</string>
+    <string name="version_mismatch_root_description">แพ็คเกจ magisk JamesDSP ที่ติดตั้งบนอุปกรณ์ของคุณล้าสมัยและแอปนี้ไม่รองรับอีกต่อไป\n\nโปรดเรียกค้น ZIP แพ็คเกจ magisk JamesDSP ล่าสุดและติดตั้งผ่าน Magisk\nโปรดทราบว่าแพ็คเกจ magisk อาจแทนที่แอปนี้ด้วยแอป JamesDSP อย่างเป็นทางการ  .\n\nคุณต้องการไปที่เว็บไซต์ดาวน์โหลดแพ็คเกจ Magisk ตอนนี้หรือไม่?</string>
+    <string name="version_mismatch_root_toast">ไม่สามารถเริ่มต้น  แพ็คเกจ Magisk JamesDSP ที่ติดตั้งนั้นเก่าเกินไปและแอพนี้ไม่รองรับอีกต่อไป</string>
 </resources>
