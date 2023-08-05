@@ -11,18 +11,18 @@ JamesDSP supporta i seguenti effetti audio:
 * Equalizzatore a risposta arbitraria (EQ grafico)
 * ViPER-DDC
 * Convolutore
-* Live-programmable DSP (scripting engine for audio effects)
+* DSP a modifica diretta (motore di scripting per effetti audio)
 * Modellazione analogica
-* Soundstage wideness
+* Espansore sonoro
 * Crossfeed
 * Effetto stanza virtuale (riverbero)
 
 Inoltre, questa applicazione si integra direttamente con AutoEQ. Utilizzando l'integrazione AutoEQ, è possibile ricercare ed importare risposte in frequenza che mirano a correggere la risposta delle cuffie, ottenendo così un suono neutrale. Vai a "equalizzatore a risposta arbitraria > risposta in ampiezza > profili AutoEQ" per iniziare.
 
 --- Limitazioni
-* Le applicazioni che bloccano l'acquisizione interna dell'audio rimangono non elaborate (ad esempio, Spotify, Google Chrome)
-* Le applicazioni che utilizzano alcuni tipi di riproduzione accelerata hardware possono causare problemi e devono essere escluse manualmente (ad esempio, alcuni giochi Unity)
-* Non può coesistere con (alcune) altre applicazioni di effetti audio (ad esempio, Wavelet e altre applicazioni che fanno uso dell'API Android "DynamicsProcessing")
+* Le applicazioni che bloccano l'acquisizione interna dell'audio rimangono non elaborate (ad esempio, Spotify, Google Chrome).
+* Le applicazioni che utilizzano alcuni tipi di riproduzione hardware accelerata possono causare problemi e devono essere escluse manualmente (ad esempio, alcuni giochi Unity).
+* Non può coesistere con (alcune) altre applicazioni di effetti audio (ad esempio, Wavelet e altre applicazioni che fanno uso dell'API Android "DynamicsProcessing").
 
 
 - Funzionamento confermato delle applicazioni:
