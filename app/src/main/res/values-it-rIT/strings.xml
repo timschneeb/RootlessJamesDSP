@@ -2,7 +2,7 @@
 <resources>
     <!-- Main menu bar -->
     <string name="action_settings">Impostazioni</string>
-    <string name="action_presets">Preset</string>
+    <string name="action_presets">Preimpostazioni</string>
     <string name="action_revert">Reimposta ai valori predefiniti</string>
     <string name="action_blocked_apps">Applicazioni escluse</string>
     <!-- Notification channels -->
@@ -121,13 +121,24 @@
     <string name="reverb_preset_plate_low">Piatto basso</string>
     <string name="reverb_preset_long_reverb1">Riverbero lungo 1</string>
     <string name="reverb_preset_long_reverb2">Riverbero lungo 2</string>
-    <string name="convolver_enable">Convolvolo</string>
+    <string name="convolver_enable">Convolutore</string>
     <string name="convolver_impulse">Risposta impulsiva</string>
     <string name="convolver_advanced_editing">Modifica avanzata dei dati</string>
     <string name="convolver_convolution_mode">Ottimizzazione della risposta d\'impulso</string>
     <string name="convolver_convolution_mode_original">Originale</string>
     <string name="convolver_convolution_mode_shrink">Restringi</string>
+    <string name="convolver_convolution_mode_minimum_phase_shrink">Fase minima di trasformazione e restringimento</string>
+    <string name="ddc_enable">ViPER-DDC</string>
+    <string name="ddc_file">File DDC</string>
+    <string name="liveprog_enable">DSP a modifica diretta</string>
+    <string name="liveprog_file">Script di liveprog</string>
     <string name="liveprog_additional_params">Parametri di script aggiuntivi</string>
+    <string name="liveprog_additional_params_not_supported">Lo script selezionato non ha parametri personalizzabili</string>
+    <string name="liveprog_not_found">Lo script non è stato trovato</string>
+    <string name="liveprog_no_script_selected">Nessuno script selezionato</string>
+    <string name="liveprog_edit_header">Modifica lo script selezionato</string>
+    <string name="liveprog_edit">Apri lo script attivo nell\'editor incorporato</string>
+    <string name="tube_enable">Modellazione analogica</string>
     <string name="tube_drive">Pre-amplificazione</string>
     <string name="output_control_header">Controllo in uscita</string>
     <string name="output_limiter_threshold">Soglia del limitatore</string>
@@ -181,8 +192,23 @@
     <string name="onboarding_adb_caption">Questa app richiede permessi speciali per l\'acquisizione della politica audio del dispositivo. Si prega di seguire le istruzioni riportate di seguito.</string>
     <string name="onboarding_adb_shizuku_install_button">Installa Shizuku</string>
     <string name="onboarding_adb_shizuku_install_button_done">Già installato</string>
+    <string name="onboarding_adb_shizuku_install_instruction">Installa \'Shizuku\' da Google Play.</string>
+    <string name="onboarding_adb_shizuku_open_instruction">Avvia \"Shizuku\" e cerca \"<b>avvia tramite Debug Wireless</b>\". Tocca il pulsante \"accoppia\" e segui le istruzioni dell\'applicazione. Dopo aver accoppiato Shizuku con il tuo dispositivo, avvia il server Shizuku premendo il pulsante \"avvia\". Se si verificano problemi durante la configurazione di Shizuku, fai riferimento alla guida di configurazione presente nell\'applicazione.</string>
+    <string name="onboarding_adb_shizuku_open_button">Avvia Shizuku</string>
+    <string name="onboarding_adb_shizuku_open_button_done">Già attivo</string>
+    <string name="onboarding_adb_shizuku_grant_instruction">Tocca il pulsante e concedi a Shizuku l\'accesso a questa app.</string>
+    <string name="onboarding_adb_shizuku_grant_button">Consenti l\'accesso</string>
+    <string name="onboarding_adb_shizuku_not_installed">Shizuku non è stato ancora installato. Per favore scaricalo e installalo da Google Play.</string>
+    <string name="onboarding_adb_shizuku_not_installed_title">Shizuku non è stato ancora installato</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead">Per favore avvia il server Shizuku prima di richiedere il permesso. Torna al passo 2.</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead_title">Il server di Shizuku non è in esecuzione</string>
+    <string name="onboarding_adb_shizuku_grant_fail_version">Questa applicazione richiede Shizuku versione 11 o successiva. Per favore aggiorna Shizuku all\'ultima versione.</string>
+    <string name="onboarding_adb_shizuku_grant_fail_version_title">Versione di Shizuku non supportata</string>
     <string name="onboarding_adb_shizuku_grant_fail_denied_title">Permesso negato</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied">Per favore concedi a questa applicazione l\'accesso a Shizuku. Potrebbe essere necessario aprire il gestore dei permessi di Shizuku e concedere l\'autorizzazione manualmente se precedentemente negato e il messaggio non viene più visualizzato.</string>
     <string name="onboarding_adb_shizuku_no_dump_perm_title">Shizuku non ha concesso i permessi ADB</string>
+    <string name="onboarding_adb_shizuku_no_dump_perm">Attendi alcuni secondi e riprova. Se ancora non funziona, prova il metodo alternativo.</string>
+    <string name="onboarding_adb_dump_not_granted_title">Autorizzazione non concessa</string>
     <string name="onboarding_perm_notification_title">Permesso alle notifiche</string>
     <string name="onboarding_perm_notification_caption">Necessario per ricevere importanti aggiornamenti sullo stato e informazioni sullo stato di elaborazione di JamesDSP.</string>
     <string name="onboarding_perm_cast_title">Permesso di trasmissione/registrazione</string>
@@ -194,6 +220,8 @@
     <string name="onboarding_finish_header">JamesDSP è pronto!</string>
     <string name="onboarding_finish_caption">In caso di problemi, visita le opzioni di risoluzione dei problemi.</string>
     <string name="limit_session_control_conflict_title">Disabilita altre app di effetti audio</string>
+    <string name="limit_tested_devices_title">Dispositivi testati</string>
+    <string name="limit_tested_devices">Le modifiche apportate al sottosistema audio di Android dal produttore del dispositivo possono facilmente interferire con questa applicazione perché fanno uso di alcune API sprovviste di manuale.\nÈ stato testato su questi dispositivi:\n• Samsung S20+ (Android 12)\n• Emulatore AOSP (Android 10–13)\n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
     <string name="title_activity_settings">Impostazioni</string>
     <string name="session_exclude_restricted">Escludi app non supportate</string>
@@ -246,10 +274,17 @@
     <string name="exclude_app_from_recents">Escludi l\'app. dai recenti</string>
     <string name="exclude_app_from_recents_off">Non escludere l\'app. dall\'elenco delle attività recenti</string>
     <string name="exclude_app_from_recents_on">Escludi l\'app. dall\'elenco delle attività recenti</string>
+    <string name="autostart_service_at_boot_on">Avvia il servizio automaticamente dopo l\'avvio</string>
+    <string name="powersave">Risparmio energetico</string>
+    <string name="powersave_suspend">Sospendi il processo audio mentre è inattivo</string>
+    <string name="powersave_suspend_off">Mantieni l\'elaborazione anche quando nessun contenuto è in riproduzione</string>
+    <string name="powersave_suspend_on">Metti in pausa il processo audio per risparmiare energia</string>
+    <string name="troubleshooting">Risoluzione dei problemi</string>
+    <string name="troubleshooting_summary">Opzioni avanzate, manuale, diagnostica</string>
     <string name="credits_project_page_summary">Segnala i problemi, tieniti aggiornato e leggi il codice sorgente</string>
     <string name="credits_project_play_page">Visita RootlessJamesDSP su Google Play</string>
     <string name="credits_project_play_page_summary">Cerca per nuovi aggiornamenti</string>
-    <string name="credits_project_check_update">Controllo per nuovi aggiornamenti…</string>
+    <string name="credits_project_check_update">Controlla nuovi aggiornamenti…</string>
     <string name="credits_project_check_update_summary">Scarica e installa gli aggiornamenti se disponibili</string>
     <string name="credits_project_translate">Contribuisci alle traduzioni</string>
     <string name="credits_project_translate_summary">Aiutaci a tradurre l\'applicazione nella tua lingua</string>
@@ -270,7 +305,7 @@
     <string name="backup_settings_summary">Automatico &amp; backups manuali</string>
     <string name="backup_frequency">Frequenza di backup</string>
     <string name="backup_location">Percorso del backup</string>
-    <string name="backup_maximum">Massimi backups</string>
+    <string name="backup_maximum">Backup massimi</string>
     <string name="backup_never">Mai</string>
     <string name="backup_12hour">Ogni 12 ore</string>
     <string name="backup_24hour">Giornaliero</string>
