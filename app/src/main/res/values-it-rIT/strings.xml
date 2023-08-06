@@ -20,7 +20,7 @@
     <string name="action_stop">Interrompi</string>
     <string name="notification_processing">App attive: %1$s</string>
     <string name="notification_idle">Elaborazione audio inattiva</string>
-    <string name="notification_processing_title">Elaborazione audio attiva</string>
+    <string name="notification_processing_title">Elaborazione audio operativa</string>
     <string name="notification_processing_disabled_title">Elaborazione audio disabilitata</string>
     <string name="notification_processing_legacy">Tocca per aprire il gestore JamesDSP</string>
     <!-- Permission request notifications -->
