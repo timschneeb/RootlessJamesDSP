@@ -238,8 +238,8 @@
     <string name="limit_unsupported_apps">Le applicazioni che bloccano l\'acquisizione interna dell\'audio rimangono non elaborate (ad esempio, Spotify, Google Chrome).</string>
     <string name="limit_hw_accel_title">Problemi di riproduzione audio hardware accelerato</string>
     <string name="limit_hw_accel">La riproduzione audio hardware accelerata (tracce veloci) può causare in alcune circostanze la duplicazione dell\'audio o l\'arresto di JamesDSP. Aggiungi il lettore musicale interessato alla lista delle applicazioni escluse per impedire di essere reindirizzato da parte di JamesDSP.</string>
-    <string name="limit_detect_delay_title">Rilevamento del ritardo della sessione audio</string>
-    <string name="limit_detect_delay"><![CDATA[Dopo che un'applicazione ha aperto una nuova sessione multimediale per riprodurre l'audio, si può sentire la duplicazione o la scomparsa dell'audio per un periodo molto breve (circa <250 ms).]]></string>
+    <string name="limit_detect_delay_title">Rilevamento del ritardo nella sessione audio</string>
+    <string name="limit_detect_delay"><![CDATA[Dopo che un\'applicazione ha aperto una nuova sessione multimediale per riprodurre l\'audio, si può sentire la duplicazione o la scomparsa dell\'audio per un periodo molto breve (circa <250 ms).]]></string>
     <string name="limit_latency_title">Aumento di latenza</string>
     <string name="limit_latency">Questa applicazione potrebbe aggiungere qualche ritardo al flusso audio. È possibile aggiungere i riproduttori video alla lista di esclusione per evitare asincronie audio/video non elaborandoli.</string>
     <string name="limit_tested_devices_title">Dispositivi collaudati</string>
