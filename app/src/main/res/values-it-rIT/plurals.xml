@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <plurals name="nodes">
+        <item quantity="one">%d nodo</item>
+        <item quantity="other">%d nodi</item>
+    </plurals>
+    <plurals name="custom_parameters">
+        <item quantity="one">Parametro personalizzabile %d</item>
+        <item quantity="other">Parametri personalizzabili %d</item>
+    </plurals>
+    <plurals name="unsupported_apps">
+        <item quantity="one">L\'applicazione %d non è supportata ed è stata automaticamente esclusa. Tocca per i dettagli.</item>
+        <item quantity="other">Le applicazioni %d non sono supportate e sono state automaticamente escluse. Tocca per i dettagli.</item>
+    </plurals>
+</resources>
