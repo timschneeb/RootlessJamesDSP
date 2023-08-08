@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("dev.rikka.tools.refine") version AndroidConfig.rikkaRefineVersion
 }
 
 android {
