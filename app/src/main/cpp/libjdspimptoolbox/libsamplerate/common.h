@@ -1,20 +1,57 @@
 /*
-** Copyright (c) 2002-2016, Erik de Castro Lopo <erikd@mega-nerd.com>
+** Copyright (c) 2002-2021, Erik de Castro Lopo <erikd@mega-nerd.com>
 ** All rights reserved.
 **
 ** This code is released under 2-clause BSD license. Please see the
-** file at : https://github.com/erikd/libsamplerate/blob/master/COPYING
+** file at : https://github.com/libsndfile/libsamplerate/blob/master/COPYING
 */
 
 #ifndef COMMON_H_INCLUDED
 #define COMMON_H_INCLUDED
 
-#ifdef HAVE_STDINT_H
 #include <stdint.h>
-#elif (SIZEOF_INT == 4)
-typedef	int		int32_t ;
-#elif (SIZEOF_LONG == 4)
-typedef	long	int32_t ;
+#ifdef HAVE_STDBOOL_H
+#include <stdbool.h>
+#endif
+
+#if defined(__x86_64__) || defined(_M_X64)
+#   define HAVE_SSE2_INTRINSICS
+#elif defined(ENABLE_SSE2_LRINT) && (defined(_M_IX86) || defined(__i386__))
+#   if defined(_MSC_VER)
+#       define HAVE_SSE2_INTRINSICS
+#   elif defined(__clang__)
+#       ifdef __SSE2__
+#           define HAVE_SSE2_INTRINSICS
+#       elif (__has_attribute(target))
+#           define HAVE_SSE2_INTRINSICS
+#           define USE_TARGET_ATTRIBUTE
+#       endif
+#   elif defined(__GNUC__)
+#       ifdef __SSE2__
+#           define HAVE_SSE2_INTRINSICS
+#       elif (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 9))
+#           define HAVE_SSE2_INTRINSICS
+#           define USE_TARGET_ATTRIBUTE
+#       endif
+#   endif
+#endif
+
+#ifdef HAVE_SSE2_INTRINSICS
+#ifdef HAVE_IMMINTRIN_H
+#include <immintrin.h>
+#else
+#include <emmintrin.h>
+#endif
+#endif /* HAVE_SSE2_INTRINSICS */
+
+#include <math.h>
+
+#ifdef HAVE_VISIBILITY
+  #define LIBSAMPLERATE_DLL_PRIVATE __attribute__ ((visibility ("hidden")))
+#elif defined (__APPLE__)
+  #define LIBSAMPLERATE_DLL_PRIVATE __private_extern__
+#else
+  #define LIBSAMPLERATE_DLL_PRIVATE
 #endif
 
 #define	SRC_MAX_RATIO			256
@@ -22,10 +59,14 @@ typedef	long	int32_t ;
 
 #define	SRC_MIN_RATIO_DIFF		(1e-20)
 
+#ifndef MAX
 #define	MAX(a,b)	(((a) > (b)) ? (a) : (b))
-#define	MIN(a,b)	(((a) < (b)) ? (a) : (b))
+#endif
 
-#define	ARRAY_LEN(x)			((int) (sizeof (x) / sizeof ((x) [0])))
+#ifndef MIN
+#define	MIN(a,b)	(((a) < (b)) ? (a) : (b))
+#endif
+
 #define OFFSETOF(type,member)	((int) (&((type*) 0)->member))
 
 #define	MAKE_MAGIC(a,b,c,d,e,f)	((a) + ((b) << 4) + ((c) << 8) + ((d) << 12) + ((e) << 16) + ((f) << 20))
@@ -48,19 +89,22 @@ typedef	long	int32_t ;
 #	define WARN_UNUSED
 #endif
 
-
 #include "samplerate.h"
 
 enum
 {	SRC_FALSE	= 0,
 	SRC_TRUE	= 1,
-
-	SRC_MODE_PROCESS	= 555,
-	SRC_MODE_CALLBACK	= 556
 } ;
 
-enum
-{	SRC_ERR_NO_ERROR = 0,
+enum SRC_MODE
+{
+	SRC_MODE_PROCESS	= 0,
+	SRC_MODE_CALLBACK	= 1
+} ;
+
+typedef enum SRC_ERROR
+{
+	SRC_ERR_NO_ERROR = 0,
 
 	SRC_ERR_MALLOC_FAILED,
 	SRC_ERR_BAD_STATE,
@@ -87,43 +131,94 @@ enum
 
 	/* This must be the last error number. */
 	SRC_ERR_MAX_ERROR
-} ;
+} SRC_ERROR ;
 
-typedef struct SRC_PRIVATE_tag
-{	double	last_ratio, last_position ;
+typedef struct SRC_STATE_VT_tag
+{
+	/* Varispeed process function. */
+	SRC_ERROR		(*vari_process) (SRC_STATE *state, SRC_DATA *data) ;
 
-	int		error ;
+	/* Constant speed process function. */
+	SRC_ERROR		(*const_process) (SRC_STATE *state, SRC_DATA *data) ;
+
+	/* State reset. */
+	void			(*reset) (SRC_STATE *state) ;
+
+	/* State clone. */
+	SRC_STATE		*(*copy) (SRC_STATE *state) ;
+
+	/* State close. */
+	void			(*close) (SRC_STATE *state) ;
+} SRC_STATE_VT ;
+
+struct SRC_STATE_tag
+{
+	SRC_STATE_VT *vt ;
+
+	double	last_ratio, last_position ;
+
+	SRC_ERROR	error ;
 	int		channels ;
 
 	/* SRC_MODE_PROCESS or SRC_MODE_CALLBACK */
-	int		mode ;
-
-	/* Pointer to data to converter specific data. */
-	void	*private_data ;
-
-	/* Varispeed process function. */
-	int		(*vari_process) (struct SRC_PRIVATE_tag *psrc, SRC_DATA *data) ;
-
-	/* Constant speed process function. */
-	int		(*const_process) (struct SRC_PRIVATE_tag *psrc, SRC_DATA *data) ;
-
-	/* State reset. */
-	void	(*reset) (struct SRC_PRIVATE_tag *psrc) ;
+	enum SRC_MODE	mode ;
 
 	/* Data specific to SRC_MODE_CALLBACK. */
 	src_callback_t	callback_func ;
 	void			*user_callback_data ;
 	long			saved_frames ;
 	const float		*saved_data ;
-} SRC_PRIVATE ;
 
-int sinc_set_converter (SRC_PRIVATE *psrc, int src_enum) ;
+	/* Pointer to data to converter specific data. */
+	void	*private_data ;
+} ;
+
+/* In src_sinc.c */
+const char* sinc_get_name (int src_enum) ;
+const char* sinc_get_description (int src_enum) ;
+
+SRC_STATE *sinc_state_new (int converter_type, int channels, SRC_ERROR *error) ;
 
 /* In src_linear.c */
 const char* linear_get_name (int src_enum) ;
 const char* linear_get_description (int src_enum) ;
 
-int linear_set_converter (SRC_PRIVATE *psrc, int src_enum) ;
+SRC_STATE *linear_state_new (int channels, SRC_ERROR *error) ;
+
+/*----------------------------------------------------------
+** SIMD optimized math functions.
+*/
+
+#ifdef HAVE_SSE2_INTRINSICS
+static inline int
+#ifdef USE_TARGET_ATTRIBUTE
+__attribute__((target("sse2")))
+#endif
+psf_lrintf (float x)
+{
+	return _mm_cvtss_si32 (_mm_load_ss (&x)) ;
+}
+static inline int
+#ifdef USE_TARGET_ATTRIBUTE
+__attribute__((target("sse2")))
+#endif
+psf_lrint (double x)
+{
+	return _mm_cvtsd_si32 (_mm_load_sd (&x)) ;
+}
+
+#else
+
+static inline int psf_lrintf (float x)
+{
+	return lrintf (x) ;
+} /* psf_lrintf */
+
+static inline int psf_lrint (double x)
+{
+	return lrint (x) ;
+} /* psf_lrint */
+#endif
 
 /*----------------------------------------------------------
 **	Common static inline functions.
@@ -133,7 +228,7 @@ static inline double
 fmod_one (double x)
 {	double res ;
 
-	res = x - lrint (x) ;
+	res = x - psf_lrint (x) ;
 	if (res < 0.0)
 		return res + 1.0 ;
 
