@@ -12,6 +12,7 @@ plugins {
 }
 
 android {
+
     val SUPPORTED_ABIS = setOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
     compileSdk = AndroidConfig.compileSdk
     project.setProperty("archivesBaseName", "RootlessJamesDSP-v${AndroidConfig.versionName}")
@@ -178,25 +179,25 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
 
     // AndroidX
-    implementation("androidx.core:core-ktx:1.9.0")
+    implementation("androidx.core:core-ktx:1.10.1")
     implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.recyclerview:recyclerview:1.3.0")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
-    implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
+    implementation("androidx.recyclerview:recyclerview:1.3.1")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.6.0")
+    implementation("androidx.navigation:navigation-ui-ktx:2.6.0")
     implementation("androidx.preference:preference-ktx:1.2.0")
-    implementation("androidx.databinding:databinding-runtime:7.4.2")
-    implementation("androidx.work:work-runtime-ktx:2.8.0")
-    implementation("androidx.mediarouter:mediarouter:1.3.1")
+    implementation("androidx.databinding:databinding-runtime:8.1.0")
+    implementation("androidx.work:work-runtime-ktx:2.8.1")
+    implementation("androidx.mediarouter:mediarouter:1.4.0")
 
     // Material
-    implementation("com.google.android.material:material:1.9.0-beta01")
+    implementation("com.google.android.material:material:1.9.0")
 
     // Dependency injection
     implementation("io.insert-koin:koin-android:3.3.3")
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0")
+    implementation("androidx.core:core-ktx:1.10.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
 
     // Firebase
     "fullImplementation"(platform("com.google.firebase:firebase-bom:31.2.3"))
@@ -219,7 +220,7 @@ dependencies {
     implementation("com.squareup.okio:okio:3.3.0")
 
     // Room databases
-    val roomVersion = "2.5.0"
+    val roomVersion = "2.5.2"
     implementation("androidx.room:room-runtime:$roomVersion")
     ksp("androidx.room:room-compiler:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
