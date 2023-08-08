@@ -71,6 +71,9 @@
     <string name="compander_granularity_extreme">Estrema</string>
     <string name="compander_tftransforms">Trasformata tempo/frequenza</string>
     <string name="compander_tftransforms_stft">Uniforme (Fourier di breve durata)</string>
+    <string name="compander_tftransforms_continuous_wavelet">Multiresolution (onda continua, doppia cornice incompleta)</string>
+    <string name="compander_tftransforms_undersampling">Pseudo multi risoluzione (Struttura di sotto campionamento)</string>
+    <string name="compander_tftransforms_time_domain">Pseudo multi risoluzione (Time dominio, zero latenza)</string>
     <string name="eq_enable">Equalizzatore multimodale</string>
     <string name="eq_filter_type">Tipo di filtro</string>
     <string name="eq_interpolator">Interpolatore</string>
