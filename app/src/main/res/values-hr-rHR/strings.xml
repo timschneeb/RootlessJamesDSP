@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Main menu bar -->
+    <string name="action_settings">Postavke</string>
+    <string name="action_presets">Unaprijed postavljene postavke</string>
+    <string name="action_revert">Vrati na početne postavke</string>
+    <string name="action_blocked_apps">Izuzete aplikacije</string>
+    <!-- Notification channels -->
+    <string name="notification_group_service">Usluga</string>
+    <string name="notification_channel_service">Servisne obavijesti</string>
+    <string name="notification_channel_session_loss_alert">Upozorenje o gubitku sesije</string>
+    <string name="notification_channel_permission_prompt">Zahtijevanje dopuštenja</string>
+    <string name="notification_channel_app_compat_alert">Upozorenje o nepodržanoj aplikaciji</string>
+    <string name="notification_group_backup">Sigurnosno kopiranje i vraćanje podataka</string>
+    <string name="notification_channel_backup_progress">U tijeku</string>
+    <string name="notification_channel_backup_complete">Dovršeno</string>
+    <!-- Service notifications -->
+    <string name="action_retry">Pokušaj ponovno</string>
+    <string name="action_fix">Rješavanje problema</string>
+    <string name="action_stop">Zaustavi</string>
+    <string name="notification_processing">Aktivne aplikacije: %1$s</string>
+    <string name="notification_idle">Audio procesiranje miruje</string>
+    <string name="notification_processing_title">Audio procesiranje u tijeku</string>
+    <string name="notification_processing_disabled_title">Audio procesiranje onemogućeno</string>
+    <string name="notification_processing_legacy">Dodirni za otvaranje JamesDSP managera</string>
+    <!-- Permission request notifications -->
+    <string name="notification_request_permission_title">Potrebna je radnja korisnika za pokretanje JamesDSP</string>
+    <string name="notification_request_permission">Dodirnite za dopuštenje dozvole za snimanje i omogućite JamesDSP audio procesiranje</string>
+    <!-- Session control loss notifications -->
+    <string name="session_control_loss_toast">JamesDSP je zaustavljen zbog gubitka audio sesije. Onemogućite druge aplikacije za audio efekte.</string>
+    <string name="session_control_loss_notification_title">Obrada zvuka je zaustavljena. Druga aplikacija ometa JamesDSP.</string>
+    <string name="session_control_loss_notification">Onemogućite sve ostale aplikacije koje pružaju globalne audio efekte prije ponovnog omogućavanja JamesDSP.</string>
+    <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_toast">JamesDSP je zaustavljen zbog nepodržane media aplikacije. Provjerite obavijest za riješavanje ovog problema.</string>
+    <string name="session_app_compat_notification_title">Obrada zvuka je zaustavljena. Druga aplikacija ometa JamesDSP.</string>
+    <string name="session_app_compat_notification">Dodirnite ovu obavijest za riješavanje problema.</string>
+    <!-- Capture permission revoked notifications -->
+    <string name="capture_permission_revoked_toast">JamesDSP je zaustavljen jer je dopuštenje za hvatanje audia opozvano.</string>
+    <!-- General purpose -->
+    <string name="install">Instaliraj</string>
+    <string name="update">Ažuriraj</string>
+    <string name="unknown_error">Nepoznata pogreška</string>
+    <string name="details">Detalji</string>
+    <string name="actions">Radnje</string>
+    <string name="warning">Upozorenje</string>
+    <string name="success">Uspjeh</string>
+    <string name="open">Otvori</string>
+    <string name="close">Zatvori</string>
+    <string name="delete">Obriši</string>
+    <string name="copy">Kopiraj</string>
+    <string name="paste">Zalijepi</string>
+    <string name="add">Dodaj</string>
+    <string name="yes">Da</string>
+    <string name="no">Ne</string>
+    <string name="value_not_set">Nije postavljeno</string>
+    <string name="undo">Poništi promjenu</string>
+    <string name="redo">Ponovi promjenu</string>
+    <string name="no_activity_found">Nema pronađenih Aktivnosti za rukovanje radnjom</string>
+    <string name="permission_allowed">Dopušteno</string>
+    <string name="permission_not_allowed">Nije dopušteno</string>
+    <string name="error_projection_api_missing">Proizvođač vašeg uređaja je onemogućio API za interno snimanje zvuka. Ova aplikacija ne može raditi bez njih.</string>
+    <!-- Main screen -->
+    <string name="reverb_preset_small_hall1">Mala dvorana 1</string>
+    <string name="reverb_preset_small_hall2">Mala dvorana 2</string>
+    <string name="reverb_preset_medium_hall2">Srednja dvorana</string>
+    <string name="reverb_preset_large_hall1">Velika dvorana</string>
+    <string name="reverb_preset_small_room1">Mala soba 1</string>
+    <string name="reverb_preset_small_room2">Mala soba 2</string>
+    <string name="reverb_preset_medium_room1">Srednja soba</string>
+    <string name="reverb_preset_large_room1">Velika soba</string>
+    <string name="convolver_enable">Konvolver</string>
+    <string name="convolver_impulse">Impulsni odaziv</string>
+    <string name="convolver_advanced_editing">Napredno uređivanje valnog oblika</string>
+    <string name="convolver_convolution_mode">Optimiziranje impulsnog odaziva</string>
+    <string name="convolver_convolution_mode_original">Original</string>
+    <string name="convolver_convolution_mode_shrink">Smanji</string>
+    <string name="convolver_convolution_mode_minimum_phase_shrink">Minimalna transformacija faze i smanjenje</string>
+    <string name="ddc_enable">ViPER-DDC</string>
+    <string name="ddc_file">DDC datoteka</string>
+    <string name="liveprog_enable">Uživo programabilni DSP</string>
+    <string name="liveprog_file">Liveprog skripta</string>
+    <string name="liveprog_additional_params">Dodatni parametri skripte</string>
+    <string name="liveprog_additional_params_not_supported">Odabrana skripta nema prilagodljivih parametara</string>
+    <string name="liveprog_not_found">Skripta nije pronađena</string>
+    <string name="liveprog_no_script_selected">Skripta nije odabrana</string>
+    <string name="liveprog_edit_header">Uredi odabranu skriptu</string>
+    <string name="liveprog_edit">Otvori aktivnu skriptu u ugrađenom uredniku</string>
+    <string name="tube_enable">Analogno modeliranje</string>
+    <string name="tube_drive">Pretpojačalo</string>
+    <string name="output_control_header">Kontrola izlaza</string>
+    <string name="output_limiter_threshold">Prag za ograničenje</string>
+    <string name="output_limiter_release">Otpuštanje ograničenja</string>
+    <string name="output_control_postgain">Post gain</string>
+    <string name="stereowide_enable">Širina zvučne scene</string>
+    <string name="stereowide_level">Širina</string>
+    <!-- Onboarding -->
+    <!-- Rootless flavor -->
+    <!-- Root flavor -->
+    <!-- Settings -->
+    <string name="title_activity_settings">Postavke</string>
+    <string name="backup_settings">Sigurnosno kopiranje i vraćanje podataka</string>
+    <!-- Theme names -->
+    <!-- File library preference -->
+    <!-- JamesDSP engine messages -->
+    <!-- GraphicEQ editor -->
+    <string name="gep_add_node">Dodaj</string>
+    <!-- AutoEQ GraphicEQ selector -->
+    <!-- Customizable liveprog script parameters -->
+    <!-- Liveprog script editor -->
+    <!-- Blocklist -->
+    <string name="title_activity_blocklist">Izuzete aplikacije</string>
+    <!-- Compatibility issue activity -->
+    <string name="app_compat_retry">Pokušaj ponovno</string>
+    <!-- Root: Library load failure -->
+    <!-- Enhanced processing -->
+    <!-- App list -->
+    <!-- Number box view -->
+    <!-- Slider widget -->
+    <!-- Revert confirmation -->
+    <!-- File intent handler -->
+    <!-- Translation notice box -->
+    <!-- Self-updates (Root) -->
+    <!-- Backups -->
+    <!-- Multi-device profiles -->
+    <!-- Root version check -->
+</resources>
