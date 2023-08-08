@@ -1,7 +1,7 @@
 import com.google.firebase.crashlytics.buildtools.gradle.CrashlyticsExtension
 
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("com.google.gms.google-services")
@@ -12,58 +12,42 @@ plugins {
 }
 
 android {
-    val SUPPORTED_ABIS = setOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
     compileSdk = AndroidConfig.compileSdk
-    project.setProperty("archivesBaseName", "RootlessJamesDSP-v${AndroidConfig.versionName}")
 
     defaultConfig {
-        targetSdk = AndroidConfig.targetSdk
-        versionCode = AndroidConfig.versionCode
-        versionName = AndroidConfig.versionName
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        minSdk = AndroidConfig.minSdk
 
         buildConfigField("String", "COMMIT_COUNT", "\"${getCommitCount()}\"")
         buildConfigField("String", "COMMIT_SHA", "\"${getGitSha()}\"")
         buildConfigField("String", "BUILD_TIME", "\"${getBuildTime()}\"")
         buildConfigField("boolean", "PREVIEW", "false")
-        buildConfigField("boolean", "PLUGIN", "false")
+        buildConfigField("boolean", "FOSS_ONLY", "true")
+        buildConfigField("boolean", "ROOTLESS", "false")
+        buildConfigField("String", "APPLICATION_ID", "\"me.timschneeberger.rootlessjamesdsp\"")
+        buildConfigField("String", "VERSION_NAME", "\"${getPluginVersion()} [PLUGIN_MODE]\"")
+        buildConfigField("int", "VERSION_CODE", "40")
+
+        targetSdk = AndroidConfig.targetSdk
 
         externalNativeBuild {
             cmake {
                 arguments.addAll(listOf("-DANDROID_ARM_NEON=ON"))
             }
         }
-
-        ndk {
-            abiFilters += SUPPORTED_ABIS
-        }
     }
+
+    android.defaultConfig.externalNativeBuild.cmake.arguments += "-DNO_CRASHLYTICS=1"
 
     buildTypes {
         getByName("debug") {
-            applicationIdSuffix = ".debug"
-            versionNameSuffix = "-${getCommitCount()}"
-            manifestPlaceholders["crashlyticsCollectionEnabled"] = "false"
         }
         getByName("release") {
-            manifestPlaceholders += mapOf("crashlyticsCollectionEnabled" to "true")
-            configure<CrashlyticsExtension> {
-                nativeSymbolUploadEnabled = true
-                mappingFileUploadEnabled = false
-            }
-
-            //proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
-            isMinifyEnabled = false
-            isShrinkResources = false
-            signingConfig = signingConfigs.getByName("debug")
         }
         create("preview") {
             initWith(getByName("release"))
             buildConfigField("boolean", "PREVIEW", "true")
 
-            val debugType = getByName("debug")
-            versionNameSuffix = debugType.versionNameSuffix
             matchingFallbacks.add("release")
         }
     }
@@ -83,22 +67,11 @@ android {
 
         create("rootless") {
             dimension = "version"
-
-            manifestPlaceholders["label"] = "RootlessJamesDSP"
-            applicationId = "me.timschneeberger.rootlessjamesdsp"
-            AndroidConfig.minSdk = 29
-            minSdk = AndroidConfig.minSdk
             buildConfigField("boolean", "ROOTLESS", "true")
             buildConfigField("boolean", "PLUGIN", "false")
         }
         create("root") {
             dimension = "version"
-
-            manifestPlaceholders["label"] = "JamesDSP"
-            project.setProperty("archivesBaseName", "JamesDSP-v${AndroidConfig.versionName}-${AndroidConfig.versionCode}")
-            applicationId = "james.dsp"
-            AndroidConfig.minSdk = 26
-            minSdk = AndroidConfig.minSdk
             buildConfigField("boolean", "ROOTLESS", "false")
             buildConfigField("boolean", "PLUGIN", "false")
         }
@@ -109,21 +82,6 @@ android {
             minSdk = AndroidConfig.minSdk
             buildConfigField("boolean", "ROOTLESS", "false")
             buildConfigField("boolean", "PLUGIN", "true")
-        }
-    }
-
-    sourceSets {
-        // Use different app icon for non-release builds
-        getByName("debug").res.srcDirs("src/debug/res")
-    }
-
-    // Export multiple CPU architecture split apks
-    splits {
-        abi {
-            isEnable = true
-            reset()
-            include(*SUPPORTED_ABIS.toTypedArray())
-            isUniversalApk = true
         }
     }
 
