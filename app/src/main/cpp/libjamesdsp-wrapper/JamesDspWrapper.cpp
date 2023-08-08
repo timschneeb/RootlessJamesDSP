@@ -125,8 +125,7 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_alloc(JNIEnv *e
         return 1;
     }
 
-    bool do_benchmark = 0;
-    JamesDSPGlobalMemoryAllocation(do_benchmark);
+    JamesDSPGlobalMemoryAllocation();
     JamesDSPInit(_dsp, 128, 48000);
 
     if(!JamesDSPGetMutexStatus(_dsp))
@@ -391,7 +390,7 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setCompander(JN
 
     if(enable)
     {
-        CompressorSetParam(dsp, timeConstant, granularity, tfresolution);
+        CompressorSetParam(dsp, timeConstant, granularity, tfresolution, 0);
         auto* nativeBands = (env->GetDoubleArrayElements(bands, nullptr));
         CompressorSetGain(dsp, nativeBands, nativeBands + 7, 1);
         env->ReleaseDoubleArrayElements(bands, nativeBands, JNI_ABORT);
