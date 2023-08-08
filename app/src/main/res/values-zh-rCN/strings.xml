@@ -71,8 +71,6 @@
     <string name="compander_granularity_extreme">极高</string>
     <string name="compander_tftransforms">时频变换</string>
     <string name="compander_tftransforms_stft">均匀（短时傅里叶）</string>
-    <string name="compander_tftransforms_continuous_wavelet">多分辨率（连续小波）</string>
-    <string name="compander_tftransforms_time_domain">多分辨率（时域）</string>
     <string name="eq_enable">多模态均衡器</string>
     <string name="eq_filter_type">滤波器类型</string>
     <string name="eq_interpolator">插值器</string>
