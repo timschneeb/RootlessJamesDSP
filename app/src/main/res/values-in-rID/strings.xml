@@ -61,6 +61,8 @@
     <string name="error_projection_api_missing">Produsen perangkat anda tidak mengaktifkan API perekaman audio internal. Aplikasi ini tidak bisa berfungsi tanpa API tersebut.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Alihkan pemrosesan audio</string>
+    <string name="compander_enable">Kompresor_diaktifkan</string>
+    <string name="compander_granularity">Kompreser_granularitas</string>
     <string name="eq_filter_type">Jenis Filter</string>
     <string name="eq_preset_acoustic">Akustik</string>
     <string name="eq_preset_classic">Klasik</string>

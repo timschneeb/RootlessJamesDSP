@@ -125,8 +125,7 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_alloc(JNIEnv *e
         return 1;
     }
 
-    bool do_benchmark = 0;
-    JamesDSPGlobalMemoryAllocation(do_benchmark);
+    JamesDSPGlobalMemoryAllocation();
     JamesDSPInit(_dsp, 128, 48000);
 
     if(!JamesDSPGetMutexStatus(_dsp))
@@ -164,6 +163,39 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_free(JNIEnv *en
     delete wrapper;
 
     LOGD("JamesDspWrapper::dtor: memory freed");
+}
+
+extern "C" JNIEXPORT void JNICALL
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_runBenchmark(JNIEnv *env, jobject obj, jlong self, jdoubleArray jc0, jdoubleArray jc1)
+{
+    DECLARE_DSP_V
+
+    LOGD("JamesDspWrapper::runBenchmark: started");
+
+    auto c0 = env->GetDoubleArrayElements(jc0, nullptr);
+    auto c1 = env->GetDoubleArrayElements(jc1, nullptr);
+
+    JamesDSP_Start_benchmark();
+    JamesDSP_Save_benchmark(c0, c1);
+
+    env->ReleaseDoubleArrayElements(jc0, c0, 0);
+    env->ReleaseDoubleArrayElements(jc1, c1, 0);
+}
+
+extern "C" JNIEXPORT void JNICALL
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_loadBenchmark(JNIEnv *env, jobject obj, jlong self, jdoubleArray jc0, jdoubleArray jc1)
+{
+    DECLARE_DSP_V
+
+    LOGD("JamesDspWrapper::loadBenchmark: loading data");
+
+    auto c0 = env->GetDoubleArrayElements(jc0, nullptr);
+    auto c1 = env->GetDoubleArrayElements(jc1, nullptr);
+
+    JamesDSP_Load_benchmark(c0, c1);
+
+    env->ReleaseDoubleArrayElements(jc0, c0, JNI_ABORT);
+    env->ReleaseDoubleArrayElements(jc1, c1, JNI_ABORT);
 }
 
 extern "C"
@@ -391,7 +423,7 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setCompander(JN
 
     if(enable)
     {
-        CompressorSetParam(dsp, timeConstant, granularity, tfresolution);
+        CompressorSetParam(dsp, timeConstant, granularity, tfresolution, 0);
         auto* nativeBands = (env->GetDoubleArrayElements(bands, nullptr));
         CompressorSetGain(dsp, nativeBands, nativeBands + 7, 1);
         env->ReleaseDoubleArrayElements(bands, nativeBands, JNI_ABORT);

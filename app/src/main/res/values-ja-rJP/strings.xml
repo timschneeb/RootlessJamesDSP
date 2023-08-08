@@ -61,6 +61,7 @@
     <string name="error_projection_api_missing">お使いのデバイスの製造元は、内部音声録音APIを無効にしています。このアプリケーションは、それらがないと動作出来ません。</string>
     <!-- Main screen -->
     <string name="power_button_alt">音声処理の切り替え</string>
+    <string name="compander_enable">ダイナミックレンジ・コンパンダー</string>
     <string name="eq_filter_type">フィルタータイプ</string>
     <string name="eq_interpolator">インターポレーター</string>
     <string name="eq_interpolator_chip">区分的3次エルミート内挿多項式</string>
@@ -150,6 +151,9 @@
     <string name="onboarding_methods_adb_title">ADB</string>
     <!-- Rootless flavor -->
     <!-- Root flavor -->
+    <string name="onboarding_root_shell_fail_title">ルートアクセスなし</string>
+    <string name="onboarding_root_shell_fail">ルートアクセスがありません。別のセットアップ方法を使用してください。</string>
+    <string name="onboarding_root_shell_fail_unknown">Rootによる権限の付与に失敗しました。他の設定方法を使用してください。</string>
     <string name="onboarding_adb_caption">このアプリは、お使いのデバイスのオーディオポリシーをダンプするための特別な許可を必要とします。以下の説明に従ってください。</string>
     <string name="onboarding_adb_shizuku_install_button">Shizuku をインストール</string>
     <string name="onboarding_adb_shizuku_install_button_done">インストール済み</string>
@@ -192,40 +196,80 @@
     <string name="onboarding_perm_missing_title">動作に必要な権限が付与されていません</string>
     <string name="onboarding_perm_missing">続行するには、要求されたすべての実行権限を付与してください。\n権限を繰り返し拒否した場合は、システム設定で手動で許可する必要があります。</string>
     <string name="onboarding_perm_diag">診断レポートの送信を許可</string>
+    <string name="onboarding_perm_diag_caption">このアプリは、他のアクティブなアプリケーションに関する情報を含むクラッシュレポートやその他の診断データを送信します。互換性の問題やバグを簡単に検出して解決できるようにするためです。</string>
     <string name="onboarding_finish_header">JamesDSPのセットアップが完了しました!</string>
     <string name="onboarding_finish_caption">問題が発生した場合は、トラブルシューティングを参照してください。</string>
     <string name="limit_session_control_conflict_title">他のオーディオエフェクトアプリの無効化</string>
     <string name="limit_session_control_conflict">Android内蔵のDynamic Processingエフェクトを使用したオーディオエフェクトアプリは、このアプリに干渉します。</string>
     <string name="limit_unsupported_apps_title">対応していないメディアアプリ</string>
     <string name="limit_unsupported_apps">内部音声録音をブロックしているアプリは処理されません。 (Spotify、Google Chromeなど)</string>
+    <string name="limit_hw_accel_title">HWアクセラレーションによるオーディオ再生の問題</string>
+    <string name="limit_hw_accel">HWアクセラレーションによるオーディオ再生(ファストトラック) は、状況によってはオーディオの重複を引き起こしたり、JamesDSPを強制終了させることがあります。JamesDSPによる再ルーティングを防ぐため、影響を受ける音楽プレーヤーを除外アプリリストに追加してください。</string>
+    <string name="limit_detect_delay"><![CDATA[アプリがオーディオを再生するために新しいメディアセッションを開いた後、非常に短い期間（約250ミリ秒未満）、オーディオが重複したり途切れたりすることがあります。]]></string>
     <string name="limit_latency_title">遅延の増加</string>
     <string name="limit_latency">このアプリは、音声の遅延を増加させる可能性があります。 除外リストに映画/ビデオアプリを追加し、処理させないようにすることで、映像と音声の同期ズレを防ぐことができます。</string>
     <string name="limit_tested_devices_title">動作確認済みの端末</string>
+    <string name="limit_tested_devices">デバイスメーカーによってAndroidのオーディオサブシステムに加えられた変更は、ドキュメント化されていないAPIをいくつか使用しているため、このアプリを簡単に壊してしまう可能性があります。\nこれらのデバイスでテストされています:\n• Samsung S20+ (Android 12)\n• AOSP Emulator (Android 10-13)\n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
     <string name="title_activity_settings">設定</string>
+    <string name="session_exclude_restricted">サポートされていないアプリを除外</string>
+    <string name="session_exclude_restricted_off">オーディオキャプチャをブロックするアプリはミュートのまま（Androidのデフォルトの動作）</string>
+    <string name="session_exclude_restricted_on">オーディオキャプチャをブロックしているアプリは除外され、未処理のままとなる（推奨）</string>
+    <string name="session_detection_header">オーディオセッションの検出</string>
     <string name="session_continuous_polling">連続ポーリングを強制する</string>
+    <string name="session_continuous_polling_off">システムからのセッションイベントのみ待ち受ける</string>
+    <string name="session_continuous_polling_rate">ポーリング間隔 (ミリ秒)</string>
     <string name="session_app_problem_ignore">アプリの互換性問題を無視する</string>
     <string name="session_loss_ignore">セッション制御の損失を無視する</string>
     <string name="session_loss_ignore_on">動作しない (音声が重複する可能性があります)</string>
     <string name="audio_format_header">オーディオ処理</string>
+    <string name="audio_format_section_header">優先する音声形式</string>
+    <string name="audio_format_enhanced_processing_off">拡張処理は無効です</string>
+    <string name="audio_format_enhanced_processing_info_title">拡張処理とは？</string>
+    <string name="audio_format_enhanced_processing_info">タップしてドキュメントを表示</string>
+    <string name="audio_format_enhanced_processing_info_content">拡張処理が有効になっている場合、JamesDSPによる処理から特定のアプリを選択的に除外することができます。右下の3ドットメニューから「除外アプリ」を選択すると、この機能にアクセスできます。\n\nレガシーモードが無効になっている間、JamesDSPはメディアアプリが再生を開始する際にシステムブロードキャストを送信することに依存します。これは、レガシーモードに比べて、各アプリに独自のJamesDSPエフェクトエンジンが割り当てられるため、よりきめ細かい制御が可能になるという利点があります。そうでなければ、レガシーモードをオンにした場合、すべてのアプリが単一の処理エンジンを共有することになるが、Androidはこれを非推奨としており、もう使用すべきではありません。\n\n残念ながら、すべてのメディアアプリがこれを正しく行っているわけではないため、レガシーモードを無効にしても正しく機能しないことがあります。この問題を解決するには、拡張処理を有効にします。新しいメディアセッションに関するシステムブロードキャストに依存する代わりに、JamesDSPはメディアセッションを自ら積極的にスキャンし、非協力的なメディアアプリを適切にサポートできるようにします。</string>
+    <string name="audio_format_media_apps_need_restart">オーディオ処理を再開するには、この設定を変更した後、すべてのアクティブなメディアアプリを再起動する必要があります。</string>
+    <string name="audio_format_summary">優先する音声エンコーディング、バッファサイズ</string>
+    <string name="audio_format_encoding">音声エンコーディング</string>
+    <string name="audio_format_encoding_int16">16ビット整数 PCM</string>
+    <string name="audio_format_encoding_float">32ビット浮動小数点数 PCM</string>
     <string name="audio_format_buffer_size">バッファサイズ</string>
     <string name="audio_format_buffer_size_unit">&#xa0;サンプル</string>
+    <string name="audio_format_buffer_size_warning_low_value">警告: バッファサイズが小さいと、クリッピングなどのオーディオ上の問題が発生することがあります！</string>
     <string name="profiles_section_header">端末情報</string>
+    <string name="profiles_info">タップしてドキュメントを表示</string>
+    <string name="profiles_info_content">この設定が有効になっている間、各オーディオデバイスには個別のオーディオ設定が割り当てられます。出力デバイスが変更されると、このアプリはデバイスプロファイルを自動的に切り替えます。\n\n新しいデバイスが接続されるたびに、空白のプロファイルから始まります。その後、設定を行うか、別のデバイスプロファイルから設定をコピーすることができます。\n\n注意：プリセットは、この機能が有効になっている間、アクティブなプロファイルにのみ適用されます。非アクティブなプロファイルは変更されません。</string>
     <string name="exclude_app_from_recents">最近使用したタスク一覧 (アプリ履歴) に表示しない</string>
     <string name="exclude_app_from_recents_off">最近使用したタスク一覧 (アプリ履歴) から除外しない</string>
     <string name="autostart_prompt_at_boot_off">起動後に通知を表示しない</string>
     <string name="autostart_prompt_at_boot_on">起動後に通知を表示する</string>
+    <string name="powersave">省電力</string>
+    <string name="powersave_suspend">アイドル時に音声パイプラインを一時停止する</string>
+    <string name="powersave_suspend_on">省電力のため、音声パイプラインを一時停止する</string>
     <string name="troubleshooting">トラブルシューティング</string>
     <string name="about_settings">このアプリについて</string>
+    <string name="about_settings_summary">クレジット、サポート、更新情報</string>
+    <string name="credits">クレジット</string>
+    <string name="translators">翻訳者</string>
+    <string name="credits_project_page">GitHubのプロジェクトページを開く</string>
+    <string name="credits_project_play_page">Google PlayのRootlessJamesDSPページを開く</string>
+    <string name="credits_project_play_page_summary">新しいアップデートを確認</string>
     <string name="credits_project_check_update">アップデートを確認しています...</string>
+    <string name="credits_project_translate">翻訳に貢献</string>
+    <string name="credits_project_translate_summary">このアプリの翻訳にご協力ください！</string>
     <string name="credits_version">アプリのバージョン</string>
     <string name="appearance_section_header">外観</string>
+    <string name="appearance_summary">アプリのテーマ、真っ黒モード</string>
     <string name="appearance_title">テーマ</string>
     <string name="appearance_theme_mode">ダークモード</string>
     <string name="appearance_theme_mode_default">システムのテーマに従う</string>
     <string name="appearance_theme_mode_light">オフ</string>
     <string name="appearance_theme_mode_dark">オン</string>
     <string name="appearance_pure_black_mode">真っ黒モード</string>
+    <string name="appearance_app_theme">アプリのテーマ</string>
+    <string name="appearance_navigation_title">ナビゲーション</string>
+    <string name="appearance_nav_hide">スクロール時にナビゲーションバーを隠す</string>
+    <string name="appearance_show_icons">カテゴリのアイコンを表示</string>
     <string name="backup_settings">バックアップと復元</string>
     <string name="backup_settings_summary">自動 &amp; 手動バックアップ</string>
     <string name="backup_frequency">バックアップ間隔</string>
@@ -239,6 +283,7 @@
     <string name="backup_select_location">バックアップディレクトリを作成して選択してください…</string>
     <!-- Theme names -->
     <string name="theme_default">デフォルト</string>
+    <string name="theme_monet">ダイナミック</string>
     <string name="theme_greenapple">青林檎</string>
     <string name="theme_strawberrydaiquiri">ストロベリーダイキリ</string>
     <string name="theme_honey">蜂蜜</string>
@@ -288,6 +333,7 @@
     <!-- Revert confirmation -->
     <!-- File intent handler -->
     <!-- Translation notice box -->
+    <string name="translation_notice">翻訳に貢献</string>
     <!-- Self-updates (Root) -->
     <!-- Backups -->
     <string name="backup_restore_progress">バックアップから復元中</string>
@@ -304,6 +350,7 @@
     <string name="backup_restore">バックアップから復元</string>
     <string name="backup_restore_summary">バックアップファイルから設定を復元</string>
     <string name="backup_automatic_backup">自動バックアップ</string>
+    <string name="backup_compat_info">バックアップには、インパルス応答、スクリプト、VDCファイル、プリセット、および現在のオーディオ構成のみが含まれており、他のバージョンとの最大限の互換性があります。</string>
     <string name="backup_restore_mode_title">復元モード</string>
     <string name="backup_in_progress">すでにバックアップの処理中です</string>
     <!-- Multi-device profiles -->

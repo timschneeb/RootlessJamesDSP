@@ -81,9 +81,9 @@
     <string name="compander_granularity_extreme">Extreme</string>
     <string name="compander_tftransforms">Time-frequency transform</string>
     <string name="compander_tftransforms_stft">Uniform (Short-time Fourier)</string>
-    <string name="compander_tftransforms_continuous_wavelet">Multiresolution (Continuous wavelet)</string>
-    <string name="compander_tftransforms_time_domain">Multiresolution (Time domain)</string>
-
+    <string name="compander_tftransforms_continuous_wavelet">Multiresolution (Continuous wavelet, incomplete dual frame)</string>
+    <string name="compander_tftransforms_undersampling">Pseudo multiresolution (Undersampling frame)</string>
+    <string name="compander_tftransforms_time_domain">Pseudo multiresolution (Time domain, zero latency)</string>
     <string name="eq_enable">Multimodal equalizer</string>
     <string name="eq_filter_type">Filter type</string>
     <string name="eq_interpolator">Interpolator</string>
