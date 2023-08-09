@@ -1,7 +1,7 @@
 import com.google.firebase.crashlytics.buildtools.gradle.CrashlyticsExtension
 
 plugins {
-    id("com.android.library")
+    id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("com.google.gms.google-services")
@@ -12,42 +12,59 @@ plugins {
 }
 
 android {
+
+    val SUPPORTED_ABIS = setOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
     compileSdk = AndroidConfig.compileSdk
+    project.setProperty("archivesBaseName", "RootlessJamesDSP-v${AndroidConfig.versionName}")
 
     defaultConfig {
+        targetSdk = AndroidConfig.targetSdk
+        versionCode = AndroidConfig.versionCode
+        versionName = AndroidConfig.versionName
 
-        minSdk = AndroidConfig.minSdk
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "COMMIT_COUNT", "\"${getCommitCount()}\"")
         buildConfigField("String", "COMMIT_SHA", "\"${getGitSha()}\"")
         buildConfigField("String", "BUILD_TIME", "\"${getBuildTime()}\"")
         buildConfigField("boolean", "PREVIEW", "false")
-        buildConfigField("boolean", "FOSS_ONLY", "true")
-        buildConfigField("boolean", "ROOTLESS", "false")
-        buildConfigField("String", "APPLICATION_ID", "\"me.timschneeberger.rootlessjamesdsp\"")
-        buildConfigField("String", "VERSION_NAME", "\"${getPluginVersion()} [PLUGIN_MODE]\"")
-        buildConfigField("int", "VERSION_CODE", "40")
-
-        targetSdk = AndroidConfig.targetSdk
+        buildConfigField("boolean", "PLUGIN", "false")
 
         externalNativeBuild {
             cmake {
                 arguments.addAll(listOf("-DANDROID_ARM_NEON=ON"))
             }
         }
-    }
 
-    android.defaultConfig.externalNativeBuild.cmake.arguments += "-DNO_CRASHLYTICS=1"
+        ndk {
+            abiFilters += SUPPORTED_ABIS
+        }
+    }
 
     buildTypes {
         getByName("debug") {
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-${getCommitCount()}"
+            manifestPlaceholders["crashlyticsCollectionEnabled"] = "false"
         }
         getByName("release") {
+            manifestPlaceholders += mapOf("crashlyticsCollectionEnabled" to "true")
+            configure<CrashlyticsExtension> {
+                nativeSymbolUploadEnabled = true
+                mappingFileUploadEnabled = false
+            }
+
+            //proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
+            isMinifyEnabled = false
+            isShrinkResources = false
+            signingConfig = signingConfigs.getByName("debug")
         }
         create("preview") {
             initWith(getByName("release"))
             buildConfigField("boolean", "PREVIEW", "true")
 
+            val debugType = getByName("debug")
+            versionNameSuffix = debugType.versionNameSuffix
             matchingFallbacks.add("release")
         }
     }
@@ -67,11 +84,22 @@ android {
 
         create("rootless") {
             dimension = "version"
+
+            manifestPlaceholders["label"] = "RootlessJamesDSP"
+            applicationId = "me.timschneeberger.rootlessjamesdsp"
+            AndroidConfig.minSdk = 29
+            minSdk = AndroidConfig.minSdk
             buildConfigField("boolean", "ROOTLESS", "true")
             buildConfigField("boolean", "PLUGIN", "false")
         }
         create("root") {
             dimension = "version"
+
+            manifestPlaceholders["label"] = "JamesDSP"
+            project.setProperty("archivesBaseName", "JamesDSP-v${AndroidConfig.versionName}-${AndroidConfig.versionCode}")
+            applicationId = "james.dsp"
+            AndroidConfig.minSdk = 26
+            minSdk = AndroidConfig.minSdk
             buildConfigField("boolean", "ROOTLESS", "false")
             buildConfigField("boolean", "PLUGIN", "false")
         }
@@ -82,6 +110,21 @@ android {
             minSdk = AndroidConfig.minSdk
             buildConfigField("boolean", "ROOTLESS", "false")
             buildConfigField("boolean", "PLUGIN", "true")
+        }
+    }
+
+    sourceSets {
+        // Use different app icon for non-release builds
+        getByName("debug").res.srcDirs("src/debug/res")
+    }
+
+    // Export multiple CPU architecture split apks
+    splits {
+        abi {
+            isEnable = true
+            reset()
+            include(*SUPPORTED_ABIS.toTypedArray())
+            isUniversalApk = true
         }
     }
 
@@ -136,25 +179,25 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
 
     // AndroidX
-    implementation("androidx.core:core-ktx:1.9.0")
+    implementation("androidx.core:core-ktx:1.10.1")
     implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.recyclerview:recyclerview:1.3.0")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
-    implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
+    implementation("androidx.recyclerview:recyclerview:1.3.1")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.6.0")
+    implementation("androidx.navigation:navigation-ui-ktx:2.6.0")
     implementation("androidx.preference:preference-ktx:1.2.0")
-    implementation("androidx.databinding:databinding-runtime:7.4.2")
-    implementation("androidx.work:work-runtime-ktx:2.8.0")
-    implementation("androidx.mediarouter:mediarouter:1.3.1")
+    implementation("androidx.databinding:databinding-runtime:8.1.0")
+    implementation("androidx.work:work-runtime-ktx:2.8.1")
+    implementation("androidx.mediarouter:mediarouter:1.4.0")
 
     // Material
-    implementation("com.google.android.material:material:1.9.0-beta01")
+    implementation("com.google.android.material:material:1.9.0")
 
     // Dependency injection
     implementation("io.insert-koin:koin-android:3.3.3")
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0")
+    implementation("androidx.core:core-ktx:1.10.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
 
     // Firebase
     "fullImplementation"(platform("com.google.firebase:firebase-bom:31.2.3"))
@@ -177,7 +220,7 @@ dependencies {
     implementation("com.squareup.okio:okio:3.3.0")
 
     // Room databases
-    val roomVersion = "2.5.0"
+    val roomVersion = "2.5.2"
     implementation("androidx.room:room-runtime:$roomVersion")
     ksp("androidx.room:room-compiler:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
