@@ -202,7 +202,7 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
       <sub><b>3168 words</b></sub>
     </td>
     <td align="center" valign="top">
-      <a href="https://crowdin.com/profile/federico.dilo"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15215886/medium/4f06cf653567b3bd736a1ebb4ae680a9.png" />
+      <a href="https://crowdin.com/profile/federico.dilo"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15215886/medium/324eb0444a99116a8ceb8420b3cb3a5d.jpg" />
         <br />
         <sub><b>Federico Di Lorenzo (federico.dilo)</b></sub></a>
       <br />
@@ -227,7 +227,7 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
         <br />
         <sub><b>zhiq liu (liziq)</b></sub></a>
       <br />
-      <sub><b>1934 words</b></sub>
+      <sub><b>1950 words</b></sub>
     </td>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/TecitoDeMenta"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15859109/medium/09cc6632c3686add5d52d4e7a3dec25a.jpg" />
