@@ -62,7 +62,6 @@
     <!-- Main screen -->
     <string name="power_button_alt">สลับการประมวลผลเสียง</string>
     <string name="compander_enable">การบีบอัดแบบ Dynamic range</string>
-    <string name="compander_timeconstant">Time constant</string>
     <string name="compander_granularity">ความละเอียด</string>
     <string name="compander_granularity_very_low">ต่ำมาก</string>
     <string name="compander_granularity_low">ต่ำ</string>
