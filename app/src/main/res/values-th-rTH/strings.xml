@@ -61,7 +61,7 @@
     <string name="error_projection_api_missing">ผู้ผลิตอุปกรณ์ของคุณได้ปิดใช้งาน API การบันทึกเสียงภายใน แอปพลิเคชันนี้ไม่สามารถทำงานได้หากไม่มี</string>
     <!-- Main screen -->
     <string name="power_button_alt">สลับการประมวลผลเสียง</string>
-    <string name="compander_enable">Dynamic range compander</string>
+    <string name="compander_enable">การบีบอัดแบบ Dynamic range</string>
     <string name="compander_timeconstant">Time constant</string>
     <string name="compander_granularity">ความละเอียด</string>
     <string name="compander_granularity_very_low">ต่ำมาก</string>
@@ -71,6 +71,7 @@
     <string name="compander_granularity_extreme">สูงมาก</string>
     <string name="compander_tftransforms">การแปลงความถี่เวลา</string>
     <string name="compander_tftransforms_stft">เครื่องแบบ (ฟูเรียร์แบบสั้น)</string>
+    <string name="compander_tftransforms_continuous_wavelet">Multiresolution (Continuous wavelet, incomplete dual frame)</string>
     <string name="eq_enable">อีควอไลเซอร์หลายรูปแบบ</string>
     <string name="eq_filter_type">ประเภทตัวกรอง</string>
     <string name="eq_interpolator">อินเตอร์โพเลเตอร์</string>
