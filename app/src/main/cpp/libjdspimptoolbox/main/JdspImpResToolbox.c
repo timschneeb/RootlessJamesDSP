@@ -434,14 +434,14 @@ void circshift(float *x, int n, int k)
 ierper pch1, pch2, pch3;
 __attribute__((constructor)) static void initialize(void)
 {
-    precompute_lpfcoeff();
+    precompute_lpfcoeff_toolbox();
 	initIerper(&pch1, NUMPTS + 2);
     initIerper(&pch2, NUMPTS + 2);
     initIerper(&pch3, NUMPTS_DRS + 2);
 }
 __attribute__((destructor)) static void destruction(void)
 {
-    clean_lpfcoeff();
+    clean_lpfcoeff_toolbox();
 	freeIerper(&pch1);
 	freeIerper(&pch2);
     freeIerper(&pch3);
