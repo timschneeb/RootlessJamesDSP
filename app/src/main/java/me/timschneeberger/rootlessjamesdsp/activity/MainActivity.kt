@@ -274,7 +274,7 @@ class MainActivity : BaseActivity() {
                     }
                 }
                 else if (isRoot()) {
-                    when(JamesDspRemoteEngine.isPluginInstalled() ) {
+                    when(JamesDspRemoteEngine.isPluginInstalled()) {
                         JamesDspRemoteEngine.PluginState.Available -> {
                             binding.powerToggle.isToggled = !binding.powerToggle.isToggled
                             prefsApp.set(R.string.key_powered_on, binding.powerToggle.isToggled)
@@ -282,7 +282,9 @@ class MainActivity : BaseActivity() {
                         JamesDspRemoteEngine.PluginState.Unsupported -> {
                             toast(getString(R.string.version_mismatch_root_toast))
                         }
-                        else -> {}
+                        JamesDspRemoteEngine.PluginState.Unavailable -> {
+                            toast(getString(R.string.load_fail_header))
+                        }
                     }
                 }
                 else if(isPlugin()) {
