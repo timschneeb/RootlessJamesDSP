@@ -71,8 +71,9 @@
     <string name="compander_granularity_extreme">极高</string>
     <string name="compander_tftransforms">时频变换</string>
     <string name="compander_tftransforms_stft">均匀（短时傅里叶）</string>
-    <string name="compander_tftransforms_continuous_wavelet">多分辨率（连续小波）</string>
-    <string name="compander_tftransforms_time_domain">多分辨率（时域）</string>
+    <string name="compander_tftransforms_continuous_wavelet">多分辨率（连续小波，不完全的对偶框架）</string>
+    <string name="compander_tftransforms_undersampling">伪多分辨率（欠采样框架）</string>
+    <string name="compander_tftransforms_time_domain">伪多分辨率（时域，零延时）</string>
     <string name="eq_enable">多模态均衡器</string>
     <string name="eq_filter_type">滤波器类型</string>
     <string name="eq_interpolator">插值器</string>
@@ -122,9 +123,9 @@
     <string name="reverb_preset_long_reverb1">长混响一</string>
     <string name="reverb_preset_long_reverb2">长混响二</string>
     <string name="convolver_enable">脉冲反馈</string>
-    <string name="convolver_impulse">冲激响应</string>
+    <string name="convolver_impulse">脉冲响应</string>
     <string name="convolver_advanced_editing">高级波形编辑</string>
-    <string name="convolver_convolution_mode">冲激响应优化</string>
+    <string name="convolver_convolution_mode">脉冲响应优化</string>
     <string name="convolver_convolution_mode_original">原始</string>
     <string name="convolver_convolution_mode_shrink">收缩</string>
     <string name="convolver_convolution_mode_minimum_phase_shrink">最小相变和收缩</string>
@@ -423,7 +424,7 @@
     <string name="filelibrary_no_presets">没有已保存的预设，点击“添加”以创建一个新预设。</string>
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">选择的 VDC 文件已损坏，请重新选择其它文件。</string>
-    <string name="message_irs_corrupt">所选的脉冲响应已损坏。请另选一个。</string>
+    <string name="message_irs_corrupt">所选脉冲响应已损坏，请另外重选。</string>
     <string name="message_convolver_advimp_invalid">脉冲反馈：高级波形编辑包含无效值。</string>
     <string name="message_liveprog_compile_fail">Liveprog 执行失败，选定的脚本已损坏，请使用脚本编辑器进行调试。</string>
     <!-- GraphicEQ editor -->

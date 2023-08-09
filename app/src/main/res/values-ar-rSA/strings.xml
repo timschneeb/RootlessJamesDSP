@@ -71,8 +71,6 @@
     <string name="compander_granularity_extreme">القصوى</string>
     <string name="compander_tftransforms">تحويل التردد الزمني</string>
     <string name="compander_tftransforms_stft">موحّد (فورييه بوقت قصير)</string>
-    <string name="compander_tftransforms_continuous_wavelet">دقة متعددة (طول مستمر)</string>
-    <string name="compander_tftransforms_time_domain">الاستبانة المتعددة (مجال الوقت)</string>
     <string name="eq_enable">معادل تعدد الوسائط</string>
     <string name="eq_filter_type">نوع التصفية</string>
     <string name="eq_interpolator">مستقطب</string>

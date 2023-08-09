@@ -71,8 +71,6 @@
     <string name="compander_granularity_extreme">Extrémní</string>
     <string name="compander_tftransforms">Časově-frekvenční transformace</string>
     <string name="compander_tftransforms_stft">Jednotná (Krátkodobý Fourier)</string>
-    <string name="compander_tftransforms_continuous_wavelet">Multirozklad (Nepřetržitá vlna)</string>
-    <string name="compander_tftransforms_time_domain">Multirozklad (Časová doména)</string>
     <string name="eq_enable">Multimodální ekvalizér</string>
     <string name="eq_filter_type">Typ filtru</string>
     <string name="eq_interpolator">Interpolátor</string>

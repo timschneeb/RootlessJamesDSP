@@ -71,8 +71,6 @@
     <string name="compander_granularity_extreme">สูงมาก</string>
     <string name="compander_tftransforms">การแปลงความถี่เวลา</string>
     <string name="compander_tftransforms_stft">เครื่องแบบ (ฟูเรียร์แบบสั้น)</string>
-    <string name="compander_tftransforms_continuous_wavelet">หลายความละเอียด (เวฟเล็ตต่อเนื่อง)</string>
-    <string name="compander_tftransforms_time_domain">ความละเอียดหลายระดับ (โดเมนเวลา)</string>
     <string name="eq_enable">อีควอไลเซอร์หลายรูปแบบ</string>
     <string name="eq_filter_type">ประเภทตัวกรอง</string>
     <string name="eq_interpolator">อินเตอร์โพเลเตอร์</string>
