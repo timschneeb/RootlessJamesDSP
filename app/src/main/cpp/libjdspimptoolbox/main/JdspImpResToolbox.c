@@ -3,203 +3,7 @@
 #include <string.h>
 #include <math.h>
 
-#include "interpolation.h"
-
-void LLdiscreteHartleyFloat(float *A, const int nPoints, const float *sinTab)
-{
-    int i, j, n, n2, theta_inc, nptDiv2;
-    float alpha, beta;
-    // FHT - stage 1 and 2 (2 and 4 points)
-    for (i = 0; i < nPoints; i += 4)
-    {
-        const float	x0 = A[i];
-        const float	x1 = A[i + 1];
-        const float	x2 = A[i + 2];
-        const float	x3 = A[i + 3];
-        const float	y0 = x0 + x1;
-        const float	y1 = x0 - x1;
-        const float	y2 = x2 + x3;
-        const float	y3 = x2 - x3;
-        A[i] = y0 + y2;
-        A[i + 2] = y0 - y2;
-        A[i + 1] = y1 + y3;
-        A[i + 3] = y1 - y3;
-    }
-    // FHT - stage 3 (8 points)
-    for (i = 0; i < nPoints; i += 8)
-    {
-        alpha = A[i];
-        beta = A[i + 4];
-        A[i] = alpha + beta;
-        A[i + 4] = alpha - beta;
-        alpha = A[i + 2];
-        beta = A[i + 6];
-        A[i + 2] = alpha + beta;
-        A[i + 6] = alpha - beta;
-        alpha = A[i + 1];
-        const float beta1 = 0.70710678118654752440084436210485f*(A[i + 5] + A[i + 7]);
-        const float beta2 = 0.70710678118654752440084436210485f*(A[i + 5] - A[i + 7]);
-        A[i + 1] = alpha + beta1;
-        A[i + 5] = alpha - beta1;
-        alpha = A[i + 3];
-        A[i + 3] = alpha + beta2;
-        A[i + 7] = alpha - beta2;
-    }
-    n = 16;
-    n2 = 8;
-    theta_inc = nPoints >> 4;
-    nptDiv2 = nPoints >> 2;
-    while (n <= nPoints)
-    {
-        for (i = 0; i < nPoints; i += n)
-        {
-            int theta = theta_inc;
-            const int n4 = n2 >> 1;
-            alpha = A[i];
-            beta = A[i + n2];
-            A[i] = alpha + beta;
-            A[i + n2] = alpha - beta;
-            alpha = A[i + n4];
-            beta = A[i + n2 + n4];
-            A[i + n4] = alpha + beta;
-            A[i + n2 + n4] = alpha - beta;
-            for (j = 1; j < n4; j++)
-            {
-                float	sinval = sinTab[theta];
-                float	cosval = sinTab[theta + nptDiv2];
-                float	alpha1 = A[i + j];
-                float	alpha2 = A[i - j + n2];
-                float	beta1 = A[i + j + n2] * cosval + A[i - j + n] * sinval;
-                float	beta2 = A[i + j + n2] * sinval - A[i - j + n] * cosval;
-                theta += theta_inc;
-                A[i + j] = alpha1 + beta1;
-                A[i + j + n2] = alpha1 - beta1;
-                A[i - j + n2] = alpha2 + beta2;
-                A[i - j + n] = alpha2 - beta2;
-            }
-        }
-        n <<= 1;
-        n2 <<= 1;
-        theta_inc >>= 1;
-    }
-}
-
-void complexMultiplication(double xReal, double xImag, double yReal, double yImag, double *zReal, double *zImag)
-{
-    *zReal = xReal * yReal - xImag * yImag;
-    *zImag = xReal * yImag + xImag * yReal;
-}
-void cdivid(const double ar, const double ai, const double br, const double bi, double *cr, double *ci)
-{
-    double r, d;
-    if (br == 0.0 && bi == 0.0)
-    {
-        // Division by zero, c = infinity
-        *cr = DBL_MAX;
-        *ci = DBL_MAX;
-        return;
-    }
-    if (fabs(br) < fabs(bi))
-    {
-        r = br / bi;
-        d = bi + r * br;
-        *cr = (ar * r + ai) / d;
-        *ci = (ai * r - ar) / d;
-        return;
-    }
-    r = bi / br;
-    d = br + r * bi;
-    *cr = (ar + ai * r) / d;
-    *ci = (ai - ar * r) / d;
-}
-
-void HSHOResponse(double fs, double fc, unsigned int filterOrder, double gain, double overallGainDb, unsigned int queryPts, double *dispFreq, double *cplxRe, double *cplxIm)
-{
-    unsigned int L = filterOrder >> 1;
-    double *sRe = (double *)malloc(queryPts * sizeof(double));
-    double *sIm = (double *)malloc(queryPts * sizeof(double));
-    double *s2Re = (double *)malloc(queryPts * sizeof(double));
-    double *s2Im = (double *)malloc(queryPts * sizeof(double));
-    for (unsigned int j = 0; j < queryPts; j++)
-    {
-        double digw = dispFreq[j] / fs * 2.0 * M_PI;
-        sRe[j] = cos(digw);
-        sIm[j] = sin(digw);
-        s2Re[j] = sRe[j] * sRe[j] - sIm[j] * sIm[j];
-        s2Im[j] = sRe[j] * sIm[j] + sIm[j] * sRe[j];
-    }
-    double Dw = M_PI * (0.5 - fc / fs);
-    double GB = (1.0 / sqrt(2.0)) * gain;
-    double G = pow(10.0, gain / 20.0);
-    double overallGain = pow(10.0, overallGainDb / 20.0);
-    if (G == 1.0)
-        goto scalar_gain;
-    GB = pow(10.0, GB / 20.0);
-    double gR;
-    if (fabs(GB * GB - 1) < DBL_EPSILON)
-        gR = 0.0;
-    else
-        gR = (G * G - GB * GB) / (GB * GB - 1);
-    double reci1Ord = 1.0 / filterOrder;
-    double ratOrd = pow(gR, reci1Ord);
-    double sDw = sin(Dw);
-    double sDw2 = sDw * sDw;
-    double cDw = cos(Dw);
-    double cDw2 = cDw * cDw;
-    double ratRO = pow(gR, 1.0 / (2 * filterOrder));
-    double g2reO = pow(G, 2.0 * reci1Ord);
-    double gP1 = pow(G, 1.0 / filterOrder);
-    double t2 = 2 * g2reO * sDw2;
-    double t4 = cDw2 * ratOrd;
-    double t5 = 2 * cDw2 * ratOrd;
-    double t8 = cDw2 * ratOrd;
-    double t10 = g2reO * sDw2;
-    double t11 = 2 * sDw2;
-    double t12 = 2 * t8;
-    double t13 = 2 * gP1 * cDw * sDw * ratRO;
-    double t14 = g2reO * sDw2 + cDw2 * ratOrd;
-    double t15 = 2 * cDw * sDw * ratRO;
-    double t16 = sDw2 + cDw2 * ratOrd;
-    for (unsigned int i = 0; i < L; i++)
-    {
-        double si = sin((2 * (i + 1) - 1.0) * M_PI / (2.0 * filterOrder));
-        double t6 = t13 * si;
-        double t1 = t14 - t6;
-        double t9 = t15 * si;
-        double t7 = t16 - t9;
-        for (unsigned int j = 0; j < queryPts; j++)
-        {
-            double k1Re = (t1 - t2 * sRe[j] + t5 * sRe[j] + t10 * s2Re[j] + t4 * s2Re[j] + t6 * s2Re[j]);
-            double k1Im = (-t2 * sIm[j] + t5 * sIm[j] + t10 * s2Im[j] + t4 * s2Im[j] + t6 * s2Im[j]);
-            double k2Re = (t7 + s2Re[j] * sDw2 - t11 * sRe[j] + s2Re[j] * t8 + sRe[j] * t12 + s2Re[j] * t9);
-            double k2Im = (s2Im[j] * sDw2 - t11 * sIm[j] + s2Im[j] * t8 + sIm[j] * t12 + s2Im[j] * t9);
-            double cplx2Re, cplx2Im;
-            cdivid(k1Re, k1Im, k2Re, k2Im, &cplx2Re, &cplx2Im);
-            complexMultiplication(cplxRe[j], cplxIm[j], cplx2Re, cplx2Im, &cplxRe[j], &cplxIm[j]);
-        }
-    }
-    scalar_gain:
-    free(sRe);
-    free(sIm);
-    free(s2Re);
-    free(s2Im);
-    for (unsigned int j = 0; j < queryPts; j++)
-    {
-        cplxRe[j] *= overallGain;
-        cplxIm[j] *= overallGain;
-    }
-}
-
-unsigned int upper_power_of_two(unsigned int v)
-{
-    v--;
-    v |= v >> 1;
-    v |= v >> 2;
-    v |= v >> 4;
-    v |= v >> 8;
-    v |= v >> 16;
-    return ++v;
-}
+#include <jdsp_header.h>
 
 void channel_splitFloat(float *buffer, unsigned int num_frames, float **chan_buffers, unsigned int num_channels)
 {
@@ -434,19 +238,19 @@ void circshift(float *x, int n, int k)
 ierper pch1, pch2, pch3;
 __attribute__((constructor)) static void initialize(void)
 {
-    precompute_lpfcoeff_toolbox();
+    precompute_lpfcoeff();
 	initIerper(&pch1, NUMPTS + 2);
     initIerper(&pch2, NUMPTS + 2);
     initIerper(&pch3, NUMPTS_DRS + 2);
 }
 __attribute__((destructor)) static void destruction(void)
 {
-    clean_lpfcoeff_toolbox();
+    clean_lpfcoeff();
 	freeIerper(&pch1);
 	freeIerper(&pch2);
     freeIerper(&pch3);
 }
-void JamesDSPOfflineResamplingToolbox(float const *in, float *out, size_t lenIn, size_t lenOut, int channels, double src_ratio, int resampleQuality)
+void JamesDSPOfflineResampling(float const *in, float *out, size_t lenIn, size_t lenOut, int channels, double src_ratio, int resampleQuality)
 {
 	if (lenOut == lenIn && lenIn == 1)
 	{
@@ -506,7 +310,7 @@ float* loadAudioFile(const char *filename, double targetFs, unsigned int *channe
 		int compressedLen = (int)ceil(*totalPCMFrameCount * ratio);
 		float *tmpBuf = (float*)malloc(compressedLen * *channels * sizeof(float));
 		memset(tmpBuf, 0, compressedLen * *channels * sizeof(float));
-        JamesDSPOfflineResamplingToolbox(pSampleData, tmpBuf, *totalPCMFrameCount, compressedLen, *channels, ratio, resampleQuality);
+		JamesDSPOfflineResampling(pSampleData, tmpBuf, *totalPCMFrameCount, compressedLen, *channels, ratio, resampleQuality);
 		*totalPCMFrameCount = compressedLen;
 		free(pSampleData);
 		return tmpBuf;
