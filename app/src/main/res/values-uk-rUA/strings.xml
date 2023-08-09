@@ -71,6 +71,8 @@
     <string name="compander_granularity_extreme">Екстремальна</string>
     <string name="compander_tftransforms">Часово-частотне перетворення</string>
     <string name="compander_tftransforms_stft">Рівномірне (швидке перетворення Фур\'є)</string>
+    <string name="compander_tftransforms_continuous_wavelet">Мультироздільність (безперервний вейвлет, неповний подвійний фрейм)</string>
+    <string name="compander_tftransforms_undersampling">Псевдомультироздільність (зниження частоти дискретизації фрейму)</string>
     <string name="eq_enable">Мультимодальний еквалайзер</string>
     <string name="eq_filter_type">Тип фільтра</string>
     <string name="eq_interpolator">Інтерполятор</string>
