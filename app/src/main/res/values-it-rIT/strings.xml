@@ -510,7 +510,7 @@
     <string name="load_fail_card">Installa il modulo Magisk di JamesDSP e riavvia il dispositivo Android per utilizzare questa applicazione. Potrebbe anche essere necessario reinstallare questa applicazione dopo il riavvio.</string>
     <string name="load_fail_rootless_card_title">Cerchi un\'alternativa senza permessi di root?</string>
     <string name="load_fail_rootless_card">Questa versione di JamesDSP è stato progettata per essere utilizzata con un dispositivo con permessi di root/modificato. È disponibile anche un\'alternativa non-root con alcune limitazioni. Tocca qui per i dettagli.</string>
-    <string name="load_fail_arch_card_title">Modulo già installato?</string>
+    <string name="load_fail_arch_card_title">Il modulo è già istallato?</string>
     <string name="load_fail_arch_card">Se hai già installato il modulo Magisk, potresti aver scelto le impostazioni sbagliate durante l\'installazione. Reinstalla e prova ad abilitare la compatibilità Huawei (anche se il telefono non proviene da quel produttore).</string>
     <!-- Enhanced processing -->
     <string name="enhanced_processing_feature_unavailable">Funzionalità non disponibile</string>
@@ -534,7 +534,7 @@
     <string name="intent_import_preset">Importa preimpostazioni</string>
     <string name="intent_import_irs">Importa risposta impulsiva</string>
     <string name="intent_import_vdc">Importa file VDC</string>
-    <string name="intent_import_liveprog">Importa script di Liveprog</string>
+    <string name="intent_import_liveprog">Importa script Liveprog</string>
     <string name="intent_import_mode_add">Importa solamente</string>
     <string name="intent_import_mode_select">Importa e attiva</string>
     <string name="intent_import_fail">Impossibile importare il file \"%1$s\"</string>
@@ -549,7 +549,7 @@
     <string name="self_update_download_fail">Download del pacchetto di aggiornamento non riuscito. Controlla la tua connessione a Internet. Dettagli: %1$s</string>
     <string name="self_update_install_fail">Istallazione non riuscita. %1$s</string>
     <string name="self_update_finished">Aggiornamento istallato. L\'applicazione si sta riavviando…</string>
-    <string name="self_update_no_updates">Nessun nuovo aggiornamento disponibile al momento</string>
+    <string name="self_update_no_updates">Nessun nuovo aggiornamento al momento disponibile</string>
     <string name="self_update_notice">Nuovo aggiornamento disponibile (%1$s)</string>
     <string name="self_update_notice_summary">Tocca qui per scaricare e istallare il nuovo aggiornamento.</string>
     <string name="self_update_notice_dismiss_install">Istalla adesso</string>
@@ -561,7 +561,7 @@
     <string name="backup_restore_progress">Ripristino del backup in corso</string>
     <string name="backup_restore_error">Ripristino del backup fallito</string>
     <string name="backup_restore_error_format">File di backup non supportato o danneggiato</string>
-    <string name="backup_restore_error_version_too_new">Il backup è stato creato con una versione più recente di questa applicazione e non può essere caricato. Si prega di aggiornare questa applicazione per continuare.</string>
+    <string name="backup_restore_error_version_too_new">Il backup è stato creato con una versione più recente di questa applicazione e non può essere caricato. Aggiorna questa applicazione per continuare.</string>
     <string name="backup_restore_completed">Ripristino completato</string>
     <string name="backup_create_completed">Backup creato</string>
     <string name="backup_create_progress">Creazione del backup in corso</string>
@@ -572,7 +572,7 @@
     <string name="backup_restore">Ripristina backup</string>
     <string name="backup_restore_summary">Ripristina le impostazioni da un file di backup</string>
     <string name="backup_automatic_backup">Backup automatico</string>
-    <string name="backup_compat_info">I backup includono esclusivamente risposte impulsive, script, file VDC, preimpostazioni e la configurazione audio corrente per la massima compatibilità con le altre versioni.</string>
+    <string name="backup_compat_info">I backup includono esclusivamente le risposte impulsive, gli script, i file VDC, le preimpostazioni e la configurazione audio corrente per la massima compatibilità con le altre versioni.</string>
     <string name="backup_restore_mode_title">Modalità ripristino</string>
     <string name="backup_restore_mode_clean">Ripristino completo (cancella tutti i file esistenti)</string>
     <string name="backup_restore_mode_dirty">Ripristino parziale (sovrascrivi soltanto)</string>
