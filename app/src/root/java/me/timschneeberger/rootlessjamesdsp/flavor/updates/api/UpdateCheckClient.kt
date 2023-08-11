@@ -23,7 +23,7 @@ import timber.log.Timber
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 
-class UpdateCheckClient(val context: Context, callTimeout: Long = 10): KoinComponent {
+class UpdateCheckClient(val context: Context, callTimeout: Long = 0): KoinComponent {
 
     private val http = OkHttpClient
         .Builder()
