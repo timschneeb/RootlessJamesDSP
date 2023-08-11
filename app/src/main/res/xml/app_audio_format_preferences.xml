@@ -54,4 +54,23 @@
             app:iconSpaceReserved="false"/>
 
     </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/audio_format_optimization_header"
+        app:iconSpaceReserved="false">
+
+        <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
+            android:key="@string/key_audioformat_optimization_benchmark"
+            android:defaultValue="@bool/default_audioformat_optimization_benchmark"
+            android:title="@string/audio_format_optimization_benchmark"
+            android:summary="@string/audio_format_optimization_benchmark_summary"
+            app:iconSpaceReserved="false" />
+
+        <Preference
+            android:key="@string/key_audioformat_optimization_refresh"
+            android:title="@string/audio_format_optimization_refresh"
+            android:dependency="@string/key_audioformat_optimization_benchmark"
+            app:iconSpaceReserved="false"/>
+
+    </PreferenceCategory>
 </PreferenceScreen>

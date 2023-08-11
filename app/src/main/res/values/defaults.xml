@@ -13,8 +13,10 @@
     <bool name="default_is_activity_active" translatable="false" tools:keep="@bool/default_is_activity_active">false</bool>
     <bool name="default_is_app_compat_activity_active" translatable="false" tools:keep="@bool/default_is_app_compat_activity_active">false</bool>
 
-    <!-- Internal DSP (root only) -->
+    <!-- Internal DSP -->
     <bool name="default_powered_on" translatable="false" tools:keep="@bool/default_powered_on">true</bool>
+    <string name="default_benchmark_c0" translatable="false" tools:keep="@string/default_benchmark_c0" />
+    <string name="default_benchmark_c1" translatable="false" tools:keep="@string/default_benchmark_c0" />
 
     <!-- Settings -->
     <bool name="default_share_crash_reports" translatable="false">true</bool>
@@ -32,6 +34,7 @@
     <integer name="default_audioformat_buffersize" translatable="false">8192</integer>
     <bool name="default_audioformat_processing" translatable="false">true</bool>
     <bool name="default_audioformat_enhanced_processing" translatable="false">false</bool>
+    <bool name="default_audioformat_optimization_benchmark" translatable="false">false</bool>
 
     <!-- Device profiles -->
     <bool name="default_device_profiles_enable" translatable="false">false</bool>

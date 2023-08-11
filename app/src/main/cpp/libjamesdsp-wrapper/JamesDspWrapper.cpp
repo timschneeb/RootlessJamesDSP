@@ -165,11 +165,14 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_free(JNIEnv *en
     LOGD("JamesDspWrapper::dtor: memory freed");
 }
 
-extern "C" JNIEXPORT void JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_runBenchmark(JNIEnv *env, jobject obj, jlong self, jdoubleArray jc0, jdoubleArray jc1)
-{
-    DECLARE_DSP_V
+extern "C" JNIEXPORT jint JNICALL
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_getBenchmarkSize(JNIEnv *env, jobject obj) {
+    return MAX_BENCHMARK;
+}
 
+extern "C" JNIEXPORT void JNICALL
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_runBenchmark(JNIEnv *env, jobject obj, jdoubleArray jc0, jdoubleArray jc1)
+{
     LOGD("JamesDspWrapper::runBenchmark: started");
 
     auto c0 = env->GetDoubleArrayElements(jc0, nullptr);
@@ -183,10 +186,8 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_runBenchmark(JN
 }
 
 extern "C" JNIEXPORT void JNICALL
-Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_loadBenchmark(JNIEnv *env, jobject obj, jlong self, jdoubleArray jc0, jdoubleArray jc1)
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_loadBenchmark(JNIEnv *env, jobject obj, jdoubleArray jc0, jdoubleArray jc1)
 {
-    DECLARE_DSP_V
-
     LOGD("JamesDspWrapper::loadBenchmark: loading data");
 
     auto c0 = env->GetDoubleArrayElements(jc0, nullptr);

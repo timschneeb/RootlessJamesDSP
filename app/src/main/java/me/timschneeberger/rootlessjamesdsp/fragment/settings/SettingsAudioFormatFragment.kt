@@ -4,9 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.preference.ListPreference
 import androidx.preference.Preference
-import me.timschneeberger.rootlessjamesdsp.BuildConfig
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.activity.OnboardingActivity
+import me.timschneeberger.rootlessjamesdsp.interop.BenchmarkManager
 import me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
 import me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
 import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
@@ -29,6 +32,8 @@ class SettingsAudioFormatFragment : SettingsBaseFragment() {
     private val legacyMode by lazy { findPreference<MaterialSwitchPreference>(getString(R.string.key_audioformat_processing)) }
     private val enhancedMode by lazy { findPreference<MaterialSwitchPreference>(getString(R.string.key_audioformat_enhanced_processing)) }
     private val enhancedModeInfo by lazy { findPreference<Preference>(getString(R.string.key_audioformat_enhanced_processing_info)) }
+    private val benchmark by lazy { findPreference<MaterialSwitchPreference>(getString(R.string.key_audioformat_optimization_benchmark)) }
+    private val benchmarkRefresh by lazy { findPreference<Preference>(getString(R.string.key_audioformat_optimization_refresh)) }
 
     private val preferences: Preferences.App by inject()
 
@@ -36,8 +41,9 @@ class SettingsAudioFormatFragment : SettingsBaseFragment() {
         preferenceManager.sharedPreferencesName = Constants.PREF_APP
         setPreferencesFromResource(R.xml.app_audio_format_preferences, rootKey)
 
-        // Root: Hide audio format category
+        // Root: Hide audio format & benchmark category
         encoding?.parent?.isVisible = isRootless()
+        benchmark?.parent?.isVisible = !isRoot()
 
         // Rootless: Hide audio processing category
         legacyMode?.parent?.isVisible = isRoot()
@@ -76,6 +82,27 @@ class SettingsAudioFormatFragment : SettingsBaseFragment() {
                 R.string.audio_format_enhanced_processing_info_title,
                 R.string.audio_format_enhanced_processing_info_content
             )
+            true
+        }
+
+        fun runBenchmark() = context?.let { ctx ->
+            BenchmarkManager.runBenchmarks(ctx) {
+                CoroutineScope(Dispatchers.Main).launch {
+                    benchmark?.isChecked = BenchmarkManager.hasBenchmarksCached()
+                }
+            }
+        }
+
+        benchmark?.isChecked = BenchmarkManager.hasBenchmarksCached()
+        benchmark?.setOnPreferenceChangeListener { _, newValue ->
+            if(newValue as Boolean)
+                runBenchmark()
+            else
+                BenchmarkManager.clearBenchmarks()
+            true
+        }
+        benchmarkRefresh?.setOnPreferenceClickListener {
+            runBenchmark()
             true
         }
 

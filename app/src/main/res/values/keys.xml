@@ -9,8 +9,10 @@
     <string name="key_is_activity_active" translatable="false">is_activity_active</string>
     <string name="key_is_app_compat_activity_active" translatable="false">is_app_compat_activity_active</string>
 
-    <!-- Internal DSP (root only) -->
+    <!-- Internal DSP -->
     <string name="key_powered_on" translatable="false">powered_on</string>
+    <string name="key_benchmark_c0" translatable="false">benchmark_c0</string>
+    <string name="key_benchmark_c1" translatable="false">benchmark_c1</string>
 
     <!-- Settings categories (static) -->
     <string name="key_appearance" translatable="false">appearance</string>
@@ -38,6 +40,7 @@
     <string name="key_audioformat_buffersize" translatable="false">audioformat_buffersize</string>
     <string name="key_audioformat_processing" translatable="false">audioformat_processing</string>
     <string name="key_audioformat_enhanced_processing" translatable="false">audioformat_enhanced_processing</string>
+    <string name="key_audioformat_optimization_benchmark" translatable="false">audioformat_optimization_benchmark</string>
 
     <!-- Device profiles -->
     <string name="key_device_profiles_enable" translatable="false">device_profiles_enable</string>
@@ -66,6 +69,7 @@
     <string name="key_credits_check_update" translatable="false">credits_check_update</string>
     <string name="key_credits_google_play" translatable="false">credits_google_play</string>
     <string name="key_audioformat_enhanced_processing_info" translatable="false">audioformat_enhanced_processing_info</string>
+    <string name="key_audioformat_optimization_refresh" translatable="false">audioformat_optimization_refresh</string>
     <string name="key_device_profiles_info" translatable="false">device_profiles_info</string>
     <string name="key_misc_permission_skip_prompt" translatable="false">misc_permission_skip_prompt</string>
     <string name="key_misc_permission_auto_start" translatable="false">misc_permission_auto_start</string>

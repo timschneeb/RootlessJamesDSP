@@ -12,8 +12,9 @@ object JamesDspWrapper {
     external fun isHandleValid(self: JamesDspHandle): Boolean
 
     // Benchmarking
-    external fun runBenchmark(self: JamesDspHandle, c0: DoubleArray, c1: DoubleArray)
-    external fun loadBenchmark(self: JamesDspHandle, c0: DoubleArray, c1: DoubleArray)
+    external fun getBenchmarkSize(): Int
+    external fun runBenchmark(c0: DoubleArray, c1: DoubleArray)
+    external fun loadBenchmark(c0: DoubleArray, c1: DoubleArray)
 
     // Processing (interleaved)
     external fun processInt16(self: JamesDspHandle, input: ShortArray, output: ShortArray, offset: Int = -1, length: Int = -1)
