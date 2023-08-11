@@ -8,7 +8,6 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.se
 import timber.log.Timber
 import java.util.Timer
 import kotlin.concurrent.schedule
-import kotlin.reflect.jvm.internal.impl.renderer.ClassifierNamePolicy.SHORT
 
 class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspCallbacks? = null) : JamesDspBaseEngine(context, callbacks) {
     var handle: JamesDspHandle = JamesDspWrapper.alloc(callbacks ?: DummyCallbacks())
@@ -21,6 +20,11 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
         }
         get() = super.sampleRate
     override var enabled: Boolean = true
+
+    init {
+        if(BenchmarkManager.hasBenchmarksCached())
+            BenchmarkManager.loadBenchmarksFromCache()
+    }
 
     override fun close() {
         val oldHandle = handle

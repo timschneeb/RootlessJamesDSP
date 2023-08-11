@@ -66,6 +66,7 @@
     <string name="no_activity_found">No Activity found to handle action</string>
     <string name="permission_allowed">Allowed</string>
     <string name="permission_not_allowed">Not allowed</string>
+    <string name="preparing">Preparing…</string>
     <string name="error_projection_api_missing">Your device manufacturer has disabled the internal audio recording APIs. This application cannot work without them.</string>
 
     <!-- Main screen -->
@@ -305,12 +306,18 @@
     <string name="audio_format_media_apps_need_restart">You need to restart all active media apps after changing this setting to resume audio processing.</string>
     <string name="audio_format_summary">Preferred audio encoding, buffer size</string>
     <string name="audio_format_summary_root">Legacy mode, enhanced processing</string>
+    <string name="audio_format_summary_plugin">Convolver optimizations</string>
     <string name="audio_format_encoding">Audio encoding</string>
     <string name="audio_format_encoding_int16">16-bit integer PCM</string>
     <string name="audio_format_encoding_float">32-bit float PCM</string>
     <string name="audio_format_buffer_size">Buffer size</string>
     <string name="audio_format_buffer_size_unit">&#xa0;samples</string>
     <string name="audio_format_buffer_size_warning_low_value">Warning: Low buffer sizes may cause audio issues such as clipping!</string>
+    <string name="audio_format_optimization_header">Convolver module optimizations</string>
+    <string name="audio_format_optimization_refresh">Refresh benchmarking data</string>
+    <string name="audio_format_optimization_benchmark">Use benchmarks to optimize performance</string>
+    <string name="audio_format_optimization_benchmark_summary">Increases performance of effects that use convolver modules</string>
+    <string name="audio_format_optimization_benchmark_ongoing">Benchmark in progress…</string>
     <string name="profiles_section_header">Device profiles</string>
     <string name="profiles_summary">Per-device profiles, automatic switching</string>
     <string name="profiles_enable">Per-device profiles</string>
