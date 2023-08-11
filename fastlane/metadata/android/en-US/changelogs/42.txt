@@ -1,0 +1,7 @@
+* libjamesdsp updated
+    * New compander time-frequency transform parameter added
+    * Convolver benchmarking optimizations
+    * Fixed random crashes
+
+* Small playback optimizations
+* Several minor bug fixes
