@@ -4,6 +4,7 @@
     <string name="action_settings">Cài đặt</string>
     <string name="action_presets">Có sẵn</string>
     <string name="action_revert">Đặt lại về mặc định</string>
+    <string name="action_blocked_apps">Loại trừ ứng dụng</string>
     <!-- Notification channels -->
     <string name="notification_group_service">Dịch vụ</string>
     <string name="notification_channel_service">Thông báo dịch vụ</string>
@@ -82,6 +83,7 @@
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
     <!-- Blocklist -->
+    <string name="title_activity_blocklist">Loại trừ ứng dụng</string>
     <!-- Compatibility issue activity -->
     <string name="app_compat_retry">Thử lại</string>
     <!-- Root: Library load failure -->
