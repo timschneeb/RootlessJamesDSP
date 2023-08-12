@@ -58,6 +58,7 @@
     <string name="no_activity_found">Nessuna attività trovata per gestire l\'azione</string>
     <string name="permission_allowed">Consentito</string>
     <string name="permission_not_allowed">Non consentito</string>
+    <string name="preparing">In preparazione…</string>
     <string name="error_projection_api_missing">Il produttore del dispositivo ha disabilitato le API di registrazione audio interne. Questa applicazione non può funzionare senza di esse.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Attiva/disattiva l\'elaborazione audio</string>
@@ -278,12 +279,18 @@
     <string name="audio_format_media_apps_need_restart">È necessario riavviare tutte le applicazioni multimediali attive.</string>
     <string name="audio_format_summary">Codifica audio preferita, dimensione del buffer</string>
     <string name="audio_format_summary_root">Modalità compatibilità, elaborazione migliorata</string>
+    <string name="audio_format_summary_plugin">Ottimizzazioni del convolutore</string>
     <string name="audio_format_encoding">Codifica audio</string>
     <string name="audio_format_encoding_int16">PCM integrale a 16 bit </string>
     <string name="audio_format_encoding_float">PCM con virgola mobile a 32 bit </string>
     <string name="audio_format_buffer_size">Dimensione del buffer</string>
     <string name="audio_format_buffer_size_unit">&#xa0;campioni</string>
     <string name="audio_format_buffer_size_warning_low_value">Attenzione: dimensioni del buffer troppo piccole possono causare distorsioni dell\'audio!</string>
+    <string name="audio_format_optimization_header">Ottimizzazioni dei moduli del convolutore</string>
+    <string name="audio_format_optimization_refresh">Aggiorna i dati comparativi</string>
+    <string name="audio_format_optimization_benchmark">Usa i dati comparativi per ottimizzare le prestazioni</string>
+    <string name="audio_format_optimization_benchmark_summary">Aumenta le prestazioni degli effetti che utilizzano i moduli del convolutore</string>
+    <string name="audio_format_optimization_benchmark_ongoing">Calcolo dei dati comparativi in corso…</string>
     <string name="profiles_section_header">Profilo dispositivi</string>
     <string name="profiles_summary">Profilo dispositivo, commutazione automatica</string>
     <string name="profiles_enable">Profilo dispositivi</string>
