@@ -279,12 +279,15 @@
     <string name="audio_format_media_apps_need_restart">Після зміни цього параметра необхідно перезапустити всі активні мультимедійні додатки, щоб відновити обробку звуку.</string>
     <string name="audio_format_summary">Кодування аудіо, розмір буфера</string>
     <string name="audio_format_summary_root">Режим legacy, розширена обробка</string>
+    <string name="audio_format_summary_plugin">Оптимізації конвольвера</string>
     <string name="audio_format_encoding">Кодування аудіо</string>
     <string name="audio_format_encoding_int16">16-bit integer PCM</string>
     <string name="audio_format_encoding_float">32-bit float PCM</string>
     <string name="audio_format_buffer_size">Розмір буфера</string>
     <string name="audio_format_buffer_size_unit">&#xa0;samples</string>
     <string name="audio_format_buffer_size_warning_low_value">Попередження: Низькі розміри буфера можуть спричинити проблеми з аудіо, як-от кліппінг!</string>
+    <string name="audio_format_optimization_header">Оптимізації модуля конвольвера</string>
+    <string name="audio_format_optimization_refresh">Оновити дані бенчмаркінгу</string>
     <string name="audio_format_optimization_benchmark">Використовувати бенчмарки для оптимізації продуктивності</string>
     <string name="audio_format_optimization_benchmark_summary">Підвищує продуктивність ефектів, які використовують модулі конвольвера</string>
     <string name="audio_format_optimization_benchmark_ongoing">Виконується тест продуктивності…</string>
