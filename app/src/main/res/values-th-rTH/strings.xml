@@ -58,6 +58,7 @@
     <string name="no_activity_found">ไม่พบกิจกรรมที่จะจัดการการดำเนินการ</string>
     <string name="permission_allowed">อนุญาต</string>
     <string name="permission_not_allowed">ไม่อนุญาต</string>
+    <string name="preparing">การจัดเตรียม…</string>
     <string name="error_projection_api_missing">ผู้ผลิตอุปกรณ์ของคุณได้ปิดใช้งาน API การบันทึกเสียงภายใน แอปพลิเคชันนี้ไม่สามารถทำงานได้หากไม่มี</string>
     <!-- Main screen -->
     <string name="power_button_alt">สลับการประมวลผลเสียง</string>
@@ -279,12 +280,18 @@
     <string name="audio_format_media_apps_need_restart">คุณต้องรีสตาร์ทแอปสื่อที่ใช้งานอยู่ทั้งหมดหลังจากเปลี่ยนการตั้งค่านี้เพื่อดำเนินการประมวลผลเสียงต่อ</string>
     <string name="audio_format_summary">การเข้ารหัสเสียงที่ต้องการ ขนาดบัฟเฟอร์ </string>
     <string name="audio_format_summary_root">โหมด Legacy การประมวลผลขั้นสูง</string>
+    <string name="audio_format_summary_plugin">การเพิ่มประสิทธิภาพ Convolver</string>
     <string name="audio_format_encoding">การเข้ารหัสเสียง</string>
     <string name="audio_format_encoding_int16">PCM จำนวนเต็ม 16 บิต</string>
     <string name="audio_format_encoding_float">PCM โฟลต 32 บิต</string>
     <string name="audio_format_buffer_size">ขนาดของบัฟเฟอร์</string>
     <string name="audio_format_buffer_size_unit">&#xa0;ตัวอย่าง</string>
     <string name="audio_format_buffer_size_warning_low_value">คำเตือน: ขนาดบัฟเฟอร์ต่ำอาจทำให้เกิดปัญหาด้านเสียง เช่น การตัด!</string>
+    <string name="audio_format_optimization_header">การเพิ่มประสิทธิภาพโมดูล Convolver</string>
+    <string name="audio_format_optimization_refresh">รีเฟรชข้อมูลการเปรียบเทียบ</string>
+    <string name="audio_format_optimization_benchmark">ใช้เกณฑ์มาตรฐานเพื่อเพิ่มประสิทธิภาพ</string>
+    <string name="audio_format_optimization_benchmark_summary">เพิ่มประสิทธิภาพของเอฟเฟกต์ที่ใช้โมดูล convolver</string>
+    <string name="audio_format_optimization_benchmark_ongoing">กำลังดำเนินการเปรียบเทียบ…</string>
     <string name="profiles_section_header">โปรไฟล์อุปกรณ์ </string>
     <string name="profiles_summary">โปรไฟล์ต่ออุปกรณ์ การสลับอัตโนมัติ</string>
     <string name="profiles_enable">โปรไฟล์ต่ออุปกรณ์ </string>
