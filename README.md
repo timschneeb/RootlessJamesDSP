@@ -63,6 +63,7 @@ Apps confirmed working:
 * Twitch
 * Spotify ReVanced **(Patch required)**
 * Apple Music
+* Vinyl Music Player
 * ...
 
 Unsupported apps include:
@@ -75,6 +76,7 @@ Tested on:
 * Samsung Galaxy S20+ (Android 12; OneUI 4.0)
 * Stock AOSP emulator (Android 10-13)
 * Google Pixel 6 Pro (Android 13)
+* Google Pixel 6a
 
 ## Spotify support patch
 > **Note** This patch is universal and may also work with other apps than Spotify.
