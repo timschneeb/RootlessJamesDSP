@@ -410,7 +410,7 @@
     <string name="filelibrary_context_new_preset">Nuovo</string>
     <string name="filelibrary_context_new_preset_long">Nuova preimpostazione</string>
     <string name="filelibrary_unsupported_format_title">Tipo di file non supportato</string>
-    <string name="filelibrary_unsupported_format">Il file selezionato non ha la corretta estensione.</string>
+    <string name="filelibrary_unsupported_format">Il file selezionato non presenta l\'estensione corretta.</string>
     <string name="filelibrary_corrupted_title">File non supportato o danneggiato</string>
     <string name="filelibrary_corrupted">Il file selezionato non contiene dati utilizzabili o è danneggiato.</string>
     <string name="filelibrary_file_too_new">Il backup è stato creato con una versione più recente di questa applicazione e non può essere caricato. Aggiorna questa applicazione per continuare.</string>
