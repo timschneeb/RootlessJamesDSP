@@ -27,9 +27,9 @@
     <string name="notification_request_permission_title">Per avviare JamesDSP è necessaria un\'azione utente</string>
     <string name="notification_request_permission">Tocca per concedere l\'autorizzazione di acquisizione e abilitare l\'elaborazione audio di JamesDSP</string>
     <!-- Session control loss notifications -->
-    <string name="session_control_loss_toast">JamesDSP è stato interrotto a causa della perdita del controllo della sessione audio. Disabilita, per favore, altre applicazioni che utilizzano effetti audio.</string>
+    <string name="session_control_loss_toast">JamesDSP è stato interrotto a causa della perdita del controllo della sessione audio. Disabilita eventuali altre applicazioni che utilizzano effetti audio.</string>
     <string name="session_control_loss_notification_title">Elaborazione audio interrotta. Un\'altra applicazione sta interferendo con JamesDSP.</string>
-    <string name="session_control_loss_notification">Si prega di disabilitare tutte le altre applicazioni che forniscono effetti audio globali prima di riattivare JamesDSP.</string>
+    <string name="session_control_loss_notification">Disabilita per favore tutte le altre applicazioni che forniscono effetti audio globali prima di riattivare JamesDSP.</string>
     <!-- App compatibility issue notifications -->
     <string name="session_app_compat_toast">JamesDSP si è interrotto a causa di applicazioni multimediali incompatibili. Controlla la notifica per risolvere questo problema.</string>
     <string name="session_app_compat_notification_title">Elaborazione audio interrotta. Un\'altra applicazione sta interferendo con JamesDSP.</string>
@@ -79,11 +79,11 @@
     <string name="eq_filter_type">Tipo di filtro</string>
     <string name="eq_interpolator">Interpolatore</string>
     <string name="eq_filter_type_fir_minimum">FIR con fase minima</string>
-    <string name="eq_filter_type_iir_4_order">IIR 4° ordine</string>
-    <string name="eq_filter_type_iir_6_order">IIR 6° ordine</string>
-    <string name="eq_filter_type_iir_8_order">IIR 8° ordine</string>
-    <string name="eq_filter_type_iir_10_order">IIR 10° ordine</string>
-    <string name="eq_filter_type_iir_12_order">IIR 12° ordine</string>
+    <string name="eq_filter_type_iir_4_order">IIR del 4° ordine</string>
+    <string name="eq_filter_type_iir_6_order">IIR del 6° ordine</string>
+    <string name="eq_filter_type_iir_8_order">IIR dell\'8° ordine</string>
+    <string name="eq_filter_type_iir_10_order">IIR del 10° ordine</string>
+    <string name="eq_filter_type_iir_12_order">IIR del 12° ordine</string>
     <string name="eq_interpolator_chip">Polinomio cubico d\'interpolazione adattiva di Hermite</string>
     <string name="eq_interpolator_mha">Spline Hiroshi Akima modificata</string>
     <string name="eq_preset_acoustic">Acustico</string>
@@ -186,8 +186,8 @@
     <string name="onboarding_methods_root_shizuku">\u25CF Raccomandato, se il root non è configurato\n\u25CF Non è richiesto l\'utilizzo di un computer\n\u25CF Solo Android 11+</string>
     <string name="onboarding_methods_root_adb">\u25CF Per gli utenti esperti\n\u25CF È richiesto l\'utilizzo di un computer e di un cavo USB\n\u25CFPer tutte le versioni Android</string>
     <string name="onboarding_root_shell_fail_title">Senza permessi di root</string>
-    <string name="onboarding_root_shell_fail">Nessun permesso di root disponibile. Si prega di utilizzare un altro metodo di configurazione.</string>
-    <string name="onboarding_root_shell_fail_unknown">Impossibile concedere l\'autorizzazione tramite root. Si prega di utilizzare un altro metodo di configurazione.</string>
+    <string name="onboarding_root_shell_fail">Nessun permesso di root disponibile. Utilizza un altro metodo di configurazione.</string>
+    <string name="onboarding_root_shell_fail_unknown">Impossibile concedere l\'autorizzazione tramite root. Utilizza un altro metodo di configurazione.</string>
     <string name="onboarding_root_enhanced_processing_setup_success">L\'elaborazione migliorata è stata impostata</string>
     <string name="onboarding_adb_shizuku_title">Configurazione Shizuku</string>
     <string name="onboarding_adb_adb_title">Configurazione ADB</string>
@@ -263,7 +263,7 @@
     <string name="session_loss_ignore">Ignora la perdita di controllo della sessione</string>
     <string name="session_loss_ignore_off">Disabilitato, gestisci normalmente (raccomandato)</string>
     <string name="session_loss_ignore_on">Non intraprendere alcuna azione (può causare una duplicazione dell\'audio)</string>
-    <string name="session_loss_ignore_warning">Abilita questa impostazione quando un\'altra applicazione di effetti audio prende il controllo di una sessione audio, potrebbe causare duplicazioni dell\'audio.\nMantieni questa impostazione disabilitata a meno che non riscontri falsi eventi positivi di interruzione della sessione.</string>
+    <string name="session_loss_ignore_warning">Questa impostazione potrebbe causare la duplicazione dell\'audio quando un\'altra applicazione di effetti audio prende il controllo della sessione audio corrente.\nMantieni questa impostazione disabilitata a meno che non riscontri false notifiche d\'interruzione della sessione.</string>
     <string name="audio_format_header">Elaborazione audio</string>
     <string name="audio_format_section_header">Formato audio preferito</string>
     <string name="audio_format_processing_header">Opzioni di elaborazione del\'audio</string>
@@ -433,7 +433,7 @@
     <string name="message_vdc_corrupt">Il file VDC selezionato è danneggiato. Per favore scegline un altro.</string>
     <string name="message_irs_corrupt">La risposta impulsiva selezionata è danneggiata. Per favore scegline un\'altra.</string>
     <string name="message_convolver_advimp_invalid">Convolutore: la modifica avanzata delle forme d\'onda contiene valori non validi.</string>
-    <string name="message_liveprog_compile_fail">Esecuzione Liveprog non riuscita. Lo script selezionato è danneggiato. Si prega di utilizzare l\'editor di script per la risoluzione.</string>
+    <string name="message_liveprog_compile_fail">Esecuzione dello script Liveprog non riuscita. Lo script selezionato è danneggiato. Modifica manualmente lo script per risolvere il problema.</string>
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">Risposta in ampiezza</string>
     <string name="geq_edit_as_string">Modifica stringa</string>
@@ -522,7 +522,7 @@
     <!-- Enhanced processing -->
     <string name="enhanced_processing_feature_unavailable">Funzionalità non disponibile</string>
     <string name="enhanced_processing_feature_unavailable_content">Questa funzione è disponibile solo quando l\'«elaborazione migliorata» è abilitata nelle impostazioni. Vai su \"impostazioni &gt; elaborazione audio &gt; elaborazione migliorata\" e abilita questa opzione per accedere a questo menù.\n\nNota: l\'«elaborazione migliorata» non può essere utilizzata mentre la modalità compatibilità è abilitata.</string>
-    <string name="enhanced_processing_missing_perm">L\'elaborazione avanzata è stata disabilitata a causa di un permesso mancante. Si prega di riconfigurarla nelle impostazioni.</string>
+    <string name="enhanced_processing_missing_perm">L\'elaborazione avanzata è stata disabilitata a causa di un permesso mancante. Riconfigurala dalle impostazioni.</string>
     <!-- App list -->
     <string name="app_list_loading">Caricamento delle applicazioni…</string>
     <string name="app_list_search">Cerca</string>
