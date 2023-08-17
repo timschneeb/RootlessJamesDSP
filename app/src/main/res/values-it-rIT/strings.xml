@@ -27,15 +27,15 @@
     <string name="notification_request_permission_title">Per avviare JamesDSP è necessaria un\'azione utente</string>
     <string name="notification_request_permission">Tocca per concedere l\'autorizzazione di acquisizione e abilitare l\'elaborazione audio di JamesDSP</string>
     <!-- Session control loss notifications -->
-    <string name="session_control_loss_toast">JamesDSP è stato interrotto a causa della perdita del controllo della sessione audio. Si prega di disabilitare altre applicazioni che utilizzano effetti audio.</string>
+    <string name="session_control_loss_toast">JamesDSP è stato interrotto a causa della perdita del controllo della sessione audio. Disabilita, per favore, altre applicazioni che utilizzano effetti audio.</string>
     <string name="session_control_loss_notification_title">Elaborazione audio interrotta. Un\'altra applicazione sta interferendo con JamesDSP.</string>
     <string name="session_control_loss_notification">Si prega di disabilitare tutte le altre applicazioni che forniscono effetti audio globali prima di riattivare JamesDSP.</string>
     <!-- App compatibility issue notifications -->
-    <string name="session_app_compat_toast">JamesDSP si è interrotto a causa di app multimediali incompatibili. Controlla la notifica per risolvere questo problema.</string>
+    <string name="session_app_compat_toast">JamesDSP si è interrotto a causa di applicazioni multimediali incompatibili. Controlla la notifica per risolvere questo problema.</string>
     <string name="session_app_compat_notification_title">Elaborazione audio interrotta. Un\'altra applicazione sta interferendo con JamesDSP.</string>
     <string name="session_app_compat_notification">Tocca questa notifica per risolvere il problema.</string>
     <!-- Capture permission revoked notifications -->
-    <string name="capture_permission_revoked_toast">JamesDSP è stato fermato perché è stato revocato il permesso di acquisizione audio.</string>
+    <string name="capture_permission_revoked_toast">JamesDSP è stato fermato perché è stato revocato il permesso di acquisizione dell\'audio.</string>
     <!-- General purpose -->
     <string name="install">Installa</string>
     <string name="update">Aggiorna</string>
@@ -517,7 +517,7 @@
     <string name="load_fail_card">Installa il modulo Magisk di JamesDSP e riavvia il dispositivo Android per utilizzare questa applicazione. Potrebbe anche essere necessario reinstallare questa applicazione dopo il riavvio.</string>
     <string name="load_fail_rootless_card_title">Cerchi un\'alternativa senza permessi di root?</string>
     <string name="load_fail_rootless_card">Questa versione di JamesDSP è stato progettata per essere utilizzata con un dispositivo con permessi di root/modificato. È disponibile anche un\'alternativa non-root con alcune limitazioni. Tocca qui per i dettagli.</string>
-    <string name="load_fail_arch_card_title">Il modulo è già istallato?</string>
+    <string name="load_fail_arch_card_title">Il modulo è già installato?</string>
     <string name="load_fail_arch_card">Se hai già installato il modulo Magisk, potresti aver scelto le impostazioni sbagliate durante l\'installazione. Reinstalla e prova ad abilitare la compatibilità Huawei (anche se il telefono non proviene da quel produttore).</string>
     <!-- Enhanced processing -->
     <string name="enhanced_processing_feature_unavailable">Funzionalità non disponibile</string>
@@ -554,16 +554,16 @@
     <!-- Self-updates (Root) -->
     <string name="self_update_install_error">Aggiornamento non riuscito</string>
     <string name="self_update_download_fail">Download del pacchetto di aggiornamento non riuscito. Controlla la tua connessione a Internet. Dettagli: %1$s</string>
-    <string name="self_update_install_fail">Istallazione non riuscita. %1$s</string>
-    <string name="self_update_finished">Aggiornamento istallato. L\'applicazione si sta riavviando…</string>
+    <string name="self_update_install_fail">Installazione non riuscita. %1$s</string>
+    <string name="self_update_finished">Aggiornamento installato. L\'applicazione si sta riavviando…</string>
     <string name="self_update_no_updates">Nessun nuovo aggiornamento al momento disponibile</string>
     <string name="self_update_notice">Nuovo aggiornamento disponibile (%1$s)</string>
-    <string name="self_update_notice_summary">Tocca qui per scaricare e istallare il nuovo aggiornamento.</string>
-    <string name="self_update_notice_dismiss_install">Istalla adesso</string>
+    <string name="self_update_notice_summary">Tocca qui per scaricare e installare il nuovo aggiornamento.</string>
+    <string name="self_update_notice_dismiss_install">Installa adesso</string>
     <string name="self_update_notice_dismiss_snooze">Ricordamelo più tardi</string>
     <string name="self_update_notice_dismiss_skip">Ignora questo aggiornamento</string>
     <string name="self_update_state_downloading">Scaricamento in corso…</string>
-    <string name="self_update_state_installing">Istallazione in corso…</string>
+    <string name="self_update_state_installing">Installazione in corso…</string>
     <!-- Backups -->
     <string name="backup_restore_progress">Ripristino del backup in corso</string>
     <string name="backup_restore_error">Ripristino del backup fallito</string>
