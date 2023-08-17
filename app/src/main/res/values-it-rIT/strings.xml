@@ -89,8 +89,8 @@
     <string name="eq_preset_acoustic">Acustico</string>
     <string name="eq_preset_bass">Bassi</string>
     <string name="eq_preset_beats">Battiti</string>
-    <string name="eq_preset_classic">Classico</string>
-    <string name="eq_preset_clear">Pulisci</string>
+    <string name="eq_preset_classic">Classica</string>
+    <string name="eq_preset_clear">Limpido</string>
     <string name="eq_preset_deep">Profondo</string>
     <string name="eq_preset_dubstep">Dubstep</string>
     <string name="eq_preset_electronic">Elettronica</string>
@@ -126,15 +126,15 @@
     <string name="convolver_enable">Convolutore</string>
     <string name="convolver_impulse">Risposta impulsiva</string>
     <string name="convolver_advanced_editing">Modifica avanzata della forma d’onda</string>
-    <string name="convolver_convolution_mode">Ottimizzazione della risposta all\'impulso</string>
+    <string name="convolver_convolution_mode">Ottimizzazione della risposta impulsiva</string>
     <string name="convolver_convolution_mode_original">Originale</string>
-    <string name="convolver_convolution_mode_shrink">Restringi</string>
-    <string name="convolver_convolution_mode_minimum_phase_shrink">Trasformazione di fase e restringimento minimi</string>
+    <string name="convolver_convolution_mode_shrink">Compressione orizzontale</string>
+    <string name="convolver_convolution_mode_minimum_phase_shrink">Trasformazione a sfasamento minimo e compressione orizzontale</string>
     <string name="ddc_enable">ViPER-DDC</string>
     <string name="ddc_file">File DDC</string>
     <string name="liveprog_enable">DSP a modifica diretta</string>
-    <string name="liveprog_file">Script Liveprog</string>
-    <string name="liveprog_additional_params">Parametri di script aggiuntivi</string>
+    <string name="liveprog_file">Script di Liveprog</string>
+    <string name="liveprog_additional_params">Parametri aggiuntivi dello script</string>
     <string name="liveprog_additional_params_not_supported">Lo script selezionato non ha parametri personalizzabili</string>
     <string name="liveprog_not_found">Lo script non è stato trovato</string>
     <string name="liveprog_no_script_selected">Nessuno script selezionato</string>
@@ -436,15 +436,15 @@
     <string name="message_liveprog_compile_fail">Esecuzione Liveprog non riuscita. Lo script selezionato è danneggiato. Si prega di utilizzare l\'editor di script per la risoluzione.</string>
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">Risposta in ampiezza</string>
-    <string name="geq_edit_as_string">Modifica come stringa</string>
+    <string name="geq_edit_as_string">Modifica stringa</string>
     <string name="geq_autoeq">Profili AutoEQ</string>
     <string name="gep_add_node">Aggiungi</string>
     <string name="geq_preview">Anteprima</string>
     <string name="geq_preview_collapsed">Anteprima (tocca per espandere)</string>
-    <string name="geq_edit_hint">Nodi EQ grafico</string>
+    <string name="geq_edit_hint">Nodi equalizzatore grafico</string>
     <string name="geq_reset">Reimposta</string>
     <string name="geq_reset_confirm_title">Sei sicuro?</string>
-    <string name="geq_reset_confirm">Vuoi reimpostare le impostazioni dell\'EQ grafico?</string>
+    <string name="geq_reset_confirm">Vuoi reimpostare le impostazioni dell\'equalizzatore grafico?</string>
     <string name="geq_node_editor">Modifica nodo</string>
     <string name="geq_node_list">Lista dei nodi</string>
     <string name="geq_no_nodes_defined">Nessun nodo definito</string>
@@ -467,7 +467,7 @@
     <string name="geq_api_network_error_details_code">Il server ha risposto con un codice d\'errore: %1$d</string>
     <string name="autoeq_search">Ricerca AutoEQ</string>
     <string name="autoeq_enter_model">Inserisci il modello delle tue cuffie…</string>
-    <string name="autoeq_partial_results_warning">Mostra i primi %1$d risultati. Per favore perfeziona la tua ricerca per ottenere risultati migliori.</string>
+    <string name="autoeq_partial_results_warning">Vengono mostrati i primi %1$d risultati. Affina per favore la tua ricerca per ottenere risultati più specifici.</string>
     <string name="autoeq_no_results">Nessun risultato trovato</string>
     <!-- Customizable liveprog script parameters -->
     <string name="title_activity_liveprog_params">Parametri dello script personalizzabili</string>
