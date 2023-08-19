@@ -2,8 +2,27 @@
 <resources>
     <!-- Main menu bar -->
     <string name="action_settings">Inställningar</string>
+    <string name="action_presets">Förinställningar</string>
+    <string name="action_revert">Återställ standardvärden</string>
+    <string name="action_blocked_apps">Exkluderade appar</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">Tjänst</string>
+    <string name="notification_channel_service">Tjänsteavisering</string>
+    <string name="notification_channel_session_loss_alert">Varning för sessionsförlust</string>
+    <string name="notification_channel_permission_prompt">Begäran om behörighet</string>
+    <string name="notification_channel_app_compat_alert">Varning för inkompatibel app</string>
+    <string name="notification_group_backup">Säkerhetskopiera och återställ</string>
+    <string name="notification_channel_backup_progress">Pågående</string>
+    <string name="notification_channel_backup_complete">Slutförd</string>
     <!-- Service notifications -->
+    <string name="action_retry">Försök igen</string>
+    <string name="action_fix">Åtgärda problem</string>
+    <string name="action_stop">Stopp</string>
+    <string name="notification_processing">Aktiva appar: %1$s</string>
+    <string name="notification_idle">Ljudprocessering inaktiv</string>
+    <string name="notification_processing_title">Ljudprocessering aktiv</string>
+    <string name="notification_processing_disabled_title">Ljudprocessering inaktiverad</string>
+    <string name="notification_processing_legacy">Tryck för att öppna JamesDSP Manager</string>
     <!-- Permission request notifications -->
     <!-- Session control loss notifications -->
     <!-- App compatibility issue notifications -->
@@ -15,6 +34,7 @@
     <!-- Root flavor -->
     <!-- Settings -->
     <string name="title_activity_settings">Inställningar</string>
+    <string name="backup_settings">Säkerhetskopiera och återställ</string>
     <!-- Theme names -->
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
@@ -23,7 +43,9 @@
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
     <!-- Blocklist -->
+    <string name="title_activity_blocklist">Exkluderade appar</string>
     <!-- Compatibility issue activity -->
+    <string name="app_compat_retry">Försök igen</string>
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
     <!-- App list -->
