@@ -59,7 +59,57 @@
     <string name="permission_allowed">Tillåten</string>
     <string name="permission_not_allowed">Inte tillåtet</string>
     <string name="preparing">Förbereder…</string>
+    <string name="error_projection_api_missing">Din enhetstillverkare har inaktiverat interna ljudinspelnings-API:er. Applikation kan inte fungera utan dem.</string>
     <!-- Main screen -->
+    <string name="power_button_alt">Sätt på eller stäng av ljudprocessering</string>
+    <string name="compander_enable">Dynamisk omfångskompander</string>
+    <string name="compander_timeconstant">Tidskonstant</string>
+    <string name="compander_granularity">Granularitet</string>
+    <string name="compander_granularity_very_low">Mycket låg</string>
+    <string name="compander_granularity_low">Låg</string>
+    <string name="compander_granularity_medium">Medium</string>
+    <string name="compander_granularity_high">Hög</string>
+    <string name="compander_granularity_extreme">Extrem</string>
+    <string name="compander_tftransforms">Tidsfrekvenstransformation</string>
+    <string name="compander_tftransforms_stft">Enhetlig (Short-time Fourier)</string>
+    <string name="compander_tftransforms_continuous_wavelet">Multiresolution (Kontinuerligt vågelement, ofullständig dual frame)</string>
+    <string name="compander_tftransforms_undersampling">Pseudo multiresolution (Undersampling frame)</string>
+    <string name="compander_tftransforms_time_domain">Pseudo multiresolution (Tidsdomän, ingen fördröjning)</string>
+    <string name="eq_enable">Multimodal equalizer</string>
+    <string name="eq_filter_type">Filtertyp</string>
+    <string name="eq_interpolator">Interpolator</string>
+    <string name="eq_filter_type_fir_minimum">FIR minimumfas</string>
+    <string name="eq_filter_type_iir_4_order">IIR 4:e ordningen</string>
+    <string name="eq_filter_type_iir_6_order">IIR 6:e ordningen</string>
+    <string name="eq_filter_type_iir_8_order">IIR 8:e ordningen</string>
+    <string name="eq_filter_type_iir_10_order">IIR 10:e ordningen</string>
+    <string name="eq_filter_type_iir_12_order">IIR 12:e ordningen</string>
+    <string name="eq_interpolator_chip">Piecewise Cubic Hermite Interpolating Polynomial</string>
+    <string name="eq_interpolator_mha">Modifierad Hiroshi Akima spline</string>
+    <string name="eq_preset_acoustic">Akustisk</string>
+    <string name="eq_preset_bass">Bas</string>
+    <string name="eq_preset_beats">Beats</string>
+    <string name="eq_preset_classic">Klassisk</string>
+    <string name="eq_preset_clear">Clear</string>
+    <string name="eq_preset_deep">Djup</string>
+    <string name="eq_preset_dubstep">Dubstep</string>
+    <string name="eq_preset_electronic">Elektroniskt</string>
+    <string name="eq_preset_flat">Platt</string>
+    <string name="eq_preset_hardstyle">Hardstyle</string>
+    <string name="eq_preset_hiphop">Hip-Hop</string>
+    <string name="eq_preset_jazz">Jazz</string>
+    <string name="eq_preset_metal">Metal</string>
+    <string name="eq_preset_movie">Film</string>
+    <string name="eq_preset_pop">Pop</string>
+    <string name="eq_preset_rb">R&amp;B</string>
+    <string name="eq_preset_rock">Rock</string>
+    <string name="eq_preset_vocal">Sångförstärkare</string>
+    <string name="geq_enable">Arbitrary response equalizer</string>
+    <string name="geq_nodes">Magnitudssvar</string>
+    <string name="bass_enable">Dynamisk basförstärkning</string>
+    <string name="bass_max_gain">Maximal förstärkning</string>
+    <string name="reverb_enable">Virtuell rumseffekt</string>
+    <string name="reverb_room_type">Rumstyp</string>
     <string name="reverb_preset_default">Förvald</string>
     <string name="reverb_preset_small_hall1">Liten sal 1</string>
     <string name="reverb_preset_small_hall2">Liten sal 2</string>
@@ -123,6 +173,8 @@
     <string name="onboarding_perm_title">Andra behörigheter</string>
     <string name="onboarding_perm_caption">Ytterligare behörigheter krävs för att använda denna app. Granska dem och tryck på \"Nästa\" för att bevilja dem.</string>
     <string name="onboarding_perm_microphone_title">Behörighet för ljudinspelning</string>
+    <string name="onboarding_perm_microphone_caption">Krävs för att spela in internt ljud. Hårdvarumikrofonen är inte aktiverad.</string>
+    <string name="onboarding_perm_notification_title">Aviseringsbehörighet</string>
     <!-- Settings -->
     <string name="title_activity_settings">Inställningar</string>
     <string name="backup_settings">Säkerhetskopiera och återställ</string>
@@ -131,6 +183,7 @@
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="title_activity_geq">Magnitudssvar</string>
     <string name="gep_add_node">Lägg till</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
