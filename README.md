@@ -157,14 +157,21 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
         <br />
         <sub><b>Tim Schneeberger (ThePBone)</b></sub></a>
       <br />
-      <sub><b>22239 words</b></sub>
+      <sub><b>22321 words</b></sub>
     </td>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/netrunner-exe"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15209210/medium/dabb33b18a6eb0e59cee34e448d81e40.jpg" />
         <br />
         <sub><b>Oleksandr Tkachenko (netrunner-exe)</b></sub></a>
       <br />
-      <sub><b>13556 words</b></sub>
+      <sub><b>13732 words</b></sub>
+    </td>
+    <td align="center" valign="top">
+      <a href="https://crowdin.com/profile/rex07"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/13820943/medium/5b5499d4f13f168e0eab0499857a831e.jpeg" />
+        <br />
+        <sub><b>Rex_sa (rex07)</b></sub></a>
+      <br />
+      <sub><b>3543 words</b></sub>
     </td>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/FrameXX"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/14591682/medium/071f9d859dc36f9281f6f84b9c18c852.png" />
@@ -174,25 +181,18 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
       <sub><b>3493 words</b></sub>
     </td>
     <td align="center" valign="top">
-      <a href="https://crowdin.com/profile/rex07"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/13820943/medium/5b5499d4f13f168e0eab0499857a831e.jpeg" />
-        <br />
-        <sub><b>Rex_sa (rex07)</b></sub></a>
-      <br />
-      <sub><b>3449 words</b></sub>
-    </td>
-    <td align="center" valign="top">
       <a href="https://crowdin.com/profile/Add000"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15913337/medium/df3063b9d3c51c71f36f529471f11636_default.png" />
         <br />
         <sub><b>Add000</b></sub></a>
       <br />
-      <sub><b>3420 words</b></sub>
+      <sub><b>3445 words</b></sub>
     </td>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/fankesyooni"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15676501/medium/6ee6d7e4c63bfb0f90dc5088a5ff0efd.jpg" />
         <br />
         <sub><b>fankesyooni</b></sub></a>
       <br />
-      <sub><b>3291 words</b></sub>
+      <sub><b>3316 words</b></sub>
     </td>
   </tr>
   <tr>
@@ -208,7 +208,7 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
         <br />
         <sub><b>Federico Di Lorenzo (federico.dilo)</b></sub></a>
       <br />
-      <sub><b>2749 words</b></sub>
+      <sub><b>2903 words</b></sub>
     </td>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/hasandgn37"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15507252/medium/4a02e1c8d12aae3330baa229e5f8fb5e.jpeg" />
@@ -343,16 +343,16 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
       <sub><b>288 words</b></sub>
     </td>
     <td align="center" valign="top">
-      <a href="https://crowdin.com/profile/adrian_ek"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/12337252/medium/1b031cfc7177a30c2175c905e527dfb8_default.png" />
-        <br />
-        <sub><b>adrian_ek</b></sub></a>
-      <br />
-      <sub><b>268 words</b></sub>
-    </td>
-    <td align="center" valign="top">
       <a href="https://crowdin.com/profile/medi421"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15937065/medium/8d2dc93d0b5709f602dd21cb153f9a5c.png" />
         <br />
         <sub><b>medi421</b></sub></a>
+      <br />
+      <sub><b>269 words</b></sub>
+    </td>
+    <td align="center" valign="top">
+      <a href="https://crowdin.com/profile/adrian_ek"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/12337252/medium/1b031cfc7177a30c2175c905e527dfb8_default.png" />
+        <br />
+        <sub><b>adrian_ek</b></sub></a>
       <br />
       <sub><b>268 words</b></sub>
     </td>
