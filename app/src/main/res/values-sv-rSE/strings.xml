@@ -24,6 +24,8 @@
     <string name="notification_processing_disabled_title">Ljudprocessering inaktiverad</string>
     <string name="notification_processing_legacy">Tryck för att öppna JamesDSP Manager</string>
     <!-- Permission request notifications -->
+    <string name="notification_request_permission_title">Användaråtgärd krävs för att starta JamesDSP</string>
+    <string name="notification_request_permission">Tryck för att bevilja inspelningstillstånd och aktivera JamesDSPs ljudprocessering</string>
     <!-- Session control loss notifications -->
     <!-- App compatibility issue notifications -->
     <!-- Capture permission revoked notifications -->
