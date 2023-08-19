@@ -58,6 +58,7 @@
     <string name="no_activity_found">Keine App gefunden, um diese Aktion zu behandeln</string>
     <string name="permission_allowed">Erlaubt</string>
     <string name="permission_not_allowed">Nicht erlaubt</string>
+    <string name="preparing">Wird vorbereitet…</string>
     <string name="error_projection_api_missing">Ihr Gerätehersteller hat die internen Audio-Aufnahme-APIs deaktiviert. Diese Anwendung kann ohne sie nicht funktionieren.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Audioverarbeitung umschalten</string>
@@ -71,6 +72,9 @@
     <string name="compander_granularity_extreme">Extrem</string>
     <string name="compander_tftransforms">Zeit-Frequenz Transformationen</string>
     <string name="compander_tftransforms_stft">Uniform (Kurzzeit-Fourier)</string>
+    <string name="compander_tftransforms_continuous_wavelet">Multiresolution (kontinuierlicher Wellengang, unvollständiges doppeltes Frame)</string>
+    <string name="compander_tftransforms_undersampling">Pseudo-Multiresolution (Undersampling-Frame)</string>
+    <string name="compander_tftransforms_time_domain">Pseudo-Multiresolution (Zeitdomäne, keine Latenz)</string>
     <string name="eq_enable">Multimodaler Equalizer</string>
     <string name="eq_filter_type">Filtertyp</string>
     <string name="eq_interpolator">Interpolator</string>
@@ -275,12 +279,18 @@
     <string name="audio_format_media_apps_need_restart">Nach dem Ändern dieser Einstellung müssen alle aktiven Medien-Apps neu gestartet werden, um die Audioverarbeitung fortzusetzen.</string>
     <string name="audio_format_summary">Bevorzugte Audio-Kodierung, Puffergröße</string>
     <string name="audio_format_summary_root">Legacy-Modus, erweiterte Verarbeitung</string>
+    <string name="audio_format_summary_plugin">Konvolver-Optimierungen</string>
     <string name="audio_format_encoding">Audio-Kodierung</string>
     <string name="audio_format_encoding_int16">16-Bit Ganzzahl PCM</string>
     <string name="audio_format_encoding_float">32-Bit Gleitkommazahl PCM</string>
     <string name="audio_format_buffer_size">Puffergröße</string>
     <string name="audio_format_buffer_size_unit">&#xa0;Samples</string>
     <string name="audio_format_buffer_size_warning_low_value">Warnung: Niedrige Puffergrößen können Audioprobleme wie Clipping verursachen!</string>
+    <string name="audio_format_optimization_header">Optimierung des Konvolvermoduls</string>
+    <string name="audio_format_optimization_refresh">Benchmarking-Daten aktualisieren</string>
+    <string name="audio_format_optimization_benchmark">Benchmarks zur Optimierung der Leistung verwenden</string>
+    <string name="audio_format_optimization_benchmark_summary">Erhöht die Leistung von Effekten, die Konvolvermodule verwenden</string>
+    <string name="audio_format_optimization_benchmark_ongoing">Benchmark läuft…</string>
     <string name="profiles_section_header">Geräteprofile</string>
     <string name="profiles_summary">Geräteprofile, automatisches Wechseln</string>
     <string name="profiles_enable">Geräteprofile</string>

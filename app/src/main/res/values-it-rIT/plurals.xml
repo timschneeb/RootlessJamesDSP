@@ -5,8 +5,8 @@
         <item quantity="other">%d nodi</item>
     </plurals>
     <plurals name="custom_parameters">
-        <item quantity="one">Parametro personalizzabile %d</item>
-        <item quantity="other">Parametri personalizzabili %d</item>
+        <item quantity="one">%d parametro personalizzabile</item>
+        <item quantity="other">%d parametri personalizzabili</item>
     </plurals>
     <plurals name="unsupported_apps">
         <item quantity="one">L\'applicazione %d non è supportata ed è stata automaticamente esclusa. Tocca per i dettagli.</item>

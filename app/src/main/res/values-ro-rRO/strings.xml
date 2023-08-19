@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
+    <string name="action_settings">Setări</string>
     <string name="action_presets">Presets</string>
     <!-- Notification channels -->
     <!-- Service notifications -->
@@ -15,6 +16,7 @@
     <!-- Rootless flavor -->
     <!-- Root flavor -->
     <!-- Settings -->
+    <string name="title_activity_settings">Setări</string>
     <!-- Theme names -->
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->

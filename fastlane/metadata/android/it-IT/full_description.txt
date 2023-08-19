@@ -8,7 +8,7 @@ JamesDSP supporta i seguenti effetti audio:
 * Compressore della gamma dinamica automatico
 * Incremento dinamico dei bassi
 * Equalizzatore FIR interpolante
-* Equalizzatore a risposta arbitraria (EQ grafico)
+* Equalizzatore a risposta arbitraria (equalizzatore grafico)
 * ViPER-DDC
 * Convolutore
 * DSP a modifica diretta (motore di scripting per effetti audio)

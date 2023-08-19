@@ -58,6 +58,7 @@
     <string name="no_activity_found">Не найдено ни одного Activity для обработки данного действия</string>
     <string name="permission_allowed">Разрешено</string>
     <string name="permission_not_allowed">Запрещено</string>
+    <string name="preparing">Подготовка…</string>
     <string name="error_projection_api_missing">Производитель вашего устройства отключил внутренние API для записи звука. Это приложение не может работать без них.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Переключить обработку аудио</string>
@@ -73,6 +74,7 @@
     <string name="compander_tftransforms_stft">Равномерное (быстрое преобразование Фурье)</string>
     <string name="compander_tftransforms_continuous_wavelet">Мультиразрешение (непрерывный вейвлет, неполный двойной фрейм)</string>
     <string name="compander_tftransforms_undersampling">Псевдомультиразрешение (снижение частоты дискретизации фрейма)</string>
+    <string name="compander_tftransforms_time_domain">Псевдомультиразрешение (временная область, нулевая задержка)</string>
     <string name="eq_enable">Мультимодальный эквалайзер</string>
     <string name="eq_filter_type">Тип фильтра</string>
     <string name="eq_interpolator">Интерполятор</string>
@@ -277,12 +279,18 @@
     <string name="audio_format_media_apps_need_restart">После изменения этого параметра необходимо перезапустить все активные мультимедийные приложения, чтобы возобновить обработку звука.</string>
     <string name="audio_format_summary">Кодирование аудио, размер буфера</string>
     <string name="audio_format_summary_root">Режим legacy, расширенная обработка</string>
+    <string name="audio_format_summary_plugin">Оптимизации конвольвера</string>
     <string name="audio_format_encoding">Кодирование аудио</string>
     <string name="audio_format_encoding_int16">16-bit integer PCM</string>
     <string name="audio_format_encoding_float">32-bit float PCM</string>
     <string name="audio_format_buffer_size">Размер буфера</string>
     <string name="audio_format_buffer_size_unit">&#xa0;samples</string>
     <string name="audio_format_buffer_size_warning_low_value">Предупреждение: Низкие размеры буфера могут вызвать проблемы с аудио, такие как клиппинг!</string>
+    <string name="audio_format_optimization_header">Оптимизации модуля конвольвера</string>
+    <string name="audio_format_optimization_refresh">Обновить данные бенчмаркинга</string>
+    <string name="audio_format_optimization_benchmark">Использовать бенчмарки для оптимизации производительности</string>
+    <string name="audio_format_optimization_benchmark_summary">Увеличивает производительность эффектов, использующих модули конвольвера</string>
+    <string name="audio_format_optimization_benchmark_ongoing">Проводится тест производительности…</string>
     <string name="profiles_section_header">Профили устройства</string>
     <string name="profiles_summary">Отдельные профили устройств, автоматическое переключение</string>
     <string name="profiles_enable">Отдельные профили устройств</string>

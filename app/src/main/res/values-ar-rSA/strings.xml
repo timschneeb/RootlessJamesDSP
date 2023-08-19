@@ -58,6 +58,7 @@
     <string name="no_activity_found">لم يتم العثور على نشاط لمعالجة الإجراء</string>
     <string name="permission_allowed">مسموح</string>
     <string name="permission_not_allowed">غير مسموح به</string>
+    <string name="preparing">جارٍ الإعداد…</string>
     <string name="error_projection_api_missing">قامت شركة تصنيع جهازك بتعطيل API تسجيل الصوت الداخلي. لا يمكن لهذا التطبيق أن يعمل بدونهم.</string>
     <!-- Main screen -->
     <string name="power_button_alt">تشغيل معالجة الصوت</string>
@@ -71,6 +72,9 @@
     <string name="compander_granularity_extreme">القصوى</string>
     <string name="compander_tftransforms">تحويل التردد الزمني</string>
     <string name="compander_tftransforms_stft">موحّد (فورييه بوقت قصير)</string>
+    <string name="compander_tftransforms_continuous_wavelet">دِقَّة متعددة (طول مستمر، إطار مزدوج غير مكتمل)</string>
+    <string name="compander_tftransforms_undersampling">Pseudo متعدد الدِّقَّة (إطار منخفض العينات)</string>
+    <string name="compander_tftransforms_time_domain">Pseudo دقة متعددة (مجال الوقت، بدون تأخير)</string>
     <string name="eq_enable">معادل تعدد الوسائط</string>
     <string name="eq_filter_type">نوع التصفية</string>
     <string name="eq_interpolator">مستقطب</string>
@@ -275,12 +279,18 @@
     <string name="audio_format_media_apps_need_restart">تحتاج إلى إعادة تشغيل جميع تطبيقات الوسائط النشطة بعد تغيير هذا الإعداد لاستئناف معالجة الصوت.</string>
     <string name="audio_format_summary">الترميز الصوتي المفضل، حجم المخزن المؤقت</string>
     <string name="audio_format_summary_root">الوضع القديم، المعالجة المحسنة</string>
+    <string name="audio_format_summary_plugin">تحسينات الدوران</string>
     <string name="audio_format_encoding">ترميز الصوت</string>
     <string name="audio_format_encoding_int16">عدد صحيح من PCM 16-بت</string>
     <string name="audio_format_encoding_float">32-بت PCM العائم</string>
     <string name="audio_format_buffer_size">حجم المخزن المؤقت</string>
     <string name="audio_format_buffer_size_unit">&#xa0;عينات</string>
     <string name="audio_format_buffer_size_warning_low_value">تحذير: حجم المخزن المؤقت المنخفض قد يسبب مشاكل صوتية مثل النقر!</string>
+    <string name="audio_format_optimization_header">تحسينات وحدة الدوران</string>
+    <string name="audio_format_optimization_refresh">تحديث بيانات المعايير</string>
+    <string name="audio_format_optimization_benchmark">استخدم المعايير لتحسين الأداء</string>
+    <string name="audio_format_optimization_benchmark_summary">يزيد من أداء التأثيرات التي تستخدم وحدات الدواران</string>
+    <string name="audio_format_optimization_benchmark_ongoing">المعيار القياسي قيد التقدم…</string>
     <string name="profiles_section_header">ملفات الجهاز</string>
     <string name="profiles_summary">ملفات تعريف لكل جهاز، التبديل التلقائي</string>
     <string name="profiles_enable">ملفات تعريف للأجهزة</string>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
-    <string name="action_settings">การตั้งค่า</string>
-    <string name="action_presets">ค่าที่ตั้งไว้แล้ว</string>
-    <string name="action_revert">คืนค่าเริ่มต้น</string>
-    <string name="action_blocked_apps"> แอพที่ยกเว้น</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_presets">Presets</string>
+    <string name="action_revert">Reset to defaults</string>
+    <string name="action_blocked_apps">Excluded apps</string>
     <!-- Notification channels -->
-    <string name="notification_group_service">บริการ</string>
-    <string name="notification_channel_service">การแจ้งเตือนบริการ</string>
+    <string name="notification_group_service">Service</string>
+    <string name="notification_channel_service">แจ้งเตือนบริการ</string>
     <string name="notification_channel_session_loss_alert">การแจ้งเตือนการสูญเสียเซสชัน</string>
     <string name="notification_channel_permission_prompt">ขออนุญาตพร้อมท์</string>
     <string name="notification_channel_app_compat_alert">การแจ้งเตือนแอปที่เข้ากันไม่ได้</string>
@@ -58,10 +58,11 @@
     <string name="no_activity_found">ไม่พบกิจกรรมที่จะจัดการการดำเนินการ</string>
     <string name="permission_allowed">อนุญาต</string>
     <string name="permission_not_allowed">ไม่อนุญาต</string>
+    <string name="preparing">การจัดเตรียม…</string>
     <string name="error_projection_api_missing">ผู้ผลิตอุปกรณ์ของคุณได้ปิดใช้งาน API การบันทึกเสียงภายใน แอปพลิเคชันนี้ไม่สามารถทำงานได้หากไม่มี</string>
     <!-- Main screen -->
     <string name="power_button_alt">สลับการประมวลผลเสียง</string>
-    <string name="compander_enable">Dynamic range compander</string>
+    <string name="compander_enable">การบีบอัดแบบ Dynamic range</string>
     <string name="compander_timeconstant">Time constant</string>
     <string name="compander_granularity">ความละเอียด</string>
     <string name="compander_granularity_very_low">ต่ำมาก</string>
@@ -71,6 +72,9 @@
     <string name="compander_granularity_extreme">สูงมาก</string>
     <string name="compander_tftransforms">การแปลงความถี่เวลา</string>
     <string name="compander_tftransforms_stft">เครื่องแบบ (ฟูเรียร์แบบสั้น)</string>
+    <string name="compander_tftransforms_continuous_wavelet">Multiresolution (Continuous wavelet, incomplete dual frame)</string>
+    <string name="compander_tftransforms_undersampling">Https://crowdin. com/translate/rootlessjamesdsp/21/en-th#4237</string>
+    <string name="compander_tftransforms_time_domain">Https://crowdin. com/translate/rootlessjamesdsp/21/en-th#4237</string>
     <string name="eq_enable">อีควอไลเซอร์หลายรูปแบบ</string>
     <string name="eq_filter_type">ประเภทตัวกรอง</string>
     <string name="eq_interpolator">อินเตอร์โพเลเตอร์</string>
@@ -244,8 +248,8 @@
     <string name="limit_tested_devices_title">อุปกรณ์ที่ผ่านการทดสอบ</string>
     <string name="limit_tested_devices">การเปลี่ยนแปลงระบบย่อยเสียงของ Android โดยผู้ผลิตอุปกรณ์ของคุณอาจทำให้แอปนี้ใช้งานไม่ได้เพราะแอปนี้ใช้ API ที่ไม่มีเอกสารไม่กี่ตัว\nผ่านการทดสอบบนอุปกรณ์เหล่านี้แล้ว:\n• Samsung S20+ (Android 12)\n• โปรแกรมจำลอง AOSP (Android 10–  13)\n• Google Pixel 6 Pro (แอนดรอยด์ 13)</string>
     <!-- Settings -->
-    <string name="title_activity_settings">การตั้งค่า</string>
-    <string name="session_exclude_restricted">ยกเว้นแอพที่ไม่รองรับ</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="session_exclude_restricted">Exclude unsupported apps</string>
     <string name="session_exclude_restricted_off">แอปที่ปิดกั้นการบันทึกเสียงจะยังคงปิดอยู่ (พฤติกรรมเริ่มต้นของ Android)</string>
     <string name="session_exclude_restricted_on">ไม่รวมแอปที่ปิดกั้นการจับภาพเสียงและยังไม่ประมวลผล (แนะนำ)</string>
     <string name="session_detection_header">การตรวจจับเซสชันเสียง</string>
@@ -276,12 +280,18 @@
     <string name="audio_format_media_apps_need_restart">คุณต้องรีสตาร์ทแอปสื่อที่ใช้งานอยู่ทั้งหมดหลังจากเปลี่ยนการตั้งค่านี้เพื่อดำเนินการประมวลผลเสียงต่อ</string>
     <string name="audio_format_summary">การเข้ารหัสเสียงที่ต้องการ ขนาดบัฟเฟอร์ </string>
     <string name="audio_format_summary_root">โหมด Legacy การประมวลผลขั้นสูง</string>
+    <string name="audio_format_summary_plugin">การเพิ่มประสิทธิภาพ Convolver</string>
     <string name="audio_format_encoding">การเข้ารหัสเสียง</string>
     <string name="audio_format_encoding_int16">PCM จำนวนเต็ม 16 บิต</string>
     <string name="audio_format_encoding_float">PCM โฟลต 32 บิต</string>
     <string name="audio_format_buffer_size">ขนาดของบัฟเฟอร์</string>
     <string name="audio_format_buffer_size_unit">&#xa0;ตัวอย่าง</string>
     <string name="audio_format_buffer_size_warning_low_value">คำเตือน: ขนาดบัฟเฟอร์ต่ำอาจทำให้เกิดปัญหาด้านเสียง เช่น การตัด!</string>
+    <string name="audio_format_optimization_header">การเพิ่มประสิทธิภาพโมดูล Convolver</string>
+    <string name="audio_format_optimization_refresh">รีเฟรชข้อมูลการเปรียบเทียบ</string>
+    <string name="audio_format_optimization_benchmark">ใช้เกณฑ์มาตรฐานเพื่อเพิ่มประสิทธิภาพ</string>
+    <string name="audio_format_optimization_benchmark_summary">เพิ่มประสิทธิภาพของเอฟเฟกต์ที่ใช้โมดูล convolver</string>
+    <string name="audio_format_optimization_benchmark_ongoing">กำลังดำเนินการเปรียบเทียบ…</string>
     <string name="profiles_section_header">โปรไฟล์อุปกรณ์ </string>
     <string name="profiles_summary">โปรไฟล์ต่ออุปกรณ์ การสลับอัตโนมัติ</string>
     <string name="profiles_enable">โปรไฟล์ต่ออุปกรณ์ </string>
@@ -486,7 +496,7 @@
     <string name="editor_cannot_redo">ไม่มีอะไรต้องทำซ้ำ</string>
     <string name="editor_text_size">ขนาดข้อความ</string>
     <!-- Blocklist -->
-    <string name="title_activity_blocklist"> แอพที่ยกเว้น</string>
+    <string name="title_activity_blocklist">Excluded apps</string>
     <string name="blocklist_add_exclusion_alt">เพิ่มแอปพลิเคชันที่จะไม่รวม</string>
     <string name="blocklist_delete_title">นำแอปที่เลือกออกไหม</string>
     <string name="blocklist_delete">คุณต้องการนำแอปนี้ออกจากรายการยกเว้นหรือไม่</string>

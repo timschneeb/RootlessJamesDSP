@@ -1,2 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <plurals name="nodes">
+        <item quantity="zero">عقدة %d</item>
+        <item quantity="one">عقدة %d</item>
+        <item quantity="two">%d عقدتان</item>
+        <item quantity="few">%d عقد</item>
+        <item quantity="many">%d عقُد</item>
+        <item quantity="other">%d العقد</item>
+    </plurals>
+    <plurals name="custom_parameters">
+        <item quantity="zero">%d معامل قابل للتخصيص</item>
+        <item quantity="one">%d معامل قابل للتخصيص</item>
+        <item quantity="two">%d معامل قابل للتخصيص</item>
+        <item quantity="few">%d معاملات قابلة للتخصيص</item>
+        <item quantity="many">%d معاملات قابلة للتخصيص</item>
+        <item quantity="other">%d معلمات للتخصيص</item>
+    </plurals>
+    <plurals name="unsupported_apps">
+        <item quantity="zero">تم استبعاد التطبيق %d غير المدعوم تلقائياً. انقر للحصول على التفاصيل.</item>
+        <item quantity="one">تم استبعاد التطبيق %d غير المدعوم تلقائياً. انقر للحصول على التفاصيل.</item>
+        <item quantity="two">تم استبعاد التطبيق %d غير المدعوم تلقائياً. انقر للحصول على التفاصيل.</item>
+        <item quantity="few">تم استبعاد التطبيق %d غير المدعوم تلقائياً. انقر للحصول على التفاصيل.</item>
+        <item quantity="many">تم استبعاد التطبيق %d غير المدعوم تلقائياً. انقر للحصول على التفاصيل.</item>
+        <item quantity="other">%d التطبيقات غير المدعومة تم استبعادها تلقائيا. انقر للحصول على التفاصيل.</item>
+    </plurals>
+</resources>

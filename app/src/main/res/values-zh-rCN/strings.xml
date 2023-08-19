@@ -58,6 +58,7 @@
     <string name="no_activity_found">未找到处理动作的活动</string>
     <string name="permission_allowed">允许</string>
     <string name="permission_not_allowed">不允许</string>
+    <string name="preparing">准备中...</string>
     <string name="error_projection_api_missing">您的设备制造商已禁用内部录音 API。没有它们，此应用程序无法工作。</string>
     <!-- Main screen -->
     <string name="power_button_alt">切换音频处理</string>
@@ -86,12 +87,12 @@
     <string name="eq_interpolator_chip">分段三次埃尔米特插值</string>
     <string name="eq_interpolator_mha">改良 Hiroshi Akima 样条</string>
     <string name="eq_preset_acoustic">原声</string>
-    <string name="eq_preset_bass">贝斯</string>
+    <string name="eq_preset_bass">低音</string>
     <string name="eq_preset_beats">节拍</string>
     <string name="eq_preset_classic">古典</string>
     <string name="eq_preset_clear">明亮</string>
-    <string name="eq_preset_deep">幽静</string>
-    <string name="eq_preset_dubstep">回响重拍</string>
+    <string name="eq_preset_deep">低沉</string>
+    <string name="eq_preset_dubstep">回响低音</string>
     <string name="eq_preset_electronic">电子</string>
     <string name="eq_preset_flat">均匀</string>
     <string name="eq_preset_hardstyle">硬派</string>
@@ -278,12 +279,18 @@
     <string name="audio_format_media_apps_need_restart">更改此设置后，您需要重新启动所有活动的媒体应用程序才能恢复音频处理。</string>
     <string name="audio_format_summary">首选音频编码，缓冲大小</string>
     <string name="audio_format_summary_root">传统模式，增强处理</string>
+    <string name="audio_format_summary_plugin">脉冲反馈优化</string>
     <string name="audio_format_encoding">音频编码</string>
     <string name="audio_format_encoding_int16">16 位整数 PCM</string>
     <string name="audio_format_encoding_float">32 位浮点 PCM</string>
     <string name="audio_format_buffer_size">缓冲大小</string>
     <string name="audio_format_buffer_size_unit">&#xa0;样本</string>
     <string name="audio_format_buffer_size_warning_low_value">警告：缓冲区大小过低可能会导致音频问题，例如削波！</string>
+    <string name="audio_format_optimization_header">脉冲反馈模块优化</string>
+    <string name="audio_format_optimization_refresh">刷新基准数据</string>
+    <string name="audio_format_optimization_benchmark">使用基准数据优化性能</string>
+    <string name="audio_format_optimization_benchmark_summary">提高使用脉冲反馈模块的效果性能</string>
+    <string name="audio_format_optimization_benchmark_ongoing">正在生成基准数据...</string>
     <string name="profiles_section_header">设备配置文件</string>
     <string name="profiles_summary">按设备配置，自动切换</string>
     <string name="profiles_enable">按设备配置</string>
@@ -400,7 +407,7 @@
     <string name="filelibrary_context_resample">离线重新采样</string>
     <string name="filelibrary_context_duplicate">副本</string>
     <string name="filelibrary_context_delete">删除</string>
-    <string name="filelibrary_context_new_preset">新建</string>
+    <string name="filelibrary_context_new_preset">新增</string>
     <string name="filelibrary_context_new_preset_long">新增预设</string>
     <string name="filelibrary_unsupported_format_title">不支持的文件类型</string>
     <string name="filelibrary_unsupported_format">选中的文件没有正确的文件扩展名。</string>

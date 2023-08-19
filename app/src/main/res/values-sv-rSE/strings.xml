@@ -2,28 +2,143 @@
 <resources>
     <!-- Main menu bar -->
     <string name="action_settings">Inställningar</string>
+    <string name="action_presets">Förinställningar</string>
+    <string name="action_revert">Återställ standardvärden</string>
+    <string name="action_blocked_apps">Exkluderade appar</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">Tjänst</string>
+    <string name="notification_channel_service">Tjänsteavisering</string>
+    <string name="notification_channel_session_loss_alert">Varning för sessionsförlust</string>
+    <string name="notification_channel_permission_prompt">Begäran om behörighet</string>
+    <string name="notification_channel_app_compat_alert">Varning för inkompatibel app</string>
+    <string name="notification_group_backup">Säkerhetskopiera och återställ</string>
+    <string name="notification_channel_backup_progress">Pågående</string>
+    <string name="notification_channel_backup_complete">Slutförd</string>
     <!-- Service notifications -->
+    <string name="action_retry">Försök igen</string>
+    <string name="action_fix">Åtgärda problem</string>
+    <string name="action_stop">Stopp</string>
+    <string name="notification_processing">Aktiva appar: %1$s</string>
+    <string name="notification_idle">Ljudprocessering inaktiv</string>
+    <string name="notification_processing_title">Ljudprocessering aktiv</string>
+    <string name="notification_processing_disabled_title">Ljudprocessering inaktiverad</string>
+    <string name="notification_processing_legacy">Tryck för att öppna JamesDSP Manager</string>
     <!-- Permission request notifications -->
+    <string name="notification_request_permission_title">Användaråtgärd krävs för att starta JamesDSP</string>
+    <string name="notification_request_permission">Tryck för att bevilja inspelningstillstånd och aktivera JamesDSPs ljudprocessering</string>
     <!-- Session control loss notifications -->
+    <string name="session_control_loss_toast">JamesDSP stoppades på grund av kontrollförlust över ljudsessionen. Vänligen inaktivera andra ljudprocesseringsappar.</string>
+    <string name="session_control_loss_notification_title">Ljudprocessering stoppad. En annan app stör JamesDSP.</string>
+    <string name="session_control_loss_notification">Vänligen inaktivera alla andra appar som processerar ljud globalt innan du återaktiverar JamesDSP.</string>
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_toast">JamesDSP stoppades på grund av inkompatibel mediaapp. Kontrollera aviseringen för att lösa problemet.</string>
+    <string name="session_app_compat_notification_title">Ljudprocessering stoppad. En annan app stör JamesDSP.</string>
+    <string name="session_app_compat_notification">Tryck på denna avisering för att lösa problemet.</string>
     <!-- Capture permission revoked notifications -->
+    <string name="capture_permission_revoked_toast">JamesDSP har stoppats eftersom tillståndet för ljudinspelning har återkallats.</string>
     <!-- General purpose -->
+    <string name="install">Installera</string>
+    <string name="update">Uppdatera</string>
+    <string name="unknown_error">Okänt fel</string>
+    <string name="details">Detaljer</string>
+    <string name="actions">Åtgärder</string>
+    <string name="warning">Varning</string>
+    <string name="success">Klart</string>
+    <string name="open">Öppna</string>
+    <string name="close">Stäng</string>
+    <string name="delete">Radera</string>
+    <string name="copy">Kopiera</string>
+    <string name="paste">Klistra in</string>
+    <string name="add">Lägg till</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nej</string>
+    <string name="value_not_set">Har inte angetts</string>
+    <string name="undo">Ångra</string>
+    <string name="redo">Gör om</string>
+    <string name="no_activity_found">Ingen aktivitet hittades för att hantera åtgärden</string>
+    <string name="permission_allowed">Tillåten</string>
+    <string name="permission_not_allowed">Inte tillåtet</string>
+    <string name="preparing">Förbereder…</string>
     <!-- Main screen -->
+    <string name="reverb_preset_default">Förvald</string>
+    <string name="reverb_preset_small_hall1">Liten sal 1</string>
+    <string name="reverb_preset_small_hall2">Liten sal 2</string>
+    <string name="reverb_preset_medium_hall2">Mellanstor sal</string>
+    <string name="reverb_preset_large_hall1">Stor hall</string>
+    <string name="reverb_preset_small_room1">Litet rum 1</string>
+    <string name="reverb_preset_small_room2">Litet rum 2</string>
+    <string name="reverb_preset_medium_room1">Medelstort rum</string>
+    <string name="reverb_preset_large_room1">Stort rum</string>
+    <string name="reverb_preset_plate_high">Plåtreverb, högt</string>
+    <string name="reverb_preset_plate_low">Plåtreverb, lågt</string>
+    <string name="reverb_preset_long_reverb1">Långt reverb 1</string>
+    <string name="reverb_preset_long_reverb2">Långt reverb 2</string>
+    <string name="convolver_enable">Convolver</string>
+    <string name="convolver_impulse">Impulssvar</string>
+    <string name="convolver_advanced_editing">Avancerad vågformsredigering</string>
+    <string name="convolver_convolution_mode">Impulssvarsoptimering</string>
+    <string name="convolver_convolution_mode_original">Original</string>
+    <string name="convolver_convolution_mode_shrink">Krymp</string>
+    <string name="convolver_convolution_mode_minimum_phase_shrink">Minfastransformering- och krympning</string>
+    <string name="ddc_enable">ViPER-DDC</string>
+    <string name="ddc_file">DDC-fil</string>
+    <string name="liveprog_enable">Live-programmerbar DSP</string>
+    <string name="liveprog_file">Liveprog-skript</string>
+    <string name="liveprog_additional_params">Ytterligare skriptparametrar</string>
+    <string name="liveprog_additional_params_not_supported">Valda skriptet har inga anpassningsbara parametrar</string>
+    <string name="liveprog_not_found">Skript hittades inte</string>
+    <string name="liveprog_no_script_selected">Inget skript valt</string>
+    <string name="liveprog_edit_header">Redigera valt skript</string>
+    <string name="liveprog_edit">Öppna aktivt skript i inbyggda redigeraren</string>
+    <string name="tube_enable">Analogmodellering</string>
+    <string name="tube_drive">Förförstärkare</string>
+    <string name="output_control_header">Utljudskontroll</string>
+    <string name="output_limiter_threshold">Tröskelvärde limiter</string>
+    <string name="output_limiter_release">Limiter release</string>
+    <string name="output_control_postgain">Förstärkning</string>
+    <string name="stereowide_enable">Ljudbildsbredd</string>
+    <string name="stereowide_level">Bredd</string>
+    <string name="stereowide_level_none">Ingen</string>
+    <string name="stereowide_level_very_wide">Mycket bred</string>
+    <string name="stereowide_level_wide">Bred</string>
+    <string name="stereowide_level_very_narrow">Mycket smal</string>
+    <string name="stereowide_level_narrow">Smal</string>
+    <string name="crossfeed_enable">Crossfeed</string>
+    <string name="crossfeed_preset">Förinställning</string>
+    <string name="crossfeed_preset_bs2b_weak">BS2B Svag</string>
+    <string name="crossfeed_preset_bs2b_strong">BS2B stark</string>
+    <string name="crossfeed_preset_out_of_head">Out of head</string>
+    <string name="crossfeed_preset_surround1">Surround 1</string>
+    <string name="crossfeed_preset_surround2">Surround 2</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
+    <string name="onboarding_adb_manual_step2">Öppna https://app.webadb.com i din dators webbläsare (fungerar bäst i Chrome) och anslut enheten med USB till datorn.</string>
+    <string name="onboarding_adb_manual_step3">Lägg till och anslut USB-enheten i WebADB.</string>
+    <string name="onboarding_adb_manual_step4">Navigera till \'Interactive Shell\' och kör följande kommando: \'pm grant %s android.permission.DUMP\'</string>
+    <string name="onboarding_adb_manual_step5">Tryck på \"Nästa\" i appen för att fortsätta.</string>
+    <string name="onboarding_adb_manual_step5b">(Valfritt) Du kan alltid hoppa över inspelningsbehörighetsmeddelanden för ljudinspelning genom att köra detta kommando: \'appops set %s PROJECT_MEDIA allow\'</string>
+    <string name="onboarding_adb_manual_step5c">(Valfritt) Förutom det föregående steget kan du också aktivera auto-start genom att köra följande kommando: \'appops set %s SYSTEM_ALERT_WINDOW allow\'</string>
+    <string name="onboarding_adb_manual_step1_button">Öppna utvecklingsinställningar</string>
+    <string name="onboarding_perm_title">Andra behörigheter</string>
+    <string name="onboarding_perm_caption">Ytterligare behörigheter krävs för att använda denna app. Granska dem och tryck på \"Nästa\" för att bevilja dem.</string>
+    <string name="onboarding_perm_microphone_title">Behörighet för ljudinspelning</string>
     <!-- Settings -->
     <string name="title_activity_settings">Inställningar</string>
+    <string name="backup_settings">Säkerhetskopiera och återställ</string>
     <!-- Theme names -->
+    <string name="theme_default">Förvald</string>
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="gep_add_node">Lägg till</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
     <!-- Blocklist -->
+    <string name="title_activity_blocklist">Exkluderade appar</string>
     <!-- Compatibility issue activity -->
+    <string name="app_compat_retry">Försök igen</string>
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
     <!-- App list -->
