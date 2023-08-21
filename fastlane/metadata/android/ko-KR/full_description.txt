@@ -1,6 +1,6 @@
-루트 권한 없이 시스템 전역에 걸쳐 JamesDSP를 오디오 처리 엔진으로 활용하세요.
+루트 권한 없이 JamesDSP를 시스템 전역 오디오 처리 엔진으로 활용하세요.
 
-이 앱은 일부 사용자에게 결정적인 이슈가 될 수 있는 몇 가지 제한 사항이 있습니다. 따라서 앱을 사용하기 전에 이 문서를 주의 깊게 읽어보시기 바랍니다. 초기 설정을 위해서는 Shizuku (Android 11+) 또는 컴퓨터를 통한 ADB 액세스가 필요합니다.
+이 앱은 일부 사용자에게 결정적 이슈가 될 수 있는 몇 가지 제한 사항이 있습니다. 따라서 앱을 사용하기 전에 이 문서를 주의 깊게 읽어보시기 바랍니다. 초기 설정을 위해서는 Shizuku (Android 11+) 또는 컴퓨터를 통한 ADB 액세스가 필요합니다.
 
 JamesDSP는 다음과 같은 오디오 효과를 지원합니다:
 * Limiter control
@@ -17,12 +17,12 @@ JamesDSP는 다음과 같은 오디오 효과를 지원합니다:
 * Crossfeed
 * Virtual room effect (reverb)
 
-또한 이 앱은 AutoEQ와 직접 통합되어 있습니다. AutoEQ 통합을 활용하면, 헤드폰을 중립적인 사운드로 보정하기 위한 주파수 응답을 검색하고 가져올 수 있습니다. 시작하려면 'Arbitrary response equalizer > Magnitude response > AutoEQ profiles' 로 이동하세요.
+또한 이 앱은 AutoEQ와 직접 통합되어 있습니다. AutoEQ 통합을 사용하면 헤드폰을 중립적인 소리로 보정하기 위한 주파수 응답을 검색하여 가져올 수 있습니다. 시작하려면 'Arbitrary response equalizer > Magnitude response > AutoEQ profiles' 로 이동하세요.
 
 --- 제한 사항
 * 내부 오디오 캡처를 차단하는 앱은 처리되지 않습니다 (예: Spotify, Google Chrome).
 * 하드웨어 가속을 사용하는 일부 앱에서는 문제를 일으킬 수 있으며 수동으로 제외되어야 합니다 (예: 일부 유니티 게임).
-* (일부) 오디오 효과 앱과는 함께 사용할 수 없습니다 (예: `DynamicsProcessing` Android API를 사용하는 Wavelet 및 기타 앱).
+* 일부 오디오 효과 앱과는 함께 사용할 수 없습니다 (예: `DynamicsProcessing` Android API를 사용하는 Wavelet 및 기타 앱).
 
 
 - 작동이 확인된 앱:
