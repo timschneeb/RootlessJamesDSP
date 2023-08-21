@@ -1,8 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
+    <string name="action_settings">설정</string>
+    <string name="action_presets">프리셋</string>
+    <string name="action_revert">기본값으로 초기화</string>
+    <string name="action_blocked_apps">제외된 앱</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">서비스</string>
+    <string name="notification_channel_service">서비스 알림</string>
+    <string name="notification_channel_session_loss_alert">세션 손실 경고</string>
+    <string name="notification_channel_permission_prompt">권한 프롬프트 요청</string>
+    <string name="notification_channel_app_compat_alert">호환되지 않는 앱 경고</string>
+    <string name="notification_group_backup">백업 및 복원</string>
+    <string name="notification_channel_backup_progress">진행 중</string>
+    <string name="notification_channel_backup_complete">완료</string>
     <!-- Service notifications -->
+    <string name="action_retry">재시도</string>
+    <string name="action_fix">문제 해결</string>
+    <string name="action_stop">중지</string>
+    <string name="notification_processing">활성화된 앱: %1$s</string>
+    <string name="notification_idle">오디오 처리 대기 중</string>
+    <string name="notification_processing_title">오디오 처리 활성화</string>
+    <string name="notification_processing_disabled_title">오디오 처리 비활성화</string>
+    <string name="notification_processing_legacy">탭하여 JamesDSP 매니저를 엽니다.</string>
     <!-- Permission request notifications -->
     <!-- Session control loss notifications -->
     <!-- App compatibility issue notifications -->
@@ -13,6 +33,8 @@
     <!-- Rootless flavor -->
     <!-- Root flavor -->
     <!-- Settings -->
+    <string name="title_activity_settings">설정</string>
+    <string name="backup_settings">백업 및 복원</string>
     <!-- Theme names -->
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
@@ -21,7 +43,9 @@
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
     <!-- Blocklist -->
+    <string name="title_activity_blocklist">제외된 앱</string>
     <!-- Compatibility issue activity -->
+    <string name="app_compat_retry">재시도</string>
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
     <!-- App list -->
