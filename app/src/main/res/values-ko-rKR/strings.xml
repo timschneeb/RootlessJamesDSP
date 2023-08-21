@@ -61,7 +61,18 @@
     <string name="preparing">준비중…</string>
     <string name="error_projection_api_missing">장치 제조업체에서 내부 오디오 녹음 API를 사용할 수 없도록 설정했습니다. 해당 기능 없이는 이 응용 프로그램을 사용할 수 없습니다.</string>
     <!-- Main screen -->
-    <string name="reverb_room_type">공간 타입</string>
+    <string name="reverb_room_type">룸 타입</string>
+    <string name="convolver_enable">Convolver</string>
+    <string name="convolver_impulse">임펄스 응답</string>
+    <string name="convolver_advanced_editing">고급 파형 편집</string>
+    <string name="convolver_convolution_mode">임펄스 응답 최적화</string>
+    <string name="convolver_convolution_mode_original">원형</string>
+    <string name="convolver_convolution_mode_shrink">축소</string>
+    <string name="convolver_convolution_mode_minimum_phase_shrink">최소 위상 변환 및 축소</string>
+    <string name="ddc_enable">ViPER-DDC</string>
+    <string name="ddc_file">DDC 파일</string>
+    <string name="liveprog_enable">Live programmable DSP</string>
+    <string name="tube_drive">프리앰프</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
