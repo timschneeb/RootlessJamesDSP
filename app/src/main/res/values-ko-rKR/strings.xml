@@ -22,12 +22,44 @@
     <string name="notification_idle">오디오 처리 대기 중</string>
     <string name="notification_processing_title">오디오 처리 활성화</string>
     <string name="notification_processing_disabled_title">오디오 처리 비활성화</string>
-    <string name="notification_processing_legacy">탭하여 JamesDSP 매니저를 엽니다.</string>
+    <string name="notification_processing_legacy">탭 하여 JamesDSP 매니저를 엽니다.</string>
     <!-- Permission request notifications -->
+    <string name="notification_request_permission_title">JamesDSP를 실행하려면 사용자의 조치가 필요합니다.</string>
+    <string name="notification_request_permission">탭 하여 캡처 권한을 부여하고 James Dsp의 오디오 처리를 활성화합니다.</string>
     <!-- Session control loss notifications -->
+    <string name="session_control_loss_toast">오디오 세션 제어 손실로 인해 James DSP가 중지되었습니다. 다른 오디오 효과 앱을 비활성화하십시오.</string>
+    <string name="session_control_loss_notification_title">오디오 처리가 중지되었습니다. 다른 앱이 JamesDSP에 간섭하고 있습니다.</string>
+    <string name="session_control_loss_notification">James DSP를 다시 활성화하기 전에 전역 오디오 효과를 제공하는 다른 모든 앱을 비활성화하십시오.</string>
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_toast">호환되지 않는 미디어 앱으로 인해 James DSP가 중지되었습니다. 이 문제를 해결하려면 알림을 확인하십시오.</string>
+    <string name="session_app_compat_notification_title">오디오 처리가 중지되었습니다. 다른 앱이 JamesDSP에 간섭하고 있습니다.</string>
+    <string name="session_app_compat_notification">이 알림을 탭 하여 문제를 해결하세요.</string>
     <!-- Capture permission revoked notifications -->
+    <string name="capture_permission_revoked_toast">오디오 캡처 권한이 취소되어 JamesDSP가 중지되었습니다.</string>
     <!-- General purpose -->
+    <string name="install">설치</string>
+    <string name="update">업데이트</string>
+    <string name="unknown_error">알 수 없는 오류</string>
+    <string name="details">세부 사항</string>
+    <string name="actions">액션</string>
+    <string name="warning">주의</string>
+    <string name="success">성공</string>
+    <string name="open">열기 </string>
+    <string name="close">닫기</string>
+    <string name="delete">삭제</string>
+    <string name="copy">복사</string>
+    <string name="paste">붙여넣기</string>
+    <string name="add">추가</string>
+    <string name="yes">예</string>
+    <string name="no">아니요</string>
+    <string name="value_not_set">설정되지 않음</string>
+    <string name="undo">되돌리기</string>
+    <string name="redo">다시 하기</string>
+    <string name="no_activity_found">동작을 처리할 액티비티를 찾을 수 없습니다.</string>
+    <string name="permission_allowed">허용됨</string>
+    <string name="permission_not_allowed">허용되지 않음</string>
+    <string name="preparing">준비중…</string>
+    <string name="error_projection_api_missing">장치 제조업체에서 내부 오디오 녹음 API를 사용할 수 없도록 설정했습니다. 해당 기능 없이는 이 응용 프로그램을 사용할 수 없습니다.</string>
     <!-- Main screen -->
     <!-- Onboarding -->
     <!-- Rootless flavor -->
@@ -39,6 +71,7 @@
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="gep_add_node">추가</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
