@@ -61,8 +61,11 @@
     <string name="preparing">준비중…</string>
     <string name="error_projection_api_missing">장치 제조업체에서 내부 오디오 녹음 API를 사용할 수 없도록 설정했습니다. 해당 기능 없이는 이 응용 프로그램을 사용할 수 없습니다.</string>
     <!-- Main screen -->
+    <string name="eq_filter_type">필터 유형</string>
+    <string name="eq_interpolator">보간</string>
+    <string name="eq_filter_type_fir_minimum">FIR 최소 위상</string>
     <string name="eq_interpolator_chip">조각별 3차 에르미트 보간 다항식</string>
-    <string name="eq_interpolator_mha">아키마 변형 스플라인</string>
+    <string name="eq_interpolator_mha">히로시 아키마 변형 스플라인</string>
     <string name="eq_preset_acoustic">어쿠스틱</string>
     <string name="eq_preset_bass">베이스</string>
     <string name="eq_preset_beats">비트</string>
