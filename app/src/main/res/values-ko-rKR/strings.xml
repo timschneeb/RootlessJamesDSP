@@ -61,7 +61,41 @@
     <string name="preparing">준비중…</string>
     <string name="error_projection_api_missing">장치 제조업체에서 내부 오디오 녹음 API를 사용할 수 없도록 설정했습니다. 해당 기능 없이는 이 응용 프로그램을 사용할 수 없습니다.</string>
     <!-- Main screen -->
-    <string name="reverb_room_type">룸 타입</string>
+    <string name="eq_interpolator_chip">조각별 3차 에르미트 보간 다항식</string>
+    <string name="eq_interpolator_mha">아키마 변형 스플라인</string>
+    <string name="eq_preset_acoustic">어쿠스틱</string>
+    <string name="eq_preset_bass">베이스</string>
+    <string name="eq_preset_beats">비트</string>
+    <string name="eq_preset_classic">클래식</string>
+    <string name="eq_preset_clear">클리어</string>
+    <string name="eq_preset_deep">딥</string>
+    <string name="eq_preset_dubstep">덥스텝</string>
+    <string name="eq_preset_electronic">일렉트로닉</string>
+    <string name="eq_preset_flat">플랫</string>
+    <string name="eq_preset_hardstyle">하드스타일</string>
+    <string name="eq_preset_hiphop">힙합</string>
+    <string name="eq_preset_jazz">재즈</string>
+    <string name="eq_preset_metal">메탈</string>
+    <string name="eq_preset_movie">영화</string>
+    <string name="eq_preset_pop">팝</string>
+    <string name="eq_preset_rb">R&amp;B</string>
+    <string name="eq_preset_rock">록</string>
+    <string name="eq_preset_vocal">보컬 강화</string>
+    <string name="reverb_enable">가상 공간 효과</string>
+    <string name="reverb_room_type">공간 유형</string>
+    <string name="reverb_preset_default">기본값</string>
+    <string name="reverb_preset_small_hall1">소형 홀 1</string>
+    <string name="reverb_preset_small_hall2">소형 홀 2</string>
+    <string name="reverb_preset_medium_hall2">중형 홀</string>
+    <string name="reverb_preset_large_hall1">대형 홀</string>
+    <string name="reverb_preset_small_room1">소형 방 1</string>
+    <string name="reverb_preset_small_room2">소형 방 2</string>
+    <string name="reverb_preset_medium_room1">중형 방</string>
+    <string name="reverb_preset_large_room1">대형 방</string>
+    <string name="reverb_preset_plate_high">플레이트 하이</string>
+    <string name="reverb_preset_plate_low">플레이트 로우</string>
+    <string name="reverb_preset_long_reverb1">긴 잔향 1</string>
+    <string name="reverb_preset_long_reverb2">긴 잔향 2</string>
     <string name="convolver_enable">Convolver</string>
     <string name="convolver_impulse">임펄스 응답</string>
     <string name="convolver_advanced_editing">고급 파형 편집</string>
@@ -72,7 +106,11 @@
     <string name="ddc_enable">ViPER-DDC</string>
     <string name="ddc_file">DDC 파일</string>
     <string name="liveprog_enable">Live programmable DSP</string>
+    <string name="tube_enable">Analog modelling</string>
     <string name="tube_drive">프리앰프</string>
+    <string name="output_control_postgain">포스트 게인</string>
+    <string name="crossfeed_preset">프리셋</string>
+    <string name="crossfeed_preset_surround1">서라운드 1</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
@@ -80,6 +118,7 @@
     <string name="title_activity_settings">설정</string>
     <string name="backup_settings">백업 및 복원</string>
     <!-- Theme names -->
+    <string name="theme_default">기본값</string>
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
