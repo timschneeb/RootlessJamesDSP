@@ -84,6 +84,8 @@
     <string name="eq_preset_rb">R&amp;B</string>
     <string name="eq_preset_rock">록</string>
     <string name="eq_preset_vocal">보컬 강화</string>
+    <string name="geq_enable">임의 응답 이퀄라이저 (GEQ)</string>
+    <string name="geq_nodes">크기 응답</string>
     <string name="reverb_enable">Virtual room effect</string>
     <string name="reverb_room_type">공간 유형</string>
     <string name="reverb_preset_default">기본값</string>
@@ -99,14 +101,14 @@
     <string name="reverb_preset_plate_low">플레이트 로우</string>
     <string name="reverb_preset_long_reverb1">긴 잔향 1</string>
     <string name="reverb_preset_long_reverb2">긴 잔향 2</string>
-    <string name="convolver_enable">Convolver</string>
+    <string name="convolver_enable">콘벌버 (Convolver)</string>
     <string name="convolver_impulse">임펄스 응답</string>
     <string name="convolver_advanced_editing">고급 파형 편집</string>
     <string name="convolver_convolution_mode">임펄스 응답 최적화</string>
     <string name="convolver_convolution_mode_original">원형</string>
     <string name="convolver_convolution_mode_shrink">축소</string>
     <string name="convolver_convolution_mode_minimum_phase_shrink">최소 위상 변환 및 축소</string>
-    <string name="ddc_enable">ViPER-DDC</string>
+    <string name="ddc_enable">주파수 응답 보정 (ViPER-DDC)</string>
     <string name="ddc_file">DDC 파일</string>
     <string name="liveprog_enable">Live programmable DSP</string>
     <string name="tube_enable">아날로그 모델링</string>
@@ -142,6 +144,7 @@
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="title_activity_geq">크기 응답</string>
     <string name="gep_add_node">추가</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
