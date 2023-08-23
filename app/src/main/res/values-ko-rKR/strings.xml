@@ -155,9 +155,13 @@
     <string name="appearance_section_header">외관</string>
     <string name="appearance_title">테마</string>
     <string name="appearance_theme_mode_default">시스템 테마 사용</string>
+    <string name="appearance_app_theme">앱 테마</string>
+    <string name="appearance_navigation_title">내비게이션</string>
     <string name="appearance_nav_hide">스크롤 할 때 내비게이션 바 숨기기</string>
     <string name="backup_settings">백업 및 복원</string>
+    <string name="backup_frequency">백업 주기</string>
     <string name="backup_location">백업 위치</string>
+    <string name="backup_maximum">최대 백업</string>
     <string name="backup_never">하지 않음</string>
     <!-- Theme names -->
     <string name="theme_default">기본값</string>
@@ -174,28 +178,64 @@
     <string name="filelibrary_context_share">공유...</string>
     <string name="filelibrary_context_new_preset_long">새 프리셋</string>
     <string name="filelibrary_unsupported_format_title">지원되지 않는 파일 형식</string>
+    <string name="filelibrary_new_file_name">새 파일 이름</string>
+    <string name="filelibrary_preset_save_failed">프리셋 저장 실패</string>
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">크기 응답</string>
     <string name="gep_add_node">추가</string>
+    <string name="geq_preview">미리보기 </string>
+    <string name="geq_node_editor">노드 편집기</string>
+    <string name="geq_node_list">노드 목록</string>
+    <string name="geq_no_nodes_defined">노드가 정의되지 않음</string>
+    <string name="geq_delete_node">노드 삭제</string>
+    <string name="geq_next_node">다음 노드</string>
+    <string name="geq_previous_node">이전 노드</string>
     <string name="geq_frequency">주파수</string>
     <!-- AutoEQ GraphicEQ selector -->
+    <string name="autoeq_no_results">결과를 찾을 수 없음</string>
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
+    <string name="title_activity_liveprog_editor">스크립트 편집기</string>
+    <string name="editor_docs">도움말</string>
+    <string name="editor_open_fail">스크립트 파일이 존재하지 않거나 열 수 없습니다.</string>
+    <string name="editor_run">저장 및 실행</string>
+    <string name="editor_save">저장</string>
+    <string name="editor_replacement">대체</string>
+    <string name="editor_search_keyword">검색</string>
     <!-- Blocklist -->
     <string name="title_activity_blocklist">제외된 앱</string>
     <!-- Compatibility issue activity -->
+    <string name="title_activity_app_compat">호환성 문제</string>
     <string name="app_compat_retry">재시도</string>
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
     <!-- App list -->
+    <string name="app_list_search">검색</string>
+    <string name="app_list_icon_alt">앱 아이콘</string>
     <!-- Number box view -->
     <!-- Slider widget -->
+    <string name="slider_dialog_title">값 편집</string>
     <!-- Revert confirmation -->
     <!-- File intent handler -->
+    <string name="intent_import_preset">프리셋 가져오기</string>
     <!-- Translation notice box -->
     <!-- Self-updates (Root) -->
+    <string name="self_update_install_error">업데이트 실패</string>
+    <string name="self_update_notice">새 업데이트 사용 가능 (%1&amp;s)</string>
+    <string name="self_update_state_installing">설치 중...</string>
     <!-- Backups -->
+    <string name="backup_create_error">백업 실패</string>
+    <string name="backup_manual_backup">수동 백업</string>
+    <string name="backup_create">백업 생성</string>
+    <string name="backup_restore">백업 복원</string>
+    <string name="backup_automatic_backup">자동 백업</string>
+    <string name="backup_restore_mode_title">복원 모드</string>
     <!-- Multi-device profiles -->
+    <string name="group_wired_headphones">유선 헤드폰</string>
+    <string name="group_bluetooth">블루투스</string>
+    <string name="group_hdmi">HDMI</string>
+    <string name="group_usb">USB</string>
+    <string name="group_unknown">알 수 없음</string>
     <!-- Root version check -->
 </resources>
