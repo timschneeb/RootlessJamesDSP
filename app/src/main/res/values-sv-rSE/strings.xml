@@ -160,7 +160,14 @@
     <string name="crossfeed_preset_out_of_head">Out of head</string>
     <string name="crossfeed_preset_surround1">Surround 1</string>
     <string name="crossfeed_preset_surround2">Surround 2</string>
+    <string name="crossfeed_preset_realistic_surround">Joe0Bloggs Realistiska surround</string>
     <!-- Onboarding -->
+    <string name="title_activity_onboarding">Onboarding</string>
+    <string name="onboarding_back">Tillbaka</string>
+    <string name="onboarding_next">Nästa</string>
+    <string name="onboarding_finish">Slutför</string>
+    <string name="onboarding_greeting">Välkommen till RootlessJamesDSP!</string>
+    <string name="onboarding_caption">Denna assistent hjälper dig att konfigurera denna app.</string>
     <!-- Rootless flavor -->
     <!-- Root flavor -->
     <string name="onboarding_adb_manual_step2">Öppna https://app.webadb.com i din dators webbläsare (fungerar bäst i Chrome) och anslut enheten med USB till datorn.</string>
