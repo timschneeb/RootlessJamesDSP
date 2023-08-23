@@ -101,7 +101,7 @@
     <string name="reverb_preset_plate_low">플레이트 로우</string>
     <string name="reverb_preset_long_reverb1">긴 잔향 1</string>
     <string name="reverb_preset_long_reverb2">긴 잔향 2</string>
-    <string name="convolver_enable">콘벌버 (Convolver)</string>
+    <string name="convolver_enable">컨볼버 (Convolver)</string>
     <string name="convolver_impulse">임펄스 응답</string>
     <string name="convolver_advanced_editing">고급 파형 편집</string>
     <string name="convolver_convolution_mode">임펄스 응답 최적화</string>
@@ -113,7 +113,15 @@
     <string name="liveprog_enable">Live programmable DSP</string>
     <string name="tube_enable">아날로그 모델링</string>
     <string name="tube_drive">프리앰프</string>
+    <string name="output_control_header">출력 제어</string>
     <string name="output_control_postgain">포스트 게인</string>
+    <string name="stereowide_enable">음장 넓이</string>
+    <string name="stereowide_level">넓이</string>
+    <string name="stereowide_level_very_wide">매우 넓음</string>
+    <string name="stereowide_level_wide">넓음</string>
+    <string name="stereowide_level_very_narrow">매우 좁음</string>
+    <string name="stereowide_level_narrow">좁음</string>
+    <string name="crossfeed_enable">크로스피드</string>
     <string name="crossfeed_preset">프리셋</string>
     <string name="crossfeed_preset_surround1">서라운드 1</string>
     <string name="crossfeed_preset_surround2">서라운드 2</string>
@@ -136,16 +144,41 @@
     <string name="onboarding_adb_dump_not_granted_title">권한이 부여되지 않았습니다</string>
     <string name="onboarding_perm_title">다른 권한</string>
     <string name="onboarding_perm_notification_title">알림 권한</string>
+    <string name="onboarding_perm_missing_title">런타임 권한이 부여되지 않았습니다</string>
     <!-- Settings -->
     <string name="title_activity_settings">설정</string>
+    <string name="audio_format_processing_legacy">레거시 모드</string>
+    <string name="misc_settings">기타</string>
+    <string name="assets">에셋</string>
+    <string name="about_settings">정보</string>
+    <string name="privacy">개인 정보 보호</string>
+    <string name="appearance_section_header">외관</string>
+    <string name="appearance_title">테마</string>
+    <string name="appearance_theme_mode_default">시스템 테마 사용</string>
+    <string name="appearance_nav_hide">스크롤 할 때 내비게이션 바 숨기기</string>
     <string name="backup_settings">백업 및 복원</string>
+    <string name="backup_location">백업 위치</string>
+    <string name="backup_never">하지 않음</string>
     <!-- Theme names -->
     <string name="theme_default">기본값</string>
+    <string name="theme_monet">다이나믹</string>
+    <string name="theme_greenapple">그린 애플</string>
+    <string name="theme_strawberrydaiquiri">스트로베리 다이커리</string>
+    <string name="theme_honey">허니</string>
     <!-- File library preference -->
+    <string name="action_import">가져오기</string>
+    <string name="filelibrary_context_load">불러오기</string>
+    <string name="filelibrary_context_edit">편집</string>
+    <string name="filelibrary_context_overwrite">덮어쓰기</string>
+    <string name="filelibrary_context_rename">이름 바꾸기</string>
+    <string name="filelibrary_context_share">공유...</string>
+    <string name="filelibrary_context_new_preset_long">새 프리셋</string>
+    <string name="filelibrary_unsupported_format_title">지원되지 않는 파일 형식</string>
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">크기 응답</string>
     <string name="gep_add_node">추가</string>
+    <string name="geq_frequency">주파수</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
