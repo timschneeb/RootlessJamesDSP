@@ -168,6 +168,8 @@
     <string name="onboarding_finish">Slutför</string>
     <string name="onboarding_greeting">Välkommen till RootlessJamesDSP!</string>
     <string name="onboarding_caption">Denna assistent hjälper dig att konfigurera denna app.</string>
+    <string name="onboarding_warning">För närvarande är denna applikation ofärdig och instabil. Observera att den kanske inte fungerar som förväntat på vissa enheter eftersom den använder Android-API:er inte avsedda för användning av tredje part.</string>
+    <string name="onboarding_fix_permissions_title">Användaråtgärd krävs</string>
     <!-- Rootless flavor -->
     <!-- Root flavor -->
     <string name="onboarding_adb_manual_step2">Öppna https://app.webadb.com i din dators webbläsare (fungerar bäst i Chrome) och anslut enheten med USB till datorn.</string>
