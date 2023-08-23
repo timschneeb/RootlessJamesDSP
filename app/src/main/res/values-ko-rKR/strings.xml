@@ -84,7 +84,7 @@
     <string name="eq_preset_rb">R&amp;B</string>
     <string name="eq_preset_rock">록</string>
     <string name="eq_preset_vocal">보컬 강화</string>
-    <string name="reverb_enable">가상 공간 효과</string>
+    <string name="reverb_enable">Virtual room effect</string>
     <string name="reverb_room_type">공간 유형</string>
     <string name="reverb_preset_default">기본값</string>
     <string name="reverb_preset_small_hall1">소형 홀 1</string>
@@ -109,14 +109,20 @@
     <string name="ddc_enable">ViPER-DDC</string>
     <string name="ddc_file">DDC 파일</string>
     <string name="liveprog_enable">Live programmable DSP</string>
-    <string name="tube_enable">Analog modelling</string>
+    <string name="tube_enable">아날로그 모델링</string>
     <string name="tube_drive">프리앰프</string>
     <string name="output_control_postgain">포스트 게인</string>
     <string name="crossfeed_preset">프리셋</string>
     <string name="crossfeed_preset_surround1">서라운드 1</string>
+    <string name="crossfeed_preset_surround2">서라운드 2</string>
     <!-- Onboarding -->
+    <string name="onboarding_methods_unsupported_append">호환되지 않음</string>
+    <string name="onboarding_methods_adb_title">ADB</string>
     <!-- Rootless flavor -->
     <!-- Root flavor -->
+    <string name="onboarding_adb_shizuku_open_button_done">이미 활성화됨</string>
+    <string name="onboarding_adb_shizuku_grant_button">액세스 허용</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied_title">권한이 거부되었습니다</string>
     <!-- Settings -->
     <string name="title_activity_settings">설정</string>
     <string name="backup_settings">백업 및 복원</string>
