@@ -152,10 +152,19 @@
     <!-- Settings -->
     <string name="title_activity_settings">설정</string>
     <string name="audio_format_processing_legacy">레거시 모드</string>
+    <string name="profiles_section_header">기기 프로파일</string>
+    <string name="profiles_enable">장치별 프로파일</string>
+    <string name="profiles_enable_summary_on">장치별 프로파일 사용</string>
+    <string name="profiles_enable_summary_off">장치별 프로파일 사용 안 함</string>
+    <string name="exclude_app_from_recents">최근 작업 목록에서 앱 제외</string>
+    <string name="exclude_app_from_recents_off">최근 작업 목록에서 앱 제외 안 함</string>
     <string name="exclude_app_from_recents_on">최근 작업 목록에서 앱 제외</string>
     <string name="autostart_prompt_at_boot">부팅 후 캡처 권한 확인</string>
-    <string name="autostart_prompt_at_boot_off">부팅 후 알림을 표시하지 않음</string>
-    <string name="autostart_prompt_at_boot_on">부팅 후 알림을 표시</string>
+    <string name="autostart_prompt_at_boot_off">부팅 후 알림 표시 안 함</string>
+    <string name="autostart_prompt_at_boot_on">부팅 후 알림 표시</string>
+    <string name="autostart_service_at_boot">부팅 후 실행</string>
+    <string name="autostart_service_at_boot_off">부팅 후 서비스 자동 실행 안 함</string>
+    <string name="autostart_service_at_boot_on">부팅 후 서비스 자동 실행</string>
     <string name="misc_settings">기타</string>
     <string name="misc_permission_header">선택적 권한</string>
     <string name="assets">에셋</string>
@@ -206,8 +215,10 @@
     <string name="geq_node_list">노드 목록</string>
     <string name="geq_no_nodes_defined">노드가 정의되지 않음</string>
     <string name="geq_delete_node">노드 삭제</string>
+    <string name="geq_go_back_to_node_list">노드 목록으로 돌아가기</string>
     <string name="geq_next_node">다음 노드</string>
     <string name="geq_previous_node">이전 노드</string>
+    <string name="geq_gain">게인</string>
     <string name="geq_frequency">주파수</string>
     <!-- AutoEQ GraphicEQ selector -->
     <string name="autoeq_no_results">결과를 찾을 수 없음</string>
@@ -218,6 +229,7 @@
     <string name="editor_open_fail">스크립트 파일이 존재하지 않거나 열 수 없습니다.</string>
     <string name="editor_run">저장 및 실행</string>
     <string name="editor_save">저장</string>
+    <string name="editor_replace_all">모두 바꾸기</string>
     <string name="editor_replacement">대체</string>
     <string name="editor_search_keyword">검색</string>
     <!-- Blocklist -->
