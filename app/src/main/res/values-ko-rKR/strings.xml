@@ -213,9 +213,24 @@
     <string name="onboarding_adb_dump_not_granted_title">권한이 부여되지 않았습니다</string>
     <string name="onboarding_adb_dump_not_granted">먼저 지침을 따르고 다시 시도해주세요. ADB 액세스가 아직 올바르게 설정되지 않았습니다.</string>
     <string name="onboarding_adb_manual_step1">Android의 숨겨진 개발자 옵션으로 이동하여 USB 디버깅을 활성화하세요. 시스템 설정에서 빌드 번호를 여러 번 눌러 개발자 옵션을 활성화해야 합니다.</string>
+    <string name="onboarding_adb_manual_step2">컴퓨터 브라우저에서 https://app.webadb.com 을 열고 (Chrome에서 가장 잘 작동합니다) USB를 사용하여 장치를 컴퓨터에 연결하세요.</string>
+    <string name="onboarding_adb_manual_step3">WebADB에서 USB 장치를 추가하고 연결하세요.</string>
+    <string name="onboarding_adb_manual_step4">\'Interactive Shell\'로 이동하여 셸에서 \'pm grant %s android.permission.DUMP\' 명령을 실행합니다</string>
+    <string name="onboarding_adb_manual_step5">계속하려면 이 앱에서 \'다음\'을 탭하세요.</string>
+    <string name="onboarding_adb_manual_step5b">(선택 사항) 다음 명령을 실행하여 음성 캡처 권한 프롬프트를 건너뛸 수 있습니다: \'appops set %s PROJECT_MEDIA allow\'</string>
+    <string name="onboarding_adb_manual_step5c">(선택 사항) 이전 절차 외에 다음 명령어를 실행하여 자동 시작을 활성화할 수도 있습니다: \'appops set %s SYSTEM_ALERT_WINDOW allow\'</string>
+    <string name="onboarding_adb_manual_step1_button">개발자 옵션 열기</string>
     <string name="onboarding_perm_title">다른 권한</string>
+    <string name="onboarding_perm_caption">이 애플리케이션을 사용하려면 추가 권한이 필요합니다. 권한을 확인하고 \'다음\'을 탭하여 허용해 주세요.</string>
+    <string name="onboarding_perm_microphone_title">오디오 레코딩 권한</string>
+    <string name="onboarding_perm_microphone_caption">내부 오디오를 레코딩하기 위해 필요합니다. 하드웨어 마이크가 활성화되어 있지 않습니다.</string>
     <string name="onboarding_perm_notification_title">알림 권한</string>
+    <string name="onboarding_perm_notification_caption">JamesDSP의 중요한 상태 업데이트 및 처리 상태에 대한 정보를 얻는 데 필요합니다.</string>
+    <string name="onboarding_perm_cast_title">캐스트/레코딩 권한</string>
+    <string name="onboarding_perm_cast_caption">이 앱이 실행될 때마다 오디오 콘텐츠를 녹음할 권한을 명시적으로 부여해야 합니다.</string>
     <string name="onboarding_perm_missing_title">런타임 권한이 부여되지 않았습니다</string>
+    <string name="onboarding_perm_missing">계속하려면 요청된 모든 런타임 권한을 부여해 주세요.\n권한을 반복적으로 거부한 경우 시스템 설정에서 수동으로 권한을 부여해야 합니다.</string>
+    <string name="onboarding_perm_diag">진단 보고서 전송 허용</string>
     <string name="limit_latency_title">증가된 레이턴시</string>
     <!-- Settings -->
     <string name="title_activity_settings">설정</string>
