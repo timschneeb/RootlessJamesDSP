@@ -3,14 +3,14 @@
 이 앱은 일부 사용자에게 결정적 이슈가 될 수 있는 몇 가지 제한 사항이 있습니다. 따라서 앱을 사용하기 전에 이 문서를 주의 깊게 읽어보시기 바랍니다. 초기 설정을 위해서는 Shizuku (Android 11+) 또는 컴퓨터를 통한 ADB 액세스가 필요합니다.
 
 JamesDSP는 다음과 같은 오디오 효과를 지원합니다:
-* Limiter control
-* Output gain control
-* Auto dynamic range compressor
+* 리미터 제어
+* 출력 게인 제어
+* 자동 다이나믹 레인지 컴프레서
 * Dynamic bass boost
-* Interpolating FIR equalizer
-* Arbitrary response equalizer (Graphic EQ)
-* ViPER-DDC
-* Convolver
+* FIR 이퀄라이저 보간
+* 임의 응답 이퀄라이저 (GEQ)
+* 주파수 응답 보정 (ViPER-DDC)
+* 컨볼버 (Convolver)
 * Live-programmable DSP (scripting engine for audio effects)
 * Analog modelling
 * Soundstage wideness
