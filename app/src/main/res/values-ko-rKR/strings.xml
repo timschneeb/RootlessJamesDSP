@@ -61,9 +61,29 @@
     <string name="preparing">준비중…</string>
     <string name="error_projection_api_missing">장치 제조업체에서 내부 오디오 녹음 API를 사용할 수 없도록 설정했습니다. 해당 기능 없이는 이 응용 프로그램을 사용할 수 없습니다.</string>
     <!-- Main screen -->
+    <string name="power_button_alt">오디오 처리 전환</string>
+    <string name="compander_enable">다이나믹 레인지 컴팬더</string>
+    <string name="compander_timeconstant">시간 상수</string>
+    <string name="compander_granularity">입도</string>
+    <string name="compander_granularity_very_low">매우 낮음</string>
+    <string name="compander_granularity_low">낮음</string>
+    <string name="compander_granularity_medium">보통</string>
+    <string name="compander_granularity_high">높음</string>
+    <string name="compander_granularity_extreme">매우 높음</string>
+    <string name="compander_tftransforms">시간-주파수 변환</string>
+    <string name="compander_tftransforms_stft">균등 (단시간 푸리에)</string>
+    <string name="compander_tftransforms_continuous_wavelet">다중 해상도 (연속 웨이블릿, 불완전 이중 프레임)</string>
+    <string name="compander_tftransforms_undersampling">의사 다중 해상도 (언더 샘플링 프레임)</string>
+    <string name="compander_tftransforms_time_domain">의사 다중 해상도 (시간 영역, 레이턴시 없음)</string>
+    <string name="eq_enable">다중 모드 이퀄라이저</string>
     <string name="eq_filter_type">필터 유형</string>
     <string name="eq_interpolator">보간</string>
     <string name="eq_filter_type_fir_minimum">FIR 최소 위상</string>
+    <string name="eq_filter_type_iir_4_order">IIR 4차</string>
+    <string name="eq_filter_type_iir_6_order">IIR 6차</string>
+    <string name="eq_filter_type_iir_8_order">IIR 8차</string>
+    <string name="eq_filter_type_iir_10_order">IIR 10차</string>
+    <string name="eq_filter_type_iir_12_order">IIR 12차</string>
     <string name="eq_interpolator_chip">조각별 3차 에르미트 보간 다항식</string>
     <string name="eq_interpolator_mha">히로시 아키마 변형 스플라인</string>
     <string name="eq_preset_acoustic">어쿠스틱</string>
@@ -86,7 +106,9 @@
     <string name="eq_preset_vocal">보컬 강화</string>
     <string name="geq_enable">임의 응답 이퀄라이저 (GEQ)</string>
     <string name="geq_nodes">크기 응답</string>
-    <string name="reverb_enable">Virtual room effect</string>
+    <string name="bass_enable">다이나믹 베이스 부스트</string>
+    <string name="bass_max_gain">최대 게인</string>
+    <string name="reverb_enable">가상 공간 효과</string>
     <string name="reverb_room_type">공간 유형</string>
     <string name="reverb_preset_default">기본값</string>
     <string name="reverb_preset_small_hall1">소형 홀 1</string>
@@ -110,10 +132,19 @@
     <string name="convolver_convolution_mode_minimum_phase_shrink">최소 위상 변환 및 축소</string>
     <string name="ddc_enable">주파수 응답 보정 (ViPER-DDC)</string>
     <string name="ddc_file">DDC 파일</string>
-    <string name="liveprog_enable">Live programmable DSP</string>
+    <string name="liveprog_enable">실시간 프로그래밍 DSP</string>
+    <string name="liveprog_file">Liveprog 스크립트</string>
+    <string name="liveprog_additional_params">추가 스크립트 매개변수</string>
+    <string name="liveprog_additional_params_not_supported">선택한 스크립트에는 사용자 지정 가능한 매개변수가 없습니다</string>
+    <string name="liveprog_not_found">스크립트를 찾을 수 없음</string>
+    <string name="liveprog_no_script_selected">스크립트를 선택하지 않음</string>
+    <string name="liveprog_edit_header">선택한 스크립트 편집</string>
+    <string name="liveprog_edit">내장 편집기에서 활성 스크립트 열기</string>
     <string name="tube_enable">아날로그 모델링</string>
     <string name="tube_drive">프리앰프</string>
     <string name="output_control_header">출력 제어</string>
+    <string name="output_limiter_threshold">리미터 트레숄드</string>
+    <string name="output_limiter_release">리미터 릴리즈</string>
     <string name="output_control_postgain">포스트 게인</string>
     <string name="stereowide_enable">음장 넓이</string>
     <string name="stereowide_level">넓이</string>
@@ -223,6 +254,7 @@
     <!-- AutoEQ GraphicEQ selector -->
     <string name="autoeq_no_results">결과를 찾을 수 없음</string>
     <!-- Customizable liveprog script parameters -->
+    <string name="title_activity_liveprog_params">사용자 지정 가능한 매개변수</string>
     <!-- Liveprog script editor -->
     <string name="title_activity_liveprog_editor">스크립트 편집기</string>
     <string name="editor_docs">도움말</string>
