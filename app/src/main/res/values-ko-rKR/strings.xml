@@ -316,6 +316,7 @@
     <string name="troubleshooting">문제 해결</string>
     <string name="troubleshooting_summary">고급 옵션, 설명서, 진단</string>
     <string name="troubleshooting_docs">설명서</string>
+    <string name="troubleshooting_dump">오디오 세션 덤프 출력...</string>
     <string name="troubleshooting_view_limitations">기술적 한계</string>
     <string name="misc_settings">기타</string>
     <string name="misc_permission_restart_setup">설치 마법사 다시 시작</string>
@@ -332,7 +333,11 @@
     <string name="about_settings">정보</string>
     <string name="about_settings_summary">크레딧, 지원, 업데이트</string>
     <string name="privacy">개인 정보 보호</string>
+    <string name="privacy_share_crash_reports">어플리케이션 충돌 보고서 공유</string>
+    <string name="privacy_share_crash_reports_on">개발자에게 충돌 보고서 전송</string>
+    <string name="privacy_share_crash_reports_off">개발자에게 충돌 보고서 전송 안 함</string>
     <string name="credits">크레딧</string>
+    <string name="translators">번역가</string>
     <string name="credits_project_translate">번역 기여</string>
     <string name="credits_version">애플리케이션 버전</string>
     <string name="credits_build_info">빌드 정보</string>
@@ -388,9 +393,11 @@
     <string name="filelibrary_corrupted">선택한 파일에 사용 가능한 데이터가 없거나 손상되었습니다.</string>
     <string name="filelibrary_file_too_new">새 버전으로 선택된 파일이 생성되어 있어 가져올 수 없습니다. 계속하려면 앱을 업데이트해 주세요.</string>
     <string name="filelibrary_access_fail">디렉토리 접근 실패</string>
-    <string name="filelibrary_no_file_selected">선택된 파일 없음</string>
+    <string name="filelibrary_no_file_selected">선택된 파일이 없습니다</string>
     <string name="filelibrary_new_file_name">새 파일 이름</string>
+    <string name="filelibrary_file_exists">파일이 이미 존재합니다</string>
     <string name="filelibrary_preset_save_failed">프리셋 저장 실패</string>
+    <string name="filelibrary_no_presets">프리셋이 저장되어 있지 않습니다. 새 프리셋을 만드들려면 \'추가\'를 탭하세요.</string>
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">선택한 VDC 파일이 손상되었습니다. 다른 파일을 선택해 주세요.</string>
     <string name="message_irs_corrupt">선택한 임펄스 응답이 손상되었습니다. 다른 응답을 선택해 주세요.</string>
@@ -399,6 +406,10 @@
     <string name="geq_autoeq">AutoEQ 프로파일</string>
     <string name="gep_add_node">추가</string>
     <string name="geq_preview">미리보기 </string>
+    <string name="geq_preview_collapsed">미리 보기 (탭하여 확장)</string>
+    <string name="geq_edit_hint">GraphicEQ 노드</string>
+    <string name="geq_reset">초기화</string>
+    <string name="geq_reset_confirm">GraphicEQ 설정을 초기화하시겠습니까?</string>
     <string name="geq_node_editor">노드 편집기</string>
     <string name="geq_node_list">노드 목록</string>
     <string name="geq_no_nodes_defined">노드가 정의되지 않음</string>
@@ -406,6 +417,7 @@
     <string name="geq_go_back_to_node_list">노드 목록으로 돌아가기</string>
     <string name="geq_next_node">다음 노드</string>
     <string name="geq_previous_node">이전 노드</string>
+    <string name="geq_done">완료</string>
     <string name="geq_discard_changes">값이 유효하지 않거나 비어 있습니다. 변경 내용을 저장할 수 없습니다.\n변경 내용을 취소하고 종료하시겠습니까?</string>
     <string name="geq_gain">게인</string>
     <string name="geq_frequency">주파수</string>
@@ -426,16 +438,20 @@
     <string name="editor_replace_all">모두 바꾸기</string>
     <string name="editor_replacement">대체</string>
     <string name="editor_search_keyword">검색</string>
+    <string name="editor_save_prompt_title">변경 사항을 저장하시겠습니까?</string>
     <string name="editor_cannot_undo">되돌릴 작업이 없습니다.</string>
     <string name="editor_cannot_redo">다시 실행할 작업이 없습니다.</string>
+    <string name="editor_text_size">글자 크기</string>
     <!-- Blocklist -->
     <string name="title_activity_blocklist">제외된 앱</string>
+    <string name="blocklist_add_exclusion_alt">제외할 어플리케이션 추가</string>
     <string name="blocklist_no_exclusions">제외된 앱 없음</string>
     <!-- Compatibility issue activity -->
     <string name="title_activity_app_compat">호환성 문제</string>
     <string name="app_compat_retry">재시도</string>
     <string name="app_compat_unknown_pkg_name">알 수 없는 패키지 이름</string>
     <!-- Root: Library load failure -->
+    <string name="load_fail_card">이 어플리케이션을 사용하려면 JamesDSP magisk 모듈을 설치하고 Android 장치를 재부팅해 주세요. 재부팅 후 이 어플리케이션을 다시 설치해야 할 수도 있습니다.</string>
     <string name="load_fail_arch_card">Magisk 모듈을 이미 설치했다면 설치 과정에서 잘못된 설정을 선택했을 수 있습니다. 다시 설치하고 화웨이 호환성을 활성화해 보세요 (해당 제조업체의 기기가 아니더라도).</string>
     <!-- Enhanced processing -->
     <string name="enhanced_processing_feature_unavailable">기능을 사용할 수 없음</string>
@@ -447,8 +463,14 @@
     <!-- Slider widget -->
     <string name="slider_dialog_title">값 편집</string>
     <!-- Revert confirmation -->
+    <string name="revert_confirmation_title">확실한가요?</string>
+    <string name="revert_confirmation">현재 JamesDSP 프리셋을 기본값으로 초기화하시겠습니까?</string>
     <!-- File intent handler -->
     <string name="intent_import_preset">프리셋 가져오기</string>
+    <string name="intent_import_irs">임펄스 음답 가져오기</string>
+    <string name="intent_import_vdc">VDC 파일 가져오기</string>
+    <string name="intent_import_liveprog">Liveprog 스크립트 가져오기</string>
+    <string name="intent_import_mode_select">가져오기 및 활성화</string>
     <!-- Translation notice box -->
     <string name="translation_notice">번역 기여</string>
     <!-- Self-updates (Root) -->
@@ -456,25 +478,36 @@
     <string name="self_update_finished">업데이트가 설치되었습니다. 앱을 다시 시작하는 중입니다…</string>
     <string name="self_update_no_updates">현재 사용 가능한 새 업데이트 없음</string>
     <string name="self_update_notice">새 업데이트 사용 가능 (%1&amp;s)</string>
+    <string name="self_update_notice_summary">새 업데이트를 다운로드하고 설치하려면 여기를 탭하세요.</string>
     <string name="self_update_notice_dismiss_install">지금 설치</string>
+    <string name="self_update_notice_dismiss_snooze">나중에 다시 알림</string>
+    <string name="self_update_state_downloading">다운로드 중...</string>
     <string name="self_update_state_installing">설치 중...</string>
     <!-- Backups -->
+    <string name="backup_restore_progress">백업 복구</string>
     <string name="backup_restore_error">백업 복구 실패</string>
     <string name="backup_restore_error_format">지원되지 않거나 손상된 백업 파일</string>
     <string name="backup_restore_error_version_too_new">새 버전으로 백업이 생성되어 있어 가져올 수 없습니다. 계속하려면 앱을 업데이트해 주세요.</string>
     <string name="backup_restore_completed">복원 완료</string>
+    <string name="backup_create_completed">백업 생성됨</string>
+    <string name="backup_create_progress">백업 생성</string>
     <string name="backup_create_error">백업 실패</string>
     <string name="backup_manual_backup">수동 백업</string>
     <string name="backup_create">백업 생성</string>
+    <string name="backup_create_summary">나중에 현재 설정을 복원하는 데 사용할 수 있습니다.</string>
     <string name="backup_restore">백업 복원</string>
+    <string name="backup_restore_summary">백업 파일에서 설정 복원</string>
     <string name="backup_automatic_backup">자동 백업</string>
+    <string name="backup_compat_info">백업은 다른 버전과 최대의 호환성을 위해 임펄스 응답, 스크립트, VDC 파일, 프리셋 및 현재 오디오 구성만 포함되어 있습니다.</string>
     <string name="backup_restore_mode_title">복원 모드</string>
     <string name="backup_restore_mode_clean">클린 복원 (모든 파일 삭제)</string>
     <string name="backup_restore_mode_dirty">더티 복원 (덮어쓰기만)</string>
+    <string name="backup_in_progress">백업이 이미 진행 중입니다</string>
     <!-- Multi-device profiles -->
     <string name="group_wired_headphones">유선 헤드폰</string>
     <string name="group_bluetooth">블루투스</string>
     <string name="group_hdmi">HDMI</string>
+    <string name="group_speaker">내장 스피커</string>
     <string name="group_usb">USB</string>
     <string name="group_unknown">알 수 없음</string>
     <string name="device_profile_status">활성화된 기기 프로파일</string>
