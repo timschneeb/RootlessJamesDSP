@@ -27,11 +27,11 @@
     <string name="notification_request_permission_title">JamesDSP를 실행하려면 사용자의 조치가 필요합니다.</string>
     <string name="notification_request_permission">탭 하여 캡처 권한을 부여하고 James Dsp의 오디오 처리를 활성화합니다.</string>
     <!-- Session control loss notifications -->
-    <string name="session_control_loss_toast">오디오 세션 제어 손실로 인해 James DSP가 중지되었습니다. 다른 오디오 효과 앱을 비활성화하십시오.</string>
+    <string name="session_control_loss_toast">오디오 세션 제어 손실로 인해 JamesDSP가 중지되었습니다. 다른 오디오 효과 앱을 비활성화해 주세요.</string>
     <string name="session_control_loss_notification_title">오디오 처리가 중지되었습니다. 다른 앱이 JamesDSP에 간섭하고 있습니다.</string>
-    <string name="session_control_loss_notification">James DSP를 다시 활성화하기 전에 전역 오디오 효과를 제공하는 다른 모든 앱을 비활성화하십시오.</string>
+    <string name="session_control_loss_notification">JamesDSP를 다시 활성화하기 전에 전역 오디오 효과를 제공하는 다른 모든 앱을 비활성화해 주세요.</string>
     <!-- App compatibility issue notifications -->
-    <string name="session_app_compat_toast">호환되지 않는 미디어 앱으로 인해 James DSP가 중지되었습니다. 이 문제를 해결하려면 알림을 확인하십시오.</string>
+    <string name="session_app_compat_toast">호환되지 않는 미디어 앱으로 인해 James DSP가 중지되었습니다. 이 문제를 해결하려면 알림을 확인해 주세요.</string>
     <string name="session_app_compat_notification_title">오디오 처리가 중지되었습니다. 다른 앱이 JamesDSP에 간섭하고 있습니다.</string>
     <string name="session_app_compat_notification">이 알림을 탭 하여 문제를 해결하세요.</string>
     <!-- Capture permission revoked notifications -->
@@ -55,11 +55,11 @@
     <string name="value_not_set">설정되지 않음</string>
     <string name="undo">되돌리기</string>
     <string name="redo">다시 하기</string>
-    <string name="no_activity_found">동작을 처리할 액티비티를 찾을 수 없습니다.</string>
+    <string name="no_activity_found">동작을 처리할 액티비티를 찾을 수 없습니다</string>
     <string name="permission_allowed">허용됨</string>
     <string name="permission_not_allowed">허용되지 않음</string>
     <string name="preparing">준비중…</string>
-    <string name="error_projection_api_missing">장치 제조업체에서 내부 오디오 녹음 API를 사용할 수 없도록 설정했습니다. 해당 기능 없이는 이 응용 프로그램을 사용할 수 없습니다.</string>
+    <string name="error_projection_api_missing">기기 제조업체에서 내부 오디오 녹음 API를 사용할 수 없도록 설정했습니다. 해당 기능 없이는 이 응용 프로그램을 사용할 수 없습니다.</string>
     <!-- Main screen -->
     <string name="power_button_alt">오디오 처리 전환</string>
     <string name="compander_enable">다이나믹 레인지 컴팬더</string>
@@ -148,35 +148,55 @@
     <string name="output_control_postgain">포스트 게인</string>
     <string name="stereowide_enable">음장 넓이</string>
     <string name="stereowide_level">넓이</string>
+    <string name="stereowide_level_none">없음</string>
     <string name="stereowide_level_very_wide">매우 넓음</string>
     <string name="stereowide_level_wide">넓음</string>
     <string name="stereowide_level_very_narrow">매우 좁음</string>
     <string name="stereowide_level_narrow">좁음</string>
     <string name="crossfeed_enable">크로스피드</string>
     <string name="crossfeed_preset">프리셋</string>
+    <string name="crossfeed_preset_bs2b_weak"> 약한 BS2B</string>
+    <string name="crossfeed_preset_bs2b_strong">강한 BS2B</string>
+    <string name="crossfeed_preset_out_of_head">머리 밖 음상</string>
     <string name="crossfeed_preset_surround1">서라운드 1</string>
     <string name="crossfeed_preset_surround2">서라운드 2</string>
+    <string name="crossfeed_preset_realistic_surround">Joe0Bloggs 현실적인 서라운드</string>
     <!-- Onboarding -->
+    <string name="title_activity_onboarding">온보딩</string>
     <string name="onboarding_back">이전</string>
     <string name="onboarding_next">다음</string>
     <string name="onboarding_finish">마침</string>
+    <string name="onboarding_greeting"> RootlessJamesDSP에 오신 것을 환영합니다!</string>
+    <string name="onboarding_caption">어시스턴트가 이 앱을 설정하는 것을 도와드립니다.</string>
+    <string name="onboarding_warning">현재 이 어플리케이션은 아직 완성되지 않았으며 불안정한 상태입니다. 제3자의 사용을 고려하지 않은 Android API를 사용하므로, 일부 기기에서 예상대로 작동하지 않을 수 있음을 유의해주시기 바랍니다.</string>
     <string name="onboarding_limitations_title">제한 사항</string>
+    <string name="onboarding_limitations_unstable">중요! 계속하기 전에 주의사항을 잘 읽어주세요.</string>
     <string name="onboarding_methods_root_title">루트</string>
     <string name="onboarding_methods_shizuku_title">Shizuku</string>
     <string name="onboarding_methods_unsupported_append">호환되지 않음</string>
     <string name="onboarding_methods_adb_title">ADB</string>
     <!-- Rootless flavor -->
     <!-- Root flavor -->
+    <string name="onboarding_root_shell_fail_title">루트 액세스 없음</string>
+    <string name="onboarding_root_shell_fail">루트 액세스를 사용할 수 없습니다. 다른 설치 방법을 사용해 주세요.</string>
+    <string name="onboarding_root_shell_fail_unknown">루트 권한 부여에 실패했습니다. 다른 설치 방법을 사용해 주세요.</string>
+    <string name="onboarding_adb_shizuku_install_button">Shizuku 설치</string>
     <string name="onboarding_adb_shizuku_install_button_done">이미 설치됨</string>
+    <string name="onboarding_adb_shizuku_install_instruction">Google Play에서 \'Shizuku\'를 설치해 주세요.</string>
     <string name="onboarding_adb_shizuku_open_button_done">이미 활성화됨</string>
     <string name="onboarding_adb_shizuku_grant_button">액세스 허용</string>
+    <string name="onboarding_adb_shizuku_not_installed">Shizuku가 아직 설치되지 않았습니다. 우선 구글 플레이에서 다운받아 설치해 주세요.</string>
+    <string name="onboarding_adb_shizuku_not_installed_title">Shizuku가 아직 설치되지 않았습니다.</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead">허가를 요청하기 전에 Shizuku 서버를 시작해 주세요. 지침 2단계로 돌아가세요.</string>
     <string name="onboarding_adb_shizuku_grant_fail_server_dead_title">Shizuku 서버가 작동하지 않습니다.</string>
     <string name="onboarding_adb_shizuku_grant_fail_version">이 애플리케이션은 Shizuku 버전 11 이상이 필요합니다. Shizuku를 최신 버전으로 업데이트해주세요.</string>
+    <string name="onboarding_adb_shizuku_grant_fail_version_title">지원되지 않는 Shizuku 버전</string>
     <string name="onboarding_adb_shizuku_grant_fail_denied_title">권한이 거부되었습니다</string>
     <string name="onboarding_adb_shizuku_grant_fail_denied">이 애플리케이션에 Shizuku 액세스 권한을 부여해주세요. 이전에 거부한 경우 팝업이 더 이상 표시되지 않는다면 Shizuku의 권한 관리자를 열어 수동으로 권한을 부여해야 할 수도 있습니다.</string>
     <string name="onboarding_adb_shizuku_no_dump_perm_title">Shizuku가 ADB 권한 부여에 실패했습니다</string>
-    <string name="onboarding_adb_shizuku_no_dump_perm">잠시 기다렸다가 다시 시도하세요. 여전히 작동하지 않는다면 다른 방법을 시도하세요.</string>
+    <string name="onboarding_adb_shizuku_no_dump_perm">잠시 기다렸다가 다시 시도해주세요. 여전히 작동하지 않는다면 다른 방법을 시도하세요.</string>
     <string name="onboarding_adb_dump_not_granted_title">권한이 부여되지 않았습니다</string>
+    <string name="onboarding_adb_dump_not_granted">먼저 지침을 따르고 다시 시도해주세요. ADB 액세스가 아직 올바르게 설정되지 않았습니다.</string>
     <string name="onboarding_perm_title">다른 권한</string>
     <string name="onboarding_perm_notification_title">알림 권한</string>
     <string name="onboarding_perm_missing_title">런타임 권한이 부여되지 않았습니다</string>
@@ -184,9 +204,9 @@
     <string name="title_activity_settings">설정</string>
     <string name="audio_format_processing_legacy">레거시 모드</string>
     <string name="profiles_section_header">기기 프로파일</string>
-    <string name="profiles_enable">장치별 프로파일</string>
-    <string name="profiles_enable_summary_on">장치별 프로파일 사용</string>
-    <string name="profiles_enable_summary_off">장치별 프로파일 사용 안 함</string>
+    <string name="profiles_enable">기기별 프로파일</string>
+    <string name="profiles_enable_summary_on">기기별 프로파일 사용</string>
+    <string name="profiles_enable_summary_off">기기별 프로파일 사용 안 함</string>
     <string name="exclude_app_from_recents">최근 작업 목록에서 앱 제외</string>
     <string name="exclude_app_from_recents_off">최근 작업 목록에서 앱 제외 안 함</string>
     <string name="exclude_app_from_recents_on">최근 작업 목록에서 앱 제외</string>
@@ -235,9 +255,12 @@
     <string name="filelibrary_context_share">공유...</string>
     <string name="filelibrary_context_new_preset_long">새 프리셋</string>
     <string name="filelibrary_unsupported_format_title">지원되지 않는 파일 형식</string>
+    <string name="filelibrary_no_file_selected">선택된 파일 없음</string>
     <string name="filelibrary_new_file_name">새 파일 이름</string>
     <string name="filelibrary_preset_save_failed">프리셋 저장 실패</string>
     <!-- JamesDSP engine messages -->
+    <string name="message_vdc_corrupt">선택한 VDC 파일이 손상되었습니다. 다른 파일을 선택해 주세요.</string>
+    <string name="message_irs_corrupt">선택한 임펄스 응답이 손상되었습니다. 다른 응답을 선택해 주세요.</string>
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">크기 응답</string>
     <string name="gep_add_node">추가</string>
@@ -264,11 +287,15 @@
     <string name="editor_replace_all">모두 바꾸기</string>
     <string name="editor_replacement">대체</string>
     <string name="editor_search_keyword">검색</string>
+    <string name="editor_cannot_undo">되돌릴 작업이 없습니다.</string>
+    <string name="editor_cannot_redo">다시 실행할 작업이 없습니다.</string>
     <!-- Blocklist -->
     <string name="title_activity_blocklist">제외된 앱</string>
+    <string name="blocklist_no_exclusions">제외된 앱 없음</string>
     <!-- Compatibility issue activity -->
     <string name="title_activity_app_compat">호환성 문제</string>
     <string name="app_compat_retry">재시도</string>
+    <string name="app_compat_unknown_pkg_name">알 수 없는 패키지 이름</string>
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
     <!-- App list -->
@@ -283,7 +310,9 @@
     <!-- Translation notice box -->
     <!-- Self-updates (Root) -->
     <string name="self_update_install_error">업데이트 실패</string>
+    <string name="self_update_no_updates">현재 사용 가능한 새 업데이트 없음</string>
     <string name="self_update_notice">새 업데이트 사용 가능 (%1&amp;s)</string>
+    <string name="self_update_notice_dismiss_install">지금 설치</string>
     <string name="self_update_state_installing">설치 중...</string>
     <!-- Backups -->
     <string name="backup_create_error">백업 실패</string>
