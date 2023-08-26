@@ -126,8 +126,12 @@
     <string name="crossfeed_preset_surround1">서라운드 1</string>
     <string name="crossfeed_preset_surround2">서라운드 2</string>
     <!-- Onboarding -->
+    <string name="onboarding_back">이전</string>
+    <string name="onboarding_next">다음</string>
+    <string name="onboarding_finish">마침</string>
     <string name="onboarding_limitations_title">제한 사항</string>
     <string name="onboarding_methods_root_title">루트</string>
+    <string name="onboarding_methods_shizuku_title">Shizuku</string>
     <string name="onboarding_methods_unsupported_append">호환되지 않음</string>
     <string name="onboarding_methods_adb_title">ADB</string>
     <!-- Rootless flavor -->
@@ -148,12 +152,25 @@
     <!-- Settings -->
     <string name="title_activity_settings">설정</string>
     <string name="audio_format_processing_legacy">레거시 모드</string>
+    <string name="exclude_app_from_recents_on">최근 작업 목록에서 앱 제외</string>
+    <string name="autostart_prompt_at_boot">부팅 후 캡처 권한 확인</string>
+    <string name="autostart_prompt_at_boot_off">부팅 후 알림을 표시하지 않음</string>
+    <string name="autostart_prompt_at_boot_on">부팅 후 알림을 표시</string>
     <string name="misc_settings">기타</string>
+    <string name="misc_permission_header">선택적 권한</string>
     <string name="assets">에셋</string>
+    <string name="network_services">네트워크 서비스</string>
+    <string name="network_invalid_url">잘못된 URL 형식</string>
+    <string name="network_autoeq_conntest_running">서버에 연결 테스트 중...</string>
+    <string name="network_autoeq_conntest_done">연결 테스트 성공</string>
+    <string name="network_autoeq_conntest_fail">연결 테스트 실패</string>
     <string name="about_settings">정보</string>
     <string name="privacy">개인 정보 보호</string>
+    <string name="credits">크레딧</string>
+    <string name="credits_build_info">빌드 정보</string>
     <string name="appearance_section_header">외관</string>
     <string name="appearance_title">테마</string>
+    <string name="appearance_theme_mode">다크 모드</string>
     <string name="appearance_theme_mode_default">시스템 테마 사용</string>
     <string name="appearance_app_theme">앱 테마</string>
     <string name="appearance_navigation_title">내비게이션</string>
