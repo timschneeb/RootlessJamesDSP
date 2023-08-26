@@ -213,8 +213,8 @@
     <string name="onboarding_adb_dump_not_granted_title">권한이 부여되지 않았습니다</string>
     <string name="onboarding_adb_dump_not_granted">먼저 지침을 따르고 다시 시도해주세요. ADB 액세스가 아직 올바르게 설정되지 않았습니다.</string>
     <string name="onboarding_adb_manual_step1">Android의 숨겨진 개발자 옵션으로 이동하여 USB 디버깅을 활성화하세요. 시스템 설정에서 빌드 번호를 여러 번 눌러 개발자 옵션을 활성화해야 합니다.</string>
-    <string name="onboarding_adb_manual_step2">컴퓨터 브라우저에서 https://app.webadb.com 을 열고 (Chrome에서 가장 잘 작동합니다) USB를 사용하여 장치를 컴퓨터에 연결하세요.</string>
-    <string name="onboarding_adb_manual_step3">WebADB에서 USB 장치를 추가하고 연결하세요.</string>
+    <string name="onboarding_adb_manual_step2">컴퓨터 브라우저에서 https://app.webadb.com 을 열고 (Chrome에서 가장 잘 작동합니다) USB를 사용하여 기기를 컴퓨터에 연결하세요.</string>
+    <string name="onboarding_adb_manual_step3">WebADB에서 USB 기기를 추가하고 연결하세요.</string>
     <string name="onboarding_adb_manual_step4">\'Interactive Shell\'로 이동하여 셸에서 \'pm grant %s android.permission.DUMP\' 명령을 실행합니다</string>
     <string name="onboarding_adb_manual_step5">계속하려면 이 앱에서 \'다음\'을 탭하세요.</string>
     <string name="onboarding_adb_manual_step5b">(선택 사항) 다음 명령을 실행하여 음성 캡처 권한 프롬프트를 건너뛸 수 있습니다: \'appops set %s PROJECT_MEDIA allow\'</string>
@@ -231,7 +231,7 @@
     <string name="onboarding_perm_missing_title">런타임 권한이 부여되지 않았습니다</string>
     <string name="onboarding_perm_missing">계속하려면 요청된 모든 런타임 권한을 부여해 주세요.\n권한을 반복적으로 거부한 경우 시스템 설정에서 수동으로 권한을 부여해야 합니다.</string>
     <string name="onboarding_perm_diag">진단 보고서 전송 허용</string>
-    <string name="onboarding_perm_diag_caption">이 앱은 충돌 보고서와 기타 진단 데이터를 제출하며, 다른 활성 애플리케이션에 대한 정보도 포함되어 있어 호환성 문제와 버그를 더 쉽게 감지하고 해결할 수 있도록 돕습니다.</string>
+    <string name="onboarding_perm_diag_caption">이 앱은 충돌 보고서와 기타 진단 데이터를 제출하며, 다른 활성화된 애플리케이션에 대한 정보도 포함되어 있어 호환성 문제와 버그를 더 쉽게 감지하고 해결할 수 있도록 돕습니다.</string>
     <string name="onboarding_finish_header">JamesDSP 설정이 완료되었습니다!</string>
     <string name="onboarding_finish_caption">문제가 발생한 경우, 문제 해결을 참조해 주세요.</string>
     <string name="limit_session_control_conflict_title">다른 오디오 효과 앱 비활성화</string>
@@ -268,11 +268,15 @@
     <string name="audio_format_section_header">선호 오디오 형식</string>
     <string name="audio_format_processing_header">오디오 처리 옵션</string>
     <string name="audio_format_processing_legacy">레거시 모드</string>
+    <string name="audio_format_processing_legacy_on">세션 0에 전역 연결 (사용 안 함)</string>
+    <string name="audio_format_processing_legacy_off">각 앱에 개별 연결</string>
     <string name="audio_format_enhanced_processing">향상된 처리</string>
+    <string name="audio_format_enhanced_processing_on">앱별 제어 및 향상된 앱 지원 활성화</string>
     <string name="audio_format_enhanced_processing_off">항샹된 처리 비활성화</string>
     <string name="audio_format_enhanced_processing_info_title">향상된 처리란?</string>
     <string name="audio_format_enhanced_processing_info">탭하여 문서를 표시</string>
     <string name="audio_format_enhanced_processing_info_content">향상된 처리 기능이 활성화된 경우 JamesDSP에서 처리되는 특정 앱을 선택적으로 제외할 수 있습니다. 오른쪽 하단 모서리의 3점 메뉴를 사용하고 \'제외된 앱\'을 선택하여 이 기능에 접근하세요.\n\n레거시 모드가 비활성화 되어있는 동안 JamesDSP는 미디어 앱에 의존하여 재생을 시작할 때 시스템 브로드캐스트를 전송합니다. 이는 레거시 모드 대비 각 앱에 자체 JamesDSP 효과 엔진이 할당되어 보다 세밀한 제어가 가능하다는 장점이 있습니다. 이와 달리, 레거시 모드가 설정된 상태에서는 모든 앱이 단일 처리 엔진을 공유하게 되며, 이 엔진은 Android에서 사용하는 것을 권장하지 않으므로 더 이상 사용해서는 안 됩니다. \n\n아쉽게도 모든 미디어 앱이 이 기능을 올바르게 수행하는 것은 아니므로 레거시 모드가 비활성화해도 올바르게 작동하지 않을 수 있습니다. 이 문제를 해결하려면 향상된 처리를 활성화해야 합니다. JamesDSP는 새로운 미디어 세션에 대한 시스템 브로드캐스트에 의존하는 대신 자체적으로 미디어 세션을 사전에 검색하고 비협조적인 미디어 앱에 대한 적절한 지원을 허용할 것입니다.</string>
+    <string name="audio_format_media_apps_need_restart">오디오 처리를 재개하려면 이 설정을 변경한 후 모든 활성화된 미디어 앱을 재시작해야 합니다.</string>
     <string name="audio_format_summary">권장 오디오 인코딩, 버퍼 크기</string>
     <string name="audio_format_summary_root">레거시 모드, 향상된 처리</string>
     <string name="audio_format_summary_plugin">컨볼버 최적화</string>
@@ -281,14 +285,22 @@
     <string name="audio_format_encoding_float">32비트 부동소수점 PCM</string>
     <string name="audio_format_buffer_size">버퍼 크기</string>
     <string name="audio_format_buffer_size_unit">&#xa0;샘플</string>
+    <string name="audio_format_buffer_size_warning_low_value">경고: 버퍼 크기가 작으면 클리핑과 같은 오디오 문제가 발생할 수 있습니다!</string>
     <string name="audio_format_optimization_header">컨볼버 모듈 최적화</string>
     <string name="audio_format_optimization_refresh">벤치마킹 데이터 새로 고침</string>
     <string name="audio_format_optimization_benchmark">벤치마크를 사용하여 성능 최적화</string>
+    <string name="audio_format_optimization_benchmark_summary">컨볼버 모듈을 사용하는 효과의 성능 향상</string>
+    <string name="audio_format_optimization_benchmark_ongoing">벤치마크 진행 중...</string>
     <string name="profiles_section_header">기기 프로파일</string>
+    <string name="profiles_summary">기기별 프로파일, 자동 전환</string>
     <string name="profiles_enable">기기별 프로파일</string>
     <string name="profiles_enable_summary_on">기기별 프로파일 활성화</string>
     <string name="profiles_enable_summary_off">기기별 프로파일 비활성화</string>
+    <string name="profiles_info_title">기기별 프로파일이란?</string>
     <string name="profiles_info">탭하여 문서를 표시</string>
+    <string name="profiles_info_content">이 설정이 활성화된 동안 각 오디오 기기에는 개별 오디오 구성이 할당됩니다. 이 앱은 출력 기기가 변경되면 기기 프로파일 간에 자동으로 전환됩니다.\n\n연결된 각각의 새 기기는 빈 프로파일로 시작합니다. 그런 다음 이 기능을 구성하거나 다른 기기 프로파일에서 설정을 복사할 수 있습니다.\n\n참고: 사전 설정은 이 기능이 활성화된 동안에만 활성 프로파일에 적용됩니다. 비활성 프로파일은 그대로 유지됩니다.</string>
+    <string name="profiles_manage_hint">프로파일을 복사하거나 삭제하려면 메인 화면의 \'활성화된 기기 프로파일\' 버튼을 탭하세요.</string>
+    <string name="app_behavior">앱 동작</string>
     <string name="exclude_app_from_recents">최근 작업 목록에서 앱 제외</string>
     <string name="exclude_app_from_recents_off">최근 작업 목록에서 앱 제외 안 함</string>
     <string name="exclude_app_from_recents_on">최근 작업 목록에서 앱 제외</string>
@@ -298,6 +310,10 @@
     <string name="autostart_service_at_boot">부팅 후 실행</string>
     <string name="autostart_service_at_boot_off">부팅 후 서비스 자동 실행 안 함</string>
     <string name="autostart_service_at_boot_on">부팅 후 서비스 자동 실행</string>
+    <string name="powersave">절전</string>
+    <string name="powersave_suspend">유휴 상태에서 오디오 파이프라인 일시 중지</string>
+    <string name="powersave_suspend_off">재생 중인 콘텐츠가 없을 때도 처리 유지</string>
+    <string name="troubleshooting_view_limitations">기술적 한계</string>
     <string name="misc_settings">기타</string>
     <string name="misc_permission_header">선택적 권한</string>
     <string name="assets">에셋</string>
@@ -310,6 +326,7 @@
     <string name="about_settings">정보</string>
     <string name="privacy">개인 정보 보호</string>
     <string name="credits">크레딧</string>
+    <string name="credits_version">애플리케이션 버전</string>
     <string name="credits_build_info">빌드 정보</string>
     <string name="appearance_section_header">외관</string>
     <string name="appearance_summary">앱 테마, 퓨어 블랙 다크 모드</string>
@@ -354,6 +371,7 @@
     <string name="filelibrary_context_new_preset">신규</string>
     <string name="filelibrary_context_new_preset_long">새 프리셋</string>
     <string name="filelibrary_unsupported_format_title">지원되지 않는 파일 형식</string>
+    <string name="filelibrary_unsupported_format">선택한 파일에 올바른 파일 확장자가 없습니다.</string>
     <string name="filelibrary_corrupted_title">지원되지 않거나 손상된 파일</string>
     <string name="filelibrary_access_fail">디렉토리 접근 실패</string>
     <string name="filelibrary_no_file_selected">선택된 파일 없음</string>
@@ -432,5 +450,6 @@
     <string name="group_hdmi">HDMI</string>
     <string name="group_usb">USB</string>
     <string name="group_unknown">알 수 없음</string>
+    <string name="device_profile_status">활성화된 기기 프로파일</string>
     <!-- Root version check -->
 </resources>
