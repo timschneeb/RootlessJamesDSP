@@ -186,7 +186,7 @@
     <string name="onboarding_methods_root_shizuku">\u25CF 권장, 루트가 설정되지 않은 경우\n\u25CF 컴퓨터 연결 필요 없음\n\u25CF Android 11+ 이상 만</string>
     <string name="onboarding_methods_root_adb">\u25CF 고급 사용자\n\u25CF 컴퓨터 및 USB 케이블 필요\n\u25CF 모든 Android 버전</string>
     <string name="onboarding_root_shell_fail_title">루트 액세스 없음</string>
-    <string name="onboarding_root_shell_fail">루트 액세스를 사용할 수 없습니다. 다른 설치 방법을 사용해 주세요.</string>
+    <string name="onboarding_root_shell_fail">루트 액세스를 사용할 수 없음. 다른 설치 방법을 사용해 주세요.</string>
     <string name="onboarding_root_shell_fail_unknown">루트 권한 부여 실패. 다른 설치 방법을 사용해 주세요.</string>
     <string name="onboarding_root_enhanced_processing_setup_success">향상된 처리 설정</string>
     <string name="onboarding_adb_shizuku_title">Shizuku 설정</string>
@@ -206,11 +206,11 @@
     <string name="onboarding_adb_shizuku_grant_fail_server_dead_title">Shizuku 서버가 작동하지 않습니다.</string>
     <string name="onboarding_adb_shizuku_grant_fail_version">이 애플리케이션은 Shizuku 버전 11 이상이 필요합니다. Shizuku를 최신 버전으로 업데이트해 주세요.</string>
     <string name="onboarding_adb_shizuku_grant_fail_version_title">지원되지 않는 Shizuku 버전</string>
-    <string name="onboarding_adb_shizuku_grant_fail_denied_title">권한이 거부되었습니다</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied_title">권한이 거부됨</string>
     <string name="onboarding_adb_shizuku_grant_fail_denied">이 애플리케이션에 Shizuku 액세스 권한을 부여해 주세요. 이전에 거부한 경우 팝업이 더 이상 표시되지 않는다면 Shizuku의 권한 관리자를 열어 수동으로 권한을 부여해야 할 수도 있습니다.</string>
     <string name="onboarding_adb_shizuku_no_dump_perm_title">Shizuku가 ADB 권한 부여에 실패했습니다</string>
     <string name="onboarding_adb_shizuku_no_dump_perm">잠시 기다렸다가 다시 시도해 주세요. 여전히 작동하지 않는다면 다른 방법을 시도하세요.</string>
-    <string name="onboarding_adb_dump_not_granted_title">권한이 부여되지 않았습니다</string>
+    <string name="onboarding_adb_dump_not_granted_title">권한이 아직 부여되지 않음</string>
     <string name="onboarding_adb_dump_not_granted">먼저 지침을 따르고 다시 시도해 주세요. ADB 액세스가 아직 올바르게 설정되지 않았습니다.</string>
     <string name="onboarding_adb_manual_step1">Android의 숨겨진 개발자 옵션으로 이동하여 USB 디버깅을 활성화하세요. 시스템 설정에서 빌드 번호를 여러 번 눌러 개발자 옵션을 활성화해야 합니다.</string>
     <string name="onboarding_adb_manual_step2">컴퓨터 브라우저에서 https://app.webadb.com 을 열고 (Chrome에서 가장 잘 작동합니다) USB를 사용하여 기기를 컴퓨터에 연결하세요.</string>
@@ -268,7 +268,7 @@
     <string name="audio_format_section_header">선호 오디오 형식</string>
     <string name="audio_format_processing_header">오디오 처리 옵션</string>
     <string name="audio_format_processing_legacy">레거시 모드</string>
-    <string name="audio_format_processing_legacy_on">세션 0에 전역 연결 (사용 안 함)</string>
+    <string name="audio_format_processing_legacy_on">세션 0에 전역 연결 (폐지 예정)</string>
     <string name="audio_format_processing_legacy_off">각 앱에 개별 연결</string>
     <string name="audio_format_enhanced_processing">향상된 처리</string>
     <string name="audio_format_enhanced_processing_on">앱별 제어 및 향상된 앱 지원 활성화됨</string>
@@ -304,7 +304,7 @@
     <string name="exclude_app_from_recents">최근 작업 목록에서 앱 제외</string>
     <string name="exclude_app_from_recents_off">최근 작업 목록에서 앱 제외 안 함</string>
     <string name="exclude_app_from_recents_on">최근 작업 목록에서 앱 제외</string>
-    <string name="autostart_prompt_at_boot">부팅 후 캡처 권한 확인</string>
+    <string name="autostart_prompt_at_boot">부팅 후 캡처 권한 요청</string>
     <string name="autostart_prompt_at_boot_off">부팅 후 알림 표시 안 함</string>
     <string name="autostart_prompt_at_boot_on">부팅 후 알림 표시</string>
     <string name="autostart_service_at_boot">부팅 후 실행</string>
@@ -317,7 +317,9 @@
     <string name="troubleshooting">문제 해결</string>
     <string name="troubleshooting_summary">고급 옵션, 설명서, 진단</string>
     <string name="troubleshooting_docs">설명서</string>
+    <string name="troubleshooting_actions">기타 액션</string>
     <string name="troubleshooting_dump">오디오 세션 덤프 출력...</string>
+    <string name="troubleshooting_dump_summary">문제 해결 데이터 수집 및 저장</string>
     <string name="troubleshooting_dump_share_title">오디오 세션 덤프 공유..</string>
     <string name="troubleshooting_view_limitations">기술적 한계</string>
     <string name="troubleshooting_view_limitations_summary">이 앱의 제한 사항 세부 정보 보기</string>
@@ -328,6 +330,8 @@
     <string name="troubleshooting_repair_assets_success">번들 에셋이 복원됨</string>
     <string name="misc_settings">기타</string>
     <string name="misc_settings_summary">충돌 보고서, 기타 조치</string>
+    <string name="misc_permission_skip_prompt">오디오 캡처 권한 프롬프트 건너뛰기</string>
+    <string name="misc_permission_auto_start">부팅 시 효과 엔진 자동 시작</string>
     <string name="misc_permission_restart_setup">설치 마법사 다시 시작</string>
     <string name="misc_permission_restart_setup_summary">누락된 선택적 권한 부여</string>
     <string name="misc_permission_header">선택적 권한</string>
@@ -347,6 +351,8 @@
     <string name="privacy_share_crash_reports_off">개발자에게 충돌 보고서 전송 안 함</string>
     <string name="credits">크레딧</string>
     <string name="translators">번역가</string>
+    <string name="credits_app">앱 &amp; 루트리스 구현 개발</string>
+    <string name="credits_dsp">JamesDSP 핵심 알고리즘 라이브러리 개발</string>
     <string name="credits_project_page">Github에서 프로젝트 웹 사이트 방문</string>
     <string name="credits_project_page_summary">문제 보고, 최신 상태 유지, 소스 코드 읽기</string>
     <string name="credits_project_play_page">Google Play에서 RootlessJamesDSP 방문</string>
@@ -354,6 +360,7 @@
     <string name="credits_project_check_update">새 업데이트 확인...</string>
     <string name="credits_project_check_update_summary">사용 가능한 경우 업데이트 다운로드 및 설치</string>
     <string name="credits_project_translate">번역 기여</string>
+    <string name="credits_project_translate_summary">이 앱을 여러분의 언어로 번역할 수 있도록 도와주세요</string>
     <string name="credits_version">애플리케이션 버전</string>
     <string name="credits_build_info">빌드 정보</string>
     <string name="appearance_section_header">외관</string>
@@ -412,6 +419,7 @@
     <string name="filelibrary_no_file_selected">선택된 파일이 없습니다</string>
     <string name="filelibrary_new_file_name">새 파일 이름</string>
     <string name="filelibrary_file_exists">파일이 이미 존재합니다</string>
+    <string name="filelibrary_resample_complete">%1$dHz 로 리샘플됨</string>
     <string name="filelibrary_resample_failed">리샘플링 실패. 입력 파일이 손상되었습니까?</string>
     <string name="filelibrary_preset_overwritten">프리셋 \'%1$s\' 덮어씌워짐</string>
     <string name="filelibrary_preset_created">프리셋 \'%1$s\' 생성됨</string>
@@ -420,7 +428,7 @@
     <string name="filelibrary_deleted">\'%1$s\' 삭제됨</string>
     <string name="filelibrary_preset_loaded">프리셋 \'%1$s\' 로드됨</string>
     <string name="filelibrary_preset_load_failed">파일 \'%1$s\' 은 이 앱과 호환되지 않습니다</string>
-    <string name="filelibrary_no_presets">프리셋이 저장되어 있지 않습니다. 새 프리셋을 만드들려면 \'추가\'를 탭 하세요.</string>
+    <string name="filelibrary_no_presets">저장된 프리셋이 없습니다. 새 프리셋을 만드들려면 \'추가\'를 탭 하세요.</string>
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">선택된 VDC 파일이 손상되었습니다. 다른 파일을 선택해 주세요.</string>
     <string name="message_irs_corrupt">선택된 임펄스 응답이 손상되었습니다. 다른 응답을 선택해 주세요.</string>
@@ -428,17 +436,18 @@
     <string name="message_liveprog_compile_fail">Liveprog를 실행하지 못했습니다. 선택된 스크립트가 손상되었습니다. 디버깅하려면 스크립트 에디터를 사용해 주세요.</string>
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">크기 응답</string>
+    <string name="geq_edit_as_string">문자열로 편집</string>
     <string name="geq_autoeq">AutoEQ 프로파일</string>
     <string name="gep_add_node">추가</string>
     <string name="geq_preview">미리보기 </string>
     <string name="geq_preview_collapsed">미리 보기 (탭 하여 확장)</string>
     <string name="geq_edit_hint">GraphicEQ 노드</string>
     <string name="geq_reset">초기화</string>
-    <string name="geq_reset_confirm_title">확실한가요?</string>
+    <string name="geq_reset_confirm_title">확실합니까?</string>
     <string name="geq_reset_confirm">GraphicEQ 설정을 초기화하시겠습니까?</string>
     <string name="geq_node_editor">노드 편집기</string>
     <string name="geq_node_list">노드 목록</string>
-    <string name="geq_no_nodes_defined">노드가 정의되지 않음</string>
+    <string name="geq_no_nodes_defined">정의된 노드가 없음</string>
     <string name="geq_delete_node">노드 삭제</string>
     <string name="geq_go_back_to_node_list">노드 목록으로 돌아가기</string>
     <string name="geq_next_node">다음 노드</string>
@@ -455,6 +464,7 @@
     <string name="geq_frequency">주파수</string>
     <!-- AutoEQ GraphicEQ selector -->
     <string name="geq_api_network_error">서버 연결 실패. %1$s</string>
+    <string name="geq_api_network_error_details_code">서버에서 오류 코드로 응답했습니다:%1$d</string>
     <string name="autoeq_search">AutoEQ 검색</string>
     <string name="autoeq_enter_model">헤드폰 모델 입력...</string>
     <string name="autoeq_partial_results_warning">첫 번째 %1$d 결과를 보여줍니다. 더 많은 관련 결과를 얻기 위해 검색을 자세히 조정해 주세요.</string>
@@ -488,6 +498,7 @@
     <string name="title_activity_blocklist">제외된 앱</string>
     <string name="blocklist_add_exclusion_alt">제외할 어플리케이션 추가</string>
     <string name="blocklist_delete_title">선택된 앱을 목록에서 삭제하시겠습니까?</string>
+    <string name="blocklist_delete">이 앱을 제외 목록에서 삭제하시겠습니까?</string>
     <string name="blocklist_no_exclusions">제외된 앱 없음</string>
     <string name="blocklist_unsupported_apps">지원되지 않는 앱</string>
     <string name="blocklist_unsupported_apps_message"><![CDATA[<p>이 앱은 제3자가 오디오를 캡처하지 못하도록 하는 앱을 처리하는 것을 지원하지 않습니다. 캡처 제한으로 인해 이러한 앱이 음소거되는 것을 방지하기 위해 오디오 처리에서 자동으로 제외되며 재라우팅 되지 않습니다.</p><p><u>영향을 받는 앱:</u><br/>%s</p>]]></string>
@@ -495,6 +506,7 @@
     <string name="title_activity_app_compat">호환성 문제</string>
     <string name="app_compat_retry">재시도</string>
     <string name="app_compat_exclude">제외</string>
+    <string name="app_compat_title">오디오가 중복되지 않도록 오디오 처리가 중단되었습니다.</string>
     <string name="app_compat_explanation">다음 앱은 RootlessJamesDSP가 오디오 라우팅을 제어할 수 없기 때문에 지원되지 않습니다.</string>
     <string name="app_compat_instruction">앱 설정에서 하드웨어 가속 또는 RootlessJamesDSP를 방해할 수 있는 다른 설정을 비활성화할 수 있는지 확인하고 \'재시도\'를 탭 해 주세요.</string>
     <string name="app_compat_instruction_exclude">또는 오디오 처리에서 호환되지 않는 앱을 제외하여 이 문제를 우회하려면 \'제외\'를 선택합니다.</string>
@@ -516,6 +528,8 @@
     <string name="app_list_search">검색</string>
     <string name="app_list_icon_alt">앱 아이콘</string>
     <!-- Number box view -->
+    <string name="number_box_decrement">감소</string>
+    <string name="number_box_increment">증가</string>
     <!-- Slider widget -->
     <string name="slider_dialog_title">값 편집</string>
     <string name="slider_dialog_format_error">잘못된 숫자 형식입니다. 변경 사항이 적용되지 않았습니다.</string>
@@ -533,15 +547,15 @@
     <string name="intent_import_fail">파일 \'%1$s\' 가져오기 실패</string>
     <string name="intent_import_success">파일 \'%1$s\' 가져옴</string>
     <string name="intent_import_select_success">파일 \'%1$s\' 가져오기 및 활성화됨</string>
-    <string name="intent_import_error_file_uri">파일 가져오지 실패. 지원되지 않는 파일 URI입니다.</string>
+    <string name="intent_import_error_file_uri">파일 가져오기 실패. 지원되지 않는 파일 URI입니다.</string>
     <!-- Translation notice box -->
-    <string name="translation_notice_summary">이 앱을 당신의 언어로 번역하는 것을 도와주세요! Crowdin의 프로젝트 웹 사이트를 방문하려면 여기를 탭 하세요.</string>
+    <string name="translation_notice_summary">이 앱을 여러분의 언어로 번역하는 것을 도와주세요! Crowdin의 프로젝트 웹 사이트를 방문하려면 여기를 탭 하세요.</string>
     <string name="translation_notice">번역 기여</string>
     <!-- Self-updates (Root) -->
     <string name="self_update_install_error">업데이트 실패</string>
     <string name="self_update_download_fail">업데이트 패키지 다운로드 실패. 인터넷 연결을 확인해 주세요. 세부 정보:%1$s</string>
     <string name="self_update_install_fail">설치 실패. %1$s</string>
-    <string name="self_update_finished">업데이트가 설치되었습니다. 앱을 다시 시작하는 중입니다…</string>
+    <string name="self_update_finished">업데이트 설치됨. 앱을 다시 시작하는 중입니다…</string>
     <string name="self_update_no_updates">현재 사용 가능한 새 업데이트 없음</string>
     <string name="self_update_notice">새 업데이트 사용 가능 (%1&amp;s)</string>
     <string name="self_update_notice_summary">새 업데이트를 다운로드하고 설치하려면 여기를 탭 하세요.</string>
@@ -586,5 +600,5 @@
     <!-- Root version check -->
     <string name="version_mismatch_root">JamesDSP Magisk 패키지를 업데이트해야 합니다</string>
     <string name="version_mismatch_root_description">기기에 설치된 JamesDSP Magisk 모듈은 더 이상 사용되지 않으며 이 앱에서 더 이상 지원되지 않습니다.\n\n 최신 JamesDSP Magisk 패키지 압축파일을 다운로드하여 Magisk로 설치해 주세요.\nMagisk 패키지는 이 앱을 공식 JamesDSP 앱으로 대체할 수 있습니다.\n\n지금 Magisk 패키지 다운로드 웹 사이트를 방문하시겠습니까?</string>
-    <string name="version_mismatch_root_toast">시작 실패. 설치된 JamesDSP Magisk 모듈이 너무 오래되어 이 앱에서 더 이상 지원되지 않습니다.</string>
+    <string name="version_mismatch_root_toast">실행 실패. 설치된 JamesDSP Magisk 모듈이 너무 오래되어 이 앱에서 더 이상 지원되지 않습니다.</string>
 </resources>
