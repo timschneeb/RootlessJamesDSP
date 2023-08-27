@@ -418,6 +418,7 @@
     <string name="geq_next_node">다음 노드</string>
     <string name="geq_previous_node">이전 노드</string>
     <string name="geq_done">완료</string>
+    <string name="geq_discard_changes_title">변경 사항을 취소하고 나가시겠습니까?</string>
     <string name="geq_discard_changes">값이 유효하지 않거나 비어 있습니다. 변경 내용을 저장할 수 없습니다.\n변경 내용을 취소하고 종료하시겠습니까?</string>
     <string name="geq_gain">게인</string>
     <string name="geq_frequency">주파수</string>
@@ -438,6 +439,7 @@
     <string name="editor_replace_all">모두 바꾸기</string>
     <string name="editor_replacement">대체</string>
     <string name="editor_search_keyword">검색</string>
+    <string name="editor_engine_down_title">JamesDSP가 활성화되지 않음</string>
     <string name="editor_save_prompt_title">변경 사항을 저장하시겠습니까?</string>
     <string name="editor_cannot_undo">되돌릴 작업이 없습니다.</string>
     <string name="editor_cannot_redo">다시 실행할 작업이 없습니다.</string>
@@ -446,6 +448,7 @@
     <string name="title_activity_blocklist">제외된 앱</string>
     <string name="blocklist_add_exclusion_alt">제외할 어플리케이션 추가</string>
     <string name="blocklist_no_exclusions">제외된 앱 없음</string>
+    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>이 앱은 제3자가 오디오를 캡처하지 못하도록 하는 앱을 처리하는 것을 지원하지 않습니다. 캡처 제한으로 인해 이러한 앱이 음소거되는 것을 방지하기 위해 오디오 처리에서 자동으로 제외되며 재라우팅 되지 않습니다.</p><p><u>영향을 받는 앱:</u><br/>%s</p>]]></string>
     <!-- Compatibility issue activity -->
     <string name="title_activity_app_compat">호환성 문제</string>
     <string name="app_compat_retry">재시도</string>
