@@ -42,5 +42,5 @@ JamesDSP는 다음과 같은 오디오 효과를 지원합니다:
 * ...
 
 --- 번역
-이 앱의 번역에 도움을 주시려면 다음 링크에서 참여해주세요: https://crowdin.com/project/rootlessjamesdsp
+이 앱의 번역에 도움을 주시려면 다음 링크에서 참여해 주세요: https://crowdin.com/project/rootlessjamesdsp
 Crowdin에서 아직 활성화되지 않은 새로운 언어를 요청하려면, GitHub에서 이슈를 열어주시면 해당 언어를 활성화해 드립니다.
