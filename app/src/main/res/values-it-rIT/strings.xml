@@ -292,7 +292,7 @@
     <string name="audio_format_optimization_benchmark_summary">Aumenta le prestazioni degli effetti che utilizzano i moduli del convolutore</string>
     <string name="audio_format_optimization_benchmark_ongoing">Calcolo dei dati comparativi in corso…</string>
     <string name="profiles_section_header">Profili dispositivi</string>
-    <string name="profiles_summary">Profilo dispositivo, commutazione automatica</string>
+    <string name="profiles_summary">Profili dispositivi, commutazione automatica</string>
     <string name="profiles_enable">Profili individuali per i dispositivi</string>
     <string name="profiles_enable_summary_on">Profili individuali per i dispositivi abilitato</string>
     <string name="profiles_enable_summary_off">Profili individuali per i dispositivi disabilitato</string>
