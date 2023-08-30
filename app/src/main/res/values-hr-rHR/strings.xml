@@ -99,6 +99,8 @@
     <!-- Root flavor -->
     <!-- Settings -->
     <string name="title_activity_settings">Postavke</string>
+    <string name="audio_format_summary_plugin">Convolver optimizacije</string>
+    <string name="audio_format_optimization_header">Optimizacije Convolver modula</string>
     <string name="backup_settings">Sigurnosno kopiranje i vraćanje podataka</string>
     <!-- Theme names -->
     <!-- File library preference -->
