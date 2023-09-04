@@ -1,11 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
+    <string name="action_presets">Predefinições</string>
+    <string name="action_revert">Redefinir para configurações originais</string>
+    <string name="action_blocked_apps">Aplicações excluídas</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">Parâmetros</string>
+    <string name="notification_channel_service">Notificações</string>
+    <string name="notification_channel_session_loss_alert">Alerta de perda de sessão</string>
+    <string name="notification_channel_permission_prompt">Pedido de permissão</string>
+    <string name="notification_channel_app_compat_alert">Alerta de aplicativo incompatível</string>
+    <string name="notification_group_backup">Cópia de segurança e restauro</string>
+    <string name="notification_channel_backup_progress">A decorrer</string>
+    <string name="notification_channel_backup_complete">Concluído</string>
     <!-- Service notifications -->
+    <string name="action_retry">Tentar novamente</string>
+    <string name="action_fix">Corrigir problema</string>
+    <string name="action_stop">Interromper</string>
+    <string name="notification_processing">Aplicações ativas: %1$s</string>
+    <string name="notification_idle">Processamento de áudio em pausa</string>
+    <string name="notification_processing_title">Processamento de áudio ativo</string>
+    <string name="notification_processing_disabled_title">Processamento de áudio desativado</string>
+    <string name="notification_processing_legacy">Toque para abrir o gerenciador JamesDSP</string>
     <!-- Permission request notifications -->
+    <string name="notification_request_permission_title">Ação do usuário é necessária para lançar o JamesDSP</string>
+    <string name="notification_request_permission">Toque para conceder permissão de captura e ativar o processamento de áudio do JamesDSP</string>
     <!-- Session control loss notifications -->
+    <string name="session_control_loss_toast">JamesDSP parou devido à perda de controlo da sessão de áudio. Por favor, desative outras aplicações de efeito de áudio.</string>
+    <string name="session_control_loss_notification_title">Processamento de áudio desativado. Outra aplicação está interferindo com o JamesDSP.</string>
+    <string name="session_control_loss_notification">Por favor, desative todos as outras aplicações que fornecem efeitos de áudio globais antes de reativar o JamesDSP.</string>
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_toast">JamesDSP parou devido a uma incompatibilidade com aplicação de mídia. Por favor, verifique a notificação para resolver este problema.</string>
+    <string name="session_app_compat_notification_title">Processamento de áudio desativado. Outra aplicação está a interferir com o JamesDSP.</string>
     <!-- Capture permission revoked notifications -->
     <!-- General purpose -->
     <!-- Main screen -->
@@ -13,6 +39,7 @@
     <!-- Rootless flavor -->
     <!-- Root flavor -->
     <!-- Settings -->
+    <string name="backup_settings">Cópia de segurança e restauro</string>
     <!-- Theme names -->
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
@@ -21,7 +48,9 @@
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
     <!-- Blocklist -->
+    <string name="title_activity_blocklist">Aplicações excluídas</string>
     <!-- Compatibility issue activity -->
+    <string name="app_compat_retry">Tentar novamente</string>
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
     <!-- App list -->
