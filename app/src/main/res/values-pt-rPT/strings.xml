@@ -32,18 +32,81 @@
     <!-- App compatibility issue notifications -->
     <string name="session_app_compat_toast">JamesDSP parou devido a uma incompatibilidade com aplicação de mídia. Por favor, verifique a notificação para resolver este problema.</string>
     <string name="session_app_compat_notification_title">Processamento de áudio desativado. Outra aplicação está a interferir com o JamesDSP.</string>
+    <string name="session_app_compat_notification">Toque nesta notificação para resolver o problema.</string>
     <!-- Capture permission revoked notifications -->
+    <string name="capture_permission_revoked_toast">O JamesDSP foi interrompido porque a permissão de captura de áudio foi retirada.</string>
     <!-- General purpose -->
+    <string name="install">Instalar</string>
+    <string name="update">Atualizar</string>
+    <string name="unknown_error">Erro desconhecido</string>
+    <string name="details">Detalhes</string>
+    <string name="actions">Ações</string>
+    <string name="warning">Atenção</string>
+    <string name="success">Concluído</string>
+    <string name="open">Abrir</string>
+    <string name="close">Fechar</string>
+    <string name="delete">Eliminar</string>
+    <string name="copy">Copiar</string>
+    <string name="paste">Colar</string>
+    <string name="add">Adicionar</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+    <string name="value_not_set">Por definir</string>
+    <string name="undo">Anular</string>
+    <string name="redo">Refazer</string>
+    <string name="no_activity_found">Nenhuma atividade encontrada para executar a ação</string>
+    <string name="permission_allowed">Permitido</string>
+    <string name="permission_not_allowed">Não permitido</string>
     <!-- Main screen -->
+    <string name="reverb_enable">Efeito de sala virtual</string>
+    <string name="reverb_room_type">Tipo de divisão</string>
+    <string name="reverb_preset_default">Padrão</string>
+    <string name="reverb_preset_small_hall1">Sala pequena 1</string>
+    <string name="reverb_preset_small_hall2">Sala pequena 2</string>
+    <string name="reverb_preset_medium_hall2">Sala média</string>
+    <string name="reverb_preset_large_hall1">Sala grande</string>
+    <string name="reverb_preset_small_room1">Quarto pequeno 1</string>
+    <string name="reverb_preset_small_room2">Quarto pequeno 2</string>
+    <string name="reverb_preset_medium_room1">Quarto médio</string>
+    <string name="reverb_preset_large_room1">Quarto grande</string>
+    <string name="reverb_preset_plate_high">Palco alto</string>
+    <string name="reverb_preset_plate_low">Palco baixo</string>
+    <string name="reverb_preset_long_reverb1">Reverberação longa 1</string>
+    <string name="reverb_preset_long_reverb2">Reverberação longa 2</string>
+    <string name="convolver_enable">Convolver</string>
+    <string name="convolver_impulse">Resposta de impulsos</string>
+    <string name="convolver_advanced_editing">Edição avançada de onda</string>
+    <string name="convolver_convolution_mode">Otimização de resposta de impulso</string>
+    <string name="convolver_convolution_mode_original">Original</string>
+    <string name="convolver_convolution_mode_shrink">Encolher</string>
+    <string name="convolver_convolution_mode_minimum_phase_shrink">Transformação mínima de fase e encolher</string>
+    <string name="ddc_enable">ViPER-DDC</string>
+    <string name="ddc_file">Ficheiro DDC</string>
+    <string name="liveprog_enable">DSP programável em direto</string>
+    <string name="liveprog_file">Ficheiro Liveprog</string>
+    <string name="liveprog_additional_params">Parâmetros adicionais de ficheiro</string>
+    <string name="liveprog_additional_params_not_supported">O ficheiro selecionado não tem parâmetros personalizáveis</string>
+    <string name="liveprog_not_found">Ficheiro não encontrado</string>
+    <string name="liveprog_no_script_selected">Nenhum ficheiro selecionado</string>
+    <string name="liveprog_edit_header">Editar ficheiro selecionado</string>
+    <string name="liveprog_edit">Abrir o ficheiro ativo no editor embutido</string>
+    <string name="tube_enable">Modelo analógico</string>
+    <string name="tube_drive">Pré amplificador</string>
+    <string name="output_control_header">Controlo de saída</string>
+    <string name="output_limiter_threshold">Fronteira limitador</string>
+    <string name="output_limiter_release">Dispensar limitador</string>
+    <string name="output_control_postgain">Pós ganho</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
     <!-- Settings -->
     <string name="backup_settings">Cópia de segurança e restauro</string>
     <!-- Theme names -->
+    <string name="theme_default">Padrão</string>
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="gep_add_node">Adicionar</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
