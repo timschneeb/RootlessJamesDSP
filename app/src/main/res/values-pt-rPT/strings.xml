@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
+    <string name="action_settings">Configurações</string>
     <string name="action_presets">Predefinições</string>
     <string name="action_revert">Redefinir para configurações originais</string>
     <string name="action_blocked_apps">Aplicações excluídas</string>
@@ -57,7 +58,40 @@
     <string name="no_activity_found">Nenhuma atividade encontrada para executar a ação</string>
     <string name="permission_allowed">Permitido</string>
     <string name="permission_not_allowed">Não permitido</string>
+    <string name="preparing">A preparar…</string>
+    <string name="error_projection_api_missing">O fabricante do seu dispositivo desativou a API interna de gravação de áudio. Esta aplicação não pode funcionar sem eles.</string>
     <!-- Main screen -->
+    <string name="power_button_alt">Ativar/desativar processamento de áudio</string>
+    <string name="compander_enable">Diretor de intervalo dinâmico</string>
+    <string name="compander_timeconstant">Constante de Tempo</string>
+    <string name="compander_granularity">Granulosidade</string>
+    <string name="compander_granularity_very_low">Muito baixa</string>
+    <string name="compander_granularity_low">Baixa</string>
+    <string name="compander_granularity_medium">Médio</string>
+    <string name="compander_granularity_high">Alto</string>
+    <string name="compander_granularity_extreme">Extremo</string>
+    <string name="compander_tftransforms">Transformação de tempo-frequência</string>
+    <string name="compander_tftransforms_stft">Uniforme (Fourier de tempo curto)</string>
+    <string name="compander_tftransforms_continuous_wavelet">Multiresolução (Onda contínua, duplo quadro incompleto)</string>
+    <string name="compander_tftransforms_undersampling">Pseudo multiresolução (Quadro de Subamostragem)</string>
+    <string name="compander_tftransforms_time_domain">Pseudo multiresolução (time domain, sem latência)</string>
+    <string name="eq_enable">Equalizador multi modo</string>
+    <string name="eq_filter_type">Tipo de filtro</string>
+    <string name="eq_interpolator">Interpolador</string>
+    <string name="eq_filter_type_fir_minimum">Fase mínima de FIR</string>
+    <string name="eq_filter_type_iir_4_order">IIR Quarta ordem</string>
+    <string name="eq_filter_type_iir_6_order">IIR sexta ordem</string>
+    <string name="eq_filter_type_iir_8_order">IIR oitava ordem</string>
+    <string name="eq_filter_type_iir_10_order">IIR Décima ordem</string>
+    <string name="eq_filter_type_iir_12_order">IIR Décima segunda ordem</string>
+    <string name="eq_interpolator_chip">Interpolação Polinomial cúbica de Hermite em peças</string>
+    <string name="eq_interpolator_mha">Rampa de Hiroshi Akima modificada</string>
+    <string name="eq_preset_acoustic">Acústico</string>
+    <string name="eq_preset_bass">Baixo</string>
+    <string name="eq_preset_beats">Batidas</string>
+    <string name="eq_preset_classic">Clássico</string>
+    <string name="eq_preset_clear">Nítido</string>
+    <string name="eq_preset_deep">Profundo</string>
     <string name="reverb_enable">Efeito de sala virtual</string>
     <string name="reverb_room_type">Tipo de divisão</string>
     <string name="reverb_preset_default">Padrão</string>
@@ -96,10 +130,44 @@
     <string name="output_limiter_threshold">Fronteira limitador</string>
     <string name="output_limiter_release">Dispensar limitador</string>
     <string name="output_control_postgain">Pós ganho</string>
+    <string name="stereowide_enable">Expansão do som de palco</string>
+    <string name="stereowide_level">Largura</string>
+    <string name="stereowide_level_none">Nenhum</string>
+    <string name="stereowide_level_very_wide">Muito largo</string>
+    <string name="stereowide_level_wide">Largo</string>
+    <string name="stereowide_level_very_narrow">Muito estreito</string>
+    <string name="stereowide_level_narrow">Estreito</string>
+    <string name="crossfeed_enable">Alimentação cruzada</string>
+    <string name="crossfeed_preset">Predefinição</string>
+    <string name="crossfeed_preset_bs2b_weak">BS2B Fraco</string>
+    <string name="crossfeed_preset_bs2b_strong">BS2B Forte</string>
+    <string name="crossfeed_preset_out_of_head">Fora da cabeça</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
+    <string name="onboarding_adb_dump_not_granted">Por favor, siga as instruções primeiro e tente novamente. O acesso ao ADB ainda não está configurado corretamente.</string>
+    <string name="onboarding_adb_manual_step1">Vá até às configurações de desenvolvimento ocultas do Android e ative a depuração USB. Será preciso desbloquear essa configuração tocando no número de build nas configurações do sistema várias vezes.</string>
+    <string name="onboarding_adb_manual_step2">Abra https://app.webadb.com no navegador do seu computador (funciona melhor no Chrome) e conecte seu dispositivo por USB ao computador.</string>
+    <string name="onboarding_adb_manual_step3">Adicione e conecte o dispositivo USB no WebADB.</string>
+    <string name="onboarding_adb_manual_step4">Navegue até \'Interactive Shell\' e execute o seguinte comando no shell: \'pm grant %s android.permission.DUMP\'</string>
+    <string name="onboarding_adb_manual_step5">Toque em \"Avançar\" nesta aplicação para continuar.</string>
+    <string name="onboarding_adb_manual_step5b">(Opcional) Você pode pular permanentemente os avisos de permissão de captura de áudio executando este comando: \'appops define %s PROJECT_MEDIA permitir\'</string>
+    <string name="onboarding_adb_manual_step5c">(Opcional) Além da etapa anterior, também pode ativar o início automático executando o seguinte comando: \'appops define %s SYSTEM_ALERT_WINDOW allow\'</string>
+    <string name="onboarding_adb_manual_step1_button">Abrir configurações de desenvolvimento</string>
+    <string name="onboarding_perm_title">Outras permissões</string>
+    <string name="onboarding_perm_caption">Permissões adicionais são necessárias para usar esta aplicação. Por favor, revise-as e toque em \'Próximo\' para concedê-las.</string>
+    <string name="onboarding_perm_microphone_title">Permissão de gravação de áudio</string>
+    <string name="onboarding_perm_microphone_caption">Necessário para gravar áudio interno. O microfone de hardware não é ativado.</string>
+    <string name="onboarding_perm_notification_title">Permissão de notificação</string>
+    <string name="onboarding_perm_notification_caption">Necessário para receber atualizações de estado e informações importantes sobre o estado de processamento do JamesDSP.</string>
+    <string name="onboarding_perm_cast_title">Permissão de transmissão/gravação</string>
+    <string name="onboarding_perm_cast_caption">Será necessário conceder explicitamente esta permissão a esta aplicação para gravar conteúdo de áudio sempre que ela for iniciada.</string>
+    <string name="onboarding_perm_missing_title">Permissões de execução não concedidas</string>
+    <string name="onboarding_perm_missing">Por favor, conceda todas as permissões de execução para continuar. Se negar as permissões repetidamente, será necessário concede las manualmente nas configurações de sistema.</string>
+    <string name="onboarding_perm_diag">Permitir o envio de relatórios de diagnóstico</string>
+    <string name="onboarding_perm_diag_caption">Esta aplicação envia relatórios de erro e outros dados de diagnóstico, incluindo informações sobre outras aplicações ativas, para me permitir detetar e resolver problemas e bugs de compatibilidade mais facilmente.</string>
     <!-- Settings -->
+    <string name="title_activity_settings">Configurações</string>
     <string name="backup_settings">Cópia de segurança e restauro</string>
     <!-- Theme names -->
     <string name="theme_default">Padrão</string>
