@@ -235,8 +235,34 @@
     <string name="onboarding_finish_header">JamesDSP está configurado!</string>
     <string name="onboarding_finish_caption">Se encontrar quaisquer problemas, por favor visite a resolução de problemas.</string>
     <string name="limit_session_control_conflict_title">Desative outras aplicações de efeito de áudio</string>
+    <string name="limit_session_control_conflict">Aplicações de efeito de áudio usando o efeito Dinâmico de Processamento Interno do Android interferem com o funcionamento está aplicação.</string>
+    <string name="limit_unsupported_apps_title">Tipo de multimédia não suportado</string>
+    <string name="limit_unsupported_apps">Aplicações que bloqueiam a captura de áudio interna não serão processadas (por exemplo, Spotify, Google Chrome).</string>
+    <string name="limit_hw_accel_title">Reprodução de áudio acelerado por hardware com problemas</string>
+    <string name="limit_hw_accel">Reprodução de áudio com aceleração de Hardware (faixa rápida) pode ocasionalmente causar áudio duplicado ou parar a aplicação JamesDSP em algumas circunstâncias. Por favor, adicione o reprodutor de música afetado à lista de aplicações excluídas para impedir que o JamesDSP a reencaminhe.</string>
+    <string name="limit_detect_delay_title">Atraso de deteção de sessão de áudio</string>
+    <string name="limit_detect_delay"><![CDATA[Após uma aplicação abrir uma nova sessão de mídia para reproduzir áudio, poderá ser ouvido áudio duplicado ou cortado por um período muito curto (cerca de <250ms).]]></string>
+    <string name="limit_latency_title">Aumento da latência</string>
+    <string name="limit_latency">Esta aplicação pode adicionar algum atraso ao fluxo de áudio. Pode adicionar aplicações de filme/vídeo à lista de exclusão para evitar o seu processamento e a dessincronização AV.</string>
+    <string name="limit_tested_devices_title">Dispositivos testados</string>
+    <string name="limit_tested_devices">Alterações feitas no subsistema de áudio do Android pelo fabricante do dispositivo podem facilmente desligar este aplicativo porque o mesmo usa algumas APIs não documentadas. Foi testado nestes dispositivos:• Samsung S20+ (Android 12) • Emulador AOSP (Android 10–13) • Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
     <string name="title_activity_settings">Configurações</string>
+    <string name="session_exclude_restricted">Excluir aplicações s não suportadas</string>
+    <string name="session_exclude_restricted_off">Aplicações que bloqueiam a captura de áudio permanecem silenciadas (comportamento padrão do Android)</string>
+    <string name="session_exclude_restricted_on">Aplicações que bloqueiam a captura de áudio são excluídas e permanecem não processadas (recomendado)</string>
+    <string name="session_detection_header">Detecção de sessão de áudio</string>
+    <string name="session_continuous_polling">Forçar consulta contínua</string>
+    <string name="session_continuous_polling_off">Só escutar eventos de sessão do sistema</string>
+    <string name="session_continuous_polling_on">Enumerar continuamente sessões de áudio</string>
+    <string name="session_continuous_polling_rate">Intervalo de consulta (ms)</string>
+    <string name="session_detection_method">Método de detecção de sessão preferido</string>
+    <string name="session_detection_method_audiopolicyservice">Descarga de AudioPolicyService</string>
+    <string name="session_detection_method_audioservice">Descarga de AudioService (recomendado)</string>
+    <string name="session_app_problem_ignore">Ignorar problemas de compatibilidade da aplicação</string>
+    <string name="session_loss_ignore">Ignorar perda de controle de sessão</string>
+    <string name="session_loss_ignore_off">Desativado, utilizar normalmente (recomendado)</string>
+    <string name="session_loss_ignore_on">Não efetuar nenhuma ação (pode causar áudio duplicado)</string>
     <string name="backup_settings">Cópia de segurança e restauro</string>
     <!-- Theme names -->
     <string name="theme_default">Padrão</string>
