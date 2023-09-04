@@ -190,6 +190,27 @@
     <string name="onboarding_root_shell_fail_unknown">Falha ao conceder permissão via root. Por favor, use outro método de instalação.</string>
     <string name="onboarding_root_enhanced_processing_setup_success">Processamento melhorado está configurado!</string>
     <string name="onboarding_adb_shizuku_title">Configuração Shizuku</string>
+    <string name="onboarding_adb_adb_title">Configuração de ADB</string>
+    <string name="onboarding_adb_caption">Esta aplicação requer permissões especiais para descarregar a política de áudio do seu dispositivo. Siga as instruções abaixo.</string>
+    <string name="onboarding_adb_shizuku_install_button">Instale a aplicação Shizuku</string>
+    <string name="onboarding_adb_shizuku_install_button_done">Já instalado</string>
+    <string name="onboarding_adb_shizuku_install_instruction">Instalar \'Shizuku\' da Google Play.</string>
+    <string name="onboarding_adb_shizuku_open_instruction">Abra a aplicação \'Shizuku\' e procure por \'Iniciar através de depuração sem fios). Toque no botão \'Emparelhar\' e siga as instruções no aplicativo. Depois de emparelhar o Shizuku com o seu dispositivo, inicie o servidor Shizuku pressionando o botão \'Iniciar\' na sua aplicação. Se tiver problemas a configurar o Shizuku, por favor consulte o tutorial de configuração através do link no aplicação.</string>
+    <string name="onboarding_adb_shizuku_open_button">Iniciar Shizuku</string>
+    <string name="onboarding_adb_shizuku_open_button_done">Já está ativado</string>
+    <string name="onboarding_adb_shizuku_grant_instruction">Toque no botão e conceda acesso a esta aplicação ao Shizuku.</string>
+    <string name="onboarding_adb_shizuku_grant_button">Conceder Acesso</string>
+    <string name="onboarding_adb_shizuku_not_installed">Shizuku ainda não está instalado. Baixe e instale-o a partir do Google Play primeiro.</string>
+    <string name="onboarding_adb_shizuku_not_installed_title">Shizuku ainda não está instalado</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead">Por favor, inicie o servidor Shizuku antes de solicitar a permissão. Volte para ao passo 2.</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead_title">Servidor Shizuku não está em execução</string>
+    <string name="onboarding_adb_shizuku_grant_fail_version">Está aplicação requer a versão 11 ou posterior do Shizuku. Atualize o Shizuku para a versão mais recente.</string>
+    <string name="onboarding_adb_shizuku_grant_fail_version_title">Versão Shizuku não suportada</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied_title">Permissão negada</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied">Por favor, conceda acesso a esta aplicação ao Shizuku. Poderá ser necessário abrir o gerenciador de permissões do Shizuku e conceder a permissão manualmente se está foi previamente negada e o popup já não é mostrado.</string>
+    <string name="onboarding_adb_shizuku_no_dump_perm_title">Shizuku falhou ao conceder permissões ADB</string>
+    <string name="onboarding_adb_shizuku_no_dump_perm">Por favor, aguarde alguns segundos e tente novamente. Se ainda não funcionar, tente o método alternativo.</string>
+    <string name="onboarding_adb_dump_not_granted_title">Permissão ainda não foi concedida</string>
     <string name="onboarding_adb_dump_not_granted">Por favor, siga as instruções primeiro e tente novamente. O acesso ao ADB ainda não está configurado corretamente.</string>
     <string name="onboarding_adb_manual_step1">Vá até às configurações de desenvolvimento ocultas do Android e ative a depuração USB. Será preciso desbloquear essa configuração tocando no número de build nas configurações do sistema várias vezes.</string>
     <string name="onboarding_adb_manual_step2">Abra https://app.webadb.com no navegador do seu computador (funciona melhor no Chrome) e conecte seu dispositivo por USB ao computador.</string>
@@ -211,6 +232,9 @@
     <string name="onboarding_perm_missing">Por favor, conceda todas as permissões de execução para continuar. Se negar as permissões repetidamente, será necessário concede las manualmente nas configurações de sistema.</string>
     <string name="onboarding_perm_diag">Permitir o envio de relatórios de diagnóstico</string>
     <string name="onboarding_perm_diag_caption">Esta aplicação envia relatórios de erro e outros dados de diagnóstico, incluindo informações sobre outras aplicações ativas, para me permitir detetar e resolver problemas e bugs de compatibilidade mais facilmente.</string>
+    <string name="onboarding_finish_header">JamesDSP está configurado!</string>
+    <string name="onboarding_finish_caption">Se encontrar quaisquer problemas, por favor visite a resolução de problemas.</string>
+    <string name="limit_session_control_conflict_title">Desative outras aplicações de efeito de áudio</string>
     <!-- Settings -->
     <string name="title_activity_settings">Configurações</string>
     <string name="backup_settings">Cópia de segurança e restauro</string>
