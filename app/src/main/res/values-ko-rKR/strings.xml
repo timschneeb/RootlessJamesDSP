@@ -16,7 +16,7 @@
     <string name="notification_channel_backup_complete">완료</string>
     <!-- Service notifications -->
     <string name="action_retry">재시도</string>
-    <string name="action_fix">문제 해결하기</string>
+    <string name="action_fix">문제 해결</string>
     <string name="action_stop">중지</string>
     <string name="notification_processing">활성화된 앱: %1$s</string>
     <string name="notification_idle">오디오 처리 정지</string>
