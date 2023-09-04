@@ -184,6 +184,12 @@
     <!-- Root flavor -->
     <string name="onboarding_methods_root_root">(Recomendado) - Computador não é necessário - Todas as versões de Android suportadas</string>
     <string name="onboarding_methods_root_shizuku">(Recomendado, para aparelhos sem Root) Não é necessário computador - Apenas Android 11 ou superior</string>
+    <string name="onboarding_methods_root_adb">(Para utilizadores avançados) - Computador e cabo USB são necessários - Todas as versões Android</string>
+    <string name="onboarding_root_shell_fail_title">Sem acesso Root</string>
+    <string name="onboarding_root_shell_fail">Nenhum acesso root disponível. Por favor, utilize outro método de instalação.</string>
+    <string name="onboarding_root_shell_fail_unknown">Falha ao conceder permissão via root. Por favor, use outro método de instalação.</string>
+    <string name="onboarding_root_enhanced_processing_setup_success">Processamento melhorado está configurado!</string>
+    <string name="onboarding_adb_shizuku_title">Configuração Shizuku</string>
     <string name="onboarding_adb_dump_not_granted">Por favor, siga as instruções primeiro e tente novamente. O acesso ao ADB ainda não está configurado corretamente.</string>
     <string name="onboarding_adb_manual_step1">Vá até às configurações de desenvolvimento ocultas do Android e ative a depuração USB. Será preciso desbloquear essa configuração tocando no número de build nas configurações do sistema várias vezes.</string>
     <string name="onboarding_adb_manual_step2">Abra https://app.webadb.com no navegador do seu computador (funciona melhor no Chrome) e conecte seu dispositivo por USB ao computador.</string>
