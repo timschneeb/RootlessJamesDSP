@@ -16,10 +16,10 @@
     <string name="notification_channel_backup_complete">완료</string>
     <!-- Service notifications -->
     <string name="action_retry">재시도</string>
-    <string name="action_fix">문제 해결</string>
+    <string name="action_fix">문제 해결하기</string>
     <string name="action_stop">중지</string>
     <string name="notification_processing">활성화된 앱: %1$s</string>
-    <string name="notification_idle">오디오 처리 대기 중</string>
+    <string name="notification_idle">오디오 처리 정지</string>
     <string name="notification_processing_title">오디오 처리 활성화</string>
     <string name="notification_processing_disabled_title">오디오 처리 비활성화됨</string>
     <string name="notification_processing_legacy">탭 하여 JamesDSP 매니저를 엽니다.</string>
@@ -28,11 +28,11 @@
     <string name="notification_request_permission">탭 하여 캡처 권한을 부여하고 JamesDSP의 오디오 처리를 활성화하세요</string>
     <!-- Session control loss notifications -->
     <string name="session_control_loss_toast">오디오 세션 제어 손실로 인해 JamesDSP가 중지되었습니다. 다른 오디오 효과 앱을 비활성화해 주세요.</string>
-    <string name="session_control_loss_notification_title">오디오 처리가 중지되었습니다. 다른 앱이 JamesDSP에 간섭하고 있습니다.</string>
+    <string name="session_control_loss_notification_title">오디오 처리가 중지되었습니다. 다른 앱이 JamesDSP를 방해하고 있습니다.</string>
     <string name="session_control_loss_notification">JamesDSP를 다시 활성화하기 전에 전역 오디오 효과를 제공하는 다른 모든 앱을 비활성화해 주세요.</string>
     <!-- App compatibility issue notifications -->
     <string name="session_app_compat_toast">호환되지 않는 미디어 앱으로 인해 JamesDSP가 중지되었습니다. 이 문제를 해결하려면 알림을 확인해 주세요.</string>
-    <string name="session_app_compat_notification_title">오디오 처리가 중지되었습니다. 다른 앱이 JamesDSP에 간섭하고 있습니다.</string>
+    <string name="session_app_compat_notification_title">오디오 처리가 중지되었습니다. 다른 앱이 JamesDSP를 방해하고 있습니다.</string>
     <string name="session_app_compat_notification">이 알림을 탭 하여 문제를 해결하세요.</string>
     <!-- Capture permission revoked notifications -->
     <string name="capture_permission_revoked_toast">오디오 캡처 권한이 취소되어 JamesDSP가 중지되었습니다.</string>
@@ -55,7 +55,7 @@
     <string name="value_not_set">설정되지 않음</string>
     <string name="undo">되돌리기</string>
     <string name="redo">다시 하기</string>
-    <string name="no_activity_found">동작을 처리할 액티비티를 찾을 수 없습니다</string>
+    <string name="no_activity_found">작업을 처리할 액티비티를 찾을 수 없습니다</string>
     <string name="permission_allowed">허용됨</string>
     <string name="permission_not_allowed">허용되지 않음</string>
     <string name="preparing">준비중…</string>
