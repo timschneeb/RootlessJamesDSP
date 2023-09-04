@@ -92,6 +92,22 @@
     <string name="eq_preset_classic">Clássico</string>
     <string name="eq_preset_clear">Nítido</string>
     <string name="eq_preset_deep">Profundo</string>
+    <string name="eq_preset_dubstep">Dubstep</string>
+    <string name="eq_preset_electronic">Eletrónica</string>
+    <string name="eq_preset_flat">Plano</string>
+    <string name="eq_preset_hardstyle">Hardstyle</string>
+    <string name="eq_preset_hiphop">Hip Hop</string>
+    <string name="eq_preset_jazz">Jazz</string>
+    <string name="eq_preset_metal">Metal</string>
+    <string name="eq_preset_movie">Filme</string>
+    <string name="eq_preset_pop">Pop</string>
+    <string name="eq_preset_rb">R&amp;B</string>
+    <string name="eq_preset_rock">Rock</string>
+    <string name="eq_preset_vocal">Aumento de Vozes</string>
+    <string name="geq_enable">Equalizador de resposta arbitrária</string>
+    <string name="geq_nodes">Resposta de magnitude</string>
+    <string name="bass_enable">Aumento de graves dinâmico</string>
+    <string name="bass_max_gain">Ganho máximo</string>
     <string name="reverb_enable">Efeito de sala virtual</string>
     <string name="reverb_room_type">Tipo de divisão</string>
     <string name="reverb_preset_default">Padrão</string>
@@ -142,9 +158,32 @@
     <string name="crossfeed_preset_bs2b_weak">BS2B Fraco</string>
     <string name="crossfeed_preset_bs2b_strong">BS2B Forte</string>
     <string name="crossfeed_preset_out_of_head">Fora da cabeça</string>
+    <string name="crossfeed_preset_surround1">Surround 1</string>
+    <string name="crossfeed_preset_surround2">Surround 2</string>
+    <string name="crossfeed_preset_realistic_surround">Surround realista Joe0Bloggs</string>
     <!-- Onboarding -->
+    <string name="title_activity_onboarding">Integração</string>
+    <string name="onboarding_back">Retroceder</string>
+    <string name="onboarding_next">Seguinte</string>
+    <string name="onboarding_finish">Terminar</string>
+    <string name="onboarding_greeting">Bem-vindo(a) ao RootlessJamesDSP!</string>
+    <string name="onboarding_caption">Este assistente irá ajudá-lo a configurar este aplicativo.</string>
+    <string name="onboarding_warning">Atualmente, esta aplicação está incompleta e instável. Por favor, note que pode não funcionar em alguns dispositivos como esperado, uma vez que usa APIs Android que não foram desenhadas para uso por terceiros.</string>
+    <string name="onboarding_fix_permissions_title">Ação do usuário necessária</string>
+    <string name="onboarding_fix_permissions">Uma ou mais permissões foram retiradas por si ou pelo sistema. Por forma a assegurar que esta aplicação funciona corretamente, será necessário conceder estas permissões novamente. Por favor reinicie o ajudante de setup para conceder as permissões necessárias.</string>
+    <string name="onboarding_limitations_title">Limitações</string>
+    <string name="onboarding_limitations_unstable">Importante! Por favor, leia as notas com atenção antes de continuar.</string>
+    <string name="onboarding_methods_title">Escolha o método de configuração</string>
+    <string name="onboarding_methods_root_title">Root</string>
+    <string name="onboarding_methods_shizuku_title">Shizuku</string>
+    <string name="onboarding_methods_unsupported_append">incompatível</string>
+    <string name="onboarding_methods_adb_title">ADB</string>
     <!-- Rootless flavor -->
+    <string name="onboarding_methods_rootless_shizuku">(Recomendado) Não é necessário computador - Apenas Android 11 ou superior</string>
+    <string name="onboarding_methods_rootless_adb">(Para utilizadores avançados) - Computador e cabo USB são necessários - Android 10 ou superior suportados</string>
     <!-- Root flavor -->
+    <string name="onboarding_methods_root_root">(Recomendado) - Computador não é necessário - Todas as versões de Android suportadas</string>
+    <string name="onboarding_methods_root_shizuku">(Recomendado, para aparelhos sem Root) Não é necessário computador - Apenas Android 11 ou superior</string>
     <string name="onboarding_adb_dump_not_granted">Por favor, siga as instruções primeiro e tente novamente. O acesso ao ADB ainda não está configurado corretamente.</string>
     <string name="onboarding_adb_manual_step1">Vá até às configurações de desenvolvimento ocultas do Android e ative a depuração USB. Será preciso desbloquear essa configuração tocando no número de build nas configurações do sistema várias vezes.</string>
     <string name="onboarding_adb_manual_step2">Abra https://app.webadb.com no navegador do seu computador (funciona melhor no Chrome) e conecte seu dispositivo por USB ao computador.</string>
@@ -174,6 +213,7 @@
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="title_activity_geq">Resposta de magnitude</string>
     <string name="gep_add_node">Adicionar</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
