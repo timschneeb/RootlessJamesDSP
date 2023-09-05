@@ -385,9 +385,36 @@
     <string name="backup_24hour">Diariamente</string>
     <string name="backup_48hour">A cada 2 dias</string>
     <string name="backup_weekly">Semanalmente</string>
+    <string name="backup_select_location">Por favor, crie e selecione o diretório de backup…</string>
     <!-- Theme names -->
     <string name="theme_default">Padrão</string>
+    <string name="theme_monet">Dinâmico</string>
+    <string name="theme_greenapple">Verde</string>
+    <string name="theme_strawberrydaiquiri">Vermelho</string>
+    <string name="theme_honey">Amarelo</string>
+    <string name="theme_tealturquoise">Turquesa</string>
+    <string name="theme_yinyang">Preto e branco</string>
+    <string name="theme_yotsuba">Yotsuba</string>
+    <string name="theme_tidalwave">Tidal Wave</string>
     <!-- File library preference -->
+    <string name="action_import">Importar</string>
+    <string name="filelibrary_hint_tap_and_hold">Toque e segure qualquer item para mais opções</string>
+    <string name="filelibrary_context_load">Carregar</string>
+    <string name="filelibrary_context_edit">Editar</string>
+    <string name="filelibrary_context_overwrite">Substituir</string>
+    <string name="filelibrary_context_rename">Renomear</string>
+    <string name="filelibrary_context_share">Compartilhar…</string>
+    <string name="filelibrary_context_resample">Reamostragem offline</string>
+    <string name="filelibrary_context_duplicate">Duplicar</string>
+    <string name="filelibrary_context_delete">Eliminar</string>
+    <string name="filelibrary_context_new_preset">New</string>
+    <string name="filelibrary_context_new_preset_long">Nova predefinição</string>
+    <string name="filelibrary_unsupported_format_title">Tipo de ficheiro não suportado</string>
+    <string name="filelibrary_unsupported_format">O ficheiro selecionado não tem a extensão correta do arquivo.</string>
+    <string name="filelibrary_corrupted_title">Ficheiro corrompido ou não suportado</string>
+    <string name="filelibrary_corrupted">O ficheiro selecionado não contém dados utilizáveis ou está corrompido.</string>
+    <string name="filelibrary_file_too_new">O ficheiro selecionado foi criado com uma versão mais recente desta aplicação e não pode ser carregado. Por favor, atualize a aplicação para continuar.</string>
+    <string name="filelibrary_access_fail">Falha ao acessar diretório</string>
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">Resposta de magnitude</string>
@@ -402,9 +429,43 @@
     <string name="geq_go_back_to_node_list">Voltar para a lista de nós</string>
     <string name="geq_next_node">Próximo nó</string>
     <string name="geq_previous_node">Nó anterior</string>
+    <string name="geq_done_spaced">&#160;&#160;Concluído&#160;</string>
+    <string name="geq_done">Concluído</string>
+    <string name="geq_cancel_spaced">&#160;&#160;Desccartar&#160;</string>
+    <string name="geq_cancel">Descartar</string>
+    <string name="geq_discard_changes_title">Descartar alterações e sair?</string>
+    <string name="geq_discard_changes">Os valores não são válidos ou vazios. As suas alterações não podem ser salvas.\nQuer descartar as alterações e sair?</string>
+    <string name="geq_frequeny_range">Valor entre 1Hz e 24000Hz</string>
+    <string name="geq_gain_range">Valores entre -32dB e 32dB</string>
+    <string name="geq_gain">Ganho</string>
+    <string name="geq_frequency">Frequência</string>
     <!-- AutoEQ GraphicEQ selector -->
+    <string name="geq_api_network_error">Falha ao ligar ao servidor. %1$s</string>
+    <string name="geq_api_network_error_details_code">Servidor respondeu com código de erro: %1$d</string>
+    <string name="autoeq_search">Pesquisa AutoEQ</string>
+    <string name="autoeq_enter_model">Introduza o modelo do fone de ouvido…</string>
+    <string name="autoeq_partial_results_warning">Mostrando os primeiros resultados %1$d. Por favor, ajuste a sua pesquisa para obter resultados mais relevantes.</string>
+    <string name="autoeq_no_results">Não foram encontrados resultados</string>
     <!-- Customizable liveprog script parameters -->
+    <string name="title_activity_liveprog_params">Parâmetros de script personalizados</string>
+    <string name="action_restore_defaults">Restaurar predefinições</string>
     <!-- Liveprog script editor -->
+    <string name="title_activity_liveprog_editor">Editor de scripts</string>
+    <string name="editor_find_and_replace">Localizar/substituir…</string>
+    <string name="editor_docs">Ajuda</string>
+    <string name="editor_open_fail">Arquivo de script não existe ou não pode ser aberto.</string>
+    <string name="editor_run">Guardar e executar</string>
+    <string name="editor_save">Guardar</string>
+    <string name="editor_liveprog_enabled">O Liveprog foi ativado automaticamente.</string>
+    <string name="editor_replace_all">Substituir tudo</string>
+    <string name="editor_replacement">Substituição</string>
+    <string name="editor_find_next_match">Localizar o próximo resultado</string>
+    <string name="editor_find_previous_match">Localizar o resultado anterior</string>
+    <string name="editor_search_keyword">Pesquisar</string>
+    <string name="editor_source_position">%1$d/%2$d</string>
+    <string name="editor_engine_down_title">JamesDSP não está ativo</string>
+    <string name="editor_engine_down">Não é possível executar o script porque o JamesDSP está desativado. Por favor, ative o JamesDSP para executar scripts.</string>
+    <string name="editor_save_prompt_title">Guardar alterações?</string>
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Aplicações excluídas</string>
     <!-- Compatibility issue activity -->
@@ -412,6 +473,7 @@
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
     <!-- App list -->
+    <string name="app_list_search">Pesquisar</string>
     <!-- Number box view -->
     <!-- Slider widget -->
     <!-- Revert confirmation -->
