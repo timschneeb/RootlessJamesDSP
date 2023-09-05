@@ -322,7 +322,69 @@
     <string name="troubleshooting_dump_summary">Coletar e salvar dados de resolução de problemas</string>
     <string name="troubleshooting_dump_share_title">Compartilhar cópia da sessão de áudio..</string>
     <string name="troubleshooting_view_limitations">Limitações técnicas</string>
+    <string name="troubleshooting_view_limitations_summary">Mostrar detalhes sobre as limitações desta aplicação</string>
+    <string name="troubleshooting_notification_access">Permitir acesso às notificações para melhorar a deteção de sessão</string>
+    <string name="troubleshooting_notification_access_summary">Permite detecção de sessão de áudio mais confiável</string>
+    <string name="troubleshooting_repair_assets">Restaurar pacotes de IRS, DDC e scripts</string>
+    <string name="troubleshooting_repair_assets_summary">Descompactar arquivos pré-carregados se os perdeu</string>
+    <string name="troubleshooting_repair_assets_success">Os arquivos do pacote foram restaurados</string>
+    <string name="misc_settings">Diversos</string>
+    <string name="misc_settings_summary">Relatórios de erros, outras ações</string>
+    <string name="misc_permission_skip_prompt">Ignorar pedido de permissão de captura</string>
+    <string name="misc_permission_auto_start">Auto iniciar mecanismo de efeito na inicialização</string>
+    <string name="misc_permission_restart_setup">Reiniciar assistente de configuração</string>
+    <string name="misc_permission_restart_setup_summary">Conceder permissões opcionais faltantes</string>
+    <string name="misc_permission_header">Permissões opcionais</string>
+    <string name="assets">Conteúdos</string>
+    <string name="network_services">Serviços de rede</string>
+    <string name="network_autoeq_api_url">URL API AutoEQ final</string>
+    <string name="network_invalid_url">Formato de URL inválido</string>
+    <string name="network_autoeq_conntest_running">Testando a conexão com o servidor…</string>
+    <string name="network_autoeq_conntest_done">Conexão testada com sucesso</string>
+    <string name="network_autoeq_conntest_fail">Falha no teste de conexão</string>
+    <string name="network_autoeq_conntest_fail_summary">O servidor não respondeu corretamente. Certifique-se de que o software em https://github.com/ThePBone/AutoEqApi está configurado corretamente no servidor.\n\nerro de rede: %1$s\n\nDeseja restaurar esta configuração para o valor padrão?</string>
+    <string name="about_settings">Acerca de</string>
+    <string name="about_settings_summary">Créditos, suporte, atualizações</string>
+    <string name="privacy">Política de privacidade</string>
+    <string name="privacy_share_crash_reports">Compartilhar relatórios de erros do aplicativo</string>
+    <string name="privacy_share_crash_reports_on">Enviar relatórios de erro para o desenvolvedor</string>
+    <string name="privacy_share_crash_reports_off">Não envie relatórios de erro ao desenvolvedor</string>
+    <string name="credits">Créditos</string>
+    <string name="translators">Tradutores</string>
+    <string name="credits_app">Implementação da aplicação &amp; sem Root desenvolvida por</string>
+    <string name="credits_dsp">Biblioteca do núcleo de algoritmos JamesDSP desenvolvida por</string>
+    <string name="credits_project_page">Visite o site do projeto no GitHub</string>
+    <string name="credits_project_page_summary">Relatar problemas, mantenha-se atualizado e leia o código-fonte</string>
+    <string name="credits_project_play_page">Visite RootlessJamesDSP no Google Play</string>
+    <string name="credits_project_play_page_summary">Procurar actualizações</string>
+    <string name="credits_project_check_update">Procurar atualizações…</string>
+    <string name="credits_project_check_update_summary">Baixar e instalar atualizações, se disponível</string>
+    <string name="credits_project_translate">Contribuir para a tradução</string>
+    <string name="credits_project_translate_summary">Ajude-nos a traduzir a aplicação para o seu idioma</string>
+    <string name="credits_version">Versão da aplicação</string>
+    <string name="credits_build_info">Info. da Compilação</string>
+    <string name="appearance_section_header">Aspeto</string>
+    <string name="appearance_summary">Tema da aplicação, modo escuro puro</string>
+    <string name="appearance_title">Tema</string>
+    <string name="appearance_theme_mode">Modo escuro</string>
+    <string name="appearance_theme_mode_default">Seguir tema do sistema</string>
+    <string name="appearance_theme_mode_light">Desligado</string>
+    <string name="appearance_theme_mode_dark">Ligado</string>
+    <string name="appearance_pure_black_mode">Modo escuro preto puro</string>
+    <string name="appearance_app_theme">Tema da aplicação</string>
+    <string name="appearance_navigation_title">Navegação</string>
+    <string name="appearance_nav_hide">Ocultar barra de navegação ao rolar</string>
+    <string name="appearance_show_icons">Mostrar ícones de categoria</string>
     <string name="backup_settings">Cópia de segurança e restauro</string>
+    <string name="backup_settings_summary">Backups automáticos &amp; manuais</string>
+    <string name="backup_frequency">Frequência de backup</string>
+    <string name="backup_location">Localização do backup</string>
+    <string name="backup_maximum">Número máximo de backups</string>
+    <string name="backup_never">Nunca</string>
+    <string name="backup_12hour">A cada 12 horas</string>
+    <string name="backup_24hour">Diariamente</string>
+    <string name="backup_48hour">A cada 2 dias</string>
+    <string name="backup_weekly">Semanalmente</string>
     <!-- Theme names -->
     <string name="theme_default">Padrão</string>
     <!-- File library preference -->
@@ -330,6 +392,16 @@
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">Resposta de magnitude</string>
     <string name="gep_add_node">Adicionar</string>
+    <string name="geq_reset">Repor</string>
+    <string name="geq_reset_confirm_title">Tem a certeza?</string>
+    <string name="geq_reset_confirm">Deseja redefinir as suas configurações de equalização?</string>
+    <string name="geq_node_editor">Editor de nó</string>
+    <string name="geq_node_list">Lista de Nós</string>
+    <string name="geq_no_nodes_defined">Nenhum nó definido</string>
+    <string name="geq_delete_node">Eliminar nó</string>
+    <string name="geq_go_back_to_node_list">Voltar para a lista de nós</string>
+    <string name="geq_next_node">Próximo nó</string>
+    <string name="geq_previous_node">Nó anterior</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
@@ -343,8 +415,10 @@
     <!-- Number box view -->
     <!-- Slider widget -->
     <!-- Revert confirmation -->
+    <string name="revert_confirmation_title">Tem a certeza?</string>
     <!-- File intent handler -->
     <!-- Translation notice box -->
+    <string name="translation_notice">Contribuir para a tradução</string>
     <!-- Self-updates (Root) -->
     <!-- Backups -->
     <!-- Multi-device profiles -->
