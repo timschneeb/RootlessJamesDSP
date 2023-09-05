@@ -12,7 +12,7 @@
     <string name="notification_channel_permission_prompt">Pedido de permissão</string>
     <string name="notification_channel_app_compat_alert">Alerta de aplicativo incompatível</string>
     <string name="notification_group_backup">Cópia de segurança e restauro</string>
-    <string name="notification_channel_backup_progress">A decorrer</string>
+    <string name="notification_channel_backup_progress">Em curso</string>
     <string name="notification_channel_backup_complete">Concluído</string>
     <!-- Service notifications -->
     <string name="action_retry">Tentar novamente</string>
@@ -415,10 +415,33 @@
     <string name="filelibrary_corrupted">O ficheiro selecionado não contém dados utilizáveis ou está corrompido.</string>
     <string name="filelibrary_file_too_new">O ficheiro selecionado foi criado com uma versão mais recente desta aplicação e não pode ser carregado. Por favor, atualize a aplicação para continuar.</string>
     <string name="filelibrary_access_fail">Falha ao acessar diretório</string>
+    <string name="filelibrary_is_backup_not_preset">O ficheiro selecionado é um ficheiro de backup, não uma predefinição. Por favor, vá para as configurações de backup se quiser restaurá-lo.</string>
+    <string name="filelibrary_no_file_selected">Nenhum ficheiro selecionado</string>
+    <string name="filelibrary_new_file_name">Novo nome do ficheiro</string>
+    <string name="filelibrary_file_exists">O ficheiro já existe</string>
+    <string name="filelibrary_resample_complete">Redimensionado para %1$dHz</string>
+    <string name="filelibrary_resample_failed">Resampling falhou. Ficheiro de entrada corrompido?</string>
+    <string name="filelibrary_preset_overwritten">Predefinição \'%1$s\' substituída</string>
+    <string name="filelibrary_preset_created">Predefinição \'%1$s\' criada</string>
+    <string name="filelibrary_preset_save_failed">Falha ao salvar predefinição</string>
+    <string name="filelibrary_renamed">Renomeado para \'%1$s\'</string>
+    <string name="filelibrary_deleted">%1$s eliminado</string>
+    <string name="filelibrary_preset_loaded">Predefinição \'%1$scarregada</string>
+    <string name="filelibrary_preset_load_failed">Ficheiro \'%1$s\' não é compatível com esta aplicação</string>
+    <string name="filelibrary_no_presets">Nenhuma predefinição salva. Toque em \'Adicionar\' para criar uma nova.</string>
     <!-- JamesDSP engine messages -->
+    <string name="message_vdc_corrupt">O ficheiro VDC selecionado está corrompido. Por favor, escolha outro.</string>
+    <string name="message_irs_corrupt">A resposta de impulso selecionada está corrompida. Por favor, escolha outra.</string>
+    <string name="message_convolver_advimp_invalid">Convolver: A edição de waveform avançada contém valores inválidos.</string>
+    <string name="message_liveprog_compile_fail">A execução do Liveprog falhou. O script selecionado está danificado. Por favor, use o editor de scripts para depuração.</string>
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">Resposta de magnitude</string>
+    <string name="geq_edit_as_string">Editar como string</string>
+    <string name="geq_autoeq">Pré definições AutoEQ</string>
     <string name="gep_add_node">Adicionar</string>
+    <string name="geq_preview">Pré-Visualizar</string>
+    <string name="geq_preview_collapsed">Pré-visualização (toque para expandir)</string>
+    <string name="geq_edit_hint">Nós equalizador gráfico</string>
     <string name="geq_reset">Repor</string>
     <string name="geq_reset_confirm_title">Tem a certeza?</string>
     <string name="geq_reset_confirm">Deseja redefinir as suas configurações de equalização?</string>
@@ -466,23 +489,116 @@
     <string name="editor_engine_down_title">JamesDSP não está ativo</string>
     <string name="editor_engine_down">Não é possível executar o script porque o JamesDSP está desativado. Por favor, ative o JamesDSP para executar scripts.</string>
     <string name="editor_save_prompt_title">Guardar alterações?</string>
+    <string name="editor_save_prompt">O script atual tem alterações não salvas. Você deseja salvar as alterações ou descartá-las?</string>
+    <string name="editor_script_launched">Script iniciado</string>
+    <string name="editor_cannot_undo">Nada para desfazer.</string>
+    <string name="editor_cannot_redo">Nada para refazer.</string>
+    <string name="editor_text_size">Tamanho do texto</string>
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Aplicações excluídas</string>
+    <string name="blocklist_add_exclusion_alt">Adicionar aplicação para excluir</string>
+    <string name="blocklist_delete_title">Remover a aplicação selecionada?</string>
+    <string name="blocklist_delete">Deseja remover esta aplicação da lista de exclusão?</string>
+    <string name="blocklist_no_exclusions">Nenhuma aplicação excluída</string>
+    <string name="blocklist_unsupported_apps">Aplicações não suportadas</string>
+    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>Esta aplicação não suporta aplicações de processamento que impedem outras de capturar a sua saída de áudio. Para evitar que estas aplicações sejam silenciadas devido a estas restrições, elas serão automaticamente excluídas para processamento de áudio e não serão desviadas.</p><p><u>Aplicações afetadas:</u><br/>%s</p>]]></string>
     <!-- Compatibility issue activity -->
+    <string name="title_activity_app_compat">Problema de compatibilidade</string>
     <string name="app_compat_retry">Tentar novamente</string>
+    <string name="app_compat_exclude">Excluir</string>
+    <string name="app_compat_title">O processamento de áudio foi suspenso para evitar a duplicação de áudio</string>
+    <string name="app_compat_explanation">A seguinte aplicação não é suportada porque faz com que RootlessJamesDSP perca o controlo do reencaminhento de áudio:</string>
+    <string name="app_compat_instruction">Por favor, verifique nas configurações da aplicação se consegue desativar a aceleração por hardware ou outras configurações que possam interferir com RootlessJamesDSP e toque em \'Repetir\'.</string>
+    <string name="app_compat_instruction_exclude">Em alternativa, selecione \'Excluir\' para ignorar este problema, excluindo a aplicação incompatível do processamento de áudio.</string>
+    <string name="app_compat_unknown_pkg_name">Nome de pacote desconhecido</string>
     <!-- Root: Library load failure -->
+    <string name="load_fail_header">Módulo Magisk não está instalado</string>
+    <string name="load_fail_card_title">Falha ao carregar libjamesdsp.so</string>
+    <string name="load_fail_card">Por favor, instale o módulo magisk do JamesDSP e reinicie o dispositivo Android para usar esta aplicação. Também pode precisar reinstalar esta aplicação depois de reiniciar.</string>
+    <string name="load_fail_rootless_card_title">Procurando uma alternativa sem root?</string>
+    <string name="load_fail_rootless_card">Este ramo do JamesDSP foi projetado para ser usado com um dispositivo com Root/modificado. Uma alternativa sem Root com algumas limitações também está disponível. Toque aqui para mais detalhes.</string>
+    <string name="load_fail_arch_card_title">Módulo já está instalado?</string>
+    <string name="load_fail_arch_card">Se já instalou o módulo magisk, poderá ter escolhido as configurações erradas durante a instalação. Por favor, reinstale e tente ativar a compatibilidade com Huawei (mesmo que o seu telefone não seja deste fabricante).</string>
     <!-- Enhanced processing -->
+    <string name="enhanced_processing_feature_unavailable">Funcionalidade indisponível</string>
+    <string name="enhanced_processing_feature_unavailable_content">Este recurso só está disponível quando o \'processamento melhorado\' está ativado nas configurações. Por favor, vá para \'Configurações &gt; Processamento de áudio &gt; Processamento melhorado\' e ative essa opção para acessar este menu.\n\nNota: \'Processamento melhorado\' não pode ser usado enquanto o modo antigo estiver ativado.</string>
+    <string name="enhanced_processing_missing_perm">Processamento melhorado foi desligado devido à falta de uma permissão. Por favor reinicie as configurações.</string>
     <!-- App list -->
+    <string name="app_list_loading">A carregar aplicações…</string>
     <string name="app_list_search">Pesquisar</string>
+    <string name="app_list_icon_alt">Ícone da aplicação</string>
     <!-- Number box view -->
+    <string name="number_box_decrement">Diminuição</string>
+    <string name="number_box_increment">Aumentar</string>
     <!-- Slider widget -->
+    <string name="slider_dialog_title">Editar valor</string>
+    <string name="slider_dialog_format_error">Formato de número inválido. Alterações não aplicadas.</string>
+    <string name="slider_dialog_step_error">Valor deve ser um múltiplo de %1$d. Alterações não aplicadas.</string>
     <!-- Revert confirmation -->
     <string name="revert_confirmation_title">Tem a certeza?</string>
+    <string name="revert_confirmation">Deseja redefinir a sua predefinição JamesDSP atual para os valores padrão?</string>
     <!-- File intent handler -->
+    <string name="intent_import_preset">Importar predefinição</string>
+    <string name="intent_import_irs">Importar resposta de impulso</string>
+    <string name="intent_import_vdc">Importar ficheiro VDC</string>
+    <string name="intent_import_liveprog">Importar script Liveprog</string>
+    <string name="intent_import_mode_add">Importar apenas</string>
+    <string name="intent_import_mode_select">Importar e ativar</string>
+    <string name="intent_import_fail">Falha ao importar o ficheiro \'%1$s\'</string>
+    <string name="intent_import_success">Ficheiro \'%1$s\' importado</string>
+    <string name="intent_import_select_success">Ficheiro \'%1$s\' importado e ativado</string>
+    <string name="intent_import_error_file_uri">Falha ao importar ficheiro. Ficheiro URI não suportado.</string>
     <!-- Translation notice box -->
+    <string name="translation_notice_summary">Por favor, ajude-nos a traduzir este aplicativo para seu idioma! Toque aqui para visitar o site do projeto no Crowdin.</string>
     <string name="translation_notice">Contribuir para a tradução</string>
     <!-- Self-updates (Root) -->
+    <string name="self_update_install_error">A atualização falhou</string>
+    <string name="self_update_download_fail">Falha ao baixar o pacote de atualização. Por favor, verifique sua conexão com a internet. Detalhes: %1$s</string>
+    <string name="self_update_install_fail">A instalação falhou. %1$s</string>
+    <string name="self_update_finished">Atualização instalada. O aplicativo irá reiniciar…</string>
+    <string name="self_update_no_updates">Não há novas atualizações disponíveis no momento</string>
+    <string name="self_update_notice">Nova atualização disponível (%1$s)</string>
+    <string name="self_update_notice_summary">Toque aqui para transferir e instalar a nova atualização.</string>
+    <string name="self_update_notice_dismiss_install">Instalar agora</string>
+    <string name="self_update_notice_dismiss_snooze">Lembrar-me depois</string>
+    <string name="self_update_notice_dismiss_skip">Ignorar esta atualização</string>
+    <string name="self_update_state_downloading">Transferindo…</string>
+    <string name="self_update_state_installing">Instalando…</string>
     <!-- Backups -->
+    <string name="backup_restore_progress">A restaurar a cópia de segurança</string>
+    <string name="backup_restore_error">Falha ao restaurar a cópia de segurança</string>
+    <string name="backup_restore_error_format">Arquivo de backup não suportado ou corrompido</string>
+    <string name="backup_restore_error_version_too_new">O ficheiro selecionado foi criado com uma versão mais recente desta aplicação e não pode ser carregado. Por favor, atualize a aplicação para continuar.</string>
+    <string name="backup_restore_completed">Restauração concluída</string>
+    <string name="backup_create_completed">Cópia de segurança criada</string>
+    <string name="backup_create_progress">A criar cópia de segurança</string>
+    <string name="backup_create_error">Cópia de segurança falhou</string>
+    <string name="backup_manual_backup">Cópia de segurança manual</string>
+    <string name="backup_create">Criar cópia de segurança</string>
+    <string name="backup_create_summary">Pode ser usado para restaurar as configurações atuais mais tarde</string>
+    <string name="backup_restore">Restaurar cópia de segurança</string>
+    <string name="backup_restore_summary">Restaurar configurações do arquivo de cópia de segurança</string>
+    <string name="backup_automatic_backup">Cópia de segurança automática</string>
+    <string name="backup_compat_info">Cópias de segurança incluem apenas as respostas de impulso, scripts, arquivos VDC, pré definições e a atual configuração de áudio para máxima compatibilidade com outras versões.</string>
+    <string name="backup_restore_mode_title">Modo de restauro</string>
+    <string name="backup_restore_mode_clean">Retroceder para definições padrão (apagar todos os arquivos existentes)</string>
+    <string name="backup_restore_mode_dirty">Restauro parcial (apenas substituir)</string>
+    <string name="backup_in_progress">O Backup já está a ser efectuado</string>
     <!-- Multi-device profiles -->
+    <string name="group_wired_headphones">Auscultadores com fios</string>
+    <string name="group_bluetooth">Bluetooth</string>
+    <string name="group_hdmi">HDMI</string>
+    <string name="group_speaker">Alto-falante interno</string>
+    <string name="group_usb">USB</string>
+    <string name="group_unknown">Desconhecido</string>
+    <string name="device_profile_status">Perfil de dispositivo ativo</string>
+    <string name="device_profile_manage_copy">Copiar perfil…</string>
+    <string name="device_profile_manage_delete">Apagar perfis…</string>
+    <string name="device_profile_manage_copy_select_no_target">Nenhum perfil para substituir disponível</string>
+    <string name="device_profile_manage_copy_select">Selecione o perfil para copiar</string>
+    <string name="device_profile_manage_paste_select">Selecione perfis para substituir</string>
     <!-- Root version check -->
+    <string name="version_mismatch_root">Pacote magisk JamesDSP requer atualização</string>
+    <string name="version_mismatch_root_description">O pacote de magisk JamesDSP instalado no seu dispositivo está desatualizado e não é mais suportado por esta aplicação.\n\nPor favor, obtenha a versão mais recente do JamesDSP e instale-o com o Magisk.\nNote que o pacote magisk pode substituir esta aplicação pela aplicação oficial JamesDSP\n\nDeseja visitar o site de download para os pacotes Magisk agora?</string>
+    <string name="version_mismatch_root_toast">Falha ao iniciar. O pacote de magisk JamesDSP instalado é muito antigo e já não é suportado por esta aplicação.</string>
 </resources>
