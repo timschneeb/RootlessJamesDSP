@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <plurals name="nodes">
+        <item quantity="one">Nó %d</item>
+        <item quantity="other">%d Nós</item>
+    </plurals>
+    <plurals name="custom_parameters">
+        <item quantity="one">Parâmetro personalizável %d</item>
+        <item quantity="other">Parâmetros personalizáveis %d</item>
+    </plurals>
+    <plurals name="unsupported_apps">
+        <item quantity="one">%d aplicação não suportada foi automaticamente excluída. Clique para saber mais.</item>
+        <item quantity="other">%d aplicações não suportadas foram automaticamente excluídas. Clique para saber mais.</item>
+    </plurals>
+</resources>
