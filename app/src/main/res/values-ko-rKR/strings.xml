@@ -143,7 +143,7 @@
     <string name="tube_enable">아날로그 모델링</string>
     <string name="tube_drive">프리앰프</string>
     <string name="output_control_header">출력 제어</string>
-    <string name="output_limiter_threshold">리미터 트레숄드</string>
+    <string name="output_limiter_threshold">리미터 임계값</string>
     <string name="output_limiter_release">리미터 릴리즈</string>
     <string name="output_control_postgain">포스트 게인</string>
     <string name="stereowide_enable">음장 넓이</string>
