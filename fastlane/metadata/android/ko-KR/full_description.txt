@@ -1,31 +1,31 @@
-Use JamesDSP as a system-wide audio processing engine without any root access.
+루트 권한 없이 JamesDSP를 시스템 전역 오디오 처리 엔진으로 활용하세요.
 
-This app has several limitations that may be deal-breaking to some people; please read this whole document before using the app. Shizuku (Android 11+) or ADB access via a computer is required for the initial setup.
+이 앱은 일부 사용자에게 결정적 이슈가 될 수 있는 몇 가지 제한 사항이 있습니다. 따라서 앱을 사용하기 전에 이 문서를 주의 깊게 읽어보시기 바랍니다. 초기 설정을 위해서는 Shizuku (Android 11+) 또는 컴퓨터를 통한 ADB 액세스가 필요합니다.
 
-JamesDSP supports the following audio effects:
-* Limiter control
-* Output gain control
-* Auto dynamic range compressor
-* Dynamic bass boost
-* Interpolating FIR equalizer
-* Arbitrary response equalizer (Graphic EQ)
-* ViPER-DDC
-* Convolver
-* Live-programmable DSP (scripting engine for audio effects)
-* Analog modelling
-* Soundstage wideness
-* Crossfeed
-* Virtual room effect (reverb)
+JamesDSP는 다음과 같은 오디오 효과를 지원합니다:
+* 리미터 제어
+* 출력 게인 제어
+* 자동 다이나믹 레인지 컴프레서
+* 다이나믹 베이스 부스트
+* FIR 이퀄라이저 보간
+* 임의 응답 이퀄라이저 (GEQ)
+* 주파수 응답 보정 (ViPER-DDC)
+* 컨볼버 (Convolver)
+* 라이브 프로그래밍 DSP (오디오 효과용 스크립트 엔진)
+* 아날로그 모델링
+* 음장 넓이
+* 크로스피드
+* 가상 공간 효과 (Reverb)
 
-Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration, you can search and import frequency responses that aim to correct your headphone to a neutral sound. Go to 'Arbitrary response equalizer > Magnitude response > AutoEQ profiles' to get started.
+또한 이 앱은 AutoEQ와 직접 통합되어 있습니다. AutoEQ 통합을 사용하면 헤드폰을 중립적인 소리로 보정하기 위한 주파수 응답을 검색하여 가져올 수 있습니다. 시작하려면 '임의 응답 이퀄라이저 (GEQ) > 크기 응답 > AutoEQ 프로파일' 로 이동하세요.
 
---- Limitations
-* Apps blocking internal audio capture remain unprocessed (e.g., Spotify, Google Chrome)
-* Apps using some types of HW-accelerated playback may cause issues and need to be manually excluded (e.g., some Unity games)
-* Cannot coexist with (some) other audio effect apps (e.g., Wavelet and other apps that make use of the `DynamicsProcessing` Android API)
+--- 제한 사항
+* 내부 오디오 캡처를 차단하는 앱은 처리되지 않습니다 (예: Spotify, Google Chrome).
+* 하드웨어 가속을 사용하는 일부 앱에서는 문제를 일으킬 수 있으며 수동으로 제외되어야 합니다 (예: 일부 유니티 게임).
+* 일부 오디오 효과 앱과는 함께 사용할 수 없습니다 (예: `DynamicsProcessing` Android API를 사용하는 Wavelet 및 기타 앱).
 
 
-- Apps confirmed working:
+- 작동이 확인된 앱:
 * YouTube
 * YouTube Music
 * Amazon Music
@@ -35,12 +35,12 @@ Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration
 * Twitch
 * ...
 
-- Unsupported apps include:
-* Spotify (Note: Spotify ReVanced patch is required to support Spotify)
+- 지원되지 않는 앱 목록:
+* Spotify (참고: Spotify를 지원하려면 Spotify ReVanced 패치가 필요합니다.)
 * Google Chrome
 * SoundCloud
 * ...
 
---- Translation
-Please help us translate this app here: https://crowdin.com/project/rootlessjamesdsp
-To request a new language that isn't enabled on Crowdin yet, please open an issue here on GitHub and I will turn it on.
+--- 번역
+이 앱의 번역에 도움을 주시려면 다음 링크에서 참여해 주세요: https://crowdin.com/project/rootlessjamesdsp
+Crowdin에서 아직 활성화되지 않은 새로운 언어를 요청하려면, GitHub에서 이슈를 열어주시면 해당 언어를 활성화해 드립니다.
