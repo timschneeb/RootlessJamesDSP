@@ -121,8 +121,8 @@
     <string name="reverb_preset_large_room1">대형 방</string>
     <string name="reverb_preset_plate_high">플레이트 하이</string>
     <string name="reverb_preset_plate_low">플레이트 로우</string>
-    <string name="reverb_preset_long_reverb1">긴 잔향 1</string>
-    <string name="reverb_preset_long_reverb2">긴 잔향 2</string>
+    <string name="reverb_preset_long_reverb1">긴 리버브 1</string>
+    <string name="reverb_preset_long_reverb2">긴 리버브 2</string>
     <string name="convolver_enable">컨볼버 (Convolver)</string>
     <string name="convolver_impulse">임펄스 응답</string>
     <string name="convolver_advanced_editing">고급 파형 편집</string>
