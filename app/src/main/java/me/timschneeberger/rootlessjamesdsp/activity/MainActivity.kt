@@ -197,7 +197,7 @@ class MainActivity : BaseActivity() {
         // Inflate bottom right menu
         binding.bar.inflateMenu(R.menu.menu_main_bottom)
 
-        if(isPlugin())
+        if(isPlugin() || (isRoot() && !app.isEnhancedProcessing))
             binding.bar.menu.removeItem(R.id.action_blocklist)
 
         binding.bar.setOnMenuItemClickListener { arg0 ->
