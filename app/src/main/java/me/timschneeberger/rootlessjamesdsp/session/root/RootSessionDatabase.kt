@@ -60,7 +60,13 @@ class RootSessionDatabase(context: Context) : BaseSessionDatabase(context) {
         }
     }
 
-    override fun shouldAcceptSessionDump(id: Int, session: AudioSessionDumpEntry) = true
+    override fun shouldAcceptSessionDump(id: Int, session: AudioSessionDumpEntry): Boolean {
+        if (!session.isUsageRecordable()) {
+            Timber.d("Skipped session $id due to usage ($session)")
+            return false
+        }
+        return true
+    }
     override fun shouldAddSession(id: Int, uid: Int, packageName: String) = true
 
     override fun onSessionRemoved(item: IEffectSession) {
