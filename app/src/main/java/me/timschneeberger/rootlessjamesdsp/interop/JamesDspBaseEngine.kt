@@ -198,7 +198,7 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
 
         // Handle disabled state before everything else
         if(!enable || !File(path).exists() || File(path).isDirectory) {
-            setConvolverInternal(false, FloatArray(0), 0, 0)
+            setConvolverInternal(false, FloatArray(0), 0, 0, 0)
             return true
         }
 
@@ -223,7 +223,7 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
             callbacks?.onConvolverParseError(ProcessorMessage.ConvolverErrorCode.AdvParamsInvalid)
         }
 
-        val info = IntArray(3)
+        val info = IntArray(4)
         val imp = JdspImpResToolbox.ReadImpulseResponseToFloat(
             path,
             sampleRate.toInt(),
@@ -234,7 +234,7 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
 
         if(imp == null) {
             Timber.e("setConvolver: Failed to read IR")
-            setConvolverInternal(false, FloatArray(0), 0, 0)
+            setConvolverInternal(false, FloatArray(0), 0, 0, 0)
             callbacks?.onConvolverParseError(ProcessorMessage.ConvolverErrorCode.Corrupted)
             return false
         }
@@ -242,18 +242,18 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
         // check frame count
         if(info[1] == 0) {
             Timber.e("setConvolver: IR has no frames")
-            setConvolverInternal(false, FloatArray(0), 0, 0)
+            setConvolverInternal(false, FloatArray(0), 0, 0, 0)
             callbacks?.onConvolverParseError(ProcessorMessage.ConvolverErrorCode.NoFrames)
             return false
         }
 
         // check if advSetting was invalid
-        if(info[2] == 0) {
+        if(info[3] == 0) {
             Timber.w("setConvolver: advSetting was invalid")
             callbacks?.onConvolverParseError(ProcessorMessage.ConvolverErrorCode.AdvParamsInvalid)
         }
 
-        return setConvolverInternal(true, imp, info[0], info[1])
+        return setConvolverInternal(true, imp, info[0], info[1], info[2])
     }
 
     fun setGraphicEq(enable: Boolean, bands: String): Boolean
@@ -304,9 +304,9 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
     protected abstract fun setMultiEqualizerInternal(enable: Boolean, filterType: Int, interpolationMode: Int, bands: DoubleArray): Boolean
     protected abstract fun setCompanderInternal(enable: Boolean, timeConstant: Float, granularity: Int, tfTransforms: Int, bands: DoubleArray): Boolean
     protected abstract fun setVdcInternal(enable: Boolean, vdc: String): Boolean
-    protected abstract fun setConvolverInternal(enable: Boolean, impulseResponse: FloatArray, irChannels: Int, irFrames: Int): Boolean
+    protected abstract fun setConvolverInternal(enable: Boolean, impulseResponse: FloatArray, irChannels: Int, irFrames: Int, irCrc: Int): Boolean
     protected abstract fun setGraphicEqInternal(enable: Boolean, bands: String): Boolean
-    protected abstract fun setLiveprogInternal(enable: Boolean, name: String, path: String): Boolean
+    protected abstract fun setLiveprogInternal(enable: Boolean, name: String, script: String): Boolean
 
     // Feature support
     abstract fun supportsEelVmAccess(): Boolean

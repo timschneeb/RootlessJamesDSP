@@ -148,7 +148,8 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
         enable: Boolean,
         impulseResponse: FloatArray,
         irChannels: Int,
-        irFrames: Int
+        irFrames: Int,
+        irCrc: Int
     ): Boolean {
         return JamesDspWrapper.setConvolver(handle, enable, impulseResponse, irChannels, irFrames)
     }
@@ -157,8 +158,8 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
         return JamesDspWrapper.setGraphicEq(handle, enable, bands)
     }
 
-    override fun setLiveprogInternal(enable: Boolean, name: String, path: String): Boolean {
-        return JamesDspWrapper.setLiveprog(handle, enable, name, path)
+    override fun setLiveprogInternal(enable: Boolean, name: String, script: String): Boolean {
+        return JamesDspWrapper.setLiveprog(handle, enable, name, script)
     }
 
     // Feature support

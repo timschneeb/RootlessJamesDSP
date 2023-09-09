@@ -21,6 +21,15 @@ import kotlin.math.max
 import kotlin.math.pow
 import kotlin.math.roundToInt
 
+fun String.crc(): Int = this.toByteArray()
+        .fold(-0x1) { crc, byte ->
+            (0 until 8).fold(crc xor byte.toInt()) { acc, _ ->
+                val mask = -(acc and 1)
+                (acc shr 1) xor (-0x12477ce0 and mask)
+            }
+        }
+        .inv()
+
 fun String.asHtml(): Spanned = Html.fromHtml(this, Html.FROM_HTML_MODE_LEGACY)
 
 fun Double.equalsDelta(other: Double) = abs(this - other) < 0.00001 * max(abs(this), abs(other))

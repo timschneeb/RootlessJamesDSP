@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <stdint.h>
 
 #include <jdsp_header.h>
 
@@ -11,11 +12,27 @@ void channel_splitFloat(float *buffer, unsigned int num_frames, float **chan_buf
 	for (i = 0; i < samples; i++)
 		chan_buffers[i % num_channels][i / num_channels] = buffer[i];
 }
-void channel_joinFloat(float **chan_buffers, unsigned int num_channels, float *buffer, unsigned int num_frames)
+int32_t channel_joinFloat_crc(float **chan_buffers, unsigned int num_channels, float *buffer, unsigned int num_frames)
 {
-	unsigned int i, samples = num_frames * num_channels;
-	for (i = 0; i < samples; i++)
-		buffer[i] = chan_buffers[i % num_channels][i / num_channels];
+    unsigned int i, samples = num_frames * num_channels;
+    union
+    {
+        int32_t raw;
+        float f;
+    } fltInt;
+    int32_t crc = 0xFFFFFFFF;
+    for (i = 0; i < samples; i++)
+    {
+        buffer[i] = chan_buffers[i % num_channels][i / num_channels];
+        fltInt.f = buffer[i];
+        crc = crc ^ fltInt.raw;
+        for (int j = 7; j >= 0; j--)
+        {
+            int32_t mask = -(crc & 1);
+            crc = (crc >> 1) ^ (0xEDB88320 & mask);
+        }
+    }
+    return ~crc;
 }
 
 unsigned int LLIntegerLog2(unsigned int v)
@@ -457,6 +474,7 @@ JNIEXPORT jfloatArray JNICALL Java_me_timschneeberger_rootlessjamesdsp_interop_J
 			splittedBuffer[i] = (float*)malloc(frameCount * sizeof(float));
 	}
 	channel_splitFloat(pFrameBuffer, frameCount, splittedBuffer, channels);
+    int32_t crc32;
 	if (convMode > 0)
 	{
 		free(pFrameBuffer);
@@ -526,7 +544,7 @@ JNIEXPORT jfloatArray JNICALL Java_me_timschneeberger_rootlessjamesdsp_interop_J
 		unsigned int totalFrames = xLen * channels;
 		frameCount = xLen;
 		pFrameBuffer = (float*)malloc(totalFrames * sizeof(float));
-		channel_joinFloat(outPtr, channels, pFrameBuffer, xLen);
+        crc32 = channel_joinFloat_crc(outPtr, channels, pFrameBuffer, xLen);
 	}
 	else
 	{
@@ -536,7 +554,7 @@ JNIEXPORT jfloatArray JNICALL Java_me_timschneeberger_rootlessjamesdsp_interop_J
 			for (int j = 0; j < javaAdvSetPtr[i + 2] - 1; j++)
 				splittedBuffer[i][j] = 0.0f;
 		}
-		channel_joinFloat(splittedBuffer, channels, pFrameBuffer, frameCount);
+        crc32 = channel_joinFloat_crc(splittedBuffer, channels, pFrameBuffer, frameCount);
 	}
 	for (i = 0; i < channels; i++)
 		free(splittedBuffer[i]);
@@ -544,8 +562,9 @@ JNIEXPORT jfloatArray JNICALL Java_me_timschneeberger_rootlessjamesdsp_interop_J
 	jint *javaBasicInfoPtr = (jint*) (*env)->GetIntArrayElements(env, jImpInfo, 0);
 	javaBasicInfoPtr[0] = (int)channels;
 	javaBasicInfoPtr[1] = (int)frameCount;
-	javaBasicInfoPtr[2] = (int)isAdvSetValid;
-	(*env)->SetIntArrayRegion(env, jImpInfo, 0, 3, javaBasicInfoPtr);
+	javaBasicInfoPtr[2] = (int)crc32;
+    javaBasicInfoPtr[3] = (int)isAdvSetValid;
+    (*env)->SetIntArrayRegion(env, jImpInfo, 0, 4, javaBasicInfoPtr);
 	jfloatArray outbuf;
 	int frameCountTotal = channels * frameCount;
 	size_t bufferSize = frameCountTotal * sizeof(float);

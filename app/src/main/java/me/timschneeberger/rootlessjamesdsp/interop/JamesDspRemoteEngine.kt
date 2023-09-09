@@ -16,6 +16,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.AudioEffectExtension
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.unregisterLocalReceiver
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.crc
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.toShort
 import timber.log.Timber
 import java.util.UUID
@@ -198,8 +199,15 @@ class JamesDspRemoteEngine(
     }
 
     override fun setVdcInternal(enable: Boolean, vdc: String): Boolean {
-        if(enable)
+        val prevCrc = this.ddcHash
+        val currentCrc = vdc.crc()
+
+        Timber.i("VDC hash before: $prevCrc, current: $currentCrc")
+        if (prevCrc != currentCrc && enable) {
             effect.setParameterCharBuffer(12001, 10009, vdc)
+            effect.setParameter(25001, currentCrc) // Commit hash
+        }
+
         return effect.setParameter(1212, enable.toShort()) == AudioEffect.SUCCESS
     }
 
@@ -208,21 +216,43 @@ class JamesDspRemoteEngine(
         impulseResponse: FloatArray,
         irChannels: Int,
         irFrames: Int,
+        irCrc: Int
     ): Boolean {
-        if(enable)
+
+        val prevCrc = this.convolverHash
+
+        Timber.i("Convolver hash before: $prevCrc, current: $irCrc")
+        if (prevCrc != irCrc && enable) {
             effect.setParameterImpulseResponseBuffer(12000, 10004, impulseResponse, irChannels)
+            effect.setParameter(25003, irCrc) // Commit hash
+        }
+
         return effect.setParameter(1205, enable.toShort()) == AudioEffect.SUCCESS
     }
 
     override fun setGraphicEqInternal(enable: Boolean, bands: String): Boolean {
-        if(enable)
+        val prevCrc = this.graphicEqHash
+        val currentCrc = bands.crc()
+
+        Timber.i("GraphicEQ hash before: $prevCrc, current: $currentCrc")
+        if (prevCrc != currentCrc && enable) {
             effect.setParameterCharBuffer(12001, 10006, bands)
+            effect.setParameter(25000, currentCrc) // Commit hash
+        }
+
         return effect.setParameter(1210, enable.toShort()) == AudioEffect.SUCCESS
     }
 
-    override fun setLiveprogInternal(enable: Boolean, name: String, path: String): Boolean {
-        if(enable)
-            effect.setParameterCharBuffer(12001, 10010, path)
+    override fun setLiveprogInternal(enable: Boolean, name: String, script: String): Boolean {
+        val prevCrc = this.liveprogHash
+        val currentCrc = script.crc()
+
+        Timber.i("Liveprog hash before: $prevCrc, current: $currentCrc")
+        if (prevCrc != currentCrc && enable) {
+            effect.setParameterCharBuffer(12001, 10010, script)
+            effect.setParameter(25002, currentCrc) // Commit hash
+        }
+
         return effect.setParameter(1213, enable.toShort()) == AudioEffect.SUCCESS
     }
 
@@ -250,6 +280,14 @@ class JamesDspRemoteEngine(
         get() = effect.getParameterInt(19999) ?: -1
     val allocatedBlockLength: Int
         get() = effect.getParameterInt(20000) ?: -1
+    val graphicEqHash: Int
+        get() = effect.getParameterInt(30000) ?: -1
+    val ddcHash: Int
+        get() = effect.getParameterInt(30001) ?: -1
+    val liveprogHash: Int
+        get() = effect.getParameterInt(30002) ?: -1
+    val convolverHash: Int
+        get() = effect.getParameterInt(30003) ?: -1
 
     enum class PluginState {
         Unavailable,
