@@ -58,10 +58,22 @@
     <string name="no_activity_found">アクションを処理するアクティビティが見つかりませんでした</string>
     <string name="permission_allowed">許可されています</string>
     <string name="permission_not_allowed">許可されていません</string>
+    <string name="preparing">準備中…</string>
     <string name="error_projection_api_missing">お使いのデバイスの製造元は、内部音声録音APIを無効にしています。このアプリケーションは、それらがないと動作出来ません。</string>
     <!-- Main screen -->
     <string name="power_button_alt">音声処理の切り替え</string>
     <string name="compander_enable">ダイナミックレンジ・コンパンダー</string>
+    <string name="compander_timeconstant">時間定数</string>
+    <string name="compander_granularity">粒度</string>
+    <string name="compander_granularity_very_low">非常に低い</string>
+    <string name="compander_granularity_low">低</string>
+    <string name="compander_granularity_medium">中</string>
+    <string name="compander_granularity_high">高</string>
+    <string name="compander_granularity_extreme">非常に高い</string>
+    <string name="compander_tftransforms">時間周波数変換</string>
+    <string name="compander_tftransforms_stft">均一化（短時間フーリエ）</string>
+    <string name="compander_tftransforms_continuous_wavelet">多重分析 (連続ウェーブレット、不完全デュアルフレーム)</string>
+    <string name="compander_tftransforms_undersampling">疑似マルチレゾリューション(低サンプリングフレーム)</string>
     <string name="eq_filter_type">フィルタータイプ</string>
     <string name="eq_interpolator">インターポレーター</string>
     <string name="eq_interpolator_chip">区分的3次エルミート内挿多項式</string>
