@@ -61,6 +61,16 @@
     <string name="preparing">Pripremanje…</string>
     <string name="error_projection_api_missing">Proizvođač vašeg uređaja je onemogućio API za interno snimanje zvuka. Ova aplikacija ne može raditi bez njih.</string>
     <!-- Main screen -->
+    <string name="power_button_alt">Uključi/isključi procesiranje zvuka</string>
+    <string name="compander_enable">Compander dinamičkog ranga</string>
+    <string name="compander_timeconstant">Vremenska konstanta</string>
+    <string name="compander_granularity">Granularnost</string>
+    <string name="compander_granularity_very_low">Vrlo niska</string>
+    <string name="compander_granularity_low">Niska</string>
+    <string name="compander_granularity_medium">Srednja</string>
+    <string name="compander_granularity_high">Visoka</string>
+    <string name="compander_granularity_extreme">Ekstremna</string>
+    <string name="compander_tftransforms">Vrijeme-frekvencija transformacija</string>
     <string name="reverb_preset_small_hall1">Mala dvorana 1</string>
     <string name="reverb_preset_small_hall2">Mala dvorana 2</string>
     <string name="reverb_preset_medium_hall2">Srednja dvorana</string>
