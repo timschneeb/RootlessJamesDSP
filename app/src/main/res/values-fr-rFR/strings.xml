@@ -4,7 +4,9 @@
     <string name="action_settings">Paramètres</string>
     <string name="action_presets">Pré-définis</string>
     <string name="action_revert">Rétablir les valeurs par défaut</string>
+    <string name="action_blocked_apps">Applications exclues</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">Service</string>
     <!-- Service notifications -->
     <string name="action_retry">Réessayer</string>
     <string name="action_stop">Stop</string>
@@ -39,6 +41,7 @@
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
     <!-- Blocklist -->
+    <string name="title_activity_blocklist">Applications exclues</string>
     <!-- Compatibility issue activity -->
     <string name="app_compat_retry">Réessayer</string>
     <!-- Root: Library load failure -->
