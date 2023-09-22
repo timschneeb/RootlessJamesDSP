@@ -3,8 +3,8 @@ JamesDSPをシステム全体のオーディオ処理エンジンとして、非
 このアプリにはいくつかの制限があります。初期設定には、Shizuku(Android 11+)またはパソコンからのADBアクセスが必要です。
 
 JamesDSPが対応するオーディオエフェクト:
-* Limiter control
-* Output gain control
+* リミッターコントロール
+*出力ゲインコントロール
 * Auto dynamic range compressor
 * Dynamic bass boost
 * Interpolating FIR equalizer
