@@ -74,8 +74,16 @@
     <string name="compander_tftransforms_stft">均一化（短時間フーリエ）</string>
     <string name="compander_tftransforms_continuous_wavelet">多重分析 (連続ウェーブレット、不完全デュアルフレーム)</string>
     <string name="compander_tftransforms_undersampling">疑似マルチレゾリューション(低サンプリングフレーム)</string>
+    <string name="compander_tftransforms_time_domain">擬似マルチレゾリューション(時間領域、遅延ゼロ)</string>
+    <string name="eq_enable">マルチモーダルイコライザー</string>
     <string name="eq_filter_type">フィルタータイプ</string>
     <string name="eq_interpolator">インターポレーター</string>
+    <string name="eq_filter_type_fir_minimum">FIR 最小位相</string>
+    <string name="eq_filter_type_iir_4_order">IIR 4次順序</string>
+    <string name="eq_filter_type_iir_6_order">IIR 6次順列</string>
+    <string name="eq_filter_type_iir_8_order">IIR 8次順列</string>
+    <string name="eq_filter_type_iir_10_order">IIR 10次順列</string>
+    <string name="eq_filter_type_iir_12_order">IIR 12次順列</string>
     <string name="eq_interpolator_chip">区分的3次エルミート内挿多項式</string>
     <string name="eq_interpolator_mha">改変された秋間スプライン</string>
     <string name="eq_preset_acoustic">アコースティック</string>
@@ -118,8 +126,13 @@
     <string name="convolver_enable">Convolver</string>
     <string name="convolver_impulse">インパルス応答</string>
     <string name="convolver_advanced_editing">高度な波形編集</string>
+    <string name="convolver_convolution_mode">インパルス応答の最適化</string>
     <string name="convolver_convolution_mode_original">オリジナル</string>
+    <string name="convolver_convolution_mode_shrink">最小化</string>
+    <string name="convolver_convolution_mode_minimum_phase_shrink">最小限の位相変換と縮小化</string>
+    <string name="ddc_enable">ViPER-DDC</string>
     <string name="ddc_file">DDC ファイル</string>
+    <string name="liveprog_enable">動的プログラム可能なDSP</string>
     <string name="liveprog_file">Liveprogスクリプト</string>
     <string name="liveprog_additional_params">スクリプトの追加パラメータ</string>
     <string name="liveprog_additional_params_not_supported">選択されたスクリプトには、カスタマイズ可能なパラメータがありません</string>
@@ -157,15 +170,27 @@
     <string name="onboarding_warning">現在、このアプリケーションは未完成で不安定です。 第三者が使用するために設計されていないAndroid APIを使用しているため、一部のデバイスでは期待通りに動作しない可能性があります。</string>
     <string name="onboarding_fix_permissions_title">ユーザーアクションが必要です</string>
     <string name="onboarding_fix_permissions">あなたまたはシステムによって1つまたは複数の権限が取り消されました。\nアプリが正常に動作するようにするには、これらの権限を再度許可する必要があります。 \n\nこれらの権限を再度許可するためにセットアップウィザードをやり直してください。</string>
+    <string name="onboarding_limitations_title">Limitations</string>
     <string name="onboarding_limitations_unstable">重要! 続行する前に注意事項をよくお読みください。</string>
     <string name="onboarding_methods_title">設定方法を選択</string>
+    <string name="onboarding_methods_root_title">Root</string>
     <string name="onboarding_methods_shizuku_title">Shizuku</string>
+    <string name="onboarding_methods_unsupported_append">非互換性</string>
     <string name="onboarding_methods_adb_title">ADB</string>
     <!-- Rootless flavor -->
+    <string name="onboarding_methods_rootless_shizuku">\u25CF 推奨\n\u25CF 外部コンピュータ不要\n\u25CF Android 11以上のみ</string>
+    <string name="onboarding_methods_rootless_adb">\u25CF上級者向け\n\u25CF コンピュータとUSBケーブルが必要 \n\u25CFAndroid 10以上が対応</string>
     <!-- Root flavor -->
+    <string name="onboarding_methods_root_root">\u25CF Recommended\n\u25CF No external computer required\n\u25CF All Android versions
+\u25CF推奨\n\u25CF 外部コンピュータ不要\n\u25CF すべてのAndroidバージョンで利用可能</string>
+    <string name="onboarding_methods_root_shizuku">\u25CF 推奨、 rootが設定されていない場合\n\u25CF 外部コンピュータは不要\n\u25CF Android 11以上のみ</string>
+    <string name="onboarding_methods_root_adb">\u25CF 上級者向け\n\u25CF コンピュータとUSBケーブルが必要\n\u25CF すべてのAndroidバージョンで利用可能</string>
     <string name="onboarding_root_shell_fail_title">ルートアクセスなし</string>
     <string name="onboarding_root_shell_fail">ルートアクセスがありません。別のセットアップ方法を使用してください。</string>
     <string name="onboarding_root_shell_fail_unknown">Rootによる権限の付与に失敗しました。他の設定方法を使用してください。</string>
+    <string name="onboarding_root_enhanced_processing_setup_success">強化処理の設定</string>
+    <string name="onboarding_adb_shizuku_title">「Shizuku」 の設定</string>
+    <string name="onboarding_adb_adb_title">ADB の設定</string>
     <string name="onboarding_adb_caption">このアプリは、お使いのデバイスのオーディオポリシーをダンプするための特別な許可を必要とします。以下の説明に従ってください。</string>
     <string name="onboarding_adb_shizuku_install_button">Shizuku をインストール</string>
     <string name="onboarding_adb_shizuku_install_button_done">インストール済み</string>
@@ -217,6 +242,7 @@
     <string name="limit_unsupported_apps">内部音声録音をブロックしているアプリは処理されません。 (Spotify、Google Chromeなど)</string>
     <string name="limit_hw_accel_title">HWアクセラレーションによるオーディオ再生の問題</string>
     <string name="limit_hw_accel">HWアクセラレーションによるオーディオ再生(ファストトラック) は、状況によってはオーディオの重複を引き起こしたり、JamesDSPを強制終了させることがあります。JamesDSPによる再ルーティングを防ぐため、影響を受ける音楽プレーヤーを除外アプリリストに追加してください。</string>
+    <string name="limit_detect_delay_title">オーディオセッション検出の遅延</string>
     <string name="limit_detect_delay"><![CDATA[アプリがオーディオを再生するために新しいメディアセッションを開いた後、非常に短い期間（約250ミリ秒未満）、オーディオが重複したり途切れたりすることがあります。]]></string>
     <string name="limit_latency_title">遅延の増加</string>
     <string name="limit_latency">このアプリは、音声の遅延を増加させる可能性があります。 除外リストに映画/ビデオアプリを追加し、処理させないようにすることで、映像と音声の同期ズレを防ぐことができます。</string>
@@ -230,12 +256,20 @@
     <string name="session_detection_header">オーディオセッションの検出</string>
     <string name="session_continuous_polling">連続ポーリングを強制する</string>
     <string name="session_continuous_polling_off">システムからのセッションイベントのみ待ち受ける</string>
+    <string name="session_continuous_polling_on">オーディオセッションを継続的に列挙する</string>
     <string name="session_continuous_polling_rate">ポーリング間隔 (ミリ秒)</string>
+    <string name="session_detection_method">優先セッション検出方法</string>
+    <string name="session_detection_method_audiopolicyservice">AudioPolicyServiceダンプ</string>
+    <string name="session_detection_method_audioservice">AudioServiceダンプ (推奨)</string>
     <string name="session_app_problem_ignore">アプリの互換性問題を無視する</string>
     <string name="session_loss_ignore">セッション制御の損失を無視する</string>
+    <string name="session_loss_ignore_off">無効、通常処理(推奨)</string>
     <string name="session_loss_ignore_on">動作しない (音声が重複する可能性があります)</string>
+    <string name="session_loss_ignore_warning">この設定を有効にすると、他のオーディオエフェクトアプリがオーディオセッションを制御し始めたときに、オーディオが重複する可能性があります。\n誤検出されたセッション喪失イベントに遭遇しない限り、この設定は無効のままにしておいてください。</string>
     <string name="audio_format_header">オーディオ処理</string>
     <string name="audio_format_section_header">優先する音声形式</string>
+    <string name="audio_format_processing_header">オーディオ処理オプション</string>
+    <string name="audio_format_processing_legacy">レガシーモード</string>
     <string name="audio_format_enhanced_processing_off">拡張処理は無効です</string>
     <string name="audio_format_enhanced_processing_info_title">拡張処理とは？</string>
     <string name="audio_format_enhanced_processing_info">タップしてドキュメントを表示</string>
