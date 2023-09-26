@@ -22,6 +22,8 @@ android {
         versionCode = AndroidConfig.versionCode
         versionName = AndroidConfig.versionName
 
+        manifestPlaceholders["label"] = "RootlessJamesDSP"
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "COMMIT_COUNT", "\"${getCommitCount()}\"")
