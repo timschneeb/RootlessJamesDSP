@@ -1,13 +1,26 @@
 package me.timschneeberger.rootlessjamesdsp.service
 
 import android.annotation.SuppressLint
-import android.app.*
-import android.content.*
+import android.app.Activity
+import android.app.NotificationManager
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.content.SharedPreferences
 import android.content.pm.ServiceInfo
-import android.media.*
+import android.media.AudioAttributes
+import android.media.AudioFormat
+import android.media.AudioManager
+import android.media.AudioPlaybackCaptureConfiguration
+import android.media.AudioRecord
+import android.media.AudioTrack
 import android.media.projection.MediaProjection
 import android.media.projection.MediaProjectionManager
-import android.os.*
+import android.os.Build
+import android.os.Handler
+import android.os.Looper
+import android.os.Process
 import androidx.annotation.RequiresApi
 import androidx.core.content.getSystemService
 import androidx.core.math.MathUtils.clamp
@@ -626,6 +639,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         blockedApps.value?.map { it.uid }?.let {
             excluded += it
         }
+        excluded += Process.myUid()
 
         excluded.forEach { configBuilder.excludeUid(it) }
         sessionManager.sessionDatabase.setExcludedUids(excluded.toTypedArray())
