@@ -71,7 +71,7 @@
     <string name="compander_granularity_high">Tinggi</string>
     <string name="compander_granularity_extreme">Sangat Tinggi</string>
     <string name="compander_tftransforms">Waktu Transformasi frekuensi</string>
-    <string name="compander_tftransforms_stft">Uniform (Fourier waktu singkat)</string>
+    <string name="compander_tftransforms_stft">Uniform (Fourier dalam waktu singkat)</string>
     <string name="compander_tftransforms_continuous_wavelet">Multiresolution (meneruskan Wavelet, dual frame tidak lengkap)</string>
     <string name="compander_tftransforms_undersampling">Pseudo multiresolution (Bingkai pengambilan sampel yang terlalu rendah)</string>
     <string name="compander_tftransforms_time_domain">Pseudo multiresolution (Waktu Domain, latensi nol)</string>
@@ -79,12 +79,30 @@
     <string name="eq_filter_type">Jenis Filter</string>
     <string name="eq_interpolator">Interpolasi</string>
     <string name="eq_filter_type_fir_minimum">FIR Minimum phase</string>
+    <string name="eq_filter_type_iir_4_order">IIR 4th order</string>
+    <string name="eq_filter_type_iir_6_order">IIR 6th order</string>
+    <string name="eq_filter_type_iir_8_order">IIR 8th order</string>
+    <string name="eq_filter_type_iir_10_order">IIR 10th order</string>
+    <string name="eq_filter_type_iir_12_order">IIR 12th order</string>
+    <string name="eq_interpolator_chip">Piecewise Cubic Hermite Interpolating Polynomial</string>
+    <string name="eq_interpolator_mha">Modified Hiroshi Akima spline</string>
     <string name="eq_preset_acoustic">Akustik</string>
+    <string name="eq_preset_bass">Bass</string>
+    <string name="eq_preset_beats">Beats</string>
     <string name="eq_preset_classic">Klasik</string>
     <string name="eq_preset_clear">Jernih</string>
+    <string name="eq_preset_deep">Deep</string>
+    <string name="eq_preset_dubstep">Dubstep</string>
     <string name="eq_preset_electronic">Elektronik</string>
     <string name="eq_preset_flat">Datar</string>
+    <string name="eq_preset_hardstyle">Hardstyle</string>
+    <string name="eq_preset_hiphop">Hip-Hop</string>
+    <string name="eq_preset_jazz">Jazz</string>
+    <string name="eq_preset_metal">Metal</string>
     <string name="eq_preset_movie">Film</string>
+    <string name="eq_preset_pop">Pop</string>
+    <string name="eq_preset_rb">R&amp;B</string>
+    <string name="eq_preset_rock">Rock</string>
     <string name="eq_preset_vocal">Penguat Vokal</string>
     <string name="geq_enable">Respon Arbitrary Equalizer</string>
     <string name="geq_nodes">Respon Magnitude</string>
@@ -121,7 +139,7 @@
     <string name="liveprog_not_found">Skrip tidak ditemukan</string>
     <string name="liveprog_no_script_selected">Skrip belum dipilih</string>
     <string name="liveprog_edit_header">Edit skrip yang dipilih</string>
-    <string name="liveprog_edit">Buka active script di editor bawaan</string>
+    <string name="liveprog_edit">Buka aktifasi script di editor bawaan</string>
     <string name="tube_enable">Pemodelan analog</string>
     <string name="tube_drive">Preamp</string>
     <string name="output_control_header">Kontrol output</string>
@@ -131,15 +149,15 @@
     <string name="stereowide_enable">Lebar soundstage</string>
     <string name="stereowide_level">Kelebaran</string>
     <string name="stereowide_level_none">Tidak ada</string>
-    <string name="stereowide_level_very_wide">Sangat luas</string>
-    <string name="stereowide_level_wide">Luas</string>
-    <string name="stereowide_level_very_narrow">Sangat kecil</string>
-    <string name="stereowide_level_narrow">Kecil</string>
+    <string name="stereowide_level_very_wide">Sangat jauh</string>
+    <string name="stereowide_level_wide">Jauh</string>
+    <string name="stereowide_level_very_narrow">Sangat dekat</string>
+    <string name="stereowide_level_narrow">Dekat</string>
     <string name="crossfeed_enable">Crossfeed</string>
     <string name="crossfeed_preset">Preset</string>
     <string name="crossfeed_preset_bs2b_weak">BS2B Lemah</string>
     <string name="crossfeed_preset_bs2b_strong">BS2B Kuat</string>
-    <string name="crossfeed_preset_out_of_head">Out of head</string>
+    <string name="crossfeed_preset_out_of_head">Keluar dari kepala</string>
     <string name="crossfeed_preset_surround1">Surround 1</string>
     <string name="crossfeed_preset_surround2">Surround 2</string>
     <string name="crossfeed_preset_realistic_surround">Surround realistis Joe0Bloggs</string>
@@ -149,7 +167,7 @@
     <string name="onboarding_next">Lanjut</string>
     <string name="onboarding_finish">Selesai</string>
     <string name="onboarding_greeting">Selamat datang di RootlessJamesDSP!</string>
-    <string name="onboarding_caption">Asisten akan membantu anda menyetel aplikasi ini.</string>
+    <string name="onboarding_caption">Asisten membantu anda menyetel aplikasi ini.</string>
     <string name="onboarding_warning">Saat ini, aplikasi masih dalam tahap pengembangan. Perlu diketahui aplikasi mungkin tidak berjalan dengan baik karena menggunakan API Android yang dirancang untuk tidak digunakan oleh pihak ketiga.</string>
     <string name="onboarding_fix_permissions_title">Tindakan pengguna diperlukan</string>
     <string name="onboarding_fix_permissions">Izin yang dibutuhkan aplikasi dicabut oleh sistem atau anda.\nUntuk memastikan aplikasi berjalan dengan baik, anda harus memberi izin kembali.\n\nUlangi Setup Wizard untuk memberi izin yang dibutuhkan.</string>
@@ -180,7 +198,7 @@
     <string name="onboarding_adb_shizuku_open_instruction">Jalankan \'Shizuku\' dan cari \'<b>Start via Wireless Debugging</b>\'. Tap tombol \'Pairing\' dan ikuti instruksi pada aplikasi. Setelah menyandingkan Shizuku dengan perangkat anda, jalankan Shizuku dengan menekan tombol \'Start\'. Jika anda mengalami masalah saat mengatur Shizuku, ikuti tutorial pada aplikasi tersebut.</string>
     <string name="onboarding_adb_shizuku_open_button">Jalankan Shizuku</string>
     <string name="onboarding_adb_shizuku_open_button_done">Sudah aktif</string>
-    <string name="onboarding_adb_shizuku_grant_instruction">Tap tombol dan beri izin untuk mengakses Shizuku.</string>
+    <string name="onboarding_adb_shizuku_grant_instruction">Tekan tombol dan beri izin untuk mengakses Shizuku.</string>
     <string name="onboarding_adb_shizuku_grant_button">Beri akses</string>
     <string name="onboarding_adb_shizuku_not_installed">Shizuku belum terpasang, silahkan unduh dan pasang dari Play Store terlebih dahulu.</string>
     <string name="onboarding_adb_shizuku_not_installed_title">Shizuku belum terpasang</string>
@@ -198,13 +216,13 @@
     <string name="onboarding_adb_manual_step2">Buka https://app.webadb.com di browser komputer anda (bekerja dengan baik di Chrome) dan sambungkan perangkat dengan komputer.</string>
     <string name="onboarding_adb_manual_step3">Tambahkan dan sambungkan perangkat USB ke WebADB.</string>
     <string name="onboarding_adb_manual_step4">Pergi ke \'Interactive Shell\' dan jalankan perintah berikut: \'pm grant %s android.permission.DUMP\'</string>
-    <string name="onboarding_adb_manual_step5">Tap \'Berikutnya\' untuk melanjutkan.</string>
+    <string name="onboarding_adb_manual_step5">Tekan \'Berikutnya\' untuk melanjutkan.</string>
     <string name="onboarding_adb_manual_step5b">(Opsional) Anda bisa melewati permintaan izin penangkapan audio dengan menjalankan perintah berikut: \'appops set %s PROJECT_MEDIA allow\'</string>
     <string name="onboarding_adb_manual_step5c">(Opsional) Sebagai tambahan langkah sebelumnya, anda dapat mengaktifkan fitur auto-start dengan mengetik perintah berikut: appops set %s SYSTEM_ALERT_WINDOW allow\'</string>
     <string name="onboarding_adb_manual_step1_button">Buka pengaturan pengembang</string>
     <string name="onboarding_perm_title">Izin lainnya</string>
     <string name="onboarding_perm_caption">Izin tambahan dibutuhkan aplikasi ini. Lihat izin dan tekan \'Next\' untuk memberi izin.</string>
-    <string name="onboarding_perm_microphone_title">Izin mereka audio</string>
+    <string name="onboarding_perm_microphone_title">Izin record audio</string>
     <string name="onboarding_perm_microphone_caption">Diperlukan untuk merekam audio internal. Mikrofon Hardware tidak aktif.</string>
     <string name="onboarding_perm_notification_title">Izin notifikasi</string>
     <string name="onboarding_perm_notification_caption">Diperlukan untuk menerima status penting dan status pemrosesan JamesDSP.</string>
@@ -230,7 +248,7 @@
     <string name="limit_tested_devices">Perubahan pada subsistem audio oleh pengembang perangkat anda dapat merusak aplikasi ini karena tidak ada dokumentasi API yang jelas.\nAplikasi sudah diuji pada perangkat berikut:\n• Samsung S20+ (Android 12)\n• AOSP emulator (Android 10–13)\n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
     <string name="title_activity_settings">Pengaturan</string>
-    <string name="session_exclude_restricted">Kecualikan aplikasi tidak didukung</string>
+    <string name="session_exclude_restricted">Pengecualikan aplikasi yang tidak didukung</string>
     <string name="session_exclude_restricted_off">Aplikasi meblokir audio tetap bisu (perilaku bawaan android)</string>
     <string name="session_exclude_restricted_on">Aplikasi memblokir audio dikecualikan dan tidak diproses (disarankan)</string>
     <string name="session_detection_header">Pendeteksi sesi audio</string>
@@ -239,6 +257,7 @@
     <string name="session_continuous_polling_on">Terus hitung sesi audio</string>
     <string name="session_continuous_polling_rate">Interval polling (ms)</string>
     <string name="session_detection_method">Metode deteksi sesi pilihan</string>
+    <string name="session_detection_method_audiopolicyservice">AudioPolicyService dump</string>
     <string name="session_detection_method_audioservice">AudioService dump (disarankan)</string>
     <string name="session_app_problem_ignore">Abaikan masalah kompatibilitas</string>
     <string name="session_loss_ignore">Abaikan kontrol sesi terputus</string>
@@ -262,14 +281,18 @@
     <string name="audio_format_summary_root">Mode Legacy, pemrosesan yang ditingkatkan</string>
     <string name="audio_format_summary_plugin">Optimasi Convolver</string>
     <string name="audio_format_encoding">Pengkodean Audio</string>
+    <string name="audio_format_encoding_int16">16-bit integer PCM</string>
+    <string name="audio_format_encoding_float">32-bit float PCM</string>
     <string name="audio_format_buffer_size">Ukuran buffer</string>
     <string name="audio_format_buffer_size_unit">&#xa0;sampel</string>
     <string name="audio_format_buffer_size_warning_low_value">Peringatan: Ukuran Buffer kecil dapat menyebabkan suara pecah!</string>
     <string name="audio_format_optimization_header">Optimasi modul Convolver</string>
+    <string name="audio_format_optimization_refresh">Menyegarkan perbandingan data</string>
+    <string name="audio_format_optimization_benchmark">Menggunakan benchmarks untuk mengoptimalkan performa</string>
     <string name="audio_format_optimization_benchmark_summary">Meningkatkan kinerja efek yang menggunakan modul convolver</string>
     <string name="audio_format_optimization_benchmark_ongoing">Pengujian kinerja sedang berlangsung…</string>
     <string name="profiles_section_header">Profil perangkat</string>
-    <string name="profiles_summary">Profil per perangkat, otomatis berganti</string>
+    <string name="profiles_summary">Profil per perangkat, otomatis Diganti</string>
     <string name="profiles_enable">Profil per perangkat</string>
     <string name="profiles_enable_summary_on">Profil per perangkat aktif</string>
     <string name="profiles_enable_summary_off">Profil per perangkat nonaktif</string>
@@ -289,7 +312,7 @@
     <string name="autostart_service_at_boot_on">Jalankan service setelah booting</string>
     <string name="powersave">Hemat daya</string>
     <string name="powersave_suspend">Tangguhkan pipeline audio saat tidak digunakan</string>
-    <string name="powersave_suspend_off">Tetap proses meskiupun tidak ada audio diputar</string>
+    <string name="powersave_suspend_off">Tetap memproses meskiupun tidak ada audio diputar</string>
     <string name="powersave_suspend_on">Hantikan pipeline audio untuk menghemat daya</string>
     <string name="troubleshooting">Pemecahan Masalah</string>
     <string name="troubleshooting_summary">Opsi lanjutan, dokumentasi, diagnostik</string>
@@ -302,7 +325,7 @@
     <string name="troubleshooting_view_limitations_summary">Tampilan detail dari keterbatasan aplikasi</string>
     <string name="troubleshooting_notification_access">Izinkan akses notifikasi untuk deteksi sesi yang lebih baik</string>
     <string name="troubleshooting_notification_access_summary">Memungkinkan deteksi sesi audio yang lebih andal</string>
-    <string name="troubleshooting_repair_assets">Pulihkan bundled IRS, DDC, dan skrip</string>
+    <string name="troubleshooting_repair_assets">Pulihkan bundel IRS, DDC, dan skrip</string>
     <string name="troubleshooting_repair_assets_summary">Ekstrak preloaded aset jika anda kehilangan</string>
     <string name="troubleshooting_repair_assets_success">Bundled aset sudah dikembalikan</string>
     <string name="misc_settings">Lainnya</string>
@@ -314,6 +337,7 @@
     <string name="misc_permission_header">Izin opsional</string>
     <string name="assets">Aset</string>
     <string name="network_services">Layanan jaringan</string>
+    <string name="network_autoeq_api_url">AutoEQ API backend URL</string>
     <string name="network_invalid_url">Format URL tidak valid</string>
     <string name="network_autoeq_conntest_running">Memeriksa koneksi server…</string>
     <string name="network_autoeq_conntest_done">Tes koneksi berhasil</string>
@@ -338,7 +362,7 @@
     <string name="credits_project_translate">Kontribusi penerjemahan</string>
     <string name="credits_project_translate_summary">Bantu kami menerjemahkan aplikasi ke bahasa anda</string>
     <string name="credits_version">Versi aplikasi</string>
-    <string name="credits_build_info">Informasi build</string>
+    <string name="credits_build_info">Info Build</string>
     <string name="appearance_section_header">Tampilan</string>
     <string name="appearance_summary">Tema aplikasi, mode gelap pure black</string>
     <string name="appearance_title">Tema</string>
@@ -346,7 +370,7 @@
     <string name="appearance_theme_mode_default">Ikuti tema sistem</string>
     <string name="appearance_theme_mode_light">Mati</string>
     <string name="appearance_theme_mode_dark">Hidup</string>
-    <string name="appearance_pure_black_mode">Mode gelap pure black</string>
+    <string name="appearance_pure_black_mode">Mode gelap gulita</string>
     <string name="appearance_app_theme">Tema aplikasi</string>
     <string name="appearance_navigation_title">Navigasi</string>
     <string name="appearance_nav_hide">Sembunyikan bilah navigasi saat bergulir</string>
@@ -366,8 +390,12 @@
     <string name="theme_default">Standar</string>
     <string name="theme_monet">Dinamis</string>
     <string name="theme_greenapple">Apel Hijau</string>
+    <string name="theme_strawberrydaiquiri">Strawberry Daiquiri</string>
     <string name="theme_honey">Madu</string>
+    <string name="theme_tealturquoise">Teal &amp; Turquoise</string>
     <string name="theme_yinyang">Yin &amp; Yang</string>
+    <string name="theme_yotsuba">Yotsuba</string>
+    <string name="theme_tidalwave">Gelombang pasang</string>
     <!-- File library preference -->
     <string name="action_import">Impor</string>
     <string name="filelibrary_hint_tap_and_hold">Tap dan tahan item apa saja untuk opsi lanjutan</string>
@@ -376,7 +404,8 @@
     <string name="filelibrary_context_overwrite">Timpa</string>
     <string name="filelibrary_context_rename">Ganti Nama</string>
     <string name="filelibrary_context_share">Bagikan…</string>
-    <string name="filelibrary_context_duplicate">Duplikasi</string>
+    <string name="filelibrary_context_resample">Resample Offline</string>
+    <string name="filelibrary_context_duplicate">Duplikat</string>
     <string name="filelibrary_context_delete">Hapus</string>
     <string name="filelibrary_context_new_preset">Baru</string>
     <string name="filelibrary_context_new_preset_long">Preset Baru</string>
@@ -387,7 +416,7 @@
     <string name="filelibrary_file_too_new">File yang dibuat dengan versi terbaru tidak dapat dimuat, perbarui aplikasi untuk melanjutkan.</string>
     <string name="filelibrary_access_fail">Gagal mengakses direktori</string>
     <string name="filelibrary_is_backup_not_preset">File yang dipilih adalah berkas pencadangan, bukan preset. Lihat pengaturan cadangan jika anda ingin memulihkannya.</string>
-    <string name="filelibrary_no_file_selected">Tidak ada file dipilih</string>
+    <string name="filelibrary_no_file_selected">Tidak ada file yang dipilih</string>
     <string name="filelibrary_new_file_name">Nama file baru</string>
     <string name="filelibrary_file_exists">File sudah ada</string>
     <string name="filelibrary_resample_complete">Resampled ke %1$dHz</string>
@@ -412,7 +441,9 @@
     <string name="gep_add_node">Tambah</string>
     <string name="geq_preview">Pratinjau</string>
     <string name="geq_preview_collapsed">Pratinjau (tap untuk memperluas)</string>
-    <string name="geq_reset_confirm_title">Anda yakin?</string>
+    <string name="geq_edit_hint">Nada GraphicEQ</string>
+    <string name="geq_reset">Setel ulang</string>
+    <string name="geq_reset_confirm_title">Apakah Anda yakin?</string>
     <string name="geq_reset_confirm">Anda ingin me-reset pengaturan GraphicEQ?</string>
     <string name="geq_node_editor">Pengedit node</string>
     <string name="geq_node_list">Daftar node</string>
@@ -429,6 +460,7 @@
     <string name="geq_discard_changes">Nilai tidak valid atau kosong. Perubahan anda tidak disimpan.\nApa anda ingin membuang perubahan dan keluar?</string>
     <string name="geq_frequeny_range">Nilai antara 1Hz dan 24000Hz</string>
     <string name="geq_gain_range">Nilai antara -32dB dan 32dB</string>
+    <string name="geq_gain">Gain</string>
     <string name="geq_frequency">Frekuensi</string>
     <!-- AutoEQ GraphicEQ selector -->
     <string name="geq_api_network_error">Gagal terhubung ke server. %1$s</string>
@@ -438,7 +470,7 @@
     <string name="autoeq_partial_results_warning">Menampilkan hasil pertama dari %1$d hasil. Sesuaikan pencarian anda untuk mencari hasil yang lebih sesuai.</string>
     <string name="autoeq_no_results">Hasil tidak ditemukan</string>
     <!-- Customizable liveprog script parameters -->
-    <string name="title_activity_liveprog_params">Parameter dapat diubah</string>
+    <string name="title_activity_liveprog_params">Skrip Parameter dapat diubah</string>
     <string name="action_restore_defaults">Kembalikan ke awal</string>
     <!-- Liveprog script editor -->
     <string name="title_activity_liveprog_editor">Editor skrip</string>
@@ -484,7 +516,7 @@
     <string name="load_fail_card_title">Gagal memuat libjamesdsp.so</string>
     <string name="load_fail_card">Pasang modul magisk JamesDSP dan mulai ulang perangkat Android anda untuk menggunakan aplikasi. Mungkin anda juga perlu memasang ulang aplikasi setelah memulai ulang.</string>
     <string name="load_fail_rootless_card_title">Mencari alternatif rootless?</string>
-    <string name="load_fail_rootless_card">Jenis JamesDSP ini dirancang untuk perangkat yang sudah di modifikasi atau di-root. Alternatif untuk perangkat non-root yang punya beberapa keterbatasan juga tersedia. Tap untuk melihat detail.</string>
+    <string name="load_fail_rootless_card">Jenis JamesDSP ini dirancang untuk perangkat yang sudah di modifikasi atau di-root. Alternatif untuk perangkat non-root yang punya beberapa keterbatasan juga tersedia. Tekan untuk melihat detail.</string>
     <string name="load_fail_arch_card_title">Modul sudah terpasang?</string>
     <string name="load_fail_arch_card">Jika anda sudah memasang modul magisk, sepertinya anda memilih pengaturan yang salah saat pemasangan. Ulangi pemasangan dan coba aktifkan kompatibilitas Huawei (Walaupun perangkat anda bukan Huawei).</string>
     <!-- Enhanced processing -->
@@ -503,7 +535,7 @@
     <string name="slider_dialog_format_error">Format angka salah, perubahan tidak diterapkan.</string>
     <string name="slider_dialog_step_error">Nilai harus kelipatan %1$d. Perubahan tidak diterapkan.</string>
     <!-- Revert confirmation -->
-    <string name="revert_confirmation_title">Anda yakin?</string>
+    <string name="revert_confirmation_title">Apakah Anda yakin?</string>
     <string name="revert_confirmation">Anda ingin menyetel ulang preset JamesDSP saat ini ke nilai awal?</string>
     <!-- File intent handler -->
     <string name="intent_import_preset">Impor preset</string>
@@ -566,7 +598,7 @@
     <string name="device_profile_manage_copy_select">Pilih profil untuk disalin</string>
     <string name="device_profile_manage_paste_select">Pilih profil untuk ditimpa</string>
     <!-- Root version check -->
-    <string name="version_mismatch_root">Package magisk JamesDSP perlu diperbaharui</string>
+    <string name="version_mismatch_root">Paket magisk JamesDSP perlu diperbarui</string>
     <string name="version_mismatch_root_description">Paket JamesDSP Magisk yang terinstal di perangkat Anda sudah usang dan tidak lagi didukung oleh aplikasi ini.\n\nMohon ambil paket ZIP JamesDSP Magisk terbaru dan pasang melalui Magisk.\nPerlu diingat bahwa paket Magisk ini mungkin akan menggantikan aplikasi ini dengan aplikasi resmi JamesDSP.\n\nApakah Anda ingin mengunjungi situs web unduhan untuk paket Magisk sekarang?</string>
     <string name="version_mismatch_root_toast">Gagal memulai. Versi package magisk JamesDSP yang terpasang sudah terlalu lama dan tidak didukung oleh aplikasi ini lagi.</string>
 </resources>
