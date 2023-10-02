@@ -21,7 +21,11 @@
     <string name="notification_processing">Actieve apps: %1$s</string>
     <string name="notification_idle">Audio-verwerking inactief</string>
     <string name="notification_processing_title">Audio-verwerking actief</string>
+    <string name="notification_processing_disabled_title">Audio-verwerking uitgeschakeld</string>
+    <string name="notification_processing_legacy">Druk om JamesDSP manager te openen</string>
     <!-- Permission request notifications -->
+    <string name="notification_request_permission_title">Gebruikersactie is vereist om JamesDSP te starten</string>
+    <string name="notification_request_permission">Tik om opname toestemming te verlenen en JamesDSP\'s audiobewerking in te schakelen</string>
     <!-- Session control loss notifications -->
     <!-- App compatibility issue notifications -->
     <!-- Capture permission revoked notifications -->
