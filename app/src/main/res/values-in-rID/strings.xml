@@ -4,7 +4,7 @@
     <string name="action_settings">Pengaturan</string>
     <string name="action_presets">Prasetel</string>
     <string name="action_revert">Setel ulang ke bawaan</string>
-    <string name="action_blocked_apps">Aplikasi yang dikecualikan</string>
+    <string name="action_blocked_apps">Pengecualian aplikasi</string>
     <!-- Notification channels -->
     <string name="notification_group_service">Layanan</string>
     <string name="notification_channel_service">Layanan Notifikasi</string>
@@ -22,7 +22,7 @@
     <string name="notification_idle">Pemroses audio menganggur</string>
     <string name="notification_processing_title">Pemroses audio aktif</string>
     <string name="notification_processing_disabled_title">Pemroses audio nonaktif</string>
-    <string name="notification_processing_legacy">Tap untuk membuka JamesDSP manager</string>
+    <string name="notification_processing_legacy">Tekan untuk membuka JamesDSP manager</string>
     <!-- Permission request notifications -->
     <string name="notification_request_permission_title">Diperlukan tindakan pengguna untuk menjalankan JamesDSP</string>
     <string name="notification_request_permission">Tap untuk memberi izin pengambilan dan mengaktifkan JamesDSP</string>
@@ -55,15 +55,30 @@
     <string name="value_not_set">Belum diatur</string>
     <string name="undo">Urungkan</string>
     <string name="redo">Ulangi</string>
-    <string name="no_activity_found">Tidak ada Activity untuk menangani aksi</string>
+    <string name="no_activity_found">Tidak ada Aktivitas untuk menangani aksi</string>
     <string name="permission_allowed">Diizinkan</string>
     <string name="permission_not_allowed">Tidak diizinkan</string>
+    <string name="preparing">Mempersiapkan…</string>
     <string name="error_projection_api_missing">Produsen perangkat anda tidak mengaktifkan API perekaman audio internal. Aplikasi ini tidak bisa berfungsi tanpa API tersebut.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Alihkan pemrosesan audio</string>
-    <string name="compander_enable">Kompresor_diaktifkan</string>
-    <string name="compander_granularity">Kompreser_granularitas</string>
+    <string name="compander_enable">Rentang Compander dinamis</string>
+    <string name="compander_timeconstant">Waktu Konstan</string>
+    <string name="compander_granularity">Granularitas</string>
+    <string name="compander_granularity_very_low">Sangat rendah</string>
+    <string name="compander_granularity_low">Rendah</string>
+    <string name="compander_granularity_medium">Sedang</string>
+    <string name="compander_granularity_high">Tinggi</string>
+    <string name="compander_granularity_extreme">Sangat Tinggi</string>
+    <string name="compander_tftransforms">Waktu Transformasi frekuensi</string>
+    <string name="compander_tftransforms_stft">Uniform (Fourier waktu singkat)</string>
+    <string name="compander_tftransforms_continuous_wavelet">Multiresolution (meneruskan Wavelet, dual frame tidak lengkap)</string>
+    <string name="compander_tftransforms_undersampling">Pseudo multiresolution (Bingkai pengambilan sampel yang terlalu rendah)</string>
+    <string name="compander_tftransforms_time_domain">Pseudo multiresolution (Waktu Domain, latensi nol)</string>
+    <string name="eq_enable">Multimodal equalizer</string>
     <string name="eq_filter_type">Jenis Filter</string>
+    <string name="eq_interpolator">Interpolasi</string>
+    <string name="eq_filter_type_fir_minimum">FIR Minimum phase</string>
     <string name="eq_preset_acoustic">Akustik</string>
     <string name="eq_preset_classic">Klasik</string>
     <string name="eq_preset_clear">Jernih</string>
@@ -86,12 +101,18 @@
     <string name="reverb_preset_small_room2">Ruangan kecil 2</string>
     <string name="reverb_preset_medium_room1">Ruangan sedang</string>
     <string name="reverb_preset_large_room1">Ruangan besar</string>
+    <string name="reverb_preset_plate_high">Tempat tinggi</string>
+    <string name="reverb_preset_plate_low">Tempat rendah</string>
+    <string name="reverb_preset_long_reverb1">Panjang reverb 1</string>
+    <string name="reverb_preset_long_reverb2">Panjang reverb 2</string>
+    <string name="convolver_enable">Convolver</string>
     <string name="convolver_impulse">Respon impulse</string>
     <string name="convolver_advanced_editing">Pengeditan wavefrom lanjutan</string>
     <string name="convolver_convolution_mode">Optimasi respon impulse</string>
     <string name="convolver_convolution_mode_original">Asli</string>
     <string name="convolver_convolution_mode_shrink">Perkecil</string>
     <string name="convolver_convolution_mode_minimum_phase_shrink">Phase transform minimum dan perkecil</string>
+    <string name="ddc_enable">ViPER-DDC</string>
     <string name="ddc_file">File DDC</string>
     <string name="liveprog_enable">Pemograman langsung DSP</string>
     <string name="liveprog_file">Skrip liveprog</string>
@@ -102,14 +123,19 @@
     <string name="liveprog_edit_header">Edit skrip yang dipilih</string>
     <string name="liveprog_edit">Buka active script di editor bawaan</string>
     <string name="tube_enable">Pemodelan analog</string>
+    <string name="tube_drive">Preamp</string>
     <string name="output_control_header">Kontrol output</string>
     <string name="output_limiter_threshold">Batas limiter</string>
+    <string name="output_limiter_release">Limit melepaskan</string>
+    <string name="output_control_postgain">Pos gain</string>
+    <string name="stereowide_enable">Lebar soundstage</string>
     <string name="stereowide_level">Kelebaran</string>
     <string name="stereowide_level_none">Tidak ada</string>
     <string name="stereowide_level_very_wide">Sangat luas</string>
     <string name="stereowide_level_wide">Luas</string>
     <string name="stereowide_level_very_narrow">Sangat kecil</string>
     <string name="stereowide_level_narrow">Kecil</string>
+    <string name="crossfeed_enable">Crossfeed</string>
     <string name="crossfeed_preset">Preset</string>
     <string name="crossfeed_preset_bs2b_weak">BS2B Lemah</string>
     <string name="crossfeed_preset_bs2b_strong">BS2B Kuat</string>
@@ -118,6 +144,7 @@
     <string name="crossfeed_preset_surround2">Surround 2</string>
     <string name="crossfeed_preset_realistic_surround">Surround realistis Joe0Bloggs</string>
     <!-- Onboarding -->
+    <string name="title_activity_onboarding">Onboarding</string>
     <string name="onboarding_back">Kembali</string>
     <string name="onboarding_next">Lanjut</string>
     <string name="onboarding_finish">Selesai</string>
@@ -233,10 +260,14 @@
     <string name="audio_format_media_apps_need_restart">Anda harus memuat ulang semua aplikasi media setelah mengubah pengaturan ini untuk melanjutkan.</string>
     <string name="audio_format_summary">Pengodean audio pilihan, ukuran buffer</string>
     <string name="audio_format_summary_root">Mode Legacy, pemrosesan yang ditingkatkan</string>
+    <string name="audio_format_summary_plugin">Optimasi Convolver</string>
     <string name="audio_format_encoding">Pengkodean Audio</string>
     <string name="audio_format_buffer_size">Ukuran buffer</string>
     <string name="audio_format_buffer_size_unit">&#xa0;sampel</string>
     <string name="audio_format_buffer_size_warning_low_value">Peringatan: Ukuran Buffer kecil dapat menyebabkan suara pecah!</string>
+    <string name="audio_format_optimization_header">Optimasi modul Convolver</string>
+    <string name="audio_format_optimization_benchmark_summary">Meningkatkan kinerja efek yang menggunakan modul convolver</string>
+    <string name="audio_format_optimization_benchmark_ongoing">Pengujian kinerja sedang berlangsung…</string>
     <string name="profiles_section_header">Profil perangkat</string>
     <string name="profiles_summary">Profil per perangkat, otomatis berganti</string>
     <string name="profiles_enable">Profil per perangkat</string>
@@ -432,7 +463,7 @@
     <string name="editor_cannot_redo">Tidak ada yang diulang.</string>
     <string name="editor_text_size">Ukuran teks</string>
     <!-- Blocklist -->
-    <string name="title_activity_blocklist">Aplikasi yang dikecualikan</string>
+    <string name="title_activity_blocklist">Pengecualian aplikasi</string>
     <string name="blocklist_add_exclusion_alt">Tambahkan aplikasi ke pengecualian</string>
     <string name="blocklist_delete_title">Hapus aplikasi dipilih?</string>
     <string name="blocklist_delete">Apa anda ingin menghapus aplikasi dari pengecualian?</string>
@@ -536,5 +567,6 @@
     <string name="device_profile_manage_paste_select">Pilih profil untuk ditimpa</string>
     <!-- Root version check -->
     <string name="version_mismatch_root">Package magisk JamesDSP perlu diperbaharui</string>
+    <string name="version_mismatch_root_description">Paket JamesDSP Magisk yang terinstal di perangkat Anda sudah usang dan tidak lagi didukung oleh aplikasi ini.\n\nMohon ambil paket ZIP JamesDSP Magisk terbaru dan pasang melalui Magisk.\nPerlu diingat bahwa paket Magisk ini mungkin akan menggantikan aplikasi ini dengan aplikasi resmi JamesDSP.\n\nApakah Anda ingin mengunjungi situs web unduhan untuk paket Magisk sekarang?</string>
     <string name="version_mismatch_root_toast">Gagal memulai. Versi package magisk JamesDSP yang terpasang sudah terlalu lama dan tidak didukung oleh aplikasi ini lagi.</string>
 </resources>
