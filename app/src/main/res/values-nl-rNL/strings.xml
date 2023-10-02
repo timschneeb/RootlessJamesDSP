@@ -1,8 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
+    <string name="action_settings">Instellingen</string>
+    <string name="action_presets">Voor instellingen</string>
+    <string name="action_revert">Terugzetten naar standaardinstellingen</string>
+    <string name="action_blocked_apps">Uitgesloten apps</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">Service</string>
+    <string name="notification_channel_service">Service notificatie</string>
+    <string name="notification_channel_session_loss_alert">Sessie verlies alert</string>
+    <string name="notification_channel_permission_prompt">Verzoek om toestemming</string>
+    <string name="notification_channel_app_compat_alert">Incompatibele app waarschuwing</string>
+    <string name="notification_group_backup">Backup en herstellen</string>
+    <string name="notification_channel_backup_progress">In uitvoering</string>
+    <string name="notification_channel_backup_complete">Voltooid</string>
     <!-- Service notifications -->
+    <string name="action_retry">Opnieuw proberen</string>
+    <string name="action_fix">Probleem oplossen</string>
+    <string name="action_stop">Stop</string>
+    <string name="notification_processing">Actieve apps: %1$s</string>
+    <string name="notification_idle">Audio-verwerking inactief</string>
+    <string name="notification_processing_title">Audio-verwerking actief</string>
     <!-- Permission request notifications -->
     <!-- Session control loss notifications -->
     <!-- App compatibility issue notifications -->
@@ -13,6 +31,8 @@
     <!-- Rootless flavor -->
     <!-- Root flavor -->
     <!-- Settings -->
+    <string name="title_activity_settings">Instellingen</string>
+    <string name="backup_settings">Backup en herstellen</string>
     <!-- Theme names -->
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
@@ -21,7 +41,9 @@
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
     <!-- Blocklist -->
+    <string name="title_activity_blocklist">Uitgesloten apps</string>
     <!-- Compatibility issue activity -->
+    <string name="app_compat_retry">Opnieuw proberen</string>
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
     <!-- App list -->
