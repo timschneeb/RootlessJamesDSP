@@ -169,6 +169,35 @@
     <string name="audio_format_processing_header">Options du traitement audio</string>
     <string name="audio_format_processing_legacy">Mode hérité</string>
     <string name="audio_format_processing_legacy_on">Attacher globalement à la session 0 (obsolète)</string>
+    <string name="audio_format_processing_legacy_off">Attacher chaque application individuellement</string>
+    <string name="audio_format_enhanced_processing">Traitement amélioré</string>
+    <string name="audio_format_enhanced_processing_on">Contrôle par application et support amélioré pour les applications activé</string>
+    <string name="audio_format_enhanced_processing_off">Traitement audio désactivé</string>
+    <string name="audio_format_enhanced_processing_info_title">Qu\'est-ce que le traitement amélioré ?</string>
+    <string name="audio_format_enhanced_processing_info">Appuyez pour afficher la documentation</string>
+    <string name="audio_format_enhanced_processing_info_content">Lorsque le traitement amélioré est activé, vous pouvez exclure sélectivement certaines applications d\'être traitées par JamesDSP. Utilisez le menu à 3 points en bas à droite et sélectionnez « Applications exclues » pour accéder à cette fonctionnalité.\n\nAlors que le mode hérité est désactivé, JamesDSP s\'appuie sur les applications multimédia pour envoyer une diffusion système lorsqu\'ils démarrent la lecture. Ceci est un avantage par rapport au mode hérité car chaque application obtient son propre moteur d\'effet JamesDSP qui lui est assigné, ce qui permet un contrôle plus précis. Sinon, lorsque le mode hérité est activé, toutes les applications partageraient un seul moteur de traitement, ce qui est obsolète et ne devrait plus être utilisé.\n\nMalheureusement, toutes les applications multimédia ne le font pas correctement et ne fonctionneraient donc pas correctement avec le mode hérité désactivé. Pour résoudre ce problème, vous pouvez utilisé le traitement amélioré. Au lieu de s\'appuyer sur les émissions système à propos des sessions sur les nouveaux médias, JamesDSP analysera de façon automatique les sessions de médias par lui-même et permettra un support adéquat pour les applications multimédia non coopératives.</string>
+    <string name="audio_format_media_apps_need_restart">Vous devez redémarrer toutes les applications multimédia actives après avoir modifié ce paramètre pour reprendre le traitement audio.</string>
+    <string name="audio_format_summary">Encodage audio préféré, taille du tampon</string>
+    <string name="audio_format_summary_root">Mode hérité, traitement amélioré</string>
+    <string name="audio_format_summary_plugin">Optimisations de convolver</string>
+    <string name="audio_format_encoding">Encodage Audio</string>
+    <string name="audio_format_encoding_int16">PCM 16 bits entier</string>
+    <string name="audio_format_encoding_float">PCM 32 bits flottant</string>
+    <string name="audio_format_buffer_size">Taille du tampon</string>
+    <string name="audio_format_buffer_size_unit">&#xa0;échantillons</string>
+    <string name="audio_format_buffer_size_warning_low_value">Attention : Des tailles de tampon faibles peuvent causer des problèmes audio tels que le clipping!</string>
+    <string name="audio_format_optimization_header">Optimisations du module Convolver</string>
+    <string name="audio_format_optimization_refresh">Actualiser les données de benchmarking</string>
+    <string name="audio_format_optimization_benchmark">Utiliser des benchmarks pour optimiser les performances</string>
+    <string name="audio_format_optimization_benchmark_summary">Augmente les performances des effets qui utilisent les modules convolver</string>
+    <string name="audio_format_optimization_benchmark_ongoing">Benchmark en cours…</string>
+    <string name="profiles_section_header">Profils</string>
+    <string name="profiles_summary">Profils par appareil, commutation automatique</string>
+    <string name="profiles_enable">Profils par appareil</string>
+    <string name="profiles_enable_summary_on">Profils par appareil activé</string>
+    <string name="profiles_enable_summary_off">Profils par appareil désactivés</string>
+    <string name="profiles_info_title">Qu\'est-ce que les profils par appareil ?</string>
+    <string name="profiles_info">Appuyez pour afficher la documentation</string>
     <string name="backup_settings">Sauvegarde et Restauration</string>
     <!-- Theme names -->
     <!-- File library preference -->
