@@ -7,6 +7,10 @@
     <string name="action_blocked_apps">Applications exclues</string>
     <!-- Notification channels -->
     <string name="notification_group_service">Service</string>
+    <string name="notification_channel_service">Notification de service</string>
+    <string name="notification_channel_session_loss_alert">Alerte : session perdue</string>
+    <string name="notification_channel_permission_prompt">Demande d\'autorisation</string>
+    <string name="notification_channel_app_compat_alert">Alerte d\'application incompatible</string>
     <!-- Service notifications -->
     <string name="action_retry">Réessayer</string>
     <string name="action_stop">Stop</string>
