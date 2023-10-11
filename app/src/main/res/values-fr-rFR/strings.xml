@@ -62,6 +62,7 @@
     <string name="error_projection_api_missing">Le fabricant de votre appareil a désactivé les API d\'enregistrement audio interne. Cette application ne peut pas fonctionner sans eux.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Activer/Désactiver le traitement audio</string>
+    <string name="compander_enable">Compresseur de gamme dynamique</string>
     <string name="compander_timeconstant">Constante de temps</string>
     <string name="compander_granularity">Granularité</string>
     <string name="compander_granularity_very_low">Très faible</string>
@@ -96,6 +97,51 @@
     <string name="eq_preset_flat">Plat</string>
     <string name="eq_preset_hardstyle">Hardstyle</string>
     <string name="eq_preset_hiphop">Hip-Hop</string>
+    <string name="eq_preset_jazz">Jazz</string>
+    <string name="eq_preset_metal">Métal</string>
+    <string name="eq_preset_movie">Film</string>
+    <string name="eq_preset_pop">Pop</string>
+    <string name="eq_preset_rb">R&amp;B</string>
+    <string name="eq_preset_rock">Rock</string>
+    <string name="eq_preset_vocal">Amplificateur de voix</string>
+    <string name="geq_enable">Égaliseur à réponse arbitraire</string>
+    <string name="geq_nodes">Réponse de Magnitude</string>
+    <string name="bass_enable">Amplification dynamique des basses</string>
+    <string name="bass_max_gain">Gain maximal</string>
+    <string name="reverb_enable">Effet de salle virtuelle</string>
+    <string name="reverb_room_type">Type de pièce</string>
+    <string name="reverb_preset_default">Défaut</string>
+    <string name="reverb_preset_small_hall1">Petit hall 1</string>
+    <string name="reverb_preset_small_hall2">Petit hall 2</string>
+    <string name="reverb_preset_medium_hall2">Hall moyen</string>
+    <string name="reverb_preset_large_hall1">Hall large</string>
+    <string name="reverb_preset_small_room1">Petite salle 1</string>
+    <string name="reverb_preset_small_room2">Petite salle 2</string>
+    <string name="reverb_preset_medium_room1">Salle moyenne</string>
+    <string name="reverb_preset_large_room1">Grande salle</string>
+    <string name="reverb_preset_plate_high">Plaque haute</string>
+    <string name="reverb_preset_plate_low">Plaque basse</string>
+    <string name="reverb_preset_long_reverb1">Réverbe longue 1</string>
+    <string name="reverb_preset_long_reverb2">Réverbe longue 2</string>
+    <string name="convolver_enable">Convolver</string>
+    <string name="convolver_impulse">Réponse impulsive</string>
+    <string name="convolver_advanced_editing">Édition avancée de la forme d\'onde</string>
+    <string name="convolver_convolution_mode">Optimisation de la réponse</string>
+    <string name="convolver_convolution_mode_original">Original</string>
+    <string name="convolver_convolution_mode_shrink">Réduire</string>
+    <string name="convolver_convolution_mode_minimum_phase_shrink">Transformation et rétrécissement de phase minimum</string>
+    <string name="ddc_enable">ViPER-DDC</string>
+    <string name="ddc_file">Fichier DDC</string>
+    <string name="liveprog_enable">DSP programmable en direct</string>
+    <string name="liveprog_file">Script Liveprog</string>
+    <string name="liveprog_additional_params">Paramètres additionnels du script</string>
+    <string name="liveprog_additional_params_not_supported">Le script sélectionné n\'a pas de paramètres personnalisables</string>
+    <string name="liveprog_not_found">Script introuvable</string>
+    <string name="liveprog_no_script_selected">Aucun script sélectionné</string>
+    <string name="liveprog_edit_header">Modifier le script sélectionné</string>
+    <string name="liveprog_edit">Ouvrir le script actif dans l\'éditeur intégré</string>
+    <string name="tube_enable">Modélisation analogique</string>
+    <string name="tube_drive">Pré-ampli</string>
     <string name="stereowide_enable">Soundstage wideness</string>
     <string name="stereowide_level">Largeur</string>
     <string name="stereowide_level_none">Aucun</string>
@@ -200,9 +246,11 @@
     <string name="profiles_info">Appuyez pour afficher la documentation</string>
     <string name="backup_settings">Sauvegarde et Restauration</string>
     <!-- Theme names -->
+    <string name="theme_default">Défaut</string>
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="title_activity_geq">Réponse de Magnitude</string>
     <string name="gep_add_node">Ajouter</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
