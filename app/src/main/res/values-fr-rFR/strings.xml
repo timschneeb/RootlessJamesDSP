@@ -142,6 +142,8 @@
     <string name="liveprog_edit">Ouvrir le script actif dans l\'éditeur intégré</string>
     <string name="tube_enable">Modélisation analogique</string>
     <string name="tube_drive">Pré-ampli</string>
+    <string name="output_control_header">Contrôle du gain</string>
+    <string name="output_limiter_threshold">Seuil de limite</string>
     <string name="stereowide_enable">Soundstage wideness</string>
     <string name="stereowide_level">Largeur</string>
     <string name="stereowide_level_none">Aucun</string>
