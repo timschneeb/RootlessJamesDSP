@@ -144,6 +144,8 @@
     <string name="tube_drive">Pré-ampli</string>
     <string name="output_control_header">Contrôle du gain</string>
     <string name="output_limiter_threshold">Seuil de limite</string>
+    <string name="output_limiter_release">Libération du limiteur</string>
+    <string name="output_control_postgain">Gain post-traitement</string>
     <string name="stereowide_enable">Soundstage wideness</string>
     <string name="stereowide_level">Largeur</string>
     <string name="stereowide_level_none">Aucun</string>
@@ -197,6 +199,20 @@
     <string name="onboarding_adb_shizuku_open_button">Lancer Shizuku</string>
     <string name="onboarding_adb_shizuku_open_button_done">Déjà activé</string>
     <string name="onboarding_adb_shizuku_grant_instruction">Appuyez sur le bouton et accordez à cette application l\'accès à Shizuku.</string>
+    <string name="onboarding_adb_shizuku_grant_button">Accorder l\'accès</string>
+    <string name="onboarding_adb_shizuku_not_installed">Shizuku n\'est pas encore installé. Veuillez d\'abord le télécharger et l\'installer depuis Google Play.</string>
+    <string name="onboarding_adb_shizuku_not_installed_title">Shizuku n\'est pas encore installé</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead">Veuillez démarrer le serveur Shizuku avant d\'accorder la permission. Retourner à l\'étape 2.</string>
+    <string name="onboarding_adb_shizuku_grant_fail_server_dead_title">Le serveur Shizuku n\'est pas en cours d\'exécution</string>
+    <string name="onboarding_adb_shizuku_grant_fail_version">Cette application nécessite Shizuku version 11 ou ultérieure. Veuillez mettre à jour Shizuku vers la dernière version.</string>
+    <string name="onboarding_adb_shizuku_grant_fail_version_title">Version Shizuku non prise en charge</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied_title">Permission refusée</string>
+    <string name="onboarding_adb_shizuku_grant_fail_denied">Veuillez accorder à cette application l\'accès à Shizuku. Vous devrez peut-être ouvrir le gestionnaire de permissions de Shizuku et accorder la permission manuellement si vous l\'avez précédemment refusée et que le popup ne s\'affiche plus.</string>
+    <string name="onboarding_adb_shizuku_no_dump_perm_title">Shizuku n\'a pas réussi à accorder les autorisations ADB</string>
+    <string name="onboarding_adb_shizuku_no_dump_perm">Veuillez patienter quelques secondes et réessayez. Si cela ne fonctionne toujours pas, essayez la méthode alternative.</string>
+    <string name="onboarding_adb_dump_not_granted_title">Permission non accordée</string>
+    <string name="onboarding_adb_dump_not_granted">Veuillez d’abord suivre les instructions et réessayez. L’accès ADB n’est pas encore configuré correctement.</string>
+    <string name="onboarding_adb_manual_step1">Allez dans les paramètres de développement cachés d\'Android et activez le débogage USB. Vous devez déverrouiller ces paramètres en appuyant plusieurs fois sur le numéro de build dans les paramètres du système.</string>
     <!-- Settings -->
     <string name="title_activity_settings">Paramètres</string>
     <string name="session_detection_header">Détection de session audio</string>
