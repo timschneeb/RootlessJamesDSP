@@ -240,8 +240,17 @@
     <string name="limit_unsupported_apps">Les applications bloquant la capture audio interne ne sont pas traitées (par exemple, Spotify, Google Chrome).</string>
     <string name="limit_hw_accel_title">Problèmes de lecture audio</string>
     <string name="limit_hw_accel">La lecture audio matériellement accéléré (pistes rapides) peut parfois causer des doublons audio ou tuer JamesDSP dans certaines circonstances. Veuillez ajouter le lecteur de musique affecté à la liste des applications exclues pour empêcher JamesDSP de le rediriger.</string>
+    <string name="limit_detect_delay_title">Délai de détection de session audio</string>
+    <string name="limit_detect_delay"><![CDATA[Une fois qu'une application a ouvert une nouvelle session média pour lire l'audio, vous pouvez entendre du son dupliqué ou coupé pendant une très courte période (environ <250ms).]]></string>
+    <string name="limit_latency_title">Latence augmentée</string>
+    <string name="limit_latency">Cette application peut ajouter un certain délai au flux audio. Vous pouvez ajouter des applications multimédia à la liste d\'exclusion pour empêcher la désynchronisation audio-vidéo en ne les traitant pas.</string>
+    <string name="limit_tested_devices_title">Périphériques testés</string>
+    <string name="limit_tested_devices">Les modifications apportées au sous-système audio d\'Android par le fabricant de votre appareil peuvent facilement casser cette application car elle utilise quelques API non documentées.\nIl a été testé sur ces appareils :\n• Samsung S20+ (Android 12)\n• Émulateur AOSP (Android 10–13)\n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
     <string name="title_activity_settings">Paramètres</string>
+    <string name="session_exclude_restricted">Exclure les applications non prises en charge</string>
+    <string name="session_exclude_restricted_off">Les applications qui bloquent la capture audio restent muets (comportement Android par défaut)</string>
+    <string name="session_exclude_restricted_on">Les applications bloquant la capture audio sont exclues et restent non traitées (recommandé)</string>
     <string name="session_detection_header">Détection de session audio</string>
     <string name="session_continuous_polling">Forcer le sondage continu</string>
     <string name="session_continuous_polling_off">Écouter uniquement les événements de session du système</string>
@@ -289,6 +298,21 @@
     <string name="profiles_enable_summary_off">Profils par appareil désactivés</string>
     <string name="profiles_info_title">Qu\'est-ce que les profils par appareil ?</string>
     <string name="profiles_info">Appuyez pour afficher la documentation</string>
+    <string name="profiles_info_content">Lorsque ce paramètre est activé, chaque périphérique audio est assigné à une configuration audio distincte. Cette application basculera automatiquement entre les profils de l\'appareil lorsque l\'appareil de sortie changera. \n\nChaque nouvel appareil connecté commence par un profil vide. Vous pouvez ensuite le configurer ou copier les paramètres à partir d\'un autre profil d\'appareil.\n\nNote : Les préréglages ne sont appliqués qu\'au profil actif lorsque cette fonctionnalité est activée. Les profils inactifs restent intacts.</string>
+    <string name="profiles_manage_hint">Appuyez sur le bouton \'Profil de périphérique actif\' sur l\'écran principal pour copier ou supprimer des profils.</string>
+    <string name="app_behavior">Comportement de l\'application</string>
+    <string name="exclude_app_from_recents_off">Ne pas exclure l\'application de la liste des tâches récentes</string>
+    <string name="exclude_app_from_recents_on">Exclure l\'application de la liste des tâches récentes</string>
+    <string name="autostart_prompt_at_boot">Demander l\'autorisation de capture après le démarrage</string>
+    <string name="autostart_prompt_at_boot_off">Ne pas afficher les notifications après le démarrage</string>
+    <string name="autostart_prompt_at_boot_on">Afficher les notifications après le démarrage</string>
+    <string name="autostart_service_at_boot">Lancer après le démarrage</string>
+    <string name="autostart_service_at_boot_off">Ne pas démarrer le service automatiquement après le démarrage</string>
+    <string name="autostart_service_at_boot_on">Démarrer le service automatiquement après le démarrage</string>
+    <string name="powersave">Économie d\'énergie</string>
+    <string name="powersave_suspend">Suspendre le pipeline audio en mode veille</string>
+    <string name="powersave_suspend_off">Continuer à traiter même quand aucun contenu n\'est lu</string>
+    <string name="powersave_suspend_on">Mettre en pause le pipeline audio pour économiser de l\'énergie</string>
     <string name="backup_settings">Sauvegarde et Restauration</string>
     <!-- Theme names -->
     <string name="theme_default">Défaut</string>
