@@ -354,31 +354,201 @@
     <string name="credits_app">Implémentation de l\'application &amp; sans root développée par</string>
     <string name="credits_dsp">Bibliothèque d\'algorithmes JamesDSP développée par</string>
     <string name="credits_project_page">Visitez le site web du projet sur GitHub</string>
+    <string name="credits_project_page_summary">Signaler des problèmes, vous tenir à jour sur le projet et lire le code source de celui-ci</string>
+    <string name="credits_project_play_page">Visitez RootlessJamesDSP sur Google Play</string>
+    <string name="credits_project_play_page_summary">Rechercher des nouvelles mises à jour</string>
+    <string name="credits_project_check_update">Rechercher des nouvelles mises à jour…</string>
+    <string name="credits_project_check_update_summary">Télécharger et installer les mises à jour si disponibles</string>
+    <string name="credits_project_translate">Contribuer aux traductions</string>
+    <string name="credits_project_translate_summary">Aidez-nous à traduire l\'application dans votre langue</string>
+    <string name="credits_version">Version de l’application</string>
+    <string name="credits_build_info">Date de Build</string>
+    <string name="appearance_section_header">Apparence</string>
+    <string name="appearance_summary">Thème de l\'application, mode noir pur (AMOLED)</string>
+    <string name="appearance_title">Thème</string>
+    <string name="appearance_theme_mode">Mode sombre</string>
+    <string name="appearance_theme_mode_default">Utiliser le thème du système</string>
+    <string name="appearance_theme_mode_light">Arrêt</string>
+    <string name="appearance_theme_mode_dark">Marche</string>
+    <string name="appearance_pure_black_mode">Mode noir pur (AMOLED)</string>
+    <string name="appearance_app_theme">Thème de l\'application</string>
+    <string name="appearance_navigation_title">Navigation</string>
+    <string name="appearance_nav_hide">Masquer la barre de navigation lors du défilement</string>
+    <string name="appearance_show_icons">Afficher les icônes de catégorie</string>
     <string name="backup_settings">Sauvegarde et Restauration</string>
+    <string name="backup_settings_summary">Sauvegardes automatiques &amp; manuelles</string>
+    <string name="backup_frequency">Fréquence de sauvegarde</string>
+    <string name="backup_location">Emplacement de la sauvegarde</string>
+    <string name="backup_maximum">Sauvegardes maximales</string>
+    <string name="backup_never">Jamais</string>
+    <string name="backup_12hour">Toutes les 12 heures</string>
+    <string name="backup_24hour">Quotidien</string>
+    <string name="backup_48hour">Tous les 2 jours</string>
+    <string name="backup_weekly">Hebdomadaire</string>
+    <string name="backup_select_location">Veuillez créer et sélectionner un répertoire de sauvegarde…</string>
     <!-- Theme names -->
     <string name="theme_default">Défaut</string>
+    <string name="theme_monet">Dynamique</string>
+    <string name="theme_greenapple">Pomme Verte</string>
+    <string name="theme_strawberrydaiquiri">Daiquiri à la fraise</string>
+    <string name="theme_honey">Miel</string>
+    <string name="theme_tealturquoise">Teal &amp; Turquoise</string>
+    <string name="theme_yinyang">Yin &amp; Yang</string>
+    <string name="theme_yotsuba">Yotsuba</string>
+    <string name="theme_tidalwave">Tidal Wave</string>
     <!-- File library preference -->
+    <string name="action_import">Importer</string>
+    <string name="filelibrary_hint_tap_and_hold">Appuyer et maintenir le doigt sur n\'importe quel élément pour plus d\'options</string>
+    <string name="filelibrary_context_load">Charger</string>
+    <string name="filelibrary_context_edit">Éditer</string>
+    <string name="filelibrary_context_overwrite">Écraser</string>
+    <string name="filelibrary_context_rename">Renommer</string>
+    <string name="filelibrary_context_share">Partager…</string>
+    <string name="filelibrary_context_resample">Rééchantillon hors connexion</string>
+    <string name="filelibrary_context_duplicate">Dupliquer</string>
+    <string name="filelibrary_context_delete">Supprimer</string>
+    <string name="filelibrary_context_new_preset">Nouveau</string>
+    <string name="filelibrary_context_new_preset_long">Nouveau préréglage</string>
+    <string name="filelibrary_unsupported_format_title">Type de fichier non pris en charge</string>
+    <string name="filelibrary_unsupported_format">Le fichier sélectionné n\'a pas une extension de fichier correcte.</string>
+    <string name="filelibrary_corrupted_title">Fichier non pris en charge ou corrompu</string>
+    <string name="filelibrary_corrupted">Le fichier sélectionné ne contient aucune donnée utilisable ou est corrompu.</string>
+    <string name="filelibrary_file_too_new">Le fichier sélectionné a été créé avec une version plus récente de cette application et ne peut pas être chargé. Veuillez mettre à jour cette application pour continuer.</string>
+    <string name="filelibrary_access_fail">Impossible d\'accéder au dossier</string>
+    <string name="filelibrary_is_backup_not_preset">Le fichier sélectionné est un fichier de sauvegarde, pas un préréglage. Veuillez aller dans les paramètres de sauvegarde si vous voulez le restaurer.</string>
+    <string name="filelibrary_no_file_selected">Aucun fichier sélectionné</string>
+    <string name="filelibrary_new_file_name">Nouveau nom de fichier</string>
+    <string name="filelibrary_file_exists">Le fichier existe déjà</string>
+    <string name="filelibrary_resample_complete">Rééchantillonné à %1$dHz</string>
+    <string name="filelibrary_resample_failed">Échec du rééchantillonnage. Fichier d\'entrée corrompu ?</string>
+    <string name="filelibrary_preset_overwritten">Préréglage \'%1$s\' écrasé</string>
+    <string name="filelibrary_preset_created">Préréglage \'%1$s\' créé</string>
+    <string name="filelibrary_preset_save_failed">Échec de l\'enregistrement du préréglage</string>
+    <string name="filelibrary_renamed">Renommé en \'%1$s\'</string>
+    <string name="filelibrary_deleted">\'%1$s\' supprimé</string>
+    <string name="filelibrary_preset_loaded">Préréglage \'%1$s\' chargé</string>
+    <string name="filelibrary_preset_load_failed">Le fichier \'%1$s\' n\'est pas compatible avec cette application</string>
+    <string name="filelibrary_no_presets">Aucun préréglage enregistré. Appuyez sur \'Ajouter\' pour en créer un nouveau.</string>
     <!-- JamesDSP engine messages -->
+    <string name="message_vdc_corrupt">Le fichier VDC sélectionné est corrompu. Veuillez en choisir un autre.</string>
+    <string name="message_irs_corrupt">La réponse d\'impulsion sélectionnée est corrompu. Veuillez en choisir un autre.</string>
+    <string name="message_convolver_advimp_invalid">Convolver : L\'édition avancée de la forme d\'onde contient des valeurs non valides.</string>
+    <string name="message_liveprog_compile_fail">L\'exécution du Liveprog a échoué. Le script sélectionné est endommagé. Veuillez utiliser l\'éditeur de script pour le débogage.</string>
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">Réponse de Magnitude</string>
+    <string name="geq_edit_as_string">Modifier en tant que chaîne de caractères</string>
+    <string name="geq_autoeq">Profiles AutoEQ</string>
     <string name="gep_add_node">Ajouter</string>
+    <string name="geq_preview">Prévisualiser</string>
+    <string name="geq_preview_collapsed">Prévisualiser (appuyez pour développer)</string>
+    <string name="geq_edit_hint">Nœuds GraphicEQ</string>
+    <string name="geq_reset">Réinitialiser</string>
+    <string name="geq_reset_confirm_title">Êtes-vous sûr ?</string>
+    <string name="geq_reset_confirm">Voulez-vous réinitialiser vos paramètres GraphicEQ ?</string>
+    <string name="geq_node_editor">Éditeur de nœud</string>
+    <string name="geq_node_list">Liste de nœud</string>
+    <string name="geq_no_nodes_defined">Pas de nœud défini</string>
+    <string name="geq_delete_node">Supprimer le nœud</string>
+    <string name="geq_go_back_to_node_list">Retourner à la liste des nœuds</string>
+    <string name="geq_next_node">Nœud suivant</string>
+    <string name="geq_previous_node">Nœud précédent</string>
+    <string name="geq_done_spaced">&#160;&#160;Terminé&#160;</string>
+    <string name="geq_done">Terminé</string>
+    <string name="geq_cancel_spaced">&#160;&#160;Abandonné&#160;</string>
+    <string name="geq_cancel">Abandonner</string>
+    <string name="geq_discard_changes_title">Abandonner les modifications et quitter ?</string>
+    <string name="geq_discard_changes">Les valeurs ne sont pas valides ou vides. Vos modifications ne peuvent pas être enregistrées.\nVoulez-vous annuler vos modifications et quitter ?</string>
+    <string name="geq_frequeny_range">Valeur entre 1Hz et 24000Hz</string>
+    <string name="geq_gain_range">Valeur entre -32dB et 32dB</string>
+    <string name="geq_gain">Gain</string>
+    <string name="geq_frequency">Fréquence</string>
     <!-- AutoEQ GraphicEQ selector -->
+    <string name="geq_api_network_error">Impossible de se connecter au serveur. %1$s</string>
+    <string name="geq_api_network_error_details_code">Le serveur répond avec le code d\'erreur : %1$d</string>
+    <string name="autoeq_search">Recherche AutoEQ</string>
+    <string name="autoeq_enter_model">Entrez votre modèle d\'écouteurs…</string>
+    <string name="autoeq_partial_results_warning">Affichage des premiers résultats %1$d . Veuillez affiner votre recherche pour obtenir des résultats plus pertinents.</string>
+    <string name="autoeq_no_results">Aucun résultat trouvé</string>
     <!-- Customizable liveprog script parameters -->
+    <string name="title_activity_liveprog_params">Paramètres de script personnalisables</string>
+    <string name="action_restore_defaults">Réinitialiser</string>
     <!-- Liveprog script editor -->
+    <string name="title_activity_liveprog_editor">Éditeur de Script</string>
+    <string name="editor_find_and_replace">Rechercher/remplacer…</string>
+    <string name="editor_docs">Aide</string>
+    <string name="editor_open_fail">Le fichier n\'existe pas ou ne peut pas être ouvert.</string>
+    <string name="editor_run">Enregistrer et exécuter</string>
+    <string name="editor_save">Sauvegarder</string>
+    <string name="editor_liveprog_enabled">Liveprog a été automatiquement activé.</string>
+    <string name="editor_replace_all">Tout remplacer</string>
+    <string name="editor_replacement">Remplacement</string>
+    <string name="editor_find_next_match">Rechercher la prochaine correspondance</string>
+    <string name="editor_find_previous_match">Rechercher la correspondance précédente</string>
+    <string name="editor_search_keyword">Rechercher</string>
+    <string name="editor_source_position">%1$d:%2$d</string>
+    <string name="editor_engine_down_title">JamesDSP est inactif</string>
+    <string name="editor_engine_down">Impossible d\'exécuter le script parce que JamesDSP est désactivé. Veuillez activer JamesDSP pour exécuter des scripts.</string>
+    <string name="editor_save_prompt_title">Enregistrer les modifications ?</string>
+    <string name="editor_save_prompt">Le script actuel a des modifications non enregistrées. Voulez-vous enregistrer vos modifications ou les supprimer ?</string>
+    <string name="editor_script_launched">Script démarré</string>
+    <string name="editor_cannot_undo">Rien à annuler.</string>
+    <string name="editor_cannot_redo">Rien à rétablir.</string>
+    <string name="editor_text_size">Taille du texte</string>
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Applications exclues</string>
+    <string name="blocklist_add_exclusion_alt">Ajouter une application à exclure</string>
+    <string name="blocklist_delete_title">Supprimer l\'application sélectionnée ?</string>
+    <string name="blocklist_delete">Voulez-vous supprimer cette application de la liste d\'exclusion ?</string>
+    <string name="blocklist_no_exclusions">Applications non exclues</string>
+    <string name="blocklist_unsupported_apps">Application non supportée</string>
+    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>Cette application ne supporte pas le traitement audio si l'application cible bloque l'enregistrement de son audio. Pour éviter à ce genre d'applications de ne pas pouvoir émettre de son du à leurs restrictions, elles sont automatiquement exclues du traitement audio et ne sont pas router.</p></p><u>Applications affectés :</u><br/>%s</p>]]></string>
     <!-- Compatibility issue activity -->
+    <string name="title_activity_app_compat">Problème de compatibilité</string>
     <string name="app_compat_retry">Réessayer</string>
+    <string name="app_compat_exclude">Exclure</string>
+    <string name="app_compat_title">Le traitement audio a été suspendu pour éviter les doublons audio</string>
+    <string name="app_compat_explanation">L\'application suivante n\'est pas prise en charge parce qu\'elle fait perdre le contrôle de son routage audio à RootlessJamesDSP :</string>
+    <string name="app_compat_instruction">Veuillez vérifier les paramètres de l\'application si vous pouvez désactiver l\'accélération matérielle ou d\'autres paramètres qui pourraient interférer avec RootlessJamesDSP et appuyer sur « Réessayer ».</string>
+    <string name="app_compat_instruction_exclude">Sinon, sélectionnez « Exclure » pour contourner ce problème en excluant l\'application incompatible du traitement audio.</string>
+    <string name="app_compat_unknown_pkg_name">Nom du paquet inconnu</string>
     <!-- Root: Library load failure -->
+    <string name="load_fail_header">Le module Magisk n\'est pas installé</string>
+    <string name="load_fail_card_title">Impossible de charger la librairie libjamesdsp.so</string>
+    <string name="load_fail_card">Veuillez installer le module Magisk JamesDSP et redémarrer votre appareil Android pour utiliser cette application. Vous devrez peut-être aussi réinstaller cette application après le redémarrage.</string>
+    <string name="load_fail_rootless_card_title">Vous cherchez une alternative qui n\'utilise pas le root ?</string>
     <!-- Enhanced processing -->
     <!-- App list -->
+    <string name="app_list_search">Rechercher</string>
     <!-- Number box view -->
     <!-- Slider widget -->
     <!-- Revert confirmation -->
+    <string name="revert_confirmation_title">Êtes-vous sûr ?</string>
     <!-- File intent handler -->
     <!-- Translation notice box -->
+    <string name="translation_notice">Contribuer aux traductions</string>
     <!-- Self-updates (Root) -->
     <!-- Backups -->
+    <string name="backup_automatic_backup">Sauvegarde automatique</string>
+    <string name="backup_compat_info">Les sauvegardes n\'incluent que les réponses impulsives, les scripts, les fichiers VDC, les préréglages et la configuration audio actuelle pour une compatibilité maximale avec les autres versions.</string>
+    <string name="backup_restore_mode_title">Mode de restauration</string>
+    <string name="backup_restore_mode_clean">Nettoyer la restauration (supprimer tous les fichiers existants)</string>
+    <string name="backup_restore_mode_dirty">Restauration brute (écrasement)</string>
+    <string name="backup_in_progress">Sauvegarde déjà en progression</string>
     <!-- Multi-device profiles -->
+    <string name="group_wired_headphones">Casques filaires</string>
+    <string name="group_bluetooth">Bluetooth</string>
+    <string name="group_hdmi">HDMI</string>
+    <string name="group_speaker">Haut-parleur interne</string>
+    <string name="group_usb">USB</string>
+    <string name="group_unknown">Inconnu</string>
+    <string name="device_profile_status">Profil de périphérique actif</string>
+    <string name="device_profile_manage_copy">Copier le profil…</string>
+    <string name="device_profile_manage_delete">Supprimer les profils…</string>
+    <string name="device_profile_manage_copy_select_no_target">Aucun profil à écraser disponible</string>
+    <string name="device_profile_manage_copy_select">Sélectionnez le profil à copier</string>
+    <string name="device_profile_manage_paste_select">Sélectionnez les profils à écraser</string>
     <!-- Root version check -->
+    <string name="version_mismatch_root">Le module Magisk JamesDSP nécessite une mise à jour</string>
+    <string name="version_mismatch_root_description">Le module Magisk JamesDSP installé sur votre appareil est obsolète et n\'est plus supporté par cette application.\n\nMerci de télécharger la dernière version du module et de l\'installer via Magisk.\nVeuillez noter que le module Magisk peut remplacer cette application par la version officiel de JamesDSP.\n\nVoulez-vous visitez le site de téléchargement maintenant ?</string>
+    <string name="version_mismatch_root_toast">Impossible de démarrer. Le module Magisk JamesDSP installé est trop ancien et n\'est plus pris en charge par cette application.</string>
 </resources>
