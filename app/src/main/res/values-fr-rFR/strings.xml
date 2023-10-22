@@ -241,7 +241,7 @@
     <string name="limit_hw_accel_title">Problèmes de lecture audio</string>
     <string name="limit_hw_accel">La lecture audio matériellement accéléré (pistes rapides) peut parfois causer des doublons audio ou tuer JamesDSP dans certaines circonstances. Veuillez ajouter le lecteur de musique affecté à la liste des applications exclues pour empêcher JamesDSP de le rediriger.</string>
     <string name="limit_detect_delay_title">Délai de détection de session audio</string>
-    <string name="limit_detect_delay"><![CDATA[Une fois qu'une application a ouvert une nouvelle session média pour lire l'audio, vous pouvez entendre du son dupliqué ou coupé pendant une très courte période (environ <250ms).]]></string>
+    <string name="limit_detect_delay"><![CDATA[Une fois qu'une application a ouvert une nouvelle session média pour lire l\'audio, vous pouvez entendre du son dupliqué ou coupé pendant une très courte période (environ <250ms).]]></string>
     <string name="limit_latency_title">Latence augmentée</string>
     <string name="limit_latency">Cette application peut ajouter un certain délai au flux audio. Vous pouvez ajouter des applications multimédia à la liste d\'exclusion pour empêcher la désynchronisation audio-vidéo en ne les traitant pas.</string>
     <string name="limit_tested_devices_title">Périphériques testés</string>
