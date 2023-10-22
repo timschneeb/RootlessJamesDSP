@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
-    <string name="action_settings">Settings</string>
-    <string name="action_presets">Presets</string>
-    <string name="action_revert">Reset to defaults</string>
-    <string name="action_blocked_apps">Excluded apps</string>
+    <string name="action_settings">ตั้งค่า</string>
+    <string name="action_presets">ค่าที่ตั้งไว้</string>
+    <string name="action_revert">รีเซ็ตเป็นค่าเริ่มต้น</string>
+    <string name="action_blocked_apps"> แอพที่ยกเว้น</string>
     <!-- Notification channels -->
-    <string name="notification_group_service">Service</string>
+    <string name="notification_group_service">บริการ</string>
     <string name="notification_channel_service">แจ้งเตือนบริการ</string>
     <string name="notification_channel_session_loss_alert">การแจ้งเตือนการสูญเสียเซสชัน</string>
     <string name="notification_channel_permission_prompt">ขออนุญาตพร้อมท์</string>
@@ -496,7 +496,7 @@
     <string name="editor_cannot_redo">ไม่มีอะไรต้องทำซ้ำ</string>
     <string name="editor_text_size">ขนาดข้อความ</string>
     <!-- Blocklist -->
-    <string name="title_activity_blocklist">Excluded apps</string>
+    <string name="title_activity_blocklist"> แอพที่ยกเว้น</string>
     <string name="blocklist_add_exclusion_alt">เพิ่มแอปพลิเคชันที่จะไม่รวม</string>
     <string name="blocklist_delete_title">นำแอปที่เลือกออกไหม</string>
     <string name="blocklist_delete">คุณต้องการนำแอปนี้ออกจากรายการยกเว้นหรือไม่</string>

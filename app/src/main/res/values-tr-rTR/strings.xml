@@ -58,9 +58,19 @@
     <string name="no_activity_found">Etkileşimi işleyecek aktivite bulunamadı</string>
     <string name="permission_allowed">İzin verildi</string>
     <string name="permission_not_allowed">İzin verilmiyor</string>
+    <string name="preparing">Hazırlanıyor…</string>
     <string name="error_projection_api_missing">Cihaz üreticiniz, dahili ses kaydı API\'lerini devre dışı bırakmış. Bu uygulama onlar olmadan çalışamaz.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Ses işlemeyi aç/kapat</string>
+    <string name="compander_enable">Dinamik aralık sıkıştırıcı</string>
+    <string name="compander_timeconstant">Zaman sabiti</string>
+    <string name="compander_granularity">Ayrıntı düzeyi</string>
+    <string name="compander_granularity_very_low">Çok düşük</string>
+    <string name="compander_granularity_low">Düşük</string>
+    <string name="compander_granularity_medium">Orta</string>
+    <string name="compander_granularity_high">Yüksek</string>
+    <string name="compander_granularity_extreme">Aşırı</string>
+    <string name="compander_tftransforms">Zaman-frekans değişimi</string>
     <string name="eq_filter_type">Filtre türü</string>
     <string name="eq_interpolator">Enterpolatör</string>
     <string name="eq_interpolator_chip">Parçalı Kübik Hermite Enterpolasyon Polinomu</string>

@@ -58,6 +58,7 @@
     <string name="no_activity_found">No se ha encontrado actividad para manejar la acción</string>
     <string name="permission_allowed">Permitido</string>
     <string name="permission_not_allowed">No permitido</string>
+    <string name="preparing">Preparando…</string>
     <string name="error_projection_api_missing">El fabricante de tu dispositivo ha desactivado las APIs internas de grabación de audio. Esta aplicación no puede funcionar sin ellas.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Cambiar procesamiento de audio</string>
@@ -71,6 +72,9 @@
     <string name="compander_granularity_extreme">Extrema</string>
     <string name="compander_tftransforms">Transformación de frecuencia y tiempo</string>
     <string name="compander_tftransforms_stft">Uniforme (Fourier de tiempo corto)</string>
+    <string name="compander_tftransforms_continuous_wavelet">Multiresolución (onda continua, marco dual incompleto)</string>
+    <string name="compander_tftransforms_undersampling">Pseudo multiresolución (marco de submuestreo)</string>
+    <string name="compander_tftransforms_time_domain">Pseudo multiresolución (Tiempo de dominio, latencia cero)</string>
     <string name="eq_enable">Ecualizador multimodal</string>
     <string name="eq_filter_type">Tipo de filtro:</string>
     <string name="eq_interpolator">Interpolador</string>
@@ -275,12 +279,18 @@
     <string name="audio_format_media_apps_need_restart">Necesita reiniciar todas las aplicaciones multimedia activas después de cambiar esta configuración para reanudar el procesamiento de audio.</string>
     <string name="audio_format_summary">Codificación de audio preferida, tamaño de búfer</string>
     <string name="audio_format_summary_root">Modo de compatibilidad, procesamiento mejorado</string>
+    <string name="audio_format_summary_plugin">Optimizaciones del convolver</string>
     <string name="audio_format_encoding">Codificación de audio</string>
     <string name="audio_format_encoding_int16">PCM entero de 16 bits</string>
     <string name="audio_format_encoding_float">PCM de 32 bits punto flotante</string>
     <string name="audio_format_buffer_size">Tamaño de búfer</string>
     <string name="audio_format_buffer_size_unit">&#xa0;muestras</string>
     <string name="audio_format_buffer_size_warning_low_value">Advertencia: ¡Los tamaños bajos de búfer pueden causar problemas de audio como clipping!</string>
+    <string name="audio_format_optimization_header">Optimizaciones del módulo de convolver</string>
+    <string name="audio_format_optimization_refresh">Actualizar datos de benchmarking</string>
+    <string name="audio_format_optimization_benchmark">Usar benchmarks para optimizar el rendimiento</string>
+    <string name="audio_format_optimization_benchmark_summary">Aumenta el rendimiento de los efectos que utilizan módulos de convolver</string>
+    <string name="audio_format_optimization_benchmark_ongoing">Benchmark en curso…</string>
     <string name="profiles_section_header">Perfiles de dispositivo</string>
     <string name="profiles_summary">Perfiles por dispositivo, cambio automático</string>
     <string name="profiles_enable">Perfiles por dispositivo</string>
@@ -311,8 +321,8 @@
     <string name="troubleshooting_dump">Exporte la información de audio de esta sesión…</string>
     <string name="troubleshooting_dump_summary">Colectar y guarda los datos para solucionar problemas</string>
     <string name="troubleshooting_dump_share_title">Comparte la información de audio de esta sesión..</string>
-    <string name="troubleshooting_view_limitations">Limitaciones técnicales</string>
-    <string name="troubleshooting_view_limitations_summary">Mostré los detalles sobre las limitaciones de esta aplicación</string>
+    <string name="troubleshooting_view_limitations">Limitaciones técnicas</string>
+    <string name="troubleshooting_view_limitations_summary">Mostrar detalles sobre las limitaciones de esta aplicación</string>
     <string name="troubleshooting_notification_access">Permitir acceso a las notificaciones para detectar su sesión más fácilmente</string>
     <string name="troubleshooting_notification_access_summary">Esto permite una mejor detección de sesión de audio</string>
     <string name="troubleshooting_repair_assets">Restaurar IRS, DDC y scripts</string>

@@ -58,6 +58,7 @@
     <string name="no_activity_found">Nenhuma atividade encontrada para executar a ação</string>
     <string name="permission_allowed">Permitido</string>
     <string name="permission_not_allowed">Não permitido</string>
+    <string name="preparing">Preparando…</string>
     <string name="error_projection_api_missing">O fabricante do seu dispositivo desativou a API interna de gravação de áudio. Este aplicativo não pode funcionar sem eles.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Ativar/desativar processamento de áudio</string>
