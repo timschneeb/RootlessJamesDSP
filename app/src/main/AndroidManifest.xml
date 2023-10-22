@@ -269,6 +269,16 @@
             </intent-filter>
         </receiver>
 
+        <receiver
+            android:name=".receiver.PowerStateReceiver"
+            android:enabled="true"
+            android:exported="true"
+            tools:ignore="ExportedReceiver">
+            <intent-filter>
+                <action android:name="me.timschneeberger.rootlessjamesdsp.SET_POWER_STATE" />
+            </intent-filter>
+        </receiver>
+
         <!-- Providers -->
         <provider
             android:name="rikka.shizuku.ShizukuProvider"
