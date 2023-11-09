@@ -78,13 +78,24 @@
     <string name="eq_enable">Bộ cân bằng đa phương thức</string>
     <string name="eq_filter_type">Kiểu lọc</string>
     <string name="eq_interpolator">Bộ nội suy</string>
+    <string name="eq_filter_type_fir_minimum">Pha FIR tối thiểu</string>
+    <string name="eq_filter_type_iir_4_order">IIR thứ 4</string>
+    <string name="eq_filter_type_iir_6_order">IIR thứ 6</string>
+    <string name="eq_filter_type_iir_8_order">IIR thứ 8</string>
+    <string name="eq_filter_type_iir_10_order">IIR thứ 10</string>
+    <string name="eq_filter_type_iir_12_order">IIR thứ 12</string>
+    <string name="eq_interpolator_chip">Nội suy khối Hermite từng phần</string>
+    <string name="eq_interpolator_mha">Trục Hiroshi Kukan đã được biến đổi</string>
+    <string name="eq_preset_acoustic">Âm thanh</string>
     <string name="eq_preset_bass">Bass</string>
     <string name="eq_preset_beats">Beats</string>
     <string name="eq_preset_classic">Cổ điển</string>
     <string name="eq_preset_clear">Xoá</string>
     <string name="eq_preset_deep">Sâu</string>
+    <string name="eq_preset_dubstep">Dubstep</string>
     <string name="eq_preset_electronic">Điện tử</string>
     <string name="eq_preset_flat">Phẳng</string>
+    <string name="eq_preset_hardstyle">Hardstyle</string>
     <string name="eq_preset_hiphop">Hip-Hop</string>
     <string name="eq_preset_jazz">Jazz</string>
     <string name="eq_preset_metal">Metal</string>
@@ -95,6 +106,19 @@
     <string name="eq_preset_vocal">Tăng giọng hát</string>
     <string name="geq_enable">Arbitrary response equalizer</string>
     <string name="geq_nodes">Phản ứng cường độ</string>
+    <string name="bass_enable">Tăng cường âm trầm sống động</string>
+    <string name="bass_max_gain">Tăng tối đa</string>
+    <string name="reverb_enable">Hiệu ứng phòng ảo</string>
+    <string name="reverb_room_type">Loại phòng</string>
+    <string name="reverb_preset_default">Mặc định</string>
+    <string name="reverb_preset_small_hall1">Hội trường nhỏ 1</string>
+    <string name="reverb_preset_small_hall2">Hội trường nhỏ 2</string>
+    <string name="reverb_preset_medium_hall2">Hội trường vừa</string>
+    <string name="reverb_preset_large_hall1">Hội trường lớn</string>
+    <string name="reverb_preset_small_room1">Phòng nhỏ 1</string>
+    <string name="reverb_preset_small_room2">Phòng nhỏ 2</string>
+    <string name="reverb_preset_medium_room1">Phòng vừa</string>
+    <string name="reverb_preset_large_room1">Phòng lớn</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
@@ -102,6 +126,7 @@
     <string name="title_activity_settings">Cài đặt</string>
     <string name="backup_settings">Sao lưu và khôi phục</string>
     <!-- Theme names -->
+    <string name="theme_default">Mặc định</string>
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
