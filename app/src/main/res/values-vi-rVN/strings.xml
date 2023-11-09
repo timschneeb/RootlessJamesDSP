@@ -8,7 +8,9 @@
     <!-- Notification channels -->
     <string name="notification_group_service">Dịch vụ</string>
     <string name="notification_channel_service">Thông báo dịch vụ</string>
+    <string name="notification_channel_session_loss_alert">Cảnh báo mất phiên hoạt động</string>
     <string name="notification_channel_permission_prompt">Yêu cầu cấp quyền</string>
+    <string name="notification_channel_app_compat_alert">Cảnh báo ứng dụng không tương thích</string>
     <string name="notification_group_backup">Sao lưu và khôi phục</string>
     <string name="notification_channel_backup_progress">Đang tiến hành</string>
     <string name="notification_channel_backup_complete">Hoàn thành</string>
@@ -17,15 +19,23 @@
     <string name="action_fix">Sửa vấn đề</string>
     <string name="action_stop">Dừng</string>
     <string name="notification_processing">Ứng dụng hoạt động: %1$s</string>
+    <string name="notification_idle">Tạm ngưng xử lý âm thanh</string>
+    <string name="notification_processing_title">Đang xử lý âm thanh</string>
+    <string name="notification_processing_disabled_title">Đã tắt xử lý âm thanh</string>
     <string name="notification_processing_legacy">Nhấn để mở trình quản lý JamesDSP</string>
     <!-- Permission request notifications -->
     <string name="notification_request_permission_title">Cần hành động của người dùng để khởi chạy JamesDSP</string>
     <string name="notification_request_permission">Nhấn để cấp quyền chụp và bật xử lý âm thanh của JamesDSP</string>
     <!-- Session control loss notifications -->
     <string name="session_control_loss_toast">JamesDSP đã dừng do mất kiểm soát phiên âm thanh. Vui lòng tắt các ứng dụng hiệu ứng âm thanh khác.</string>
+    <string name="session_control_loss_notification_title">Quá trình xử lý âm thanh đã ngưng. Một ứng dụng khác đang can thiệp vào JamesDSP.</string>
+    <string name="session_control_loss_notification">Vui lòng tắt tất cả các ứng dụng cung cấp hiệu ứng âm thanh chung khác trước khi bật lại JamesDSP.</string>
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_toast">JamesDSP đã dừng do ứng dụng đa phương tiện không tương thích. Vui lòng kiểm tra thông báo để giải quyết vấn đề này.</string>
+    <string name="session_app_compat_notification_title">Quá trình xử lý âm thanh đã ngưng. Một ứng dụng khác đang can thiệp vào JamesDSP.</string>
     <string name="session_app_compat_notification">Chạm vào thông báo này để giải quyết vấn đề.</string>
     <!-- Capture permission revoked notifications -->
+    <string name="capture_permission_revoked_toast">JamesDSP đã bị dừng do quyền thu âm đã bị thu hồi.</string>
     <!-- General purpose -->
     <string name="install">Cài đặt</string>
     <string name="update">Cập nhật</string>
@@ -48,8 +58,26 @@
     <string name="no_activity_found">Không tìm thấy Hoạt động nào để xử lý hành động</string>
     <string name="permission_allowed">Cho phép</string>
     <string name="permission_not_allowed">Không cho phép</string>
+    <string name="preparing">Đang chuẩn bị…</string>
+    <string name="error_projection_api_missing">Nhà sản xuất thiết bị của bạn đã tắt API ghi âm nội bộ. Ứng dụng này không thể hoạt động nếu không có chúng.</string>
     <!-- Main screen -->
+    <string name="power_button_alt">Bật xử lý âm thanh</string>
+    <string name="compander_enable">Bộ giãn dải động</string>
+    <string name="compander_timeconstant">Thời gian cố định</string>
+    <string name="compander_granularity">Độ chi tiết</string>
+    <string name="compander_granularity_very_low">Rất thấp</string>
+    <string name="compander_granularity_low">Thấp</string>
+    <string name="compander_granularity_medium">Trung bình</string>
+    <string name="compander_granularity_high">Cao</string>
+    <string name="compander_granularity_extreme">Rất cao</string>
+    <string name="compander_tftransforms">Biến đổi tần số thời gian</string>
+    <string name="compander_tftransforms_stft">Đồng nhất (Biến đổi Fourier thời gian ngắn)</string>
+    <string name="compander_tftransforms_continuous_wavelet">Đa độ phân giải (Biến đổi wavelet liên tục, khung kép không đầy đủ)</string>
+    <string name="compander_tftransforms_undersampling">Đa phân giải giả (Khung lấy mẫu)</string>
+    <string name="compander_tftransforms_time_domain">Đa phân giải giả (Miền thời gian, độ trễ bằng 0)</string>
+    <string name="eq_enable">Bộ cân bằng đa phương thức</string>
     <string name="eq_filter_type">Kiểu lọc</string>
+    <string name="eq_interpolator">Bộ nội suy</string>
     <string name="eq_preset_bass">Bass</string>
     <string name="eq_preset_beats">Beats</string>
     <string name="eq_preset_classic">Cổ điển</string>
