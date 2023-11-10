@@ -19,7 +19,7 @@
     <string name="action_fix">Arreglar problema</string>
     <string name="action_stop">Parada</string>
     <string name="notification_processing">Apps activas: %1$s</string>
-    <string name="notification_idle"></string>
+    <string name="notification_idle">Procesamiento de audio inactivo</string>
     <string name="notification_processing_title">Procesamiento de audio activo</string>
     <string name="notification_processing_disabled_title">Procesamiento de audio desactivado</string>
     <string name="notification_processing_legacy">Pulsa para abrir el administrador JamesDSP</string>
@@ -59,7 +59,7 @@
     <string name="permission_allowed">Permitido</string>
     <string name="permission_not_allowed">No permitido</string>
     <string name="preparing">Preparando…</string>
-    <string name="error_projection_api_missing">El fabricante de tu dispositivo ha desactivado las APIs internas de grabación de audio. Esta aplicación no puede funcionar sin ellas.</string>
+    <string name="error_projection_api_missing">El fabricante de tu dispositivo ha desactivado las API internas de grabación de audio. Esta aplicación no puede funcionar sin ellas.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Cambiar procesamiento de audio</string>
     <string name="compander_enable">Compresor de rango dinámico</string>
