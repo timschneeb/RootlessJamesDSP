@@ -74,22 +74,23 @@ class FileLibraryPreference(context: Context, attrs: AttributeSet?) :
             return
         }
 
-        entries = createFileStringArray(false)
-        entryValues = createFileStringArray(true)
+        initFileList()
     }
 
-    private fun createFileStringArray(fullPath: Boolean): Array<String> {
-        val result = arrayListOf<String>()
+    private fun initFileList() {
+        val result = hashMapOf<String, String>()
         directory?.list()?.forEach {
-            val name = if(fullPath) (File(directory!!, it).toRelativeString(context.getExternalFilesDir(null)!!)) else it.substringBeforeLast('.')
             if(hasCorrectExtension(it))
             {
-                result.add(name)
+                val name = it.substringBeforeLast('.')
+                val path = File(directory!!, it).toRelativeString(context.getExternalFilesDir(null)!!)
+                result[name] = path
             }
         }
 
-        result.sort()
-        return result.toTypedArray()
+        val sorted = result.toSortedMap()
+        entries = sorted.keys.toTypedArray()
+        entryValues = sorted.values.toTypedArray()
     }
 
     fun hasCorrectExtension(it: String): Boolean {
