@@ -2,7 +2,7 @@
 <resources>
     <!-- Main menu bar -->
     <string name="action_settings">Configuración</string>
-    <string name="action_presets">Preajustes</string>
+    <string name="action_presets">Configuraciones</string>
     <string name="action_revert">Restablecer predeterminados</string>
     <string name="action_blocked_apps">Apps excluidas</string>
     <!-- Notification channels -->
@@ -19,7 +19,7 @@
     <string name="action_fix">Arreglar problema</string>
     <string name="action_stop">Parada</string>
     <string name="notification_processing">Apps activas: %1$s</string>
-    <string name="notification_idle">Procesamiento de audio inactivo</string>
+    <string name="notification_idle"></string>
     <string name="notification_processing_title">Procesamiento de audio activo</string>
     <string name="notification_processing_disabled_title">Procesamiento de audio desactivado</string>
     <string name="notification_processing_legacy">Pulsa para abrir el administrador JamesDSP</string>
