@@ -9,28 +9,86 @@
     <string name="notification_group_service">Perkhidmatan</string>
     <string name="notification_channel_service">Khidmat Pemberitahuan</string>
     <string name="notification_channel_session_loss_alert">Amaran Sessi Yang Hilang</string>
+    <string name="notification_channel_permission_prompt">Permintaan izin</string>
+    <string name="notification_channel_app_compat_alert">Peringatan aplikasi tidak kompatibel</string>
+    <string name="notification_group_backup">Sandarkan dan pulih semula</string>
+    <string name="notification_channel_backup_progress">Dalam proses</string>
+    <string name="notification_channel_backup_complete">Selesai</string>
     <!-- Service notifications -->
+    <string name="action_retry">Cuba lagi</string>
+    <string name="action_fix">Perbaiki isu</string>
+    <string name="action_stop">Berhenti</string>
+    <string name="notification_processing">Aplikasi Bertindak: %1$s</string>
+    <string name="notification_idle">Pemprosesan audio tenang</string>
+    <string name="notification_processing_title">Pemprosesan audio melahu</string>
+    <string name="notification_processing_disabled_title">Pemprosesan audio Mati</string>
+    <string name="notification_processing_legacy">Tap untuk buka JamesDSP manager</string>
     <!-- Permission request notifications -->
+    <string name="notification_request_permission_title">Diperlukan tindakan pengguna untuk menjalankan JamesDSP</string>
+    <string name="notification_request_permission">Tap untuk memberi izin pengambilan dan mengaktifkan JamesDSP</string>
     <!-- Session control loss notifications -->
+    <string name="session_control_loss_toast">JamesDSP terhenti dikarenakan kendali sesi audio terputus. Matikan audio effect lainnya.</string>
+    <string name="session_control_loss_notification_title">Pemroses audio terhenti karena JamesDSP terganggu dengan aplikasi lain.</string>
+    <string name="session_control_loss_notification">Matikan semua aplikasi pemberi effect audio global sebelum mengaktifkan JamesDSP.</string>
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_toast">JamesDSP berhenti karena tidak kompatible media app. Silahkan cek notifikasi untuk menyelesaikan masalah ini.</string>
+    <string name="session_app_compat_notification_title">Pemroses audio terhenti karena JamesDSP terganggu dengan aplikasi lain.</string>
+    <string name="session_app_compat_notification">Tekan ini untuk nyelesaikan masalah ini.</string>
     <!-- Capture permission revoked notifications -->
+    <string name="capture_permission_revoked_toast">JamesDSP terhenti karena izin pengambilan audio dicabut.</string>
     <!-- General purpose -->
+    <string name="install">Pasang</string>
+    <string name="update">Kemas kini</string>
+    <string name="unknown_error">Ralat yang tidak diketahui</string>
+    <string name="details">maklumat</string>
+    <string name="actions">Tindakan</string>
+    <string name="warning">Amaran</string>
+    <string name="success">Berjaya</string>
+    <string name="open">Buka</string>
+    <string name="close">Tutup</string>
+    <string name="delete">Hapus</string>
+    <string name="copy">Salin</string>
+    <string name="paste">Tampal</string>
+    <string name="add">Tambah</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+    <string name="value_not_set">Tidak ditetapkan</string>
+    <string name="undo">Undurkan</string>
+    <string name="redo">Ulangi</string>
+    <string name="no_activity_found">Tidak ada Aktivitas untuk menangani aksi</string>
+    <string name="permission_allowed">Dibenarkan</string>
+    <string name="permission_not_allowed">Tidak dibenarkan</string>
+    <string name="preparing">Menyediakan…</string>
+    <string name="error_projection_api_missing">Produsen perangkat anda tidak mengaktifkan API perekaman audio internal. Aplikasi ini tidak bisa berfungsi tanpa API tersebut.</string>
     <!-- Main screen -->
+    <string name="power_button_alt">Alihkan pemrosesan audio</string>
+    <string name="compander_enable">Rentang Compander dinamis</string>
+    <string name="compander_timeconstant">Waktu Konstan</string>
+    <string name="compander_granularity">Granularitas</string>
+    <string name="reverb_preset_small_room1">Ruang kecil 1</string>
+    <string name="reverb_preset_small_room2">Ruang kecil 2</string>
+    <string name="reverb_preset_medium_room1">Ruang sedang</string>
+    <string name="reverb_preset_large_room1">Ruang besar</string>
+    <string name="reverb_preset_plate_high">Tempat tinggi</string>
+    <string name="reverb_preset_plate_low">Tempat kecil</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
     <!-- Settings -->
     <string name="title_activity_settings">Tetapan</string>
+    <string name="backup_settings">Sandarkan dan pulih semula</string>
     <!-- Theme names -->
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="gep_add_node">Tambah</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Kecualikan Aplikasi</string>
     <!-- Compatibility issue activity -->
+    <string name="app_compat_retry">Cuba lagi</string>
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
     <!-- App list -->
