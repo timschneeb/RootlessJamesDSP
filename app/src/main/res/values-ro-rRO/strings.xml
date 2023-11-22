@@ -3,29 +3,82 @@
     <!-- Main menu bar -->
     <string name="action_settings">Setări</string>
     <string name="action_presets">Presets</string>
+    <string name="action_revert">Revino la setările implicite</string>
+    <string name="action_blocked_apps">Aplicații excluse</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">Servicii</string>
+    <string name="notification_channel_service">Notificările serviciului</string>
+    <string name="notification_channel_session_loss_alert">Alertă de pierdere a sesiunii</string>
+    <string name="notification_channel_permission_prompt">Solicitare mesaj pentru permisiuni</string>
+    <string name="notification_channel_app_compat_alert">Alertă aplicație incompatibilă</string>
+    <string name="notification_group_backup">Backup și restaurare</string>
+    <string name="notification_channel_backup_progress">În curs</string>
+    <string name="notification_channel_backup_complete">Complet</string>
     <!-- Service notifications -->
+    <string name="action_retry">Reîncearcă</string>
+    <string name="action_fix">Rezolvă problemele</string>
+    <string name="action_stop">Stop</string>
+    <string name="notification_processing">Aplicații active: %1$s</string>
+    <string name="notification_idle">Procesare audio inactivă</string>
+    <string name="notification_processing_title">Procesare audio activă</string>
+    <string name="notification_processing_disabled_title">Procesare audio inactivă</string>
+    <string name="notification_processing_legacy">Atinge pentru a deschide managerul JamesDSP</string>
     <!-- Permission request notifications -->
+    <string name="notification_request_permission_title">Acțiunea utilizatorului este necesară pentru a lansa JamesDSP</string>
+    <string name="notification_request_permission">Atingeți pentru a acorda permisiunea de capturare și pentru a activa procesarea audio a JamesDSP</string>
     <!-- Session control loss notifications -->
+    <string name="session_control_loss_toast">JamesDSP s-a oprit din cauza pierderii controlului sesiunii audio. Vă rugăm să dezactivați alte aplicații cu efect audio.</string>
+    <string name="session_control_loss_notification_title">Procesare audio oprită. O altă aplicație interferează cu JamesDSP.</string>
+    <string name="session_control_loss_notification">Dezactivați toate celelalte aplicații care furnizează efecte audio globale înainte de a reactiva JamesDSP.</string>
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_toast">JamesDSP s-a oprit din cauza unei aplicații media incompatibile. Vă rugăm să verificați notificarea pentru a rezolva această problemă.</string>
+    <string name="session_app_compat_notification_title">Procesare audio oprită. O altă aplicație interferează cu JamesDSP.</string>
+    <string name="session_app_compat_notification">Atingeți această notificare pentru a rezolva problema.</string>
     <!-- Capture permission revoked notifications -->
+    <string name="capture_permission_revoked_toast">JamesDSP a fost oprit deoarece permisiunea de capturare audio a fost revocată.</string>
     <!-- General purpose -->
+    <string name="install">Instalare</string>
+    <string name="update">Actualizare</string>
+    <string name="unknown_error">Eroare necunoscută</string>
+    <string name="details">Detalii</string>
+    <string name="actions">Actiuni</string>
+    <string name="warning">Avertisment</string>
+    <string name="success">Succes</string>
+    <string name="open">Deschideți</string>
+    <string name="close">Închide</string>
+    <string name="delete">Ștergere</string>
+    <string name="copy">Copiere</string>
+    <string name="paste">Lipire</string>
+    <string name="add">Adaugă</string>
+    <string name="yes">Da</string>
+    <string name="no">Nu</string>
+    <string name="value_not_set">Nesetat</string>
+    <string name="undo">Anulare</string>
+    <string name="redo">Refacere</string>
+    <string name="no_activity_found">Nu s-a găsit nicio activitate pentru a gestiona acțiunea</string>
     <string name="permission_allowed">Permite</string>
+    <string name="permission_not_allowed">Nu este permis</string>
+    <string name="preparing">Se pregătește…</string>
+    <string name="error_projection_api_missing">Producătorul dispozitivului a dezactivat API-urile de înregistrare audio interne. Această aplicație nu poate funcționa fără ele.</string>
     <!-- Main screen -->
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
     <!-- Settings -->
     <string name="title_activity_settings">Setări</string>
+    <string name="backup_settings">Backup și restaurare</string>
     <!-- Theme names -->
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="gep_add_node">Adaugă</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
     <!-- Blocklist -->
+    <string name="title_activity_blocklist">Aplicații excluse</string>
     <!-- Compatibility issue activity -->
+    <string name="app_compat_retry">Reîncearcă</string>
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
     <!-- App list -->
