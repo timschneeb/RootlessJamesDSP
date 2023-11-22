@@ -61,6 +61,7 @@
     <string name="preparing">Se pregătește…</string>
     <string name="error_projection_api_missing">Producătorul dispozitivului a dezactivat API-urile de înregistrare audio interne. Această aplicație nu poate funcționa fără ele.</string>
     <!-- Main screen -->
+    <string name="power_button_alt">Activați audio processing</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
