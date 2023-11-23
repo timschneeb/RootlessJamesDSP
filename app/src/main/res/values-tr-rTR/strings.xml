@@ -581,4 +581,7 @@
     <string name="device_profile_manage_copy_select">Kopyalanacak profili seçin</string>
     <string name="device_profile_manage_paste_select">Üzerine yazılacak profilleri seçin</string>
     <!-- Root version check -->
+    <string name="version_mismatch_root">JamesDSP magisk paketi bir güncelleme gerektiriyor</string>
+    <string name="version_mismatch_root_description">Cihazınızda yüklü olan JamesDSP magisk paketi eski ve bu uygulama tarafından artık desteklenmemekte.\n\nLütfen en son JamesDSP magisk paketi ZIP dosyasını edinin ve Magisk ile beraber yükleyin.\nNot edin ki magisk paketi bu uygulamayı resmi JamesDSP uygulamasıyla değiştirebilir.\n\nŞimdi Magisk paketleri için indirme websitesini ziyaret etmek ister misiniz?</string>
+    <string name="version_mismatch_root_toast">Başlatılamadı. Yüklü olan JamesDSP magisk paketi çok eski ve bu uygulama tarafından artık desteklenmiyor.</string>
 </resources>
