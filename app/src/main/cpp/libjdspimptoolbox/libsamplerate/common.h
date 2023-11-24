@@ -1,27 +1,20 @@
 /*
-** Copyright (c) 2002-2021, Erik de Castro Lopo <erikd@mega-nerd.com>
+** Copyright (c) 2002-2016, Erik de Castro Lopo <erikd@mega-nerd.com>
 ** All rights reserved.
 **
 ** This code is released under 2-clause BSD license. Please see the
-** file at : https://github.com/libsndfile/libsamplerate/blob/master/COPYING
+** file at : https://github.com/erikd/libsamplerate/blob/master/COPYING
 */
 
 #ifndef COMMON_H_INCLUDED
 #define COMMON_H_INCLUDED
 
+#ifdef HAVE_STDINT_H
 #include <stdint.h>
-#ifdef HAVE_STDBOOL_H
-#include <stdbool.h>
-#endif
-
-#include <math.h>
-
-#ifdef HAVE_VISIBILITY
-  #define LIBSAMPLERATE_DLL_PRIVATE __attribute__ ((visibility ("hidden")))
-#elif defined (__APPLE__)
-  #define LIBSAMPLERATE_DLL_PRIVATE __private_extern__
-#else
-  #define LIBSAMPLERATE_DLL_PRIVATE
+#elif (SIZEOF_INT == 4)
+typedef	int		int32_t ;
+#elif (SIZEOF_LONG == 4)
+typedef	long	int32_t ;
 #endif
 
 #define	SRC_MAX_RATIO			256
@@ -29,14 +22,10 @@
 
 #define	SRC_MIN_RATIO_DIFF		(1e-20)
 
-#ifndef MAX
 #define	MAX(a,b)	(((a) > (b)) ? (a) : (b))
-#endif
-
-#ifndef MIN
 #define	MIN(a,b)	(((a) < (b)) ? (a) : (b))
-#endif
 
+#define	ARRAY_LEN(x)			((int) (sizeof (x) / sizeof ((x) [0])))
 #define OFFSETOF(type,member)	((int) (&((type*) 0)->member))
 
 #define	MAKE_MAGIC(a,b,c,d,e,f)	((a) + ((b) << 4) + ((c) << 8) + ((d) << 12) + ((e) << 16) + ((f) << 20))
@@ -59,22 +48,19 @@
 #	define WARN_UNUSED
 #endif
 
+
 #include "samplerate.h"
 
 enum
 {	SRC_FALSE	= 0,
 	SRC_TRUE	= 1,
+
+	SRC_MODE_PROCESS	= 555,
+	SRC_MODE_CALLBACK	= 556
 } ;
 
-enum SRC_MODE
-{
-	SRC_MODE_PROCESS	= 0,
-	SRC_MODE_CALLBACK	= 1
-} ;
-
-typedef enum SRC_ERROR
-{
-	SRC_ERR_NO_ERROR = 0,
+enum
+{	SRC_ERR_NO_ERROR = 0,
 
 	SRC_ERR_MALLOC_FAILED,
 	SRC_ERR_BAD_STATE,
@@ -101,69 +87,43 @@ typedef enum SRC_ERROR
 
 	/* This must be the last error number. */
 	SRC_ERR_MAX_ERROR
-} SRC_ERROR ;
+} ;
 
-typedef struct SRC_STATE_VT_tag
-{
-	/* Varispeed process function. */
-	SRC_ERROR		(*vari_process) (SRC_STATE *state, SRC_DATA *data) ;
+typedef struct SRC_PRIVATE_tag
+{	double	last_ratio, last_position ;
 
-	/* Constant speed process function. */
-	SRC_ERROR		(*const_process) (SRC_STATE *state, SRC_DATA *data) ;
-
-	/* State reset. */
-	void			(*reset) (SRC_STATE *state) ;
-
-	/* State clone. */
-	SRC_STATE		*(*copy) (SRC_STATE *state) ;
-
-	/* State close. */
-	void			(*close) (SRC_STATE *state) ;
-} SRC_STATE_VT ;
-
-struct SRC_STATE_tag
-{
-	SRC_STATE_VT *vt ;
-
-	double	last_ratio, last_position ;
-
-	SRC_ERROR	error ;
+	int		error ;
 	int		channels ;
 
 	/* SRC_MODE_PROCESS or SRC_MODE_CALLBACK */
-	enum SRC_MODE	mode ;
+	int		mode ;
+
+	/* Pointer to data to converter specific data. */
+	void	*private_data ;
+
+	/* Varispeed process function. */
+	int		(*vari_process) (struct SRC_PRIVATE_tag *psrc, SRC_DATA *data) ;
+
+	/* Constant speed process function. */
+	int		(*const_process) (struct SRC_PRIVATE_tag *psrc, SRC_DATA *data) ;
+
+	/* State reset. */
+	void	(*reset) (struct SRC_PRIVATE_tag *psrc) ;
 
 	/* Data specific to SRC_MODE_CALLBACK. */
 	src_callback_t	callback_func ;
 	void			*user_callback_data ;
 	long			saved_frames ;
 	const float		*saved_data ;
+} SRC_PRIVATE ;
 
-	/* Pointer to data to converter specific data. */
-	void	*private_data ;
-} ;
-
-/* In src_sinc.c */
-const char* sinc_get_name (int src_enum) ;
-const char* sinc_get_description (int src_enum) ;
-
-SRC_STATE *sinc_state_new (int converter_type, int channels, SRC_ERROR *error) ;
+int sinc_set_converter (SRC_PRIVATE *psrc, int src_enum) ;
 
 /* In src_linear.c */
 const char* linear_get_name (int src_enum) ;
 const char* linear_get_description (int src_enum) ;
 
-SRC_STATE *linear_state_new (int channels, SRC_ERROR *error) ;
-
-static inline int psf_lrintf(float x)
-{
-	return lrintf(x);
-} /* psf_lrintf */
-
-static inline int psf_lrint(double x)
-{
-	return lrint(x);
-} /* psf_lrint */
+int linear_set_converter (SRC_PRIVATE *psrc, int src_enum) ;
 
 /*----------------------------------------------------------
 **	Common static inline functions.
@@ -173,7 +133,7 @@ static inline double
 fmod_one (double x)
 {	double res ;
 
-	res = x - psf_lrint (x) ;
+	res = x - lrint (x) ;
 	if (res < 0.0)
 		return res + 1.0 ;
 
@@ -187,3 +147,4 @@ is_bad_src_ratio (double ratio)
 
 
 #endif	/* COMMON_H_INCLUDED */
+
