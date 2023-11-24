@@ -1,0 +1,3 @@
+* Merged with updates & bugfixes from upstream libjamesdsp
+* Fixed sorting bug that caused the file selection list to be inconsistent (liveprog, convolver, vdc)
+* Translation updates
