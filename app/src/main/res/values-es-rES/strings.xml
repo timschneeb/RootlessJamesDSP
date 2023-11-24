@@ -2,7 +2,7 @@
 <resources>
     <!-- Main menu bar -->
     <string name="action_settings">Configuración</string>
-    <string name="action_presets">Preajustes</string>
+    <string name="action_presets">Configuraciones</string>
     <string name="action_revert">Restablecer predeterminados</string>
     <string name="action_blocked_apps">Apps excluidas</string>
     <!-- Notification channels -->
@@ -59,7 +59,7 @@
     <string name="permission_allowed">Permitido</string>
     <string name="permission_not_allowed">No permitido</string>
     <string name="preparing">Preparando…</string>
-    <string name="error_projection_api_missing">El fabricante de tu dispositivo ha desactivado las APIs internas de grabación de audio. Esta aplicación no puede funcionar sin ellas.</string>
+    <string name="error_projection_api_missing">El fabricante de tu dispositivo ha desactivado las API internas de grabación de audio. Esta aplicación no puede funcionar sin ellas.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Cambiar procesamiento de audio</string>
     <string name="compander_enable">Compresor de rango dinámico</string>
