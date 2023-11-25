@@ -360,7 +360,7 @@
     <string name="credits_project_check_update">Periksa pembaruan…</string>
     <string name="credits_project_check_update_summary">Unduh dan pasang pembaruan jika tersedia</string>
     <string name="credits_project_translate">Kontribusi penerjemahan</string>
-    <string name="credits_project_translate_summary">Bantu kami menerjemahkan aplikasi ke bahasa anda</string>
+    <string name="credits_project_translate_summary">Bantu kami menterjemah apl ke dalam bahasa anda (Bahasa sementara Indonesia)</string>
     <string name="credits_version">Versi aplikasi</string>
     <string name="credits_build_info">Info Build</string>
     <string name="appearance_section_header">Tampilan</string>
@@ -549,7 +549,7 @@
     <string name="intent_import_select_success">File \'%1$s\' di impor dan diaktifkan</string>
     <string name="intent_import_error_file_uri">Gagal mengimpor file, URI tidak didukung.</string>
     <!-- Translation notice box -->
-    <string name="translation_notice_summary">Bantu kami menerjemahkan aplikasi ke bahasa anda! Tap di sini untuk melihat situs project di Crowdin.</string>
+    <string name="translation_notice_summary">Bantu kami menterjemah apl ke dalam bahasa anda.tekan disini untuk masuk ke crowdin</string>
     <string name="translation_notice">Kontribusi penerjemahan</string>
     <!-- Self-updates (Root) -->
     <string name="self_update_install_error">Pembaruan gagal</string>
