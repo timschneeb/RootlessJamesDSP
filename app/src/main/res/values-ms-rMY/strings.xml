@@ -360,7 +360,7 @@
     <string name="credits_project_check_update">Periksa pembaruan…</string>
     <string name="credits_project_check_update_summary">Unduh dan pasang pembaruan jika tersedia</string>
     <string name="credits_project_translate">Kontribusi penerjemahan</string>
-    <string name="credits_project_translate_summary">Bantu kami menterjemah apl ke dalam bahasa anda (Bahasa sementara Indonesia)</string>
+    <string name="credits_project_translate_summary">Bantu kita menterjemah aplikasi ke dalam bahasa anda</string>
     <string name="credits_version">Versi aplikasi</string>
     <string name="credits_build_info">Info Build</string>
     <string name="appearance_section_header">Tampilan</string>
