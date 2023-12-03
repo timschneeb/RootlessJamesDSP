@@ -1,8 +1,8 @@
-Use JamesDSP as a system-wide audio processing engine without any root access.
+Dùng JamesDSP làm công cụ xử lý âm thanh trên toàn hệ thống mà không cần quyền root.
 
-This app has several limitations that may be deal-breaking to some people; please read this whole document before using the app. Shizuku (Android 11+) or ADB access via a computer is required for the initial setup.
+Ứng dụng này có một số hạn chế có thể gây khó khăn cho một số người; vui lòng đọc toàn bộ tài liệu này trước khi sử dụng ứng dụng. Cần có quyền truy cập Shizuku (Android 11+) hoặc ADB qua máy tính để thiết lập lúc đầu.
 
-JamesDSP supports the following audio effects:
+JamesDPS hỗ trợ các hiệu ứng âm thanh sau:
 * Limiter control
 * Output gain control
 * Auto dynamic range compressor
