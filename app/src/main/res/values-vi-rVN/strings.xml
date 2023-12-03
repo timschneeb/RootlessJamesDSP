@@ -120,8 +120,23 @@
     <string name="reverb_preset_medium_room1">Phòng vừa</string>
     <string name="reverb_preset_large_room1">Phòng lớn</string>
     <!-- Onboarding -->
+    <string name="onboarding_greeting">Chào mừng đến với RootlessJamesDPS!</string>
+    <string name="onboarding_caption">Đây sẽ là phần hướng dẫn sẽ giúp bạn thiết lập ứng dụng này.</string>
+    <string name="onboarding_warning">Hiện nay, ứng dụng này chưa hoàn thiện và ổn định. Hãy lưu ý là nó có thể không hoạt động trên một số thiết bị như mong đợi vì nó sử dụng Android APIs không được thiết kế để bên thứ ba sử dụng.</string>
+    <string name="onboarding_methods_title">Chọn cách để thiết lập</string>
+    <string name="onboarding_methods_root_title">Root</string>
+    <string name="onboarding_methods_shizuku_title">Shizuku</string>
     <!-- Rootless flavor -->
+    <string name="onboarding_methods_rootless_adb">\u25CF Cho người dùng có kinh nghiệm\n\u25CF Cần máy tính và cáp USB\n\u25CF hỗ trợ Android 10 trở lên</string>
     <!-- Root flavor -->
+    <string name="onboarding_methods_root_root">\u25CF Đề xuất \n\u25CF Không cần máy tính\n\u25CF áp dụng cho tất cả phiên bản Android</string>
+    <string name="onboarding_methods_root_shizuku">\u25CF Được khuyến nghị nếu chưa thiết lập root\n\u25CF Không cần máy tính\n\u25CF Android 11 trở lên</string>
+    <string name="onboarding_methods_root_adb">\u25CF Cho người dùng có kinh nghiệm\n\u25CF cần máy tính và cáp USB\n\u25CF Dùng cho tất cả phiên bản Android</string>
+    <string name="onboarding_root_shell_fail">Không có quyền root. Hãy dùng cách thiết lập khác.</string>
+    <string name="onboarding_adb_adb_title">Thiết lập ADB</string>
+    <string name="onboarding_adb_caption">Ứng dụng này yêu cầu quyền đặc biệt để loại bỏ chính sách âm thanh trên thiết bị của bạn. Hãy làm theo hướng dẫn dưới đây.</string>
+    <string name="onboarding_adb_shizuku_install_button">Cài Shizuku</string>
+    <string name="onboarding_adb_shizuku_install_button_done">Đã được cài đặt</string>
     <!-- Settings -->
     <string name="title_activity_settings">Cài đặt</string>
     <string name="backup_settings">Sao lưu và khôi phục</string>
