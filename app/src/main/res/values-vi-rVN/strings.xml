@@ -137,6 +137,12 @@
     <string name="onboarding_adb_caption">Ứng dụng này yêu cầu quyền đặc biệt để loại bỏ chính sách âm thanh trên thiết bị của bạn. Hãy làm theo hướng dẫn dưới đây.</string>
     <string name="onboarding_adb_shizuku_install_button">Cài Shizuku</string>
     <string name="onboarding_adb_shizuku_install_button_done">Đã được cài đặt</string>
+    <string name="onboarding_adb_shizuku_install_instruction">Cài \'Shizuku\' trong Ch Play.</string>
+    <string name="onboarding_adb_shizuku_open_button">Mở Shizuku</string>
+    <string name="onboarding_adb_shizuku_grant_instruction">Nhấn vào nút và cấp quyền truy cập Shizuku cho ứng dụng này.</string>
+    <string name="onboarding_adb_shizuku_grant_button">Cấp quyền truy cập</string>
+    <string name="onboarding_adb_shizuku_not_installed">Shizuku chưa được cài đặt, đầu tiên hãy tải và cài nó trong CH Play.</string>
+    <string name="onboarding_adb_shizuku_not_installed_title">Shizuku chưa được cài đặt</string>
     <!-- Settings -->
     <string name="title_activity_settings">Cài đặt</string>
     <string name="backup_settings">Sao lưu và khôi phục</string>
