@@ -6,7 +6,7 @@ JamesDPS hỗ trợ các hiệu ứng âm thanh sau:
 * Limiter control
 * Output gain control
 * Auto dynamic range compressor
-* Dynamic bass boost
+* Tăng cường âm trầm sống động
 * Interpolating FIR equalizer
 * Arbitrary response equalizer (Graphic EQ)
 * ViPER-DDC
@@ -15,17 +15,17 @@ JamesDPS hỗ trợ các hiệu ứng âm thanh sau:
 * Analog modelling
 * Soundstage wideness
 * Crossfeed
-* Virtual room effect (reverb)
+* Hiệu ứng phòng ảo hóa (vọng lại)
 
 Ngoài ra, ứng dụng này còn tích hợp trực tiếp với AutoEQ. Bằng cách sử dụng AutoEQ được tích hợp, bạn có thể tìm kiếm và nhập tần số phản hồi nhằm điều chỉnh tai nghe của bạn thành âm thanh cân bằng. Go to 'Arbitrary response equalizer > Magnitude response > AutoEQ profiles' to get started.
 
---- Limitations
+--- Các hạn chế
 * Các ứng dụng chặn việc ghi âm âm thanh nội bộ vẫn không được xử lý (ví dụ, Spotify, Google Chrome)
-* Apps using some types of HW-accelerated playback may cause issues and need to be manually excluded (e.g., some Unity games)
-* Cannot coexist with (some) other audio effect apps (e.g., Wavelet and other apps that make use of the `DynamicsProcessing` Android API)
+* Các ứng dụng sử dụng một số loại phát lại tăng tốc phần cứng có thể gây ra lỗi và cần phải được loại trừ thủ công (ví dụ như, một số trò chơi Unity)
+* Không thể dùng kèm (một số) ứng dụng chỉnh âm thanh khác (ví dụ như, Wavelet và các ứng dụng khác sử dụng API Android `DynamicsProcessing`)
 
 
-- Apps confirmed working:
+- Những ứng dụng chắc chắn sẽ hoạt động:
 * YouTube
 * YouTube Music
 * Amazon Music
@@ -35,12 +35,13 @@ Ngoài ra, ứng dụng này còn tích hợp trực tiếp với AutoEQ. Bằng
 * Twitch
 * ...
 
-- Unsupported apps include:
-* Spotify (Note: Spotify ReVanced patch is required to support Spotify)
+- Các ứng dụng không hỗ trợ gồm:
+* Spotify (Lưu ý: Cần có bản vá Spotify ReVanced để hỗ trợ Spotify)
 * Google Chrome
 * SoundCloud
 * ...
 
---- Translation
-Please help us translate this app here: https://crowdin.com/project/rootlessjamesdsp
-To request a new language that isn't enabled on Crowdin yet, please open an issue here on GitHub and I will turn it on.
+--- Dịch thuật
+Hãy giúp bọn mình dịch ứng dụng ở đây:
+https://crowdin.com/project/rootlessjamesdsp
+Để yêu cầu một ngôn ngữ mới chưa được bật trên Crowdin, vui lòng mở một issue tại đây trên GitHub và mình sẽ bật ngôn ngữ đó lên.
