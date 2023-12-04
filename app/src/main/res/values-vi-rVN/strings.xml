@@ -192,6 +192,19 @@
     <string name="limit_tested_devices">Những thay đổi do nhà sản xuất thiết bị của bạn thực hiện đối với audio subsystem của Android có thể dễ dàng làm hỏng ứng dụng này vì nó sử dụng một số API không có trong tài liệu.\nđã được thử nghiệm trên các thiết bị này:\n• Samsung S20+ (Android 12)\n• AOSP emulator (Android 10–13)\n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
     <string name="title_activity_settings">Cài đặt</string>
+    <string name="session_detection_header">Phát hiện phiên âm thanh</string>
+    <string name="session_detection_method">Phương pháp phát hiện phiên ưa thích</string>
+    <string name="session_loss_ignore">Bỏ qua việc mất kiểm soát phiên</string>
+    <string name="session_loss_ignore_off">Đã tắt, xử lý bình thường (khuyên dùng)</string>
+    <string name="session_loss_ignore_on">Đừng hực hiện bất kỳ hành động nào (có thể gây ra âm thanh trùng lặp)</string>
+    <string name="session_loss_ignore_warning">Việc bật cài đặt này có thể khiến âm thanh bị trùng lặp khi một ứng dụng hiệu ứng âm thanh khác kiểm soát phiên âm thanh.\nVui lòng tắt cài đặt này trừ khi bạn gặp phải sự kiện mất phiên dương tính giả.</string>
+    <string name="audio_format_enhanced_processing_off">Đã tắt xử lý nâng cao</string>
+    <string name="audio_format_summary_root">Chế độ kế thừa, xử lý nâng cao</string>
+    <string name="audio_format_encoding">Mã hóa âm thanh</string>
+    <string name="audio_format_optimization_refresh">Làm mới dữ liệu điểm chuẩn</string>
+    <string name="audio_format_optimization_benchmark">Sử dụng đo điểm chuẩn để tối ưu hóa hiệu suất</string>
+    <string name="audio_format_optimization_benchmark_summary">Tăng hiệu suất của các hiệu ứng sử dụng module convolver</string>
+    <string name="audio_format_optimization_benchmark_ongoing">Đang trong quá trình đánh giá…</string>
     <string name="profiles_summary">Cấu hình trên mỗi hồ sơ thiết bị, tự động chuyển đổi</string>
     <string name="profiles_enable_summary_on">Đã bật hồ sơ trên mỗi thiết bị</string>
     <string name="profiles_enable_summary_off">Đã tắt hồ sơ trên mỗi thiết bị</string>
@@ -203,6 +216,8 @@
     <string name="exclude_app_from_recents">Loại trừ ứng dụng khỏi gần đây</string>
     <string name="exclude_app_from_recents_off">Không loại trừ ứng dụng khỏi danh sách tác vụ gần đây</string>
     <string name="exclude_app_from_recents_on">Loại trừ ứng dụng khỏi danh sách tác vụ gần đây</string>
+    <string name="autostart_prompt_at_boot_off">Không hiển thị thông báo sau khi khởi động</string>
+    <string name="autostart_prompt_at_boot_on">Hiển thị thông báo sau khi khởi động</string>
     <string name="autostart_service_at_boot">Tự chạy dịch vụ sau mỗi lần khởi động lại máy</string>
     <string name="autostart_service_at_boot_off">Không tự khởi động dịch vụ sau khi khởi động lại máy</string>
     <string name="autostart_service_at_boot_on">Tự khởi động dịch vụ sau khi khởi động lại máy</string>
@@ -215,31 +230,153 @@
     <string name="troubleshooting_docs">Tài liệu</string>
     <string name="troubleshooting_actions">Các hành động khác</string>
     <string name="troubleshooting_dump_summary">Thu thập và lưu dữ liệu khắc phục sự cố</string>
+    <string name="troubleshooting_view_limitations">Hạn chế về mặt kỹ thuật</string>
+    <string name="troubleshooting_view_limitations_summary">Hiển thị chi tiết về những hạn chế của ứng dụng này</string>
+    <string name="troubleshooting_notification_access">Cho phép truy cập thông báo để phát hiện phiên tốt hơn</string>
+    <string name="troubleshooting_repair_assets">Khôi phục bundled IRS, DDC và các script</string>
+    <string name="troubleshooting_repair_assets_success">Bundled assets đã được khôi phục</string>
+    <string name="misc_settings_summary">Báo cáo sự cố, hành động khác</string>
+    <string name="misc_permission_header">Quyền tùy chọn</string>
+    <string name="about_settings">Thông tin</string>
+    <string name="about_settings_summary">Tín dụng, hỗ trợ, các cập nhật</string>
+    <string name="privacy_share_crash_reports">Chia sẻ báo cáo sự cố ứng dụng</string>
+    <string name="privacy_share_crash_reports_on">Gửi báo cáo sự cố cho nhà phát triển</string>
+    <string name="privacy_share_crash_reports_off">Không gửi báo cáo sự cố cho nhà phát triển</string>
+    <string name="credits">Tín dụng</string>
+    <string name="translators">Dịch thuật</string>
+    <string name="credits_project_page">Ghé thăm trang web dự án trên GitHub</string>
+    <string name="credits_project_page_summary">Báo cáo sự cố, giữ bạn luôn được cập nhật và đọc mã nguồn</string>
+    <string name="credits_project_play_page">Ghé thăm RootlessJamesDSP trên Cửa hàng Play</string>
+    <string name="credits_project_check_update">Kiểm tra các cập nhật mới…</string>
+    <string name="credits_project_check_update_summary">Tải xuống và cài đặt các bản cập nhật nếu có</string>
+    <string name="credits_project_translate">Đóng góp bản dịch</string>
+    <string name="credits_project_translate_summary">Giúp bọn mình dịch ứng dụng này sang ngôn ngữ của bạn</string>
+    <string name="credits_version">Phiên bản ứng dụng</string>
+    <string name="appearance_section_header">Giao diện</string>
+    <string name="appearance_summary">Chủ đề ứng dụng, chế độ tối, đen tinh khiết</string>
+    <string name="appearance_theme_mode">Chế độ tối</string>
+    <string name="appearance_theme_mode_default">Theo giao diện hệ thống</string>
+    <string name="appearance_theme_mode_light">Tắt</string>
+    <string name="appearance_theme_mode_dark">Bật</string>
+    <string name="appearance_pure_black_mode">Đen tinh khiết chế độ tối</string>
+    <string name="appearance_app_theme">Giao diện ứng dụng</string>
     <string name="backup_settings">Sao lưu và khôi phục</string>
+    <string name="backup_frequency">Sao lưu thường xuyên</string>
+    <string name="backup_location">Nơi lưu bản sao</string>
+    <string name="backup_maximum">Số bản sao lưu tối đa</string>
+    <string name="backup_12hour">Mỗi 12 tiếng</string>
+    <string name="backup_24hour">Mỗi Ngày</string>
+    <string name="backup_48hour">Mỗi 2 ngày</string>
+    <string name="backup_weekly">Mỗi tuần</string>
+    <string name="backup_select_location">Hãy tạo và chọn một thư mục sao lưu…</string>
     <!-- Theme names -->
     <string name="theme_default">Mặc định</string>
     <!-- File library preference -->
+    <string name="action_import">Nhập</string>
+    <string name="filelibrary_context_edit">Sửa</string>
+    <string name="filelibrary_context_overwrite">Ghi đè</string>
+    <string name="filelibrary_context_rename">Đổi tên</string>
+    <string name="filelibrary_context_share">Chia sẻ…</string>
+    <string name="filelibrary_context_delete">Xóa</string>
+    <string name="filelibrary_context_new_preset">Mới</string>
+    <string name="filelibrary_unsupported_format_title">Loại tập tin không được hỗ trợ</string>
+    <string name="filelibrary_is_backup_not_preset">Tập tin đã chọn là tập tin sao lưu, không phải tệp cài sẵn. Hãy vào cài đặt sao lưu nếu bạn muốn khôi phục nó.</string>
+    <string name="filelibrary_new_file_name">Tên file mới</string>
+    <string name="filelibrary_file_exists">File này đã có rồi</string>
+    <string name="filelibrary_renamed">Đã đổi tên thành \'%1$s\'</string>
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">Phản ứng cường độ</string>
     <string name="gep_add_node">Thêm</string>
+    <string name="geq_preview_collapsed">Xem trước (chạm để mở rộng)</string>
+    <string name="geq_done">Xong</string>
+    <string name="geq_cancel_spaced">&#160;&#160;Loại bỏ&#160;</string>
+    <string name="geq_cancel">Loại bỏ</string>
+    <string name="geq_discard_changes_title">Hủy các thay đổi và thoát?</string>
+    <string name="geq_frequency">Tần số</string>
     <!-- AutoEQ GraphicEQ selector -->
+    <string name="geq_api_network_error">Không kết nối được với máy chủ. %1$s</string>
+    <string name="geq_api_network_error_details_code">Máy chủ đã phản hồi với mã lỗi: %1$d</string>
+    <string name="autoeq_search">Tìm AutoEQ</string>
+    <string name="autoeq_enter_model">Nhập mẫu tai nghe của bạn…</string>
+    <string name="autoeq_no_results">Không tìm thấy kết quả nào</string>
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
+    <string name="editor_docs">Trợ giúp</string>
+    <string name="editor_save">Lưu</string>
+    <string name="editor_replace_all">Thay thế tất cả</string>
+    <string name="editor_save_prompt_title">Lưu thay đổi chứ?</string>
+    <string name="editor_save_prompt">Script hiện tại có những thay đổi chưa được lưu. Bạn muốn lưu các thay đổi của mình hay loại bỏ chúng?</string>
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Loại trừ ứng dụng</string>
+    <string name="blocklist_add_exclusion_alt">Thêm ứng dụng để loại trừ</string>
+    <string name="blocklist_delete_title">Xóa ứng dụng đã chọn?</string>
+    <string name="blocklist_delete">Bạn có muốn xóa ứng dụng này khỏi danh sách loại trừ không?</string>
+    <string name="blocklist_no_exclusions">Không có ứng dụng nào bị loại trừ</string>
+    <string name="blocklist_unsupported_apps">Ứng dụng không được hỗ trợ</string>
+    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>Ứng dụng này không hỗ trợ xử lý các ứng dụng chặn bên thứ ba ghi lại đầu ra âm thanh của họ. Để ngăn các ứng dụng này bị tắt tiếng do hạn chế ghi, chúng sẽ tự động bị loại khỏi quá trình xử lý âm thanh và không được định tuyến lại</p><p><u>Ứng dụng bị ảnh hưởng:</u><br/>%s</p>]]></string>
     <!-- Compatibility issue activity -->
+    <string name="title_activity_app_compat">Vấn đề tương thích</string>
     <string name="app_compat_retry">Thử lại</string>
+    <string name="app_compat_exclude">Loại trừ</string>
+    <string name="app_compat_title">Quá trình xử lý âm thanh đã bị tạm dừng để tránh âm thanh trùng lặp</string>
+    <string name="app_compat_explanation">Ứng dụng sau không được hỗ trợ vì nó khiến RootlessJamesDSP mất quyền kiểm soát định tuyến âm thanh của nó:</string>
+    <string name="app_compat_instruction">Hãy kiểm tra cài đặt của ứng dụng nếu bạn có thể tắt tính năng tăng tốc phần cứng hoặc các cài đặt khác có thể ảnh hưởng đến RootlessJamesDSP và nhấn \'Thử lại\'.</string>
     <!-- Root: Library load failure -->
+    <string name="load_fail_header">Module Magisk chưa được cài đặt</string>
+    <string name="load_fail_card_title">Không nạp được libjamesdsp.so</string>
+    <string name="load_fail_card">Vui lòng cài đặt module magisk JamesDSP và khởi động lại thiết bị Android của bạn để sử dụng ứng dụng này. Bạn cũng có thể cần phải cài đặt lại ứng dụng này sau khi khởi động lại.</string>
+    <string name="load_fail_rootless_card_title">Có phải bạn đang tìm một giải pháp thay thế không cần root?</string>
+    <string name="load_fail_rootless_card">Phiên bản JamesDSP này được thiết kế để sử dụng với thiết bị đã root/đã sửa đổi. Một giải pháp thay thế không phải root với một số hạn chế cũng có sẵn. Nhấn vào đây để biết chi tiết.</string>
+    <string name="load_fail_arch_card_title">Module đã cài đặt rồi?</string>
     <!-- Enhanced processing -->
+    <string name="enhanced_processing_feature_unavailable">Tính năng không có sẵn</string>
     <!-- App list -->
     <!-- Number box view -->
     <!-- Slider widget -->
     <!-- Revert confirmation -->
+    <string name="revert_confirmation_title">Bạn chắc chứ?</string>
+    <string name="revert_confirmation">Bạn có muốn đặt lại cài đặt JamesDSP hiện tại của mình về giá trị mặc định không?</string>
     <!-- File intent handler -->
     <!-- Translation notice box -->
+    <string name="translation_notice">Đóng góp bản dịch</string>
     <!-- Self-updates (Root) -->
+    <string name="self_update_no_updates">Hiện tại không có bản cập nhật mới nào</string>
+    <string name="self_update_notice">Đã có bản cập nhật mới (%1$s)</string>
+    <string name="self_update_notice_summary">Chạm vào đây để tải xuống và cài đặt bản cập nhật mới.</string>
+    <string name="self_update_notice_dismiss_install">Cài ngay</string>
+    <string name="self_update_notice_dismiss_snooze">Nhắc mình sau nhé</string>
+    <string name="self_update_notice_dismiss_skip">Bỏ qua cập nhật này</string>
+    <string name="self_update_state_downloading">Đang tải về…</string>
+    <string name="self_update_state_installing">Đang cài đặt…</string>
     <!-- Backups -->
+    <string name="backup_restore_progress">Đang khôi phục bản sao</string>
+    <string name="backup_restore_error">Khôi phục sao lưu không thành công</string>
+    <string name="backup_restore_error_format">Tệp sao lưu không được hỗ trợ hoặc đã bị hỏng</string>
+    <string name="backup_restore_error_version_too_new">Bản sao lưu đã được tạo bằng phiên bản mới hơn của ứng dụng này và không thể nạp được. Hãy cập nhật ứng dụng này để tiếp tục.</string>
+    <string name="backup_restore_completed">Khôi phục thành công</string>
+    <string name="backup_create_completed">Đã tạo bản sao</string>
+    <string name="backup_create_progress">Đang tạo bản sao lưu</string>
+    <string name="backup_create_error">Sao lưu thất bại</string>
+    <string name="backup_manual_backup">Sao lưu thủ công</string>
+    <string name="backup_create">Tạo bản sao lưu</string>
+    <string name="backup_create_summary">Có thể được sử dụng để khôi phục cài đặt hiện tại sau này</string>
+    <string name="backup_restore">Khôi phục sao lưu</string>
+    <string name="backup_restore_summary">Khôi phục cài đặt trong tập tin sao lưu</string>
+    <string name="backup_automatic_backup">Tự sao lưu</string>
+    <string name="backup_compat_info">Các bản sao lưu chỉ bao gồm impulse responses, scripts, tập tin VDC, preset và cấu hình âm thanh hiện tại để có khả năng tương thích tối đa với các phiên bản khác.</string>
+    <string name="backup_restore_mode_title">Chế độ khôi phục</string>
+    <string name="backup_restore_mode_clean">Khôi phục sạch (xóa tất cả các tệp hiện có)</string>
+    <string name="backup_restore_mode_dirty">Khôi phục ẩu (chỉ ghi đè)</string>
+    <string name="backup_in_progress">Đang tiến hành sao lưu</string>
     <!-- Multi-device profiles -->
+    <string name="group_wired_headphones">Tai nghe có dây</string>
+    <string name="group_bluetooth">Bluetooth</string>
+    <string name="group_hdmi">HDMI</string>
+    <string name="group_usb">USB</string>
+    <string name="group_unknown">Không rõ</string>
+    <string name="device_profile_manage_copy_select_no_target">Không có hồ sơ nào để ghi đè</string>
+    <string name="device_profile_manage_copy_select">Chọn hồ sơ để sao chép</string>
+    <string name="device_profile_manage_paste_select">Chọn hồ sơ để ghi đè</string>
     <!-- Root version check -->
 </resources>
