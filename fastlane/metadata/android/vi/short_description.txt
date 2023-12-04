@@ -1,1 +1,1 @@
-System-wide JamesDSP audio processing engine for non-rooted Android devices.
+Ứng dụng xử lý âm thanh toàn hệ thống JamesDPS dành cho các thiết bị chưa root.
