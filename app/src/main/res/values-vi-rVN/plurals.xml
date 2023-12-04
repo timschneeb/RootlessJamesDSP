@@ -1,2 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <plurals name="custom_parameters">
+        <item quantity="other">%d thông số tùy chỉnh</item>
+    </plurals>
+    <plurals name="unsupported_apps">
+        <item quantity="other">%d các ứng dụng không được hỗ trợ đã tự động bị loại trừ. Nhấn để biết thêm chi tiết.</item>
+    </plurals>
+</resources>
