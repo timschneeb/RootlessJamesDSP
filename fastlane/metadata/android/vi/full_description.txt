@@ -13,11 +13,11 @@ JamesDPS hỗ trợ các hiệu ứng âm thanh sau:
 * Convolver
 * Live-programmable DSP (scripting engine for audio effects)
 * Analog modelling
-* Soundstage wideness
+* Độ rộng của âm trường
 * Crossfeed
 * Hiệu ứng phòng ảo hóa (vọng lại)
 
-Ngoài ra, ứng dụng này còn tích hợp trực tiếp với AutoEQ. Bằng cách sử dụng AutoEQ được tích hợp, bạn có thể tìm kiếm và nhập tần số phản hồi nhằm điều chỉnh tai nghe của bạn thành âm thanh cân bằng. Go to 'Arbitrary response equalizer > Magnitude response > AutoEQ profiles' to get started.
+Ngoài ra, ứng dụng này còn tích hợp trực tiếp với AutoEQ. Bằng cách sử dụng AutoEQ được tích hợp, bạn có thể tìm kiếm và nhập tần số phản hồi nhằm điều chỉnh tai nghe của bạn thành âm thanh cân bằng. Đi tới 'Bộ cân bằng phản hồi tùy ý > Phản hồi cường độ > Hồ sơ AutoEQ' để bắt đầu.
 
 --- Các hạn chế
 * Các ứng dụng chặn việc ghi âm âm thanh nội bộ vẫn không được xử lý (ví dụ, Spotify, Google Chrome)
