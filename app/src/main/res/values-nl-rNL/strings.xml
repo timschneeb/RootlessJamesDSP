@@ -27,6 +27,7 @@
     <string name="notification_request_permission_title">Gebruikersactie is vereist om JamesDSP te starten</string>
     <string name="notification_request_permission">Tik om opname toestemming te verlenen en JamesDSP\'s audiobewerking in te schakelen</string>
     <!-- Session control loss notifications -->
+    <string name="session_control_loss_toast">JamesDSP stopped due to audio session control loss. Please disable other audio effect apps.</string>
     <!-- App compatibility issue notifications -->
     <!-- Capture permission revoked notifications -->
     <!-- General purpose -->
