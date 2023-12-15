@@ -1,0 +1,186 @@
+desc: Joe0Bloggs DRX10K Dynamics
+
+tags: dynamics
+
+// credit: Joseph Yeung / Joe0Bloggs / HiBy Music
+// joseph.sfy.oz@gmail.com
+// As seen on HiBy R Android Digital Audio Players
+// All commercial rights reserved by Joseph Yeung
+
+bass:0.7<-1,2>Bass dynamics (x)
+mids:0<-1,2>Mids dynamics (x)
+treble:0.4<-1,2>Treble dynamics (x)
+bass_freq:95<40,600>Bass band (Hz)
+treble_freq:8000<1000,20000>Treble band (Hz)
+gaindB:-1<-10,5>gain (dB)
+
+@init
+bass = 0.7;
+mids = 0;
+treble = 0.4;
+bass_freq = 95;
+treble_freq = 8000;
+gaindB = -1.00;
+floordB = 0;
+
+function db2mag(db)
+(
+  pow(10, db / 20);
+);
+function mag2db(mag)
+(
+  20 * log10(mag);
+);
+srate >= 1638400 ? (fftsize = 65536);
+srate < 1638400 ? (fftsize = 32768);
+srate < 819200 ? (fftsize = 16384);
+srate < 409600 ? (fftsize = 8192);
+srate < 204800 ? (fftsize = 4096);
+srate < 102400 ? (fftsize = 2048);
+srate < 51200 ? (fftsize = 1024);
+lennon = fftsize/2+1;
+
+fgt_facT = 0.22;
+octSmooth = 1.2;
+dreMult_octSmooth = 1;
+step = fftsize/4;
+fgt_fac = 1 - pow(10, (log10(0.5) / fgt_facT / (srate / step)));
+headRoomdB = 10;
+headRoomdB < (bass*12) ? (headRoomdB = bass*12);
+headRoomdB < (mids*12) ? (headRoomdB = mids*12);
+headRoomdB < (treble*12) ? (headRoomdB = treble*12);
+
+
+bufpos = idx = 0;
+stftIndexLeft = 2;
+stftIndexRight = 50;
+memreq = stftCheckMemoryRequirement(stftIndexLeft, fftsize, 4, 1);
+memreq = stftCheckMemoryRequirement(stftIndexRight, fftsize, 4, 1);
+stftStructLeft = 120;
+stftStructRight = stftStructLeft + memreq;
+requiredSamples = stftInit(stftIndexLeft, stftStructLeft);
+requiredSamples = stftInit(stftIndexRight, stftStructRight);
+inBufLeft = stftStructRight + memreq + 10; // Pointer to memory
+outBufLeft = inBufLeft + fftsize + 10; // Pointer to memory plus safe zone
+inBufRight = outBufLeft + fftsize + 10; // ...
+outBufRight = inBufRight + fftsize + 10; // ...
+magBuf = outBufRight + fftsize + 10;
+oldBuf = magBuf + fftsize + 10;
+freqs = oldBuf+fftsize+10;
+pLennon = 0;
+a=0;
+loop(lennon,
+freqs[a] = a * srate / fftsize;
+freqs[a] <= 24000 ? (pLennon+=1);
+a+=1;);
+
+fdiff = freqs+fftsize+10;
+fdiff[0] = 1;
+a=1;
+loop(lennon-1,
+fdiff[a] = (freqs[a] - freqs[a-1]) / freqs[a];
+a+=1;);
+
+fgt_facM = octSmooth / 4;
+f_ema_fgt_fac = fdiff + fftsize + 10;
+
+a=0;
+loop(lennon,
+f_ema_fgt_fac[a] = 1 - (pow(10, (log10(0.5) / (fgt_facM / fdiff[a]))));
+a+=1;);
+
+fgt_facD = dreMult_octSmooth / 4;
+dreMult_ema_fgt_fac = f_ema_fgt_fac + fftsize + 10;
+
+a=0;
+loop(lennon,
+dreMult_ema_fgt_fac[a] = 1 - (pow(10, (log10(0.5) / (fgt_facD / fdiff[a]))));
+a+=1;);
+
+DREmult = dreMult_ema_fgt_fac + fftsize + 10;
+
+a = 0;
+while (freqs[a] < bass_freq)
+	(DREmult[a] = bass;
+	a+=1;);
+dist = freqs[a]-freqs[a-1];
+DREmult[a] = ((bass_freq-freqs[a-1])/dist*bass)+((freqs[a]-bass_freq)/dist*mids);
+a+=1;
+while (freqs[a] < treble_freq)
+	(DREmult[a] = mids;
+a+=1;);
+DREmult[a] = ((treble_freq-freqs[a-1])/dist*mids)+((freqs[a]-treble_freq)/dist*treble);
+a+=1;
+while (a < lennon)
+	(DREmult[a] = treble;
+a+=1;);
+
+//ema_smooth on DREmult
+a=1;
+loop(pLennon-1,
+DREmult[a] = DREmult[a] * dreMult_ema_fgt_fac[a] + DREmult[a-1] * (1-dreMult_ema_fgt_fac[a]);
+a+=1;);
+a=pLennon-2;
+loop(pLennon-1,
+DREmult[a] = DREmult[a] * dreMult_ema_fgt_fac[a] + DREmult[a+1] * (1-dreMult_ema_fgt_fac[a]);
+a-=1;);
+
+multBuf = DREmult + fftsize + 10;
+
+@sample
+inBufLeft[bufpos] = spl0;
+spl0 = outBufLeft[bufpos];
+inBufRight[bufpos] = spl1;
+spl1 = outBufRight[bufpos];
+bufpos += 1;
+bufpos >= requiredSamples ?
+(
+  error1 = stftForward(inBufLeft, stftIndexLeft, stftStructLeft, 1);
+  error2 = stftForward(inBufRight, stftIndexRight, stftStructRight, 1);
+  idx=0;idxx=0;
+//mean_curr_dB
+  loop(pLennon,
+  magBuf[idxx] = sqrt(inBufLeft[idx]*inBufLeft[idx]+inBufLeft[idx+1]*inBufLeft[idx+1]+inBufRight[idx]*inBufRight[idx]+inBufRight[idx+1]*inBufRight[idx+1]);
+  magBuf[idxx] = mag2db(magBuf[idxx]+$EPS);
+  idx+=2;idxx+=1);
+//ema_smooth
+  idxx = 1;
+  loop(pLennon-1,
+  magBuf[idxx] = magBuf[idxx] * f_ema_fgt_fac[idxx] + magBuf[idxx-1] * (1-f_ema_fgt_fac[idxx]);
+  idxx+=1);
+  idxx = pLennon-2;
+  loop(pLennon-1,
+  magBuf[idxx] = magBuf[idxx] * f_ema_fgt_fac[idxx] + magBuf[idxx+1] * (1-f_ema_fgt_fac[idxx]);
+  idxx-=1);
+//history_dB
+  idxx = 0;
+  loop(pLennon,
+  oldBuf[idxx] = magBuf[idxx] * fgt_fac + oldBuf[idxx] * (1-fgt_fac);
+  idxx+=1);
+//final_dyn
+  a = 0;
+  loop(pLennon,
+  magBuf[a] > oldBuf[a]+12 ? (oldBuf[a] = magBuf[a]-12;);
+  multBuf[a] = magBuf[a] - oldBuf[a] - floordB;
+  multBuf[a] < 0 ? (multBuf[a] = 0;);
+  multBuf[a] = multBuf[a] * DREmult[a];
+  multBuf[a] > headRoomdB? (multBuf[a] = headRoomdB;);
+  multBuf[a] += gaindB;
+  multBuf[a] = db2mag(multBuf[a]);
+  a+=1);
+  idx = 0; idxx=0;
+  loop(pLennon,
+  inBufLeft[idx] *= multBuf[idxx];
+  inBufLeft[idx+1] *= multBuf[idxx];
+  inBufRight[idx] *= multBuf[idxx];
+  inBufRight[idx+1] *= multBuf[idxx];
+  idx+=2; idxx+=1;);
+  error = stftBackward(inBufLeft, stftIndexLeft, stftStructLeft, 1);
+  error = stftBackward(inBufRight, stftIndexRight, stftStructRight, 1);
+  idx = 0;
+  loop(requiredSamples,
+  outBufLeft[idx] = inBufLeft[idx];
+  outBufRight[idx] = inBufRight[idx];
+  idx+=1);
+  bufpos = 0;
+);
