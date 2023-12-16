@@ -3,6 +3,7 @@ package me.timschneeberger.hiddenapi_impl;
 import android.app.AppOpsManager;
 import android.app.AppOpsManagerHidden;
 import android.media.IAudioPolicyService;
+import android.os.Build;
 import android.os.IBinder;
 import android.permission.IPermissionManager;
 import android.os.RemoteException;
@@ -46,7 +47,15 @@ public class ShizukuSystemServerApi {
 
     public static void PermissionManager_grantRuntimePermission(String packageName, String permissionName, int userId) {
         try {
-            PERMISSION_MANAGER.getOrThrow().grantRuntimePermission(packageName, permissionName, userId);
+            if (Build.VERSION.SDK_INT >= 34) {
+                try {
+                    PERMISSION_MANAGER.getOrThrow().grantRuntimePermission(packageName, permissionName, 0, userId);
+                }catch (NoSuchMethodError e) {
+                    PERMISSION_MANAGER.getOrThrow().grantRuntimePermission(packageName, permissionName, userId);
+                }
+            } else {
+                PERMISSION_MANAGER.getOrThrow().grantRuntimePermission(packageName, permissionName, userId);
+            }
         }
         catch(Exception ex) {
             Log.e("ShizukuSystemServerApi", "Failed to call app ops service");
