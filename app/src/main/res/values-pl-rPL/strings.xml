@@ -58,8 +58,17 @@
     <string name="no_activity_found">Nie znaleziono aktywności do obsługi akcji</string>
     <string name="permission_allowed">Dozwolone</string>
     <string name="permission_not_allowed">Niedozwolone</string>
+    <string name="preparing">Przygotowywanie…</string>
     <!-- Main screen -->
     <string name="power_button_alt">Przełącz przetwarzanie dźwięku</string>
+    <string name="compander_timeconstant">Stała czasowa</string>
+    <string name="compander_granularity">Stopień szczegółowości</string>
+    <string name="compander_granularity_very_low">Bardzo niski</string>
+    <string name="compander_granularity_low">Niski</string>
+    <string name="compander_granularity_medium">Średni</string>
+    <string name="compander_granularity_high">Wysoki</string>
+    <string name="compander_granularity_extreme">Ekstremalny</string>
+    <string name="compander_tftransforms">Przekształcenia czasowo-częstotliwościowe</string>
     <string name="eq_filter_type">Filter type</string>
     <string name="eq_interpolator">Interpolator</string>
     <string name="eq_interpolator_chip">Częściowo Interpolacja Hermitu sześciennego wielomianu</string>
