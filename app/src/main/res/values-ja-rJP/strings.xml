@@ -84,7 +84,7 @@
     <string name="eq_filter_type_iir_8_order">8次IIR</string>
     <string name="eq_filter_type_iir_10_order">10次IIR</string>
     <string name="eq_filter_type_iir_12_order">12次IIR</string>
-    <string name="eq_interpolator_chip">区分的3次エルミート内挿多項式</string>
+    <string name="eq_interpolator_chip">区分3次エルミート補完多項式</string>
     <string name="eq_interpolator_mha">改変された秋間スプライン</string>
     <string name="eq_preset_acoustic">アコースティック</string>
     <string name="eq_preset_bass">ベース</string>
@@ -144,7 +144,7 @@
     <string name="tube_drive">プリアンプ</string>
     <string name="output_control_header">出力制御</string>
     <string name="output_limiter_threshold">リミッターのしきい値</string>
-    <string name="output_limiter_release">リミッターの解除</string>
+    <string name="output_limiter_release">リミッターのリリースタイム</string>
     <string name="output_control_postgain">ポストゲイン</string>
     <string name="stereowide_enable">サウンドステージの広さ</string>
     <string name="stereowide_level">広さ</string>
@@ -155,12 +155,12 @@
     <string name="stereowide_level_narrow">狭い</string>
     <string name="crossfeed_enable">クロスフィード</string>
     <string name="crossfeed_preset">プリセット</string>
-    <string name="crossfeed_preset_bs2b_weak">弱 BS2B</string>
-    <string name="crossfeed_preset_bs2b_strong">強 BS2B</string>
-    <string name="crossfeed_preset_out_of_head">Out of head</string>
+    <string name="crossfeed_preset_bs2b_weak">BS2B 弱</string>
+    <string name="crossfeed_preset_bs2b_strong">BS2B 強</string>
+    <string name="crossfeed_preset_out_of_head">頭外定位</string>
     <string name="crossfeed_preset_surround1">サラウンド 1</string>
     <string name="crossfeed_preset_surround2">サラウンド 2</string>
-    <string name="crossfeed_preset_realistic_surround">Joe0Bloggs 現実的なサラウンド</string>
+    <string name="crossfeed_preset_realistic_surround">Joe0Bloggsのリアルなサラウンド</string>
     <!-- Onboarding -->
     <string name="title_activity_onboarding">オンボーディング</string>
     <string name="onboarding_back">戻る</string>
@@ -171,12 +171,12 @@
     <string name="onboarding_warning">現在、このアプリケーションは未完成で不安定です。 第三者が使用するために設計されていないAndroid APIを使用しているため、一部のデバイスでは期待通りに動作しない可能性があります。</string>
     <string name="onboarding_fix_permissions_title">ユーザーアクションが必要です</string>
     <string name="onboarding_fix_permissions">あなたまたはシステムによって1つまたは複数の権限が取り消されました。\nアプリが正常に動作するようにするには、これらの権限を再度許可する必要があります。 \n\nこれらの権限を再度許可するためにセットアップウィザードをやり直してください。</string>
-    <string name="onboarding_limitations_title">Limitations</string>
+    <string name="onboarding_limitations_title">制限事項</string>
     <string name="onboarding_limitations_unstable">重要! 続行する前に注意事項をよくお読みください。</string>
     <string name="onboarding_methods_title">設定方法を選択</string>
     <string name="onboarding_methods_root_title">Root</string>
     <string name="onboarding_methods_shizuku_title">Shizuku</string>
-    <string name="onboarding_methods_unsupported_append">非互換性</string>
+    <string name="onboarding_methods_unsupported_append">互換性なし</string>
     <string name="onboarding_methods_adb_title">ADB</string>
     <!-- Rootless flavor -->
     <string name="onboarding_methods_rootless_shizuku">\u25CF 推奨\n\u25CF 外部コンピュータ不要\n\u25CF Android 11以上のみ</string>
@@ -212,7 +212,7 @@
     <string name="onboarding_adb_shizuku_no_dump_perm_title">ShizukuはADB権限の付与に失敗しました</string>
     <string name="onboarding_adb_shizuku_no_dump_perm">数秒待ってからもう一度お試しください。それでも動作しない場合は、別の方法を試してみてください。</string>
     <string name="onboarding_adb_dump_not_granted_title">アクセス許可が付与されていません</string>
-    <string name="onboarding_adb_dump_not_granted">まずは説明書に従って、もう一度お試しください。ADBアクセスはまだ正しく設定されていません。</string>
+    <string name="onboarding_adb_dump_not_granted">指示に従って、もう一度お試しください。ADBアクセスがまだ正しく設定されていません。</string>
     <string name="onboarding_adb_manual_step1">Androidの開発者オプションに移動し、USBデバッグを有効にします。システム設定のビルド番号を数回タップして、これらの設定を解除する必要があります。</string>
     <string name="onboarding_adb_manual_step2">コンピュータのブラウザで https://app.webadb.com を開き (Chromeで最もよく機能します) USBを使用してデバイスをコンピュータに接続してください。</string>
     <string name="onboarding_adb_manual_step3">WebADBでUSBデバイスを追加して接続します。</string>
@@ -226,7 +226,7 @@
     <string name="onboarding_perm_title">その他の権限</string>
     <string name="onboarding_perm_caption">このアプリケーションを使用するには、追加の権限が必要です。権限を確認し、「次へ」をタップして許可してください。</string>
     <string name="onboarding_perm_microphone_title">音声録音の権限</string>
-    <string name="onboarding_perm_microphone_caption">内部音声を録音するために必要です。ハードウェアマイクは有効になっていません。</string>
+    <string name="onboarding_perm_microphone_caption">内部音声を録音するために必要です。ハードウェアマイクが有効になっていません。</string>
     <string name="onboarding_perm_notification_title">通知のアクセス許可</string>
     <string name="onboarding_perm_notification_caption">JamesDSPの処理状態に関する重要なステータスアップデートと情報を受信するために必要です。</string>
     <string name="onboarding_perm_cast_title">キャスト/録画の権限</string>
