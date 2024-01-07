@@ -3,8 +3,8 @@
     <!-- Main menu bar -->
     <string name="action_settings">الإعدادات</string>
     <string name="action_presets">الإعدادات المسبقة</string>
-    <string name="action_revert">إعادة التعيين إلى الوضع الافتراضي</string>
-    <string name="action_blocked_apps">التطبيقات المستثناة</string>
+    <string name="action_revert">إعادة الضبط</string>
+    <string name="action_blocked_apps">التطبيقات المستبعدة</string>
     <!-- Notification channels -->
     <string name="notification_group_service">الخدمة</string>
     <string name="notification_channel_service">إشعار الخدمة</string>
@@ -495,7 +495,7 @@
     <string name="editor_cannot_redo">لا شيء يمكن إعادته.</string>
     <string name="editor_text_size">حجم الخط</string>
     <!-- Blocklist -->
-    <string name="title_activity_blocklist">التطبيقات المستثناة</string>
+    <string name="title_activity_blocklist">التطبيقات المستبعدة</string>
     <string name="blocklist_add_exclusion_alt">إضافة تطبيق للاستبعاد</string>
     <string name="blocklist_delete_title">إزالة التطبيق المحدد؟</string>
     <string name="blocklist_delete">هل تريد ازالة التطبيق من القائمة المستبعدة؟</string>
