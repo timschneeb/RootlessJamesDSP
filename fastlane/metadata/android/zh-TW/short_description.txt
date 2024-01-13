@@ -1,1 +1,1 @@
-System-wide JamesDSP audio processing engine for non-rooted Android devices.
+JamesDSP是個系統級的全域音效處理引擎，無須root權限。
