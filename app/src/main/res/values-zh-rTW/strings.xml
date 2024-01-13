@@ -77,8 +77,40 @@
     <!-- Root flavor -->
     <string name="onboarding_adb_shizuku_no_dump_perm">請稍待幾秒後再試一次，若問題持續出現，再嘗試替代方法。</string>
     <string name="onboarding_adb_dump_not_granted_title">未允許權限</string>
+    <string name="onboarding_adb_dump_not_granted">未正確設定ADB存取權，請按照步驟再試一次。</string>
+    <string name="onboarding_adb_manual_step1">前往開發人員設定並啟用USB偵錯。先前往設定中的「關於手機」，連續點擊版本號碼直到啟用開發人員設定頁面。</string>
+    <string name="onboarding_adb_manual_step2">在電腦的瀏覽器中 (建議使用 Google Chrome) 開啟 https://app.webadb.com，並將裝置連接至電腦。</string>
+    <string name="onboarding_adb_manual_step3">在網頁式ADB中新增並連接USB裝置</string>
+    <string name="onboarding_adb_manual_step4">前往「Interactive Shell」並輸入以下指令：「pm grant %s android.permission.DUMP」</string>
+    <string name="onboarding_adb_manual_step5">點擊此應用程式中的「繼續」進入下一步。</string>
+    <string name="onboarding_adb_manual_step5b">(選擇性) 您可以用此命令永久跳過音訊擷取權限：「appops set %s PROJECT_MEDIA allo」</string>
+    <string name="onboarding_adb_manual_step5c">(選擇性) 除了上移步之外，您也可以透過此命令啟用自動啟動：「appops set %s SYSTEM_ALERT_WINDOW allow」</string>
+    <string name="onboarding_adb_manual_step1_button">開啟開發人員設定</string>
+    <string name="onboarding_perm_title">其他權限</string>
+    <string name="onboarding_perm_caption">還需要一些權限以使用此程式。請再次檢查，並選擇「繼續」以授予權限。</string>
+    <string name="onboarding_perm_microphone_title">音訊擷取權限</string>
+    <string name="onboarding_perm_microphone_caption">需要擷取內部音訊。硬體麥克風未啟動。</string>
+    <string name="onboarding_perm_notification_title">通知權限</string>
+    <string name="onboarding_perm_notification_caption">需要接收重要的狀態更新和JamesDSP的處理狀態。</string>
+    <string name="onboarding_perm_cast_title">錄製或投放的權限</string>
+    <string name="onboarding_perm_cast_caption">每次啟動時，您都會需要的授予此應用程式錄製或投放的權限。</string>
+    <string name="onboarding_perm_missing_title">未授予所需權限</string>
+    <string name="onboarding_perm_missing">授予全部所需的權限以繼續。\n若您不斷拒絕權存取，將需要手動在設定頁面中啟用。</string>
+    <string name="onboarding_perm_diag">允許傳送統計資料</string>
+    <string name="onboarding_perm_diag_caption">此應用程式會提交崩潰報告和其他診斷資料，包含活躍中的應用程式，以便能檢查錯誤，解決相容性問題。</string>
+    <string name="onboarding_finish_header">JamesDSP 設定完成！</string>
+    <string name="onboarding_finish_caption">若遇到任何問題，請見疑難排解選項。</string>
+    <string name="limit_session_control_conflict_title">停用其他音效軟體</string>
     <!-- Settings -->
     <string name="title_activity_settings">設定</string>
+    <string name="session_continuous_polling_rate">輪詢間隔(秒)</string>
+    <string name="session_detection_method">優先選用的工作階段偵測方法</string>
+    <string name="session_detection_method_audiopolicyservice">音訊策略服務</string>
+    <string name="session_detection_method_audioservice">音訊服務傾印 (建議)</string>
+    <string name="session_app_problem_ignore">忽略應用程式相容性問題</string>
+    <string name="session_loss_ignore">忽略工作階段遺失</string>
+    <string name="session_loss_ignore_off">已停用，正常處理 (建議)</string>
+    <string name="session_loss_ignore_on">不採取任何動作 (可能造成音訊重複)</string>
     <string name="backup_settings">備份與還原</string>
     <!-- Theme names -->
     <!-- File library preference -->
