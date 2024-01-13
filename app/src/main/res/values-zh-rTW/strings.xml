@@ -2,28 +2,96 @@
 <resources>
     <!-- Main menu bar -->
     <string name="action_settings">設定</string>
+    <string name="action_presets">預設集</string>
+    <string name="action_revert">重置為預設值</string>
+    <string name="action_blocked_apps">排除的應用程式</string>
     <!-- Notification channels -->
+    <string name="notification_group_service">服務</string>
+    <string name="notification_channel_service">服務通知</string>
+    <string name="notification_channel_session_loss_alert">階段中斷警告</string>
+    <string name="notification_channel_permission_prompt">請求通知權限</string>
+    <string name="notification_channel_app_compat_alert">不支援的程式警告</string>
+    <string name="notification_group_backup">備份與還原</string>
+    <string name="notification_channel_backup_progress">處理中</string>
+    <string name="notification_channel_backup_complete">完成</string>
     <!-- Service notifications -->
+    <string name="action_retry">重試</string>
+    <string name="action_fix">修復問題</string>
+    <string name="action_stop">停止</string>
+    <string name="notification_processing">作用中的應用程式：%1$s</string>
+    <string name="notification_idle">音訊處理閒置中</string>
+    <string name="notification_processing_title">音訊處理已啟用</string>
+    <string name="notification_processing_disabled_title">音訊處理已停用</string>
+    <string name="notification_processing_legacy">點擊開啟 JamesDSP 管理員</string>
     <!-- Permission request notifications -->
+    <string name="notification_request_permission_title">需要使用者動作以啟動 JamesDSP</string>
+    <string name="notification_request_permission">授予JamesDSP擷取權限以啟用音訊處理</string>
     <!-- Session control loss notifications -->
+    <string name="session_control_loss_toast">工作階段遺失，JamesDSP已停止。請關閉其他音效軟體。</string>
+    <string name="session_control_loss_notification_title">音訊處理已停止。另一個程式正在干擾JamesDSP。</string>
+    <string name="session_control_loss_notification">請禁止所有其他提供全域音效的軟體，再重新啟用 JamesDSP。</string>
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_toast">不支援的媒體應用程式，James已停止。請檢查通知以解決此問題。</string>
+    <string name="session_app_compat_notification_title">音訊處理已停止。另一個程式正在干擾JamesDSP。</string>
+    <string name="session_app_compat_notification">點擊此通知以解決問題</string>
     <!-- Capture permission revoked notifications -->
+    <string name="capture_permission_revoked_toast">JamesDSP已停止，音訊擷取權限被撤銷。</string>
     <!-- General purpose -->
+    <string name="install">安裝</string>
+    <string name="update">更新</string>
+    <string name="unknown_error">未知錯誤</string>
+    <string name="details">詳細資料</string>
+    <string name="actions">動作</string>
+    <string name="warning">警告</string>
+    <string name="success">成功</string>
+    <string name="open">開啟</string>
+    <string name="close">關閉</string>
+    <string name="delete">刪除</string>
+    <string name="copy">複製</string>
+    <string name="paste">貼上</string>
+    <string name="add">新增</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="value_not_set">未定</string>
+    <string name="undo">復原</string>
+    <string name="redo">重做</string>
+    <string name="no_activity_found">沒有找到處理動作的活動</string>
+    <string name="permission_allowed">已允許</string>
+    <string name="permission_not_allowed">不允許</string>
+    <string name="preparing">準備中...</string>
+    <string name="error_projection_api_missing">您的手機製造商禁止了擷取內部音訊的API。本應用程式需要此功能才能運作。</string>
     <!-- Main screen -->
+    <string name="power_button_alt">音訊處理開關</string>
+    <string name="compander_enable">動態範圍壓縮擴音器</string>
+    <string name="compander_timeconstant">時間常數</string>
+    <string name="compander_granularity">粒度</string>
+    <string name="compander_granularity_very_low">極低</string>
+    <string name="compander_granularity_low">低</string>
+    <string name="compander_granularity_medium">中</string>
+    <string name="compander_granularity_high">高</string>
+    <string name="compander_granularity_extreme">極高</string>
+    <string name="compander_tftransforms">時間頻率轉換</string>
+    <string name="compander_tftransforms_stft">均勻 (短時Fourier)</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
+    <string name="onboarding_adb_shizuku_no_dump_perm">請稍待幾秒後再試一次，若問題持續出現，再嘗試替代方法。</string>
+    <string name="onboarding_adb_dump_not_granted_title">未允許權限</string>
     <!-- Settings -->
     <string name="title_activity_settings">設定</string>
+    <string name="backup_settings">備份與還原</string>
     <!-- Theme names -->
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="gep_add_node">新增</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
     <!-- Blocklist -->
+    <string name="title_activity_blocklist">排除的應用程式</string>
     <!-- Compatibility issue activity -->
+    <string name="app_compat_retry">重試</string>
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->
     <!-- App list -->
