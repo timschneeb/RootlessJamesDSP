@@ -29,7 +29,7 @@
     <!-- Session control loss notifications -->
     <string name="session_control_loss_toast">工作階段遺失，JamesDSP已停止。請關閉其他音效軟體。</string>
     <string name="session_control_loss_notification_title">音訊處理已停止。另一個程式正在干擾JamesDSP。</string>
-    <string name="session_control_loss_notification">請禁止所有其他提供全域音效的軟體，再重新啟用 JamesDSP。</string>
+    <string name="session_control_loss_notification">請停用所有其他提供全域音效的軟體，再重新啟用 JamesDSP。</string>
     <!-- App compatibility issue notifications -->
     <string name="session_app_compat_toast">不支援的媒體應用程式，James已停止。請檢查通知以解決此問題。</string>
     <string name="session_app_compat_notification_title">音訊處理已停止。另一個程式正在干擾JamesDSP。</string>
