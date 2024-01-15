@@ -62,6 +62,7 @@
     <string name="error_projection_api_missing">Producent urządzenia wyłączył wewnętrzne API nagrywania dźwięku. Ta aplikacja nie może działać bez nich.</string>
     <!-- Main screen -->
     <string name="power_button_alt">Przełącz przetwarzanie dźwięku</string>
+    <string name="compander_enable">Kompandor dynamiki</string>
     <string name="compander_timeconstant">Stała czasowa</string>
     <string name="compander_granularity">Stopień szczegółowości</string>
     <string name="compander_granularity_very_low">Bardzo niski</string>
