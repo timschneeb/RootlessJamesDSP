@@ -3,16 +3,16 @@
     <!-- Main menu bar -->
     <string name="action_settings">設定</string>
     <string name="action_presets">預設集</string>
-    <string name="action_revert">重置為預設值</string>
-    <string name="action_blocked_apps">排除的應用程式</string>
+    <string name="action_revert">重設</string>
+    <string name="action_blocked_apps">已排除的應用程式</string>
     <!-- Notification channels -->
     <string name="notification_group_service">服務</string>
     <string name="notification_channel_service">服務通知</string>
-    <string name="notification_channel_session_loss_alert">階段中斷警告</string>
-    <string name="notification_channel_permission_prompt">請求通知權限</string>
-    <string name="notification_channel_app_compat_alert">不支援的程式警告</string>
+    <string name="notification_channel_session_loss_alert">階段遺失警告</string>
+    <string name="notification_channel_permission_prompt">權限請求</string>
+    <string name="notification_channel_app_compat_alert">應用程式不相容警告</string>
     <string name="notification_group_backup">備份與還原</string>
-    <string name="notification_channel_backup_progress">處理中</string>
+    <string name="notification_channel_backup_progress">進行中</string>
     <string name="notification_channel_backup_complete">完成</string>
     <!-- Service notifications -->
     <string name="action_retry">重試</string>
@@ -22,12 +22,12 @@
     <string name="notification_idle">音訊處理閒置中</string>
     <string name="notification_processing_title">音訊處理已啟用</string>
     <string name="notification_processing_disabled_title">音訊處理已停用</string>
-    <string name="notification_processing_legacy">點擊開啟 JamesDSP 管理員</string>
+    <string name="notification_processing_legacy">輕觸開啟 JamesDSP 管理員</string>
     <!-- Permission request notifications -->
     <string name="notification_request_permission_title">需要使用者動作以啟動 JamesDSP</string>
-    <string name="notification_request_permission">授予JamesDSP擷取權限以啟用音訊處理</string>
+    <string name="notification_request_permission">授予 JamesDSP 擷取權限以啟用音訊處理功能</string>
     <!-- Session control loss notifications -->
-    <string name="session_control_loss_toast">工作階段遺失，JamesDSP已停止。請關閉其他音效軟體。</string>
+    <string name="session_control_loss_toast">由於工作階段遺失，JamesDSP 已停止。請停用其他音效程式。</string>
     <string name="session_control_loss_notification_title">音訊處理已停止。另一個程式正在干擾JamesDSP。</string>
     <string name="session_control_loss_notification">請停用所有其他提供全域音效的軟體，再重新啟用 JamesDSP。</string>
     <!-- App compatibility issue notifications -->
@@ -121,7 +121,7 @@
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
     <!-- Blocklist -->
-    <string name="title_activity_blocklist">排除的應用程式</string>
+    <string name="title_activity_blocklist">已排除的應用程式</string>
     <!-- Compatibility issue activity -->
     <string name="app_compat_retry">重試</string>
     <!-- Root: Library load failure -->
