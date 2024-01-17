@@ -111,6 +111,14 @@
     <string name="reverb_enable">虛擬房間效果</string>
     <string name="reverb_room_type">房間類型</string>
     <string name="reverb_preset_default">預設</string>
+    <string name="reverb_preset_small_hall1">小禮堂 1</string>
+    <string name="reverb_preset_small_hall2">小禮堂 2</string>
+    <string name="reverb_preset_medium_hall2">中禮堂</string>
+    <string name="reverb_preset_large_hall1">大禮堂</string>
+    <string name="reverb_preset_small_room1">小房間 1</string>
+    <string name="reverb_preset_small_room2">小房間 2</string>
+    <string name="reverb_preset_medium_room1">中房間</string>
+    <string name="reverb_preset_large_room1">大房間</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
