@@ -263,6 +263,14 @@
     <string name="session_loss_ignore">忽略工作階段遺失</string>
     <string name="session_loss_ignore_off">已停用，正常處理 (建議)</string>
     <string name="session_loss_ignore_on">不採取任何動作 (可能造成音訊重複)</string>
+    <string name="session_loss_ignore_warning">啟用此設定後，若另一個應用程式控制了音訊工作階段，將可能會導致重複的音訊。\n除非您遇到誤報的工作階段遺失事件，否則請將此設定維持停用。</string>
+    <string name="audio_format_header">音訊處理</string>
+    <string name="audio_format_section_header">首選音訊格式</string>
+    <string name="audio_format_processing_header">音訊處理選項</string>
+    <string name="audio_format_processing_legacy">舊版模式</string>
+    <string name="audio_format_processing_legacy_on">全域連接至工作階段 0 (已棄用)</string>
+    <string name="audio_format_processing_legacy_off">各別連接至每個應用程式</string>
+    <string name="audio_format_enhanced_processing">增強處理</string>
     <string name="backup_settings">備份與還原</string>
     <!-- Theme names -->
     <string name="theme_default">預設</string>
