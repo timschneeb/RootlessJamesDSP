@@ -271,6 +271,13 @@
     <string name="audio_format_processing_legacy_on">全域連接至工作階段 0 (已棄用)</string>
     <string name="audio_format_processing_legacy_off">各別連接至每個應用程式</string>
     <string name="audio_format_enhanced_processing">增強處理</string>
+    <string name="audio_format_enhanced_processing_on">控制各別應用程式及增強支援已啟用的應用程式</string>
+    <string name="audio_format_enhanced_processing_off">增強處理已停用</string>
+    <string name="audio_format_enhanced_processing_info_title">什麼是增強處理？</string>
+    <string name="audio_format_enhanced_processing_info">輕觸以檢視說明</string>
+    <string name="audio_format_enhanced_processing_info_content">增強處理啟用時，您可以選擇性的停用某些應用程式，使其不被 JamesDSP 處理。從底部右下角的按鈕，選擇「排除的應用程式」，以存取此功能。\n\n傳統模式停用時，JamesDSP 會從每個應用程式接收廣播的音效。與傳統模式相比，這讓每個應用程式有自己對應的音效引擎，從而進行更精細的控制。由於傳統模式是一個已棄用的功能，啟用時會讓所有應用程式共用一個相同的處理引擎，因此不建議使用。\n\n但並非所有的程式都能在傳統模式停用時正常運作，您可以啟用增強處理以解決此問題。JamesDSP將不使用系統廣播，改用自動掃描取得媒體階段，以支援這些程式。</string>
+    <string name="audio_format_media_apps_need_restart">更改此設定後，您將需要重新啟動執行中的所有媒體程式以繼續處理音訊。</string>
+    <string name="profiles_info">輕觸以檢視說明</string>
     <string name="backup_settings">備份與還原</string>
     <!-- Theme names -->
     <string name="theme_default">預設</string>
