@@ -281,6 +281,7 @@
     <string name="audio_format_summary_root">傳統模式，增強處理</string>
     <string name="audio_format_summary_plugin">卷積器最佳化</string>
     <string name="audio_format_encoding">音訊編碼</string>
+    <string name="audio_format_encoding_int16"></string>
     <string name="profiles_info">輕觸以檢視說明</string>
     <string name="backup_settings">備份與還原</string>
     <!-- Theme names -->
