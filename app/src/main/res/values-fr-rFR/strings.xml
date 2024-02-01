@@ -524,8 +524,12 @@
     <string name="enhanced_processing_feature_unavailable_content">Cette fonctionnalité n\'est disponible que lorsque le \'traitement amélioré\' est activé dans les paramètres. Veuillez aller dans \'Paramètres &gt; Traitement audio &gt; Traitement amélioré\' et activer cette option pour accéder à ce menu.\n\nNote : \'Traitement amélioré\' ne peut pas être utilisé lorsque le mode hérité est activé.</string>
     <string name="enhanced_processing_missing_perm">Le traitement amélioré a été désactivé en raison d\'une permission manquante. Veuillez la reconfigurer dans les paramètres.</string>
     <!-- App list -->
+    <string name="app_list_loading">Loading apps…</string>
     <string name="app_list_search">Rechercher</string>
+    <string name="app_list_icon_alt">Icône de l\'app</string>
     <!-- Number box view -->
+    <string name="number_box_decrement">Décrémentation</string>
+    <string name="number_box_increment"></string>
     <!-- Slider widget -->
     <!-- Revert confirmation -->
     <string name="revert_confirmation_title">Êtes-vous sûr ?</string>
