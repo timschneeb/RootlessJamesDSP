@@ -28,7 +28,10 @@
     <string name="notification_request_permission">Tik om opname toestemming te verlenen en JamesDSP\'s audiobewerking in te schakelen</string>
     <!-- Session control loss notifications -->
     <string name="session_control_loss_toast">JamesDSP stopped due to audio session control loss. Please disable other audio effect apps.</string>
+    <string name="session_control_loss_notification_title">Audioverwerking gestopt. Een andere app verstoort JamesDSP.</string>
+    <string name="session_control_loss_notification">Schakel alstublieft alle andere apps uit die globale audio-effecten bieden, voordat JamesDSP weer wordt ingeschakeld.</string>
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_notification_title">Audioverwerking gestopt. Een andere app verstoort JamesDSP.</string>
     <!-- Capture permission revoked notifications -->
     <!-- General purpose -->
     <!-- Main screen -->
