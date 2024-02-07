@@ -135,6 +135,16 @@
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
+    <string name="onboarding_root_shell_fail_title">Geen root toegang</string>
+    <string name="onboarding_root_shell_fail">Geen root toegang beschikbaar. Gebruik een andere installatiemethode.</string>
+    <string name="onboarding_root_shell_fail_unknown">Toestemming verlenen via root mislukt. Gebruik een andere installatiemethode.</string>
+    <string name="onboarding_root_enhanced_processing_setup_success">Verbeterde verwerking is ingesteld</string>
+    <string name="onboarding_adb_shizuku_title">Shizuku instellen</string>
+    <string name="onboarding_adb_adb_title">ADB instellen</string>
+    <string name="onboarding_adb_caption">Deze app vereist speciale rechten om het audiobeleid van uw apparaat te achterhalen. Volg de instructies hieronder.</string>
+    <string name="onboarding_adb_shizuku_install_button">Installeer Shizuku</string>
+    <string name="onboarding_adb_shizuku_install_button_done">Reeds geïnstalleerd</string>
+    <string name="onboarding_adb_shizuku_install_instruction">Installeer \'Shizuku\' vanuit de Google Play.</string>
     <!-- Settings -->
     <string name="title_activity_settings">Instellingen</string>
     <string name="backup_settings">Backup en herstellen</string>
