@@ -31,10 +31,107 @@
     <string name="session_control_loss_notification_title">Audioverwerking gestopt. Een andere app verstoort JamesDSP.</string>
     <string name="session_control_loss_notification">Schakel alstublieft alle andere apps uit die globale audio-effecten bieden, voordat JamesDSP weer wordt ingeschakeld.</string>
     <!-- App compatibility issue notifications -->
+    <string name="session_app_compat_toast">JamesDSP is gestopt vanwege een incompatibele media app. Controleer de melding om dit probleem op te lossen.</string>
     <string name="session_app_compat_notification_title">Audioverwerking gestopt. Een andere app verstoort JamesDSP.</string>
+    <string name="session_app_compat_notification">Tik op deze melding om het probleem op te lossen.</string>
     <!-- Capture permission revoked notifications -->
+    <string name="capture_permission_revoked_toast">JamesDSP is gestopt omdat de machtiging voor het opnemen van audio is ingetrokken.</string>
     <!-- General purpose -->
+    <string name="install">Installeer</string>
+    <string name="update">Bijwerken</string>
+    <string name="unknown_error">Onbekende fout</string>
+    <string name="details">Beschrijving</string>
+    <string name="actions">Acties</string>
+    <string name="warning">Waarschuwing</string>
+    <string name="success">Succesvol</string>
+    <string name="open">Open</string>
+    <string name="close">Sluit</string>
+    <string name="delete">Verwijder</string>
+    <string name="copy">Kopiëer</string>
+    <string name="paste">Plak</string>
+    <string name="add">Voeg toe</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nee</string>
+    <string name="value_not_set">Niet ingesteld</string>
+    <string name="undo">Ongedaan maken</string>
+    <string name="redo">Opnieuw uitvoeren</string>
+    <string name="no_activity_found">Geen Activity gevonden om de actie te verwerken</string>
+    <string name="permission_allowed">Toegestaan</string>
+    <string name="permission_not_allowed">Niet toegestaan</string>
+    <string name="preparing">Voorbereiden…</string>
+    <string name="error_projection_api_missing">De fabrikant van uw apparaat heeft de interne audio-opname API uitgeschakeld. JamesDSP kan niet functioneren zonder deze.</string>
     <!-- Main screen -->
+    <string name="power_button_alt">Audio-verwerking in-/uitschakelen</string>
+    <string name="compander_enable">Dynamisch bereik compander</string>
+    <string name="compander_timeconstant">Tijdconstante</string>
+    <string name="compander_granularity">Granulariteit</string>
+    <string name="compander_granularity_very_low">Zeer laag</string>
+    <string name="compander_granularity_low">Laag</string>
+    <string name="compander_granularity_medium">Normaal</string>
+    <string name="compander_granularity_high">Hoog</string>
+    <string name="compander_granularity_extreme">Extreem</string>
+    <string name="compander_tftransforms">Tijd-frequentie transformatie</string>
+    <string name="compander_tftransforms_stft">Uniform (Korte-tijd Fourier)</string>
+    <string name="compander_tftransforms_continuous_wavelet">Multiresolutie (Continue golf, onvolledig dubbel kader)</string>
+    <string name="compander_tftransforms_undersampling">Pseudo multiresolutie (Undergesampelde kader)</string>
+    <string name="compander_tftransforms_time_domain">Pseudo multiresolutie (tijd-domein, nul vertraging)</string>
+    <string name="eq_enable">Multimodale equalizer</string>
+    <string name="eq_filter_type">Filter type</string>
+    <string name="eq_interpolator">Interpolator</string>
+    <string name="eq_filter_type_fir_minimum">FIR Minimum fase</string>
+    <string name="eq_filter_type_iir_4_order">IIR 4e orde</string>
+    <string name="eq_filter_type_iir_6_order">IIR 6e orde</string>
+    <string name="eq_filter_type_iir_8_order">IIR 8e orde</string>
+    <string name="eq_filter_type_iir_10_order">IIR 10e orde</string>
+    <string name="eq_filter_type_iir_12_order">IIR 12e orde</string>
+    <string name="eq_interpolator_chip">Stukgewijze Kubieke Hermitische Interpolerende Polynomiaal</string>
+    <string name="eq_interpolator_mha">Gewijzigde Hiroshi Akima spline</string>
+    <string name="eq_preset_acoustic">Akoestisch</string>
+    <string name="eq_preset_bass">Bas</string>
+    <string name="eq_preset_beats">Beats</string>
+    <string name="eq_preset_classic">Klassiek</string>
+    <string name="eq_preset_clear">Helder</string>
+    <string name="eq_preset_deep">Diep</string>
+    <string name="eq_preset_dubstep">Dubstap</string>
+    <string name="eq_preset_electronic">Elektronisch</string>
+    <string name="eq_preset_flat">Vlak</string>
+    <string name="eq_preset_hardstyle">Hardstyle</string>
+    <string name="eq_preset_hiphop">Hip-Hop</string>
+    <string name="eq_preset_jazz">Jazz</string>
+    <string name="eq_preset_metal">Metaal</string>
+    <string name="eq_preset_movie">Film</string>
+    <string name="eq_preset_pop">Pop</string>
+    <string name="eq_preset_rb">R&amp;B</string>
+    <string name="eq_preset_rock">Rock</string>
+    <string name="eq_preset_vocal">Stemversterker</string>
+    <string name="geq_enable">Willekeurige reactie equalizer</string>
+    <string name="geq_nodes">Magnitude reactie</string>
+    <string name="bass_enable">Dynamische bas boost</string>
+    <string name="bass_max_gain">Maximale versterking</string>
+    <string name="reverb_enable">Virtuele ruimte-effect</string>
+    <string name="reverb_room_type">Type ruimte</string>
+    <string name="reverb_preset_default">Standaard</string>
+    <string name="reverb_preset_small_hall1">Kleine hal 1</string>
+    <string name="reverb_preset_small_hall2">Kleine hal 2</string>
+    <string name="reverb_preset_medium_hall2">Middelgrote hal</string>
+    <string name="reverb_preset_large_hall1">Grote hal</string>
+    <string name="reverb_preset_small_room1">Kleine ruimte 1</string>
+    <string name="reverb_preset_small_room2">Kleine ruimte 2</string>
+    <string name="reverb_preset_medium_room1">Middelgrote ruimte</string>
+    <string name="reverb_preset_large_room1">Grote ruimte</string>
+    <string name="reverb_preset_plate_high">Plaat hoog</string>
+    <string name="reverb_preset_plate_low">Plaat laag</string>
+    <string name="reverb_preset_long_reverb1">Lange galm 1</string>
+    <string name="reverb_preset_long_reverb2">Lange galm 2</string>
+    <string name="convolver_enable">Convolueerder</string>
+    <string name="convolver_impulse">Impuls reactie</string>
+    <string name="convolver_advanced_editing">Geavanceerde golfvorm-bewerking</string>
+    <string name="convolver_convolution_mode">Impuls reactie optimalisatie</string>
+    <string name="convolver_convolution_mode_original">Origineel</string>
+    <string name="convolver_convolution_mode_shrink">Krimp</string>
+    <string name="convolver_convolution_mode_minimum_phase_shrink">Minimum fase transformatie en krimp</string>
+    <string name="ddc_enable">ViPER-DDC</string>
+    <string name="ddc_file">DCC bestand</string>
     <!-- Onboarding -->
     <!-- Rootless flavor -->
     <!-- Root flavor -->
@@ -42,9 +139,12 @@
     <string name="title_activity_settings">Instellingen</string>
     <string name="backup_settings">Backup en herstellen</string>
     <!-- Theme names -->
+    <string name="theme_default">Standaard</string>
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
     <!-- GraphicEQ editor -->
+    <string name="title_activity_geq">Magnitude reactie</string>
+    <string name="gep_add_node">Voeg toe</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
