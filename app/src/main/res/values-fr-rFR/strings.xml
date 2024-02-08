@@ -501,7 +501,7 @@
     <string name="blocklist_delete">Voulez-vous supprimer cette application de la liste d\'exclusion ?</string>
     <string name="blocklist_no_exclusions">Applications non exclues</string>
     <string name="blocklist_unsupported_apps">Application non supportée</string>
-    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>Cette application ne supporte pas le traitement audio si l\'application cible bloque l\'enregistrement de son audio. Pour éviter à ce genre d\'applications de ne pas pouvoir émettre de son du à leurs restrictions, elles sont automatiquement exclues du traitement audio et ne sont pas router.</p></p><u>Applications affectés :</u><br/>%s</p>]]></string>
+    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>Cette application ne supporte pas le traitement audio si l\'application cible bloque l\'enregistrement de son audio. Pour éviter à ce genre d\'applications de ne pas pouvoir émettre de son du à leurs restrictions, elles sont automatiquement exclues du traitement audio et ne sont pas router.</p></p><u>Applications affectés:</u><br/>%s</p>]]></string>
     <!-- Compatibility issue activity -->
     <string name="title_activity_app_compat">Problème de compatibilité</string>
     <string name="app_compat_retry">Réessayer</string>
@@ -516,10 +516,20 @@
     <string name="load_fail_card_title">Impossible de charger la librairie libjamesdsp.so</string>
     <string name="load_fail_card">Veuillez installer le module Magisk JamesDSP et redémarrer votre appareil Android pour utiliser cette application. Vous devrez peut-être aussi réinstaller cette application après le redémarrage.</string>
     <string name="load_fail_rootless_card_title">Vous cherchez une alternative qui n\'utilise pas le root ?</string>
+    <string name="load_fail_rootless_card">Cette saveur de JamesDSP a été conçue pour être utilisée avec un appareil rooté/modifié. Une alternative non root avec certaines limitations est également disponible. Appuyez ici pour plus de détails.</string>
+    <string name="load_fail_arch_card_title">Module déjà installé?</string>
+    <string name="load_fail_arch_card">Si vous avez déjà installé le module magisk, il se peut que vous ayez choisi les mauvais paramètres lors de l\'installation. Veuillez réinstaller et essayer d\'activer la compatibilité Huawei (même si votre téléphone ne provient pas de ce fabricant).</string>
     <!-- Enhanced processing -->
+    <string name="enhanced_processing_feature_unavailable">Fonctionnalité non-disponible</string>
+    <string name="enhanced_processing_feature_unavailable_content">Cette fonctionnalité n\'est disponible que lorsque le \'traitement amélioré\' est activé dans les paramètres. Veuillez aller dans \'Paramètres &gt; Traitement audio &gt; Traitement amélioré\' et activer cette option pour accéder à ce menu.\n\nNote : \'Traitement amélioré\' ne peut pas être utilisé lorsque le mode hérité est activé.</string>
+    <string name="enhanced_processing_missing_perm">Le traitement amélioré a été désactivé en raison d\'une permission manquante. Veuillez la reconfigurer dans les paramètres.</string>
     <!-- App list -->
+    <string name="app_list_loading">Loading apps…</string>
     <string name="app_list_search">Rechercher</string>
+    <string name="app_list_icon_alt">Icône de l\'app</string>
     <!-- Number box view -->
+    <string name="number_box_decrement">Décrémentation</string>
+    <string name="number_box_increment"></string>
     <!-- Slider widget -->
     <!-- Revert confirmation -->
     <string name="revert_confirmation_title">Êtes-vous sûr ?</string>

@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <plurals name="nodes">
+        <item quantity="other">%d 個截點</item>
+    </plurals>
+    <plurals name="custom_parameters">
+        <item quantity="other">%d 個可自訂的參數</item>
+    </plurals>
+    <plurals name="unsupported_apps">
+        <item quantity="other">已自動排除 %d 個不支援的程式。瞭解詳情。</item>
+    </plurals>
+</resources>

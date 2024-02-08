@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <plurals name="unsupported_apps">
+        <item quantity="one">%d niet-ondersteunde app is automatisch uitgesloten. Tik voor meer informatie.</item>
+        <item quantity="other">%d niet-ondersteunde apps zijn automatisch uitgesloten. Tik voor meer informatie.</item>
+    </plurals>
+</resources>

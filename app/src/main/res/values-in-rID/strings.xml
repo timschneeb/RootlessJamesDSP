@@ -2,12 +2,12 @@
 <resources>
     <!-- Main menu bar -->
     <string name="action_settings">Pengaturan</string>
-    <string name="action_presets">Prasetel</string>
-    <string name="action_revert">Setel ulang ke bawaan</string>
+    <string name="action_presets">Preset</string>
+    <string name="action_revert">Atur ulang ke pengaturan awal</string>
     <string name="action_blocked_apps">Pengecualian aplikasi</string>
     <!-- Notification channels -->
     <string name="notification_group_service">Layanan</string>
-    <string name="notification_channel_service">Layanan Notifikasi</string>
+    <string name="notification_channel_service">Layanan pemberitahuan</string>
     <string name="notification_channel_session_loss_alert">Peringatan kehilangan sesi</string>
     <string name="notification_channel_permission_prompt">Permintaan izin</string>
     <string name="notification_channel_app_compat_alert">Peringatan aplikasi tidak kompatibel</string>
@@ -25,22 +25,22 @@
     <string name="notification_processing_legacy">Tekan untuk membuka JamesDSP manager</string>
     <!-- Permission request notifications -->
     <string name="notification_request_permission_title">Diperlukan tindakan pengguna untuk menjalankan JamesDSP</string>
-    <string name="notification_request_permission">Tap untuk memberi izin pengambilan dan mengaktifkan JamesDSP</string>
+    <string name="notification_request_permission">Tekan untuk memberi izin pengambilan dan mengaktifkan JamesDSP</string>
     <!-- Session control loss notifications -->
-    <string name="session_control_loss_toast">JamesDSP berhenti karena kendali sesi audio terputus. Matikan audio effect lainnya.</string>
-    <string name="session_control_loss_notification_title">Pemroses audio terhenti karena JamesDSP terganggu dengan aplikasi lain.</string>
-    <string name="session_control_loss_notification">Nonaktifkan semua aplikasi pemberi effect audio global sebelum mengaktifkan JamesDSP.</string>
+    <string name="session_control_loss_toast">JamesDSP berhenti karena kendali sesi audio terputus. Harap Matikan audio effect lainnya.</string>
+    <string name="session_control_loss_notification_title">Pemroses audio dihentikan karena JamesDSP terganggu dengan aplikasi lain.</string>
+    <string name="session_control_loss_notification">Harap matikan semua aplikasi pemberi effect audio global sebelum mengaktifkan JamesDSP.</string>
     <!-- App compatibility issue notifications -->
-    <string name="session_app_compat_toast">JamesDSP berhenti karena tidak kompatible media app. Silahkan cek notifikasi untuk menyelesaikan masalah ini.</string>
-    <string name="session_app_compat_notification_title">Pemrosesan audio telah berhenti. Aplikasi lain menganggu JamesDSP.</string>
+    <string name="session_app_compat_toast">JamesDSP berhenti karena tidak kompatible media app. Silahkan cek pemberitahuan untuk menyelesaikan masalah ini.</string>
+    <string name="session_app_compat_notification_title">Pemrosesan audio dihentikan karena JamesDSP terganggu dengan aplikasi lain.</string>
     <string name="session_app_compat_notification">Tekan ini untuk menyelesaikan masalah ini.</string>
     <!-- Capture permission revoked notifications -->
-    <string name="capture_permission_revoked_toast">JamesDSP terhenti karena izin pengambilan audio dicabut.</string>
+    <string name="capture_permission_revoked_toast">JamesDSP dihentikan karena izin pengambilan audio dicabut.</string>
     <!-- General purpose -->
-    <string name="install">Pasang</string>
+    <string name="install">Instal</string>
     <string name="update">Perbarui</string>
     <string name="unknown_error">Kesalahan tidak diketahui</string>
-    <string name="details">Rincian</string>
+    <string name="details">Detail</string>
     <string name="actions">Tindakan</string>
     <string name="warning">Peringatan</string>
     <string name="success">Berhasil</string>
@@ -195,7 +195,7 @@
     <string name="onboarding_adb_shizuku_install_button">Pasang Shizuku</string>
     <string name="onboarding_adb_shizuku_install_button_done">Sudah terpasang</string>
     <string name="onboarding_adb_shizuku_install_instruction">Pasang \'Shizuku\' dari Play Store.</string>
-    <string name="onboarding_adb_shizuku_open_instruction">Jalankan \'Shizuku\' dan cari \'<b>Start via Wireless Debugging</b>\'. Tap tombol \'Pairing\' dan ikuti instruksi pada aplikasi. Setelah menyandingkan Shizuku dengan perangkat anda, jalankan Shizuku dengan menekan tombol \'Start\'. Jika anda mengalami masalah saat mengatur Shizuku, ikuti tutorial pada aplikasi tersebut.</string>
+    <string name="onboarding_adb_shizuku_open_instruction">Jalankan \'Shizuku\' dan cari \'<b>Start via Wireless Debugging</b>\'. Tekan tombol \'Pairing\' dan ikuti instruksi pada aplikasi. Setelah menyandingkan Shizuku dengan perangkat anda, jalankan Shizuku dengan menekan tombol \'Start\'. Jika anda mengalami masalah saat mengatur Shizuku, ikuti tutorial pada aplikasi tersebut.</string>
     <string name="onboarding_adb_shizuku_open_button">Jalankan Shizuku</string>
     <string name="onboarding_adb_shizuku_open_button_done">Sudah aktif</string>
     <string name="onboarding_adb_shizuku_grant_instruction">Tekan tombol dan beri izin untuk mengakses Shizuku.</string>
@@ -274,7 +274,7 @@
     <string name="audio_format_enhanced_processing_on">Kontrol per aplikasi dan dukungan disempurnakan untuk aplikasi yang diaktifkan</string>
     <string name="audio_format_enhanced_processing_off">Pemrosesan yang ditingkatkan nonaktif</string>
     <string name="audio_format_enhanced_processing_info_title">Apa itu Pemrosesan yang ditingkatkan?</string>
-    <string name="audio_format_enhanced_processing_info">Tap untuk melihat rincian</string>
+    <string name="audio_format_enhanced_processing_info">Tekan untuk melihat rincian</string>
     <string name="audio_format_enhanced_processing_info_content">Saat Pemrosesan Ditingkatkan diaktifkan, anda bisa memilih aplikasi yang ingin dikecualikan dari JamesDSP. Gunakan 3-dot menu di pojok bawah dan pilih \'Aplikasi Dikecualikan\' untuk mengakses fitur ini.\n\nSaat Mode Legacy dinonaktifkan, JamesDSP bergantung pada aplikasi media yang mengirim System Broadcast saat mereka memulai pemutaran suara. Ini merupakan sebuah kelebihan dari Mode Legacy karena setiap aplikasi mendapat effect engine JamesDSP masing-masing untuk setiap aplikasi, yang memungkinkan kontrol lebih halus. Jika tidak, Mode Legacy akan diaktifkan dan semua aplikasi akan berbagi satu processing engine, yang sudah usang dan seharusnya tidak digunakan lagi menurut Android. \n\nSayangnya, tidak semua aplikasi media melakukannya dengan benar. Oleh karena itu, mode ini tidak bekerja dengan baik saat Mode Legacy dinonaktifkan. Untuk memperbaiki ini, anda bisa mengaktifkan Pemrosesan Ditingkatkan. Daripada bergantung pada system broadcast, JamesDSP akan memindai sesi media baru secara aktif dan memungkinkan dukungan pada aplikasi media yang tidak kooperatif.</string>
     <string name="audio_format_media_apps_need_restart">Anda harus memuat ulang semua aplikasi media setelah mengubah pengaturan ini untuk melanjutkan.</string>
     <string name="audio_format_summary">Pengodean audio pilihan, ukuran buffer</string>
@@ -297,9 +297,9 @@
     <string name="profiles_enable_summary_on">Profil per perangkat aktif</string>
     <string name="profiles_enable_summary_off">Profil per perangkat nonaktif</string>
     <string name="profiles_info_title">Apa itu profil per perangkat?</string>
-    <string name="profiles_info">Tap untuk melihat rincian</string>
+    <string name="profiles_info">Tekan untuk melihat rincian</string>
     <string name="profiles_info_content">Saat opsi ini diaktifkan, setiap perangkat audio akan mendapat konfigurasi terpisah. Aplikasi akan berganti secara otomatis ke setiap profil perangkat saat opsi output berubah.\n\nSetiap perangkat baru yang terhubung akan dimulai dengan profil kosong, anda bisa melakukan konfigurasi atau menyalin profil dari perangkat lain.\n\nCatatan: Preset hanya dapat diterapkan pada perangkat yang aktif saat fitur ini digunakan. Perangkat nonaktif tidak akan dirubah.</string>
-    <string name="profiles_manage_hint">Tap tombol \'Aktifkan profil perangkat\' di layar utama untuk menyalin atau menghapus profil.</string>
+    <string name="profiles_manage_hint">Tekan tombol \'Aktifkan profil perangkat\' di layar utama untuk menyalin atau menghapus profil.</string>
     <string name="app_behavior">Perilaku aplikasi</string>
     <string name="exclude_app_from_recents">Kecualikan aplikasi dari Recent</string>
     <string name="exclude_app_from_recents_off">Aplikasi tidak kecualikan dari Recent</string>
@@ -364,7 +364,7 @@
     <string name="credits_version">Versi aplikasi</string>
     <string name="credits_build_info">Info Build</string>
     <string name="appearance_section_header">Tampilan</string>
-    <string name="appearance_summary">Tema aplikasi, mode gelap pure black</string>
+    <string name="appearance_summary">Tema aplikasi, mode gelap gulita</string>
     <string name="appearance_title">Tema</string>
     <string name="appearance_theme_mode">Mode gelap</string>
     <string name="appearance_theme_mode_default">Ikuti tema sistem</string>
@@ -398,7 +398,7 @@
     <string name="theme_tidalwave">Gelombang pasang</string>
     <!-- File library preference -->
     <string name="action_import">Impor</string>
-    <string name="filelibrary_hint_tap_and_hold">Tap dan tahan item apa saja untuk opsi lanjutan</string>
+    <string name="filelibrary_hint_tap_and_hold">Tekan dan tahan item apa saja untuk opsi lanjutan</string>
     <string name="filelibrary_context_load">Muat</string>
     <string name="filelibrary_context_edit">Edit</string>
     <string name="filelibrary_context_overwrite">Timpa</string>
@@ -440,7 +440,7 @@
     <string name="geq_autoeq">Profil AutoEQ</string>
     <string name="gep_add_node">Tambah</string>
     <string name="geq_preview">Pratinjau</string>
-    <string name="geq_preview_collapsed">Pratinjau (tap untuk memperluas)</string>
+    <string name="geq_preview_collapsed">Pratinjau (tekan untuk memperluas)</string>
     <string name="geq_edit_hint">Nada GraphicEQ</string>
     <string name="geq_reset">Setel ulang</string>
     <string name="geq_reset_confirm_title">Apakah Anda yakin?</string>
@@ -508,7 +508,7 @@
     <string name="app_compat_exclude">Kecualikan</string>
     <string name="app_compat_title">Pemrosesan audio dihentikan untuk mencegah duplikasi suara</string>
     <string name="app_compat_explanation">Aplikasi berikut membuat RootlessJamesDSP kehilangan kontrol terhadap routing audio:</string>
-    <string name="app_compat_instruction">Periksa pengaturan aplikasi jika anda bisa menonaktifkan HW-acceleration atau pengaturan lainnya yang mungkin bentrok dengan RootlessJamesDSP, lalu tap \'Ulangi\'.</string>
+    <string name="app_compat_instruction">Periksa pengaturan aplikasi jika anda bisa menonaktifkan HW-acceleration atau pengaturan lainnya yang mungkin bentrok dengan RootlessJamesDSP, lalu tekan \'Ulangi\'.</string>
     <string name="app_compat_instruction_exclude">Untuk langkah alternatif, anda bisa memilih \'Kecualikan\' untuk mengecualikan aplikasi yang tidak didukung.</string>
     <string name="app_compat_unknown_pkg_name">Nama package tidak dikenal</string>
     <!-- Root: Library load failure -->
@@ -549,7 +549,7 @@
     <string name="intent_import_select_success">File \'%1$s\' di impor dan diaktifkan</string>
     <string name="intent_import_error_file_uri">Gagal mengimpor file, URI tidak didukung.</string>
     <!-- Translation notice box -->
-    <string name="translation_notice_summary">Bantu kami menerjemahkan aplikasi ke bahasa anda! Tap di sini untuk melihat situs project di Crowdin.</string>
+    <string name="translation_notice_summary">Bantu kami menerjemahkan aplikasi ke bahasa anda! Tekan di sini untuk melihat situs project di Crowdin.</string>
     <string name="translation_notice">Kontribusi penerjemahan</string>
     <!-- Self-updates (Root) -->
     <string name="self_update_install_error">Pembaruan gagal</string>
@@ -558,7 +558,7 @@
     <string name="self_update_finished">Pembaruan terpasang, aplikasi akan dimuat ulang…</string>
     <string name="self_update_no_updates">Tidak ada pembaruan untuk saat ini</string>
     <string name="self_update_notice">Pembaruan tersedia (%1$s)</string>
-    <string name="self_update_notice_summary">Tap di sini untuk memasang pembaruan terbaru.</string>
+    <string name="self_update_notice_summary">Tekan di sini untuk memasang pembaruan terbaru.</string>
     <string name="self_update_notice_dismiss_install">Pasang sekarang</string>
     <string name="self_update_notice_dismiss_snooze">Ingatkan nanti</string>
     <string name="self_update_notice_dismiss_skip">Lewatkan pembaruan</string>

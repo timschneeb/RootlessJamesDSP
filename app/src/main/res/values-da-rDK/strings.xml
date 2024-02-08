@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
+    <string name="action_settings">Indstillinger</string>
+    <string name="action_presets">Forudindstillinger</string>
+    <string name="action_revert">Nulstil til standardindstillinger</string>
+    <string name="action_blocked_apps">Ekskluderede apps</string>
     <!-- Notification channels -->
     <!-- Service notifications -->
     <!-- Permission request notifications -->
@@ -13,6 +17,7 @@
     <!-- Rootless flavor -->
     <!-- Root flavor -->
     <!-- Settings -->
+    <string name="title_activity_settings">Indstillinger</string>
     <!-- Theme names -->
     <!-- File library preference -->
     <!-- JamesDSP engine messages -->
@@ -21,6 +26,7 @@
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
     <!-- Blocklist -->
+    <string name="title_activity_blocklist">Ekskluderede apps</string>
     <!-- Compatibility issue activity -->
     <!-- Root: Library load failure -->
     <!-- Enhanced processing -->

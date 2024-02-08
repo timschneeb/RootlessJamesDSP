@@ -286,7 +286,7 @@
     <string name="audio_format_buffer_size">Dimensione del buffer</string>
     <string name="audio_format_buffer_size_unit">&#xa0;campioni</string>
     <string name="audio_format_buffer_size_warning_low_value">Attenzione: dimensioni del buffer troppo piccole possono causare distorsioni dell\'audio!</string>
-    <string name="audio_format_optimization_header">Ottimizzazioni dei moduli del convolutore</string>
+    <string name="audio_format_optimization_header">Ottimizzazioni del convolutore</string>
     <string name="audio_format_optimization_refresh">Aggiorna i dati comparativi</string>
     <string name="audio_format_optimization_benchmark">Usa i dati comparativi per ottimizzare le prestazioni</string>
     <string name="audio_format_optimization_benchmark_summary">Aumenta le prestazioni degli effetti che utilizzano i moduli del convolutore</string>

@@ -1,31 +1,31 @@
-Use JamesDSP as a system-wide audio processing engine without any root access.
+使用免root的系統級引擎JamesDSP處理音訊
 
-This app has several limitations that may be deal-breaking to some people; please read this whole document before using the app. Shizuku (Android 11+) or ADB access via a computer is required for the initial setup.
+使用此應用程式前，請務必詳閱此說明文件。首次執行此程式時，需要用到ADB命令列工具 (Android 11以上的裝置可用Shizuku替代) ，以進行初始化設定。
 
-JamesDSP supports the following audio effects:
-* Limiter control
-* Output gain control
-* Auto dynamic range compressor
-* Dynamic bass boost
-* Interpolating FIR equalizer
-* Arbitrary response equalizer (Graphic EQ)
-* ViPER-DDC
-* Convolver
-* Live-programmable DSP (scripting engine for audio effects)
-* Analog modelling
-* Soundstage wideness
-* Crossfeed
-* Virtual room effect (reverb)
+JamesDSP 支援以下的音效：
+* 限制器控制
+* 輸出增益控制
+* 自動動態範圍壓縮器
+* 動態低音增強
+* 插值有限脈衝響應均衡器
+* 任意響應均衡器 (圖形均衡器)
+* 蝰蛇音效（ViPER-DDC）
+* 卷積器
+* 可編程 DSP (音訊效果的腳本引擎)
+* 模擬類比
+* 音場寬度
+* 交叉饋送
+* 虛擬房間效果 (混響)
 
-Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration, you can search and import frequency responses that aim to correct your headphone to a neutral sound. Go to 'Arbitrary response equalizer > Magnitude response > AutoEQ profiles' to get started.
+此外，本應用程式還整合了AutoEQ。 AutoEQ的整合讓您可以搜尋並匯入響應頻率，增強耳機所呈現出的音色。 進入「Arbitrary response equalizer」>「Magnitude response」>「AutoEQ profiles」以開始。
 
---- Limitations
-* Apps blocking internal audio capture remain unprocessed (e.g., Spotify, Google Chrome)
-* Apps using some types of HW-accelerated playback may cause issues and need to be manually excluded (e.g., some Unity games)
-* Cannot coexist with (some) other audio effect apps (e.g., Wavelet and other apps that make use of the `DynamicsProcessing` Android API)
+--- 限制
+* 無法處理阻擋內部音訊擷取的應用程式 (如 Soptify、Google Chrome)
+* 以特定硬體加速播放的應用程式 (如部分Unity遊戲) 若遇到問題，需將其加入至黑名單。
+* 不可同時使用(兩種)音效增強軟體 (所有使用到動態處理之Android API 的軟體)
 
 
-- Apps confirmed working:
+- 確定作用的應用程式：
 * YouTube
 * YouTube Music
 * Amazon Music
@@ -35,12 +35,12 @@ Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration
 * Twitch
 * ...
 
-- Unsupported apps include:
-* Spotify (Note: Spotify ReVanced patch is required to support Spotify)
+- 不支援的應用程式：
+* Spotify (說明: 需要 Spotify ReVanced 補丁以支援Spotify)
 * Google Chrome
 * SoundCloud
 * ...
 
---- Translation
-Please help us translate this app here: https://crowdin.com/project/rootlessjamesdsp
-To request a new language that isn't enabled on Crowdin yet, please open an issue here on GitHub and I will turn it on.
+--- 翻譯
+請幫助我們翻譯此應用程式：https://crowdin.com/project/rootlessjamesdsp
+若要請求Crowdin尚未啟用的語言，請在GitHub上面提出問題，我會把它打開。

@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <plurals name="nodes">
+        <item quantity="other">%d simpul</item>
+    </plurals>
+    <plurals name="custom_parameters">
+        <item quantity="other">%d parameter dapat diubah</item>
+    </plurals>
+    <plurals name="unsupported_apps">
+        <item quantity="other">%d aplikasi yang tidak didukung telah dikecualikan otomatis, sentuh untuk melihat detail.</item>
+    </plurals>
+</resources>
