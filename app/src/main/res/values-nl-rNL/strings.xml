@@ -482,19 +482,67 @@
     <string name="editor_liveprog_enabled">Liveprog is automatisch ingeschakeld.</string>
     <string name="editor_replace_all">Vervang alles</string>
     <string name="editor_replacement">Vervanging</string>
+    <string name="editor_find_next_match">Volgende match zoeken</string>
+    <string name="editor_find_previous_match">Vorige match zoeken</string>
+    <string name="editor_search_keyword">Zoeken</string>
+    <string name="editor_source_position">%1$d:%2$d</string>
+    <string name="editor_engine_down_title">JamesDSP is niet actief</string>
+    <string name="editor_engine_down">Kan script niet uitvoeren omdat JamesDSP uitgeschakeld is. Schakel JamesDSP in om scripts uit te voeren.</string>
+    <string name="editor_save_prompt_title">Wijzigingen opslaan?</string>
+    <string name="editor_save_prompt">Het huidige script heeft niet-opgeslagen wijzigingen. Wilt u uw wijzigingen opslaan of deze negeren?</string>
+    <string name="editor_script_launched">Script gestart</string>
+    <string name="editor_cannot_undo">Niets om ongedaan te maken.</string>
+    <string name="editor_cannot_redo">Niets om opnieuw uit te voeren.</string>
+    <string name="editor_text_size">Tekstgrootte</string>
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Uitgesloten apps</string>
+    <string name="blocklist_add_exclusion_alt">Voeg toepassing toe om uit te sluiten</string>
+    <string name="blocklist_delete_title">Verwijder geselecteerde app?</string>
+    <string name="blocklist_delete">Wilt u deze app verwijderen uit de uitsluitingslijst?</string>
+    <string name="blocklist_no_exclusions">Geen uitgesloten apps</string>
     <string name="blocklist_unsupported_apps">Niet-ondersteunde apps</string>
+    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>Deze app ondersteunt geen verwerking van apps die derden blokkeren om hun audio-uitvoer op te nemen. Om te voorkomen dat deze apps worden gedempt door hun opnamebeperkingen, worden ze automatisch uitgesloten van audioverwerking en worden ze niet opnieuw omgeleid.</p><p><u>Betreffende apps:</u><br/>%s</p>]]></string>
     <!-- Compatibility issue activity -->
+    <string name="title_activity_app_compat">Compatibiliteitsprobleem</string>
     <string name="app_compat_retry">Opnieuw proberen</string>
+    <string name="app_compat_exclude">Uitsluiten</string>
+    <string name="app_compat_title">Audio-verwerking is onderbroken om dubbele audio te voorkomen</string>
+    <string name="app_compat_explanation">De volgende app wordt niet ondersteund, omdat RootlessJamesDSP hierdoor de controle over zijn audio-route verliest:</string>
+    <string name="app_compat_instruction">Controleer de instellingen van de app als u HW-versnelling of andere instellingen kunt uitschakelen die RootlessJamesDSP kunnen verstoren en tik op \'Opnieuw proberen\'.</string>
+    <string name="app_compat_instruction_exclude">Als alternatief selecteer \'Uitsluiten\' om dit probleem te omzeilen door de niet-compatibele app uit te sluiten van audio-verwerking.</string>
+    <string name="app_compat_unknown_pkg_name">Onbekende pakketnaam</string>
     <!-- Root: Library load failure -->
+    <string name="load_fail_header">Magisk module niet geïnstalleerd</string>
+    <string name="load_fail_card_title">Laden libjamesdsp.so mislukt</string>
+    <string name="load_fail_card">Installeer de JamesDSP Magisk module en herstart uw Android apparaat om deze toepassing te gebruiken. Het is mogelijk dat u deze app opnieuw moet installeren na het herstarten.</string>
+    <string name="load_fail_rootless_card_title">Op zoek naar een root-loze alternatief?</string>
+    <string name="load_fail_rootless_card">Deze smaak van JamesDSP is ontworpen om te worden gebruikt met een ge-root/gemodificeerd apparaat. Een niet-root alternatief met enkele beperkingen is ook beschikbaar. Tik hier voor details.</string>
+    <string name="load_fail_arch_card_title">Module al geïnstalleerd?</string>
+    <string name="load_fail_arch_card">Als je de Magisk module al hebt geïnstalleerd, kan het zijn dat je de verkeerde instellingen hebt gekozen tijdens de installatie. Installeer opnieuw en probeer Huawei compatibiliteit in te schakelen (zelfs als uw telefoon niet van de fabrikant is).</string>
     <!-- Enhanced processing -->
+    <string name="enhanced_processing_feature_unavailable">Functie niet beschikbaar</string>
+    <string name="enhanced_processing_feature_unavailable_content">Deze functie is alleen beschikbaar wanneer \'verbeterde verwerking\' is ingeschakeld in de instellingen. Ga naar \'Instellingen &gt; Audio-verwerking &gt; Verbeterde verwerking\' en schakel die optie in om dit menu te openen.\n\nOpmerking: \'Verbeterde verwerking\' kan niet worden gebruikt, terwijl oude modus is ingeschakeld.</string>
+    <string name="enhanced_processing_missing_perm">Verbeterde verwerking is uitgeschakeld vanwege een ontbrekende machtiging. Gelieve opnieuw in te stellen in de instellingen.</string>
     <!-- App list -->
+    <string name="app_list_loading">Apps laden…</string>
+    <string name="app_list_search">Zoeken</string>
+    <string name="app_list_icon_alt">App icoon</string>
     <!-- Number box view -->
+    <string name="number_box_decrement">Verlagen</string>
+    <string name="number_box_increment">Verhogen</string>
     <!-- Slider widget -->
+    <string name="slider_dialog_title">Waarde bewerken</string>
+    <string name="slider_dialog_format_error">Ongeldig nummerformaat. Wijzigingen niet toegepast.</string>
+    <string name="slider_dialog_step_error">Waarde moet een veelvoud van %1$d zijn. Wijzigingen niet toegepast.</string>
     <!-- Revert confirmation -->
     <string name="revert_confirmation_title">Weet u het zeker?</string>
+    <string name="revert_confirmation">Wilt u uw huidige JamesDSP voorinstelling herstellen naar de standaardwaarden?</string>
     <!-- File intent handler -->
+    <string name="intent_import_preset">Importeer preset</string>
+    <string name="intent_import_irs">Importeer impuls reactie</string>
+    <string name="intent_import_vdc">Importeer VDC-bestand</string>
+    <string name="intent_import_liveprog">Importeer Liveprog script</string>
+    <string name="intent_import_mode_add">Alleen importeren</string>
     <string name="intent_import_mode_select">Importeren en activeren</string>
     <string name="intent_import_fail">Kan het bestand \'%1$s\' niet importeren</string>
     <string name="intent_import_success">Bestand \'%1$s\' geïmporteerd</string>
