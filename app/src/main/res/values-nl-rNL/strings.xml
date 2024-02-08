@@ -238,10 +238,17 @@
     <string name="limit_session_control_conflict">Audio-effect apps, die Android\'s ingebouwde Dynamische Verwerkingseffect gebruiken, verstoren deze app.</string>
     <string name="limit_unsupported_apps_title">Niet-ondersteunde media apps</string>
     <string name="limit_unsupported_apps">Apps die interne audio-opname blokkeren blijven onverwerkt (bijv. Spotify, Google Chrome).</string>
-    <string name="limit_hw_accel_title">Problemen met HW-versnelde afgespeelde audio</string>
-    <string name="limit_hw_accel">HW-versnelde afgespeelde audio (snelle tracks) kan in sommige omstandigheden dubbele audio veroorzaken of JamesDSP beëindigen. Voeg de betrokken muziekspeler toe aan de lijst met uitgesloten apps om te voorkomen dat JamesDSP deze omleidt.</string>
+    <string name="limit_hw_accel_title">Problemen met HW-versnelde afspelende audio</string>
+    <string name="limit_hw_accel">HW-versnelde afspelende audio (snelle tracks) kan in sommige omstandigheden dubbele audio veroorzaken of JamesDSP beëindigen. Voeg de betrokken muziekspeler toe aan de lijst met uitgesloten apps om te voorkomen dat JamesDSP deze omleidt.</string>
+    <string name="limit_detect_delay_title">Audio-sessie detectie vertraging</string>
+    <string name="limit_detect_delay"><![CDATA[Nadat een app een nieuwe media-sessie heeft geopend naar afspelende audio, kunt u heel kort uw audio gedupliceerd of afgesneden (korter dan 250ms) horen.]]></string>
+    <string name="limit_latency_title">Verhoogde vertraging</string>
+    <string name="limit_latency">Deze app kan wat vertraging toevoegen aan de audio-stream. U kunt film- en videoapps toevoegen aan de uitsluitingslijst om AV-desync te voorkomen door ze niet te verwerken.</string>
+    <string name="limit_tested_devices_title">Geteste apparaten</string>
     <!-- Settings -->
     <string name="title_activity_settings">Instellingen</string>
+    <string name="audio_format_encoding_int16">16-bit integer PCM</string>
+    <string name="audio_format_encoding_float">32-bit float PCM</string>
     <string name="audio_format_optimization_refresh">Vernieuw benchmark gegevens</string>
     <string name="audio_format_optimization_benchmark">Gebruik benchmarks om de prestatie te optimaliseren</string>
     <string name="audio_format_optimization_benchmark_summary">Verhoogt prestatie van effecten die Convolueerder modules gebruiken</string>
