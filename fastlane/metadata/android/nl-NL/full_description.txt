@@ -1,23 +1,23 @@
-Use JamesDSP as a system-wide audio processing engine without any root access.
+Gebruik JamesDSP als een systeem-brede audio-verwerkings engine zonder root-toegang.
 
-This app has several limitations that may be deal-breaking to some people; please read this whole document before using the app. Shizuku (Android 11+) or ADB access via a computer is required for the initial setup.
+Deze app heeft verschillende beperkingen die mogelijk deal-breakend kunnen zijn voor sommige personen; lees dit hele document door voordat u de app gebruikt. Shizuku (Android 11+) of ADB toegang via een computer is vereist voor de initiële installatie.
 
-JamesDSP supports the following audio effects:
-* Limiter control
-* Output gain control
-* Auto dynamic range compressor
-* Dynamic bass boost
-* Interpolating FIR equalizer
-* Arbitrary response equalizer (Graphic EQ)
+JamesDSP ondersteunt de volgende audio-effecten:
+* Limiter regeling
+* Output versterking regeling
+* Automatische dynamische range compressor
+* Dynamische bas boost
+* Interpolerende FIR equalizer
+* Willekeurige reactie equalizer (Graphic EQ)
 * ViPER-DDC
-* Convolver
-* Live-programmable DSP (scripting engine for audio effects)
-* Analog modelling
-* Soundstage wideness
+* Convolueerder
+* Live-programmeerbare DSP (scripting engine voor audio-effecten)
+* Analoge modellering
+* Geluidsbeeld breedte
 * Crossfeed
-* Virtual room effect (reverb)
+* Virtuele ruimte-effect (galm)
 
-Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration, you can search and import frequency responses that aim to correct your headphone to a neutral sound. Go to 'Arbitrary response equalizer > Magnitude response > AutoEQ profiles' to get started.
+Bovendien integreert deze app direct met AutoEQ. Met behulp van de AutoEQ integratie kun je frequentie-reacties zoeken en importeren om je hoofdtelefoon te corrigeren naar een neutraal geluid. Go to 'Arbitrary response equalizer > Magnitude response > AutoEQ profiles' to get started.
 
 --- Limitations
 * Apps blocking internal audio capture remain unprocessed (e.g., Spotify, Google Chrome)
