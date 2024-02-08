@@ -179,10 +179,10 @@
     <string name="onboarding_methods_unsupported_append">incompatibel</string>
     <string name="onboarding_methods_adb_title">ADB</string>
     <!-- Rootless flavor -->
-    <string name="onboarding_methods_rootless_shizuku">\u25CF Aangeraden\n\u25CF Geen externe computer nodig\n\u25CF Alleen Android 11+</string>
+    <string name="onboarding_methods_rootless_shizuku">\u25CF Aanbevolen\n\u25CF Geen externe computer nodig\n\u25CF Alleen Android 11+</string>
     <string name="onboarding_methods_rootless_adb">\u25CF Voor gevorderde gebruikers\n\u25CF Computer en USB kabel vereist\n\u25CF Android 10+ ondersteund</string>
     <!-- Root flavor -->
-    <string name="onboarding_methods_root_root">\u25CF Aangeraden\n\u25CF Geen externe computer nodig\n\u25CF Alle Android versies</string>
+    <string name="onboarding_methods_root_root">\u25CF Aanbevolen\n\u25CF Geen externe computer nodig\n\u25CF Alle Android versies</string>
     <string name="onboarding_methods_root_shizuku">\u25CF Aangeraden als root niet is ingesteld\n\u25CF Geen externe computer nodig\n\u25CF Alleen Android 11+</string>
     <string name="onboarding_methods_root_adb">\u25CF Voor gevorderde gebruikers\n\u25CF Computer en USB kabel vereist\n\u25CF Alle Android versies</string>
     <string name="onboarding_root_shell_fail_title">Geen root toegang</string>
@@ -249,6 +249,16 @@
     <!-- Settings -->
     <string name="title_activity_settings">Instellingen</string>
     <string name="session_exclude_restricted">Niet-ondersteunde apps uitsluiten</string>
+    <string name="session_exclude_restricted_off">Apps die audio-opname blokkeren blijven gedempt (standaard Android-gedrag)</string>
+    <string name="session_exclude_restricted_on">Apps die audio-opname blokkeren worden uitgesloten en blijven onverwerkt (aanbevolen)</string>
+    <string name="session_detection_header">Audio-sessie detectie</string>
+    <string name="session_continuous_polling">Forceer continu verversen</string>
+    <string name="session_continuous_polling_off">Luister alleen naar sessie-gebeurtenissen vanuit het systeem</string>
+    <string name="session_continuous_polling_on">Voortdurend registreren van audio-sessies</string>
+    <string name="session_continuous_polling_rate">Ververs interval (ms)</string>
+    <string name="session_detection_method">Voorkeur sessie detectiemethode</string>
+    <string name="session_detection_method_audiopolicyservice">AudioPolicyService dump</string>
+    <string name="session_detection_method_audioservice">AudioService dump (aanbevolen)</string>
     <string name="audio_format_encoding_int16">16-bit integer PCM</string>
     <string name="audio_format_encoding_float">32-bit float PCM</string>
     <string name="audio_format_optimization_refresh">Vernieuw benchmark gegevens</string>
