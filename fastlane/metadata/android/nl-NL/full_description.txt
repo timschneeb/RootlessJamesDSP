@@ -17,30 +17,30 @@ JamesDSP ondersteunt de volgende audio-effecten:
 * Crossfeed
 * Virtuele ruimte-effect (galm)
 
-Bovendien integreert deze app direct met AutoEQ. Met behulp van de AutoEQ integratie kun je frequentie-reacties zoeken en importeren om je hoofdtelefoon te corrigeren naar een neutraal geluid. Go to 'Arbitrary response equalizer > Magnitude response > AutoEQ profiles' to get started.
+Bovendien integreert deze app direct met AutoEQ. Met behulp van de AutoEQ integratie kun je frequentie-reacties zoeken en importeren om je hoofdtelefoon te corrigeren naar een neutraal geluid. Ga naar 'Arbitrary reactie equalizer > Magnitude reactie > AutoEQ profielen' om aan de slag te gaan.
 
---- Limitations
-* Apps blocking internal audio capture remain unprocessed (e.g., Spotify, Google Chrome)
-* Apps using some types of HW-accelerated playback may cause issues and need to be manually excluded (e.g., some Unity games)
-* Cannot coexist with (some) other audio effect apps (e.g., Wavelet and other apps that make use of the `DynamicsProcessing` Android API)
+--- Beperkingen
+* Apps die interne audio-opname blokkeren blijven onverwerkt (bijv. Spotify, Google Chrome)
+* Apps die sommige soorten HW-versnelde afspeling gebruiken, kunnen problemen veroorzaken en moeten handmatig worden uitgesloten (bijvoorbeeld een paar Unity spellen)
+* Kan niet samenwerken met (sommige) andere audio-effect apps (bijv. Wavelet en andere apps die gebruik maken van de `DynamicsProcessing` Android API)
 
 
-- Apps confirmed working:
+- Apps bevestigd werkend:
 * YouTube
-* YouTube Music
-* Amazon Music
+* YouTube Muziek
+* Amazon Muziek
 * Deezer
-* Poweramp
+* PowerAmp
 * Substreamer
 * Twitch
 * ...
 
-- Unsupported apps include:
-* Spotify (Note: Spotify ReVanced patch is required to support Spotify)
+- Niet-ondersteunde apps omvatten:
+* Spotify (Opmerking: Spotify ReVanced patch is vereist om Spotify te ondersteunen)
 * Google Chrome
 * SoundCloud
 * ...
 
---- Translation
-Please help us translate this app here: https://crowdin.com/project/rootlessjamesdsp
-To request a new language that isn't enabled on Crowdin yet, please open an issue here on GitHub and I will turn it on.
+--- Vertaling
+Help ons deze app te vertalen hier: https://crowdin.com/project/rootlessjamesp
+Om een nieuwe taal op te vragen die nog niet is ingeschakeld op Crowdin, open hier een issue op GitHub en ik zal het inschakelen.
