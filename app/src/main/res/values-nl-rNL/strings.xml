@@ -132,9 +132,59 @@
     <string name="convolver_convolution_mode_minimum_phase_shrink">Minimum fase transformatie en krimp</string>
     <string name="ddc_enable">ViPER-DDC</string>
     <string name="ddc_file">DCC bestand</string>
+    <string name="liveprog_enable">Live programmeerbare DSP</string>
+    <string name="liveprog_file">Liveprog script</string>
+    <string name="liveprog_additional_params">Aanvullende script parameters</string>
+    <string name="liveprog_additional_params_not_supported">Geselecteerde script heeft geen aanpasbare parameters</string>
+    <string name="liveprog_not_found">Script niet gevonden</string>
+    <string name="liveprog_no_script_selected">Geen script geselecteerd</string>
+    <string name="liveprog_edit_header">Bewerk geselecteerde script</string>
+    <string name="liveprog_edit">Open actieve script in ingebouwde bewerker</string>
+    <string name="tube_enable">Analoge modellering</string>
+    <string name="tube_drive">Voorversterker</string>
+    <string name="output_control_header">Output sterkte</string>
+    <string name="output_limiter_threshold">Begrenzer drempel</string>
+    <string name="output_limiter_release">Begrenzer vrijgave</string>
+    <string name="output_control_postgain">Na-versterking</string>
+    <string name="stereowide_enable">Geluidsbeeld breedte</string>
+    <string name="stereowide_level">Breedte</string>
+    <string name="stereowide_level_none">Geen</string>
+    <string name="stereowide_level_very_wide">Zeer breed</string>
+    <string name="stereowide_level_wide">Breed</string>
+    <string name="stereowide_level_very_narrow">Zeer smal</string>
+    <string name="stereowide_level_narrow">Smal</string>
+    <string name="crossfeed_enable">Crossfeed</string>
+    <string name="crossfeed_preset">Preset</string>
+    <string name="crossfeed_preset_bs2b_weak">BS2B Zwak</string>
+    <string name="crossfeed_preset_bs2b_strong">BS2B Sterk</string>
+    <string name="crossfeed_preset_out_of_head">Buiten het hoofd</string>
+    <string name="crossfeed_preset_surround1">Surround 1</string>
+    <string name="crossfeed_preset_surround2">Surround 2</string>
+    <string name="crossfeed_preset_realistic_surround">Joe0Bloggs Realistische surround</string>
     <!-- Onboarding -->
+    <string name="title_activity_onboarding">Introductie</string>
+    <string name="onboarding_back">Terug</string>
+    <string name="onboarding_next">Volgende</string>
+    <string name="onboarding_finish">Klaar</string>
+    <string name="onboarding_greeting">Welkom bij RootlessJamesDSP!</string>
+    <string name="onboarding_caption">Deze assistent helpt u deze app in te stellen.</string>
+    <string name="onboarding_warning">Deze applicatie is momenteel onvoltooid en instabiel. Houd er rekening mee dat het op sommige apparaten mogelijk niet werkt zoals verwacht, omdat het gebruik maakt van Android API\'s die niet zijn ontworpen voor gebruik door derden.</string>
+    <string name="onboarding_fix_permissions_title">Gebruikersactie vereist</string>
+    <string name="onboarding_fix_permissions">Een of meer machtigingen zijn door u of het systeem ingetrokken.\nOm ervoor te zorgen dat deze app zich correct gedraagt, moet u deze rechten opnieuw verlenen.\n\nGelieve de installatiewizard opnieuw te doen om deze machtigingen opnieuw te verlenen.</string>
+    <string name="onboarding_limitations_title">Beperkingen</string>
+    <string name="onboarding_limitations_unstable">Belangrijk! Lees de opmerkingen zorgvuldig voordat u doorgaat.</string>
+    <string name="onboarding_methods_title">Kies installatiemethode</string>
+    <string name="onboarding_methods_root_title">Root</string>
+    <string name="onboarding_methods_shizuku_title">Shizuku</string>
+    <string name="onboarding_methods_unsupported_append">incompatibel</string>
+    <string name="onboarding_methods_adb_title">ADB</string>
     <!-- Rootless flavor -->
+    <string name="onboarding_methods_rootless_shizuku">\u25CF Aangeraden\n\u25CF Geen externe computer nodig\n\u25CF Alleen Android 11+</string>
+    <string name="onboarding_methods_rootless_adb">\u25CF Voor gevorderde gebruikers\n\u25CF Computer en USB kabel vereist\n\u25CF Android 10+ ondersteund</string>
     <!-- Root flavor -->
+    <string name="onboarding_methods_root_root">\u25CF Aangeraden\n\u25CF Geen externe computer nodig\n\u25CF Alle Android versies</string>
+    <string name="onboarding_methods_root_shizuku">\u25CF Aangeraden als root niet is ingesteld\n\u25CF Geen externe computer nodig\n\u25CF Alleen Android 11+</string>
+    <string name="onboarding_methods_root_adb">\u25CF Voor gevorderde gebruikers\n\u25CF Computer en USB kabel vereist\n\u25CF Alle Android versies</string>
     <string name="onboarding_root_shell_fail_title">Geen root toegang</string>
     <string name="onboarding_root_shell_fail">Geen root toegang beschikbaar. Gebruik een andere installatiemethode.</string>
     <string name="onboarding_root_shell_fail_unknown">Toestemming verlenen via root mislukt. Gebruik een andere installatiemethode.</string>
@@ -185,6 +235,11 @@
     <string name="onboarding_finish_header">JamesDSP is ingesteld!</string>
     <string name="onboarding_finish_caption">Als u tegen problemen aanloopt, kijk dan alstublieft bij de opties voor probleemoplossing.</string>
     <string name="limit_session_control_conflict_title">Andere audio-effect apps uitschakelen</string>
+    <string name="limit_session_control_conflict">Audio-effect apps, die Android\'s ingebouwde Dynamische Verwerkingseffect gebruiken, verstoren deze app.</string>
+    <string name="limit_unsupported_apps_title">Niet-ondersteunde media apps</string>
+    <string name="limit_unsupported_apps">Apps die interne audio-opname blokkeren blijven onverwerkt (bijv. Spotify, Google Chrome).</string>
+    <string name="limit_hw_accel_title">Problemen met HW-versnelde afgespeelde audio</string>
+    <string name="limit_hw_accel">HW-versnelde afgespeelde audio (snelle tracks) kan in sommige omstandigheden dubbele audio veroorzaken of JamesDSP beëindigen. Voeg de betrokken muziekspeler toe aan de lijst met uitgesloten apps om te voorkomen dat JamesDSP deze omleidt.</string>
     <!-- Settings -->
     <string name="title_activity_settings">Instellingen</string>
     <string name="audio_format_optimization_refresh">Vernieuw benchmark gegevens</string>
@@ -237,9 +292,59 @@
     <string name="misc_permission_header">Optionele machtigingen</string>
     <string name="assets">Assets</string>
     <string name="network_services">Netwerk services</string>
+    <string name="network_autoeq_api_url">AutoEQ API backend URL</string>
+    <string name="network_invalid_url">Ongeldig URL formaat</string>
+    <string name="network_autoeq_conntest_running">Testen van verbinding met server…</string>
+    <string name="network_autoeq_conntest_done">Verbindingstest geslaagd</string>
+    <string name="network_autoeq_conntest_fail">Verbindingstest mislukt</string>
+    <string name="network_autoeq_conntest_fail_summary">Server heeft niet juist gereageerd. Zorg ervoor dat de software op https://github.com/ThePBone/AutoEqApi correct is ingesteld op de server.\n\nNetwerkfout: %1$s\n\nWilt u deze instelling herstellen naar de standaardwaarde?</string>
+    <string name="about_settings">Over</string>
+    <string name="about_settings_summary">Credit, ondersteuning, updates</string>
+    <string name="privacy">Privacy</string>
+    <string name="privacy_share_crash_reports">Deel crash rapporten van applicatie</string>
+    <string name="privacy_share_crash_reports_on">Verstuur crash rapporten naar de ontwikkelaar</string>
+    <string name="privacy_share_crash_reports_off">Verstuur crash rapporten niet naar de ontwikkelaar</string>
+    <string name="credits">Credits</string>
+    <string name="translators">Vertalers</string>
+    <string name="credits_app">App &amp; rootless implementatie ontwikkeld door</string>
+    <string name="credits_dsp">JamesDSP core algoritme library ontwikkeld door</string>
+    <string name="credits_project_page">Bezoek de projectwebsite op GitHub</string>
+    <string name="credits_project_page_summary">Rapporteer problemen, houd jezelf op de hoogte en lees de source-code</string>
+    <string name="credits_project_play_page">Bezoek RootlessJamesDSP op Google Play</string>
+    <string name="credits_project_play_page_summary">Zoek naar nieuwe updates</string>
+    <string name="credits_project_check_update">Controleren op nieuwe updates…</string>
+    <string name="credits_project_check_update_summary">Updates downloaden en installeren indien beschikbaar</string>
+    <string name="credits_project_translate">Bijdragen aan vertalingen</string>
+    <string name="credits_project_translate_summary">Help ons deze app te vertalen naar uw taal</string>
+    <string name="credits_version">Applicatie versie</string>
+    <string name="credits_build_info">Build informatie</string>
+    <string name="appearance_section_header">Uiterlijk</string>
+    <string name="appearance_summary">App thema, puur zwart donkere modus</string>
+    <string name="appearance_title">Thema</string>
+    <string name="appearance_theme_mode">Donkere modus</string>
+    <string name="appearance_theme_mode_default">Volg systeemthema</string>
+    <string name="appearance_theme_mode_light">Uit</string>
+    <string name="appearance_theme_mode_dark">Aan</string>
+    <string name="appearance_pure_black_mode">Puur zwarte donkere modus</string>
+    <string name="appearance_app_theme">App thema</string>
+    <string name="appearance_navigation_title">Navigatie</string>
+    <string name="appearance_nav_hide">Verberg navigatiebalk bij het scrollen</string>
+    <string name="appearance_show_icons">Categoriepictogrammen weergeven</string>
     <string name="backup_settings">Backup en herstellen</string>
+    <string name="backup_settings_summary">Automatische &amp; handmatige back-ups</string>
+    <string name="backup_frequency">Back-up frequentie</string>
+    <string name="backup_location">Back-up locatie</string>
+    <string name="backup_maximum">Maximum aantal back-ups</string>
+    <string name="backup_never">Nooit</string>
+    <string name="backup_12hour">Elke 12 uur</string>
+    <string name="backup_24hour">Dagelijks</string>
+    <string name="backup_48hour">Elke 2 dagen</string>
+    <string name="backup_weekly">Wekelijks</string>
+    <string name="backup_select_location">Maak en selecteer alstublieft een back-up map…</string>
     <!-- Theme names -->
     <string name="theme_default">Standaard</string>
+    <string name="theme_monet">Dynamisch</string>
+    <string name="theme_greenapple">Groene Appel</string>
     <string name="theme_strawberrydaiquiri">Aardbei Daiquiri</string>
     <string name="theme_honey">Honing</string>
     <string name="theme_tealturquoise">Blauw-groen &amp; turkoois</string>
@@ -281,14 +386,26 @@
     <string name="filelibrary_no_presets">Geen presets opgeslagen. Tik op \'Toevoegen\' om een nieuwe te maken.</string>
     <!-- JamesDSP engine messages -->
     <string name="message_vdc_corrupt">Het geselecteerde VDC-bestand is beschadigd. Kies alstublieft een andere.</string>
+    <string name="message_irs_corrupt">De geselecteerde impuls reactie is beschadigd. Kies alstublieft een andere.</string>
+    <string name="message_convolver_advimp_invalid">Convolueerder: Geavanceerde golfbewerking bevat ongeldige waarden.</string>
+    <string name="message_liveprog_compile_fail">Uitvoeren van Liveprog is mislukt. Geselecteerde script is beschadigd. Gebruik de scripteditor voor het debuggen.</string>
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">Magnitude reactie</string>
+    <string name="geq_edit_as_string">Bewerken als tekst</string>
+    <string name="geq_autoeq">AutoEQ profielen</string>
     <string name="gep_add_node">Voeg toe</string>
+    <string name="geq_preview">Voorbeeld</string>
+    <string name="geq_preview_collapsed">Voorbeeld (tik om uit te breiden)</string>
+    <string name="geq_edit_hint">GraphicEQ nodes</string>
+    <string name="geq_reset">Herstel</string>
+    <string name="geq_reset_confirm_title">Weet u het zeker?</string>
+    <string name="geq_reset_confirm">Wilt u de GraphicEQ instellingen resetten?</string>
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
     <!-- Liveprog script editor -->
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Uitgesloten apps</string>
+    <string name="blocklist_unsupported_apps">Niet-ondersteunde apps</string>
     <!-- Compatibility issue activity -->
     <string name="app_compat_retry">Opnieuw proberen</string>
     <!-- Root: Library load failure -->
@@ -297,8 +414,10 @@
     <!-- Number box view -->
     <!-- Slider widget -->
     <!-- Revert confirmation -->
+    <string name="revert_confirmation_title">Weet u het zeker?</string>
     <!-- File intent handler -->
     <!-- Translation notice box -->
+    <string name="translation_notice">Bijdragen aan vertalingen</string>
     <!-- Self-updates (Root) -->
     <!-- Backups -->
     <!-- Multi-device profiles -->
