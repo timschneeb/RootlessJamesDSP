@@ -248,6 +248,7 @@
     <string name="limit_tested_devices">Wijzigingen in Android\'s audio-subsysteem van uw apparaatfabrikant kunnen deze app eenvoudig breken, omdat deze app een paar ongedocumenteerde API\'s gebruikt.\nDeze app is getest op de volgende apparaten:\n• Samsung S20+ (Android 12)\n• AOSP emulator (Android 10–13)\n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
     <string name="title_activity_settings">Instellingen</string>
+    <string name="session_exclude_restricted">Niet-ondersteunde apps uitsluiten</string>
     <string name="audio_format_encoding_int16">16-bit integer PCM</string>
     <string name="audio_format_encoding_float">32-bit float PCM</string>
     <string name="audio_format_optimization_refresh">Vernieuw benchmark gegevens</string>
