@@ -480,6 +480,8 @@
     <string name="editor_run">Opslaan en uitvoeren</string>
     <string name="editor_save">Opslaan</string>
     <string name="editor_liveprog_enabled">Liveprog is automatisch ingeschakeld.</string>
+    <string name="editor_replace_all">Vervang alles</string>
+    <string name="editor_replacement">Vervanging</string>
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Uitgesloten apps</string>
     <string name="blocklist_unsupported_apps">Niet-ondersteunde apps</string>
