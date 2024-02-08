@@ -281,7 +281,6 @@
     <string name="audio_format_summary_root">傳統模式，增強處理</string>
     <string name="audio_format_summary_plugin">卷積器最佳化</string>
     <string name="audio_format_encoding">音訊編碼</string>
-    <string name="audio_format_encoding_int16"></string>
     <string name="audio_format_encoding_float">32位元浮點數PCM</string>
     <string name="audio_format_buffer_size">緩衝區大小</string>
     <string name="audio_format_buffer_size_unit">&#xa0; 個樣本</string>
