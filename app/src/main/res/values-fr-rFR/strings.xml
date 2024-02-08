@@ -241,7 +241,7 @@
     <string name="limit_hw_accel_title">Problèmes de lecture audio</string>
     <string name="limit_hw_accel">La lecture audio matériellement accéléré (pistes rapides) peut parfois causer des doublons audio ou tuer JamesDSP dans certaines circonstances. Veuillez ajouter le lecteur de musique affecté à la liste des applications exclues pour empêcher JamesDSP de le rediriger.</string>
     <string name="limit_detect_delay_title">Délai de détection de session audio</string>
-    <string name="limit_detect_delay"><![CDATA[Une fois qu'une application a ouvert une nouvelle session média pour lire l\'audio, vous pouvez entendre du son dupliqué ou coupé pendant une très courte période (environ <250ms).]]></string>
+    <string name="limit_detect_delay"><![CDATA[Une fois qu\'une application a ouvert une nouvelle session média pour lire l\'audio, vous pouvez entendre du son dupliqué ou coupé pendant une très courte période (environ <250ms).]]></string>
     <string name="limit_latency_title">Latence augmentée</string>
     <string name="limit_latency">Cette application peut ajouter un certain délai au flux audio. Vous pouvez ajouter des applications multimédia à la liste d\'exclusion pour empêcher la désynchronisation audio-vidéo en ne les traitant pas.</string>
     <string name="limit_tested_devices_title">Périphériques testés</string>
@@ -501,7 +501,7 @@
     <string name="blocklist_delete">Voulez-vous supprimer cette application de la liste d\'exclusion ?</string>
     <string name="blocklist_no_exclusions">Applications non exclues</string>
     <string name="blocklist_unsupported_apps">Application non supportée</string>
-    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>Cette application ne supporte pas le traitement audio si l'application cible bloque l'enregistrement de son audio. Pour éviter à ce genre d'applications de ne pas pouvoir émettre de son du à leurs restrictions, elles sont automatiquement exclues du traitement audio et ne sont pas router.</p></p><u>Applications affectés :</u><br/>%s</p>]]></string>
+    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>Cette application ne supporte pas le traitement audio si l\'application cible bloque l'enregistrement de son audio. Pour éviter à ce genre d'applications de ne pas pouvoir émettre de son du à leurs restrictions, elles sont automatiquement exclues du traitement audio et ne sont pas router.</p></p><u>Applications affectés :</u><br/>%s</p>]]></string>
     <!-- Compatibility issue activity -->
     <string name="title_activity_app_compat">Problème de compatibilité</string>
     <string name="app_compat_retry">Réessayer</string>
