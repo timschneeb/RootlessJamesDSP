@@ -8,7 +8,7 @@ Controle de volume
 * Compressor de Faixa Dinâmica
 * Controle do grave
 * Equalizador de impulso
-* Equalizador de resposta arbitrária (Equalizador Gráfico)
+* Equalizador paramétrico
 * VIPER-DDC
 * Convolução
 * DSP programável ao vivo (mecanismo de definição de efeitos de áudio)
@@ -17,7 +17,7 @@ Controle de volume
 * Crossfeed
 * Efeito de sala virtual (ressonância)
 
-Além disso, este aplicativo se integra diretamente com o AutoEQ. Usando a integração AutoEQ, você pode procurar e importar frequências que busquem corrigir seu fone de ouvido a um som neutro. Vá para 'Equalizador de resposta arbitrária > Resposta Magnitude > Perfis de AutoEQ' para começar.
+Além disso, este aplicativo se integra diretamente com o AutoEQ. Usando a integração AutoEQ, você pode procurar e importar frequências que busquem corrigir seu fone de ouvido a um som neutro. Vá para 'Equalizador Paramétrico> Resposta de frequência > Perfis de AutoEQ' para começar.
 
 --- Limitações
 * Os aplicativos que bloqueiam a captura interna de áudio permanecem sem processamento (por exemplo, Spotify, Google Chrome)
