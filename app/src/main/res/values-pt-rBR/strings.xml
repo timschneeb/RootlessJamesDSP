@@ -101,8 +101,8 @@
     <string name="eq_preset_rb">R&amp;B</string>
     <string name="eq_preset_rock">Rock</string>
     <string name="eq_preset_vocal">Amplificar a voz</string>
-    <string name="geq_enable">Equalizador de resposta arbitrária</string>
-    <string name="geq_nodes">Resposta de Magnitude</string>
+    <string name="geq_enable">Equalizador paramétrico</string>
+    <string name="geq_nodes">Resposta de magnitude</string>
     <string name="bass_enable">Reforço dinâmico de graves</string>
     <string name="bass_max_gain">Ganho Máximo</string>
     <string name="reverb_enable">Efeito virtual de ambiente</string>
@@ -426,7 +426,7 @@
     <string name="message_convolver_advimp_invalid">Convolver: A edição de waveform avançada contém valores inválidos.</string>
     <string name="message_liveprog_compile_fail">A execução do Liveprog falhou. O script selecionado está corrompido. Por favor, use o editor de scripts para depuração.</string>
     <!-- GraphicEQ editor -->
-    <string name="title_activity_geq">Resposta de Magnitude</string>
+    <string name="title_activity_geq">Resposta de magnitude</string>
     <string name="geq_edit_as_string">Editar como string</string>
     <string name="geq_autoeq">Perfis do AutoEQ</string>
     <string name="gep_add_node">Adicionar</string>
@@ -436,11 +436,11 @@
     <string name="geq_reset">Redefinir</string>
     <string name="geq_reset_confirm_title">Você tem certeza?</string>
     <string name="geq_reset_confirm">Você deseja redefinir suas configurações do GraphicEQ?</string>
-    <string name="geq_node_editor">Editor de nó</string>
-    <string name="geq_node_list">Lista de nós</string>
+    <string name="geq_node_editor">Editor</string>
+    <string name="geq_node_list">Lista de edição</string>
     <string name="geq_no_nodes_defined">Nenhum nó definido</string>
     <string name="geq_delete_node">Excluir nó</string>
-    <string name="geq_go_back_to_node_list">Voltar para a lista de nós</string>
+    <string name="geq_go_back_to_node_list">Retornar para lista de edição</string>
     <string name="geq_next_node">Próximo nó</string>
     <string name="geq_previous_node">Nó anterior</string>
     <string name="geq_done_spaced">&#160;&#160;Concluído&#160;</string>
