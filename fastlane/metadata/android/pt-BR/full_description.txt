@@ -5,7 +5,7 @@ Este aplicativo tem várias limitações que podem ser decepcionante para alguma
 Equalizador James suporta os seguintes efeitos de áudio:
 Controle de volume
 * Controle do ganho de saída
-* Compressor de Faixa Dinâmica
+* Compressor de faixa dinâmica
 * Controle do grave
 * Equalizador de impulso
 * Equalizador paramétrico
@@ -13,7 +13,7 @@ Controle de volume
 * Convolução
 * DSP programável ao vivo (mecanismo de definição de efeitos de áudio)
 * Modelagem analógica
-* Amplificação de Estúdio
+* Amplitude do palco sonoro
 * Crossfeed
 * Efeito de sala virtual (ressonância)
 
