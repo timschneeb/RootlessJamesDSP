@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <plurals name="nodes">
+        <item quantity="one">%d banda</item>
+        <item quantity="other">%d bandas</item>
+    </plurals>
+</resources>
