@@ -28,11 +28,11 @@
     <string name="notification_request_permission">Tik om opname toestemming te verlenen en JamesDSP\'s audiobewerking in te schakelen</string>
     <!-- Session control loss notifications -->
     <string name="session_control_loss_toast">JamesDSP stopped due to audio session control loss. Please disable other audio effect apps.</string>
-    <string name="session_control_loss_notification_title">Audioverwerking gestopt. Een andere app verstoort JamesDSP.</string>
+    <string name="session_control_loss_notification_title">Audio-verwerking gestopt. Een andere app verstoort JamesDSP.</string>
     <string name="session_control_loss_notification">Schakel alstublieft alle andere apps uit die globale audio-effecten bieden, voordat JamesDSP weer wordt ingeschakeld.</string>
     <!-- App compatibility issue notifications -->
     <string name="session_app_compat_toast">JamesDSP is gestopt vanwege een incompatibele media app. Controleer de melding om dit probleem op te lossen.</string>
-    <string name="session_app_compat_notification_title">Audioverwerking gestopt. Een andere app verstoort JamesDSP.</string>
+    <string name="session_app_compat_notification_title">Audio-verwerking gestopt. Een andere app verstoort JamesDSP.</string>
     <string name="session_app_compat_notification">Tik op deze melding om het probleem op te lossen.</string>
     <!-- Capture permission revoked notifications -->
     <string name="capture_permission_revoked_toast">JamesDSP is gestopt omdat de machtiging voor het opnemen van audio is ingetrokken.</string>
@@ -179,11 +179,11 @@
     <string name="onboarding_methods_unsupported_append">incompatibel</string>
     <string name="onboarding_methods_adb_title">ADB</string>
     <!-- Rootless flavor -->
-    <string name="onboarding_methods_rootless_shizuku">\u25CF Aangeraden\n\u25CF Geen externe computer nodig\n\u25CF Alleen Android 11+</string>
+    <string name="onboarding_methods_rootless_shizuku">\u25CF Aanbevolen\n\u25CF Geen externe computer nodig\n\u25CF Alleen Android 11+</string>
     <string name="onboarding_methods_rootless_adb">\u25CF Voor gevorderde gebruikers\n\u25CF Computer en USB kabel vereist\n\u25CF Android 10+ ondersteund</string>
     <!-- Root flavor -->
-    <string name="onboarding_methods_root_root">\u25CF Aangeraden\n\u25CF Geen externe computer nodig\n\u25CF Alle Android versies</string>
-    <string name="onboarding_methods_root_shizuku">\u25CF Aangeraden als root niet is ingesteld\n\u25CF Geen externe computer nodig\n\u25CF Alleen Android 11+</string>
+    <string name="onboarding_methods_root_root">\u25CF Aanbevolen\n\u25CF Geen externe computer nodig\n\u25CF Alle Android versies</string>
+    <string name="onboarding_methods_root_shizuku">\u25CF Aanbevolen als root niet is ingesteld\n\u25CF Geen externe computer nodig\n\u25CF Alleen Android 11+</string>
     <string name="onboarding_methods_root_adb">\u25CF Voor gevorderde gebruikers\n\u25CF Computer en USB kabel vereist\n\u25CF Alle Android versies</string>
     <string name="onboarding_root_shell_fail_title">Geen root toegang</string>
     <string name="onboarding_root_shell_fail">Geen root toegang beschikbaar. Gebruik een andere installatiemethode.</string>
@@ -248,8 +248,45 @@
     <string name="limit_tested_devices">Wijzigingen in Android\'s audio-subsysteem van uw apparaatfabrikant kunnen deze app eenvoudig breken, omdat deze app een paar ongedocumenteerde API\'s gebruikt.\nDeze app is getest op de volgende apparaten:\n• Samsung S20+ (Android 12)\n• AOSP emulator (Android 10–13)\n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
     <string name="title_activity_settings">Instellingen</string>
+    <string name="session_exclude_restricted">Niet-ondersteunde apps uitsluiten</string>
+    <string name="session_exclude_restricted_off">Apps die audio-opname blokkeren blijven gedempt (standaard Android-gedrag)</string>
+    <string name="session_exclude_restricted_on">Apps die audio-opname blokkeren worden uitgesloten en blijven onverwerkt (aanbevolen)</string>
+    <string name="session_detection_header">Audio-sessie detectie</string>
+    <string name="session_continuous_polling">Forceer continu verversen</string>
+    <string name="session_continuous_polling_off">Luister alleen naar sessie-gebeurtenissen vanuit het systeem</string>
+    <string name="session_continuous_polling_on">Voortdurend registreren van audio-sessies</string>
+    <string name="session_continuous_polling_rate">Ververs interval (ms)</string>
+    <string name="session_detection_method">Gewenste sessie detectiemethode</string>
+    <string name="session_detection_method_audiopolicyservice">AudioPolicyService dump</string>
+    <string name="session_detection_method_audioservice">AudioService dump (aanbevolen)</string>
+    <string name="session_app_problem_ignore">Negeer compatibiliteitsproblemen van de app</string>
+    <string name="session_loss_ignore">Negeer sessie controle verlies</string>
+    <string name="session_loss_ignore_off">Uitgeschakeld, standaard uitvoering (aanbevolen)</string>
+    <string name="session_loss_ignore_on">Geen enkele actie ondernemen (kan dubbele audio veroorzaken)</string>
+    <string name="session_loss_ignore_warning">Het inschakelen van deze instelling kan leiden tot gedupliceerde audio wanneer een andere audio effecten-app een audio-sessie controleert.\nHoud deze instelling uitgeschakeld, tenzij je fout positieve sessie-verlies gebeurtenissen tegenkomt.</string>
+    <string name="audio_format_header">Audio-verwerking</string>
+    <string name="audio_format_section_header">Gewenste audioformaat</string>
+    <string name="audio_format_processing_header">Audio-verwerking opties</string>
+    <string name="audio_format_processing_legacy">Oude modus</string>
+    <string name="audio_format_processing_legacy_on">Bevestig globaal aan sessie 0 (verouderd)</string>
+    <string name="audio_format_processing_legacy_off">Bevestig aan elke app afzonderlijk</string>
+    <string name="audio_format_enhanced_processing">Verbeterde verwerking</string>
+    <string name="audio_format_enhanced_processing_on">Per-app beheer en verbeterde ondersteuning voor apps ingeschakeld</string>
+    <string name="audio_format_enhanced_processing_off">Verbeterde verwerking uitgeschakeld</string>
+    <string name="audio_format_enhanced_processing_info_title">Wat is verbeterde verwerking?</string>
+    <string name="audio_format_enhanced_processing_info">Tik om de documentatie te bekijken</string>
+    <string name="audio_format_enhanced_processing_info_content">Als verbeterde verwerking is ingeschakeld, kunt u selectief bepaalde apps uitsluiten van verwerking door JamesDSP. Gebruik het 3-puntenmenu in de rechteronderhoek en selecteer \'Uitgesloten apps\' om deze functie te gebruiken.\n\nHoewel de oude modus is uitgeschakeld, is JamesDSP afhankelijk van media apps om een systeemuitzending te verzenden wanneer ze het afspelen starten. Dit is een voordeel ten opzichte van de oude modus, omdat elke app zijn eigen JamesDSP effect engine toegewezen krijgt, wat het mogelijk maakt om fijnere controle te hebben. Wanneer de oude modus is ingeschakeld, delen alle apps een enkele verwerkings-engine, die Android niet meer ondersteunt en niet meer gebruikt zou moeten worden.\n\nHelaas doen niet alle media-apps dit correct en zouden daarom niet correct werken, wanneer de oude modus is uitgeschakeld. Om dit probleem op te lossen, kunt u verbeterde verwerking inschakelen. In plaats van op systeem-uitzendingen over nieuwe mediaspelingen te vertrouwen, zal JamesDSP zelf proactief media-sessies scannen om ondersteuning te bieden voor niet-coöperatieve media-apps.</string>
+    <string name="audio_format_media_apps_need_restart">Na het wijzigen van deze instelling moet u alle actieve media-apps opnieuw opstarten om de audio-verwerking te hervatten.</string>
+    <string name="audio_format_summary">Gewenste audio-codering, buffer grootte</string>
+    <string name="audio_format_summary_root">Oude modus, verbeterde verwerking</string>
+    <string name="audio_format_summary_plugin">Convolueerder optimalisaties</string>
+    <string name="audio_format_encoding">Audio encoding</string>
     <string name="audio_format_encoding_int16">16-bit integer PCM</string>
     <string name="audio_format_encoding_float">32-bit float PCM</string>
+    <string name="audio_format_buffer_size">Buffer grootte</string>
+    <string name="audio_format_buffer_size_unit">&#xa0;samples</string>
+    <string name="audio_format_buffer_size_warning_low_value">Waarschuwing: Lage buffer formaten kunnen audio-problemen veroorzaken zoals clippen!</string>
+    <string name="audio_format_optimization_header">Convolueerder module optimalisaties</string>
     <string name="audio_format_optimization_refresh">Vernieuw benchmark gegevens</string>
     <string name="audio_format_optimization_benchmark">Gebruik benchmarks om de prestatie te optimaliseren</string>
     <string name="audio_format_optimization_benchmark_summary">Verhoogt prestatie van effecten die Convolueerder modules gebruiken</string>
@@ -408,26 +445,160 @@
     <string name="geq_reset">Herstel</string>
     <string name="geq_reset_confirm_title">Weet u het zeker?</string>
     <string name="geq_reset_confirm">Wilt u de GraphicEQ instellingen resetten?</string>
+    <string name="geq_node_editor">Node bewerker</string>
+    <string name="geq_node_list">Node lijst</string>
+    <string name="geq_no_nodes_defined">Geen nodes gedefinieerd</string>
+    <string name="geq_delete_node">Verwijder node</string>
+    <string name="geq_go_back_to_node_list">Ga terug naar node lijst</string>
+    <string name="geq_next_node">Volgende node</string>
+    <string name="geq_previous_node">Vorige node</string>
+    <string name="geq_done_spaced">&#160;&#160;Klaar&#160;</string>
+    <string name="geq_done">Klaar</string>
+    <string name="geq_cancel_spaced">&#160;&#160;Gooi weg&#160;</string>
+    <string name="geq_cancel">Gooi weg</string>
+    <string name="geq_discard_changes_title">Wijzigingen weggooien en sluiten?</string>
+    <string name="geq_discard_changes">De waarden zijn niet geldig of leeg. Uw wijzigingen kunnen niet worden opgeslagen.\nWilt u de wijzigingen weggooien en afsluiten?</string>
+    <string name="geq_frequeny_range">Waarde tussen 1Hz en 24000Hz</string>
+    <string name="geq_gain_range">Waarde tussen -32dB en 32dB</string>
+    <string name="geq_gain">Versterking</string>
+    <string name="geq_frequency">Frequentie</string>
     <!-- AutoEQ GraphicEQ selector -->
+    <string name="geq_api_network_error">Kan geen verbinding maken met de server. %1$s</string>
+    <string name="geq_api_network_error_details_code">Server reageerde met foutcode: %1$d</string>
+    <string name="autoeq_search">AutoEQ zoeken</string>
+    <string name="autoeq_enter_model">Voer uw hoofdtelefoon model in…</string>
+    <string name="autoeq_partial_results_warning">Toont de eerste %1$d resultaten. Pas uw zoekopdracht aan om meer relevante resultaten te krijgen.</string>
+    <string name="autoeq_no_results">Geen zoekresultaten</string>
     <!-- Customizable liveprog script parameters -->
+    <string name="title_activity_liveprog_params">Aanpasbare script parameters</string>
+    <string name="action_restore_defaults">Standaardinstellingen terugzetten</string>
     <!-- Liveprog script editor -->
+    <string name="title_activity_liveprog_editor">Script bewerker</string>
+    <string name="editor_find_and_replace">Zoek/vervang…</string>
+    <string name="editor_docs">Hulp</string>
+    <string name="editor_open_fail">Script bestand bestaat niet of kan niet worden geopend.</string>
+    <string name="editor_run">Opslaan en uitvoeren</string>
+    <string name="editor_save">Opslaan</string>
+    <string name="editor_liveprog_enabled">Liveprog is automatisch ingeschakeld.</string>
+    <string name="editor_replace_all">Vervang alles</string>
+    <string name="editor_replacement">Vervanging</string>
+    <string name="editor_find_next_match">Volgende match zoeken</string>
+    <string name="editor_find_previous_match">Vorige match zoeken</string>
+    <string name="editor_search_keyword">Zoeken</string>
+    <string name="editor_source_position">%1$d:%2$d</string>
+    <string name="editor_engine_down_title">JamesDSP is niet actief</string>
+    <string name="editor_engine_down">Kan script niet uitvoeren omdat JamesDSP uitgeschakeld is. Schakel JamesDSP in om scripts uit te voeren.</string>
+    <string name="editor_save_prompt_title">Wijzigingen opslaan?</string>
+    <string name="editor_save_prompt">Het huidige script heeft niet-opgeslagen wijzigingen. Wilt u uw wijzigingen opslaan of deze negeren?</string>
+    <string name="editor_script_launched">Script gestart</string>
+    <string name="editor_cannot_undo">Niets om ongedaan te maken.</string>
+    <string name="editor_cannot_redo">Niets om opnieuw uit te voeren.</string>
+    <string name="editor_text_size">Tekstgrootte</string>
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Uitgesloten apps</string>
+    <string name="blocklist_add_exclusion_alt">Voeg toepassing toe om uit te sluiten</string>
+    <string name="blocklist_delete_title">Verwijder geselecteerde app?</string>
+    <string name="blocklist_delete">Wilt u deze app verwijderen uit de uitsluitingslijst?</string>
+    <string name="blocklist_no_exclusions">Geen uitgesloten apps</string>
     <string name="blocklist_unsupported_apps">Niet-ondersteunde apps</string>
+    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>Deze app ondersteunt geen verwerking van apps die derden blokkeren om hun audio-uitvoer op te nemen. Om te voorkomen dat deze apps worden gedempt door hun opnamebeperkingen, worden ze automatisch uitgesloten van audioverwerking en worden ze niet opnieuw omgeleid.</p><p><u>Betreffende apps:</u><br/>%s</p>]]></string>
     <!-- Compatibility issue activity -->
+    <string name="title_activity_app_compat">Compatibiliteitsprobleem</string>
     <string name="app_compat_retry">Opnieuw proberen</string>
+    <string name="app_compat_exclude">Uitsluiten</string>
+    <string name="app_compat_title">Audio-verwerking is onderbroken om dubbele audio te voorkomen</string>
+    <string name="app_compat_explanation">De volgende app wordt niet ondersteund, omdat RootlessJamesDSP hierdoor de controle over zijn audio-route verliest:</string>
+    <string name="app_compat_instruction">Controleer de instellingen van de app als u HW-versnelling of andere instellingen kunt uitschakelen die RootlessJamesDSP kunnen verstoren en tik op \'Opnieuw proberen\'.</string>
+    <string name="app_compat_instruction_exclude">Als alternatief selecteer \'Uitsluiten\' om dit probleem te omzeilen door de niet-compatibele app uit te sluiten van audio-verwerking.</string>
+    <string name="app_compat_unknown_pkg_name">Onbekende pakketnaam</string>
     <!-- Root: Library load failure -->
+    <string name="load_fail_header">Magisk module niet geïnstalleerd</string>
+    <string name="load_fail_card_title">Laden libjamesdsp.so mislukt</string>
+    <string name="load_fail_card">Installeer de JamesDSP Magisk module en herstart uw Android apparaat om deze toepassing te gebruiken. Het is mogelijk dat u deze app opnieuw moet installeren na het herstarten.</string>
+    <string name="load_fail_rootless_card_title">Op zoek naar een root-loze alternatief?</string>
+    <string name="load_fail_rootless_card">Deze smaak van JamesDSP is ontworpen om te worden gebruikt met een ge-root/gemodificeerd apparaat. Een niet-root alternatief met enkele beperkingen is ook beschikbaar. Tik hier voor details.</string>
+    <string name="load_fail_arch_card_title">Module al geïnstalleerd?</string>
+    <string name="load_fail_arch_card">Als je de Magisk module al hebt geïnstalleerd, kan het zijn dat je de verkeerde instellingen hebt gekozen tijdens de installatie. Installeer opnieuw en probeer Huawei compatibiliteit in te schakelen (zelfs als uw telefoon niet van de fabrikant is).</string>
     <!-- Enhanced processing -->
+    <string name="enhanced_processing_feature_unavailable">Functie niet beschikbaar</string>
+    <string name="enhanced_processing_feature_unavailable_content">Deze functie is alleen beschikbaar wanneer \'verbeterde verwerking\' is ingeschakeld in de instellingen. Ga naar \'Instellingen &gt; Audio-verwerking &gt; Verbeterde verwerking\' en schakel die optie in om dit menu te openen.\n\nOpmerking: \'Verbeterde verwerking\' kan niet worden gebruikt, terwijl oude modus is ingeschakeld.</string>
+    <string name="enhanced_processing_missing_perm">Verbeterde verwerking is uitgeschakeld vanwege een ontbrekende machtiging. Gelieve opnieuw in te stellen in de instellingen.</string>
     <!-- App list -->
+    <string name="app_list_loading">Apps laden…</string>
+    <string name="app_list_search">Zoeken</string>
+    <string name="app_list_icon_alt">App icoon</string>
     <!-- Number box view -->
+    <string name="number_box_decrement">Verlagen</string>
+    <string name="number_box_increment">Verhogen</string>
     <!-- Slider widget -->
+    <string name="slider_dialog_title">Waarde bewerken</string>
+    <string name="slider_dialog_format_error">Ongeldig nummerformaat. Wijzigingen niet toegepast.</string>
+    <string name="slider_dialog_step_error">Waarde moet een veelvoud van %1$d zijn. Wijzigingen niet toegepast.</string>
     <!-- Revert confirmation -->
     <string name="revert_confirmation_title">Weet u het zeker?</string>
+    <string name="revert_confirmation">Wilt u uw huidige JamesDSP voorinstelling herstellen naar de standaardwaarden?</string>
     <!-- File intent handler -->
+    <string name="intent_import_preset">Importeer preset</string>
+    <string name="intent_import_irs">Importeer impuls reactie</string>
+    <string name="intent_import_vdc">Importeer VDC-bestand</string>
+    <string name="intent_import_liveprog">Importeer Liveprog script</string>
+    <string name="intent_import_mode_add">Alleen importeren</string>
+    <string name="intent_import_mode_select">Importeren en activeren</string>
+    <string name="intent_import_fail">Kan het bestand \'%1$s\' niet importeren</string>
+    <string name="intent_import_success">Bestand \'%1$s\' geïmporteerd</string>
+    <string name="intent_import_select_success">Bestand \'%1$s\' geïmporteerd en geactiveerd</string>
+    <string name="intent_import_error_file_uri">Importeren van bestand mislukt. Niet-ondersteunde bestands-URI.</string>
     <!-- Translation notice box -->
+    <string name="translation_notice_summary">Help ons deze app te vertalen in uw taal! Tik hier om de project-site op Crowdin te bezoeken.</string>
     <string name="translation_notice">Bijdragen aan vertalingen</string>
     <!-- Self-updates (Root) -->
+    <string name="self_update_install_error">Update mislukt</string>
+    <string name="self_update_download_fail">Downloaden van update pakket mislukt. Controleer uw internetverbinding. Details: %1$s</string>
+    <string name="self_update_install_fail">Installatie mislukt. %1$s</string>
+    <string name="self_update_finished">Update geïnstalleerd. De app wordt nu opnieuw gestart…</string>
+    <string name="self_update_no_updates">Geen nieuwe updates beschikbaar op dit moment</string>
+    <string name="self_update_notice">Nieuwe update beschikbaar (%1$s)</string>
+    <string name="self_update_notice_summary">Tik hier om de nieuwe update te downloaden en te installeren.</string>
+    <string name="self_update_notice_dismiss_install">Installeer nu</string>
+    <string name="self_update_notice_dismiss_snooze">Herinner mij later</string>
+    <string name="self_update_notice_dismiss_skip">Deze update overslaan</string>
+    <string name="self_update_state_downloading">Downloaden…</string>
+    <string name="self_update_state_installing">Installeren…</string>
     <!-- Backups -->
+    <string name="backup_restore_progress">Back-up herstellen</string>
+    <string name="backup_restore_error">Back-up herstellen mislukt</string>
+    <string name="backup_restore_error_format">Niet-ondersteund of beschadigd back-up bestand</string>
+    <string name="backup_restore_error_version_too_new">De back-up is gemaakt met een nieuwere versie van deze applicatie en kan niet worden geladen. Update deze app om door te gaan.</string>
+    <string name="backup_restore_completed">Herstellen voltooid</string>
+    <string name="backup_create_completed">Back-up aangemaakt</string>
+    <string name="backup_create_progress">Back-up aanmaken</string>
+    <string name="backup_create_error">Back-up mislukt</string>
+    <string name="backup_manual_backup">Handmatige back-up</string>
+    <string name="backup_create">Maak back-up aan</string>
+    <string name="backup_create_summary">Kan gebruikt worden om de huidige instellingen later te herstellen</string>
+    <string name="backup_restore">Back-up herstellen</string>
+    <string name="backup_restore_summary">Instellingen herstellen vanuit back-up bestand</string>
+    <string name="backup_automatic_backup">Automatische back-up</string>
+    <string name="backup_compat_info">Back-ups bevatten alleen impuls reacties, scripts, VDC-bestanden, presets en de huidige audio-configuratie voor maximale compatibiliteit met andere versies.</string>
+    <string name="backup_restore_mode_title">Herstel modus</string>
+    <string name="backup_restore_mode_clean">Schoon herstellen (verwijder alle bestaande bestanden)</string>
+    <string name="backup_restore_mode_dirty">Vuil herstellen (alleen overschrijven)</string>
+    <string name="backup_in_progress">Back-up al in uitvoering</string>
     <!-- Multi-device profiles -->
+    <string name="group_wired_headphones">Bedrade hoofdtelefoon</string>
+    <string name="group_bluetooth">Bluetooth</string>
+    <string name="group_hdmi">HDMI</string>
+    <string name="group_speaker">Interne luidspreker</string>
+    <string name="group_usb">USB</string>
+    <string name="group_unknown">Onbekend</string>
+    <string name="device_profile_status">Actief apparaat profiel</string>
+    <string name="device_profile_manage_copy">Kopieer profiel…</string>
+    <string name="device_profile_manage_delete">Verwijder profielen…</string>
+    <string name="device_profile_manage_copy_select_no_target">Geen profielen om te overschrijven</string>
+    <string name="device_profile_manage_copy_select">Selecteer profiel om te kopiëren</string>
+    <string name="device_profile_manage_paste_select">Selecteer profielen om te overschrijven</string>
     <!-- Root version check -->
+    <string name="version_mismatch_root">JamesDSP Magisk-pakket vereist een update</string>
+    <string name="version_mismatch_root_description">Het JamesDSP Magisk pakket op je apparaat is verouderd en wordt niet meer ondersteund door deze app.\n\nGelieve de laatste JamesDSP Magisk pakket ZIP te vinden en te installeren via Magisk.\nMerk op dat het Magisk pakket deze app kan vervangen door de officiële JamesDSP-app.\n\nWilt u de downloadwebsite voor de Magisk pakketten nu bezoeken?</string>
+    <string name="version_mismatch_root_toast">Starten mislukt. Het geïnstalleerde JamesDSP Magisk pakket is te oud en wordt niet meer ondersteund door deze app.</string>
 </resources>

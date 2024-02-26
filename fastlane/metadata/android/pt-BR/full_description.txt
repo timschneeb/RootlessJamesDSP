@@ -5,19 +5,19 @@ Este aplicativo tem várias limitações que podem ser decepcionante para alguma
 Equalizador James suporta os seguintes efeitos de áudio:
 Controle de volume
 * Controle do ganho de saída
-* Compressor de Faixa Dinâmica
+* Compressor de faixa dinâmica
 * Controle do grave
 * Equalizador de impulso
-* Equalizador de resposta arbitrária (Equalizador Gráfico)
+* Equalizador paramétrico
 * VIPER-DDC
 * Convolução
 * DSP programável ao vivo (mecanismo de definição de efeitos de áudio)
 * Modelagem analógica
-* Amplificação de Estúdio
+* Amplitude do palco sonoro
 * Crossfeed
 * Efeito de sala virtual (ressonância)
 
-Além disso, este aplicativo se integra diretamente com o AutoEQ. Usando a integração AutoEQ, você pode procurar e importar frequências que busquem corrigir seu fone de ouvido a um som neutro. Vá para 'Equalizador de resposta arbitrária > Resposta Magnitude > Perfis de AutoEQ' para começar.
+Além disso, este aplicativo se integra diretamente com o AutoEQ. Usando a integração AutoEQ, você pode procurar e importar frequências que busquem corrigir seu fone de ouvido a um som neutro. Vá para 'Equalizador Paramétrico> Resposta de frequência > Perfis de AutoEQ' para começar.
 
 --- Limitações
 * Os aplicativos que bloqueiam a captura interna de áudio permanecem sem processamento (por exemplo, Spotify, Google Chrome)
