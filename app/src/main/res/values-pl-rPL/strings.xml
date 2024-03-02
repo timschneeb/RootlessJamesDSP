@@ -498,9 +498,19 @@ Graphic eq</string>
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Wykluczone aplikacje</string>
     <string name="blocklist_add_exclusion_alt">Dodaj aplikację do wykluczenia</string>
+    <string name="blocklist_delete_title">Usunąć wybraną aplikację?</string>
+    <string name="blocklist_delete">Czy chcesz usunąć tą aplikację z listy wykluczeń?</string>
+    <string name="blocklist_no_exclusions">Brak wykluczonych aplikacji</string>
+    <string name="blocklist_unsupported_apps">Nieobsługiwane aplikacje</string>
+    <string name="blocklist_unsupported_apps_message"><![CDATA[<p>Ta aplikacja nie obsługuje przetwarzania aplikacji, które blokują osobom trzecim nagrywanie ich dźwięku. Aby zapobiec wyciszeniu tych aplikacji ze względu na ograniczenia ich przechwytywania, są one automatycznie wyłączone z przetwarzania dźwięku i nie są przekierowane.</p><p><u>Dotyczy aplikacji:</u><br/>%s</p>]]></string>
     <!-- Compatibility issue activity -->
+    <string name="title_activity_app_compat">Problem z kompatybilnością</string>
     <string name="app_compat_retry">Spróbuj ponownie</string>
     <string name="app_compat_exclude">Wyklucz</string>
+    <string name="app_compat_title">Przetwarzanie dźwięku zostało zawieszone, aby zapobiec powielaniu dźwięku</string>
+    <string name="app_compat_explanation">Następująca aplikacja jest nieobsługiwana, ponieważ powoduje, że RootlessJamesDSP traci kontrolę nad przekierowaniem dźwięku:</string>
+    <string name="app_compat_instruction">Proszę sprawdzić ustawienia aplikacji, jeśli możesz wyłączyć przyspieszanie HW lub inne ustawienia, które mogą zakłócać działanie RootlessJamesDSP i naciśnij \'Ponów próbę\'.</string>
+    <string name="app_compat_instruction_exclude">Alternatywnie, wybierz \"Wyklucz\", aby ominąć ten problem, wykluczając niekompatybilną aplikację z przetwarzania audio.</string>
     <string name="app_compat_unknown_pkg_name">Nieznana nazwa pakietu</string>
     <!-- Root: Library load failure -->
     <string name="load_fail_header">Moduł Magisk nie jest zainstalowany</string>
@@ -589,4 +599,7 @@ Graphic eq</string>
     <string name="device_profile_manage_copy_select">Wybierz profil do skopiowania</string>
     <string name="device_profile_manage_paste_select">Wybierz profile do nadpisania</string>
     <!-- Root version check -->
+    <string name="version_mismatch_root">Pakiet magisk JamesDSP wymaga aktualizacji</string>
+    <string name="version_mismatch_root_description">Pakiet JamesDSP magisk zainstalowany na twoim urządzeniu jest nieaktualny i nie jest już obsługiwany przez tę aplikację.\n\nPobierz najnowszy pakiet JamesDSP magisk ZIP i zainstaluj go za pośrednictwem Magisk.\nPamiętaj, że pakiet magisk może zastąpić tę aplikację oficjalną aplikacją JamesDSP.\n\nCzy chcesz odwiedzić stronę pobierania pakietów Magisk?</string>
+    <string name="version_mismatch_root_toast">Nie udało się rozpocząć. Zainstalowany pakiet magisk JamesDSP jest zbyt stary i nie jest już obsługiwany przez tę aplikację.</string>
 </resources>
