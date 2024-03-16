@@ -281,10 +281,15 @@
     <string name="audio_format_summary_root">傳統模式，增強處理</string>
     <string name="audio_format_summary_plugin">卷積器最佳化</string>
     <string name="audio_format_encoding">音訊編碼</string>
+    <string name="audio_format_encoding_int16"></string>
     <string name="audio_format_encoding_float">32位元浮點數PCM</string>
     <string name="audio_format_buffer_size">緩衝區大小</string>
     <string name="audio_format_buffer_size_unit">&#xa0; 個樣本</string>
     <string name="audio_format_buffer_size_warning_low_value">警告：緩衝區太小可能會導致聲音斷斷續續！</string>
+    <string name="audio_format_optimization_header"></string>
+    <string name="audio_format_optimization_refresh"></string>
+    <string name="audio_format_optimization_benchmark">使用基准数据优化性能</string>
+    <string name="audio_format_optimization_benchmark_summary">Increases performance of effects that use convolver modules</string>
     <string name="profiles_info">輕觸以檢視說明</string>
     <string name="backup_settings">備份與還原</string>
     <!-- Theme names -->
