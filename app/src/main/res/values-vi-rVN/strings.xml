@@ -373,10 +373,14 @@
     <string name="appearance_pure_black_mode">Đen tinh khiết chế độ tối</string>
     <string name="appearance_app_theme">Giao diện ứng dụng</string>
     <string name="appearance_navigation_title">Thanh Điều Hướng</string>
+    <string name="appearance_nav_hide">Ẩn thanh điều hướng khi cuộn</string>
+    <string name="appearance_show_icons">Hiển thị biểu tượng thể loại</string>
     <string name="backup_settings">Sao lưu và khôi phục</string>
+    <string name="backup_settings_summary">Tự động &amp; sao lưu thủ công</string>
     <string name="backup_frequency">Sao lưu thường xuyên</string>
     <string name="backup_location">Nơi lưu bản sao</string>
     <string name="backup_maximum">Số bản sao lưu tối đa</string>
+    <string name="backup_never">Không bao giờ</string>
     <string name="backup_12hour">Mỗi 12 tiếng</string>
     <string name="backup_24hour">Mỗi Ngày</string>
     <string name="backup_48hour">Mỗi 2 ngày</string>
@@ -384,20 +388,51 @@
     <string name="backup_select_location">Hãy tạo và chọn một thư mục sao lưu…</string>
     <!-- Theme names -->
     <string name="theme_default">Mặc định</string>
+    <string name="theme_monet">Năng động</string>
+    <string name="theme_greenapple">Táo xanh</string>
+    <string name="theme_strawberrydaiquiri">Dâu Tây Daiquiri</string>
+    <string name="theme_honey">Mật Ong</string>
+    <string name="theme_tealturquoise">Màu xanh &amp; Turquoise</string>
+    <string name="theme_yinyang">Âm &amp; Dương</string>
+    <string name="theme_yotsuba">Yotsuba</string>
+    <string name="theme_tidalwave">Sóng thủy triều</string>
     <!-- File library preference -->
     <string name="action_import">Nhập</string>
+    <string name="filelibrary_hint_tap_and_hold">Nhấn và giữ bất kỳ mục nào để có thêm tùy chọn</string>
+    <string name="filelibrary_context_load">Tải</string>
     <string name="filelibrary_context_edit">Sửa</string>
     <string name="filelibrary_context_overwrite">Ghi đè</string>
     <string name="filelibrary_context_rename">Đổi tên</string>
     <string name="filelibrary_context_share">Chia sẻ…</string>
+    <string name="filelibrary_context_resample">Mẫu lấy lại ngoại tuyến</string>
+    <string name="filelibrary_context_duplicate">Tạo bản sao</string>
     <string name="filelibrary_context_delete">Xóa</string>
     <string name="filelibrary_context_new_preset">Mới</string>
+    <string name="filelibrary_context_new_preset_long">Tạo mới thiết lập sẵn</string>
     <string name="filelibrary_unsupported_format_title">Loại tập tin không được hỗ trợ</string>
+    <string name="filelibrary_unsupported_format">Tệp đã chọn không có phần mở rộng tệp chính xác.</string>
+    <string name="filelibrary_corrupted_title">Tệp sao lưu không được hỗ trợ hoặc đã bị hỏng</string>
+    <string name="filelibrary_corrupted">Tệp đã chọn không chứa dữ liệu có thể sử dụng được hoặc bị hỏng.</string>
+    <string name="filelibrary_file_too_new">Tệp đã chọn được tạo với phiên bản mới hơn của ứng dụng này và không thể tải được. Vui lòng cập nhật ứng dụng này để tiếp tục.</string>
+    <string name="filelibrary_access_fail">Không thể truy cập thư mục</string>
     <string name="filelibrary_is_backup_not_preset">Tập tin đã chọn là tập tin sao lưu, không phải tệp cài sẵn. Hãy vào cài đặt sao lưu nếu bạn muốn khôi phục nó.</string>
+    <string name="filelibrary_no_file_selected">Chưa chọn tệp nào</string>
     <string name="filelibrary_new_file_name">Tên file mới</string>
     <string name="filelibrary_file_exists">File này đã có rồi</string>
+    <string name="filelibrary_resample_complete">Lấy mẫu lại thành %1$d Hz</string>
+    <string name="filelibrary_resample_failed">Lấy mẫu lại không thành công. Tệp đầu vào bị hỏng?</string>
+    <string name="filelibrary_preset_overwritten">Cài đặt trước \'%1$s \' ghi đè</string>
+    <string name="filelibrary_preset_created">Cài đặt trước \'%1$s\' đã tạo</string>
+    <string name="filelibrary_preset_save_failed">Không thể lưu cài đặt trước</string>
     <string name="filelibrary_renamed">Đã đổi tên thành \'%1$s\'</string>
+    <string name="filelibrary_deleted">\'%1$s\' đã xoá</string>
+    <string name="filelibrary_preset_loaded">Cài đặt trước \'%1$s\' đã tải</string>
+    <string name="filelibrary_preset_load_failed">Tệp \'%1$s \' không tương thích với ứng dụng này</string>
+    <string name="filelibrary_no_presets">Không có cài đặt trước được lưu. Nhấn Vào \'Thêm\' để tạo một cái mới.</string>
     <!-- JamesDSP engine messages -->
+    <string name="message_vdc_corrupt">Tệp VDC đã chọn bị hỏng. Vui lòng chọn cái khác.</string>
+    <string name="message_irs_corrupt">Phản hồi xung được chọn bị hỏng. Vui lòng chọn một cái khác.</string>
+    <string name="message_convolver_advimp_invalid">Bộ biến đổi: Chỉnh sửa sóng nâng cao chứa giá trị không hợp lệ.</string>
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">Phản ứng cường độ</string>
     <string name="gep_add_node">Thêm</string>
