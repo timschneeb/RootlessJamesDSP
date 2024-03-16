@@ -290,6 +290,8 @@
     <string name="audio_format_optimization_refresh"></string>
     <string name="audio_format_optimization_benchmark">使用基准数据优化性能</string>
     <string name="audio_format_optimization_benchmark_summary">Increases performance of effects that use convolver modules</string>
+    <string name="audio_format_optimization_benchmark_ongoing"></string>
+    <string name="profiles_section_header"></string>
     <string name="profiles_info">輕觸以檢視說明</string>
     <string name="backup_settings">備份與還原</string>
     <!-- Theme names -->
