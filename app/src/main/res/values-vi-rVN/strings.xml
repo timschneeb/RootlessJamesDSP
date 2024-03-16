@@ -119,6 +119,12 @@
     <string name="reverb_preset_small_room2">Phòng nhỏ 2</string>
     <string name="reverb_preset_medium_room1">Phòng vừa</string>
     <string name="reverb_preset_large_room1">Phòng lớn</string>
+    <string name="reverb_preset_plate_high">Trần Cao</string>
+    <string name="reverb_preset_plate_low">Trần thấp</string>
+    <string name="reverb_preset_long_reverb1">Hồi Âm Dài 1</string>
+    <string name="reverb_preset_long_reverb2">Hồi Âm Dài 2</string>
+    <string name="convolver_enable">Xoắn Âm</string>
+    <string name="convolver_impulse">Đáp ứng xung</string>
     <string name="liveprog_not_found">Không tìm thấy Script</string>
     <string name="liveprog_no_script_selected">Không có script nào được chọn</string>
     <string name="liveprog_edit_header">Sửa script đã chọn</string>
