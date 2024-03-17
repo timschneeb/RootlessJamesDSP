@@ -306,6 +306,13 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
       <sub><b>1731 words</b></sub>
     </td>
     <td align="center" valign="top">
+      <a href="https://crowdin.com/profile/dang15082006"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/16282184/medium/bb9dbdbd49c8a5bf049bedc83a0d0cfc.jpeg" />
+        <br />
+        <sub><b>Đăng Nguyễn (dang15082006)</b></sub></a>
+      <br />
+      <sub><b>1307 words</b></sub>
+    </td>
+    <td align="center" valign="top">
       <a href="https://crowdin.com/profile/SerAX3L"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15755831/medium/4f31c78564ed55fef4b2bf8d96213a55.jpeg" />
         <br />
         <sub><b>Alessandro Belfiore (SerAX3L)</b></sub></a>
@@ -319,6 +326,8 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
       <br />
       <sub><b>1030 words</b></sub>
     </td>
+  </tr>
+  <tr>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/kyunairi"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15925091/medium/7b1dd408c51242ab8602eb68408987cb_default.png" />
         <br />
@@ -326,8 +335,6 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
       <br />
       <sub><b>888 words</b></sub>
     </td>
-  </tr>
-  <tr>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/foxabashed"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15711961/medium/e6c27e5ff36a68db03f9b786007b9cbd.png" />
         <br />
@@ -363,6 +370,8 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
       <br />
       <sub><b>513 words</b></sub>
     </td>
+  </tr>
+  <tr>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/ianpok17"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15647373/medium/daf979a91f0a64b448cf88a954d45e2b.jpeg" />
         <br />
@@ -370,21 +379,12 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
       <br />
       <sub><b>470 words</b></sub>
     </td>
-  </tr>
-  <tr>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/Mr-Ojii"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/15864101/medium/297229b45644e26de1de3f289ab3cef1.png" />
         <br />
         <sub><b>Mr-Ojii</b></sub></a>
       <br />
       <sub><b>457 words</b></sub>
-    </td>
-    <td align="center" valign="top">
-      <a href="https://crowdin.com/profile/tomechio"><img alt="logo" style="width: 64px" src="https://crowdin-static.downloads.crowdin.com/avatar/14617144/medium/b54739ea4f3f61a426417fea52ba2f9d.png" />
-        <br />
-        <sub><b>tomechio</b></sub></a>
-      <br />
-      <sub><b>358 words</b></sub>
     </td>
   </tr>
 </table><a href="https://crowdin.com/project/rootlessjamesdsp" target="_blank">Translate in Crowdin 🚀</a>
