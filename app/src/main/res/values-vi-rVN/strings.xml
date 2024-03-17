@@ -449,6 +449,9 @@
     <string name="geq_node_list">Danh sách nút</string>
     <string name="geq_no_nodes_defined">Không có nút nào được xác định</string>
     <string name="geq_delete_node">Xóa nút</string>
+    <string name="geq_go_back_to_node_list">Trở lại danh sách nút</string>
+    <string name="geq_next_node">Nút tiếp theo</string>
+    <string name="geq_previous_node">Nút trước</string>
     <string name="geq_done_spaced">&#160;&#160;Xong&#160;</string>
     <string name="geq_done">Xong</string>
     <string name="geq_cancel_spaced">&#160;&#160;Loại bỏ&#160;</string>
@@ -456,20 +459,41 @@
     <string name="geq_discard_changes_title">Hủy các thay đổi và thoát?</string>
     <string name="geq_discard_changes">Các giá trị không hợp lệ hoặc trống. Không thể lưu các thay đổi của bạn.\nBạn có muốn hủy các thay đổi của mình và thoát không?</string>
     <string name="geq_frequeny_range">Giá trị từ 1Hz đến 24000Hz</string>
+    <string name="geq_gain_range">Giá trị từ -32dB đến 32dB</string>
+    <string name="geq_gain">Thêm</string>
     <string name="geq_frequency">Tần số</string>
     <!-- AutoEQ GraphicEQ selector -->
     <string name="geq_api_network_error">Không kết nối được với máy chủ. %1$s</string>
     <string name="geq_api_network_error_details_code">Máy chủ đã phản hồi với mã lỗi: %1$d</string>
     <string name="autoeq_search">Tìm AutoEQ</string>
     <string name="autoeq_enter_model">Nhập mẫu tai nghe của bạn…</string>
+    <string name="autoeq_partial_results_warning">Hiển thị kết quả %1$d đầu tiên. Vui lòng tinh chỉnh tìm kiếm của bạn để có được kết quả phù hợp hơn.</string>
     <string name="autoeq_no_results">Không tìm thấy kết quả nào</string>
     <!-- Customizable liveprog script parameters -->
+    <string name="title_activity_liveprog_params">Thông số mã nguồn có thể tùy chỉnh</string>
+    <string name="action_restore_defaults">Khôi phục mặc định</string>
     <!-- Liveprog script editor -->
+    <string name="title_activity_liveprog_editor">Trỉnh sửa tập lệnh</string>
+    <string name="editor_find_and_replace">Tìm/thay thế…</string>
     <string name="editor_docs">Trợ giúp</string>
+    <string name="editor_open_fail">Tệp tập lệnh không tồn tại hoặc không thể mở được.</string>
+    <string name="editor_run">Lưu và chạy</string>
     <string name="editor_save">Lưu</string>
+    <string name="editor_liveprog_enabled">Liveprog đã được bật tự động.</string>
     <string name="editor_replace_all">Thay thế tất cả</string>
+    <string name="editor_replacement">Thay thế</string>
+    <string name="editor_find_next_match">Tìm từ khớp tiếp theo</string>
+    <string name="editor_find_previous_match">Tìm từ khớp trước</string>
+    <string name="editor_search_keyword">Tìm kiếm</string>
+    <string name="editor_source_position">%1$d:%2$d</string>
+    <string name="editor_engine_down_title">JamesDSP không hoạt động</string>
+    <string name="editor_engine_down">Không thể chạy tập lệnh vì JamesDSP bị tắt. Vui lòng bật JamesDSP để thực thi tập lệnh.</string>
     <string name="editor_save_prompt_title">Lưu thay đổi chứ?</string>
     <string name="editor_save_prompt">Script hiện tại có những thay đổi chưa được lưu. Bạn muốn lưu các thay đổi của mình hay loại bỏ chúng?</string>
+    <string name="editor_script_launched">Đã khởi chạy tập lệnh</string>
+    <string name="editor_cannot_undo">Không có gì để hoàn tác.</string>
+    <string name="editor_cannot_redo">Không có gì để làm lại.</string>
+    <string name="editor_text_size">Cỡ chữ</string>
     <!-- Blocklist -->
     <string name="title_activity_blocklist">Loại trừ ứng dụng</string>
     <string name="blocklist_add_exclusion_alt">Thêm ứng dụng để loại trừ</string>
@@ -485,6 +509,8 @@
     <string name="app_compat_title">Quá trình xử lý âm thanh đã bị tạm dừng để tránh âm thanh trùng lặp</string>
     <string name="app_compat_explanation">Ứng dụng sau không được hỗ trợ vì nó khiến RootlessJamesDSP mất quyền kiểm soát định tuyến âm thanh của nó:</string>
     <string name="app_compat_instruction">Hãy kiểm tra cài đặt của ứng dụng nếu bạn có thể tắt tính năng tăng tốc phần cứng hoặc các cài đặt khác có thể ảnh hưởng đến RootlessJamesDSP và nhấn \'Thử lại\'.</string>
+    <string name="app_compat_instruction_exclude">Lựa chọn ‘Loại trừ’ để vượt qua vấn đề này bằng cách loại trừ ứng dụng không tương thích khỏi quá trình xử lý âm thanh.</string>
+    <string name="app_compat_unknown_pkg_name">Tên gói không xác định</string>
     <!-- Root: Library load failure -->
     <string name="load_fail_header">Module Magisk chưa được cài đặt</string>
     <string name="load_fail_card_title">Không nạp được libjamesdsp.so</string>
@@ -492,18 +518,44 @@
     <string name="load_fail_rootless_card_title">Có phải bạn đang tìm một giải pháp thay thế không cần root?</string>
     <string name="load_fail_rootless_card">Phiên bản JamesDSP này được thiết kế để sử dụng với thiết bị đã root/đã sửa đổi. Một giải pháp thay thế không phải root với một số hạn chế cũng có sẵn. Nhấn vào đây để biết chi tiết.</string>
     <string name="load_fail_arch_card_title">Module đã cài đặt rồi?</string>
+    <string name="load_fail_arch_card">Nếu bạn đã cài đặt module magisk, có thể bạn đã chọn những cài đặt không đúng trong quá trình cài đặt. Vui lòng cài đặt lại và thử kích hoạt tính năng tương thích với Huawei (ngay cả khi điện thoại của bạn không phải của hãng này).</string>
     <!-- Enhanced processing -->
     <string name="enhanced_processing_feature_unavailable">Tính năng không có sẵn</string>
+    <string name="enhanced_processing_feature_unavailable_content">Tính năng này chỉ có sẵn khi ‘xử lý nâng cao’ được bật trong cài đặt. Vui lòng vào ‘Cài đặt &gt; Xử lý âm thanh &gt; Xử lý nâng cao’ và bật tùy chọn này để truy cập menu.\n\nLưu ý: ‘Xử lý nâng cao’ không thể sử dụng trong khi chế độ legacy được bật.</string>
+    <string name="enhanced_processing_missing_perm">Quá trình xử lý nâng cao đã bị vô hiệu hóa do không đủ quyền. Vui lòng thiết lập lại nó trong cài đặt.</string>
     <!-- App list -->
+    <string name="app_list_loading">Đang tải ứng dụng…</string>
+    <string name="app_list_search">Tìm kiếm</string>
+    <string name="app_list_icon_alt">Biểu tượng ứng dụng</string>
     <!-- Number box view -->
+    <string name="number_box_decrement">Giảm</string>
+    <string name="number_box_increment">Tăng</string>
     <!-- Slider widget -->
+    <string name="slider_dialog_title">Chỉnh sửa giá trị</string>
+    <string name="slider_dialog_format_error">Định dạng số không hợp lệ. Những thay đổi không được áp dụng.</string>
+    <string name="slider_dialog_step_error">Giá trị phải là bội số của %1$d. Những thay đổi không được áp dụng.</string>
     <!-- Revert confirmation -->
     <string name="revert_confirmation_title">Bạn chắc chứ?</string>
     <string name="revert_confirmation">Bạn có muốn đặt lại cài đặt JamesDSP hiện tại của mình về giá trị mặc định không?</string>
     <!-- File intent handler -->
+    <string name="intent_import_preset">Nhập giá trị đặt trước</string>
+    <string name="intent_import_irs">Nhập đáp ứng xung</string>
+    <string name="intent_import_vdc">Nhập tệp VDC</string>
+    <string name="intent_import_liveprog">Nhập tập lệnh Liveprog</string>
+    <string name="intent_import_mode_add">Chỉ nhập vào</string>
+    <string name="intent_import_mode_select">Nhập và kích hoạt</string>
+    <string name="intent_import_fail">Không thể nhập tệp \'%1$s\'</string>
+    <string name="intent_import_success">Đã nhập tệp \'%1$s\'</string>
+    <string name="intent_import_select_success">Tệp \'%1$s\' đã được nhập và kích hoạt</string>
+    <string name="intent_import_error_file_uri">Không thể nhập tệp. URI tệp không được hỗ trợ.</string>
     <!-- Translation notice box -->
+    <string name="translation_notice_summary">Hãy giúp chúng tôi dịch ứng dụng này sang ngôn ngữ của bạn! Nhấn vào đây để truy cập trang web dự án trên Crowdin.</string>
     <string name="translation_notice">Đóng góp bản dịch</string>
     <!-- Self-updates (Root) -->
+    <string name="self_update_install_error">Cập nhật không thành công</string>
+    <string name="self_update_download_fail">Không tải được gói cập nhật. xin vui lòng kiểm tra kết nối Internet của bạn. chi tiết: %1$s</string>
+    <string name="self_update_install_fail">Cài đặt thất bại. %1$s</string>
+    <string name="self_update_finished">Đã cập nhật. Ứng dụng đang khởi động lại…</string>
     <string name="self_update_no_updates">Hiện tại không có bản cập nhật mới nào</string>
     <string name="self_update_notice">Đã có bản cập nhật mới (%1$s)</string>
     <string name="self_update_notice_summary">Chạm vào đây để tải xuống và cài đặt bản cập nhật mới.</string>
@@ -536,10 +588,17 @@
     <string name="group_wired_headphones">Tai nghe có dây</string>
     <string name="group_bluetooth">Bluetooth</string>
     <string name="group_hdmi">HDMI</string>
+    <string name="group_speaker">Loa tích hợp</string>
     <string name="group_usb">USB</string>
     <string name="group_unknown">Không rõ</string>
+    <string name="device_profile_status">Hồ sơ thiết bị đang hoạt động</string>
+    <string name="device_profile_manage_copy">Sao chép hồ sơ…</string>
+    <string name="device_profile_manage_delete">Xóa hồ sơ…</string>
     <string name="device_profile_manage_copy_select_no_target">Không có hồ sơ nào để ghi đè</string>
     <string name="device_profile_manage_copy_select">Chọn hồ sơ để sao chép</string>
     <string name="device_profile_manage_paste_select">Chọn hồ sơ để ghi đè</string>
     <!-- Root version check -->
+    <string name="version_mismatch_root">Gói magisk JamesDSP cần được cập nhật</string>
+    <string name="version_mismatch_root_description">Gói JamesDSP magisk bạn đã cài đặt trên thiết bị đã lỗi thời và không còn được ứng dụng này hỗ trợ nữa.\n\nVui lòng tải xuống gói ZIP JamesDSP magisk mới nhất và cài đặt qua Magisk.\nLưu ý rằng gói magisk có thể thay thế ứng dụng này bằng ứng dụng chính thức JamesDSP.\n\nBạn có muốn truy cập trang web tải xuống cho các gói Magisk ngay bây giờ không?</string>
+    <string name="version_mismatch_root_toast">Không thể khởi động. JamesDSP Magisk đã cài đặt trên thiết bị của bạn đã quá cũ và không còn được ứng dụng hỗ trợ nữa.</string>
 </resources>
