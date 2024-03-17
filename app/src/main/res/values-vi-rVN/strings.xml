@@ -433,10 +433,22 @@
     <string name="message_vdc_corrupt">Tệp VDC đã chọn bị hỏng. Vui lòng chọn cái khác.</string>
     <string name="message_irs_corrupt">Phản hồi xung được chọn bị hỏng. Vui lòng chọn một cái khác.</string>
     <string name="message_convolver_advimp_invalid">Bộ biến đổi: Chỉnh sửa sóng nâng cao chứa giá trị không hợp lệ.</string>
+    <string name="message_liveprog_compile_fail">Liveprog thực hiện thất bại. Tập lệnh đã chọn bị hỏng. Vui lòng sử dụng trình chỉnh sửa tập lệnh để gỡ lỗi.</string>
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">Phản ứng cường độ</string>
+    <string name="geq_edit_as_string">Chỉnh sửa dưới dạng chuỗi</string>
+    <string name="geq_autoeq">Cấu hình EQ tự động</string>
     <string name="gep_add_node">Thêm</string>
+    <string name="geq_preview">Xem trước</string>
     <string name="geq_preview_collapsed">Xem trước (chạm để mở rộng)</string>
+    <string name="geq_edit_hint">Nút GraphicEQ</string>
+    <string name="geq_reset">Đặt lại</string>
+    <string name="geq_reset_confirm_title">Bạn có chắc không?</string>
+    <string name="geq_reset_confirm">Bạn có muốn đặt lại cài đặt GraphicEQ của mình không?</string>
+    <string name="geq_node_editor">Chỉnh sửa nút</string>
+    <string name="geq_node_list">Danh sách nút</string>
+    <string name="geq_no_nodes_defined">Không có nút nào được xác định</string>
+    <string name="geq_delete_node">Xóa nút</string>
     <string name="geq_done_spaced">&#160;&#160;Xong&#160;</string>
     <string name="geq_done">Xong</string>
     <string name="geq_cancel_spaced">&#160;&#160;Loại bỏ&#160;</string>
