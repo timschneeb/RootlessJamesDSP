@@ -3,18 +3,18 @@ Dùng JamesDSP làm công cụ xử lý âm thanh trên toàn hệ thống mà k
 Ứng dụng này có một số hạn chế có thể gây khó khăn cho một số người; vui lòng đọc toàn bộ tài liệu này trước khi sử dụng ứng dụng. Cần có quyền truy cập Shizuku (Android 11+) hoặc ADB qua máy tính để thiết lập lúc đầu.
 
 JamesDPS hỗ trợ các hiệu ứng âm thanh sau:
-* Limiter control
-* Output gain control
-* Auto dynamic range compressor
+* Kiểm soát giới hạn
+* Kiểm soát mức tăng đầu ra
+* Tự động nén dải động
 * Tăng cường âm trầm sống động
-* Interpolating FIR equalizer
-* Arbitrary response equalizer (Graphic EQ)
+* Bộ cân bằng FIR nội suy
+* Bộ cân bằng đáp ứng tùy ý (Graphic EQ)
 * ViPER-DDC
 * Convolver
-* Live-programmable DSP (scripting engine for audio effects)
-* Analog modelling
+* DSP có thể lập trình trực tiếp (động cơ kịch bản cho hiệu ứng âm thanh)
+* Mô hình tương tự
 * Độ rộng của âm trường
-* Crossfeed
+* Nguồn cấp dữ liệu chéo
 * Hiệu ứng phòng ảo hóa (vọng lại)
 
 Ngoài ra, ứng dụng này còn tích hợp trực tiếp với AutoEQ. Bằng cách sử dụng AutoEQ được tích hợp, bạn có thể tìm kiếm và nhập tần số phản hồi nhằm điều chỉnh tai nghe của bạn thành âm thanh cân bằng. Đi tới 'Bộ cân bằng phản hồi tùy ý > Phản hồi cường độ > Hồ sơ AutoEQ' để bắt đầu.
