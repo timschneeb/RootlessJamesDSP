@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
-    <string name="action_settings">الإعدادات</string>
+    <string name="action_settings"></string>
     <string name="action_presets">الإعدادات المسبقة</string>
     <string name="action_revert">إعادة الضبط</string>
     <string name="action_blocked_apps">التطبيقات المستبعدة</string>
@@ -247,7 +247,7 @@
     <string name="limit_tested_devices_title">الأجهزة المختبرة</string>
     <string name="limit_tested_devices">التغييرات التي أجريت على نظام الأندرويد الفرعي للصوت من قبل شركة تصنيع جهازك يمكن بسهولة كسر هذا التطبيق لأنه يستخدم القليل من API غير الموثقة.\nتم اختباره على هذه الأجهزة:\n• Samsung S20+ (Android 12)\n• محاكي AOSP (Android 10–13)\n• Google Pixel 6 Pro (Android 13)</string>
     <!-- Settings -->
-    <string name="title_activity_settings">الإعدادات</string>
+    <string name="title_activity_settings"></string>
     <string name="session_exclude_restricted">استبعاد التطبيقات غير المدعومة</string>
     <string name="session_exclude_restricted_off">التطبيقات التي تمنع التقاط الصوت تبقى مكتومة (سلوك الأندرويد الافتراضي)</string>
     <string name="session_exclude_restricted_on">التطبيقات التي تمنع التقاط الصوت مستبعدة وتظل غير معالجة (مستحسن)</string>
