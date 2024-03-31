@@ -531,8 +531,12 @@
     <string name="number_box_decrement">Décrémentation</string>
     <string name="number_box_increment"></string>
     <!-- Slider widget -->
+    <string name="slider_dialog_title">Edit value</string>
+    <string name="slider_dialog_format_error">Invalid number format. Changes not applied.</string>
+    <string name="slider_dialog_step_error">La valeur doit être un multiple de %1$d. Les changements ne sont pas appliqués.</string>
     <!-- Revert confirmation -->
     <string name="revert_confirmation_title">Êtes-vous sûr ?</string>
+    <string name="revert_confirmation">Voulez-vous réinitialiser votre préréglage JamesDSP actuel aux valeurs par défaut?</string>
     <!-- File intent handler -->
     <!-- Translation notice box -->
     <string name="translation_notice">Contribuer aux traductions</string>
