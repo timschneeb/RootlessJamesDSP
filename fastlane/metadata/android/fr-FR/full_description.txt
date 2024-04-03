@@ -31,16 +31,16 @@ De plus, cette application s'intègre directement avec AutoEQ. Grâce à l’int
 * Amazon Music
 * Deezer
 * PowerAmp
-* Substreamer
+* Sous-streameur
 * Twitch
 * ...
 
-- Unsupported apps include:
-* Spotify (Note: Spotify ReVanced patch is required to support Spotify)
-* Google Chrome
-* SoundCloud
+- Les applications non prises en charge incluent :
+* Spotify (Note: Spotify ReVanced patch est nécessaire pour soutenir Spotify)
+Google Chrome
+SoundCloud
 * ...
 
---- Translation
-Please help us translate this app here: https://crowdin.com/project/rootlessjamesdsp
-To request a new language that isn't enabled on Crowdin yet, please open an issue here on GitHub and I will turn it on.
+--- Traduction
+Aidez-nous à traduire cette application ici : https://crowdin.com/project/rootlessjamesdsp
+Pour demander une nouvelle langue qui n'est pas encore activée sur Crowdin, veuillez ouvrir un ticket sur GitHub et je l'activerai.
