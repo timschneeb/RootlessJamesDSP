@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <plurals name="nodes">
+        <item quantity="one">%d Nœud</item>
+        <item quantity="other">%d Nœuds</item>
+    </plurals>
+    <plurals name="custom_parameters">
+        <item quantity="one">%d Paramètre personnalisable</item>
+        <item quantity="other">%d Paramètres personnalisables</item>
+    </plurals>
+    <plurals name="unsupported_apps">
+        <item quantity="one">%d L\'application non prise en charge a été automatiquement exclues. Appuyez pour plus de détails.</item>
+        <item quantity="other">%d Les applications non prises en charge ont été automatiquement exclues. Appuyez pour plus de détails.</item>
+    </plurals>
+</resources>
