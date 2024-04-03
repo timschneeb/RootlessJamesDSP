@@ -55,9 +55,9 @@
     <string name="value_not_set">Non défini</string>
     <string name="undo">Annuler</string>
     <string name="redo">Rétablir</string>
-    <string name="no_activity_found">Aucune activité trouvée pour traiter l\'action</string>
-    <string name="permission_allowed">Autorisé</string>
-    <string name="permission_not_allowed">Non autorisé</string>
+    <string name="no_activity_found">Aucune activité trouvée pour gérer l\'action</string>
+    <string name="permission_allowed">Autorisé </string>
+    <string name="permission_not_allowed">Accès non autorisé</string>
     <string name="preparing">Préparation en cours…</string>
     <string name="error_projection_api_missing">Le fabricant de votre appareil a désactivé les API d\'enregistrement audio interne. Cette application ne peut pas fonctionner sans eux.</string>
     <!-- Main screen -->
@@ -577,6 +577,7 @@
     <string name="backup_create">Créer une sauvegarde</string>
     <string name="backup_create_summary">Peut être utilisé pour restaurer les paramètres actuels plus tard</string>
     <string name="backup_restore">Restaurer une sauvegarde</string>
+    <string name="backup_restore_summary">Restaurer les paramètres depuis le fichier de sauvegarde</string>
     <string name="backup_automatic_backup">Sauvegarde automatique</string>
     <string name="backup_compat_info">Les sauvegardes n\'incluent que les réponses impulsives, les scripts, les fichiers VDC, les préréglages et la configuration audio actuelle pour une compatibilité maximale avec les autres versions.</string>
     <string name="backup_restore_mode_title">Mode de restauration</string>
