@@ -1,1 +1,1 @@
-非ルート化Android端末用のJamesDSPオーディオ処理エンジン
+root化されていないAndroidデバイス向けのシステム全体で使えるJamesDSPオーディオ処理エンジンです。
