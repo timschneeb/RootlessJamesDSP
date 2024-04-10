@@ -3,7 +3,7 @@
     <!-- Main menu bar -->
     <string name="action_settings">設定</string>
     <string name="action_presets">プリセット</string>
-    <string name="action_revert">デフォルトに戻す</string>
+    <string name="action_revert">デフォルトにリセットする</string>
     <string name="action_blocked_apps">除外するアプリ</string>
     <!-- Notification channels -->
     <string name="notification_group_service">サービス</string>
@@ -367,13 +367,13 @@
     <string name="credits_version">アプリのバージョン</string>
     <string name="credits_build_info">ビルド情報:</string>
     <string name="appearance_section_header">外観</string>
-    <string name="appearance_summary">アプリのテーマ、真っ黒モード</string>
+    <string name="appearance_summary">アプリのテーマ、ピュアブラックダークモード</string>
     <string name="appearance_title">テーマ</string>
     <string name="appearance_theme_mode">ダークモード</string>
     <string name="appearance_theme_mode_default">システムのテーマに従う</string>
     <string name="appearance_theme_mode_light">オフ</string>
     <string name="appearance_theme_mode_dark">オン</string>
-    <string name="appearance_pure_black_mode">真っ黒モード</string>
+    <string name="appearance_pure_black_mode">ピュアブラックダークモード</string>
     <string name="appearance_app_theme">アプリのテーマ</string>
     <string name="appearance_navigation_title">ナビゲーション</string>
     <string name="appearance_nav_hide">スクロール時にナビゲーションバーを隠す</string>
