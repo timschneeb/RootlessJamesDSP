@@ -55,9 +55,9 @@
     <string name="value_not_set">Non défini</string>
     <string name="undo">Annuler</string>
     <string name="redo">Rétablir</string>
-    <string name="no_activity_found">Aucune activité trouvée pour traiter l\'action</string>
-    <string name="permission_allowed">Autorisé</string>
-    <string name="permission_not_allowed">Non autorisé</string>
+    <string name="no_activity_found">Aucune activité trouvée pour gérer l\'action</string>
+    <string name="permission_allowed">Autorisé </string>
+    <string name="permission_not_allowed">Accès non autorisé</string>
     <string name="preparing">Préparation en cours…</string>
     <string name="error_projection_api_missing">Le fabricant de votre appareil a désactivé les API d\'enregistrement audio interne. Cette application ne peut pas fonctionner sans eux.</string>
     <!-- Main screen -->
@@ -531,13 +531,53 @@
     <string name="number_box_decrement">Décrémentation</string>
     <string name="number_box_increment"></string>
     <!-- Slider widget -->
+    <string name="slider_dialog_title">Edit value</string>
+    <string name="slider_dialog_format_error">Invalid number format. Changes not applied.</string>
+    <string name="slider_dialog_step_error">La valeur doit être un multiple de %1$d. Les changements ne sont pas appliqués.</string>
     <!-- Revert confirmation -->
     <string name="revert_confirmation_title">Êtes-vous sûr ?</string>
+    <string name="revert_confirmation">Voulez-vous réinitialiser votre préréglage JamesDSP actuel aux valeurs par défaut?</string>
     <!-- File intent handler -->
+    <string name="intent_import_preset">Importer les préréglages</string>
+    <string name="intent_import_irs">Importer une réponse impulsive</string>
+    <string name="intent_import_vdc">Importer un fichier VDC</string>
+    <string name="intent_import_liveprog">Importer un script Liveprog</string>
+    <string name="intent_import_mode_add">Importer uniquement</string>
+    <string name="intent_import_mode_select">Importer et activer</string>
+    <string name="intent_import_fail">Impossible d\'importer le fichier \'%1$s\'</string>
+    <string name="intent_import_success">Fichier \'%1$s\' importé</string>
+    <string name="intent_import_select_success">Fichier \'%1$s\' importé et activé</string>
+    <string name="intent_import_error_file_uri">Impossible d\'importer le fichier. Fichier URI non pris en charge.</string>
     <!-- Translation notice box -->
+    <string name="translation_notice_summary">Veuillez nous aider à traduire cette application dans votre langue ! Appuyez ici pour visiter le site du projet sur Crowdin.</string>
     <string name="translation_notice">Contribuer aux traductions</string>
     <!-- Self-updates (Root) -->
+    <string name="self_update_install_error">Échec de la mise à jour</string>
+    <string name="self_update_download_fail">Impossible de télécharger le package de mise à jour. Veuillez vérifier votre connexion Internet. Détails : %1$s</string>
+    <string name="self_update_install_fail">Échec de l\'installation. %1$s</string>
+    <string name="self_update_finished">Mise à jour installée. L\'application redémarre maintenant…</string>
+    <string name="self_update_no_updates">Aucune nouvelle mise à jour disponible pour le moment</string>
+    <string name="self_update_notice">Nouvelle mise à jour disponible (%1$s)</string>
+    <string name="self_update_notice_summary">Appuyez ici pour télécharger et installer la mise à jour.</string>
+    <string name="self_update_notice_dismiss_install">Installer maintenant</string>
+    <string name="self_update_notice_dismiss_snooze">Me rappeler plus tard</string>
+    <string name="self_update_notice_dismiss_skip">Ignorer cette mise à jour</string>
+    <string name="self_update_state_downloading">Téléchargement…</string>
+    <string name="self_update_state_installing">Installation…</string>
     <!-- Backups -->
+    <string name="backup_restore_progress">Restauration de la sauvegarde</string>
+    <string name="backup_restore_error">Échec de la restauration de la sauvegarde</string>
+    <string name="backup_restore_error_format">Fichier non pris en charge ou corrompu</string>
+    <string name="backup_restore_error_version_too_new">Le fichier sélectionné a été créé avec une version plus récente de cette application et ne peut pas être chargé. Veuillez mettre à jour cette application pour continuer.</string>
+    <string name="backup_restore_completed">Restauration terminée</string>
+    <string name="backup_create_completed">Sauvegarde terminée</string>
+    <string name="backup_create_progress">Création d\'une sauvegarde</string>
+    <string name="backup_create_error">Échec de la sauvegarde</string>
+    <string name="backup_manual_backup">Sauvegarde manuelle</string>
+    <string name="backup_create">Créer une sauvegarde</string>
+    <string name="backup_create_summary">Peut être utilisé pour restaurer les paramètres actuels plus tard</string>
+    <string name="backup_restore">Restaurer une sauvegarde</string>
+    <string name="backup_restore_summary">Restaurer les paramètres depuis le fichier de sauvegarde</string>
     <string name="backup_automatic_backup">Sauvegarde automatique</string>
     <string name="backup_compat_info">Les sauvegardes n\'incluent que les réponses impulsives, les scripts, les fichiers VDC, les préréglages et la configuration audio actuelle pour une compatibilité maximale avec les autres versions.</string>
     <string name="backup_restore_mode_title">Mode de restauration</string>
