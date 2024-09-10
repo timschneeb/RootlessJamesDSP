@@ -159,6 +159,9 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
             ServiceNotificationHelper.createServiceNotification(this, arrayOf()),
             ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION
         )
+
+        val widgetFilter = IntentFilter(Constants.ACTION_ENGINE_STATE_CHANGED)
+        registerReceiver(widgetReceiver, widgetFilter)
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
@@ -191,27 +194,36 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         // Setup media projection
         mediaProjectionStartIntent = intent.extras?.getParcelableAs(EXTRA_MEDIA_PROJECTION_DATA)
 
-        mediaProjection = try {
-            mediaProjectionManager.getMediaProjection(
-                Activity.RESULT_OK,
-                mediaProjectionStartIntent!!
-            )
-        }
-        catch (ex: Exception) {
-            Timber.e("Failed to acquire media projection")
-            sendLocalBroadcast(Intent(Constants.ACTION_DISCARD_AUTHORIZATION))
-            Timber.e(ex)
-            null
-        }
+        if (mediaProjectionStartIntent != null) { // Add null check here
+            mediaProjection = try {
+                mediaProjectionManager.getMediaProjection(
+                    Activity.RESULT_OK,
+                    mediaProjectionStartIntent!! // Safe to use !! here as it's been checked
+                )
+            } catch (ex: Exception) {
+                Timber.e("Failed to acquire media projection")
+                sendLocalBroadcast(Intent(Constants.ACTION_DISCARD_AUTHORIZATION))
+                Timber.e(ex)
+                null
+            }
 
-        mediaProjection?.registerCallback(projectionCallback, Handler(Looper.getMainLooper()))
+            mediaProjection?.registerCallback(projectionCallback, Handler(Looper.getMainLooper()))
 
-        if (mediaProjection != null) {
-            startRecording()
-            sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_STARTED))
+            if (mediaProjection != null) {
+                startRecording()
+                sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_STARTED))
+            } else {
+                Timber.w("Failed to capture audio")
+                stopSelf()
+            }
         } else {
-            Timber.w("Failed to capture audio")
+            Timber.e("onStartCommand: mediaProjectionStartIntent is null")
+            // Handle the case where mediaProjectionStartIntent is null, e.g.:
+            // - Stop the service
+            // - Log an error
+            // - Notify the user
             stopSelf()
+            return START_NOT_STICKY
         }
 
         return START_REDELIVER_INTENT
@@ -235,6 +247,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
 
         // Unregister receivers and release resources
         unregisterLocalReceiver(broadcastReceiver)
+        unregisterReceiver(widgetReceiver)
         mediaProjection?.unregisterCallback(projectionCallback)
         mediaProjection = null
 
@@ -692,6 +705,17 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
             }
             catch(ex: Exception) {
                 CrashlyticsImpl.recordException(ex)
+            }
+        }
+    }
+
+    private val widgetReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            when (intent.action) {
+                Constants.ACTION_ENGINE_STATE_CHANGED -> {
+                    // Reiniciar la grabación para aplicar el nuevo estado del motor
+                    restartRecording()
+                }
             }
         }
     }
