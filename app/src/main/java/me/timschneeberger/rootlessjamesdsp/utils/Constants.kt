@@ -7,6 +7,12 @@ object Constants {
     const val PREF_APP = "application"
     const val PREF_VAR = "variable"
 
+
+
+    const val ACTION_WIDGET_CLICK = "me.timschneeberger.rootlessjamesdsp.ACTION_WIDGET_CLICK"
+
+
+
     // DSP-relevant preference namespaces
     const val PREF_BASS = "dsp_bass"
     const val PREF_COMPANDER = "dsp_compander"
@@ -45,4 +51,6 @@ object Constants {
 
     // Intent extras
     const val EXTRA_SAMPLE_RATE = BuildConfig.APPLICATION_ID + ".extra.service.SAMPLE_RATE"
+
+    const val ACTION_ENGINE_STATE_CHANGED = "me.timschneeberger.rootlessjamesdsp.ACTION_ENGINE_STATE_CHANGED"
 }

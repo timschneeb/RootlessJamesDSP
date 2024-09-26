@@ -279,6 +279,23 @@
             </intent-filter>
         </receiver>
 
+        <receiver android:name=".widget.EngineToggleWidgetProvider"
+            android:exported="false"> <intent-filter>
+            <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            <action android:name="me.timschneeberger.rootlessjamesdsp.SET_POWER_STATE" />
+            <action android:name="me.timschneeberger.rootlessjamesdsp.ACTION_ENGINE_STATE_CHANGED" />
+        </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_engine_toggle_info" />
+        </receiver>
+        <receiver android:name=".widget.WidgetActionReceiver"
+            android:exported="false"
+        android:process="${applicationId}">
+        <intent-filter>
+            <action android:name="me.timschneeberger.rootlessjamesdsp.ACTION_WIDGET_CLICK" />
+        </intent-filter>
+    </receiver>
         <!-- Providers -->
         <provider
             android:name="rikka.shizuku.ShizukuProvider"

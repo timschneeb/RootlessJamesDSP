@@ -50,9 +50,12 @@
         android:id="@+id/power_toggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_anchor="@id/bar"
-        app:srcCompat="@drawable/ic_twotone_power_settings_24dp"
+        android:contentDescription="@string/power_button_alt"
         android:hapticFeedbackEnabled="true"
-        android:contentDescription="@string/power_button_alt" />
+        android:rotation="-25"
+        android:rotationX="37"
+        android:rotationY="33"
+        app:layout_anchor="@id/bar"
+        app:srcCompat="@drawable/ic_twotone_power_settings_24dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

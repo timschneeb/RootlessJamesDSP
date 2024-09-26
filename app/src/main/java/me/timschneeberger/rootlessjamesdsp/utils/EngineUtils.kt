@@ -31,14 +31,22 @@ object EngineUtils : KoinComponent {
             }
             preferences.set(R.string.key_powered_on, isOn)
             return
+
         }
 
         sdkAbove(Build.VERSION_CODES.Q) {
             // Rootless
-            if (!isOn)
+            if (!isOn) {
                 RootlessAudioProcessorService.stop(this)
-            else
-                launchService(activityStarter)
+            } else {
+                RootlessAudioProcessorService.start(this, null)
+            }
         }
+
+        // Guardar el estado del motor en las preferencias SIEMPRE
+        preferences.set(R.string.key_powered_on, isOn)
+    }
+    fun isEngineEnabled(context: Context): Boolean {
+        return preferences.get(R.string.key_powered_on, false, Boolean::class)
     }
 }
