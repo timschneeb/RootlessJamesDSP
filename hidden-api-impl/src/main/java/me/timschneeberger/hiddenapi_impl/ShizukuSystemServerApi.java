@@ -1,6 +1,5 @@
 package me.timschneeberger.hiddenapi_impl;
 
-import android.app.AppOpsManagerHidden;
 import android.media.IAudioPolicyService;
 import android.os.IBinder;
 import android.permission.IPermissionManager;
