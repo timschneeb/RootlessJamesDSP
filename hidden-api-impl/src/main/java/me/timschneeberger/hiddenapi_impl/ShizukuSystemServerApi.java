@@ -1,6 +1,5 @@
 package me.timschneeberger.hiddenapi_impl;
 
-import android.app.AppOpsManager;
 import android.app.AppOpsManagerHidden;
 import android.media.IAudioPolicyService;
 import android.os.IBinder;
@@ -10,7 +9,7 @@ import android.util.Log;
 
 import com.android.internal.app.IAppOpsService;
 
-import java.util.Objects;
+import java.lang.reflect.Method;
 
 import rikka.shizuku.ShizukuBinderWrapper;
 import rikka.shizuku.SystemServiceHelper;
@@ -64,22 +63,36 @@ public class ShizukuSystemServerApi {
 
     public static boolean AppOpsService_setMode(String op, int packageUid, String packageName, String mode) throws RemoteException {
         int index = -1;
-        for(int i = 0; i <= 10; i++) {
-            if(mode.equals(AppOpsManagerHidden.modeToName(i))) {
-                index = i;
-                break;
+
+        try {
+            Method method = Class.forName("android.app.AppOpsManager")
+                    .getMethod("modeToName", int.class);
+
+            for(int i = 0; i <= 10; i++) {
+                if(mode.equals((String)method.invoke(null, i))) {
+                    index = i;
+                    break;
+                }
             }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
 
         int opIndex = -1;
         try {
-            opIndex = AppOpsManagerHidden.strOpToOp(op);
+            Method method = Class.forName("android.app.AppOpsManager")
+                    .getMethod("strOpToOp", String.class);
+
+            opIndex = (int) method.invoke(null, op);
         }
-        catch(IllegalArgumentException ignored) {}
+        catch(Exception ignored) {}
         try {
-            opIndex = AppOpsManagerHidden.strDebugOpToOp(op);
+            Method method = Class.forName("android.app.AppOpsManager")
+                    .getMethod("strDebugOpToOp", String.class);
+
+            opIndex = (int) method.invoke(null, op);
         }
-        catch(IllegalArgumentException ignored) {}
+        catch(Exception ignored) {}
 
         if(index < 0 || opIndex < 0)
             return false;
