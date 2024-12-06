@@ -19,6 +19,14 @@ object SdkCheck {
     private val sdk: Int
         get() = Build.VERSION.SDK_INT
 
+    @get:ChecksSdkIntAtLeast(api = Build.VERSION_CODES.VANILLA_ICE_CREAM)
+    val isVanillaIceCream: Boolean
+        get() = sdk >= Build.VERSION_CODES.VANILLA_ICE_CREAM
+
+    @get:ChecksSdkIntAtLeast(api = Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
+    val isUpsideDownCake: Boolean
+        get() = sdk >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE
+
     @get:ChecksSdkIntAtLeast(api = Build.VERSION_CODES.TIRAMISU)
     val isTiramisu: Boolean
         get() = sdk >= Build.VERSION_CODES.TIRAMISU

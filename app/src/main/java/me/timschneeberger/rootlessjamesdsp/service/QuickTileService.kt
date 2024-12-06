@@ -1,5 +1,6 @@
 package me.timschneeberger.rootlessjamesdsp.service
 
+import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -11,6 +12,7 @@ import me.timschneeberger.rootlessjamesdsp.MainApplication
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.EngineUtils.toggleEnginePower
+import me.timschneeberger.rootlessjamesdsp.utils.SdkCheck
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.unregisterLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasProjectMediaAppOp
@@ -80,9 +82,15 @@ class QuickTileService : TileService(),
 
         val toggled = qsTile?.let { it.state != Tile.STATE_ACTIVE } ?: return
         toggleEnginePower(toggled) { intent ->
+            val pending = PendingIntent.getActivity(app, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+
             // If projection permission request needs to be shown, collapse status bar
-            if (isRootless() && app.mediaProjectionStartIntent == null && !hasProjectMediaAppOp())
-                startActivityAndCollapse(intent)
+            if (isRootless() && app.mediaProjectionStartIntent == null && !hasProjectMediaAppOp()) {
+                if(SdkCheck.isVanillaIceCream)
+                    startActivityAndCollapse(pending)
+                else
+                    startActivityAndCollapse(intent)
+            }
             else
                 startActivity(intent)
         }
