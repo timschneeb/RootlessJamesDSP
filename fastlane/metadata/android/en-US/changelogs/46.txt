@@ -1,0 +1,4 @@
+* Show warning about new restrictions on Android 15
+* Fixed crash during setup wizard on Android 14
+* Target Android 14
+* Translation updates
