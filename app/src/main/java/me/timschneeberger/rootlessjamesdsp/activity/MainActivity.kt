@@ -382,7 +382,7 @@ class MainActivity : BaseActivity() {
             }
         }
 
-        if (true){ // TODO isRootless() && SdkCheck.isVanillaIceCream) {
+        if (isRootless() && SdkCheck.isVanillaIceCream) {
             showAndroid15Alert()
         }
 
@@ -468,7 +468,7 @@ class MainActivity : BaseActivity() {
             .setView(
                 LinearLayout(this).apply {
                     orientation = LinearLayout.VERTICAL
-                    setPadding(16, 16, 16, 16)
+                    setPadding(48, 32, 48, 16)
                     addView(checkBox)
                 }
             )
@@ -599,7 +599,7 @@ class MainActivity : BaseActivity() {
 
     @RequiresApi(Build.VERSION_CODES.Q)
     fun requestCapturePermission() {
-        if(app.mediaProjectionStartIntent != null && isRootless()) {
+        if(app.mediaProjectionStartIntent != null && isRootless() && !SdkCheck.isVanillaIceCream) {
             binding.powerToggle.isToggled = true
             RootlessAudioProcessorService.start(this, app.mediaProjectionStartIntent)
             return

@@ -9,6 +9,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.getSystemService
 import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.service.RootlessAudioProcessorService
+import me.timschneeberger.rootlessjamesdsp.utils.SdkCheck
 import me.timschneeberger.rootlessjamesdsp.utils.isRoot
 import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import timber.log.Timber
@@ -33,7 +34,8 @@ class EngineLauncherActivity : BaseActivity() {
 
         sdkAbove(Build.VERSION_CODES.Q) {
             // If projection token available, start immediately
-            if(app.mediaProjectionStartIntent != null) {
+            // Note: Android >=14 doesn't allow token reuse
+            if(app.mediaProjectionStartIntent != null && !SdkCheck.isUpsideDownCake) {
                 Timber.d("Reusing old projection token to start service")
                 RootlessAudioProcessorService.start(this, app.mediaProjectionStartIntent)
                 finish()

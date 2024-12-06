@@ -85,7 +85,7 @@ class QuickTileService : TileService(),
             val pending = PendingIntent.getActivity(app, 0, intent, PendingIntent.FLAG_IMMUTABLE);
 
             // If projection permission request needs to be shown, collapse status bar
-            if (isRootless() && app.mediaProjectionStartIntent == null && !hasProjectMediaAppOp()) {
+            if (isRootless() && app.mediaProjectionStartIntent == null && !hasProjectMediaAppOp() && !SdkCheck.isVanillaIceCream) {
                 if(SdkCheck.isVanillaIceCream)
                     startActivityAndCollapse(pending)
                 else
