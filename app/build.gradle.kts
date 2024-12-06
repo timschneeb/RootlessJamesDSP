@@ -21,7 +21,6 @@ android {
         targetSdk = AndroidConfig.targetSdk
         versionCode = AndroidConfig.versionCode
         versionName = AndroidConfig.versionName
-        ndkVersion = "23.1.7779620"
 
         manifestPlaceholders["label"] = "RootlessJamesDSP"
 
@@ -36,6 +35,7 @@ android {
         externalNativeBuild {
             cmake {
                 arguments.addAll(listOf("-DANDROID_ARM_NEON=ON"))
+                cFlags.add("-std=gnu11 -Wno-incompatible-pointer-types -Wno-implicit-int -Wno-implicit-function-declaration")
             }
         }
 
