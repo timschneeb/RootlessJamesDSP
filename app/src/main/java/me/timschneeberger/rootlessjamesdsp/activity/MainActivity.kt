@@ -382,7 +382,7 @@ class MainActivity : BaseActivity() {
             }
         }
 
-        if (isRootless() && SdkCheck.isVanillaIceCream) {
+        if (true){ // TODO isRootless() && SdkCheck.isVanillaIceCream) {
             showAndroid15Alert()
         }
 
