@@ -2,11 +2,23 @@ package me.timschneeberger.rootlessjamesdsp.activity
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.*
+import android.content.ActivityNotFoundException
+import android.content.BroadcastReceiver
+import android.content.ComponentName
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.content.ServiceConnection
+import android.content.SharedPreferences
 import android.media.projection.MediaProjectionManager
 import android.net.Uri
-import android.os.*
+import android.os.Build
+import android.os.Bundle
+import android.os.IBinder
+import android.os.PersistableBundle
 import android.view.HapticFeedbackConstants
+import android.widget.CheckBox
+import android.widget.LinearLayout
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -68,7 +80,7 @@ import me.timschneeberger.rootlessjamesdsp.view.FloatingToggleButton
 import org.koin.core.component.inject
 import timber.log.Timber
 import java.io.File
-import java.util.*
+import java.util.Timer
 import kotlin.concurrent.schedule
 
 
@@ -370,6 +382,10 @@ class MainActivity : BaseActivity() {
             }
         }
 
+        if (isRootless() && SdkCheck.isVanillaIceCream) {
+            showAndroid15Alert()
+        }
+
         dspFragment.setUpdateCardOnClick { updateManager.installUpdate(this) }
         dspFragment.setUpdateCardOnCloseClick(::dismissUpdate)
         checkForUpdates()
@@ -435,6 +451,36 @@ class MainActivity : BaseActivity() {
 
         if(isRootless())
             binding.powerToggle.isToggled = processorService != null
+    }
+
+    private fun showAndroid15Alert() {
+        if(prefsVar.get<Boolean>(R.string.key_android15_screenrecord_restriction_seen))
+            return
+
+        val checkBox = CheckBox(this).apply {
+            text = getString(R.string.never_show_warning_again)
+            isChecked = false
+        }
+
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.android_15_screenshare_warning_title)
+            .setMessage(R.string.android_15_screenshare_warning)
+            .setView(
+                LinearLayout(this).apply {
+                    orientation = LinearLayout.VERTICAL
+                    setPadding(16, 16, 16, 16)
+                    addView(checkBox)
+                }
+            )
+            .setPositiveButton(R.string.tutorial) { dialog, _ ->
+                prefsVar.set(R.string.key_android15_screenrecord_restriction_seen, checkBox.isChecked)
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://youtu.be/rVM13aY2rwU?t=31")))
+            }
+            .setNegativeButton(R.string.close) { dialog, _ ->
+                prefsVar.set(R.string.key_android15_screenrecord_restriction_seen, checkBox.isChecked)
+                dialog.dismiss()
+            }
+            .show()
     }
 
     private fun checkForUpdates() {

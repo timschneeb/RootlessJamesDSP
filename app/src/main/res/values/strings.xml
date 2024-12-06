@@ -54,6 +54,8 @@
     <string name="success">Success</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="tutorial">Tutorial</string>
+    <string name="never_show_warning_again">Never show this warning again</string>
     <string name="delete">Delete</string>
     <string name="copy">Copy</string>
     <string name="paste">Paste</string>
@@ -649,5 +651,13 @@
     <string name="version_mismatch_root">JamesDSP magisk package requires an update</string>
     <string name="version_mismatch_root_description">The JamesDSP magisk package installed on your device is outdated and not supported by this app anymore.\n\nPlease retrieve the latest JamesDSP magisk package ZIP and install it via Magisk.\nNote that the magisk package may replace this app with the official JamesDSP app.\n\nDo you want to visit the download website for the Magisk packages now?</string>
     <string name="version_mismatch_root_toast">Failed to start. The installed JamesDSP magisk package is too old and not supported by this app anymore.</string>
+
+    <!-- Android 15 screenshare restriction warning -->
+    <string name="android_15_screenshare_warning_title">Android 15 compatibility notice</string>
+    <string name="android_15_screenshare_warning">Android 15 introduces a new screen recording restriction that will redact all sensitive information (e.g. in your notifications) while an app is using the screen record permission.
+Even though this app only records system audio, it is still affected by this restriction.
+
+To workaround this issue, you can enable \'Disable screen share protections\' in the system developer settings.
+Tap on \'Tutorial\' below for detailed instructions.</string>
 
 </resources>

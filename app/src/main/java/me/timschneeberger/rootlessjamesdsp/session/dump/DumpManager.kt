@@ -7,7 +7,9 @@ import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionPolicyInfoDump
-import me.timschneeberger.rootlessjamesdsp.session.dump.provider.*
+import me.timschneeberger.rootlessjamesdsp.session.dump.provider.AudioFlingerServiceDumpProvider
+import me.timschneeberger.rootlessjamesdsp.session.dump.provider.AudioPolicyServiceDumpProvider
+import me.timschneeberger.rootlessjamesdsp.session.dump.provider.AudioServiceDumpProvider
 import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -94,7 +96,7 @@ class DumpManager constructor(val context: Context): KoinComponent {
         return dump
     }
 
-    private fun loadFromPreferences(key: String){
+    private fun loadFromPreferences(key: String?){
         when (key) {
             context.getString(R.string.key_session_detection_method) -> {
                 val method = R.string.key_session_detection_method.let {

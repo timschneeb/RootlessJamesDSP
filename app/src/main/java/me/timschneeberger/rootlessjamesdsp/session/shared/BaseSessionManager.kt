@@ -1,25 +1,33 @@
 package me.timschneeberger.rootlessjamesdsp.session.shared
 
 import android.annotation.SuppressLint
-import android.content.*
+import android.content.BroadcastReceiver
+import android.content.ComponentName
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.content.SharedPreferences
 import android.media.AudioManager
 import android.media.AudioPlaybackConfiguration
 import android.media.audiofx.AudioEffect
 import android.media.session.MediaController
-import android.media.session.MediaSessionHidden
 import android.media.session.MediaSessionManager
-import android.os.*
+import android.os.Handler
+import android.os.Looper
 import androidx.annotation.CallSuper
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.getSystemService
-import dev.rikka.tools.refine.Refine
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import me.timschneeberger.rootlessjamesdsp.R
-import me.timschneeberger.rootlessjamesdsp.session.dump.DumpManager
 import me.timschneeberger.rootlessjamesdsp.model.preference.SessionUpdateMode
 import me.timschneeberger.rootlessjamesdsp.service.NotificationListenerService
+import me.timschneeberger.rootlessjamesdsp.session.dump.DumpManager
 import me.timschneeberger.rootlessjamesdsp.session.dump.data.ISessionInfoDump
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.registerLocalReceiver
@@ -105,7 +113,7 @@ abstract class BaseSessionManager(protected val context: Context) : DumpManager.
         context.unregisterLocalReceiver(this)
     }
 
-    private fun loadFromPreferences(key: String){
+    private fun loadFromPreferences(key: String?){
         when (key) {
             context.getString(R.string.key_session_continuous_polling) -> {
                 sessionUpdateMode =
