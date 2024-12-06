@@ -7,6 +7,7 @@
     <!-- Internal -->
     <bool name="default_first_boot" translatable="false" tools:keep="@bool/default_first_boot">true</bool>
     <integer name="default_snooze_translation_notice" translatable="false" tools:keep="@integer/default_snooze_translation_notice">0</integer>
+    <integer name="default_android15_screenrecord_restriction_seen" translatable="false" tools:keep="@integer/default_android15_screenrecord_restriction_seen">0</integer>
     <integer name="default_update_check_timeout" translatable="false" tools:keep="@integer/default_update_check_timeout">0</integer>
     <integer name="default_update_check_skip" translatable="false" tools:keep="@integer/default_update_check_skip">0</integer>
     <bool name="default_reset_proc_mode_fix_applied" translatable="false" tools:keep="@bool/default_reset_proc_mode_fix_applied">false</bool>
