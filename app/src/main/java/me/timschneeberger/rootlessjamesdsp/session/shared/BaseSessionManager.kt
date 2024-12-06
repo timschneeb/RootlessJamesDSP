@@ -206,7 +206,8 @@ abstract class BaseSessionManager(protected val context: Context) : DumpManager.
         controllers ?: return
         controllers.forEach {
             Timber.d("active session changed: package ${it.packageName}; " +
-                    "uid ${Refine.unsafeCast<MediaSessionHidden.TokenHidden>(it.sessionToken).uid}; " +
+                    // Refine is not working with nested classes anymore
+                    // "uid ${Refine.unsafeCast<MediaSessionHidden.TokenHidden>(it.sessionToken).uid}; " +
                     "usage ${it.playbackInfo?.audioAttributes?.usage}")
         }
 
