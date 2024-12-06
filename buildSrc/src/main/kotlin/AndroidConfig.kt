@@ -2,7 +2,7 @@ object AndroidConfig {
     var minSdk = 29
 
     const val compileSdk = 35
-    const val targetSdk = 33
+    const val targetSdk = 34
 
     const val versionName = "1.6.9"
     const val versionCode = 46
