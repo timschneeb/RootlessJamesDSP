@@ -7,8 +7,8 @@ object AndroidConfig {
     const val versionName = "1.6.9"
     const val versionCode = 46
 
-    const val kotlinVersion = "1.8.10"
-    const val kspVersion = "1.8.10-1.0.9"
+    const val kotlinVersion = "2.1.0"
+    const val kspVersion = "2.1.0-1.0.29"
     const val shizukuVersion = "12.2.0"
     const val rikkaRefineVersion = "4.3.0"
 }

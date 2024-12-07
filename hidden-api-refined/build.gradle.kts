@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         minSdk = AndroidConfig.minSdk
-        targetSdk = AndroidConfig.targetSdk
+        lint.targetSdk = AndroidConfig.targetSdk
     }
 
     buildTypes {
@@ -27,7 +27,7 @@ android {
 
 dependencies {
     // Kotlin
-    implementation("androidx.core:core-ktx:1.9.0")
+    implementation("androidx.core:core-ktx:1.15.0")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${AndroidConfig.kotlinVersion}")
 
     // Refine
