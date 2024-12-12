@@ -9,9 +9,12 @@ import android.util.Log;
 
 import com.android.internal.app.IAppOpsService;
 
+import java.io.OutputStream;
 import java.lang.reflect.Method;
 
+import rikka.shizuku.Shizuku;
 import rikka.shizuku.ShizukuBinderWrapper;
+import rikka.shizuku.ShizukuRemoteProcess;
 import rikka.shizuku.SystemServiceHelper;
 
 public class ShizukuSystemServerApi {
@@ -45,10 +48,14 @@ public class ShizukuSystemServerApi {
 
     public static void PermissionManager_grantRuntimePermission(String packageName, String permissionName, int userId) {
         try {
-            if (Build.VERSION.SDK_INT >= 34) {
+            if (Build.VERSION.SDK_INT >= 35) {
+                PERMISSION_MANAGER.getOrThrow().grantRuntimePermission(packageName, permissionName, "default:0", userId);
+            }
+            else if (Build.VERSION.SDK_INT == 34) {
                 try {
                     PERMISSION_MANAGER.getOrThrow().grantRuntimePermission(packageName, permissionName, 0, userId);
-                }catch (NoSuchMethodError e) {
+                }
+                catch (NoSuchMethodError e) {
                     PERMISSION_MANAGER.getOrThrow().grantRuntimePermission(packageName, permissionName, userId);
                 }
             } else {
@@ -57,8 +64,26 @@ public class ShizukuSystemServerApi {
         }
         catch(Exception ex) {
             Log.e("ShizukuSystemServerApi", "Failed to call app ops service");
+            exec("pm grant " + packageName + " " + permissionName);
         }
     }
+
+    private static synchronized void exec(String cmd) {
+        try {
+            Method newProcess = Shizuku.class.getDeclaredMethod("newProcess", String[].class, String[].class, String.class);
+            newProcess.setAccessible(true);
+            ShizukuRemoteProcess process = (ShizukuRemoteProcess) newProcess.invoke(null, new String[]{"sh"}, null, null);
+            assert process != null;
+            OutputStream outputStream = process.getOutputStream();
+            outputStream.write((cmd + "\nexit\n").getBytes());
+            outputStream.flush();
+            outputStream.close();
+            process.waitFor();
+        } catch (Exception e) {
+            Log.e("ShizukuSystemServerApi", "Failed to call cmd via exec");
+        }
+    }
+
 
     public static final String APP_OPS_MODE_ALLOW = "allow";
     public static final String APP_OPS_MODE_IGNORE = "ignore";
