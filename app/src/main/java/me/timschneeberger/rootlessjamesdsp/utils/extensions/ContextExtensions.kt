@@ -2,7 +2,12 @@ package me.timschneeberger.rootlessjamesdsp.utils.extensions
 
 import android.annotation.SuppressLint
 import android.app.ActivityManager
-import android.content.*
+import android.content.ActivityNotFoundException
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.graphics.Color
@@ -90,12 +95,17 @@ object ContextExtensions {
             try {
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$pkgName")))
             } catch (e: ActivityNotFoundException) {
-                startActivity(
-                    Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("https://play.google.com/store/apps/details?id=$pkgName")
+                try {
+                    startActivity(
+                        Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse("https://play.google.com/store/apps/details?id=$pkgName")
+                        )
                     )
-                )
+                }
+                catch (e: ActivityNotFoundException) {
+                    toast(getString(R.string.no_activity_found))
+                }
             }
         }
     }

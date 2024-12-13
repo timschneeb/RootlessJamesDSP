@@ -2,6 +2,7 @@ package me.timschneeberger.rootlessjamesdsp.fragment
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.os.Build
@@ -18,6 +19,7 @@ import androidx.fragment.app.Fragment
 import androidx.transition.TransitionManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.transition.MaterialSharedAxis
+import com.pluto.utilities.extensions.toast
 import me.timschneeberger.hiddenapi_impl.ShizukuSystemServerApi
 import me.timschneeberger.hiddenapi_impl.UserHandle
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
@@ -206,7 +208,12 @@ class OnboardingFragment : Fragment() {
         val adbPage = binding.adbSetup
         adbPage.step1.setOnButtonClickListener {
             if (selectedSetupMethod == SetupMethods.Adb) {
-                startActivity(Intent("android.settings.APPLICATION_DEVELOPMENT_SETTINGS"))
+                try {
+                    // Open developer settings
+                    startActivity(Intent("android.settings.APPLICATION_DEVELOPMENT_SETTINGS"))
+                } catch (e: ActivityNotFoundException) {
+                    toast(getString(R.string.no_activity_found))
+                }
             } else {
                 // Open Shizuku play store page
                 viewShizukuInMarket()
