@@ -112,14 +112,23 @@ open class MainApplication : Application(), SharedPreferences.OnSharedPreference
         // Clean up
         Cache.cleanup(this)
 
-        Timber.plant(FileLoggerTree.Builder()
-            .withFileName("application.log")
-            .withDirName(this.cacheDir.absolutePath)
-            .withMinPriority(Log.VERBOSE)
-            .withSizeLimit(2 * 1000000)
-            .withFileLimit(1)
-            .appendToFile(false)
-            .build())
+        try {
+            Timber.plant(
+                FileLoggerTree.Builder()
+                    .withFileName("application.log")
+                    .withDirName(this.cacheDir.absolutePath)
+                    .withMinPriority(Log.VERBOSE)
+                    .withSizeLimit(2 * 1000000)
+                    .withFileLimit(1)
+                    .appendToFile(false)
+                    .build()
+            )
+        }
+        catch (ex: Exception) {
+            // Log file creation may fail
+            Timber.e(ex)
+        }
+
         Timber.i("====> Application starting up")
 
         val dumpFile = File(filesDir, "dump.txt")
