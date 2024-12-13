@@ -19,7 +19,6 @@ import androidx.fragment.app.Fragment
 import androidx.transition.TransitionManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.transition.MaterialSharedAxis
-import com.pluto.utilities.extensions.toast
 import me.timschneeberger.hiddenapi_impl.ShizukuSystemServerApi
 import me.timschneeberger.hiddenapi_impl.UserHandle
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
@@ -212,7 +211,7 @@ class OnboardingFragment : Fragment() {
                     // Open developer settings
                     startActivity(Intent("android.settings.APPLICATION_DEVELOPMENT_SETTINGS"))
                 } catch (e: ActivityNotFoundException) {
-                    toast(getString(R.string.no_activity_found))
+                    context?.toast(getString(R.string.no_activity_found))
                 }
             } else {
                 // Open Shizuku play store page
