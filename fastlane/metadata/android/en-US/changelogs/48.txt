@@ -1,0 +1,4 @@
+* Fixed a crash when toggling quick tile on Android 14
+* Fixed a crash during automatic backup on Android 14 and 15 due to new foreground service restrictions
+* Fixed several crashes when attempting to open URLs with no browser installed
+* Fixed a rare crash on startup
