@@ -86,7 +86,7 @@ class QuickTileService : TileService(),
 
             // If projection permission request needs to be shown, collapse status bar
             if (isRootless() && app.mediaProjectionStartIntent == null && !hasProjectMediaAppOp() && !SdkCheck.isVanillaIceCream) {
-                if(SdkCheck.isVanillaIceCream)
+                if(SdkCheck.isUpsideDownCake)
                     startActivityAndCollapse(pending)
                 else
                     startActivityAndCollapse(intent)
