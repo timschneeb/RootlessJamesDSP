@@ -68,7 +68,7 @@ public class ShizukuSystemServerApi {
         }
     }
 
-    private static synchronized void exec(String cmd) {
+    public static synchronized void exec(String cmd) {
         try {
             Method newProcess = Shizuku.class.getDeclaredMethod("newProcess", String[].class, String[].class, String.class);
             newProcess.setAccessible(true);
@@ -94,7 +94,7 @@ public class ShizukuSystemServerApi {
     public static final String APP_OPS_OP_PROJECT_MEDIA = "PROJECT_MEDIA";
     public static final String APP_OPS_OP_SYSTEM_ALERT_WINDOW = "SYSTEM_ALERT_WINDOW";
 
-    public static boolean AppOpsService_setMode(String op, int packageUid, String packageName, String mode) throws RemoteException {
+    public static void AppOpsService_setMode(String op, int packageUid, String packageName, String mode) throws RemoteException {
         int index = -1;
 
         try {
@@ -117,18 +117,20 @@ public class ShizukuSystemServerApi {
                     .getMethod("strOpToOp", String.class);
 
             opIndex = (int) method.invoke(null, op);
-        }
-        catch(Exception ignored) {}
-        try {
-            Method method = Class.forName("android.app.AppOpsManager")
-                    .getMethod("strDebugOpToOp", String.class);
+        } catch (Exception e) {
+            Log.e("ShizukuSystemServerApi", "Failed to get op index via strOpToOp");
 
-            opIndex = (int) method.invoke(null, op);
-        }
-        catch(Exception ignored) {}
+            try {
+                Method methodDbg = Class.forName("android.app.AppOpsManager")
+                        .getMethod("strDebugOpToOp", String.class);
 
-        if(index < 0 || opIndex < 0)
-            return false;
+                opIndex = (int) methodDbg.invoke(null, op);
+            }
+            catch (Exception ex) {
+                Log.e("ShizukuSystemServerApi", "Failed to get op index via strDebugOpToOp");
+                throw new RuntimeException(e);
+            }
+        }
 
         try {
             APP_OPS_SERVICE.getOrThrow().setMode(
@@ -140,10 +142,8 @@ public class ShizukuSystemServerApi {
         }
         catch(NullPointerException ex) {
             Log.e("ShizukuSystemServerApi", "Failed to call app ops service");
-            return false;
+            throw new RuntimeException(ex);
         }
-
-        return true;
     }
 
     public static void AudioPolicyService_setAllowedCapturePolicy(int uid, CapturePolicy capturePolicy) {

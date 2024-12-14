@@ -54,6 +54,7 @@
     <string name="success">Success</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="continue_action">Continue</string>
     <string name="tutorial">Tutorial</string>
     <string name="never_show_warning_again">Never show this warning again</string>
     <string name="delete">Delete</string>
@@ -236,14 +237,15 @@
     <string name="onboarding_adb_shizuku_grant_fail_denied">Please grant this application access to Shizuku. You may need to open Shizuku\'s permission manager and grant the permission manually if you previously denied it and the popup no longer shows.</string>
     <string name="onboarding_adb_shizuku_no_dump_perm_title">Shizuku failed to grant ADB permissions</string>
     <string name="onboarding_adb_shizuku_no_dump_perm">Please wait a few seconds and try again. If it still does not work, try the alternative method.</string>
-    <string name="onboarding_adb_dump_not_granted_title">Permission not yet granted</string>
-    <string name="onboarding_adb_dump_not_granted">Please follow the instructions first and try again. The ADB access is not yet set-up properly.</string>
+    <string name="onboarding_adb_not_granted_title">Permission not yet granted</string>
+    <string name="onboarding_adb_dump_permission_not_granted">Please follow the instructions first and try again. The DUMP permission has not been granted.</string>
+    <string name="onboarding_adb_project_media_not_granted">Please follow the instructions first and try again. The PROJECT_MEDIA permission has not been granted.</string>
     <string name="onboarding_adb_manual_step1">Go to Android\'s hidden development settings and enable USB debugging. You need to unlock these settings by tapping the build number in the system settings several times.</string>
     <string name="onboarding_adb_manual_step2">Open https://app.webadb.com in your computer\'s browser (works best in Chrome) and connect your device using USB to the computer.</string>
     <string name="onboarding_adb_manual_step3">Add and connect the USB device in WebADB.</string>
     <string name="onboarding_adb_manual_step4">Navigate to \'Interactive Shell\' and execute the following command in the shell: \'pm grant %s android.permission.DUMP\'</string>
     <string name="onboarding_adb_manual_step5">Tap \'Next\' in this app to continue.</string>
-    <string name="onboarding_adb_manual_step5b">(Optional) You can permanently skip the audio capture permission prompts by executing this command: \'appops set %s PROJECT_MEDIA allow\'</string>
+    <string name="onboarding_adb_manual_step5b_required">Execute the following command to grant permanent permission to project audio: \'appops set %s PROJECT_MEDIA allow\'</string>
     <string name="onboarding_adb_manual_step5c">(Optional) In addition to the previous step, you can also enable auto-start by executing the following command: \'appops set %s SYSTEM_ALERT_WINDOW allow\'</string>
     <string name="onboarding_adb_manual_step1_button">Open development settings</string>
 
@@ -659,5 +661,7 @@ Even though this app only records system audio, it is still affected by this res
 
 To workaround this issue, you can enable \'Disable screen share protections\' in the system developer settings.
 Tap on \'Tutorial\' below for detailed instructions.</string>
+    <string name="android_15_screenshare_keyguard_warning">Android 15 introduces a restriction that stops screen sharing when the device is locked. To workaround this issue, the \'PROJECT_MEDIA\' permission must be granted using Shizuku or ADB.
 
+Please press \'Continue\' below to re-do the setup wizard.</string>
 </resources>

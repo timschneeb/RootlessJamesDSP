@@ -70,6 +70,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sh
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.unregisterLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasDumpPermission
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasProjectMediaAppOp
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasRecordPermission
 import me.timschneeberger.rootlessjamesdsp.utils.isPlugin
 import me.timschneeberger.rootlessjamesdsp.utils.isRoot
@@ -382,9 +383,7 @@ class MainActivity : BaseActivity() {
             }
         }
 
-        if (isRootless() && SdkCheck.isVanillaIceCream) {
-            showAndroid15Alert()
-        }
+        showAndroid15Alert()
 
         dspFragment.setUpdateCardOnClick { updateManager.installUpdate(this) }
         dspFragment.setUpdateCardOnCloseClick(::dismissUpdate)
@@ -454,6 +453,24 @@ class MainActivity : BaseActivity() {
     }
 
     private fun showAndroid15Alert() {
+        if(!isRootless() || !SdkCheck.isVanillaIceCream)
+            return
+
+        if(!hasProjectMediaAppOp()) {
+            MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.android_15_screenshare_warning_title)
+                .setMessage(R.string.android_15_screenshare_keyguard_warning)
+                .setCancelable(false)
+                .setPositiveButton(R.string.continue_action) { _, _ ->
+                    startActivity(Intent(this, OnboardingActivity::class.java).apply {
+                        putExtra(OnboardingActivity.EXTRA_FIX_PERMS, false)
+                    })
+                    this.finish()
+                }
+                .show()
+            return
+        }
+
         if(prefsVar.get<Boolean>(R.string.key_android15_screenrecord_restriction_seen))
             return
 
