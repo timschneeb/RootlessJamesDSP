@@ -54,10 +54,11 @@ public class ShizukuSystemServerApi {
             else if (Build.VERSION.SDK_INT == 34) {
                 try {
                     PERMISSION_MANAGER.getOrThrow().grantRuntimePermission(packageName, permissionName, 0, userId);
+                    return;
                 }
-                catch (NoSuchMethodError e) {
-                    PERMISSION_MANAGER.getOrThrow().grantRuntimePermission(packageName, permissionName, userId);
-                }
+                catch (NoSuchMethodError ignored) {}
+                // Retry with old method
+                PERMISSION_MANAGER.getOrThrow().grantRuntimePermission(packageName, permissionName, userId);
             } else {
                 PERMISSION_MANAGER.getOrThrow().grantRuntimePermission(packageName, permissionName, userId);
             }
