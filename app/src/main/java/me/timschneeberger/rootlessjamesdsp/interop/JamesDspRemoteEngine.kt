@@ -300,6 +300,9 @@ class JamesDspRemoteEngine(
         private val EFFECT_JAMESDSP = UUID.fromString("f27317f4-c984-4de6-9a90-545759495bf2")
 
         fun isPluginInstalled(): PluginState {
+            return PluginState.Available
+
+            // TODO This method doesn't seem to work with new AIDL jamesdsp lib patch; investigate using emulator
             return try {
                 AudioEffect
                     .queryEffects()
