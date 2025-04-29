@@ -86,20 +86,21 @@ The setup is very easy:
 
 1. Download and install the [ReVanced manager APK](https://github.com/revanced/revanced-manager/releases) 
 2. Install the unpatched Spotify app
-3. Open ReVanced Manager, select Spotify and enable the `remove-screen-capture-restriction` patch.
+3. Open ReVanced Manager, select Spotify and enable the `Remove screen capture restriction` patch.
 4. Start the patching process and install the patched APK once it is done.
 5. You can now use Spotify with RootlessJamesDSP.
 
 ### Patching other unsupported apps
 
-The `remove-screen-capture-restriction` patch is universal and can also be used with custom APKs other than Spotify.
+The `Remove screen capture restriction` patch is universal and can also be used with custom APKs other than Spotify.
 The patch cannot remove capture restrictions for apps that use the native AAudio C++ API for playback. 
 
-1. Download and install the [ReVanced manager APK](https://github.com/revanced/revanced-manager/releases) 
-2. Open ReVanced Manager, tap on 'Select an application' and press the 'Storage' action button in the bottom-right corner.
-3. Select your APK using the file picker.
-4. Enable the `remove-screen-capture-restriction` patch.
-5. Start the patching process and install the patched APK once it is done. Make sure to uninstall the unpatched app if it is installed, otherwise you will run into a signature conflict during installtion.
+1. Download and install the [ReVanced manager APK](https://github.com/revanced/revanced-manager/releases)
+2. Open Revanced Manager, go to the settings screen and enable 'Show universal patches'
+3. Go to the patches tab and tap on 'Select an app' and press the 'Storage' action button in the bottom-right corner.
+4. Select your APK using the file picker.
+5. Enable the `Remove screen capture restriction` patch.
+6. Start the patching process and install the patched APK once it is done. Make sure to uninstall the unpatched app if it is installed, otherwise you will run into a signature conflict during installtion.
 
 > **Warning** If the patched app crashes on startup (or refuses to work properly), it is likely that the app uses signature checks or other protections against tampering. In that case, additional patches that disable these anti-tampering checks would need to be created by hand.
 
