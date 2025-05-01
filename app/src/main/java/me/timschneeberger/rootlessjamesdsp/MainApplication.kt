@@ -100,6 +100,8 @@ open class MainApplication : Application(), SharedPreferences.OnSharedPreference
     }
 
     override fun onCreate() {
+        instance = this
+
         Timber.plant(DebugTree())
 
         if(BuildConfig.DEBUG) {
@@ -280,7 +282,7 @@ open class MainApplication : Application(), SharedPreferences.OnSharedPreference
         Pluto.showNotch(true)
 
         PlutoExceptions.setANRHandler { thread, exception ->
-            Timber.e("unhandled ANR handled on thread: " + thread.name, exception)
+            Timber.e(exception, "unhandled ANR handled on thread: %s", thread.name)
         }
 
         PlutoRoomsDBWatcher.watch("blocked_apps.db", AppBlocklistDatabase::class.java)
@@ -304,5 +306,11 @@ open class MainApplication : Application(), SharedPreferences.OnSharedPreference
             CrashlyticsImpl.log("[${priorityAsString(priority)}] ${tag ?: "???"}: $message")
             t?.takeIf { priority >= Log.WARN }?.let(CrashlyticsImpl::recordException)
         }
+    }
+
+
+    companion object {
+        lateinit var instance: MainApplication
+            private set
     }
 }
