@@ -193,7 +193,7 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
         <br />
         <sub><b>Ivan Pesic (eevan78)</b></sub></a>
       <br />
-      <sub><b>3470 words</b></sub>
+      <sub><b>3471 words</b></sub>
     </td>
   </tr>
   <tr>
