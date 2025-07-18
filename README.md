@@ -193,7 +193,7 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
         <br />
         <sub><b>Ivan Pesic (eevan78)</b></sub></a>
       <br />
-      <sub><b>3470 words</b></sub>
+      <sub><b>3471 words</b></sub>
     </td>
   </tr>
   <tr>
@@ -321,9 +321,9 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
       <sub><b>1750 words</b></sub>
     </td>
     <td align="center" valign="top">
-      <a href="https://crowdin.com/profile/jont4"><img alt="logo" style="width: 64px" src="https://crowdin-static.cf-downloads.crowdin.com/avatar/15464490/medium/bd7f97dff61f637d007652f9947d8f17.jpeg" />
+      <a href="https://crowdin.com/profile/jontix"><img alt="logo" style="width: 64px" src="https://crowdin-static.cf-downloads.crowdin.com/avatar/15464490/medium/bd7f97dff61f637d007652f9947d8f17.jpeg" />
         <br />
-        <sub><b>Jontix (jont4)</b></sub></a>
+        <sub><b>jontix</b></sub></a>
       <br />
       <sub><b>1731 words</b></sub>
     </td>
@@ -374,18 +374,18 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
   </tr>
   <tr>
     <td align="center" valign="top">
+      <a href="https://crowdin.com/profile/LuckyMehra776"><img alt="logo" style="width: 64px" src="https://crowdin-static.cf-downloads.crowdin.com/avatar/16617215/medium/d2326af0f75dbef63ba72a5057bc32ec.jpeg" />
+        <br />
+        <sub><b>Lucky Mehra (LuckyMehra776)</b></sub></a>
+      <br />
+      <sub><b>819 words</b></sub>
+    </td>
+    <td align="center" valign="top">
       <a href="https://crowdin.com/profile/roccovantechno"><img alt="logo" style="width: 64px" src="https://crowdin-static.cf-downloads.crowdin.com/avatar/15818971/medium/75663306f941c87c2d9088c923aa89ad.jpeg" />
         <br />
         <sub><b>Gyuri Gergely (roccovantechno)</b></sub></a>
       <br />
       <sub><b>714 words</b></sub>
-    </td>
-    <td align="center" valign="top">
-      <a href="https://crowdin.com/profile/Nlntendq"><img alt="logo" style="width: 64px" src="https://crowdin-static.cf-downloads.crowdin.com/avatar/14386422/medium/0c58b2245a59d1596c329dcf24037eb6.png" />
-        <br />
-        <sub><b>Nlntendq</b></sub></a>
-      <br />
-      <sub><b>684 words</b></sub>
     </td>
   </tr>
 </table><a href="https://crowdin.com/project/rootlessjamesdsp" target="_blank">Translate in Crowdin 🚀</a>
