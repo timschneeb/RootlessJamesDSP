@@ -7,7 +7,7 @@ android {
     compileSdk = 34
     defaultConfig {
         minSdk = AndroidConfig.minSdk
-        targetSdk = AndroidConfig.targetSdk
+        lint.targetSdk = AndroidConfig.targetSdk
     }
 
     buildTypes {
@@ -18,8 +18,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     namespace = "me.timschneeberger.hiddenapi_impl"
 }

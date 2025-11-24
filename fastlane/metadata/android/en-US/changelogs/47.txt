@@ -1,0 +1,1 @@
+* Crash during Shizuku setup on Android 15 fixed

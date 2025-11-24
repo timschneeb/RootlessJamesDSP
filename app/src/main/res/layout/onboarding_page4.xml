@@ -88,12 +88,12 @@
                 app:iconTint="?attr/colorOnSurface" />
 
             <me.timschneeberger.rootlessjamesdsp.view.Card
-                android:id="@+id/step5b_optional"
+                android:id="@+id/step5b"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
                 app:cardMargin="8dp"
-                app:iconSrc="@drawable/ic_twotone_info_24dp"
+                app:iconSrc="@drawable/ic_numeric_5_circle_outline"
                 app:iconTint="?attr/colorOnSurface" />
 
 
@@ -107,12 +107,12 @@
                 app:iconTint="?attr/colorOnSurface" />
 
             <me.timschneeberger.rootlessjamesdsp.view.Card
-                android:id="@+id/step5"
+                android:id="@+id/step6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
                 app:cardMargin="8dp"
-                app:iconSrc="@drawable/ic_numeric_5_circle_outline"
+                app:iconSrc="@drawable/ic_numeric_6_circle_outline"
                 app:iconTint="?attr/colorOnSurface" />
         </LinearLayout>
 

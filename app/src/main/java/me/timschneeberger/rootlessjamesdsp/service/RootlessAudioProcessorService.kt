@@ -406,7 +406,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         }
     }
 
-    private fun loadFromPreferences(key: String){
+    private fun loadFromPreferences(key: String?){
         when (key) {
             getString(R.string.key_powersave_suspend) -> {
                 suspendOnIdle = preferences.get<Boolean>(R.string.key_powersave_suspend)

@@ -1,0 +1,1 @@
+* Request users to grant the 'PROJECT_MEDIA' permission on Android 15+ due to new screen sharing restrictions

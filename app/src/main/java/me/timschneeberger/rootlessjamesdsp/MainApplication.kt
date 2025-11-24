@@ -97,6 +97,8 @@ open class MainApplication : Application(), SharedPreferences.OnSharedPreference
     }
 
     override fun onCreate() {
+        instance = this
+
         Timber.plant(DebugTree())
 
         if(BuildConfig.DEBUG) {
@@ -109,14 +111,23 @@ open class MainApplication : Application(), SharedPreferences.OnSharedPreference
         // Clean up
         Cache.cleanup(this)
 
-        Timber.plant(FileLoggerTree.Builder()
-            .withFileName("application.log")
-            .withDirName(this.cacheDir.absolutePath)
-            .withMinPriority(Log.VERBOSE)
-            .withSizeLimit(2 * 1000000)
-            .withFileLimit(1)
-            .appendToFile(false)
-            .build())
+        try {
+            Timber.plant(
+                FileLoggerTree.Builder()
+                    .withFileName("application.log")
+                    .withDirName(this.cacheDir.absolutePath)
+                    .withMinPriority(Log.VERBOSE)
+                    .withSizeLimit(2 * 1000000)
+                    .withFileLimit(1)
+                    .appendToFile(false)
+                    .build()
+            )
+        }
+        catch (ex: Exception) {
+            // Log file creation may fail
+            Timber.e(ex)
+        }
+
         Timber.i("====> Application starting up")
 
         val dumpFile = File(filesDir, "dump.txt")
@@ -268,7 +279,7 @@ open class MainApplication : Application(), SharedPreferences.OnSharedPreference
         Pluto.showNotch(true)
 
         PlutoExceptions.setANRHandler { thread, exception ->
-            Timber.e("unhandled ANR handled on thread: " + thread.name, exception)
+            Timber.e(exception, "unhandled ANR handled on thread: %s", thread.name)
         }
 
         PlutoRoomsDBWatcher.watch("blocked_apps.db", AppBlocklistDatabase::class.java)
@@ -292,5 +303,11 @@ open class MainApplication : Application(), SharedPreferences.OnSharedPreference
             CrashlyticsImpl.log("[${priorityAsString(priority)}] ${tag ?: "???"}: $message")
             t?.takeIf { priority >= Log.WARN }?.let(CrashlyticsImpl::recordException)
         }
+    }
+
+
+    companion object {
+        lateinit var instance: MainApplication
+            private set
     }
 }

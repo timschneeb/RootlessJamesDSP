@@ -3,6 +3,7 @@
     <!-- Internal -->
     <string name="key_first_boot" translatable="false">first_boot</string>
     <string name="key_snooze_translation_notice" translatable="false">snooze_translation_notice</string>
+    <string name="key_android15_screenrecord_restriction_seen" translatable="false">android15_screenrecord_restriction_seen</string>
     <string name="key_update_check_timeout" translatable="false">update_check_timeout</string>
     <string name="key_update_check_skip" translatable="false">update_check_skip</string>
     <string name="key_reset_proc_mode_fix_applied" translatable="false">reset_proc_mode_fix_applied</string>

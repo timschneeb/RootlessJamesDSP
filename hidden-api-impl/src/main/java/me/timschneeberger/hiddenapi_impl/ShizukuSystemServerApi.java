@@ -1,6 +1,5 @@
 package me.timschneeberger.hiddenapi_impl;
 
-import android.app.AppOpsManager;
 import android.media.IAudioPolicyService;
 import android.os.Build;
 import android.os.IBinder;
@@ -10,10 +9,12 @@ import android.util.Log;
 
 import com.android.internal.app.IAppOpsService;
 
-import java.util.Objects;
+import java.io.OutputStream;
 import java.lang.reflect.Method;
 
+import rikka.shizuku.Shizuku;
 import rikka.shizuku.ShizukuBinderWrapper;
+import rikka.shizuku.ShizukuRemoteProcess;
 import rikka.shizuku.SystemServiceHelper;
 
 public class ShizukuSystemServerApi {
@@ -47,20 +48,43 @@ public class ShizukuSystemServerApi {
 
     public static void PermissionManager_grantRuntimePermission(String packageName, String permissionName, int userId) {
         try {
-            if (Build.VERSION.SDK_INT >= 34) {
+            if (Build.VERSION.SDK_INT >= 35) {
+                PERMISSION_MANAGER.getOrThrow().grantRuntimePermission(packageName, permissionName, "default:0", userId);
+            }
+            else if (Build.VERSION.SDK_INT == 34) {
                 try {
                     PERMISSION_MANAGER.getOrThrow().grantRuntimePermission(packageName, permissionName, 0, userId);
-                }catch (NoSuchMethodError e) {
-                    PERMISSION_MANAGER.getOrThrow().grantRuntimePermission(packageName, permissionName, userId);
+                    return;
                 }
+                catch (NoSuchMethodError ignored) {}
+                // Retry with old method
+                PERMISSION_MANAGER.getOrThrow().grantRuntimePermission(packageName, permissionName, userId);
             } else {
                 PERMISSION_MANAGER.getOrThrow().grantRuntimePermission(packageName, permissionName, userId);
             }
         }
         catch(Exception ex) {
             Log.e("ShizukuSystemServerApi", "Failed to call app ops service");
+            exec("pm grant " + packageName + " " + permissionName);
         }
     }
+
+    public static synchronized void exec(String cmd) {
+        try {
+            Method newProcess = Shizuku.class.getDeclaredMethod("newProcess", String[].class, String[].class, String.class);
+            newProcess.setAccessible(true);
+            ShizukuRemoteProcess process = (ShizukuRemoteProcess) newProcess.invoke(null, new String[]{"sh"}, null, null);
+            assert process != null;
+            OutputStream outputStream = process.getOutputStream();
+            outputStream.write((cmd + "\nexit\n").getBytes());
+            outputStream.flush();
+            outputStream.close();
+            process.waitFor();
+        } catch (Exception e) {
+            Log.e("ShizukuSystemServerApi", "Failed to call cmd via exec");
+        }
+    }
+
 
     public static final String APP_OPS_MODE_ALLOW = "allow";
     public static final String APP_OPS_MODE_IGNORE = "ignore";
@@ -71,28 +95,43 @@ public class ShizukuSystemServerApi {
     public static final String APP_OPS_OP_PROJECT_MEDIA = "PROJECT_MEDIA";
     public static final String APP_OPS_OP_SYSTEM_ALERT_WINDOW = "SYSTEM_ALERT_WINDOW";
 
-    public static boolean AppOpsService_setMode(String op, int packageUid, String packageName, String mode) throws RemoteException {
+    public static void AppOpsService_setMode(String op, int packageUid, String packageName, String mode) throws RemoteException {
         int index = -1;
-        for(int i = 0; i <= 10; i++) {
-            String name = modeToName(i);
-            if(name != null && mode.equals(name)) {
-                index = i;
-                break;
+
+        try {
+            Method method = Class.forName("android.app.AppOpsManager")
+                    .getMethod("modeToName", int.class);
+
+            for(int i = 0; i <= 10; i++) {
+                if(mode.equals((String)method.invoke(null, i))) {
+                    index = i;
+                    break;
+                }
             }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
 
         int opIndex = -1;
         try {
-            opIndex = strOpToOp(op);
-        }
-        catch(IllegalArgumentException ignored) {}
-        try {
-            opIndex = strDebugOpToOp(op);
-        }
-        catch(IllegalArgumentException ignored) {}
+            Method method = Class.forName("android.app.AppOpsManager")
+                    .getMethod("strOpToOp", String.class);
 
-        if(index < 0 || opIndex < 0)
-            return false;
+            opIndex = (int) method.invoke(null, op);
+        } catch (Exception e) {
+            Log.e("ShizukuSystemServerApi", "Failed to get op index via strOpToOp");
+
+            try {
+                Method methodDbg = Class.forName("android.app.AppOpsManager")
+                        .getMethod("strDebugOpToOp", String.class);
+
+                opIndex = (int) methodDbg.invoke(null, op);
+            }
+            catch (Exception ex) {
+                Log.e("ShizukuSystemServerApi", "Failed to get op index via strDebugOpToOp");
+                throw new RuntimeException(e);
+            }
+        }
 
         try {
             APP_OPS_SERVICE.getOrThrow().setMode(
@@ -104,36 +143,7 @@ public class ShizukuSystemServerApi {
         }
         catch(NullPointerException ex) {
             Log.e("ShizukuSystemServerApi", "Failed to call app ops service");
-            return false;
-        }
-
-        return true;
-    }
-
-    private static String modeToName(int mode) {
-        try {
-            Method m = AppOpsManager.class.getMethod("modeToName", int.class);
-            return (String) m.invoke(null, mode);
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    private static int strOpToOp(String op) {
-        try {
-            Method m = AppOpsManager.class.getMethod("strOpToOp", String.class);
-            return (Integer) m.invoke(null, op);
-        } catch (Exception e) {
-            throw new IllegalArgumentException(e);
-        }
-    }
-
-    private static int strDebugOpToOp(String op) {
-        try {
-            Method m = AppOpsManager.class.getMethod("strDebugOpToOp", String.class);
-            return (Integer) m.invoke(null, op);
-        } catch (Exception e) {
-            throw new IllegalArgumentException(e);
+            throw new RuntimeException(ex);
         }
     }
 

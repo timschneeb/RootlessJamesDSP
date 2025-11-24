@@ -8,9 +8,8 @@
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" tools:targetApi="upside_down_cake" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" tools:targetApi="upside_down_cake" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
@@ -35,7 +34,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RootlessJamesDSP"
         android:appCategory="audio"
-        tools:targetApi="35">
+        tools:targetApi="s">
 
         <profileable android:shell="true"/>
 
@@ -210,13 +209,15 @@
             android:name=".service.RootlessAudioProcessorService"
             android:enabled="true"
             android:exported="false"
-            android:foregroundServiceType="microphone|mediaProjection" />
+            android:foregroundServiceType="mediaProjection" />
 
+        <!-- Root only: FGS service permission is granted in root/AndroidManifest.xml -->
         <service
             android:name=".service.RootAudioProcessorService"
             android:enabled="true"
             android:exported="false"
-            android:foregroundServiceType="mediaPlayback" />
+            android:foregroundServiceType="mediaPlayback"
+            tools:ignore="ForegroundServicePermission" />
 
         <service
             android:name=".service.NotificationListenerService"
@@ -251,6 +252,7 @@
 
         <service
             android:name=".backup.BackupRestoreService"
+            android:foregroundServiceType="dataSync"
             android:exported="false" />
 
         <!-- Receivers -->
@@ -282,23 +284,6 @@
             </intent-filter>
         </receiver>
 
-        <receiver android:name=".widget.EngineToggleWidgetProvider"
-            android:exported="false"> <intent-filter>
-            <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            <action android:name="me.timschneeberger.rootlessjamesdsp.SET_POWER_STATE" />
-            <action android:name="me.timschneeberger.rootlessjamesdsp.ACTION_ENGINE_STATE_CHANGED" />
-        </intent-filter>
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/widget_engine_toggle_info" />
-        </receiver>
-        <receiver android:name=".widget.WidgetActionReceiver"
-            android:exported="false"
-        android:process="${applicationId}">
-        <intent-filter>
-            <action android:name="me.timschneeberger.rootlessjamesdsp.ACTION_WIDGET_CLICK" />
-        </intent-filter>
-    </receiver>
         <!-- Providers -->
         <provider
             android:name="rikka.shizuku.ShizukuProvider"

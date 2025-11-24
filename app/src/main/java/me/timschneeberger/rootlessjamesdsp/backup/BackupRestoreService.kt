@@ -3,9 +3,11 @@ package me.timschneeberger.rootlessjamesdsp.backup
 import android.app.Service
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ServiceInfo
 import android.net.Uri
 import android.os.IBinder
 import android.os.PowerManager
+import androidx.core.app.ServiceCompat
 import androidx.core.content.ContextCompat
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
@@ -14,10 +16,11 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
-import me.timschneeberger.rootlessjamesdsp.utils.notifications.Notifications
+import me.timschneeberger.rootlessjamesdsp.utils.SdkCheck
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getParcelableAs
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.acquireWakeLock
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.isServiceRunning
+import me.timschneeberger.rootlessjamesdsp.utils.notifications.Notifications
 import timber.log.Timber
 
 /**
@@ -71,7 +74,12 @@ class BackupRestoreService : Service() {
         notifier = BackupNotifier(this)
         wakeLock = acquireWakeLock(javaClass.name)
 
-        startForeground(Notifications.ID_RESTORE_PROGRESS, notifier.showRestoreProgress().build())
+        ServiceCompat.startForeground(
+            this,
+            Notifications.ID_RESTORE_PROGRESS,
+            notifier.showRestoreProgress().build(),
+            if(SdkCheck.isQ) ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC else 0
+        )
     }
 
     override fun stopService(name: Intent?): Boolean {

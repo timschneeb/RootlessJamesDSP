@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.media.audiofx.AudioEffect
 import android.media.audiofx.AudioEffectHidden
+import me.timschneeberger.rootlessjamesdsp.MainApplication
 import me.timschneeberger.rootlessjamesdsp.interop.structure.EelVmVariable
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.AudioEffectExtensions.getParameterInt
@@ -14,6 +15,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.AudioEffectExtension
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.AudioEffectExtensions.setParameterFloatArray
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.AudioEffectExtensions.setParameterImpulseResponseBuffer
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.registerLocalReceiver
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showAlert
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.unregisterLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.crc
@@ -304,19 +306,18 @@ class JamesDspRemoteEngine(
                 AudioEffect
                     .queryEffects()
                     .orEmpty()
-                    .filter { it.uuid == EFFECT_JAMESDSP }
-                    .firstOrNull { it.name.contains("JamesDSP") }
-                    .let {
-                        if(it == null)
-                            PluginState.Unavailable
-                        else if(it.name.contains("v3"))
-                            PluginState.Unsupported
-                        else
-                            PluginState.Available
-                    }
+                    .firstOrNull { it.uuid == EFFECT_JAMESDSP }
+                    ?.run {
+                        if(name.contains("v3")) PluginState.Unsupported else PluginState.Available
+                    } ?: PluginState.Unavailable
             } catch (e: Exception) {
                 Timber.e("isPluginInstalled: exception raised")
                 Timber.e(e)
+                MainApplication.instance.showAlert(
+                    "Error while checking audio effect status",
+                    "Unexpected error while checking whether JamesDSP's audio effect library is installed. \n\n" +
+                            "Error: $e",
+                )
                 PluginState.Unavailable
             }
         }

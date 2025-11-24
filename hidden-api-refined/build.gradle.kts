@@ -9,7 +9,7 @@ android {
     compileSdk = 34
     defaultConfig {
         minSdk = AndroidConfig.minSdk
-        targetSdk = AndroidConfig.targetSdk
+        lint.targetSdk = AndroidConfig.targetSdk
     }
 
     buildTypes {
@@ -19,15 +19,15 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     namespace = "me.timschneeberger.hiddenapi_refine"
 }
 
 dependencies {
     // Kotlin
-    implementation("androidx.core:core-ktx:1.9.0")
+    implementation("androidx.core:core-ktx:1.15.0")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${AndroidConfig.kotlinVersion}")
 
     // Refine

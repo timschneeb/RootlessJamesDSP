@@ -2,6 +2,7 @@ package me.timschneeberger.rootlessjamesdsp.fragment
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.os.Build
@@ -36,6 +37,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sh
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasDumpPermission
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasNotificationPermission
+import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasProjectMediaAppOp
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasRecordPermission
 import me.timschneeberger.rootlessjamesdsp.utils.isRootless
 import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
@@ -195,7 +197,12 @@ class OnboardingFragment : Fragment() {
         val adbPage = binding.adbSetup
         adbPage.step1.setOnButtonClickListener {
             if (selectedSetupMethod == SetupMethods.Adb) {
-                startActivity(Intent("android.settings.APPLICATION_DEVELOPMENT_SETTINGS"))
+                try {
+                    // Open developer settings
+                    startActivity(Intent("android.settings.APPLICATION_DEVELOPMENT_SETTINGS"))
+                } catch (e: ActivityNotFoundException) {
+                    context?.toast(getString(R.string.no_activity_found))
+                }
             } else {
                 // Open Shizuku play store page
                 viewShizukuInMarket()
@@ -423,12 +430,18 @@ class OnboardingFragment : Fragment() {
         goToPage(nextIndex)
     }
 
+    private fun areAdbPermissionsGranted(): Boolean {
+        return requireContext().hasDumpPermission() &&
+                // Android 15+ doesn't allow keyguard recording without PROJECT_MEDIA
+                requireContext().hasProjectMediaAppOp()
+    }
+
     private fun requestNextPage(nextPage: Int, forward: Boolean): Int
     {
         val shouldSkip = when (nextPage) {
             // Don't skip ADB setup if redoAdbSetup is set
-            PAGE_METHOD_SELECT -> requireContext().hasDumpPermission() && !redoAdbSetup
-            PAGE_ADB_SETUP -> requireContext().hasDumpPermission() && !redoAdbSetup
+            PAGE_METHOD_SELECT -> areAdbPermissionsGranted() && !redoAdbSetup
+            PAGE_ADB_SETUP -> areAdbPermissionsGranted() && !redoAdbSetup
             PAGE_RUNTIME_PERMISSIONS -> {
                requireContext().hasNotificationPermission() && requireContext().hasRecordPermission()
             }
@@ -446,19 +459,19 @@ class OnboardingFragment : Fragment() {
     private fun canAccessNextPage(currentPage: Int): Boolean
     {
         return when (currentPage) {
-            PAGE_ADB_SETUP -> ensureDumpPermission()
+            PAGE_ADB_SETUP -> ensureAdbPermissions()
             PAGE_RUNTIME_PERMISSIONS -> ensureRuntimePermissions()
             else -> true
         }
     }
 
-    private fun ensureDumpPermission(): Boolean{
+    private fun ensureAdbPermissions(): Boolean {
         /* Permission already granted?
          * Note: If were are redoing the ADB setup, make sure that the Shizuku setup
          *       can run regardless to grant optional permissions
          */
-        if(requireContext().hasDumpPermission() && (!redoAdbSetup || selectedSetupMethod != SetupMethods.Shizuku)) {
-            Timber.d("DUMP permission granted")
+        if(areAdbPermissionsGranted() && (!redoAdbSetup || selectedSetupMethod != SetupMethods.Shizuku)) {
+            Timber.d("ADB permissions already granted")
             return true
         }
 
@@ -490,50 +503,56 @@ class OnboardingFragment : Fragment() {
 
             // Grant permanent SYSTEM_ALERT_WINDOW op as shell
             try {
-                val result = ShizukuSystemServerApi.AppOpsService_setMode(
+                ShizukuSystemServerApi.AppOpsService_setMode(
                     ShizukuSystemServerApi.APP_OPS_OP_SYSTEM_ALERT_WINDOW,
                     uid,
                     pkg,
                     ShizukuSystemServerApi.APP_OPS_MODE_ALLOW
                 )
-                if(!result)
-                    Timber.e("AppOpsService_setMode for system_alert_window failed")
             }
             catch (ex: Exception) {
                 Timber.e("AppOpsService_setMode for system_alert_window threw an exception")
                 Timber.e(ex)
+                ShizukuSystemServerApi.exec("appops set $pkg SYSTEM_ALERT_WINDOW allow")
             }
 
             // Grant permanent PROJECT_MEDIA op as shell
             try {
-                val result = ShizukuSystemServerApi.AppOpsService_setMode(
+                ShizukuSystemServerApi.AppOpsService_setMode(
                     ShizukuSystemServerApi.APP_OPS_OP_PROJECT_MEDIA,
                     uid,
                     pkg,
                     ShizukuSystemServerApi.APP_OPS_MODE_ALLOW
                 )
-                if(!result)
-                    Timber.e("AppOpsService_setMode failed")
             }
             catch (ex: Exception) {
                 Timber.e("AppOpsService_setMode threw an exception")
                 Timber.e(ex)
+                ShizukuSystemServerApi.exec("appops set $pkg PROJECT_MEDIA allow")
             }
 
             // Re-check permission
-            return if (requireContext().hasDumpPermission()) {
-                Timber.d("DUMP permission via Shizuku granted")
+            return if (areAdbPermissionsGranted()) {
+                Timber.d("ADB permissions via Shizuku granted")
                 true
             } else {
-                Timber.e("DUMP not granted")
+                Timber.e("ADB permissions not granted")
                 requireContext().showAlert(R.string.onboarding_adb_shizuku_no_dump_perm_title,
                     R.string.onboarding_adb_shizuku_no_dump_perm)
                 false
             }
         }
 
-        requireContext().showAlert(R.string.onboarding_adb_dump_not_granted_title,
-            R.string.onboarding_adb_dump_not_granted)
+        // Regular ADB setup
+        if(!requireContext().hasDumpPermission()) {
+            requireContext().showAlert(R.string.onboarding_adb_not_granted_title,
+                R.string.onboarding_adb_dump_permission_not_granted)
+        }
+        else if(!requireContext().hasProjectMediaAppOp()) {
+            requireContext().showAlert(R.string.onboarding_adb_not_granted_title,
+                R.string.onboarding_adb_project_media_not_granted)
+        }
+
         return false
     }
 
@@ -560,8 +579,8 @@ class OnboardingFragment : Fragment() {
         val page = binding.adbSetup
 
         page.step4.isVisible = selectedSetupMethod == SetupMethods.Adb
-        page.step5.isVisible = selectedSetupMethod == SetupMethods.Adb
-        page.step5bOptional.isVisible = selectedSetupMethod == SetupMethods.Adb && isRootless()
+        page.step6.isVisible = selectedSetupMethod == SetupMethods.Adb
+        page.step5b.isVisible = selectedSetupMethod == SetupMethods.Adb && isRootless()
         page.step5cOptional.isVisible = selectedSetupMethod == SetupMethods.Adb && isRootless()
 
         if(selectedSetupMethod == SetupMethods.Shizuku) {
@@ -605,8 +624,8 @@ class OnboardingFragment : Fragment() {
             page.step2.bodyText = getString(R.string.onboarding_adb_manual_step2)
             page.step3.bodyText = getString(R.string.onboarding_adb_manual_step3)
             page.step4.bodyText = getString(R.string.onboarding_adb_manual_step4, requireContext().packageName)
-            page.step5.bodyText = getString(R.string.onboarding_adb_manual_step5)
-            page.step5bOptional.bodyText = getString(R.string.onboarding_adb_manual_step5b, requireContext().packageName)
+            page.step6.bodyText = getString(R.string.onboarding_adb_manual_step5)
+            page.step5b.bodyText = getString(R.string.onboarding_adb_manual_step5b_required, requireContext().packageName)
             page.step5cOptional.bodyText = getString(R.string.onboarding_adb_manual_step5c, requireContext().packageName)
 
             page.title.text = getString(R.string.onboarding_adb_adb_title)
