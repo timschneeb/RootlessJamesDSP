@@ -8,6 +8,9 @@
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
@@ -32,7 +35,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RootlessJamesDSP"
         android:appCategory="audio"
-        tools:targetApi="s">
+        tools:targetApi="35">
 
         <profileable android:shell="true"/>
 
@@ -207,7 +210,7 @@
             android:name=".service.RootlessAudioProcessorService"
             android:enabled="true"
             android:exported="false"
-            android:foregroundServiceType="mediaProjection" />
+            android:foregroundServiceType="microphone|mediaProjection" />
 
         <service
             android:name=".service.RootAudioProcessorService"

@@ -24,39 +24,63 @@ class EngineToggleWidgetProvider : AppWidgetProvider() {
         super.onReceive(context, intent)
 
         when (intent.action) {
-            Constants.ACTION_ENGINE_STATE_CHANGED,
             Constants.ACTION_SERVICE_STARTED,
             Constants.ACTION_SERVICE_STOPPED -> {
+                Timber.d("Widget received service state change: ${intent.action}")
+
+                // Cancel loading timeout since service responded
+                WidgetActionReceiver.cancelLoadingTimeout()
+
                 val appWidgetManager = AppWidgetManager.getInstance(context)
                 val thisWidget = ComponentName(context, EngineToggleWidgetProvider::class.java)
                 val appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget)
-                onUpdate(context, appWidgetManager, appWidgetIds)
+
+                // Update widgets in real-time, clearing loading state
+                for (appWidgetId in appWidgetIds) {
+                    updateWidgetWithState(context, appWidgetManager, appWidgetId, isLoading = false)
+                }
             }
         }
     }
 
-    private fun updateWidget(context: Context, appWidgetManager: AppWidgetManager, appWidgetId: Int) {
-        Timber.d("Updating widget with ID: $appWidgetId")
+    private fun updateWidget(context: Context, appWidgetManager: AppWidgetManager, appWidgetId: Int, isLoading: Boolean = false) {
+        updateWidgetWithState(context, appWidgetManager, appWidgetId, isLoading)
+    }
 
-        val views = RemoteViews(context.packageName, R.layout.widget_engine_toggle)
+    companion object {
+        fun updateWidgetWithState(context: Context, appWidgetManager: AppWidgetManager, appWidgetId: Int, isLoading: Boolean = false) {
+            Timber.d("Updating widget with ID: $appWidgetId, loading: $isLoading")
 
-        val iconResource = if (EngineUtils.isEngineEnabled(context)) {
-            R.drawable.ic_engine_on
-        } else {
-            R.drawable.ic_engine_off
+            val views = RemoteViews(context.packageName, R.layout.widget_engine_toggle)
+
+            if (isLoading) {
+                // Estado de carga
+                views.setInt(R.id.widget_engine_icon, "setImageAlpha", 153) // 60% opacity
+                views.setViewVisibility(R.id.widget_progress, android.view.View.VISIBLE)
+            } else {
+                // Estado normal
+                views.setInt(R.id.widget_engine_icon, "setImageAlpha", 255) // 100% opacity
+                views.setViewVisibility(R.id.widget_progress, android.view.View.GONE)
+
+                val iconResource = if (EngineUtils.isEngineEnabled(context)) {
+                    R.drawable.ic_engine_on
+                } else {
+                    R.drawable.ic_engine_off
+                }
+                views.setImageViewResource(R.id.widget_engine_icon, iconResource)
+            }
+
+            val intent = Intent(context, WidgetActionReceiver::class.java)
+            intent.action = Constants.ACTION_WIDGET_CLICK
+            val pendingIntent = PendingIntent.getBroadcast(
+                context,
+                0,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+            views.setOnClickPendingIntent(R.id.widget_engine_icon, pendingIntent)
+
+            appWidgetManager.updateAppWidget(appWidgetId, views)
         }
-        views.setImageViewResource(R.id.widget_engine_icon, iconResource)
-
-        val intent = Intent(context, WidgetActionReceiver::class.java)
-        intent.action = Constants.ACTION_WIDGET_CLICK
-        val pendingIntent = PendingIntent.getBroadcast(
-            context,
-            0,
-            intent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-        )
-        views.setOnClickPendingIntent(R.id.widget_engine_icon, pendingIntent)
-
-        appWidgetManager.updateAppWidget(appWidgetId, views)
     }
 }

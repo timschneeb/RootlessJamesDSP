@@ -17,7 +17,6 @@ import me.timschneeberger.rootlessjamesdsp.flavor.updates.model.UpdateCheckRespo
 import me.timschneeberger.rootlessjamesdsp.utils.Result
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ApiExtensions
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showAlert
-import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import me.timschneeberger.rootlessjamesdsp.utils.storage.Cache
 import me.timschneeberger.rootlessjamesdsp.view.ProgressDialog
 import timber.log.Timber
@@ -44,9 +43,7 @@ class UpdateManager(val context: Context) {
     }
 
     fun installUpdate(context: Context) {
-        sdkAbove(Build.VERSION_CODES.S) {
-            assert(context.isUiContext)
-        }
+        assert(context.isUiContext)
 
         var job: Job? = null
         val dialog = ProgressDialog(context) { job?.cancel() }

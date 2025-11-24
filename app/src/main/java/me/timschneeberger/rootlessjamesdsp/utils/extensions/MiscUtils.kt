@@ -9,7 +9,6 @@ import android.view.View
 import androidx.annotation.AttrRes
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.color.DynamicColors
-import me.timschneeberger.rootlessjamesdsp.utils.SdkCheck
 import java.io.File
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -76,13 +75,13 @@ private val isSamsung by lazy {
 }
 
 val isDynamicColorAvailable by lazy {
-    DynamicColors.isDynamicColorAvailable() || (isSamsung && SdkCheck.isSnowCake)
+    DynamicColors.isDynamicColorAvailable() || isSamsung
 }
 
 fun View.setBackgroundFromAttribute(@AttrRes attrRes: Int) {
     val a = TypedValue()
     context.theme.resolveAttribute(attrRes, a, true)
-    if (SdkCheck.isQ && a.isColorType) {
+    if (a.isColorType) {
         setBackgroundColor(a.data)
     } else {
         background = ResourcesCompat.getDrawable(context.resources, a.resourceId, context.theme)

@@ -38,7 +38,6 @@ import me.timschneeberger.rootlessjamesdsp.utils.isRoot
 import me.timschneeberger.rootlessjamesdsp.utils.isRootless
 import me.timschneeberger.rootlessjamesdsp.utils.notifications.Notifications
 import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
-import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import me.timschneeberger.rootlessjamesdsp.utils.storage.Cache
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
@@ -56,9 +55,7 @@ import java.util.Locale
 
 open class MainApplication : Application(), SharedPreferences.OnSharedPreferenceChangeListener {
     init {
-        sdkAbove(Build.VERSION_CODES.P) {
-            HiddenApiBypass.addHiddenApiExemptions("L")
-        }
+        HiddenApiBypass.addHiddenApiExemptions("L")
     }
 
     private val prefs: Preferences.App by inject()

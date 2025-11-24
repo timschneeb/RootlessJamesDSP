@@ -34,17 +34,24 @@ object EngineUtils : KoinComponent {
 
         }
 
-        sdkAbove(Build.VERSION_CODES.Q) {
-            // Rootless
-            if (!isOn) {
-                RootlessAudioProcessorService.stop(this)
+        // Rootless
+        if (!isOn) {
+            RootlessAudioProcessorService.stop(this)
+            preferences.set(R.string.key_powered_on, false)
+        } else {
+            // Intentar iniciar con el token guardado
+            val mainApp = applicationContext as? me.timschneeberger.rootlessjamesdsp.MainApplication
+            val projectionIntent = mainApp?.mediaProjectionStartIntent
+
+            if (projectionIntent != null) {
+                // Tenemos token, iniciar directamente
+                RootlessAudioProcessorService.start(this, projectionIntent)
+                preferences.set(R.string.key_powered_on, true)
             } else {
-                RootlessAudioProcessorService.start(this, null)
+                // No tenemos token, abrir la app para pedirlo
+                launchService(activityStarter)
             }
         }
-
-        // Guardar el estado del motor en las preferencias SIEMPRE
-        preferences.set(R.string.key_powered_on, isOn)
     }
     fun isEngineEnabled(context: Context): Boolean {
         return preferences.get(R.string.key_powered_on, false, Boolean::class)

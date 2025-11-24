@@ -1,7 +1,6 @@
 package me.timschneeberger.hiddenapi_impl;
 
 import android.app.AppOpsManager;
-import android.app.AppOpsManagerHidden;
 import android.media.IAudioPolicyService;
 import android.os.Build;
 import android.os.IBinder;
@@ -12,6 +11,7 @@ import android.util.Log;
 import com.android.internal.app.IAppOpsService;
 
 import java.util.Objects;
+import java.lang.reflect.Method;
 
 import rikka.shizuku.ShizukuBinderWrapper;
 import rikka.shizuku.SystemServiceHelper;
@@ -74,7 +74,8 @@ public class ShizukuSystemServerApi {
     public static boolean AppOpsService_setMode(String op, int packageUid, String packageName, String mode) throws RemoteException {
         int index = -1;
         for(int i = 0; i <= 10; i++) {
-            if(mode.equals(AppOpsManagerHidden.modeToName(i))) {
+            String name = modeToName(i);
+            if(name != null && mode.equals(name)) {
                 index = i;
                 break;
             }
@@ -82,11 +83,11 @@ public class ShizukuSystemServerApi {
 
         int opIndex = -1;
         try {
-            opIndex = AppOpsManagerHidden.strOpToOp(op);
+            opIndex = strOpToOp(op);
         }
         catch(IllegalArgumentException ignored) {}
         try {
-            opIndex = AppOpsManagerHidden.strDebugOpToOp(op);
+            opIndex = strDebugOpToOp(op);
         }
         catch(IllegalArgumentException ignored) {}
 
@@ -107,6 +108,33 @@ public class ShizukuSystemServerApi {
         }
 
         return true;
+    }
+
+    private static String modeToName(int mode) {
+        try {
+            Method m = AppOpsManager.class.getMethod("modeToName", int.class);
+            return (String) m.invoke(null, mode);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private static int strOpToOp(String op) {
+        try {
+            Method m = AppOpsManager.class.getMethod("strOpToOp", String.class);
+            return (Integer) m.invoke(null, op);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
+
+    private static int strDebugOpToOp(String op) {
+        try {
+            Method m = AppOpsManager.class.getMethod("strDebugOpToOp", String.class);
+            return (Integer) m.invoke(null, op);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(e);
+        }
     }
 
     public static void AudioPolicyService_setAllowedCapturePolicy(int uid, CapturePolicy capturePolicy) {

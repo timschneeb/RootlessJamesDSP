@@ -12,7 +12,6 @@ import android.os.ParcelFileDescriptor
 import android.provider.OpenableColumns
 import android.system.Os
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getPackageInfoCompat
-import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import timber.log.Timber
 import java.io.File
 import java.util.*
@@ -50,14 +49,12 @@ object Cache {
     }
     fun getReleaseFile(context: Context, cacheFileName: String): File {
         return File(ensureCacheDir(context, RELEASE_DIR), cacheFileName).apply {
-            sdkAbove(Build.VERSION_CODES.N) {
-                // Make readable for package installer
-                val cacheDir = context.cacheDir.parentFile!!.parentFile!!
-                generateSequence(this) { it.parentFile!! }.takeWhile { it != cacheDir }.forEach {
-                    when {
-                        it.isDirectory -> applyOrMode(it, 0b001001001)
-                        it.isFile -> applyOrMode(it, 0b100100100)
-                    }
+            // Make readable for package installer
+            val cacheDir = context.cacheDir.parentFile!!.parentFile!!
+            generateSequence(this) { it.parentFile!! }.takeWhile { it != cacheDir }.forEach {
+                when {
+                    it.isDirectory -> applyOrMode(it, 0b001001001)
+                    it.isFile -> applyOrMode(it, 0b100100100)
                 }
             }
         }

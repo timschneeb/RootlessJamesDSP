@@ -37,14 +37,9 @@ class MutedAudioEffectFactory {
         try {
             muteEffect = when (type) {
                 MuteEffects.DynamicsProcessing -> {
-                    sdkAbove<AudioEffect?>(VERSION_CODES.P) {
-                        with(DynamicsProcessing(Int.MAX_VALUE, sid, null)) {
-                            setInputGainAllChannelsTo(-200f)
-                            this
-                        }
-                    }.below {
-                        Timber.e("DynamicsProcessing unsupported below P")
-                        null
+                    with(DynamicsProcessing(Int.MAX_VALUE, sid, null)) {
+                        setInputGainAllChannelsTo(-200f)
+                        this
                     }
                 }
                 MuteEffects.Volume -> {
@@ -83,7 +78,7 @@ class MutedAudioEffectFactory {
         muteEffect.setEnableStatusListener { effect, enabled ->
             if (!enabled) {
                 try {
-                    if(SdkCheck.isPie && effect is DynamicsProcessing)
+                    if(effect is DynamicsProcessing)
                         effect.setInputGainAllChannelsTo(-200f)
                     effect.enabled = true
                     Timber.d("$name effect re-enabled (session $sid)")
@@ -104,7 +99,7 @@ class MutedAudioEffectFactory {
             }
             else {
                 try {
-                    if(SdkCheck.isPie && effect is DynamicsProcessing)
+                    if(effect is DynamicsProcessing)
                         effect.setInputGainAllChannelsTo(-200f)
                     effect.enabled = true
                     Timber.d("$name effect regained control (session $sid)")
@@ -140,11 +135,7 @@ class MutedAudioEffectFactory {
         }
 
         private val volumeHiddenTypeUuid = UUID.fromString("09e8ede0-ddde-11db-b4f6-0002a5d5c51b")
-        private val dynamicsProcessingTypeUuid = sdkAbove(VERSION_CODES.P) {
-            AudioEffect.EFFECT_TYPE_DYNAMICS_PROCESSING
-        }.below {
-            UUID.fromString("00000000-0000-0000-0000-000000000000")
-        }
+        private val dynamicsProcessingTypeUuid = AudioEffect.EFFECT_TYPE_DYNAMICS_PROCESSING
 
         private val supportedTypeUuids = mapOf(
             MuteEffects.DynamicsProcessing to dynamicsProcessingTypeUuid,

@@ -31,7 +31,6 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.se
 import me.timschneeberger.rootlessjamesdsp.utils.notifications.Notifications
 import me.timschneeberger.rootlessjamesdsp.utils.notifications.ServiceNotificationHelper
 import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
-import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import org.koin.android.ext.android.inject
 import org.koin.core.component.KoinComponent
 import timber.log.Timber
@@ -94,18 +93,11 @@ class RootAudioProcessorService : BaseAudioProcessorService(), KoinComponent,
         else
             ServiceNotificationHelper.createServiceNotification(this, arrayOf())
 
-        sdkAbove(Build.VERSION_CODES.Q) {
-            startForeground(
-                Notifications.ID_SERVICE_STATUS,
-                notification,
-                ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK
-            )
-        }.below {
-            startForeground(
-                Notifications.ID_SERVICE_STATUS,
-                notification
-            )
-        }
+        startForeground(
+            Notifications.ID_SERVICE_STATUS,
+            notification,
+            ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK
+        )
 
         // Initialize shared preferences manually
         arrayOf(R.string.key_powered_on, R.string.key_audioformat_enhanced_processing).forEach {
@@ -241,11 +233,7 @@ class RootAudioProcessorService : BaseAudioProcessorService(), KoinComponent,
             }
 
             try {
-                sdkAbove(Build.VERSION_CODES.O) {
-                    context.startForegroundService(intent)
-                }.below {
-                    context.startService(intent)
-                }
+                context.startForegroundService(intent)
             }
             catch (ex: Exception) {
                 Timber.e("Failed to start service. Try to disable battery optimizations")

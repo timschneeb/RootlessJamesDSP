@@ -28,7 +28,6 @@ import me.timschneeberger.rootlessjamesdsp.activity.OnboardingActivity.Companion
 import me.timschneeberger.rootlessjamesdsp.databinding.OnboardingFragmentBinding
 import me.timschneeberger.rootlessjamesdsp.flavor.RootShellImpl
 import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
-import me.timschneeberger.rootlessjamesdsp.utils.SdkCheck
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.isPackageInstalled
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.launchApp
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.openPlayStoreApp
@@ -40,7 +39,6 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions.hasRecordPermission
 import me.timschneeberger.rootlessjamesdsp.utils.isRootless
 import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
-import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import me.timschneeberger.rootlessjamesdsp.view.Card
 import org.koin.android.ext.android.inject
 import rikka.shizuku.Shizuku
@@ -154,16 +152,7 @@ class OnboardingFragment : Fragment() {
                 R.string.onboarding_methods_rootless_adb
         )
 
-        if(!SdkCheck.isQ) {
-            methodPage.methodsShizukuCard.isEnabled = false
-            methodPage.methodsShizukuCard.isClickable = false
-            methodPage.methodsShizukuCard.isFocusable = false
-            methodPage.methodsShizukuBody.isEnabled = false
-            methodPage.methodsShizukuTitle.isEnabled = false
-            methodPage.methodsShizukuTitle.text = "${getString(R.string.onboarding_methods_shizuku_title)} (${getString(R.string.onboarding_methods_unsupported_append)})"
-        }
-
-        if(!useRoot && SdkCheck.isQ) {
+        if(!useRoot) {
             // Highlight Shizuku card as preferred option
             methodPage.methodsShizukuCard.setCardBackgroundColor(
                 requireContext().resolveColorAttribute(com.google.android.material.R.attr.colorSecondaryContainer)
@@ -373,9 +362,6 @@ class OnboardingFragment : Fragment() {
         }
         else if(number == PAGE_RUNTIME_PERMISSIONS) {
             val pageBinding = binding.onboardingPage5
-            if(!SdkCheck.isTiramisu) {
-                pageBinding.findViewById<View>(R.id.onboarding_notification_permission).visibility = View.GONE
-            }
             pageBinding.findViewById<Card>(R.id.privacy_card).apply {
                 isVisible = !BuildConfig.FOSS_ONLY
                 checkboxIsChecked = prefsApp.get(R.string.key_share_crash_reports)
@@ -542,11 +528,6 @@ class OnboardingFragment : Fragment() {
                 Timber.e("DUMP not granted")
                 requireContext().showAlert(R.string.onboarding_adb_shizuku_no_dump_perm_title,
                     R.string.onboarding_adb_shizuku_no_dump_perm)
-
-                // Fallback just in case
-                @Suppress("DEPRECATION")
-                val proc = Shizuku.newProcess(arrayOf<String>("pm", "grant", pkg, Manifest.permission.DUMP), null, null)
-                proc.waitFor()
                 false
             }
         }
@@ -563,10 +544,8 @@ class OnboardingFragment : Fragment() {
             requestedPermissions.add(Manifest.permission.RECORD_AUDIO)
         }
 
-        sdkAbove(Build.VERSION_CODES.TIRAMISU) {
-            if(!requireContext().hasNotificationPermission())
-                requestedPermissions.add(Manifest.permission.POST_NOTIFICATIONS)
-        }
+        if(!requireContext().hasNotificationPermission())
+            requestedPermissions.add(Manifest.permission.POST_NOTIFICATIONS)
 
         return if(requestedPermissions.isNotEmpty()) {
             runtimePermissionLauncher.launch(requestedPermissions.toTypedArray())

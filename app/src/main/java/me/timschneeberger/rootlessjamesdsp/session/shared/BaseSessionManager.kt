@@ -85,7 +85,7 @@ abstract class BaseSessionManager(protected val context: Context) : DumpManager.
         // Setup preferences
         preferencesListener = SharedPreferences.OnSharedPreferenceChangeListener {
                 _, key ->
-            loadFromPreferences(key)
+            key?.let { loadFromPreferences(it) }
         }
         loadFromPreferences(context.getString(R.string.key_session_continuous_polling))
         loadFromPreferences(context.getString(R.string.key_session_continuous_polling_rate))
@@ -206,7 +206,6 @@ abstract class BaseSessionManager(protected val context: Context) : DumpManager.
         controllers ?: return
         controllers.forEach {
             Timber.d("active session changed: package ${it.packageName}; " +
-                    "uid ${Refine.unsafeCast<MediaSessionHidden.TokenHidden>(it.sessionToken).uid}; " +
                     "usage ${it.playbackInfo?.audioAttributes?.usage}")
         }
 

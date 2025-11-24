@@ -8,16 +8,17 @@ plugins {
     id("com.google.firebase.crashlytics")
     id("com.google.devtools.ksp") version AndroidConfig.kspVersion
     id("dev.rikka.tools.refine") version AndroidConfig.rikkaRefineVersion
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.8.10"
+    id("org.jetbrains.kotlin.plugin.serialization") version AndroidConfig.kotlinVersion
 }
 
 android {
 
     val SUPPORTED_ABIS = setOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
-    compileSdk = AndroidConfig.compileSdk
+    compileSdk = 36
     project.setProperty("archivesBaseName", "RootlessJamesDSP-v${AndroidConfig.versionName}")
 
     defaultConfig {
+        manifestPlaceholders += mapOf()
         targetSdk = AndroidConfig.targetSdk
         versionCode = AndroidConfig.versionCode
         versionName = AndroidConfig.versionName
@@ -80,35 +81,36 @@ android {
             android.defaultConfig.externalNativeBuild.cmake.arguments += "-DNO_CRASHLYTICS=1"
         }
         create("full") {
+            isDefault = true
             dimension = "dependencies"
             buildConfigField("boolean", "FOSS_ONLY", "false")
         }
 
         create("rootless") {
+            isDefault = true
             dimension = "version"
 
             manifestPlaceholders["label"] = "RootlessJamesDSP"
             applicationId = "me.timschneeberger.rootlessjamesdsp"
-            AndroidConfig.minSdk = 29
             minSdk = AndroidConfig.minSdk
             buildConfigField("boolean", "ROOTLESS", "true")
             buildConfigField("boolean", "PLUGIN", "false")
         }
-        create("root") {
+        /*
+        create("zrooted") {
             dimension = "version"
 
             manifestPlaceholders["label"] = "JamesDSP"
             project.setProperty("archivesBaseName", "JamesDSP-v${AndroidConfig.versionName}-${AndroidConfig.versionCode}")
             applicationId = "james.dsp"
-            AndroidConfig.minSdk = 26
             minSdk = AndroidConfig.minSdk
             buildConfigField("boolean", "ROOTLESS", "false")
             buildConfigField("boolean", "PLUGIN", "false")
         }
+        */
         create("plugin") {
             dimension = "version"
 
-            AndroidConfig.minSdk = 26
             minSdk = AndroidConfig.minSdk
             buildConfigField("boolean", "ROOTLESS", "false")
             buildConfigField("boolean", "PLUGIN", "true")
@@ -118,6 +120,14 @@ android {
     sourceSets {
         // Use different app icon for non-release builds
         getByName("debug").res.srcDirs("src/debug/res")
+        
+        // Map zrooted flavor to existing root source set
+        /*
+        getByName("zrooted") {
+            java.srcDirs("src/root/java")
+            manifest.srcFile("src/root/AndroidManifest.xml")
+        }
+        */
     }
 
     // Export multiple CPU architecture split apks
@@ -133,19 +143,23 @@ android {
     lint {
         abortOnError = false
         checkReleaseBuilds = false
-        disable += "ObsoleteSdkInt"
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
+    }
+
+    kotlin {
+        jvmToolchain(17)
     }
 
     buildFeatures {
+        buildConfig = true
         viewBinding = true
         // Disable unused features
         aidl = false
@@ -160,49 +174,50 @@ android {
         }
     }
     namespace = "me.timschneeberger.rootlessjamesdsp"
+    buildToolsVersion = "36.0.0"
+    ndkVersion = "29.0.14206865"
 }
 
 // Hooks to upload native symbols to crashlytics automatically
 afterEvaluate {
     getTasksByName("bundleRootlessFullRelease", false).firstOrNull()?.finalizedBy("uploadCrashlyticsSymbolFileRootlessFullRelease")
-    getTasksByName("bundleRootFullRelease", false).firstOrNull()?.finalizedBy("uploadCrashlyticsSymbolFileRootFullRelease")
+    // getTasksByName("bundleZrootedFullRelease", false).firstOrNull()?.finalizedBy("uploadCrashlyticsSymbolFileZrootedFullRelease")
     getTasksByName("assembleRootlessFullRelease", false).firstOrNull()?.finalizedBy("uploadCrashlyticsSymbolFileRootlessFullRelease")
-    getTasksByName("assembleRootFullRelease", false).firstOrNull()?.finalizedBy("uploadCrashlyticsSymbolFileRootFullRelease")
+    // getTasksByName("assembleZrootedFullRelease", false).firstOrNull()?.finalizedBy("uploadCrashlyticsSymbolFileZrootedFullRelease")
 
     getTasksByName("assembleRootlessFullPreview", false).firstOrNull()?.finalizedBy("uploadCrashlyticsSymbolFileRootlessFullRelease")
-    getTasksByName("assembleRootFullPreview", false).firstOrNull()?.finalizedBy("uploadCrashlyticsSymbolFileRootFullRelease")
+    // getTasksByName("assembleZrootedFullPreview", false).firstOrNull()?.finalizedBy("uploadCrashlyticsSymbolFileZrootedFullRelease")
 }
 
 dependencies {
     // Kotlin extensions
-    implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.10")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:2.0.21")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
 
     // AndroidX
-    implementation("androidx.core:core-ktx:1.10.1")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.recyclerview:recyclerview:1.3.1")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.6.0")
-    implementation("androidx.navigation:navigation-ui-ktx:2.6.0")
-    implementation("androidx.preference:preference-ktx:1.2.0")
-    implementation("androidx.databinding:databinding-runtime:8.1.0")
-    implementation("androidx.work:work-runtime-ktx:2.8.1")
-    implementation("androidx.mediarouter:mediarouter:1.4.0")
+    implementation("androidx.core:core-ktx:1.15.0")
+    implementation("androidx.appcompat:appcompat:1.7.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")
+    implementation("androidx.constraintlayout:constraintlayout:2.2.0")
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.8.5")
+    implementation("androidx.navigation:navigation-ui-ktx:2.8.5")
+    implementation("androidx.preference:preference-ktx:1.2.1")
+    implementation("androidx.databinding:databinding-runtime:8.7.3")
+    implementation("androidx.work:work-runtime-ktx:2.10.0")
+    implementation("androidx.mediarouter:mediarouter:1.7.0")
 
     // Material
-    implementation("com.google.android.material:material:1.9.0")
+    implementation("com.google.android.material:material:1.12.0")
 
     // Dependency injection
-    implementation("io.insert-koin:koin-android:3.3.3")
-    implementation("androidx.core:core-ktx:1.10.1")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
+    implementation("io.insert-koin:koin-android:4.0.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
 
     // Firebase
-    "fullImplementation"(platform("com.google.firebase:firebase-bom:31.2.3"))
+    "fullImplementation"(platform("com.google.firebase:firebase-bom:33.7.0"))
     "fullImplementation"("com.google.firebase:firebase-analytics-ktx")
     "fullImplementation"("com.google.firebase:firebase-crashlytics-ktx")
     "fullImplementation"("com.google.firebase:firebase-crashlytics-ndk")
@@ -222,7 +237,7 @@ dependencies {
     implementation("com.squareup.okio:okio:3.3.0")
 
     // Room databases
-    val roomVersion = "2.5.2"
+    val roomVersion = "2.6.1"
     implementation("androidx.room:room-runtime:$roomVersion")
     ksp("androidx.room:room-compiler:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
@@ -238,7 +253,7 @@ dependencies {
     implementation("com.github.tachiyomiorg:unifile:17bec43")
 
     // Root APIs
-    "rootImplementation"("com.github.topjohnwu.libsu:core:5.0.4")
+    // "zrootedImplementation"("com.github.topjohnwu.libsu:core:5.0.4")
 
     // Hidden APIs
     implementation("dev.rikka.tools.refine:runtime:${AndroidConfig.rikkaRefineVersion}")

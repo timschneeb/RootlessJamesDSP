@@ -44,7 +44,7 @@ class DumpManager constructor(val context: Context): KoinComponent {
     init {
         loadFromPreferences(context.getString(R.string.key_session_detection_method))
         preferencesListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
-            loadFromPreferences(key)
+            key?.let { loadFromPreferences(it) }
         }
         preferences.registerOnSharedPreferenceChangeListener(preferencesListener)
     }

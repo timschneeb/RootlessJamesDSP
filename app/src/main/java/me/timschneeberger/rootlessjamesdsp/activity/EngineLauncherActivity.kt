@@ -10,7 +10,6 @@ import androidx.core.content.getSystemService
 import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.service.RootlessAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.utils.isRoot
-import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import timber.log.Timber
 
 /**
@@ -31,32 +30,34 @@ class EngineLauncherActivity : BaseActivity() {
             return
         }
 
-        sdkAbove(Build.VERSION_CODES.Q) {
-            // If projection token available, start immediately
-            if(app.mediaProjectionStartIntent != null) {
-                Timber.d("Reusing old projection token to start service")
-                RootlessAudioProcessorService.start(this, app.mediaProjectionStartIntent)
-                finish()
-                return
-            }
-
-            setFinishOnTouchOutside(false)
-
-            capturePermissionLauncher = registerForActivityResult(
-                ActivityResultContracts.StartActivityForResult()
-            ) { result ->
-                if (result.resultCode == RESULT_OK) {
-                    app.mediaProjectionStartIntent = result.data
-                    Timber.d("Using new projection token to start service")
-
-                    RootlessAudioProcessorService.start(this, result.data)
-                }
-                finish()
-            }
-
-            getSystemService<MediaProjectionManager>()
-                ?.createScreenCaptureIntent()
-                ?.let(capturePermissionLauncher::launch)
+        // If projection token available, start immediately
+        if(app.mediaProjectionStartIntent != null) {
+            Timber.d("Reusing old projection token to start service")
+            RootlessAudioProcessorService.start(this, app.mediaProjectionStartIntent)
+            finish()
+            return
         }
+
+        setFinishOnTouchOutside(false)
+
+        capturePermissionLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            if (result.resultCode == RESULT_OK) {
+                app.mediaProjectionStartIntent = result.data
+                Timber.d("Using new projection token to start service")
+
+                RootlessAudioProcessorService.start(this, result.data)
+            } else {
+                Timber.d("User cancelled media projection permission")
+                // Notify widget that service won't start
+                sendBroadcast(Intent(me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_STOPPED))
+            }
+            finish()
+        }
+
+        getSystemService<MediaProjectionManager>()
+            ?.createScreenCaptureIntent()
+            ?.let(capturePermissionLauncher::launch)
     }
 }

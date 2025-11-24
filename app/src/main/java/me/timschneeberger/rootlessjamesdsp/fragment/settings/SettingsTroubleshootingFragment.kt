@@ -17,7 +17,6 @@ import me.timschneeberger.rootlessjamesdsp.session.dump.DumpManager
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showAlert
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.toast
-import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import org.koin.android.ext.android.inject
 import java.io.File
 import java.io.FileOutputStream
@@ -75,18 +74,8 @@ class SettingsTroubleshootingFragment : SettingsBaseFragment() {
         }
         findPreference<Preference>(getString(R.string.key_troubleshooting_notification_access))?.setOnPreferenceClickListener {
             val serviceClassName = NotificationListenerService::class.java.name
-            val intent = sdkAbove(Build.VERSION_CODES.R) {
-                Intent(Settings.ACTION_NOTIFICATION_LISTENER_DETAIL_SETTINGS)
-                    .putExtra(Settings.EXTRA_NOTIFICATION_LISTENER_COMPONENT_NAME, ComponentName(requireContext().packageName, serviceClassName).flattenToString())
-            }.below {
-                Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS)
-                    .apply {
-                        val value = "${requireContext().packageName}/$serviceClassName"
-                        val key = ":settings:fragment_args_key"
-                        putExtra(":settings:show_fragment_args", Bundle().also { it.putString(key, value) })
-                        putExtra(":settings:fragment_args_key", "${requireContext().packageName}/$serviceClassName")
-                    }
-            }
+            val intent = Intent(Settings.ACTION_NOTIFICATION_LISTENER_DETAIL_SETTINGS)
+                .putExtra(Settings.EXTRA_NOTIFICATION_LISTENER_COMPONENT_NAME, ComponentName(requireContext().packageName, serviceClassName).flattenToString())
 
             // TVs, smart-watches and some other weird devices do not have these settings
             try {

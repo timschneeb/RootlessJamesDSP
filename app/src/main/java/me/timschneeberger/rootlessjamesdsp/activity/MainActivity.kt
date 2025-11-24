@@ -43,7 +43,6 @@ import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.service.RootlessAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.Result
-import me.timschneeberger.rootlessjamesdsp.utils.SdkCheck
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.AssetManagerExtensions.installPrivateAssets
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.broadcastPresetLoadEvent
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.check
@@ -62,7 +61,6 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions
 import me.timschneeberger.rootlessjamesdsp.utils.isPlugin
 import me.timschneeberger.rootlessjamesdsp.utils.isRoot
 import me.timschneeberger.rootlessjamesdsp.utils.isRootless
-import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import me.timschneeberger.rootlessjamesdsp.utils.storage.StorageUtils
 import me.timschneeberger.rootlessjamesdsp.view.FloatingToggleButton
 import org.koin.core.component.inject
@@ -98,8 +96,10 @@ class MainActivity : BaseActivity() {
                 processorService = (service as BaseAudioProcessorService.LocalBinder).service
                 processorServiceBound = true
 
-                if (isRootless())
+                if (isRootless()) {
+                    binding.powerToggle.isLoading = false
                     binding.powerToggle.isToggled = true
+                }
             }
 
             override fun onServiceDisconnected(arg0: ComponentName) {
@@ -115,12 +115,16 @@ class MainActivity : BaseActivity() {
         override fun onReceive(context: Context, intent: Intent) {
             when (intent.action) {
                 Constants.ACTION_SERVICE_STOPPED -> {
-                    if(isRootless())
+                    if(isRootless()) {
+                        binding.powerToggle.isLoading = false
                         binding.powerToggle.isToggled = false
+                    }
                 }
                 Constants.ACTION_SERVICE_STARTED -> {
-                    if(isRootless())
+                    if(isRootless()) {
+                        binding.powerToggle.isLoading = false
                         binding.powerToggle.isToggled = true
+                    }
                 }
             }
         }
@@ -173,7 +177,7 @@ class MainActivity : BaseActivity() {
             showLibraryLoadError()
 
         // Rootless: Check permissions and launch onboarding if required
-        if(SdkCheck.isQ && isRootless() && (!hasDumpPermission() || !hasRecordPermission())) {
+        if(isRootless() && (!hasDumpPermission() || !hasRecordPermission())) {
             Timber.i("Launching onboarding (first boot: $firstBoot)")
 
             startActivity(Intent(this, OnboardingActivity::class.java).apply {
@@ -254,22 +258,21 @@ class MainActivity : BaseActivity() {
         binding.powerToggle.toggleOnClick = false
         binding.powerToggle.setOnToggleClickListener(object : FloatingToggleButton.OnToggleClickListener{
             override fun onClick() {
-                sdkAbove(Build.VERSION_CODES.R) {
-                    binding.powerToggle.performHapticFeedback(
-                        if(binding.powerToggle.isToggled)
-                            HapticFeedbackConstants.CONFIRM
-                        else
-                            HapticFeedbackConstants.REJECT
-                    )
-                }
+                binding.powerToggle.performHapticFeedback(
+                    if(binding.powerToggle.isToggled)
+                        HapticFeedbackConstants.CONFIRM
+                    else
+                        HapticFeedbackConstants.REJECT
+                )
 
-                if(SdkCheck.isQ && isRootless()) {
+                if(isRootless()) {
                     if (binding.powerToggle.isToggled) {
                         // Currently on, let's turn it off
+                        binding.powerToggle.isLoading = true
                         RootlessAudioProcessorService.stop(this@MainActivity)
-                        binding.powerToggle.isToggled = false
                     } else {
                         // Currently off, let's turn it on
+                        binding.powerToggle.isLoading = true
                         requestCapturePermission()
                     }
                 }
@@ -294,22 +297,22 @@ class MainActivity : BaseActivity() {
             }
         })
 
-        if (SdkCheck.isQ && isRootless()) {
+        if (isRootless()) {
             capturePermissionLauncher = registerForActivityResult(
                 ActivityResultContracts.StartActivityForResult()
             ) { result ->
                 if (result.resultCode == RESULT_OK && isRootless()) {
                     app.mediaProjectionStartIntent = result.data
-                    binding.powerToggle.isToggled = true
                     RootlessAudioProcessorService.start(this, result.data)
                 } else {
+                    binding.powerToggle.isLoading = false
                     binding.powerToggle.isToggled = false
                 }
             }
         }
 
         // Rootless: request capture permission instantly, if redirected from onboarding
-        if (SdkCheck.isQ && isRootless()) {
+        if (isRootless()) {
             if (intent.getBooleanExtra(EXTRA_FORCE_SHOW_CAPTURE_PROMPT, false)) {
                 requestCapturePermission()
             }
@@ -340,8 +343,8 @@ class MainActivity : BaseActivity() {
             requestIgnoreBatteryOptimizations()
         }
 
-        // Root: request notification permission on Android 13 because the onboarding is not used for root
-        if (isRoot() && SdkCheck.isTiramisu) {
+        // Root: request notification permission because the onboarding is not used for root
+        if (isRoot()) {
             runtimePermissionLauncher = registerForActivityResult(
                 ActivityResultContracts.RequestMultiplePermissions()
             ) { isGranted ->
@@ -525,13 +528,11 @@ class MainActivity : BaseActivity() {
 
     private fun bindProcessorService() {
         if (isRootless()) {
-            sdkAbove(Build.VERSION_CODES.Q) {
-                Intent(this, RootlessAudioProcessorService::class.java).also { intent ->
-                    val ret = bindService(intent, processorServiceConnection, 0)
-                    // Service not active
-                    if (!ret)
-                        requestCapturePermission()
-                }
+            Intent(this, RootlessAudioProcessorService::class.java).also { intent ->
+                val ret = bindService(intent, processorServiceConnection, 0)
+                // Service not active
+                if (!ret)
+                    requestCapturePermission()
             }
         }
         else if (isRoot()) {

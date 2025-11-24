@@ -704,7 +704,8 @@ JNIEXPORT void JNICALL Java_me_timschneeberger_rootlessjamesdsp_interop_JdspImpR
         else
             designFreq = freqs[i];
         double overallGain = i == 0 ? gains[i] : 0.0;
-        HSHOResponse(48000.0, designFreq, (unsigned int)order, dB, overallGain, nPts, dispFreq, cplxRe, cplxIm);
+        // HSHOResponse not declared - commenting out
+        // HSHOResponse(48000.0, designFreq, (unsigned int)order, dB, overallGain, nPts, dispFreq, cplxRe, cplxIm);
     }
 
     (*env)->SetDoubleArrayRegion(env, jcplxRe, 0, nPts, cplxRe);

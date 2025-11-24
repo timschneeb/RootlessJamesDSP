@@ -71,11 +71,7 @@ class RoutingObserver(val context: Context) : MediaRouter.Callback(), KoinCompon
         get() = try {
             Resources.getSystem().getText(
                 Resources.getSystem().getIdentifier(
-                    sdkAbove(34 /* FIXME Build.VERSION_CODES.UPSIDE_DOWN_CAKE */) {
-                        "default_audio_route_name_external_device"
-                    }.below {
-                        "default_audio_route_name_hdmi"
-                    },
+                    "default_audio_route_name_external_device",
                     "string", "android"
                 )
             ).let { hdmiName ->
@@ -92,15 +88,11 @@ class RoutingObserver(val context: Context) : MediaRouter.Callback(), KoinCompon
 
     private val MediaRouter.RouteInfo.isUsb: Boolean
         @SuppressLint("DiscouragedApi")
-        get() = sdkAbove(Build.VERSION_CODES.Q) {
-            Resources.getSystem().getText(
-                Resources.getSystem().getIdentifier(
-                    "default_audio_route_name_usb", "string", "android"
-                )
+        get() = Resources.getSystem().getText(
+            Resources.getSystem().getIdentifier(
+                "default_audio_route_name_usb", "string", "android"
             )
-        }.below {
-            ""
-        }.let { usbName ->
+        ).let { usbName ->
             router.defaultRoute == this && usbName == name
         }
 
