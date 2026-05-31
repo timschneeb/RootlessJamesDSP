@@ -128,6 +128,31 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_alloc(JNIEnv *e
     JamesDSPGlobalMemoryAllocation();
     JamesDSPInit(_dsp, 128, 48000);
 
+#ifndef NDEBUG
+    {
+        LOGD("DSP order test: begin");
+        int initialOrder[16];
+        int count = JamesDSPGetExecutionOrder(_dsp, initialOrder, 16);
+        LOGD("DSP order test: default count = %d", count);
+        if (count >= 2) {
+            // Test: Swap first two modules
+            int temp = initialOrder[0];
+            initialOrder[0] = initialOrder[1];
+            initialOrder[1] = temp;
+            int testRet = JamesDSPSetExecutionOrder(_dsp, initialOrder, count);
+            LOGD("DSP order test: set result = %d", testRet);
+
+            int verifyOrder[16];
+            JamesDSPGetExecutionOrder(_dsp, verifyOrder, 16);
+            LOGD("JamesDspWrapper::ctor: Execution order test - Verified order: [%d, %d, ...]", verifyOrder[0], verifyOrder[1]);
+
+            JamesDSPResetExecutionOrder(_dsp);
+            LOGD("DSP order test: reset result = 0");
+        }
+        LOGD("DSP order test: end");
+    }
+#endif
+
     if(!JamesDSPGetMutexStatus(_dsp))
     {
         LOGE("JamesDspWrapper::ctor: JamesDSPGetMutexStatus returned false. "
