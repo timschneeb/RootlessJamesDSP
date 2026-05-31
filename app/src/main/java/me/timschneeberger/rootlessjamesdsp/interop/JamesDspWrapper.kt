@@ -1,5 +1,6 @@
 package me.timschneeberger.rootlessjamesdsp.interop
 
+import me.timschneeberger.rootlessjamesdsp.interop.structure.DspModule
 import me.timschneeberger.rootlessjamesdsp.interop.structure.EelVmVariable
 import me.timschneeberger.rootlessjamesdsp.model.ProcessorMessage
 
@@ -48,6 +49,8 @@ object JamesDspWrapper {
     external fun setExecutionOrder(self: JamesDspHandle, order: IntArray): Boolean
     external fun resetExecutionOrder(self: JamesDspHandle)
     external fun getExecutionOrder(self: JamesDspHandle): IntArray
+    external fun getModules(self: JamesDspHandle): ArrayList<DspModule>
+    external fun debugTestExecutionOrder(self: JamesDspHandle)
     external fun eelErrorCodeToString(errorCode: Int): String
 
     // Callbacks
