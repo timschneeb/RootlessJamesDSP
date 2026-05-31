@@ -45,6 +45,9 @@ object JamesDspWrapper {
     external fun enumerateEelVariables(self: JamesDspHandle): ArrayList<EelVmVariable>
     external fun manipulateEelVariable(self: JamesDspHandle, name: String, value: Float): Boolean
     external fun freezeLiveprogExecution(self: JamesDspHandle, freeze: Boolean)
+    external fun setExecutionOrder(self: JamesDspHandle, order: IntArray): Boolean
+    external fun resetExecutionOrder(self: JamesDspHandle)
+    external fun getExecutionOrder(self: JamesDspHandle): IntArray
     external fun eelErrorCodeToString(errorCode: Int): String
 
     // Callbacks

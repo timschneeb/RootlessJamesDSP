@@ -734,6 +734,43 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_eelErrorCodeToS
     return env->NewStringUTF(checkErrorCode(error_code));
 }
 
+extern "C" JNIEXPORT jboolean JNICALL
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setExecutionOrder(JNIEnv *env, jobject obj, jlong self, jintArray order)
+{
+    DECLARE_DSP_B
+    jsize len = env->GetArrayLength(order);
+    if (len > 16)
+    {
+        LOGE("JamesDspWrapper::setExecutionOrder: Order array too long (%d > 16)", (int)len);
+        return false;
+    }
+
+    jint *nativeOrder = env->GetIntArrayElements(order, nullptr);
+    int ret = JamesDSPSetExecutionOrder(dsp, (const int*)nativeOrder, (int)len);
+    env->ReleaseIntArrayElements(order, nativeOrder, JNI_ABORT);
+
+    return ret == 0;
+}
+
+extern "C" JNIEXPORT void JNICALL
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_resetExecutionOrder(JNIEnv *env, jobject obj, jlong self)
+{
+    DECLARE_DSP_V
+    JamesDSPResetExecutionOrder(dsp);
+}
+
+extern "C" JNIEXPORT jintArray JNICALL
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_getExecutionOrder(JNIEnv *env, jobject obj, jlong self)
+{
+    DECLARE_DSP(nullptr)
+    int order[16];
+    int count = JamesDSPGetExecutionOrder(dsp, order, 16);
+
+    jintArray result = env->NewIntArray(count);
+    env->SetIntArrayRegion(result, 0, count, (const jint*)order);
+    return result;
+}
+
 void receiveLiveprogStdOut(const char *buffer, void* userData)
 {
     auto* self = static_cast<JamesDspWrapper*>(userData);
