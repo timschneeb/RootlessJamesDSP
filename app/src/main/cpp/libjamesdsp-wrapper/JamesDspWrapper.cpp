@@ -745,6 +745,13 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_eelErrorCodeToS
     return env->NewStringUTF(checkErrorCode(error_code));
 }
 
+extern "C" JNIEXPORT void JNICALL
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setSlider(JNIEnv *env, jobject obj, jlong self, jint index, jdouble value)
+{
+    DECLARE_DSP_V
+    JamesDSPSetSlider(dsp, (int)index, (double)value);
+}
+
 extern "C" JNIEXPORT jboolean JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setExecutionOrder(JNIEnv *env, jobject obj, jlong self, jintArray order)
 {
