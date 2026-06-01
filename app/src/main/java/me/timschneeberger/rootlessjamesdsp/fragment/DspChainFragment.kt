@@ -14,6 +14,7 @@ import me.timschneeberger.rootlessjamesdsp.databinding.ItemDspModuleBinding
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspLocalEngine
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspWrapper
 import me.timschneeberger.rootlessjamesdsp.interop.structure.DspModule
+import me.timschneeberger.rootlessjamesdsp.utils.DspExecutionOrderStore
 import java.util.Collections
 
 class DspChainFragment : Fragment() {
@@ -34,8 +35,8 @@ class DspChainFragment : Fragment() {
 
         binding.btnReset.setOnClickListener {
             JamesDspLocalEngine.activeInstance?.let { engine ->
-                // Runtime-only: native reset restores the compiled default order until the DSP engine is recreated.
                 JamesDspWrapper.resetExecutionOrder(engine.handle)
+                DspExecutionOrderStore.saveCurrentOrder(requireContext(), engine.handle)
                 loadData()
                 Toast.makeText(requireContext(), "Chain order reset", Toast.LENGTH_SHORT).show()
             }
@@ -89,6 +90,7 @@ class DspChainFragment : Fragment() {
             
             JamesDspLocalEngine.activeInstance?.let { engine ->
                 if (JamesDspWrapper.setExecutionOrder(engine.handle, currentOrder.toIntArray())) {
+                    DspExecutionOrderStore.saveCurrentOrder(requireContext(), engine.handle)
                     loadData()
                 } else {
                     currentOrder = previousOrder.toMutableList()

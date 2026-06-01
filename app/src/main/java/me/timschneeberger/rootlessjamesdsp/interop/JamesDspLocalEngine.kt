@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import me.timschneeberger.rootlessjamesdsp.interop.structure.EelVmVariable
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.DspExecutionOrderStore
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sendLocalBroadcast
 import timber.log.Timber
 import java.util.Timer
@@ -27,6 +28,7 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
 
     init {
         activeInstance = this
+        DspExecutionOrderStore.applySavedOrder(context, handle)
         if(BenchmarkManager.hasBenchmarksCached())
             BenchmarkManager.loadBenchmarksFromCache()
     }
