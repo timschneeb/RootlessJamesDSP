@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.activity.LiveprogParamsActivity
 import me.timschneeberger.rootlessjamesdsp.adapter.RoundedRipplePreferenceGroupAdapter
+import me.timschneeberger.rootlessjamesdsp.interop.JamesDspLocalEngine
 import me.timschneeberger.rootlessjamesdsp.interop.PreferenceCache
 import me.timschneeberger.rootlessjamesdsp.liveprog.EelListProperty
 import me.timschneeberger.rootlessjamesdsp.liveprog.EelNumberRangeProperty
@@ -71,17 +72,20 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
         Timber.d("onFloatPreferenceChanged: $key=$value")
 
         val baseProp = eelParser.properties.find { it.key == key }
+        val index = eelParser.properties.indexOf(baseProp)
         if(baseProp is EelListProperty)
             return
 
         (baseProp as? EelNumberRangeProperty<Float>)?.apply {
             this.value = value
             eelParser.manipulateProperty(this)
+            
+            if (index >= 0) {
+                JamesDspLocalEngine.activeInstance?.setSlider(index, value.toDouble())
+            }
         }
 
         updateResetMenuItem()
-
-        requireContext().sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_RELOAD_LIVEPROG))
     }
 
     private fun createPreferences(): PreferenceScreen {
@@ -104,14 +108,18 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
 
                         val currentProp = eelParser.properties.find { it.key == prop.key } as? EelListProperty
                         currentProp ?: return@setOnPreferenceChangeListener false
+                        val index = eelParser.properties.indexOf(currentProp)
 
                         Timber.d("List item with value $newValue selected")
 
                         currentProp.value = (newValue as? String)?.toIntOrNull() ?: 0
                         eelParser.manipulateProperty(currentProp)
 
+                        if (index >= 0) {
+                            JamesDspLocalEngine.activeInstance?.setSlider(index, currentProp.value.toDouble())
+                        }
+
                         updateResetMenuItem()
-                        requireContext().sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_RELOAD_LIVEPROG))
                         true
                     }
                 }.let(screen::addPreference)

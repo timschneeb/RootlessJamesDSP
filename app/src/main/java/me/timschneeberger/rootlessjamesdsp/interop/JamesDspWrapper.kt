@@ -49,6 +49,7 @@ object JamesDspWrapper {
     external fun setExecutionOrder(self: JamesDspHandle, order: IntArray): Boolean
     external fun resetExecutionOrder(self: JamesDspHandle)
     external fun getExecutionOrder(self: JamesDspHandle): IntArray
+    external fun setSlider(self: JamesDspHandle, index: Int, value: Double)
     external fun getModules(self: JamesDspHandle): ArrayList<DspModule>
     external fun debugTestExecutionOrder(self: JamesDspHandle)
     external fun eelErrorCodeToString(errorCode: Int): String

@@ -410,6 +410,7 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
     abstract fun enumerateEelVariables(): ArrayList<EelVmVariable>
     abstract fun manipulateEelVariable(name: String, value: Float): Boolean
     abstract fun freezeLiveprogExecution(freeze: Boolean)
+    open fun setSlider(index: Int, value: Double) {}
 
     protected inner class DummyCallbacks : JamesDspWrapper.JamesDspCallbacks
     {
