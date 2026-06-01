@@ -8,6 +8,8 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.interop.structure.EelVmVariable
 import me.timschneeberger.rootlessjamesdsp.model.ParametricEqBandList
@@ -139,7 +141,7 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
                     Constants.PREF_DDC -> setVdc(ddcEnabled, ddcFile)
                     Constants.PREF_LIVEPROG -> {
                         setLiveprog(liveProgEnabled, liveprogFile)
-                        setLiveprogSliders(liveprogSliders)
+                        applyStableLiveprogSliders(liveprogFile)
                         true
                     }
                     Constants.PREF_CONVOLVER -> setConvolver(convolverEnabled, convolverFile, convolverMode, convolverAdvImp)
@@ -389,6 +391,57 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
             if (i >= 128) break
             val value = str.toDoubleOrNull() ?: continue
             setSlider(i, value)
+        }
+    }
+
+    private fun applyStableLiveprogSliders(scriptPath: String) {
+        if (scriptPath.isEmpty()) return
+        val fullPath = me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference.createFullPathCompat(context, scriptPath)
+        val parser = me.timschneeberger.rootlessjamesdsp.liveprog.EelParser()
+        if (!parser.load(fullPath)) return
+
+        val sharedPrefs = context.getSharedPreferences(Constants.PREF_LIVEPROG, Context.MODE_PRIVATE)
+        val paramsKey = "liveprog_params_${parser.getScriptIdentity()}"
+
+        if (sharedPrefs.contains(paramsKey)) {
+            val json = sharedPrefs.getString(paramsKey, "{}")
+            try {
+                val type = object : TypeToken<Map<String, Double>>() {}.type
+                val map: Map<String, Double> = Gson().fromJson(json, type)
+                parser.applyNamedSliders(map)
+                
+                // Push to engine by current indices
+                parser.properties.forEachIndexed { index, prop ->
+                    setSlider(index, prop.getNumericValue())
+                }
+            } catch (e: Exception) {
+                Timber.e(e, "Failed to apply named parameters during sync")
+            }
+        } else {
+            // Attempt migration from filename-based key if we have an explicit @id
+            val fileNameIdentity = parser.fileName ?: "unknown"
+            val fallbackKey = "liveprog_params_$fileNameIdentity"
+            
+            if (parser.scriptId != null && sharedPrefs.contains(fallbackKey)) {
+                val json = sharedPrefs.getString(fallbackKey, "{}")
+                try {
+                    val type = object : TypeToken<Map<String, Double>>() {}.type
+                    val map: Map<String, Double> = Gson().fromJson(json, type)
+                    parser.applyNamedSliders(map)
+                    parser.properties.forEachIndexed { index, prop ->
+                        setSlider(index, prop.getNumericValue())
+                    }
+                    return
+                } catch (e: Exception) {
+                    Timber.e(e, "Failed to apply named parameters during sync migration")
+                }
+            }
+
+            // Fallback to legacy index-based string if available for this namespace
+            val liveprogSliders = sharedPrefs.getString(context.getString(R.string.key_liveprog_sliders), "")
+            if (!liveprogSliders.isNullOrEmpty()) {
+                setLiveprogSliders(liveprogSliders)
+            }
         }
     }
 

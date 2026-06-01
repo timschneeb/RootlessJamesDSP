@@ -14,6 +14,8 @@ import me.timschneeberger.rootlessjamesdsp.activity.LiveprogParamsActivity
 import me.timschneeberger.rootlessjamesdsp.adapter.RoundedRipplePreferenceGroupAdapter
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspLocalEngine
 import me.timschneeberger.rootlessjamesdsp.interop.PreferenceCache
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import me.timschneeberger.rootlessjamesdsp.liveprog.EelListProperty
 import me.timschneeberger.rootlessjamesdsp.liveprog.EelNumberRangeProperty
 import me.timschneeberger.rootlessjamesdsp.liveprog.EelParser
@@ -42,13 +44,7 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
             return
         }
 
-        val sliders = PreferenceCache.uncachedGet(
-            requireContext(),
-            Constants.PREF_LIVEPROG,
-            R.string.key_liveprog_sliders,
-            ""
-        )
-        eelParser.applySliders(sliders)
+        loadAndApplyParameters()
 
         requireActivity().title = eelParser.description
         updateResetMenuItem()
@@ -207,13 +203,7 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
             eelParser.refresh()
         }
 
-        val sliders = PreferenceCache.uncachedGet(
-            requireContext(),
-            Constants.PREF_LIVEPROG,
-            R.string.key_liveprog_sliders,
-            ""
-        )
-        eelParser.applySliders(sliders)
+        loadAndApplyParameters()
 
         activity?.title = eelParser.description
         if(eelParser.properties.isEmpty())
@@ -230,6 +220,7 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
         requireContext().getSharedPreferences(Constants.PREF_LIVEPROG, Context.MODE_PRIVATE)
             .edit()
             .remove(getString(R.string.key_liveprog_sliders))
+            .remove(getParamsKey())
             .apply()
 
         reload()
@@ -240,12 +231,65 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
         }
     }
 
-    private fun saveSlidersToPrefs() {
-        val sliders = eelParser.properties.joinToString(";") { prop ->
-            if (prop is EelNumberRangeProperty<*>) {
-                prop.value.toString()
-            } else "0"
+    private fun getParamsKey() = "liveprog_params_${eelParser.getScriptIdentity()}"
+
+    private fun loadAndApplyParameters() {
+        val sharedPrefs = requireContext().getSharedPreferences(Constants.PREF_LIVEPROG, Context.MODE_PRIVATE)
+        val paramsKey = getParamsKey()
+        
+        if (sharedPrefs.contains(paramsKey)) {
+            val json = sharedPrefs.getString(paramsKey, "{}")
+            try {
+                val type = object : TypeToken<Map<String, Double>>() {}.type
+                val map: Map<String, Double> = Gson().fromJson(json, type)
+                eelParser.applyNamedSliders(map)
+            } catch (e: Exception) {
+                Timber.e(e, "Failed to parse named parameters")
+            }
+        } else {
+            // Attempt migration from filename-based key if we have an explicit @id
+            val fileNameIdentity = eelParser.fileName ?: "unknown"
+            val fallbackKey = "liveprog_params_$fileNameIdentity"
+            
+            if (eelParser.scriptId != null && sharedPrefs.contains(fallbackKey)) {
+                Timber.i("Migrating LiveProg parameters from filename to @id for ${eelParser.getScriptIdentity()}")
+                val json = sharedPrefs.getString(fallbackKey, "{}")
+                try {
+                    val type = object : TypeToken<Map<String, Double>>() {}.type
+                    val map: Map<String, Double> = Gson().fromJson(json, type)
+                    eelParser.applyNamedSliders(map)
+                    saveParameters() // Save in new format
+                    return
+                } catch (e: Exception) {
+                    Timber.e(e, "Failed to parse named parameters during filename-to-id migration")
+                }
+            }
+
+            // Fallback to legacy index-based sliders migration
+            val oldSliders = sharedPrefs.getString(getString(R.string.key_liveprog_sliders), "")
+            if (!oldSliders.isNullOrEmpty()) {
+                Timber.i("Migrating LiveProg parameters from legacy string for ${eelParser.getScriptIdentity()}")
+                eelParser.applySliders(oldSliders)
+                saveParameters() // Save in new format immediately
+            }
         }
+    }
+
+    private fun saveParameters() {
+        val map = eelParser.properties.associate { it.key to it.getNumericValue() }
+        val json = Gson().toJson(map)
+        
+        requireContext().getSharedPreferences(Constants.PREF_LIVEPROG, Context.MODE_PRIVATE)
+            .edit()
+            .putString(getParamsKey(), json)
+            .apply()
+    }
+
+    private fun saveSlidersToPrefs() {
+        saveParameters()
+        
+        // Keep index-based version for engine sync compatibility
+        val sliders = eelParser.properties.joinToString(";") { it.getNumericValue().toString() }
         requireContext().getSharedPreferences(Constants.PREF_LIVEPROG, Context.MODE_PRIVATE)
             .edit()
             .putString(getString(R.string.key_liveprog_sliders), sliders)
