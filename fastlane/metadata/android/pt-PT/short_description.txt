@@ -1,1 +1,1 @@
-Mecanismo de processamento de áudio JamesDSP para dispositivos Android sem root.
+﻿Mecanismo de processamento de áudio ToneForge para dispositivos Android sem root.

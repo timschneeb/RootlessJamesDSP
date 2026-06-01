@@ -1,4 +1,4 @@
-Dùng JamesDSP làm công cụ xử lý âm thanh trên toàn hệ thống mà không cần quyền root.
+﻿Dùng ToneForge làm công cụ xử lý âm thanh trên toàn hệ thống mà không cần quyền root.
 
 Ứng dụng này có một số hạn chế có thể gây khó khăn cho một số người; vui lòng đọc toàn bộ tài liệu này trước khi sử dụng ứng dụng. Cần có quyền truy cập Shizuku (Android 11+) hoặc ADB qua máy tính để thiết lập lúc đầu.
 
@@ -45,3 +45,4 @@ Ngoài ra, ứng dụng này còn tích hợp trực tiếp với AutoEQ. Bằng
 Hãy giúp bọn mình dịch ứng dụng ở đây:
 https://crowdin.com/project/rootlessjamesdsp
 Để yêu cầu một ngôn ngữ mới chưa được bật trên Crowdin, vui lòng mở một issue tại đây trên GitHub và mình sẽ bật ngôn ngữ đó lên.
+

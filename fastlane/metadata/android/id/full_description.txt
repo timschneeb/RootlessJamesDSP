@@ -1,8 +1,8 @@
-Gunakan JamesDSP sebagai pemroses audio global tanpa akses root.
+﻿Gunakan ToneForge sebagai pemroses audio global tanpa akses root.
 
 Aplikasi ini punya beberapa keterbatasan yang mungkin tidak dapat diterima bagi beberapa orang; mohon baca seluruh dokumentasi sebelum menggunakan. Dibutuhkan Shizuku (Android 11+) atau ADB via komputer untuk inisialisasi.
 
-JamesDSP mendukung audio effect sebagai berikut:
+ToneForge mendukung audio effect sebagai berikut:
 * Kontrol limiter
 * Kontrol gain output
 * Kompresor dynamic range otomatis
@@ -44,3 +44,4 @@ Sebagai tambahan, aplikasi ini terintegrasi langsung dengan AutoEQ. Dengan AutoE
 --- Terjemahan
 Bantu kami menerjemahkan aplikasi ini: https://crowdin.com/project/rootlessjamesdsp
 Untuk meminta bahasa baru yang belum ada di Crowdin, buka GitHub issue dan saya akan mengaktifkannya.
+

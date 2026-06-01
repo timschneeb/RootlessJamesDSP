@@ -1,1 +1,1 @@
-Moteur de traitement audio JamesDSP pour appareils Android non rootés.
+﻿Moteur de traitement audio ToneForge pour appareils Android non rootés.

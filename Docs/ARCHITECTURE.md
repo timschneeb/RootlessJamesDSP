@@ -1,292 +1,242 @@
-# ARCHITECTURE.md
+# ToneForge Architecture
 
-## 1. Project Overview
+ToneForge is a programmable real-time DSP host for Android. It originated as a
+RootlessJamesDSP fork and still preserves the JamesDSP lineage, but the current
+direction is broader: a deterministic DSP runtime with scriptable processing,
+runtime module ordering, a central state snapshot model, and a fixed output
+safety stage.
 
-This project is a modified fork of RootlessJamesDSP, redesigned into a deterministic audio DSP engine with an embedded EEL2 (NS-EEL) scripting VM.
+This document describes the architecture as it exists in the current tree. It
+is intentionally conservative: it documents implemented behavior and calls out
+future work separately.
 
-The system is NOT a traditional audio effects app.
+## Project Identity
 
-It is a:
+- Project name: ToneForge.
+- Origin: RootlessJamesDSP and libjamesdsp.
+- Current direction: a programmable DSP host environment for Android, with a
+  future path toward shared desktop/VST3 runtime components.
+- Core values: real-time safety, deterministic processing, scriptability,
+  modular ordering, and user-programmable sound design.
 
-> Real-time DSP execution engine with scriptable control layer and fixed safety constraints.
+Package names, JNI symbols, and source paths still follow the RootlessJamesDSP
+heritage in many places. Do not rename those casually; user-visible branding can
+evolve independently from ABI and package identity.
 
----
+## Core Architecture
 
-## 2. Core Design Philosophy
+ToneForge separates control work from audio work.
 
-### 2.1 Deterministic Audio Pipeline
-All audio processing must follow a deterministic, fixed execution model per buffer.
+- Android UI and control code receives user input, stores preferences, loads
+  scripts, and calls JNI/control APIs.
+- Native DSP code owns the audio buffers and executes the processing chain.
+- LiveProg embeds an NS-EEL/EEL2 virtual machine for user scripts.
+- `DSPState` is the control-to-audio snapshot used by the native engine.
 
-No dynamic graph execution is allowed in the audio thread.
+### DSPState Snapshot System
 
----
+`DSPState` is the central real-time configuration snapshot. It currently stores:
 
-### 2.2 Separation of Concerns
+- runtime DSP execution order,
+- active module enable flags,
+- output gain and limiter coefficients,
+- LiveProg slider values,
+- Android/system variables for LiveProg.
 
-The system is split into three layers:
+The native engine owns two `DSPState` buffers:
 
-1. UI Layer (Android)
-2. DSP Host Layer (C++ / Java bridge)
-3. EEL2 Virtual Machine (embedded interpreter)
+```text
+stateBuffers[0]
+stateBuffers[1]
+activeState -> one of the two buffers
+```
 
----
+Control-side updates copy the active snapshot into the inactive buffer, modify
+only the intended fields, then publish the inactive buffer with an atomic
+release store. Audio processing captures `activeState` with an atomic acquire
+load at the beginning of each block and uses that same pointer through chain
+execution, LiveProg state sync, output gain, and limiter processing.
 
-### 2.3 Single Source of Truth
+This keeps configuration coherent across one audio buffer and avoids mixed-state
+processing inside a block.
 
-All runtime parameters must be stored in a shared DSPState snapshot.
+### Real-Time Safety Model
 
-No DSP module is allowed to own independent global state affecting audio processing.
+The audio callback must remain deterministic:
 
----
+- no heap allocation in the audio thread,
+- no file I/O in the audio thread,
+- no Android framework calls from the audio thread,
+- no string parsing in the audio thread,
+- no JNI calls from the audio thread,
+- no locks in the DSP hot path except existing legacy/script protection paths
+  where the current implementation still requires them,
+- no dynamic containers in sample/block processing.
 
-## 3. Audio Processing Model
+All expensive or mutable work belongs on the control/UI side and must be
+published through precomputed data, existing native module state, or `DSPState`.
 
-### 3.1 Global Pipeline
+## DSP Processing Pipeline
 
-Audio processing follows this fixed structure:
+The active ToneForge processing model is:
 
-
+```text
 Input
-↓
-DSPChain (ordered, user-defined)
-↓
-Post-Processing Stage
-↓
-Limiter (ALWAYS LAST - HARD SAFETY STAGE)
-↓
-Output
+  -> reorderable DSP modules
+  -> output gain
+  -> final limiter
+  -> Output
+```
 
+The current intended user-facing signal flow is:
 
----
+1. Analog Modeling / Vacuum Tube (`tube`)
+2. Multimodal EQ (`m_eq`)
+3. Arbitrary Response EQ (`arb_eq`)
+4. LiveProg Runtime (`liveprog`)
+5. Stereo Enhancement (`ster_enh`)
+6. Final Limiter / Output Safety
 
-### 3.2 DSPChain Rules
+The first five stages are represented by the native `dsp_execution_chain` table
+when compiled into this build. The final limiter is not in that table. It is
+hardcoded after chain execution as the mandatory safety stage.
 
-- DSPChain is an ordered list of processing modules.
-- Order can be changed at runtime.
-- Changes must be applied via atomic snapshot swap.
-- No dynamic branching inside audio callback.
+### Limiter Rule
 
-Example chain:
+The limiter is a hard architectural constraint:
 
+- it is always last,
+- it is not reorderable,
+- it is not persisted as part of execution order,
+- it is not included in `setExecutionOrder()`,
+- it exists to protect output level and user safety.
 
-EQ → AnalogModel → EEL2 → Spatial
+UI must show the limiter as the final output/safety stage and must not imply
+that it processes before the reorderable modules.
 
+### Hidden Legacy Modules
 
----
+Some inherited modules remain disabled or hidden unless explicitly re-enabled:
 
-### 3.3 Post-Processing Stage
+- Compressor,
+- Dynamic Bass Boost,
+- ViPER-DDC,
+- Convolver,
+- Crossfeed,
+- Reverb / Virtual Room.
 
-This stage exists outside DSPChain and is NOT user configurable.
+They should not be shown or persisted as active user modules by accident.
 
-Used for:
-- final gain staging
-- system safety normalization
-- pre-limiter corrections (if needed)
+## Module Reordering
 
----
+The native engine supports runtime execution order through:
 
-### 3.4 Limiter (Hard Constraint)
+- `getModules()`,
+- `getExecutionOrder()`,
+- `setExecutionOrder()`,
+- `resetExecutionOrder()`.
 
-The limiter is a mandatory final stage.
+The reorderable order is stored natively as module indices inside `DSPState`.
+Android persistence stores stable internal module names instead of numeric
+indices. The current persisted key is:
 
-Rules:
-- Always executed last
-- Cannot be disabled
-- Cannot be reordered
-- Cannot be part of DSPChain
+```text
+dsp_execution_order
+```
 
----
+The value is a comma-separated list such as:
 
-## 4. DSPState System
+```text
+tube,m_eq,arb_eq,liveprog,ster_enh
+```
 
-### 4.1 Definition
+On engine startup, Android validates the saved names against the current native
+module list, maps names back to native indices, and calls `setExecutionOrder()`.
+Invalid, duplicate, unknown, or incomplete saved orders are ignored and the
+native default is restored.
 
-DSPState is a lock-free shared snapshot used across:
+### Main DSP Screen
 
-- Audio thread
-- DSPChain modules
-- EEL2 VM
-- UI thread (read-only)
+The main DSP screen mirrors native execution order and exposes direct Up/Down
+controls for the active reorderable modules. The visual order is refreshed from
+the engine after applying a new order. The limiter/output safety card remains
+fixed at the bottom and has no reorder controls.
 
-### 4.2 Structure
+### DSP Chain Inspector
 
-Example fields:
+The DSP Chain Inspector is a debug/diagnostic view of the native execution
+table. It reads the same `getModules()` and `getExecutionOrder()` data and can
+also reorder/reset the runtime chain. Inspector changes update the persisted
+order when the current build includes the persistence helper.
 
-- slider1, slider2, ...
-- rms
-- peak
-- headroom
-- system_volume
+## LiveProg Runtime
 
-### 4.3 Rules
+LiveProg embeds an NS-EEL/EEL2 VM as a programmable DSP module. It supports:
 
-- Must be updated atomically or via double-buffer swap
-- No allocations in audio thread
-- Read-only access in DSP execution loop
-- Updated per audio block (@block system)
+- optional `@init`,
+- optional `@block`,
+- required `@sample`.
 
----
+Script load and parsing happen off the audio hot path. During audio processing,
+LiveProg receives the current block's captured `DSPState`, synchronizes sliders
+and system variables, computes block analysis values, executes `@block` if
+present, then runs `@sample` once per sample.
 
-## 5. @slider System (Event-Driven Control)
-
-### 5.1 Concept
-
-@slider is NOT part of EEL2 language.
-
-It is a host-level event system.
-
-### 5.2 Behavior
-
-When UI slider changes:
-
-
-UI Event → DSPState update → immediate visibility in audio thread
-
-
-### 5.3 Constraints
-
-- No polling
-- No timers
-- No blocking operations
-- No direct audio thread calls from UI
-
----
-
-## 6. @block System (Audio Analysis Scheduler)
-
-### 6.1 Concept
-
-@block is a host-level scheduler executed every N samples.
-
-### 6.2 Responsibilities
-
-Executed per block:
-
-- RMS calculation
-- Peak detection
-- Envelope tracking
-- Headroom estimation
-
-### 6.3 Output
-
-Results are stored in DSPState snapshot.
-
-### 6.4 Constraints
-
-- Must be deterministic
-- Must not allocate memory
-- Must not call UI
-- Must be independent from EEL execution
-
----
-
-## 7. EEL2 VM Integration
-
-### 7.1 Role
-
-EEL2 is used as a runtime scripting engine for:
-
-- DSP parameter modulation
-- nonlinear processing logic
-- control signal generation
-
-### 7.2 Execution Model
-
-- @init executed once
-- @sample executed per audio sample
-
-### 7.3 Binding Model
-
-All variables are bound via direct memory pointers to DSPState.
-
-No runtime string lookups are allowed.
-
----
-
-## 8. DSP Modules
-
-Each DSP module must follow:
-
-
-interface DSPModule {
-process(buffer, frames, DSPState)
-}
-
-
-### Rules:
-- Stateless or explicitly state-bound via DSPState
-- No hidden global state
-- Must be reorderable within DSPChain
-
----
-
-## 9. Threading Model
-
-### 9.1 UI Thread
-
-- Handles user input
-- Emits events only
-- Never touches audio buffers
-
-### 9.2 Audio Thread
-
-- Real-time DSP execution
-- No allocations
-- No locks
-- No JNI/Java calls
-
-### 9.3 State Sharing
-
-- DSPState is shared via atomic snapshot or double buffering
-
----
-
-## 10. Performance Constraints
-
-- No dynamic memory allocation in audio thread
-- No string operations in DSP loop
-- No locking mechanisms in realtime path
-- Constant-time DSP operations per block
-
----
-
-## 11. Forbidden Patterns
-
-The following are explicitly forbidden:
-
-- Dynamic DSP graph execution in audio thread
-- UI polling loops
-- Per-sample heap allocations
-- Multiple conflicting DSP pipelines
-- Non-deterministic ordering of DSPChain
-- Limiter inside DSPChain
-
----
-
-## 12. Design Goal
-
-The final system should behave like:
-
-> A real-time DSP engine with a deterministic processing chain and an embedded scripting VM controlling behavior at runtime.
-
----
-
-## 13. Future Extensions (Allowed)
-
-- Advanced DSPChain reordering UI
-- EEL2-based modulation routing
-- Additional analysis metrics in @block system
-- SIMD optimization of DSP modules
-- External plugin node system (optional future layer)
-
----
-
-## 14. Summary
-
-This architecture transforms RootlessJamesDSP from a fixed-effects audio application into a deterministic, scriptable DSP runtime engine with:
-
-- Ordered DSP execution chain
-- Embedded EEL2 VM
-- Centralized DSP state model
-- Event-driven UI control system
-- Hard safety limiter stage
+LiveProg is one reorderable module in the DSP chain. The limiter still remains
+outside and after LiveProg regardless of module order.
+
+## Android Integration
+
+ToneForge uses the RootlessJamesDSP-style rootless Android audio path. Instead
+of relying only on Android's built-in effects, the app captures supported app
+audio through Android's internal capture path, processes it through the native
+DSP engine, and returns processed audio to output.
+
+Android-side responsibilities include:
+
+- preference storage,
+- preset/script file management,
+- LiveProg parameter UI,
+- system variable observation,
+- module order persistence,
+- calls into JNI control APIs.
+
+Native audio processing must not call back into Android. Android state is pushed
+into native code from the control side and published to the audio side through
+`DSPState`.
+
+## Control Thread vs Audio Thread
+
+Control/UI thread:
+
+- may allocate,
+- may parse scripts,
+- may read/write preferences and files,
+- may call JNI setters,
+- prepares new `DSPState` values through native control APIs.
+
+Audio thread:
+
+- captures one `DSPState` pointer per block,
+- executes the module chain,
+- applies output gain and limiter using that same snapshot,
+- must avoid allocation, file I/O, Android calls, JNI calls, and broad locks.
+
+## Future Architecture
+
+The planned architecture direction includes:
+
+- glitch-free LiveProg hot reload,
+- crossfaded runtime replacement,
+- sample-accurate parameter automation and interpolation,
+- `@slider` lifecycle support,
+- shared memory / `gmem` between scripts,
+- FFT helper layer,
+- envelope follower and smoothing helpers,
+- native M/S and band-split helpers,
+- oversampling utilities for analog modeling,
+- latency reporting and latency-aware processing modes,
+- a VST3 compatibility layer that shares runtime concepts with Android.
+
+These items are future work unless specifically documented as implemented in
+`LIVEPROG_RUNTIME.md` or source code.

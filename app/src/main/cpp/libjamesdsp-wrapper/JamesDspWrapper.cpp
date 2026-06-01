@@ -1,6 +1,6 @@
 #include <android/log.h>
 
-#define TAG "JamesDspWrapper_JNI"
+#define TAG "ToneForgeWrapper_JNI"
 #include <Log.h>
 
 #include <string>
@@ -755,6 +755,14 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setSlider(JNIEn
         slot = dsp->eel.sliderMapping[slot];
     }
     JamesDSPSetSlider(dsp, slot, (double)value);
+}
+
+extern "C" JNIEXPORT void JNICALL
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setSystemVariables(JNIEnv *env, jobject obj, jlong self,
+    jfloat volume, jfloat volume_db, jint muted, jint headset, jint bluetooth, jint route)
+{
+    DECLARE_DSP_V
+    JamesDSPSetSystemVariables(dsp, volume, volume_db, muted, headset, bluetooth, route);
 }
 
 extern "C" JNIEXPORT jboolean JNICALL

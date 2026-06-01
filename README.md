@@ -1,10 +1,10 @@
 <h1 align="center">
   <img alt="Icon" width="75" src="https://github.com/thepbone/RootlessJamesDSP/blob/master/img/icons/web/icon-192.png?raw=true">
   <br>
-  RootlessJamesDSP
+  ToneForge
   <br>
 </h1>
-<h4 align="center">System-wide JamesDSP implementation for non-rooted Android devices</h4>
+<h4 align="center">System-wide programmable DSP runtime for non-rooted Android devices</h4>
 <p align="center">
   <a href="https://play.google.com/store/apps/details?id=me.timschneeberger.rootlessjamesdsp&utm_source=github&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">
   	<img alt="Google play release" src="https://img.shields.io/github/v/release/ThePBone/RootlessJamesDSP?label=google%20play">
@@ -35,7 +35,7 @@
 </p>
 
 <p align="center">
-This app uses <a href="https://github.com/james34602/JamesDSPManager">libjamesdsp</a> which is written by <a href="https://github.com/james34602">James Fung (@james34602)</a>.
+This app uses <a href="https://github.com/james34602/JamesDSPManager">libjamesdsp</a> which is written by <a href="https://github.com/james34602">James Fung (@james34602)</a>. ToneForge is a modernized evolution of the original RootlessJamesDSP architecture.
 </p>
 
 <p align="center">
@@ -95,7 +95,7 @@ The setup is very easy:
 2. Install the unpatched Spotify app
 3. Open ReVanced Manager, select Spotify and enable the `Remove screen capture restriction` patch.
 4. Start the patching process and install the patched APK once it is done.
-5. You can now use Spotify with RootlessJamesDSP.
+5. You can now use Spotify with ToneForge.
 
 ### Patching other unsupported apps
 
@@ -118,16 +118,16 @@ Android has several default audio effects built into its operating system that t
 
 Being restricted to these default built-in audio effects is problematic if you want to implement any advanced custom effects such as Viper or JDSP, because Android does not allow apps to access & modify the audio stream directly.
 
-To work around this problem, RootlessJamesDSP uses a bunch of tricks to gain full access to the audio stream of other apps. This is done via Android's internal audio capture.
-This allows RootlessJamesDSP to apply its custom audio effects directly without relying on Android's built-in effects.
+To work around this problem, ToneForge uses a bunch of tricks to gain full access to the audio stream of other apps. This is done via Android's internal audio capture.
+This allows ToneForge to apply its custom audio effects directly without relying on Android's built-in effects.
 
 Unfortunately, these tricks are not 100% reliable and introduce some limitations.
-Apps such as Spotify block internal audio capture (they don't want people to record their songs), and because of that, RootlessJamesDSP cannot directly access the audio stream of that app.
+Apps such as Spotify block internal audio capture (they don't want people to record their songs), and because of that, ToneForge cannot directly access the audio stream of that app.
 This is the reason why a special patch is required to disable this DRM restriction inside Spotify's app. Patches for other apps with these DRM restrictions do not exist, but are possible to do.
 
-## LiveProg Runtime
+## LiveProg / ToneForge Runtime
 
-RootlessJamesDSP features a modern, JSFX-compatible EEL2 programmable DSP runtime. This allows users to write and execute custom audio effects in real-time.
+ToneForge features a modern, JSFX-compatible EEL2 programmable DSP runtime. This allows users to write and execute custom audio effects in real-time.
 
 ### Script Lifecycle
 Scripts follow a deterministic lifecycle:
@@ -167,7 +167,7 @@ spl1 *= g;
 - **Lock-free Updates**: Parameter changes are applied via atomic snapshots, ensuring glitch-free real-time interaction.
 
 ### Architecture Notes
-- **Fixed Safety Stage**: A high-quality peak limiter is hardcoded as the final stage of the DSP pipeline, ensuring your device and hearing are always protected.
+- **Fixed Safety Stage**: A high-quality peak limiter is hardcoded as the final stage of the ToneForge DSP pipeline, ensuring your device and hearing are always protected.
 - **Lock-Free Pipeline**: The engine utilizes a `DSPState` snapshot system for lock-free configuration updates in the audio thread.
 - **Dynamic Reordering**: (Debug only) Manual reordering of the entire native DSP chain for performance and quality diagnostics.
 

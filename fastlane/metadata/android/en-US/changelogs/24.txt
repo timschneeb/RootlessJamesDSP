@@ -1,4 +1,4 @@
-* Added Quick tile settings toggle for the statusbar to enable/disable JamesDSP quickly
+﻿* Added Quick tile settings toggle for the statusbar to enable/disable ToneForge quickly
 * Added option to exclude app from recents (@fankes)
 * Added credits for translators
 * Filter liveprog by category
@@ -6,3 +6,4 @@
 * Added full Chinese translation (@fankes, @O2C14)
 * Added partial Spanish translation (@TheGary, @ianpok17)
 * Added partial Turkish translation (@pizzawithdirt)
+

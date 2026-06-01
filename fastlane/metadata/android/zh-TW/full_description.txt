@@ -1,8 +1,8 @@
-使用免root的系統級引擎JamesDSP處理音訊
+﻿使用免root的系統級引擎ToneForge處理音訊
 
 使用此應用程式前，請務必詳閱此說明文件。首次執行此程式時，需要用到ADB命令列工具 (Android 11以上的裝置可用Shizuku替代) ，以進行初始化設定。
 
-JamesDSP 支援以下的音效：
+ToneForge 支援以下的音效：
 * 限制器控制
 * 輸出增益控制
 * 自動動態範圍壓縮器
@@ -44,3 +44,4 @@ JamesDSP 支援以下的音效：
 --- 翻譯
 請幫助我們翻譯此應用程式：https://crowdin.com/project/rootlessjamesdsp
 若要請求Crowdin尚未啟用的語言，請在GitHub上面提出問題，我會把它打開。
+

@@ -1,8 +1,8 @@
-Utilizați JamesDSP ca motor de procesare audio la nivelul întregului sistem fără acces root.
+﻿Utilizați ToneForge ca motor de procesare audio la nivelul întregului sistem fără acces root.
 
 Această aplicație are mai multe limitări pe care anumite persoane nu le vor aprecia; vă rugăm să citiți întregul document înainte de a utiliza aplicația. Pentru configurarea inițială este necesar accesul Shizuku (Android 11+) sau ADB prin intermediul unui calculator.
 
-JamesDSP suportă următoarele efecte audio:
+ToneForge suportă următoarele efecte audio:
 * Limiter control
 * Output gain control
 * Auto dynamic range compressor
@@ -44,3 +44,4 @@ Additionally, this app integrates directly with AutoEQ. Using AutoEQ integration
 --- Traducere
 Te rugăm să ne ajuți să traducem această aplicație aici: https://crowdin.com/project/rootlessjamesdsp
 Pentru a solicita o nouă limbă care nu este activată încă pe Crowdin, vă rugăm să deschideți un issue aici pe GitHub și o voi activa.
+

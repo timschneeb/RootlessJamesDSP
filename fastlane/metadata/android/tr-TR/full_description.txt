@@ -1,8 +1,8 @@
-JamesDSP'yi herhangi bir root erişimi olmadan sistem çapında bir ses işleme motoru olarak kullanın.
+﻿ToneForge'yi herhangi bir root erişimi olmadan sistem çapında bir ses işleme motoru olarak kullanın.
 
 Bu uygulamanın, bazı insanlar için anlaşmayı bozabilecek çeşitli sınırlamaları vardır; lütfen uygulamayı kullanmadan önce bu belgenin tamamını okuyun. İlk kurulum için bir bilgisayar aracılığıyla Shizuku (Android 11+) veya ADB erişimi gereklidir.
 
-JamesDSP aşağıdaki ses efektlerini destekler:
+ToneForge aşağıdaki ses efektlerini destekler:
 * Sınırlayıcı kontrolü
 * Çıkış büyüklük kontrolü
 * Otomatik dinamik aralık kompresörü
@@ -44,3 +44,4 @@ Ek olarak, bu uygulama doğrudan AutoEQ ile entegre olur. AutoEQ entegrasyonunu 
 --- Tercüme
 Lütfen bu uygulamayı buraya çevirmemize yardım edin: https://crowdin.com/project/rootlessjamesdsp
 Crowdin'de henüz etkinleştirilmemiş yeni bir dil istemek için lütfen burada GitHub'da bir sorun oluşturun, onu etkinleştireceğim.
+

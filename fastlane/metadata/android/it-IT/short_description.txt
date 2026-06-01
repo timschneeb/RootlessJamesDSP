@@ -1,1 +1,1 @@
-Motore di elaborazione audio JamesDSP per dispositivi Android non rootati.
+﻿Motore di elaborazione audio ToneForge per dispositivi Android non rootati.

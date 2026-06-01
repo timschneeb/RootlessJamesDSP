@@ -1,1 +1,1 @@
-Systemweite JamesDSP-Audioverarbeitung für Android-Geräte ohne Root.
+﻿Systemweite ToneForge-Audioverarbeitung für Android-Geräte ohne Root.
