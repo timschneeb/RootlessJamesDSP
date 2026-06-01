@@ -227,10 +227,17 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
     }
 
     fun restoreDefaults() {
-        eelParser.restoreDefaults()
-        saveSlidersToPrefs()
+        requireContext().getSharedPreferences(Constants.PREF_LIVEPROG, Context.MODE_PRIVATE)
+            .edit()
+            .remove(getString(R.string.key_liveprog_sliders))
+            .apply()
+
         reload()
-        requireContext().sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_RELOAD_LIVEPROG))
+        
+        // Push initial defaults to engine
+        eelParser.properties.forEachIndexed { index, prop ->
+            JamesDspLocalEngine.activeInstance?.setSlider(index, prop.getNumericValue())
+        }
     }
 
     private fun saveSlidersToPrefs() {

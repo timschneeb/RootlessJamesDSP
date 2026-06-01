@@ -97,8 +97,17 @@ class EelParser {
 
         // Parse number range parameters
         contents?.lines()?.forEach next@ {
-            EelPropertyFactory.create(it, contents!!)?.let(properties::add)
+            EelPropertyFactory.create(it, contents!!)?.let { prop ->
+                properties.add(prop)
+                Timber.d("EelParser: Discovered parameter '${prop.key}' (stable index: ${properties.size - 1})")
+            }
         }
+
+        Timber.i("EelParser: Total parameters discovered: ${properties.size}")
+        if (properties.isNotEmpty()) {
+            Timber.i("EelParser: Parameter names: ${properties.joinToString(", ") { it.key }}")
+        }
+        Timber.i("EelParser: Additional Script Parameters UI state: ${if (properties.isNotEmpty()) "ENABLED" else "DISABLED"}")
     }
 
     fun findAnnotationLine(name: String): Int {

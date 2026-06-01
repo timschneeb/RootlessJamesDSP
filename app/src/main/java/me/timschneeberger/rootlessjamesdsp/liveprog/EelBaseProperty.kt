@@ -12,4 +12,6 @@ abstract class EelBaseProperty(val key: String, val description: String) {
     abstract fun valueAsString(): String
     /** Manipulate property in script file and return modified file contents */
     abstract fun manipulateProperty(contents: String): String?
+
+    abstract fun getNumericValue(): Double
 }
