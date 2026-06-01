@@ -21,12 +21,20 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
         get() = super.sampleRate
     override var enabled: Boolean = true
 
+    companion object {
+        var activeInstance: JamesDspLocalEngine? = null
+    }
+
     init {
+        activeInstance = this
         if(BenchmarkManager.hasBenchmarksCached())
             BenchmarkManager.loadBenchmarksFromCache()
     }
 
     override fun close() {
+        if (activeInstance == this) {
+            activeInstance = null
+        }
         val oldHandle = handle
         handle = 0
 

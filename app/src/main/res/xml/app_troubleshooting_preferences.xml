@@ -92,4 +92,16 @@
             app:iconSpaceReserved="false" />
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:key="category_debug"
+        app:title="Debug Tools"
+        app:iconSpaceReserved="false">
+        <Preference
+            android:key="@string/key_debug_dsp_chain"
+            android:title="@string/dsp_chain_inspector"
+            android:summary="@string/dsp_chain_inspector_summary"
+            app:iconSpaceReserved="false"
+            app:fragment="me.timschneeberger.rootlessjamesdsp.fragment.DspChainFragment" />
+    </PreferenceCategory>
+
 </PreferenceScreen>

@@ -703,4 +703,11 @@ Tap on \'Tutorial\' below for detailed instructions.</string>
     <string name="android_15_screenshare_keyguard_warning">Android 15 introduces a restriction that stops screen sharing when the device is locked. To workaround this issue, the \'PROJECT_MEDIA\' permission must be granted using Shizuku or ADB.
 
 Please press \'Continue\' below to re-do the setup wizard.</string>
+
+    <string name="dsp_chain_inspector">DSP Chain Inspector</string>
+    <string name="dsp_chain_inspector_summary">Inspect and reorder the DSP execution chain (Debug only)</string>
+    <string name="dsp_chain_reset">Reset chain order</string>
+    <string name="dsp_chain_requires_lock">Requires lock</string>
+    <string name="dsp_chain_enabled">Enabled</string>
+    <string name="dsp_chain_disabled">Disabled</string>
 </resources>
