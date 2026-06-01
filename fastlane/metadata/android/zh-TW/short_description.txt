@@ -1,1 +1,1 @@
-JamesDSP是個系統級的全域音效處理引擎，無須root權限。
+﻿ToneForge是個系統級的全域音效處理引擎，無須root權限。

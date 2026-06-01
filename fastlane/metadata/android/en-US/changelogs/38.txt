@@ -1,3 +1,4 @@
-* Fixed crash caused by racing-condition when turning off JamesDSP
+﻿* Fixed crash caused by racing-condition when turning off ToneForge
 * Several minor bug fixes
 * Translation updates
+

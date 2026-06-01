@@ -15,14 +15,14 @@ android {
 
     val SUPPORTED_ABIS = setOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
     compileSdk = AndroidConfig.compileSdk
-    project.setProperty("archivesBaseName", "RootlessJamesDSP-v${AndroidConfig.versionName}")
+    project.setProperty("archivesBaseName", "ToneForge-v${AndroidConfig.versionName}")
 
     defaultConfig {
         targetSdk = AndroidConfig.targetSdk
         versionCode = AndroidConfig.versionCode
         versionName = AndroidConfig.versionName
 
-        manifestPlaceholders["label"] = "RootlessJamesDSP"
+        manifestPlaceholders["label"] = "ToneForge"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -88,7 +88,7 @@ android {
         create("rootless") {
             dimension = "version"
 
-            manifestPlaceholders["label"] = "RootlessJamesDSP"
+            manifestPlaceholders["label"] = "ToneForge"
             applicationId = "me.timschneeberger.rootlessjamesdsp"
             AndroidConfig.minSdk = 29
             minSdk = AndroidConfig.minSdk
@@ -98,8 +98,8 @@ android {
         create("root") {
             dimension = "version"
 
-            manifestPlaceholders["label"] = "JamesDSP"
-            project.setProperty("archivesBaseName", "JamesDSP-v${AndroidConfig.versionName}-${AndroidConfig.versionCode}")
+            manifestPlaceholders["label"] = "ToneForge (Root)"
+            project.setProperty("archivesBaseName", "ToneForge-Root-v${AndroidConfig.versionName}-${AndroidConfig.versionCode}")
             applicationId = "james.dsp"
             AndroidConfig.minSdk = 26
             minSdk = AndroidConfig.minSdk

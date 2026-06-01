@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
     <string name="action_settings">Configuración</string>
@@ -22,20 +22,20 @@
     <string name="notification_idle">Procesamiento de audio inactivo</string>
     <string name="notification_processing_title">Procesamiento de audio activo</string>
     <string name="notification_processing_disabled_title">Procesamiento de audio desactivado</string>
-    <string name="notification_processing_legacy">Pulsa para abrir el administrador JamesDSP</string>
+    <string name="notification_processing_legacy">Pulsa para abrir el administrador ToneForge</string>
     <!-- Permission request notifications -->
-    <string name="notification_request_permission_title">Se requiere acción del usuario para lanzar JamesDSP</string>
-    <string name="notification_request_permission">Toca para conceder permiso de captura y habilitar el procesamiento de audio de JamesDSP</string>
+    <string name="notification_request_permission_title">Se requiere acción del usuario para lanzar ToneForge</string>
+    <string name="notification_request_permission">Toca para conceder permiso de captura y habilitar el procesamiento de audio de ToneForge</string>
     <!-- Session control loss notifications -->
-    <string name="session_control_loss_toast">JamesDSP se detuvo debido a la pérdida de control de sesión de audio. Por favor, deshabilite otras aplicaciones de efectos de audio.</string>
-    <string name="session_control_loss_notification_title">Proceso de audio detenido. Otra aplicación está interfiriendo con JamesDSP.</string>
-    <string name="session_control_loss_notification">Por favor, deshabilite todas las otras aplicaciones que proporcionan efectos de audio globales antes de volver a habilitar JamesDSP.</string>
+    <string name="session_control_loss_toast">ToneForge se detuvo debido a la pérdida de control de sesión de audio. Por favor, deshabilite otras aplicaciones de efectos de audio.</string>
+    <string name="session_control_loss_notification_title">Proceso de audio detenido. Otra aplicación está interfiriendo con ToneForge.</string>
+    <string name="session_control_loss_notification">Por favor, deshabilite todas las otras aplicaciones que proporcionan efectos de audio globales antes de volver a habilitar ToneForge.</string>
     <!-- App compatibility issue notifications -->
-    <string name="session_app_compat_toast">JamesDSP se detuvo debido a una aplicación multimedia incompatible. Por favor, comprueba la notificación para resolver este problema.</string>
-    <string name="session_app_compat_notification_title">Procesamiento de audio detenido. Otra aplicación está interfiriendo con JamesDSP.</string>
+    <string name="session_app_compat_toast">ToneForge se detuvo debido a una aplicación multimedia incompatible. Por favor, comprueba la notificación para resolver este problema.</string>
+    <string name="session_app_compat_notification_title">Procesamiento de audio detenido. Otra aplicación está interfiriendo con ToneForge.</string>
     <string name="session_app_compat_notification">Toca esta notificación para resolver el problema.</string>
     <!-- Capture permission revoked notifications -->
-    <string name="capture_permission_revoked_toast">Se ha detenido JamesDSP porque el permiso de captura de audio fue revocado.</string>
+    <string name="capture_permission_revoked_toast">Se ha detenido ToneForge porque el permiso de captura de audio fue revocado.</string>
     <!-- General purpose -->
     <string name="install">Instalar</string>
     <string name="update">Actualizar</string>
@@ -166,7 +166,7 @@
     <string name="onboarding_back">Atrás</string>
     <string name="onboarding_next">Siguiente</string>
     <string name="onboarding_finish">Finalizar</string>
-    <string name="onboarding_greeting">¡Bienvenido a RootlessJamesDSP!</string>
+    <string name="onboarding_greeting">¡Bienvenido a ToneForge!</string>
     <string name="onboarding_caption">Este asistente te ayudará a configurar esta aplicación.</string>
     <string name="onboarding_warning">Actualmente, esta aplicación no está acabada y es inestable. Tenga en cuenta que puede no funcionar en algunos dispositivos como se esperaba, ya que utiliza las API de Android no diseñadas para su uso por terceros.</string>
     <string name="onboarding_fix_permissions_title">Acción de usuario requerida</string>
@@ -225,21 +225,21 @@
     <string name="onboarding_perm_microphone_title">Permiso de grabación de audio</string>
     <string name="onboarding_perm_microphone_caption">Requerido para grabar audio interno. El micrófono de hardware no se está activado.</string>
     <string name="onboarding_perm_notification_title">Permiso de notificaciones</string>
-    <string name="onboarding_perm_notification_caption">Requerido para recibir estado de actualizaciones importantes e información sobre el estado de procesamiento de JamesDSP.</string>
+    <string name="onboarding_perm_notification_caption">Requerido para recibir estado de actualizaciones importantes e información sobre el estado de procesamiento de ToneForge.</string>
     <string name="onboarding_perm_cast_title">Permiso de transmisión/grabación</string>
     <string name="onboarding_perm_cast_caption">Debes otorgar explícitamente permiso a esta aplicación para grabar contenido de audio cada vez que se inicie.</string>
     <string name="onboarding_perm_missing_title">Permisos de ejecución no concedido</string>
     <string name="onboarding_perm_missing">Por favor otorgue todos los permisos solicitados de ejecución para continuar.\nSi ha denegado repetidamente los permisos, debe otorgarlos manualmente en la configuración del sistema.</string>
     <string name="onboarding_perm_diag">Permitir el envío de informes de diagnóstico</string>
     <string name="onboarding_perm_diag_caption">Esta aplicación envía informes de fallos y otros datos de diagnóstico, incluyendo información sobre otras aplicaciones activas, para permitirme detectar y resolver problemas de compatibilidad y errores más fácilmente.</string>
-    <string name="onboarding_finish_header">JamesDSP está configurado!</string>
+    <string name="onboarding_finish_header">ToneForge está configurado!</string>
     <string name="onboarding_finish_caption">Si encuentras algún problema, por favor visita las opciones de solución de problemas.</string>
     <string name="limit_session_control_conflict_title">Desactive otras aplicaciones de efectos de audio</string>
     <string name="limit_session_control_conflict">Las aplicaciones de efectos de audio que utilizan el efecto de procesamiento dinámico incorporado en Android interfieren con esta aplicación.</string>
     <string name="limit_unsupported_apps_title">Aplicaciones multimedia no compatibles</string>
     <string name="limit_unsupported_apps">Las aplicaciones que bloquean la captura interna de audio permanecen sin procesar (Ej., Spotify, Google Chrome).</string>
     <string name="limit_hw_accel_title">Problemas de reproducción de audio acelerada por HW</string>
-    <string name="limit_hw_accel">La reproducción de audio acelerada por HW (pistas rápidas) puede a veces causar audio duplicado o cerrar a JamesDSP en algunas circunstancias. Añade el reproductor de música afectado a la lista de aplicaciones excluidas para evitar que JamesDSP lo redirija.</string>
+    <string name="limit_hw_accel">La reproducción de audio acelerada por HW (pistas rápidas) puede a veces causar audio duplicado o cerrar a ToneForge en algunas circunstancias. Añade el reproductor de música afectado a la lista de aplicaciones excluidas para evitar que ToneForge lo redirija.</string>
     <string name="limit_detect_delay_title">Retraso en detección de sesión de audio</string>
     <string name="limit_detect_delay"><![CDATA[Después de que una aplicación ha abierto una nueva sesión multimedia para reproducir audio, se puede escuchar audio duplicado o cortado durante un período muy corto (alrededor de <250ms).]]></string>
     <string name="limit_latency_title">Aumento de latencia</string>
@@ -275,7 +275,7 @@
     <string name="audio_format_enhanced_processing_off">Procesamiento mejorado deshabilitado</string>
     <string name="audio_format_enhanced_processing_info_title">¿Qué es el procesamiento mejorado?</string>
     <string name="audio_format_enhanced_processing_info">Pulse para ver la documentación</string>
-    <string name="audio_format_enhanced_processing_info_content">Cuando el procesamiento mejorado está activado, puede excluir selectivamente a ciertas aplicaciones de ser procesadas por JamesDSP. Utilice el menú de 3 puntos en la esquina inferior derecha y seleccione \'Aplicaciones excluidas\' para acceder a esta función.\n\nMientras que el modo de compatibilidad está deshabilitado, JamesDSP depende de las aplicaciones multimedia para enviar una emisión del sistema cuando inicien la reproducción. Esta es una ventaja sobre el modo de compatibilidad porque cada aplicación obtiene su propio motor de efectos JamesDSP asignado, lo que permite un control más detallado. De lo contrario, con el modo de compatibilidad encendido, todas las aplicaciones compartirían un solo motor de procesamiento, que Android desaprueba y no debería ser usado más.\n\nDesafortunadamente, no todas las aplicaciones multimedia hacen esto correctamente y, por lo tanto, no funcionarían correctamente con el modo de compatibilidad deshabilitado. Para resolver este problema, puede habilitar el procesamiento mejorado. En lugar de depender de las transmisiones del sistema sobre las sesiones de nuevos medios, JamesDSP escaneará proactivamente las sesiones de medios por sí mismo y permitirá el soporte adecuado para aplicaciones de medios no cooperativas.</string>
+    <string name="audio_format_enhanced_processing_info_content">Cuando el procesamiento mejorado está activado, puede excluir selectivamente a ciertas aplicaciones de ser procesadas por ToneForge. Utilice el menú de 3 puntos en la esquina inferior derecha y seleccione \'Aplicaciones excluidas\' para acceder a esta función.\n\nMientras que el modo de compatibilidad está deshabilitado, ToneForge depende de las aplicaciones multimedia para enviar una emisión del sistema cuando inicien la reproducción. Esta es una ventaja sobre el modo de compatibilidad porque cada aplicación obtiene su propio motor de efectos ToneForge asignado, lo que permite un control más detallado. De lo contrario, con el modo de compatibilidad encendido, todas las aplicaciones compartirían un solo motor de procesamiento, que Android desaprueba y no debería ser usado más.\n\nDesafortunadamente, no todas las aplicaciones multimedia hacen esto correctamente y, por lo tanto, no funcionarían correctamente con el modo de compatibilidad deshabilitado. Para resolver este problema, puede habilitar el procesamiento mejorado. En lugar de depender de las transmisiones del sistema sobre las sesiones de nuevos medios, ToneForge escaneará proactivamente las sesiones de medios por sí mismo y permitirá el soporte adecuado para aplicaciones de medios no cooperativas.</string>
     <string name="audio_format_media_apps_need_restart">Necesita reiniciar todas las aplicaciones multimedia activas después de cambiar esta configuración para reanudar el procesamiento de audio.</string>
     <string name="audio_format_summary">Codificación de audio preferida, tamaño de búfer</string>
     <string name="audio_format_summary_root">Modo de compatibilidad, procesamiento mejorado</string>
@@ -352,10 +352,10 @@
     <string name="credits">Créditos</string>
     <string name="translators">Traductores</string>
     <string name="credits_app">Implementación de aplicación &amp; rootless desarrollada por</string>
-    <string name="credits_dsp">Biblioteca de algoritmos de núcleo JamesDSP desarrollada por</string>
+    <string name="credits_dsp">Biblioteca de algoritmos de núcleo ToneForge desarrollada por</string>
     <string name="credits_project_page">Visite el sitio web del proyecto en GitHub</string>
     <string name="credits_project_page_summary">Reportar problemas, mantenerse al día y leer el código fuente</string>
-    <string name="credits_project_play_page">Visite RootlessJamesDSP en Google Play</string>
+    <string name="credits_project_play_page">Visite ToneForge en Google Play</string>
     <string name="credits_project_play_page_summary">Buscar actualizaciones</string>
     <string name="credits_project_check_update">Buscar actualizaciones…</string>
     <string name="credits_project_check_update_summary">Descarga e instala actualizaciones si están disponibles</string>
@@ -429,7 +429,7 @@
     <string name="filelibrary_preset_loaded">Preajuste \'%1$s\' cargado</string>
     <string name="filelibrary_preset_load_failed">El archivo \'%1$s\' no es compatible con esta aplicación</string>
     <string name="filelibrary_no_presets">No hay preajustes guardados. Pulse \'Agregar\' para crear uno nuevo.</string>
-    <!-- JamesDSP engine messages -->
+    <!-- ToneForge engine messages -->
     <string name="message_vdc_corrupt">El archivo VDC seleccionado está dañado. Por favor, elija otro.</string>
     <string name="message_irs_corrupt">La respuesta de impulso seleccionada está dañada. Por favor, elija otra.</string>
     <string name="message_convolver_advimp_invalid">Convolver: La edición avanzada de waveform contiene valores no válidos.</string>
@@ -486,8 +486,8 @@
     <string name="editor_find_previous_match">Buscar coincidencia anterior</string>
     <string name="editor_search_keyword">Buscar</string>
     <string name="editor_source_position">%1$d:%2$d</string>
-    <string name="editor_engine_down_title">JamesDSP no está activo</string>
-    <string name="editor_engine_down">No se puede ejecutar el script porque JamesDSP está desactivado. Por favor, active JamesDSP para ejecutar scripts.</string>
+    <string name="editor_engine_down_title">ToneForge no está activo</string>
+    <string name="editor_engine_down">No se puede ejecutar el script porque ToneForge está desactivado. Por favor, active ToneForge para ejecutar scripts.</string>
     <string name="editor_save_prompt_title">¿Guardar cambios?</string>
     <string name="editor_save_prompt">El script actual tiene cambios sin guardar. ¿Desea guardar los cambios o descartarlos?</string>
     <string name="editor_script_launched">Script iniciado</string>
@@ -507,16 +507,16 @@
     <string name="app_compat_retry">Reintentarlo</string>
     <string name="app_compat_exclude">Excluir</string>
     <string name="app_compat_title">El procesamiento de audio ha sido suspendido para evitar el audio duplicado</string>
-    <string name="app_compat_explanation">La siguiente aplicación no es compatible porque hace que RootlessJamesDSP pierda el control sobre su enrutamiento de audio:</string>
-    <string name="app_compat_instruction">Por favor, verifica las configuraciones de las aplicaciones para ver si puedes desactivar la aceleración de hardware u otras configuraciones que podrían interferir con RootlessJamesDSP y toca \'Reintentar\'.</string>
+    <string name="app_compat_explanation">La siguiente aplicación no es compatible porque hace que ToneForge pierda el control sobre su enrutamiento de audio:</string>
+    <string name="app_compat_instruction">Por favor, verifica las configuraciones de las aplicaciones para ver si puedes desactivar la aceleración de hardware u otras configuraciones que podrían interferir con ToneForge y toca \'Reintentar\'.</string>
     <string name="app_compat_instruction_exclude">Alternativamente, selecciona \'Excluir\' para pasar por alto este problema excluyendo la aplicación incompatible del procesamiento de audio.</string>
     <string name="app_compat_unknown_pkg_name">Nombre de paquete desconocido</string>
     <!-- Root: Library load failure -->
     <string name="load_fail_header">Módulo de Magisk no instalado</string>
     <string name="load_fail_card_title">Error al cargar libjamesdsp.so</string>
-    <string name="load_fail_card">Por favor, instale el módulo de JamesDSP para Magisk y reinicie su dispositivo Android para utilizar esta aplicación. Es posible que también deba reinstalar esta aplicación después de reiniciar.</string>
+    <string name="load_fail_card">Por favor, instale el módulo de ToneForge para Magisk y reinicie su dispositivo Android para utilizar esta aplicación. Es posible que también deba reinstalar esta aplicación después de reiniciar.</string>
     <string name="load_fail_rootless_card_title">¿Buscas una alternativa sin root?</string>
-    <string name="load_fail_rootless_card">Esta versión de JamesDSP fue diseñada para ser utilizada con un dispositivo rooteado/modificado. También hay disponible una alternativa sin root con algunas limitaciones. Toca aquí para más detalles.</string>
+    <string name="load_fail_rootless_card">Esta versión de ToneForge fue diseñada para ser utilizada con un dispositivo rooteado/modificado. También hay disponible una alternativa sin root con algunas limitaciones. Toca aquí para más detalles.</string>
     <string name="load_fail_arch_card_title">¿Módulo ya instalado?</string>
     <string name="load_fail_arch_card">Si ya has instalado el módulo Magisk, es posible que hayas seleccionado la configuración incorrecta durante la instalación. Por favor, reinstala el módulo y trata de habilitar la compatibilidad con Huawei (aunque tu teléfono no sea de ese fabricante).</string>
     <!-- Enhanced processing -->
@@ -536,7 +536,7 @@
     <string name="slider_dialog_step_error">El valor debe ser un múltiplo de %1$d. Cambios no aplicados.</string>
     <!-- Revert confirmation -->
     <string name="revert_confirmation_title">¿Está seguro?</string>
-    <string name="revert_confirmation">¿Desea restablecer el preajuste actual de JamesDSP a los valores por defecto?</string>
+    <string name="revert_confirmation">¿Desea restablecer el preajuste actual de ToneForge a los valores por defecto?</string>
     <!-- File intent handler -->
     <string name="intent_import_preset">Importar preajuste</string>
     <string name="intent_import_irs">Importar respuesta de impulso</string>
@@ -598,7 +598,8 @@
     <string name="device_profile_manage_copy_select">Seleccionar perfil a copiar</string>
     <string name="device_profile_manage_paste_select">Seleccionar perfiles a sobrescribir</string>
     <!-- Root version check -->
-    <string name="version_mismatch_root">El paquete magisk de JamesDSP requiere una actualización</string>
-    <string name="version_mismatch_root_description">El paquete magisk de JamesDSP instalado en su dispositivo está desactualizado y ya no es compatible con esta aplicación.\n\nObtenga el último paquete ZIP de magisk JamesDSP e instálelo a través de Magisk.\nTenga en cuenta que el paquete magisk puede reemplazar esta aplicación con la aplicación oficial JamesDSP.\n\n¿Quiere visitar la web de descarga de los paquetes Magisk ahora?</string>
-    <string name="version_mismatch_root_toast">Error al iniciar. El paquete magisk de JamesDSP instalado es demasiado viejo y ya no está soportado por esta aplicación.</string>
+    <string name="version_mismatch_root">El paquete magisk de ToneForge requiere una actualización</string>
+    <string name="version_mismatch_root_description">El paquete magisk de ToneForge instalado en su dispositivo está desactualizado y ya no es compatible con esta aplicación.\n\nObtenga el último paquete ZIP de magisk ToneForge e instálelo a través de Magisk.\nTenga en cuenta que el paquete magisk puede reemplazar esta aplicación con la aplicación oficial ToneForge.\n\n¿Quiere visitar la web de descarga de los paquetes Magisk ahora?</string>
+    <string name="version_mismatch_root_toast">Error al iniciar. El paquete magisk de ToneForge instalado es demasiado viejo y ya no está soportado por esta aplicación.</string>
 </resources>
+

@@ -1,8 +1,8 @@
-Gebruik JamesDSP als een systeem-brede audio-verwerkings engine zonder root-toegang.
+﻿Gebruik ToneForge als een systeem-brede audio-verwerkings engine zonder root-toegang.
 
 Deze app heeft verschillende beperkingen die mogelijk deal-breakend kunnen zijn voor sommige personen; lees dit hele document door voordat u de app gebruikt. Shizuku (Android 11+) of ADB toegang via een computer is vereist voor de initiële installatie.
 
-JamesDSP ondersteunt de volgende audio-effecten:
+ToneForge ondersteunt de volgende audio-effecten:
 * Limiter regeling
 * Output versterking regeling
 * Automatische dynamische range compressor
@@ -44,3 +44,4 @@ Bovendien integreert deze app direct met AutoEQ. Met behulp van de AutoEQ integr
 --- Vertaling
 Help ons deze app te vertalen hier: https://crowdin.com/project/rootlessjamesp
 Om een nieuwe taal op te vragen die nog niet is ingeschakeld op Crowdin, open hier een issue op GitHub en ik zal het inschakelen.
+

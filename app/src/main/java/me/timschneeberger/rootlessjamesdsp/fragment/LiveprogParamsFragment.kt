@@ -12,7 +12,10 @@ import androidx.recyclerview.widget.RecyclerView
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.activity.LiveprogParamsActivity
 import me.timschneeberger.rootlessjamesdsp.adapter.RoundedRipplePreferenceGroupAdapter
+import me.timschneeberger.rootlessjamesdsp.interop.JamesDspLocalEngine
 import me.timschneeberger.rootlessjamesdsp.interop.PreferenceCache
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import me.timschneeberger.rootlessjamesdsp.liveprog.EelListProperty
 import me.timschneeberger.rootlessjamesdsp.liveprog.EelNumberRangeProperty
 import me.timschneeberger.rootlessjamesdsp.liveprog.EelParser
@@ -40,6 +43,8 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
             requireContext().toast(R.string.liveprog_not_found)
             return
         }
+
+        loadAndApplyParameters()
 
         requireActivity().title = eelParser.description
         updateResetMenuItem()
@@ -71,17 +76,20 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
         Timber.d("onFloatPreferenceChanged: $key=$value")
 
         val baseProp = eelParser.properties.find { it.key == key }
+        val index = eelParser.properties.indexOf(baseProp)
         if(baseProp is EelListProperty)
             return
 
         (baseProp as? EelNumberRangeProperty<Float>)?.apply {
             this.value = value
-            eelParser.manipulateProperty(this)
+            saveSlidersToPrefs()
+
+            if (index >= 0) {
+                JamesDspLocalEngine.activeInstance?.setSlider(index, value.toDouble())
+            }
         }
 
         updateResetMenuItem()
-
-        requireContext().sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_RELOAD_LIVEPROG))
     }
 
     private fun createPreferences(): PreferenceScreen {
@@ -104,14 +112,18 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
 
                         val currentProp = eelParser.properties.find { it.key == prop.key } as? EelListProperty
                         currentProp ?: return@setOnPreferenceChangeListener false
+                        val index = eelParser.properties.indexOf(currentProp)
 
                         Timber.d("List item with value $newValue selected")
 
                         currentProp.value = (newValue as? String)?.toIntOrNull() ?: 0
-                        eelParser.manipulateProperty(currentProp)
+                        saveSlidersToPrefs()
+
+                        if (index >= 0) {
+                            JamesDspLocalEngine.activeInstance?.setSlider(index, currentProp.value.toDouble())
+                        }
 
                         updateResetMenuItem()
-                        requireContext().sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_RELOAD_LIVEPROG))
                         true
                     }
                 }.let(screen::addPreference)
@@ -191,6 +203,8 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
             eelParser.refresh()
         }
 
+        loadAndApplyParameters()
+
         activity?.title = eelParser.description
         if(eelParser.properties.isEmpty())
             activity?.finish()
@@ -203,9 +217,83 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
     }
 
     fun restoreDefaults() {
-        eelParser.restoreDefaults()
+        requireContext().getSharedPreferences(Constants.PREF_LIVEPROG, Context.MODE_PRIVATE)
+            .edit()
+            .remove(getString(R.string.key_liveprog_sliders))
+            .remove(getParamsKey())
+            .apply()
+
         reload()
-        requireContext().sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_RELOAD_LIVEPROG))
+        
+        // Push initial defaults to engine
+        eelParser.properties.forEachIndexed { index, prop ->
+            JamesDspLocalEngine.activeInstance?.setSlider(index, prop.getNumericValue())
+        }
+    }
+
+    private fun getParamsKey() = "liveprog_params_${eelParser.getScriptIdentity()}"
+
+    private fun loadAndApplyParameters() {
+        val sharedPrefs = requireContext().getSharedPreferences(Constants.PREF_LIVEPROG, Context.MODE_PRIVATE)
+        val paramsKey = getParamsKey()
+        
+        if (sharedPrefs.contains(paramsKey)) {
+            val json = sharedPrefs.getString(paramsKey, "{}")
+            try {
+                val type = object : TypeToken<Map<String, Double>>() {}.type
+                val map: Map<String, Double> = Gson().fromJson(json, type)
+                eelParser.applyNamedSliders(map)
+            } catch (e: Exception) {
+                Timber.e(e, "Failed to parse named parameters")
+            }
+        } else {
+            // Attempt migration from filename-based key if we have an explicit @id
+            val fileNameIdentity = eelParser.fileName ?: "unknown"
+            val fallbackKey = "liveprog_params_$fileNameIdentity"
+            
+            if (eelParser.scriptId != null && sharedPrefs.contains(fallbackKey)) {
+                Timber.i("Migrating LiveProg parameters from filename to @id for ${eelParser.getScriptIdentity()}")
+                val json = sharedPrefs.getString(fallbackKey, "{}")
+                try {
+                    val type = object : TypeToken<Map<String, Double>>() {}.type
+                    val map: Map<String, Double> = Gson().fromJson(json, type)
+                    eelParser.applyNamedSliders(map)
+                    saveParameters() // Save in new format
+                    return
+                } catch (e: Exception) {
+                    Timber.e(e, "Failed to parse named parameters during filename-to-id migration")
+                }
+            }
+
+            // Fallback to legacy index-based sliders migration
+            val oldSliders = sharedPrefs.getString(getString(R.string.key_liveprog_sliders), "")
+            if (!oldSliders.isNullOrEmpty()) {
+                Timber.i("Migrating LiveProg parameters from legacy string for ${eelParser.getScriptIdentity()}")
+                eelParser.applySliders(oldSliders)
+                saveParameters() // Save in new format immediately
+            }
+        }
+    }
+
+    private fun saveParameters() {
+        val map = eelParser.properties.associate { it.key to it.getNumericValue() }
+        val json = Gson().toJson(map)
+        
+        requireContext().getSharedPreferences(Constants.PREF_LIVEPROG, Context.MODE_PRIVATE)
+            .edit()
+            .putString(getParamsKey(), json)
+            .apply()
+    }
+
+    private fun saveSlidersToPrefs() {
+        saveParameters()
+        
+        // Keep index-based version for engine sync compatibility
+        val sliders = eelParser.properties.joinToString(";") { it.getNumericValue().toString() }
+        requireContext().getSharedPreferences(Constants.PREF_LIVEPROG, Context.MODE_PRIVATE)
+            .edit()
+            .putString(getString(R.string.key_liveprog_sliders), sliders)
+            .apply()
     }
 
     companion object {

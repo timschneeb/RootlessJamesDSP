@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
     <string name="action_settings">設定</string>
@@ -22,20 +22,20 @@
     <string name="notification_idle">音訊處理閒置中</string>
     <string name="notification_processing_title">音訊處理已啟用</string>
     <string name="notification_processing_disabled_title">音訊處理已停用</string>
-    <string name="notification_processing_legacy">輕觸開啟 JamesDSP 管理員</string>
+    <string name="notification_processing_legacy">輕觸開啟 ToneForge 管理員</string>
     <!-- Permission request notifications -->
-    <string name="notification_request_permission_title">需要使用者動作以啟動 JamesDSP</string>
-    <string name="notification_request_permission">授予 JamesDSP 擷取權限以啟用音訊處理功能</string>
+    <string name="notification_request_permission_title">需要使用者動作以啟動 ToneForge</string>
+    <string name="notification_request_permission">授予 ToneForge 擷取權限以啟用音訊處理功能</string>
     <!-- Session control loss notifications -->
-    <string name="session_control_loss_toast">由於工作階段遺失，JamesDSP 已停止。請停用其他音效程式。</string>
-    <string name="session_control_loss_notification_title">音訊處理已停止，有另一個程式在干擾 JamesDSP。</string>
-    <string name="session_control_loss_notification">請停用其他的全域音效程式，再重新啟用 JamesDSP。</string>
+    <string name="session_control_loss_toast">由於工作階段遺失，ToneForge 已停止。請停用其他音效程式。</string>
+    <string name="session_control_loss_notification_title">音訊處理已停止，有另一個程式在干擾 ToneForge。</string>
+    <string name="session_control_loss_notification">請停用其他的全域音效程式，再重新啟用 ToneForge。</string>
     <!-- App compatibility issue notifications -->
     <string name="session_app_compat_toast">由於某個不相容的媒體應用程式，James已停止。請檢查通知以解決此問題。</string>
-    <string name="session_app_compat_notification_title">音訊處理已停止，有另一個程式在干擾 JamesDSP。</string>
+    <string name="session_app_compat_notification_title">音訊處理已停止，有另一個程式在干擾 ToneForge。</string>
     <string name="session_app_compat_notification">輕觸此通知以解決問題</string>
     <!-- Capture permission revoked notifications -->
-    <string name="capture_permission_revoked_toast">由於音訊擷取權限遭撤銷，JamesDSP 已停止。</string>
+    <string name="capture_permission_revoked_toast">由於音訊擷取權限遭撤銷，ToneForge 已停止。</string>
     <!-- General purpose -->
     <string name="install">安裝</string>
     <string name="update">更新</string>
@@ -166,7 +166,7 @@
     <string name="onboarding_back">返回</string>
     <string name="onboarding_next">下一步</string>
     <string name="onboarding_finish">完成</string>
-    <string name="onboarding_greeting">歡迎使用 RootlessJamesDSP！</string>
+    <string name="onboarding_greeting">歡迎使用 ToneForge！</string>
     <string name="onboarding_caption">這個助理將幫助您設定此應用程式。</string>
     <string name="onboarding_warning">目前，此應用程式尚未完成且不穩定。請注意，由於使用未設計給第三方使用的 Android API，因此在某些裝置上可能無法如預期般運作。</string>
     <string name="onboarding_fix_permissions_title">需要使用者動作</string>
@@ -225,21 +225,21 @@
     <string name="onboarding_perm_microphone_title">音訊擷取權限</string>
     <string name="onboarding_perm_microphone_caption">需要擷取內部音訊。硬體麥克風未啟動。</string>
     <string name="onboarding_perm_notification_title">通知權限</string>
-    <string name="onboarding_perm_notification_caption">需要接收重要的狀態更新和JamesDSP的處理狀態。</string>
+    <string name="onboarding_perm_notification_caption">需要接收重要的狀態更新和ToneForge的處理狀態。</string>
     <string name="onboarding_perm_cast_title">錄製或投放的權限</string>
     <string name="onboarding_perm_cast_caption">每次啟動時，您都會需要的授予此應用程式錄製或投放的權限。</string>
     <string name="onboarding_perm_missing_title">未授予所需權限</string>
     <string name="onboarding_perm_missing">授予全部所需的權限以繼續。\n若您不斷拒絕權存取，將需要手動在設定頁面中啟用。</string>
     <string name="onboarding_perm_diag">允許傳送統計資料</string>
     <string name="onboarding_perm_diag_caption">此應用程式會提交崩潰報告和其他診斷資料，包含活躍中的應用程式，以便能檢查錯誤，解決相容性問題。</string>
-    <string name="onboarding_finish_header">JamesDSP 設定完成！</string>
+    <string name="onboarding_finish_header">ToneForge 設定完成！</string>
     <string name="onboarding_finish_caption">若遇到任何問題，請見疑難排解選項。</string>
     <string name="limit_session_control_conflict_title">停用其他音效軟體</string>
     <string name="limit_session_control_conflict">其他使用 Android 內建動態處理效果的音效應用程式與本應用程式衝突。</string>
     <string name="limit_unsupported_apps_title">不支援的媒體應用程式</string>
     <string name="limit_unsupported_apps">禁止內部音訊擷取的應用程式將不予處理 (如：Spotify、Google Chrome)。</string>
     <string name="limit_hw_accel_title">硬體加速的音訊錯誤</string>
-    <string name="limit_hw_accel">以硬體加速播放的音訊 (快速軌道) 有時可能會導致音訊重疊，或使 JamesDSP 停止運作。請將有問題的音樂播放器新增至排除清單，以防止 JamesDSP 重新路由該播放器。</string>
+    <string name="limit_hw_accel">以硬體加速播放的音訊 (快速軌道) 有時可能會導致音訊重疊，或使 ToneForge 停止運作。請將有問題的音樂播放器新增至排除清單，以防止 ToneForge 重新路由該播放器。</string>
     <string name="limit_detect_delay_title">音訊階段偵測延遲</string>
     <string name="limit_detect_delay"><![CDATA[應用程式開啟新的媒體播放階段時，您可能會聽到音訊極短 (<250 毫秒) 的重複或切斷。]]></string>
     <string name="limit_latency_title">增加延遲時間</string>
@@ -275,7 +275,7 @@
     <string name="audio_format_enhanced_processing_off">增強處理已停用</string>
     <string name="audio_format_enhanced_processing_info_title">什麼是增強處理？</string>
     <string name="audio_format_enhanced_processing_info">輕觸以檢視說明</string>
-    <string name="audio_format_enhanced_processing_info_content">增強處理啟用時，您可以選擇性的停用某些應用程式，使其不被 JamesDSP 處理。從底部右下角的按鈕，選擇「排除的應用程式」，以存取此功能。\n\n傳統模式停用時，JamesDSP 會從每個應用程式接收廣播的音效。與傳統模式相比，這讓每個應用程式有自己對應的音效引擎，從而進行更精細的控制。由於傳統模式是一個已棄用的功能，啟用時會讓所有應用程式共用一個相同的處理引擎，因此不建議使用。\n\n但並非所有的程式都能在傳統模式停用時正常運作，您可以啟用增強處理以解決此問題。JamesDSP將不使用系統廣播，改用自動掃描取得媒體階段，以支援這些程式。</string>
+    <string name="audio_format_enhanced_processing_info_content">增強處理啟用時，您可以選擇性的停用某些應用程式，使其不被 ToneForge 處理。從底部右下角的按鈕，選擇「排除的應用程式」，以存取此功能。\n\n傳統模式停用時，ToneForge 會從每個應用程式接收廣播的音效。與傳統模式相比，這讓每個應用程式有自己對應的音效引擎，從而進行更精細的控制。由於傳統模式是一個已棄用的功能，啟用時會讓所有應用程式共用一個相同的處理引擎，因此不建議使用。\n\n但並非所有的程式都能在傳統模式停用時正常運作，您可以啟用增強處理以解決此問題。ToneForge將不使用系統廣播，改用自動掃描取得媒體階段，以支援這些程式。</string>
     <string name="audio_format_media_apps_need_restart">更改此設定後，您將需要重新啟動執行中的所有媒體程式以繼續處理音訊。</string>
     <string name="audio_format_summary">首選的音訊編碼，緩衝大小</string>
     <string name="audio_format_summary_root">傳統模式，增強處理</string>
@@ -297,7 +297,7 @@
     <!-- Theme names -->
     <string name="theme_default">預設</string>
     <!-- File library preference -->
-    <!-- JamesDSP engine messages -->
+    <!-- ToneForge engine messages -->
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">頻率響應</string>
     <string name="gep_add_node">新增</string>
@@ -321,3 +321,4 @@
     <!-- Multi-device profiles -->
     <!-- Root version check -->
 </resources>
+

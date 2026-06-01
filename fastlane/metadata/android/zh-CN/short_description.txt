@@ -1,1 +1,1 @@
-全系统 JamesDSP 用于未 Root 的 Android 设备的音频处理引擎。
+﻿全系统 ToneForge 用于未 Root 的 Android 设备的音频处理引擎。

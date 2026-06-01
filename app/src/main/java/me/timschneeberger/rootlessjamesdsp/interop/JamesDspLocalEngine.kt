@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import me.timschneeberger.rootlessjamesdsp.interop.structure.EelVmVariable
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.DspExecutionOrderStore
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sendLocalBroadcast
 import timber.log.Timber
 import java.util.Timer
@@ -21,12 +22,21 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
         get() = super.sampleRate
     override var enabled: Boolean = true
 
+    companion object {
+        var activeInstance: JamesDspLocalEngine? = null
+    }
+
     init {
+        activeInstance = this
+        DspExecutionOrderStore.applySavedOrder(context, handle)
         if(BenchmarkManager.hasBenchmarksCached())
             BenchmarkManager.loadBenchmarksFromCache()
     }
 
     override fun close() {
+        if (activeInstance == this) {
+            activeInstance = null
+        }
         val oldHandle = handle
         handle = 0
 
@@ -180,5 +190,15 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
     override fun freezeLiveprogExecution(freeze: Boolean)
     {
         JamesDspWrapper.freezeLiveprogExecution(handle, freeze)
+    }
+
+    override fun setSlider(index: Int, value: Double)
+    {
+        JamesDspWrapper.setSlider(handle, index, value)
+    }
+
+    fun setSystemVariables(volume: Float, volumeDb: Float, muted: Boolean, headset: Boolean, bluetooth: Boolean, route: Int)
+    {
+        JamesDspWrapper.setSystemVariables(handle, volume, volumeDb, if(muted) 1 else 0, if(headset) 1 else 0, if(bluetooth) 1 else 0, route)
     }
 }

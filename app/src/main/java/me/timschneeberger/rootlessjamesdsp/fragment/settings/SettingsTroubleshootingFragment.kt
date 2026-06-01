@@ -110,6 +110,11 @@ class SettingsTroubleshootingFragment : SettingsBaseFragment() {
         findPreference<EditTextPreference>(getString(R.string.key_session_continuous_polling_rate))?.setOnBindEditTextListener { editText ->
             editText.inputType = InputType.TYPE_CLASS_NUMBER
         }
+
+        // Hide debug tools in release builds
+        if (!BuildConfig.DEBUG) {
+            findPreference<androidx.preference.PreferenceCategory>("category_debug")?.isVisible = false
+        }
     }
 
     companion object {

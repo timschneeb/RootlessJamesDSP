@@ -52,44 +52,41 @@ class EelListProperty(
         }
 
         override val definitionRegex =
-            """(?<var>\w+):(?<def>-?\d+\.?\d*)?<(?<min>-?\d+\.?\d*),(?<max>-?\d+\.?\d*),?(?<step>-?\d+\.?\d*)?\{(?<opt>[^\}]*)\}>(?<desc>[\s\S][^\n]*)""".toRegex()
+            """^\s*(?<var>\w+)\s*:\s*(?<def>-?\d+\.?\d*)?\s*<\s*(?<min>-?\d+\.?\d*)\s*,\s*(?<max>-?\d+\.?\d*)\s*,\s*(?<step>-?\d+\.?\d*)?\s*\{(?<opt>[^\}]*)\}\s*>\s*(?<desc>[\s\S][^\n]*)""".toRegex()
 
         @Suppress("UNUSED_VARIABLE")
         override fun parse(line: String, contents: String): EelBaseProperty? {
             val matchList = definitionRegex.find(line)
             val groupsList = matchList?.groups ?: return null
 
-            val key = groupsList[1]?.value
-            val def = groupsList[2]?.value
-            val min = groupsList[3]?.value
-            val max = groupsList[4]?.value
-            val step = groupsList[5]?.value ?: "1"
-            val opt = groupsList[6]?.value
-            val desc = groupsList[7]?.value?.trim()
+            val key = groupsList["var"]?.value
+            val def = groupsList["def"]?.value
+            val min = groupsList["min"]?.value
+            val max = groupsList["max"]?.value
+            val step = groupsList["step"]?.value ?: "1"
+            val opt = groupsList["opt"]?.value
+            val desc = groupsList["desc"]?.value?.trim()
 
             if (key == null || desc == null || min == null || max == null || opt == null) {
                 return null
             }
 
-            val current = findVariable(key, contents)
-            if (current == null) {
-                Timber.e("Failed to find current value of list option parameter (key=$key)")
-                return null
-            }
+            // Decouple discovery from assignments: use declared default or 0
+            val current = def?.toIntOrNull() ?: 0
 
             try {
                 return EelListProperty(
                     key,
                     desc,
-                    def?.toInt(),
+                    def?.toIntOrNull(),
                     current,
                     min.toInt(),
                     max.toInt(),
                     1,
                     opt.split(',').map(String::trim)
-                ).also { Timber.d("Found list option property: $it") }
+                ).also { Timber.d("EelParser: Found list option parameter: $it") }
             } catch (ex: NumberFormatException) {
-                Timber.e("Failed to parse list option parameter (key=$key)")
+                Timber.e("EelParser: Failed to parse list option parameter (key=$key)")
                 Timber.e(ex)
             }
             return null

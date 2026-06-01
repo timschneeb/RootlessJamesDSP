@@ -1,5 +1,6 @@
 package me.timschneeberger.rootlessjamesdsp.interop
 
+import me.timschneeberger.rootlessjamesdsp.interop.structure.DspModule
 import me.timschneeberger.rootlessjamesdsp.interop.structure.EelVmVariable
 import me.timschneeberger.rootlessjamesdsp.model.ProcessorMessage
 
@@ -45,6 +46,13 @@ object JamesDspWrapper {
     external fun enumerateEelVariables(self: JamesDspHandle): ArrayList<EelVmVariable>
     external fun manipulateEelVariable(self: JamesDspHandle, name: String, value: Float): Boolean
     external fun freezeLiveprogExecution(self: JamesDspHandle, freeze: Boolean)
+    external fun setExecutionOrder(self: JamesDspHandle, order: IntArray): Boolean
+    external fun resetExecutionOrder(self: JamesDspHandle)
+    external fun getExecutionOrder(self: JamesDspHandle): IntArray
+    external fun setSlider(self: JamesDspHandle, index: Int, value: Double)
+    external fun setSystemVariables(self: JamesDspHandle, volume: Float, volumeDb: Float, muted: Int, headset: Int, bluetooth: Int, route: Int)
+    external fun getModules(self: JamesDspHandle): ArrayList<DspModule>
+    external fun debugTestExecutionOrder(self: JamesDspHandle)
     external fun eelErrorCodeToString(errorCode: Int): String
 
     // Callbacks

@@ -1,6 +1,6 @@
 #include <android/log.h>
 
-#define TAG "JamesDspWrapper_JNI"
+#define TAG "ToneForgeWrapper_JNI"
 #include <Log.h>
 
 #include <string>
@@ -9,6 +9,7 @@
 #include "JamesDspWrapper.h"
 #include "JArrayList.h"
 #include "EelVmVariable.h"
+#include "DspModule.h"
 
 extern "C" {
 #include "../EELStdOutExtension.h"
@@ -326,7 +327,10 @@ extern "C" JNIEXPORT jboolean JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setLimiter(JNIEnv *env, jobject obj, jlong self, jfloat threshold, jfloat release)
 {
     DECLARE_DSP_B
+    // Call legacy setter to update coefficients in jdsp struct
     JLimiterSetCoefficients(dsp, threshold, release);
+    // Sync snapshot to make it visible to audio thread
+    JamesDSPRefreshState(dsp);
     return true;
 }
 
@@ -335,6 +339,7 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setPostGain(JNI
 {
     DECLARE_DSP_B
     JamesDSPSetPostGain(dsp, gain);
+    // JamesDSPSetPostGain now handles snapshot update internally
     return true;
 }
 
@@ -370,6 +375,7 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setMultiEqualiz
     {
         MultimodalEqualizerDisable(dsp);
     }
+    JamesDSPRefreshState(dsp);
     return true;
 }
 
@@ -520,6 +526,7 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setGraphicEq(JN
     else
         ArbitraryResponseEqualizerDisable(dsp);
 
+    JamesDSPRefreshState(dsp);
     return true;
 }
 
@@ -575,6 +582,7 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setStereoEnhanc
     {
         StereoEnhancementEnable(dsp);
     }
+    JamesDSPRefreshState(dsp);
     return true;
 }
 
@@ -592,6 +600,7 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setVacuumTube(J
     {
         VacuumTubeDisable(dsp);
     }
+    JamesDSPRefreshState(dsp);
     return true;
 }
 
@@ -639,6 +648,8 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setLiveprog(JNI
         LiveProgEnable(dsp);
     else
         LiveProgDisable(dsp);
+
+    JamesDSPRefreshState(dsp);
     return true;
 }
 
@@ -732,6 +743,116 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_eelErrorCodeToS
                                                                                      jint error_code)
 {
     return env->NewStringUTF(checkErrorCode(error_code));
+}
+
+extern "C" JNIEXPORT void JNICALL
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setSlider(JNIEnv *env, jobject obj, jlong self, jint index, jdouble value)
+{
+    DECLARE_DSP_V
+    int slot = (int)index;
+    if (slot >= 0 && slot < JDSP_EEL_SLIDER_COUNT)
+    {
+        slot = dsp->eel.sliderMapping[slot];
+    }
+    JamesDSPSetSlider(dsp, slot, (double)value);
+}
+
+extern "C" JNIEXPORT void JNICALL
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setSystemVariables(JNIEnv *env, jobject obj, jlong self,
+    jfloat volume, jfloat volume_db, jint muted, jint headset, jint bluetooth, jint route)
+{
+    DECLARE_DSP_V
+    JamesDSPSetSystemVariables(dsp, volume, volume_db, muted, headset, bluetooth, route);
+}
+
+extern "C" JNIEXPORT jboolean JNICALL
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setExecutionOrder(JNIEnv *env, jobject obj, jlong self, jintArray order)
+{
+    DECLARE_DSP_B
+    jsize len = env->GetArrayLength(order);
+    if (len > 16)
+    {
+        LOGE("JamesDspWrapper::setExecutionOrder: Order array too long (%d > 16)", (int)len);
+        return false;
+    }
+
+    jint *nativeOrder = env->GetIntArrayElements(order, nullptr);
+    int ret = JamesDSPSetExecutionOrder(dsp, (const int*)nativeOrder, (int)len);
+    env->ReleaseIntArrayElements(order, nativeOrder, JNI_ABORT);
+
+    return ret == 0;
+}
+
+extern "C" JNIEXPORT void JNICALL
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_resetExecutionOrder(JNIEnv *env, jobject obj, jlong self)
+{
+    DECLARE_DSP_V
+    JamesDSPResetExecutionOrder(dsp);
+}
+
+extern "C" JNIEXPORT jintArray JNICALL
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_getExecutionOrder(JNIEnv *env, jobject obj, jlong self)
+{
+    DECLARE_DSP(nullptr)
+    int order[16];
+    int count = JamesDSPGetExecutionOrder(dsp, order, 16);
+
+    jintArray result = env->NewIntArray(count);
+    env->SetIntArrayRegion(result, 0, count, (const jint*)order);
+    return result;
+}
+
+extern "C" JNIEXPORT jobject JNICALL
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_getModules(JNIEnv *env, jobject obj, jlong self)
+{
+    auto array = JArrayList(env);
+
+    // Return empty array if DECLARE failed
+    DECLARE_DSP(array.getJavaReference())
+
+    int count = JamesDSPGetModuleCount();
+    for (int i = 0; i < count; i++)
+    {
+        const char *internalName;
+        const char *displayName;
+        int enabled;
+        int requiresLock;
+        if (JamesDSPGetModuleInfo(dsp, i, &internalName, &displayName, &enabled, &requiresLock) == 0)
+        {
+            auto module = DspModule(env, i, internalName, displayName, enabled != 0, requiresLock != 0);
+            array.add(module.getJavaReference());
+        }
+    }
+
+    return array.getJavaReference();
+}
+
+extern "C" JNIEXPORT void JNICALL
+Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_debugTestExecutionOrder(JNIEnv *env, jobject obj, jlong self)
+{
+#ifndef NDEBUG
+    DECLARE_DSP_V
+    LOGD("DSP order test: begin");
+    int initialOrder[16];
+    int count = JamesDSPGetExecutionOrder(dsp, initialOrder, 16);
+    LOGD("DSP order test: default count = %d", count);
+    if (count >= 2) {
+        // Test: Swap first two modules
+        int temp = initialOrder[0];
+        initialOrder[0] = initialOrder[1];
+        initialOrder[1] = temp;
+        int testRet = JamesDSPSetExecutionOrder(dsp, initialOrder, count);
+        LOGD("DSP order test: set result = %d", testRet);
+
+        int verifyOrder[16];
+        JamesDSPGetExecutionOrder(dsp, verifyOrder, 16);
+        LOGD("DSP order test: verified order = [%d, %d, ...]", verifyOrder[0], verifyOrder[1]);
+
+        JamesDSPResetExecutionOrder(dsp);
+        LOGD("DSP order test: reset result = 0");
+    }
+    LOGD("DSP order test: end");
+#endif
 }
 
 void receiveLiveprogStdOut(const char *buffer, void* userData)

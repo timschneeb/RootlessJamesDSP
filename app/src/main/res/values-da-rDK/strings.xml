@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
     <string name="action_settings">Indstillinger</string>
@@ -20,7 +20,7 @@
     <string name="title_activity_settings">Indstillinger</string>
     <!-- Theme names -->
     <!-- File library preference -->
-    <!-- JamesDSP engine messages -->
+    <!-- ToneForge engine messages -->
     <!-- GraphicEQ editor -->
     <!-- AutoEQ GraphicEQ selector -->
     <!-- Customizable liveprog script parameters -->
@@ -41,3 +41,4 @@
     <!-- Multi-device profiles -->
     <!-- Root version check -->
 </resources>
+

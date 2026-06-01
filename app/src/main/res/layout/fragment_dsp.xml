@@ -5,6 +5,7 @@
     android:id="@+id/dsp_scrollview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipToPadding="false"
     tools:context=".fragment.DspFragment"
     tools:ignore="SpeakableTextPresentCheck">
 
@@ -16,7 +17,7 @@
         android:divider="@drawable/shape_card_divider"
         android:orientation="vertical"
         android:paddingTop="4dp"
-        android:paddingBottom="16dp"
+        android:paddingBottom="100dp"
         android:showDividers="middle">
 
         <me.timschneeberger.rootlessjamesdsp.view.Card
@@ -193,8 +194,7 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="1dp"
-            android:layout_marginBottom="?attr/actionBarSize">
+            android:layout_marginHorizontal="1dp">
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/card_reverb"

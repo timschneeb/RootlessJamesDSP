@@ -78,6 +78,8 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
     // Processing
     private var recreateRecorderRequested = false
     private var recorderThread: Thread? = null
+    private var audioRecord: AudioRecord? = null
+    private var audioTrack: AudioTrack? = null
     private lateinit var engine: JamesDspLocalEngine
     private val isRunning: Boolean
         get() = recorderThread != null
@@ -130,6 +132,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         // Setup core engine
         engine = JamesDspLocalEngine(this, ProcessorMessageHandler())
         engine.syncWithPreferences()
+        syncSystemVariables()
 
         // Setup general-purpose broadcast receiver
         val filter = IntentFilter()
@@ -139,6 +142,14 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         filter.addAction(ACTION_SERVICE_HARD_REBOOT_CORE)
         filter.addAction(ACTION_SERVICE_SOFT_REBOOT_CORE)
         registerLocalReceiver(broadcastReceiver, filter)
+
+        // Setup system event receiver
+        val systemFilter = IntentFilter()
+        systemFilter.addAction(AudioManager.ACTION_AUDIO_BECOMING_NOISY)
+        systemFilter.addAction(Intent.ACTION_HEADSET_PLUG)
+        systemFilter.addAction("android.media.VOLUME_CHANGED_ACTION")
+        systemFilter.addAction("android.media.STREAM_MUTE_CHANGED_ACTION")
+        registerReceiver(systemReceiver, systemFilter)
 
         // Setup shared preferences
         preferences.registerOnSharedPreferenceChangeListener(preferencesListener)
@@ -235,10 +246,15 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
 
         // Unregister receivers and release resources
         unregisterLocalReceiver(broadcastReceiver)
+        try {
+            unregisterReceiver(systemReceiver)
+        } catch (e: Exception) {
+            // Ignore
+        }
         mediaProjection?.unregisterCallback(projectionCallback)
+        mediaProjection?.stop()
         mediaProjection = null
 
-        sessionManager.sessionPolicyDatabase.unregisterOnRestrictedSessionChangeListener(onSessionPolicyChangeListener)
         sessionManager.sessionDatabase.unregisterOnSessionChangeListener(onSessionChangeListener)
         sessionManager.destroy()
 
@@ -290,6 +306,63 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
                 ACTION_SERVICE_SOFT_REBOOT_CORE -> requestAudioRecordRecreation()
             }
         }
+    }
+
+    private val systemReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            syncSystemVariables()
+        }
+    }
+
+    private fun syncSystemVariables() {
+        if (!::engine.isInitialized) return
+
+        val streamType = AudioManager.STREAM_MUSIC
+        val currentVolume = audioManager.getStreamVolume(streamType)
+        val maxVolume = audioManager.getStreamMaxVolume(streamType)
+        val normalizedVolume = if (maxVolume > 0) currentVolume.toFloat() / maxVolume.toFloat() else 0f
+        
+        val volumeDb = if (normalizedVolume > 0f) {
+            20f * kotlin.math.log10(normalizedVolume.coerceAtLeast(0.000001f))
+        } else {
+            -120f
+        }
+
+        val isMuted = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            audioManager.isStreamMute(streamType)
+        } else {
+            currentVolume == 0
+        }
+
+        // Determine route
+        val devices = audioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS)
+        var headsetConnected = false
+        var bluetoothConnected = false
+        var route = 0 // 0: Speaker, 1: Headset, 2: Bluetooth
+
+        for (device in devices) {
+            when (device.type) {
+                android.media.AudioDeviceInfo.TYPE_WIRED_HEADSET,
+                android.media.AudioDeviceInfo.TYPE_WIRED_HEADPHONES -> {
+                    headsetConnected = true
+                    route = 1
+                }
+                android.media.AudioDeviceInfo.TYPE_BLUETOOTH_A2DP,
+                android.media.AudioDeviceInfo.TYPE_BLUETOOTH_SCO -> {
+                    bluetoothConnected = true
+                    route = 2
+                }
+            }
+        }
+
+        engine.setSystemVariables(
+            normalizedVolume,
+            volumeDb,
+            isMuted,
+            headsetConnected,
+            bluetoothConnected,
+            route
+        )
     }
 
     // Session loss listener
@@ -438,11 +511,9 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
                 "HAL buffer size (bytes): ${determineBufferSize()}")
 
         // Create recorder and track
-        var recorder: AudioRecord
-        val track: AudioTrack
         try {
-            recorder = buildAudioRecord(encodingFormat, sampleRate, bufferSizeBytes)
-            track = buildAudioTrack(encodingFormat, sampleRate, bufferSizeBytes)
+            audioRecord = buildAudioRecord(encodingFormat, sampleRate, bufferSizeBytes)
+            audioTrack = buildAudioTrack(encodingFormat, sampleRate, bufferSizeBytes)
         }
         catch(ex: Exception) {
             Timber.e("Failed to create initial audio record/track")
@@ -466,6 +537,14 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
                 val shortBuffer = ShortArray(bufferSize)
                 val shortOutBuffer = ShortArray(bufferSize)
                 while (!isProcessorDisposing) {
+                    val recorder = audioRecord
+                    val track = audioTrack
+
+                    if(recorder == null || track == null) {
+                        Timber.e("recorder or track is null in processing loop")
+                        break
+                    }
+
                     if(recreateRecorderRequested) {
                         recreateRecorderRequested = false
                         Timber.d("Recreating recorder without stopping thread...")
@@ -483,8 +562,9 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
                         }
 
                         // Recreate recorder with new AudioPlaybackRecordingConfiguration
-                        recorder = buildAudioRecord(encodingFormat, sampleRate, bufferSizeBytes)
+                        audioRecord = buildAudioRecord(encodingFormat, sampleRate, bufferSizeBytes)
                         Timber.d("Recorder recreated")
+                        continue
                     }
 
                     // Suspend core while idle
@@ -517,14 +597,18 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
 
                     // Choose encoding and process data
                     if(encoding == AudioEncoding.PcmShort) {
-                        recorder.read(shortBuffer, 0, shortBuffer.size, AudioRecord.READ_BLOCKING)
-                        engine.processInt16(shortBuffer, shortOutBuffer)
-                        track.write(shortOutBuffer, 0, shortOutBuffer.size, AudioTrack.WRITE_BLOCKING)
+                        val read = recorder.read(shortBuffer, 0, shortBuffer.size, AudioRecord.READ_BLOCKING)
+                        if (read > 0) {
+                            engine.processInt16(shortBuffer, shortOutBuffer)
+                            track.write(shortOutBuffer, 0, shortOutBuffer.size, AudioTrack.WRITE_BLOCKING)
+                        }
                     }
                     else {
-                        recorder.read(floatBuffer, 0, floatBuffer.size, AudioRecord.READ_BLOCKING)
-                        engine.processFloat(floatBuffer, floatOutBuffer)
-                        track.write(floatOutBuffer, 0, floatOutBuffer.size, AudioTrack.WRITE_BLOCKING)
+                        val read = recorder.read(floatBuffer, 0, floatBuffer.size, AudioRecord.READ_BLOCKING)
+                        if (read > 0) {
+                            engine.processFloat(floatBuffer, floatOutBuffer)
+                            track.write(floatOutBuffer, 0, floatOutBuffer.size, AudioTrack.WRITE_BLOCKING)
+                        }
                     }
                 }
             } catch (e: IOException) {
@@ -536,15 +620,20 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
                 stopSelf()
             } finally {
                 // Clean up recorder and track
-                if(recorder.state != AudioRecord.STATE_UNINITIALIZED) {
-                    recorder.stop()
+                audioRecord?.let {
+                    if(it.state != AudioRecord.STATE_UNINITIALIZED) {
+                        it.stop()
+                    }
+                    it.release()
                 }
-                if(track.state != AudioTrack.STATE_UNINITIALIZED) {
-                    track.stop()
+                audioTrack?.let {
+                    if(it.state != AudioTrack.STATE_UNINITIALIZED) {
+                        it.stop()
+                    }
+                    it.release()
                 }
-
-                recorder.release()
-                track.release()
+                audioRecord = null
+                audioTrack = null
             }
         }
         recorderThread!!.start()
@@ -552,10 +641,13 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
 
     // Terminate recording thread
     fun stopRecording() {
+        isProcessorDisposing = true
+        audioRecord?.stop()
+        audioTrack?.stop()
+
         if (recorderThread != null) {
-            isProcessorDisposing = true
             recorderThread!!.interrupt()
-            recorderThread!!.join(500)
+            recorderThread!!.join(1000)
             recorderThread = null
         }
     }

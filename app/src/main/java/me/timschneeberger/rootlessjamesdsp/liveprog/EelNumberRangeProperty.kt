@@ -69,6 +69,8 @@ open class EelNumberRangeProperty<T:Number>(
         return replaceVariable(key, valueAsString(), contents)
     }
 
+    override fun getNumericValue(): Double = value.toDouble()
+
     override fun toString(): String {
         return "key=$key; desc=$description; value=$value; handleAsInt=${handleAsInt()}; default=$default; min=$minimum; max=$maximum; step=$step"
     }
@@ -94,29 +96,26 @@ open class EelNumberRangeProperty<T:Number>(
         }
 
         override val definitionRegex =
-            """(?<var>\w+):(?<def>-?\d+\.?\d*)?<(?<min>-?\d+\.?\d*),(?<max>-?\d+\.?\d*),?(?<step>-?\d+\.?\d*)?>(?<desc>[\s\S][^\n]*)""".toRegex()
+            """^\s*(?<var>\w+)\s*:\s*(?<def>-?\d+\.?\d*)?\s*<\s*(?<min>-?\d+\.?\d*)\s*,\s*(?<max>-?\d+\.?\d*)\s*,\s*(?<step>-?\d+\.?\d*)?\s*>\s*(?<desc>[\s\S][^\n]*)""".toRegex()
 
         override fun parse(line: String, contents: String): EelBaseProperty? {
             val matchRange = definitionRegex.find(line)
             val groupsRange = matchRange?.groups
             groupsRange ?: return null
 
-            val key = groupsRange[1]?.value
-            val def = groupsRange[2]?.value
-            val min = groupsRange[3]?.value
-            val max = groupsRange[4]?.value
-            val step = groupsRange[5]?.value ?: "0.1"
-            val desc = groupsRange[6]?.value?.trim()
+            val key = groupsRange["var"]?.value
+            val def = groupsRange["def"]?.value
+            val min = groupsRange["min"]?.value
+            val max = groupsRange["max"]?.value
+            val step = groupsRange["step"]?.value ?: "0.1"
+            val desc = groupsRange["desc"]?.value?.trim()
 
             if (key == null || desc == null || min == null || max == null) {
                 return null
             }
 
-            val current = findVariable(key, contents)
-            if (current == null) {
-                Timber.e("Failed to find current value of number range parameter (key=$key)")
-                return null
-            }
+            // Decouple discovery from assignments: use declared default or 0.0
+            val current = def?.toFloatOrNull() ?: 0.0f
 
             try {
                 return EelNumberRangeProperty(
@@ -126,10 +125,10 @@ open class EelNumberRangeProperty<T:Number>(
                     current,
                     min.toFloat(),
                     max.toFloat(),
-                    step.toFloatOrNull() ?: 0.1
-                ).also { Timber.d("Found number range property: $it") }
+                    step.toFloatOrNull() ?: 0.1f
+                ).also { Timber.d("EelParser: Found number range parameter: $it") }
             } catch (ex: NumberFormatException) {
-                Timber.e("Failed to parse number range parameter (key=$key)")
+                Timber.e("EelParser: Failed to parse number range parameter (key=$key)")
                 Timber.e(ex)
             }
             return null

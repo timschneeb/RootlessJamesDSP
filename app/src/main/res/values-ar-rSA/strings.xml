@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
     <string name="action_settings"></string>
@@ -22,20 +22,20 @@
     <string name="notification_idle">معالجة الصوت خاملة</string>
     <string name="notification_processing_title">معالجة الصوت نشطة</string>
     <string name="notification_processing_disabled_title">معالجة الصوت معطلة</string>
-    <string name="notification_processing_legacy">اضغط لفتح مدير JamesDSP</string>
+    <string name="notification_processing_legacy">اضغط لفتح مدير ToneForge</string>
     <!-- Permission request notifications -->
-    <string name="notification_request_permission_title">إجراء المستخدم مطلوب لتشغيل JamesDSP</string>
-    <string name="notification_request_permission">انقر لمنح إذن التقاط وتمكين معالجة صوت JamesDSP</string>
+    <string name="notification_request_permission_title">إجراء المستخدم مطلوب لتشغيل ToneForge</string>
+    <string name="notification_request_permission">انقر لمنح إذن التقاط وتمكين معالجة صوت ToneForge</string>
     <!-- Session control loss notifications -->
     <string name="session_control_loss_toast">توقف جيمس Dsp بسبب فقدان التحكم في جلسة الصوت. الرجاء تعطيل تطبيقات تأثير الصوت الأخرى.</string>
-    <string name="session_control_loss_notification_title">توقفت معالجة الصوت. وهناك تطبيق آخر يتدخل مع JamesDSP.</string>
-    <string name="session_control_loss_notification">الرجاء تعطيل جميع التطبيقات الأخرى التي توفر تأثيرات صوتية عالمية قبل إعادة تمكين JamesDSP.</string>
+    <string name="session_control_loss_notification_title">توقفت معالجة الصوت. وهناك تطبيق آخر يتدخل مع ToneForge.</string>
+    <string name="session_control_loss_notification">الرجاء تعطيل جميع التطبيقات الأخرى التي توفر تأثيرات صوتية عالمية قبل إعادة تمكين ToneForge.</string>
     <!-- App compatibility issue notifications -->
-    <string name="session_app_compat_toast">توقف JamesDSP بسبب تطبيق الوسائط غير المتوافقة. الرجاء التحقق من الإشعار لحل هذه المشكلة.</string>
-    <string name="session_app_compat_notification_title">توقفت معالجة الصوت. وهناك تطبيق آخر يتدخل مع JamesDSP.</string>
+    <string name="session_app_compat_toast">توقف ToneForge بسبب تطبيق الوسائط غير المتوافقة. الرجاء التحقق من الإشعار لحل هذه المشكلة.</string>
+    <string name="session_app_compat_notification_title">توقفت معالجة الصوت. وهناك تطبيق آخر يتدخل مع ToneForge.</string>
     <string name="session_app_compat_notification">اضغط على هذا الإشعار لحل المشكلة.</string>
     <!-- Capture permission revoked notifications -->
-    <string name="capture_permission_revoked_toast">تم إيقاف JamesDSP بسبب إلغاء إذن التقاط الصوت.</string>
+    <string name="capture_permission_revoked_toast">تم إيقاف ToneForge بسبب إلغاء إذن التقاط الصوت.</string>
     <!-- General purpose -->
     <string name="install">تثبيت</string>
     <string name="update">تحديث</string>
@@ -166,7 +166,7 @@
     <string name="onboarding_back">رجوع</string>
     <string name="onboarding_next">التالي</string>
     <string name="onboarding_finish">إنهاء</string>
-    <string name="onboarding_greeting">مرحبا بك في RootlessJamesDSP!</string>
+    <string name="onboarding_greeting">مرحبا بك في ToneForge!</string>
     <string name="onboarding_caption">سيساعدك هذا المساعد في إعداد هذا التطبيق.</string>
     <string name="onboarding_warning">وهذا التطبيق غير مكتمل وغير مستقر في الوقت الحالي. يرجى ملاحظة أنه قد لا يعمل على بعض الأجهزة كما هو متوقع لأنه يستخدم أندرويد APIs غير مصممة للاستخدام من قبل أطراف ثالثة.</string>
     <string name="onboarding_fix_permissions_title">مطلوب إجراء من المستخدم</string>
@@ -225,21 +225,21 @@
     <string name="onboarding_perm_microphone_title">إذن تسجيل الصوت</string>
     <string name="onboarding_perm_microphone_caption">مطلوب لتسجيل الصوت الداخلي. لم يتم تنشيط ميكروفون الجهاز.</string>
     <string name="onboarding_perm_notification_title">إذن الإشعارات</string>
-    <string name="onboarding_perm_notification_caption">مطلوب لتلقي معلومات مستكملة هامة عن الحالة ومعلومات عن حالة التجهيز JamesDSP.</string>
+    <string name="onboarding_perm_notification_caption">مطلوب لتلقي معلومات مستكملة هامة عن الحالة ومعلومات عن حالة التجهيز ToneForge.</string>
     <string name="onboarding_perm_cast_title">صلاحية البث/التسجيل</string>
     <string name="onboarding_perm_cast_caption">تحتاج إلى منح هذا التطبيق إذن تسجيل محتوى الصوت في كل مرة يتم تشغيله.</string>
     <string name="onboarding_perm_missing_title">لم يتم منح أذونات وقت تشغيل</string>
     <string name="onboarding_perm_missing">الرجاء منح جميع أذونات وقت التشغيل المطلوبة للمتابعة.\nإذا كنت ترفض الأذونات مراراً، تحتاج إلى منحها يدوياً في إعدادات النظام.</string>
     <string name="onboarding_perm_diag">السماح بإرسال تقارير التشخيص</string>
     <string name="onboarding_perm_diag_caption">يقدم هذا التطبيق تقارير الأعطال والبيانات التشخيصية الأخرى، بما في ذلك المعلومات حول التطبيقات النشطة الأخرى، للسماح لي باكتشاف وحل مشاكل التوافق و الأخطاء أسهل.</string>
-    <string name="onboarding_finish_header">تم إعداد JamesDSP!</string>
+    <string name="onboarding_finish_header">تم إعداد ToneForge!</string>
     <string name="onboarding_finish_caption">إذا واجهت أي مشكلة، يرجى زيارة خيارات استكشاف الأخطاء.</string>
     <string name="limit_session_control_conflict_title">تعطيل تطبيقات تأثير الصوت الأخرى</string>
     <string name="limit_session_control_conflict">تطبيقات التأثير الصوتي باستخدام تأثير المعالجة الديناميكية المدمج في اندرويد يتداخل مع هذا التطبيق.</string>
     <string name="limit_unsupported_apps_title">تطبيقات الوسائط غير المدعومة</string>
     <string name="limit_unsupported_apps">التطبيقات التي تمنع التقاط الصوت الداخلي تبقى غير معالجة (على سبيل المثال Spotify، Google Chrome).</string>
     <string name="limit_hw_accel_title">مشكلات التشغيل الصوتي المعالج بالعتاد</string>
-    <string name="limit_hw_accel">قد يؤدي تشغيل الصوت العتادي HW (المسارات السريعة) في بعض الأحيان إلى تكرار الصوت أو قتل JamesDSP في بعض الظروف. الرجاء إضافة مشغل الموسيقى المتأثر إلى قائمة التطبيقات المستبعدة لمنع James DSP من تغيير توجيهه.</string>
+    <string name="limit_hw_accel">قد يؤدي تشغيل الصوت العتادي HW (المسارات السريعة) في بعض الأحيان إلى تكرار الصوت أو قتل ToneForge في بعض الظروف. الرجاء إضافة مشغل الموسيقى المتأثر إلى قائمة التطبيقات المستبعدة لمنع James DSP من تغيير توجيهه.</string>
     <string name="limit_detect_delay_title">تأخير اكتشاف جلسة الصوت</string>
     <string name="limit_detect_delay"><![CDATA[بعد أن فتح أحد التطبيقات جلسة إعلامية جديدة لتشغيل الصوت، يمكنك سماع صوت مكرر أو مقطع لفترة قصيرة جدا (حوالي أقل من 250 ملي ثانية).]]></string>
     <string name="limit_latency_title">زيادة التأخير</string>
@@ -275,7 +275,7 @@
     <string name="audio_format_enhanced_processing_off">المعالجة المحسنة معطلة</string>
     <string name="audio_format_enhanced_processing_info_title">ما هو تحسين المعالجة؟</string>
     <string name="audio_format_enhanced_processing_info">انقر لعرض المستندات</string>
-    <string name="audio_format_enhanced_processing_info_content">عند تمكين المعالجة المعززة، يمكنك استبعاد بعض التطبيقات بشكل انتقائي من المعالجة من قبل JamesDSP. استخدم قائمة 3 نقاط في أسفل الزاوية اليمنى وحدد \'التطبيقات المستثناة\' للوصول إلى هذه الميزة.\n\nبينما يتم تعطيل الوضع القديم، يعتمد JamesDSP على تطبيقات الوسائط لإرسال بث النظام عند بدء التشغيل. هذه ميزة على الوضع القديم لأن كل تطبيق يحصل على محرك تأثير JamesDSP الخاص به والذي تم تعيينه له، والذي يسمح بتحكم أكثر دقة بالحبوب. وبخلاف ذلك، مع تشغيل الوضع القديم، ستشارك جميع التطبيقات محرك معالجة واحد، الذي يهمه أندرويد ولا ينبغي استخدامه بعد الآن.\n\nلسوء الحظ، ليست كل تطبيقات الوسائط تفعل ذلك بشكل صحيح، وبالتالي لن تعمل بشكل صحيح مع تعطيل الوضع القديم. لحل هذه المشكلة، يمكنك تمكين المعالجة المعززة. وبدلا من الاعتماد على البث الشبكي في جلسات الوسائط ااجديدة، سيقوم JamesDSP بالفحص الاستباقي لجلسات الوسائط بنفسه وسيسمح بالدعم المناسب للتطبيقات الاعلامية غير المتعاونة.</string>
+    <string name="audio_format_enhanced_processing_info_content">عند تمكين المعالجة المعززة، يمكنك استبعاد بعض التطبيقات بشكل انتقائي من المعالجة من قبل ToneForge. استخدم قائمة 3 نقاط في أسفل الزاوية اليمنى وحدد \'التطبيقات المستثناة\' للوصول إلى هذه الميزة.\n\nبينما يتم تعطيل الوضع القديم، يعتمد ToneForge على تطبيقات الوسائط لإرسال بث النظام عند بدء التشغيل. هذه ميزة على الوضع القديم لأن كل تطبيق يحصل على محرك تأثير ToneForge الخاص به والذي تم تعيينه له، والذي يسمح بتحكم أكثر دقة بالحبوب. وبخلاف ذلك، مع تشغيل الوضع القديم، ستشارك جميع التطبيقات محرك معالجة واحد، الذي يهمه أندرويد ولا ينبغي استخدامه بعد الآن.\n\nلسوء الحظ، ليست كل تطبيقات الوسائط تفعل ذلك بشكل صحيح، وبالتالي لن تعمل بشكل صحيح مع تعطيل الوضع القديم. لحل هذه المشكلة، يمكنك تمكين المعالجة المعززة. وبدلا من الاعتماد على البث الشبكي في جلسات الوسائط ااجديدة، سيقوم ToneForge بالفحص الاستباقي لجلسات الوسائط بنفسه وسيسمح بالدعم المناسب للتطبيقات الاعلامية غير المتعاونة.</string>
     <string name="audio_format_media_apps_need_restart">تحتاج إلى إعادة تشغيل جميع تطبيقات الوسائط النشطة بعد تغيير هذا الإعداد لاستئناف معالجة الصوت.</string>
     <string name="audio_format_summary">الترميز الصوتي المفضل، حجم المخزن المؤقت</string>
     <string name="audio_format_summary_root">الوضع القديم، المعالجة المحسنة</string>
@@ -352,10 +352,10 @@
     <string name="credits">شكر وتقدير</string>
     <string name="translators">المترجمون</string>
     <string name="credits_app">تم تطوير التطبيق &amp; لتنفيذ بدون صلاحية الجذر بواسطة</string>
-    <string name="credits_dsp">مكتبة الخوارزمية الأساسية JamesDSP التي طورتها</string>
+    <string name="credits_dsp">مكتبة الخوارزمية الأساسية ToneForge التي طورتها</string>
     <string name="credits_project_page">زيارة موقع المشروع على GitHub</string>
     <string name="credits_project_page_summary">الإبلاغ عن المشكلات، الحفاظ على تحديثاتك، وقراءة رمز المصدر</string>
-    <string name="credits_project_play_page">زيارة RootlessJamesDSP على Google Play</string>
+    <string name="credits_project_play_page">زيارة ToneForge على Google Play</string>
     <string name="credits_project_play_page_summary">البحث عن تحديثات جديدة</string>
     <string name="credits_project_check_update">التحقق من وجود تحديثات جديدة…</string>
     <string name="credits_project_check_update_summary">تحميل وتثبيت التحديثات إذا كانت متاحة</string>
@@ -429,7 +429,7 @@
     <string name="filelibrary_preset_loaded">تم تحميل الإعداد المسبق \'%1$s\'</string>
     <string name="filelibrary_preset_load_failed">الملف \'%1$s\' غير متوافق مع هذا التطبيق</string>
     <string name="filelibrary_no_presets">لم يتم حفظ أي إعدادات مسبقة. انقر فوق \'إضافة\' لإنشاء إعداد جديد.</string>
-    <!-- JamesDSP engine messages -->
+    <!-- ToneForge engine messages -->
     <string name="message_vdc_corrupt">ملف VDC المحدد تالف. الرجاء اختيار ملف آخر.</string>
     <string name="message_irs_corrupt">استجابة الدافع المحددة تالفة. الرجاء اختيار واحدة أخرى.</string>
     <string name="message_convolver_advimp_invalid">الدوران: تحرير الشكل الموجي المتقدم يحتوي على قيم غير صالحة.</string>
@@ -486,8 +486,8 @@
     <string name="editor_find_previous_match">البحث عن تطابق سابق</string>
     <string name="editor_search_keyword">بحث</string>
     <string name="editor_source_position">%1$d:%2$d</string>
-    <string name="editor_engine_down_title">JamesDSP غير نشط</string>
-    <string name="editor_engine_down">لا يمكن تشغيل البرنامج النصي بسبب تعطيل JamesDSP. الرجاء تشغيل JamesDSP لتنفيذ البرامج النصية.</string>
+    <string name="editor_engine_down_title">ToneForge غير نشط</string>
+    <string name="editor_engine_down">لا يمكن تشغيل البرنامج النصي بسبب تعطيل ToneForge. الرجاء تشغيل ToneForge لتنفيذ البرامج النصية.</string>
     <string name="editor_save_prompt_title">هل تريد حفظ التغييرات؟</string>
     <string name="editor_save_prompt">يحتوي البرنامج النصي الحالي على تغييرات غير محفوظة. هل تريد حفظ التغييرات الخاصة بك أو تجاهلها؟</string>
     <string name="editor_script_launched">تم تشغيل البرنامج النصي</string>
@@ -507,8 +507,8 @@
     <string name="app_compat_retry">أعد المحاولة</string>
     <string name="app_compat_exclude">قائمة الإستثناء</string>
     <string name="app_compat_title">تم تعليق معالجة الصوت لمنع تكرار الصوت</string>
-    <string name="app_compat_explanation">التطبيق التالي غير مدعوم لأنه يتسبب في فقدان RootlessJamesDSP السيطرة على مسار الصوت الخاص به:</string>
-    <string name="app_compat_instruction">الرجاء التحقق من إعدادات التطبيق إذا كنت تستطيع تعطيل تسارع HW-أو الإعدادات الأخرى التي يمكن أن تتداخل مع RootlessJamesDSP وانقر على \"إعادة المحاولة\".</string>
+    <string name="app_compat_explanation">التطبيق التالي غير مدعوم لأنه يتسبب في فقدان ToneForge السيطرة على مسار الصوت الخاص به:</string>
+    <string name="app_compat_instruction">الرجاء التحقق من إعدادات التطبيق إذا كنت تستطيع تعطيل تسارع HW-أو الإعدادات الأخرى التي يمكن أن تتداخل مع ToneForge وانقر على \"إعادة المحاولة\".</string>
     <string name="app_compat_instruction_exclude">بدلاً من ذلك، حدد \'استبعاد\' لتجاوز هذه المشكلة عن طريق استبعاد التطبيق غير المتوافق من معالجة الصوت.</string>
     <string name="app_compat_unknown_pkg_name">اسم الحزمة غير معروف</string>
     <!-- Root: Library load failure -->
@@ -536,7 +536,7 @@
     <string name="slider_dialog_step_error">يجب أن تكون القيمة مضاعفا من %1$d. التغييرات غير مطبقة.</string>
     <!-- Revert confirmation -->
     <string name="revert_confirmation_title">هل أنت متأكد؟</string>
-    <string name="revert_confirmation">هل تريد إعادة تعيين الـ JamesDSP الحالي الخاص بك إلى القيم الافتراضية؟</string>
+    <string name="revert_confirmation">هل تريد إعادة تعيين الـ ToneForge الحالي الخاص بك إلى القيم الافتراضية؟</string>
     <!-- File intent handler -->
     <string name="intent_import_preset">استيراد الإعداد المسبق</string>
     <string name="intent_import_irs">إستيراد استجابة الدافع</string>
@@ -598,7 +598,8 @@
     <string name="device_profile_manage_copy_select">حدد ملف التعريف لنسخه</string>
     <string name="device_profile_manage_paste_select">حدد ملفات التعريف للكتابة فوقها</string>
     <!-- Root version check -->
-    <string name="version_mismatch_root">حزمة JamesDSP Magisk تتطلب تحديثاً</string>
-    <string name="version_mismatch_root_description">حزمة JamesDSP المثبتة على جهازك قديمة وغير مدعومة من هذا التطبيق بعد ذلك.\n\nيرجى استرداد أحدث حزمة مضغوطة JamesDSP وتثبيتها عبر Magisk.\nلاحظ أن حزمة الـ Magisk قد تستبدل هذا التطبيق بتطبيق الـ JamesDSP الرسمي\n\nهل تريد زيارة موقع تنزيل حزم Magisk الآن؟</string>
-    <string name="version_mismatch_root_toast">فشل البدء. حزمة جايسك JamesDSP المثبتة قديمة جداً وغير مدعومة من هذا التطبيق بعد الآن.</string>
+    <string name="version_mismatch_root">حزمة ToneForge Magisk تتطلب تحديثاً</string>
+    <string name="version_mismatch_root_description">حزمة ToneForge المثبتة على جهازك قديمة وغير مدعومة من هذا التطبيق بعد ذلك.\n\nيرجى استرداد أحدث حزمة مضغوطة ToneForge وتثبيتها عبر Magisk.\nلاحظ أن حزمة الـ Magisk قد تستبدل هذا التطبيق بتطبيق الـ ToneForge الرسمي\n\nهل تريد زيارة موقع تنزيل حزم Magisk الآن؟</string>
+    <string name="version_mismatch_root_toast">فشل البدء. حزمة جايسك ToneForge المثبتة قديمة جداً وغير مدعومة من هذا التطبيق بعد الآن.</string>
 </resources>
+

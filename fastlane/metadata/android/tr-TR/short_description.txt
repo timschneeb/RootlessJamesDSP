@@ -1,1 +1,1 @@
-Root'suz Android cihazlar için sistem çapında JamesDSP ses işleme motoru.
+﻿Root'suz Android cihazlar için sistem çapında ToneForge ses işleme motoru.

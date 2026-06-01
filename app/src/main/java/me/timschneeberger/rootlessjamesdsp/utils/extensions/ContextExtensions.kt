@@ -171,7 +171,7 @@ object ContextExtensions {
     private val PKGNAME_REFS = setOf("bWUudGltc2NobmVlYmVyZ2VyLnJvb3RsZXNzamFtZXNkc3A=",
         "bWUudGltc2NobmVlYmVyZ2VyLnJvb3RsZXNzamFtZXNkc3AuZGVidWc=",
         "amFtZXMuZHNw", "amFtZXMuZHNwLmRlYnVn")
-    private val APPNAME_REFS = setOf("Um9vdGxlc3NKYW1lc0RTUA==", "SmFtZXNEU1A=")
+    private val APPNAME_REFS = setOf("Um9vdGxlc3NKYW1lc0RTUA==", "SmFtZXNEU1A==", "VG9uZUZvcmdl", "VG9uZUZvcmdlIChSb290KQ==", "VG9uZUZvcmdlIERTUA==")
     fun Context.check(): Int {
         val appName = getAppName()
         if(isPlugin()) return 0
@@ -182,7 +182,11 @@ object ContextExtensions {
     }
 
     private fun decode(input: String): String {
-        return String(Base64.decode(input, 0), Charsets.UTF_8)
+        return try {
+            String(Base64.decode(input, 0), Charsets.UTF_8)
+        } catch (e: IllegalArgumentException) {
+            ""
+        }
     }
 
     fun Context.sendLocalBroadcast(intent: Intent) {

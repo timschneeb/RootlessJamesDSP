@@ -1,5 +1,5 @@
-<resources>
-    <string name="jamesdsp" translatable="false">JamesDSP</string>
+﻿<resources>
+    <string name="jamesdsp" translatable="false">ToneForge</string>
 
     <!-- Main menu bar -->
     <string name="action_settings">Settings</string>
@@ -25,24 +25,24 @@
     <string name="notification_idle">Audio processing idle</string>
     <string name="notification_processing_title">Audio processing active</string>
     <string name="notification_processing_disabled_title">Audio processing disabled</string>
-    <string name="notification_processing_legacy">Tap to open JamesDSP manager</string>
+    <string name="notification_processing_legacy">Tap to open ToneForge manager</string>
 
     <!-- Permission request notifications -->
-    <string name="notification_request_permission_title">User action is required to launch JamesDSP</string>
-    <string name="notification_request_permission">Tap to grant capture permission and enable JamesDSP\'s audio processing</string>
+    <string name="notification_request_permission_title">User action is required to launch ToneForge</string>
+    <string name="notification_request_permission">Tap to grant capture permission and enable ToneForge\'s audio processing</string>
 
     <!-- Session control loss notifications -->
-    <string name="session_control_loss_toast">JamesDSP stopped due to audio session control loss. Please disable other audio effect apps.</string>
-    <string name="session_control_loss_notification_title">Audio processing stopped. Another app is interfering with JamesDSP.</string>
-    <string name="session_control_loss_notification">Please disable all other apps that provide global audio effects before re-enabling JamesDSP.</string>
+    <string name="session_control_loss_toast">ToneForge stopped due to audio session control loss. Please disable other audio effect apps.</string>
+    <string name="session_control_loss_notification_title">Audio processing stopped. Another app is interfering with ToneForge.</string>
+    <string name="session_control_loss_notification">Please disable all other apps that provide global audio effects before re-enabling ToneForge.</string>
 
     <!-- App compatibility issue notifications -->
-    <string name="session_app_compat_toast">JamesDSP stopped due to incompatible media app. Please check the notification to resolve this problem.</string>
-    <string name="session_app_compat_notification_title">Audio processing stopped. Another app is interfering with JamesDSP.</string>
+    <string name="session_app_compat_toast">ToneForge stopped due to incompatible media app. Please check the notification to resolve this problem.</string>
+    <string name="session_app_compat_notification_title">Audio processing stopped. Another app is interfering with ToneForge.</string>
     <string name="session_app_compat_notification">Tap this notification to resolve the problem.</string>
 
     <!-- Capture permission revoked notifications -->
-    <string name="capture_permission_revoked_toast">JamesDSP has been stopped because the audio capture permission was revoked.</string>
+    <string name="capture_permission_revoked_toast">ToneForge has been stopped because the audio capture permission was revoked.</string>
 
     <!-- General purpose -->
     <string name="install">Install</string>
@@ -203,6 +203,7 @@
     <string name="tube_drive">Preamp</string>
 
     <string name="output_control_header">Output control</string>
+    <string name="output_safety_final_limiter_header" translatable="false">Output safety / final limiter</string>
     <string name="output_limiter_threshold">Limiter threshold</string>
     <string name="output_limiter_release">Limiter release</string>
     <string name="output_control_postgain">Post gain</string>
@@ -229,7 +230,7 @@
     <string name="onboarding_back">Back</string>
     <string name="onboarding_next">Next</string>
     <string name="onboarding_finish">Finish</string>
-    <string name="onboarding_greeting">Welcome to RootlessJamesDSP!</string>
+    <string name="onboarding_greeting">Welcome to ToneForge!</string>
     <string name="onboarding_caption">This assistant will help you to set-up this app.</string>
     <string name="onboarding_warning">Currently, this application is unfinished and unstable. Please note that it may not work on some devices as expected since it uses Android APIs not designed for use by third parties.</string>
     <string name="onboarding_fix_permissions_title">User action required</string>
@@ -293,14 +294,14 @@
     <string name="onboarding_perm_microphone_title">Audio recording permission</string>
     <string name="onboarding_perm_microphone_caption">Required to record internal audio. The hardware microphone is not activated.</string>
     <string name="onboarding_perm_notification_title">Notification permission</string>
-    <string name="onboarding_perm_notification_caption">Required to receive important status updates and information about JamesDSP\'s processing state.</string>
+    <string name="onboarding_perm_notification_caption">Required to receive important status updates and information about ToneForge\'s processing state.</string>
     <string name="onboarding_perm_cast_title">Cast/recording permission</string>
     <string name="onboarding_perm_cast_caption">You need to explicitly grant this app permission to record audio content every time it launches.</string>
     <string name="onboarding_perm_missing_title">Runtime permissions not granted</string>
     <string name="onboarding_perm_missing">Please grant all requested runtime permissions to continue.\nIf you repeatedly denied the permissions, you need to grant them manually in the system settings.</string>
     <string name="onboarding_perm_diag">Allow sending diagnostic reports</string>
     <string name="onboarding_perm_diag_caption">This app submits crash reports and other diagnostic data, including information about other active applications, to allow me to detect and solve compatibility issues and bugs easier.</string>
-    <string name="onboarding_finish_header">JamesDSP is set-up!</string>
+    <string name="onboarding_finish_header">ToneForge is set-up!</string>
     <string name="onboarding_finish_caption">If you encounter any issues, please visit the troubleshooting options.</string>
 
     <string name="limit_session_control_conflict_title">Disable other audio effect apps</string>
@@ -308,7 +309,7 @@
     <string name="limit_unsupported_apps_title">Unsupported media apps</string>
     <string name="limit_unsupported_apps">Apps blocking internal audio capture remain unprocessed (e.g., Spotify, Google Chrome).</string>
     <string name="limit_hw_accel_title">HW-accelerated audio playback issues</string>
-    <string name="limit_hw_accel">HW-accelerated audio playback (fast tracks) may sometimes cause duplicated audio or kill JamesDSP in some circumstances. Please add the affected music player to the excluded apps list to prevent JamesDSP from re-routing it.</string>
+    <string name="limit_hw_accel">HW-accelerated audio playback (fast tracks) may sometimes cause duplicated audio or kill ToneForge in some circumstances. Please add the affected music player to the excluded apps list to prevent ToneForge from re-routing it.</string>
     <string name="limit_detect_delay_title">Audio session detection delay</string>
     <string name="limit_detect_delay"><![CDATA[After an app has opened a new media session to playback audio, you may hear duplicated or cut-off audio for a very short period (about <250ms).]]></string>
     <string name="limit_latency_title">Increased latency</string>
@@ -345,7 +346,7 @@
     <string name="audio_format_enhanced_processing_off">Enhanced processing disabled</string>
     <string name="audio_format_enhanced_processing_info_title">What is enhanced processing?</string>
     <string name="audio_format_enhanced_processing_info">Tap to view documentation</string>
-    <string name="audio_format_enhanced_processing_info_content">When enhanced processing is enabled, you can selectively exclude certain apps from being processed by JamesDSP. Use the 3-dot menu on the bottom right corner and select \'Excluded apps\' to access this feature.\n\nWhile legacy mode is disabled, JamesDSP relies on media apps to send a system broadcast when they start playback. This is an advantage over legacy mode because each app gets its own JamesDSP effect engine assigned to it, which allows for more fine-grained control. Otherwise, with legacy mode turned on, all apps would share a single processing engine, which Android deprecates and should not be used anymore.\n\nUnfortunately, not all media apps do this correctly and, therefore, would not function correctly with legacy mode disabled. To solve this issue, you can enable enhanced processing. Instead of relying on system broadcasts about new media sessions, JamesDSP will proactively scan for media sessions by itself and allow proper support for uncooperative media apps.</string>
+    <string name="audio_format_enhanced_processing_info_content">When enhanced processing is enabled, you can selectively exclude certain apps from being processed by ToneForge. Use the 3-dot menu on the bottom right corner and select \'Excluded apps\' to access this feature.\n\nWhile legacy mode is disabled, ToneForge relies on media apps to send a system broadcast when they start playback. This is an advantage over legacy mode because each app gets its own ToneForge effect engine assigned to it, which allows for more fine-grained control. Otherwise, with legacy mode turned on, all apps would share a single processing engine, which Android deprecates and should not be used anymore.\n\nUnfortunately, not all media apps do this correctly and, therefore, would not function correctly with legacy mode disabled. To solve this issue, you can enable enhanced processing. Instead of relying on system broadcasts about new media sessions, ToneForge will proactively scan for media sessions by itself and allow proper support for uncooperative media apps.</string>
     <string name="audio_format_media_apps_need_restart">You need to restart all active media apps after changing this setting to resume audio processing.</string>
     <string name="audio_format_summary">Preferred audio encoding, buffer size</string>
     <string name="audio_format_summary_root">Legacy mode, enhanced processing</string>
@@ -422,10 +423,10 @@
     <string name="credits">Credits</string>
     <string name="translators">Translators</string>
     <string name="credits_app">App &amp; rootless implementation developed by</string>
-    <string name="credits_dsp">JamesDSP core algorithm library developed by</string>
+    <string name="credits_dsp">ToneForge DSP core algorithm library developed by</string>
     <string name="credits_project_page">Visit project website on GitHub</string>
     <string name="credits_project_page_summary">Report issues, keep yourself updated, and read the source code</string>
-    <string name="credits_project_play_page">Visit RootlessJamesDSP on Google Play</string>
+    <string name="credits_project_play_page">Visit ToneForge on Google Play</string>
     <string name="credits_project_play_page_summary">Search for new updates</string>
     <string name="credits_project_check_update">Check for new updates…</string>
     <string name="credits_project_check_update_summary">Download and install updates if available</string>
@@ -502,7 +503,7 @@
     <string name="filelibrary_preset_load_failed">File \'%1$s\' is not compatible with this app</string>
     <string name="filelibrary_no_presets">No presets saved. Tap \'Add\' to create a new one.</string>
 
-    <!-- JamesDSP engine messages -->
+    <!-- ToneForge engine messages -->
     <string name="message_vdc_corrupt">Selected VDC file is corrupt. Please choose another one.</string>
     <string name="message_irs_corrupt">Selected impulse response is corrupt. Please choose another one.</string>
     <string name="message_convolver_advimp_invalid">Convolver: Advanced waveform editing contains invalid values.</string>
@@ -563,8 +564,8 @@
     <string name="editor_find_previous_match">Find previous match</string>
     <string name="editor_search_keyword">Search</string>
     <string name="editor_source_position">%1$d:%2$d</string>
-    <string name="editor_engine_down_title">JamesDSP is not active</string>
-    <string name="editor_engine_down">Cannot run script because JamesDSP is disabled. Please turn on JamesDSP to execute scripts.</string>
+    <string name="editor_engine_down_title">ToneForge is not active</string>
+    <string name="editor_engine_down">Cannot run script because ToneForge is disabled. Please turn on ToneForge to execute scripts.</string>
     <string name="editor_save_prompt_title">Save changes?</string>
     <string name="editor_save_prompt">The current script has unsaved changes. Do you want to save your changes or discard them?</string>
     <string name="editor_script_launched">Script launched</string>
@@ -586,17 +587,17 @@
     <string name="app_compat_retry">Retry</string>
     <string name="app_compat_exclude">Exclude</string>
     <string name="app_compat_title">Audio processing has been suspended to prevent duplicated audio</string>
-    <string name="app_compat_explanation">The following app is unsupported because it causes RootlessJamesDSP to lose control over its audio routing:</string>
-    <string name="app_compat_instruction">Please check the app\'s settings if you can disable HW-acceleration or other settings that could interfere with RootlessJamesDSP and tap \'Retry\'.</string>
+    <string name="app_compat_explanation">The following app is unsupported because it causes ToneForge to lose control over its audio routing:</string>
+    <string name="app_compat_instruction">Please check the app\'s settings if you can disable HW-acceleration or other settings that could interfere with ToneForge and tap \'Retry\'.</string>
     <string name="app_compat_instruction_exclude">Alternatively, select \'Exclude\' to bypass this issue by excluding the incompatible app from audio processing.</string>
     <string name="app_compat_unknown_pkg_name">Unknown package name</string>
 
     <!-- Root: Library load failure -->
     <string name="load_fail_header">Magisk module not installed</string>
     <string name="load_fail_card_title">Failed to load libjamesdsp.so</string>
-    <string name="load_fail_card">Please install the JamesDSP magisk module and reboot your Android device to use this application. You may also need to reinstall this app after rebooting.</string>
+    <string name="load_fail_card">Please install the ToneForge magisk module and reboot your Android device to use this application. You may also need to reinstall this app after rebooting.</string>
     <string name="load_fail_rootless_card_title">Looking for a rootless alternative?</string>
-    <string name="load_fail_rootless_card">This flavor of JamesDSP was designed to be used with a rooted/modified device. A non-root alternative with some limitations is also available. Tap here for details.</string>
+    <string name="load_fail_rootless_card">This flavor of ToneForge was designed to be used with a rooted/modified device. A non-root alternative with some limitations is also available. Tap here for details.</string>
     <string name="load_fail_arch_card_title">Module already installed?</string>
     <string name="load_fail_arch_card">If you already installed the magisk module, you may have chosen the wrong settings during installation. Please re-install and try to enable Huawei compatibility (even if your phone is not from that manufacturer).</string>
 
@@ -621,7 +622,7 @@
 
     <!-- Revert confirmation -->
     <string name="revert_confirmation_title">Are you sure?</string>
-    <string name="revert_confirmation">Do you want to reset your current JamesDSP preset to the default values?</string>
+    <string name="revert_confirmation">Do you want to reset your current ToneForge preset to the default values?</string>
 
     <!-- File intent handler -->
     <string name="intent_import_preset">Import preset</string>
@@ -689,9 +690,9 @@
     <string name="device_profile_manage_paste_select">Select profiles to overwrite</string>
 
     <!-- Root version check -->
-    <string name="version_mismatch_root">JamesDSP magisk package requires an update</string>
-    <string name="version_mismatch_root_description">The JamesDSP magisk package installed on your device is outdated and not supported by this app anymore.\n\nPlease retrieve the latest JamesDSP magisk package ZIP and install it via Magisk.\nNote that the magisk package may replace this app with the official JamesDSP app.\n\nDo you want to visit the download website for the Magisk packages now?</string>
-    <string name="version_mismatch_root_toast">Failed to start. The installed JamesDSP magisk package is too old and not supported by this app anymore.</string>
+    <string name="version_mismatch_root">ToneForge magisk package requires an update</string>
+    <string name="version_mismatch_root_description">The ToneForge magisk package installed on your device is outdated and not supported by this app anymore.\n\nPlease retrieve the latest ToneForge magisk package ZIP and install it via Magisk.\nNote that the magisk package may replace this app with the official ToneForge app.\n\nDo you want to visit the download website for the Magisk packages now?</string>
+    <string name="version_mismatch_root_toast">Failed to start. The installed ToneForge magisk package is too old and not supported by this app anymore.</string>
 
     <!-- Android 15 screenshare restriction warning -->
     <string name="android_15_screenshare_warning_title">Android 15 compatibility notice</string>
@@ -703,4 +704,12 @@ Tap on \'Tutorial\' below for detailed instructions.</string>
     <string name="android_15_screenshare_keyguard_warning">Android 15 introduces a restriction that stops screen sharing when the device is locked. To workaround this issue, the \'PROJECT_MEDIA\' permission must be granted using Shizuku or ADB.
 
 Please press \'Continue\' below to re-do the setup wizard.</string>
+
+    <string name="dsp_chain_inspector">DSP Chain Inspector</string>
+    <string name="dsp_chain_inspector_summary">Inspect and reorder the runtime DSP execution chain</string>
+    <string name="dsp_chain_reset">Reset chain order</string>
+    <string name="dsp_chain_requires_lock">Requires lock</string>
+    <string name="dsp_chain_enabled">Enabled</string>
+    <string name="dsp_chain_disabled">Disabled</string>
 </resources>
+

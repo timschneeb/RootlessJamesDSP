@@ -20,6 +20,8 @@ class EelParser {
         private set
     var hasDescription: Boolean = false
         private set
+    var scriptId: String? = null
+        private set
     var properties = ArrayList<EelBaseProperty>()
         private set
     private var lastFileHash: ByteArray? = null
@@ -29,6 +31,7 @@ class EelParser {
         tags = listOf()
         hasDescription = false
         description = null
+        scriptId = null
         path = null
         fileName = null
         contents = null
@@ -63,6 +66,7 @@ class EelParser {
         tags = listOf()
         hasDescription = false
         description = null
+        scriptId = null
         lastFileHash = null
 
         if(!skipParse) {
@@ -86,9 +90,10 @@ class EelParser {
     }
 
     fun parse(skipProperties: Boolean = false) {
-        // Parse description & tags
+        // Parse metadata
         parseDescription()
         parseTags()
+        parseId()
 
         properties = arrayListOf()
 
@@ -97,8 +102,17 @@ class EelParser {
 
         // Parse number range parameters
         contents?.lines()?.forEach next@ {
-            EelPropertyFactory.create(it, contents!!)?.let(properties::add)
+            EelPropertyFactory.create(it, contents!!)?.let { prop ->
+                properties.add(prop)
+                Timber.d("EelParser: Discovered parameter '${prop.key}' (stable index: ${properties.size - 1})")
+            }
         }
+
+        Timber.i("EelParser: Total parameters discovered: ${properties.size}")
+        if (properties.isNotEmpty()) {
+            Timber.i("EelParser: Parameter names: ${properties.joinToString(", ") { it.key }}")
+        }
+        Timber.i("EelParser: Additional Script Parameters UI state: ${if (properties.isNotEmpty()) "ENABLED" else "DISABLED"}")
     }
 
     fun findAnnotationLine(name: String): Int {
@@ -160,6 +174,38 @@ class EelParser {
         return true
     }
 
+    fun applySliders(sliders: String) {
+        val array = sliders.split(";")
+        for ((i, str) in array.withIndex()) {
+            if (i >= properties.size) break
+            val value = str.toFloatOrNull() ?: continue
+            val prop = properties[i]
+            if (prop is EelListProperty) {
+                prop.value = value.toInt()
+            } else if (prop is EelNumberRangeProperty<*>) {
+                @Suppress("UNCHECKED_CAST")
+                (prop as EelNumberRangeProperty<Float>).value = value
+            }
+        }
+    }
+
+    fun applyNamedSliders(values: Map<String, Double>) {
+        properties.forEach { prop ->
+            values[prop.key]?.let { value ->
+                if (prop is EelListProperty) {
+                    prop.value = value.toInt()
+                } else if (prop is EelNumberRangeProperty<*>) {
+                    @Suppress("UNCHECKED_CAST")
+                    (prop as EelNumberRangeProperty<Float>).value = value.toFloat()
+                }
+            }
+        }
+    }
+
+    fun getScriptIdentity(): String {
+        return scriptId ?: path?.substringAfterLast("Liveprog/", fileName ?: "unknown") ?: "unknown"
+    }
+
     fun manipulateProperty(prop: EelBaseProperty): Boolean {
         if(!isFileLoaded)
             return false
@@ -208,5 +254,15 @@ class EelParser {
         tags = match?.groups?.get(1)?.value?.trim()?.split(" ")?.map(String::trim) ?: listOf()
 
         Timber.d("Found tags: $tags")
+    }
+
+    private fun parseId() {
+        if (contents == null) return
+        val idRegex = """(?://\s*@id\s*)([^\n\r\s]+)""".toRegex()
+        val match = idRegex.find(contents!!)
+        scriptId = match?.groups?.get(1)?.value?.trim()
+        if (scriptId != null) {
+            Timber.d("EelParser: Found explicit script ID: $scriptId")
+        }
     }
 }

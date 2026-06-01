@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
     <string name="action_settings">ตั้งค่า</string>
@@ -22,20 +22,20 @@
     <string name="notification_idle">ไม่ได้ใช้งานการประมวลผลเสียง</string>
     <string name="notification_processing_title">กำลังประมวลผลเสียงอยู่</string>
     <string name="notification_processing_disabled_title">ปิดใช้งานการประมวลผลเสียง</string>
-    <string name="notification_processing_legacy">แตะเพื่อเปิด JamesDSP manager</string>
+    <string name="notification_processing_legacy">แตะเพื่อเปิด ToneForge manager</string>
     <!-- Permission request notifications -->
-    <string name="notification_request_permission_title">ผู้ใช้ต้องดำเนินการเพื่อเปิดใช้ JamesDSP</string>
-    <string name="notification_request_permission">แตะเพื่อให้สิทธิ์การจับภาพและเปิดใช้งานการประมวลผลเสียงของ JamesDSP</string>
+    <string name="notification_request_permission_title">ผู้ใช้ต้องดำเนินการเพื่อเปิดใช้ ToneForge</string>
+    <string name="notification_request_permission">แตะเพื่อให้สิทธิ์การจับภาพและเปิดใช้งานการประมวลผลเสียงของ ToneForge</string>
     <!-- Session control loss notifications -->
-    <string name="session_control_loss_toast">JamesDSP หยุดทำงานเนื่องจากสูญเสียการควบคุมเซสชันเสียง โปรดปิดใช้งานแอปเอฟเฟ็กต์เสียงอื่นๆ</string>
-    <string name="session_control_loss_notification_title">การประมวลผลเสียงหยุดลง แอปอื่นรบกวนการทำงานของ JamesDSP</string>
-    <string name="session_control_loss_notification">โปรดปิดใช้งานแอปอื่นๆ ทั้งหมดที่มีเอฟเฟ็กต์เสียงส่วนกลางก่อนที่จะเปิดใช้ JamesDSP อีกครั้ง</string>
+    <string name="session_control_loss_toast">ToneForge หยุดทำงานเนื่องจากสูญเสียการควบคุมเซสชันเสียง โปรดปิดใช้งานแอปเอฟเฟ็กต์เสียงอื่นๆ</string>
+    <string name="session_control_loss_notification_title">การประมวลผลเสียงหยุดลง แอปอื่นรบกวนการทำงานของ ToneForge</string>
+    <string name="session_control_loss_notification">โปรดปิดใช้งานแอปอื่นๆ ทั้งหมดที่มีเอฟเฟ็กต์เสียงส่วนกลางก่อนที่จะเปิดใช้ ToneForge อีกครั้ง</string>
     <!-- App compatibility issue notifications -->
-    <string name="session_app_compat_toast">JamesDSP หยุดทำงานเนื่องจากแอปสื่อที่เข้ากันไม่ได้ โปรดตรวจสอบการแจ้งเตือนเพื่อแก้ไขปัญหานี้</string>
-    <string name="session_app_compat_notification_title">การประมวลผลเสียงหยุดลง แอปอื่นรบกวนการทำงานของ JamesDSP</string>
+    <string name="session_app_compat_toast">ToneForge หยุดทำงานเนื่องจากแอปสื่อที่เข้ากันไม่ได้ โปรดตรวจสอบการแจ้งเตือนเพื่อแก้ไขปัญหานี้</string>
+    <string name="session_app_compat_notification_title">การประมวลผลเสียงหยุดลง แอปอื่นรบกวนการทำงานของ ToneForge</string>
     <string name="session_app_compat_notification">แตะการแจ้งเตือนนี้เพื่อแก้ไขปัญหา</string>
     <!-- Capture permission revoked notifications -->
-    <string name="capture_permission_revoked_toast">JamesDSP หยุดทำงานเนื่องจากสิทธิ์ในการบันทึกเสียงถูกเพิกถอน</string>
+    <string name="capture_permission_revoked_toast">ToneForge หยุดทำงานเนื่องจากสิทธิ์ในการบันทึกเสียงถูกเพิกถอน</string>
     <!-- General purpose -->
     <string name="install">ติดตั้ง</string>
     <string name="update">อัปเดต</string>
@@ -73,8 +73,8 @@
     <string name="compander_tftransforms">การแปลงความถี่เวลา</string>
     <string name="compander_tftransforms_stft">เครื่องแบบ (ฟูเรียร์แบบสั้น)</string>
     <string name="compander_tftransforms_continuous_wavelet">Multiresolution (Continuous wavelet, incomplete dual frame)</string>
-    <string name="compander_tftransforms_undersampling">Https://crowdin. com/translate/rootlessjamesdsp/21/en-th#4237</string>
-    <string name="compander_tftransforms_time_domain">Https://crowdin. com/translate/rootlessjamesdsp/21/en-th#4237</string>
+    <string name="compander_tftransforms_undersampling">Https://crowdin. com/translate/ToneForge/21/en-th#4237</string>
+    <string name="compander_tftransforms_time_domain">Https://crowdin. com/translate/ToneForge/21/en-th#4237</string>
     <string name="eq_enable">อีควอไลเซอร์หลายรูปแบบ</string>
     <string name="eq_filter_type">ประเภทตัวกรอง</string>
     <string name="eq_interpolator">อินเตอร์โพเลเตอร์</string>
@@ -166,7 +166,7 @@
     <string name="onboarding_back">กลับ</string>
     <string name="onboarding_next">ถัดไป</string>
     <string name="onboarding_finish">เสร็จ</string>
-    <string name="onboarding_greeting">ยินดีต้อนรับสู่ RootlessJamesDSP!</string>
+    <string name="onboarding_greeting">ยินดีต้อนรับสู่ ToneForge!</string>
     <string name="onboarding_caption">ผู้ช่วยนี้จะช่วยคุณตั้งค่าแอพนี้ </string>
     <string name="onboarding_warning">ปัจจุบัน แอปพลิเคชันนี้ยังไม่เสร็จสมบูรณ์และไม่เสถียร  โปรดทราบว่าอาจใช้ไม่ได้กับอุปกรณ์บางอย่างตามที่คาดไว้ เนื่องจากใช้ Android APIs ที่ไม่ได้ออกแบบมาเพื่อใช้งานโดยบุคคลที่สาม</string>
     <string name="onboarding_fix_permissions_title">ผู้ใช้ต้องดำเนินการ</string>
@@ -226,21 +226,21 @@
     <string name="onboarding_perm_microphone_title">สิทธิ์การบันทึกเสียง</string>
     <string name="onboarding_perm_microphone_caption">จำเป็นต้องบันทึกเสียงภายใน  ไมโครโฟนของฮาร์ดแวร์ไม่ได้เปิดใช้งาน</string>
     <string name="onboarding_perm_notification_title">การตั้งค่าการแจ้งเตือน</string>
-    <string name="onboarding_perm_notification_caption">จำเป็นต้องได้รับการอัปเดตสถานะที่สำคัญและข้อมูลเกี่ยวกับสถานะการประมวลผลของ JamesDSP</string>
+    <string name="onboarding_perm_notification_caption">จำเป็นต้องได้รับการอัปเดตสถานะที่สำคัญและข้อมูลเกี่ยวกับสถานะการประมวลผลของ ToneForge</string>
     <string name="onboarding_perm_cast_title">สิทธิ์การบันทึกเสียง</string>
     <string name="onboarding_perm_cast_caption">คุณต้องให้สิทธิ์แอปนี้อย่างชัดแจ้งในการบันทึกเนื้อหาเสียงทุกครั้งที่เปิดตัว</string>
     <string name="onboarding_perm_missing_title">ไม่ได้รับสิทธิ์รันไทม์ </string>
     <string name="onboarding_perm_missing">โปรดให้สิทธิ์รันไทม์ที่ร้องขอทั้งหมดเพื่อดำเนินการต่อ\nหากคุณปฏิเสธสิทธิ์ซ้ำๆ คุณจะต้องให้สิทธิ์ด้วยตนเองในการตั้งค่าระบบ</string>
     <string name="onboarding_perm_diag">อนุญาตให้ส่งรายงานการวินิจฉัย</string>
     <string name="onboarding_perm_diag_caption">แอปนี้ส่งรายงานข้อขัดข้องและข้อมูลการวินิจฉัยอื่นๆ รวมถึงข้อมูลเกี่ยวกับแอปพลิเคชันอื่นๆ ที่ใช้งานอยู่ เพื่อให้ฉันตรวจหาและแก้ไขปัญหาความเข้ากันได้และจุดบกพร่องได้ง่ายขึ้น</string>
-    <string name="onboarding_finish_header">JamesDSP ตั้งค่าแล้ว!</string>
+    <string name="onboarding_finish_header">ToneForge ตั้งค่าแล้ว!</string>
     <string name="onboarding_finish_caption">หากคุณพบปัญหาใด ๆ โปรดไปที่ตัวเลือกการแก้ไขปัญหา</string>
     <string name="limit_session_control_conflict_title">ปิดใช้งานแอปเอฟเฟ็กต์เสียงอื่นๆ</string>
     <string name="limit_session_control_conflict">แอพเอฟเฟกต์เสียงที่ใช้เอฟเฟกต์ Dynamic Processing ในตัวของ Android รบกวนแอพนี้ </string>
     <string name="limit_unsupported_apps_title">แอปสื่อที่ไม่รองรับ</string>
     <string name="limit_unsupported_apps">แอปที่ปิดกั้นการบันทึกเสียงภายในเครื่องยังคงไม่ประมวลผล (เช่น Spotify, Google Chrome)</string>
     <string name="limit_hw_accel_title">ปัญหาการเล่นเสียงที่เร่งด้วย HW</string>
-    <string name="limit_hw_accel">การเล่นเสียงที่เร่งด้วย HW (เพลงเร็ว) บางครั้งอาจทำให้เสียงซ้ำหรือทำให้ JamesDSP หยุดทำงานในบางกรณี  โปรดเพิ่มเครื่องเล่นเพลงที่ได้รับผลกระทบไปยังรายการแอปที่ยกเว้นเพื่อป้องกันไม่ให้ JamesDSP เปลี่ยนเส้นทางใหม่</string>
+    <string name="limit_hw_accel">การเล่นเสียงที่เร่งด้วย HW (เพลงเร็ว) บางครั้งอาจทำให้เสียงซ้ำหรือทำให้ ToneForge หยุดทำงานในบางกรณี  โปรดเพิ่มเครื่องเล่นเพลงที่ได้รับผลกระทบไปยังรายการแอปที่ยกเว้นเพื่อป้องกันไม่ให้ ToneForge เปลี่ยนเส้นทางใหม่</string>
     <string name="limit_detect_delay_title">ความล่าช้าในการตรวจหาเซสชันเสียง</string>
     <string name="limit_detect_delay"><![CDATA[หลังจากแอปเปิดเซสชันสื่อใหม่เพื่อเล่นเสียง คุณอาจได้ยินเสียงซ้ำหรือเสียงขาดช่วงสั้นมาก (ประมาณ <250ms)]]></string>
     <string name="limit_latency_title">เวลาแฝงที่เพิ่มขึ้น</string>
@@ -276,7 +276,7 @@
     <string name="audio_format_enhanced_processing_off">การประมวลผลขั้นสูงถูกปิดใช้งาน</string>
     <string name="audio_format_enhanced_processing_info_title">การประมวลผลขั้นสูงคืออะไร?</string>
     <string name="audio_format_enhanced_processing_info">แตะเพื่อดูเอกสาร</string>
-    <string name="audio_format_enhanced_processing_info_content">เมื่อเปิดใช้งานการประมวลผลขั้นสูง คุณสามารถเลือกแยกบางแอปออกจากการประมวลผลโดย JamesDSP  ใช้เมนู 3 จุดที่มุมล่างขวาและเลือก \'แอปที่ยกเว้น\' เพื่อเข้าถึงคุณลักษณะนี้\n\nในขณะที่โหมดดั้งเดิมปิดอยู่ JamesDSP อาศัยแอปสื่อเพื่อส่งการออกอากาศของระบบเมื่อเริ่มเล่น  นี่เป็นข้อได้เปรียบเหนือโหมดเดิมเพราะแต่ละแอปจะได้รับเอ็นจิ้นเอฟเฟกต์ JamesDSP ของตัวเอง ซึ่งช่วยให้สามารถควบคุมได้ละเอียดยิ่งขึ้น  มิฉะนั้น เมื่อเปิดโหมดเดิม แอปทั้งหมดจะใช้เครื่องมือประมวลผลเดียวร่วมกัน ซึ่ง Android เลิกใช้งานและไม่ควรใช้อีกต่อไป\n\nขออภัย แอปสื่อบางแอปเท่านั้นที่ทำสิ่งนี้ได้อย่างถูกต้อง ดังนั้น จะทำงานไม่ถูกต้องในโหมดเดิม  พิการ.  เพื่อแก้ปัญหานี้ คุณสามารถเปิดใช้งานการประมวลผลขั้นสูง  แทนที่จะพึ่งพาการออกอากาศของระบบเกี่ยวกับเซสชันสื่อใหม่ JamesDSP จะสแกนหาเซสชันสื่อในเชิงรุกด้วยตัวเอง และอนุญาตให้มีการสนับสนุนอย่างเหมาะสมสำหรับแอปสื่อที่ไม่ให้ความร่วมมือ</string>
+    <string name="audio_format_enhanced_processing_info_content">เมื่อเปิดใช้งานการประมวลผลขั้นสูง คุณสามารถเลือกแยกบางแอปออกจากการประมวลผลโดย ToneForge  ใช้เมนู 3 จุดที่มุมล่างขวาและเลือก \'แอปที่ยกเว้น\' เพื่อเข้าถึงคุณลักษณะนี้\n\nในขณะที่โหมดดั้งเดิมปิดอยู่ ToneForge อาศัยแอปสื่อเพื่อส่งการออกอากาศของระบบเมื่อเริ่มเล่น  นี่เป็นข้อได้เปรียบเหนือโหมดเดิมเพราะแต่ละแอปจะได้รับเอ็นจิ้นเอฟเฟกต์ ToneForge ของตัวเอง ซึ่งช่วยให้สามารถควบคุมได้ละเอียดยิ่งขึ้น  มิฉะนั้น เมื่อเปิดโหมดเดิม แอปทั้งหมดจะใช้เครื่องมือประมวลผลเดียวร่วมกัน ซึ่ง Android เลิกใช้งานและไม่ควรใช้อีกต่อไป\n\nขออภัย แอปสื่อบางแอปเท่านั้นที่ทำสิ่งนี้ได้อย่างถูกต้อง ดังนั้น จะทำงานไม่ถูกต้องในโหมดเดิม  พิการ.  เพื่อแก้ปัญหานี้ คุณสามารถเปิดใช้งานการประมวลผลขั้นสูง  แทนที่จะพึ่งพาการออกอากาศของระบบเกี่ยวกับเซสชันสื่อใหม่ ToneForge จะสแกนหาเซสชันสื่อในเชิงรุกด้วยตัวเอง และอนุญาตให้มีการสนับสนุนอย่างเหมาะสมสำหรับแอปสื่อที่ไม่ให้ความร่วมมือ</string>
     <string name="audio_format_media_apps_need_restart">คุณต้องรีสตาร์ทแอปสื่อที่ใช้งานอยู่ทั้งหมดหลังจากเปลี่ยนการตั้งค่านี้เพื่อดำเนินการประมวลผลเสียงต่อ</string>
     <string name="audio_format_summary">การเข้ารหัสเสียงที่ต้องการ ขนาดบัฟเฟอร์ </string>
     <string name="audio_format_summary_root">โหมด Legacy การประมวลผลขั้นสูง</string>
@@ -353,10 +353,10 @@
     <string name="credits">เครดิต</string>
     <string name="translators">ผู้แปลภาษา</string>
     <string name="credits_app">แอพ &amp;  การใช้งานแบบไม่มี Root พัฒนาโดย</string>
-    <string name="credits_dsp">ไลบรารีอัลกอริทึมหลักของ JamesDSP ที่พัฒนาโดย</string>
+    <string name="credits_dsp">ไลบรารีอัลกอริทึมหลักของ ToneForge ที่พัฒนาโดย</string>
     <string name="credits_project_page">เยี่ยมชมเว็บไซต์โครงการบน GitHub</string>
     <string name="credits_project_page_summary">รายงานปัญหา อัปเดตตัวเองอยู่เสมอ และอ่านซอร์สโค้ด</string>
-    <string name="credits_project_play_page">เยี่ยมชม RootlessJamesDSP บน Google Play</string>
+    <string name="credits_project_play_page">เยี่ยมชม ToneForge บน Google Play</string>
     <string name="credits_project_play_page_summary">ค้นหาการอัพเดต</string>
     <string name="credits_project_check_update">ตรวจสอบการอัปเดตใหม่…</string>
     <string name="credits_project_check_update_summary">ดาวน์โหลดและติดตั้งการอัปเดตหากมี</string>
@@ -430,7 +430,7 @@
     <string name="filelibrary_preset_loaded">ตั้งค่าล่วงหน้า \'%1$s\' แล้ว</string>
     <string name="filelibrary_preset_load_failed">ไฟล์ \'%1$s\' เข้ากันไม่ได้กับแอปนี้ </string>
     <string name="filelibrary_no_presets">ไม่มีการบันทึกค่าที่ตั้งไว้ล่วงหน้า  แตะ \'เพิ่ม\' เพื่อสร้างใหม่</string>
-    <!-- JamesDSP engine messages -->
+    <!-- ToneForge engine messages -->
     <string name="message_vdc_corrupt">ไฟล์ VDC ที่เลือกเสียหาย  โปรดเลือกรายการอื่น</string>
     <string name="message_irs_corrupt">การตอบสนองแรงกระตุ้นที่เลือกเสียหาย  โปรดเลือกรายการอื่น</string>
     <string name="message_convolver_advimp_invalid">Convolver: การแก้ไขรูปคลื่นขั้นสูงมีค่าที่ไม่ถูกต้อง</string>
@@ -487,8 +487,8 @@
     <string name="editor_find_previous_match">จับคู่ก่อนหน้า</string>
     <string name="editor_search_keyword">ค้นหา</string>
     <string name="editor_source_position">%1$d:%2$d</string>
-    <string name="editor_engine_down_title">JamesDSP ไม่ทำงาน</string>
-    <string name="editor_engine_down">ไม่สามารถเรียกใช้สคริปต์ได้เนื่องจาก JamesDSP ถูกปิดใช้งาน  โปรดเปิด JamesDSP เพื่อเรียกใช้สคริปต์ </string>
+    <string name="editor_engine_down_title">ToneForge ไม่ทำงาน</string>
+    <string name="editor_engine_down">ไม่สามารถเรียกใช้สคริปต์ได้เนื่องจาก ToneForge ถูกปิดใช้งาน  โปรดเปิด ToneForge เพื่อเรียกใช้สคริปต์ </string>
     <string name="editor_save_prompt_title">บันทึก การแก้ไข</string>
     <string name="editor_save_prompt">สคริปต์ปัจจุบันมีการเปลี่ยนแปลงที่ไม่ได้บันทึก  คุณต้องการบันทึกการเปลี่ยนแปลงหรือยกเลิกหรือไม่</string>
     <string name="editor_script_launched">เปิดตัวสคริปต์ </string>
@@ -508,16 +508,16 @@
     <string name="app_compat_retry">ลองอีกครั้ง</string>
     <string name="app_compat_exclude">ไม่รวม</string>
     <string name="app_compat_title">การประมวลผลเสียงถูกระงับเพื่อป้องกันเสียงที่ซ้ำกัน</string>
-    <string name="app_compat_explanation">แอปต่อไปนี้ไม่ได้รับการสนับสนุนเนื่องจากทำให้ RootlessJamesDSP สูญเสียการควบคุมการกำหนดเส้นทางเสียง:</string>
-    <string name="app_compat_instruction">โปรดตรวจสอบการตั้งค่าของแอป หากคุณสามารถปิดใช้งานการเร่ง HW หรือการตั้งค่าอื่นๆ ที่อาจรบกวน RootlessJamesDSP และแตะ \'ลองอีกครั้ง\'</string>
+    <string name="app_compat_explanation">แอปต่อไปนี้ไม่ได้รับการสนับสนุนเนื่องจากทำให้ ToneForge สูญเสียการควบคุมการกำหนดเส้นทางเสียง:</string>
+    <string name="app_compat_instruction">โปรดตรวจสอบการตั้งค่าของแอป หากคุณสามารถปิดใช้งานการเร่ง HW หรือการตั้งค่าอื่นๆ ที่อาจรบกวน ToneForge และแตะ \'ลองอีกครั้ง\'</string>
     <string name="app_compat_instruction_exclude">หรืออีกทางหนึ่ง เลือก \'ยกเว้น\' เพื่อข้ามปัญหานี้โดยยกเว้นแอปที่เข้ากันไม่ได้ออกจากการประมวลผลเสียง</string>
     <string name="app_compat_unknown_pkg_name">แพ็กเกจที่ไม่รู้จัก</string>
     <!-- Root: Library load failure -->
     <string name="load_fail_header">ไม่ได้ติดตั้ง Magisk module</string>
     <string name="load_fail_card_title">โหลด libjamesdsp.so ไม่สำเร็จ</string>
-    <string name="load_fail_card">โปรดติดตั้งโมดูล Magisk ของ JamesDSP และรีบูตอุปกรณ์ Android ของคุณเพื่อใช้แอปพลิเคชันนี้  คุณอาจต้องติดตั้งแอปนี้ใหม่หลังจากรีบูต</string>
+    <string name="load_fail_card">โปรดติดตั้งโมดูล Magisk ของ ToneForge และรีบูตอุปกรณ์ Android ของคุณเพื่อใช้แอปพลิเคชันนี้  คุณอาจต้องติดตั้งแอปนี้ใหม่หลังจากรีบูต</string>
     <string name="load_fail_rootless_card_title">กำลังมองหาทางเลือกอื่นที่ไม่มี Root?</string>
-    <string name="load_fail_rootless_card">JamesDSP รสชาตินี้ออกแบบมาเพื่อใช้กับอุปกรณ์ที่ Root/ดัดแปลง  นอกจากนี้ยังมีทางเลือกอื่นที่ไม่ใช่ Root พร้อมข้อจำกัดบางประการ  แตะที่นี่เพื่อดูรายละเอียด</string>
+    <string name="load_fail_rootless_card">ToneForge รสชาตินี้ออกแบบมาเพื่อใช้กับอุปกรณ์ที่ Root/ดัดแปลง  นอกจากนี้ยังมีทางเลือกอื่นที่ไม่ใช่ Root พร้อมข้อจำกัดบางประการ  แตะที่นี่เพื่อดูรายละเอียด</string>
     <string name="load_fail_arch_card_title">ติดตั้งโมดูลแล้ว?</string>
     <string name="load_fail_arch_card">หากคุณติดตั้งโมดูล magisk แล้ว คุณอาจเลือกการตั้งค่าผิดระหว่างการติดตั้ง  โปรดติดตั้งใหม่และลองเปิดใช้งานความเข้ากันได้ของ Huawei (แม้ว่าโทรศัพท์ของคุณจะไม่ได้มาจากผู้ผลิตรายนั้นก็ตาม)</string>
     <!-- Enhanced processing -->
@@ -537,7 +537,7 @@
     <string name="slider_dialog_step_error">ค่าต้องเป็นผลคูณของ %1$d  การเปลี่ยนแปลงไม่ได้ใช้ </string>
     <!-- Revert confirmation -->
     <string name="revert_confirmation_title">คุณแน่ใจไหม?</string>
-    <string name="revert_confirmation">คุณต้องการรีเซ็ตการตั้งค่าล่วงหน้าของ JamesDSP ปัจจุบันเป็นค่าเริ่มต้นหรือไม่</string>
+    <string name="revert_confirmation">คุณต้องการรีเซ็ตการตั้งค่าล่วงหน้าของ ToneForge ปัจจุบันเป็นค่าเริ่มต้นหรือไม่</string>
     <!-- File intent handler -->
     <string name="intent_import_preset">นำเข้าที่ตั้งไว้ล่วงหน้า</string>
     <string name="intent_import_irs">นำเข้าการตอบสนองแรงกระตุ้น</string>
@@ -599,7 +599,8 @@
     <string name="device_profile_manage_copy_select">เลือกโปรไฟล์ที่จะคัดลอก</string>
     <string name="device_profile_manage_paste_select">เลือกโปรไฟล์ที่จะเขียนทับ</string>
     <!-- Root version check -->
-    <string name="version_mismatch_root">แพ็คเกจ Magisk JamesDSP ต้องการการอัปเดต</string>
-    <string name="version_mismatch_root_description">แพ็คเกจ magisk JamesDSP ที่ติดตั้งบนอุปกรณ์ของคุณล้าสมัยและแอปนี้ไม่รองรับอีกต่อไป\n\nโปรดเรียกค้น ZIP แพ็คเกจ magisk JamesDSP ล่าสุดและติดตั้งผ่าน Magisk\nโปรดทราบว่าแพ็คเกจ magisk อาจแทนที่แอปนี้ด้วยแอป JamesDSP อย่างเป็นทางการ  .\n\nคุณต้องการไปที่เว็บไซต์ดาวน์โหลดแพ็คเกจ Magisk ตอนนี้หรือไม่?</string>
-    <string name="version_mismatch_root_toast">ไม่สามารถเริ่มต้น  แพ็คเกจ Magisk JamesDSP ที่ติดตั้งนั้นเก่าเกินไปและแอพนี้ไม่รองรับอีกต่อไป</string>
+    <string name="version_mismatch_root">แพ็คเกจ Magisk ToneForge ต้องการการอัปเดต</string>
+    <string name="version_mismatch_root_description">แพ็คเกจ magisk ToneForge ที่ติดตั้งบนอุปกรณ์ของคุณล้าสมัยและแอปนี้ไม่รองรับอีกต่อไป\n\nโปรดเรียกค้น ZIP แพ็คเกจ magisk ToneForge ล่าสุดและติดตั้งผ่าน Magisk\nโปรดทราบว่าแพ็คเกจ magisk อาจแทนที่แอปนี้ด้วยแอป ToneForge อย่างเป็นทางการ  .\n\nคุณต้องการไปที่เว็บไซต์ดาวน์โหลดแพ็คเกจ Magisk ตอนนี้หรือไม่?</string>
+    <string name="version_mismatch_root_toast">ไม่สามารถเริ่มต้น  แพ็คเกจ Magisk ToneForge ที่ติดตั้งนั้นเก่าเกินไปและแอพนี้ไม่รองรับอีกต่อไป</string>
 </resources>
+
