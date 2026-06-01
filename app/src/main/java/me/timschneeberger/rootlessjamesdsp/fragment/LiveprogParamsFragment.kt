@@ -42,6 +42,14 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
             return
         }
 
+        val sliders = PreferenceCache.uncachedGet(
+            requireContext(),
+            Constants.PREF_LIVEPROG,
+            R.string.key_liveprog_sliders,
+            ""
+        )
+        eelParser.applySliders(sliders)
+
         requireActivity().title = eelParser.description
         updateResetMenuItem()
 
@@ -78,8 +86,8 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
 
         (baseProp as? EelNumberRangeProperty<Float>)?.apply {
             this.value = value
-            eelParser.manipulateProperty(this)
-            
+            saveSlidersToPrefs()
+
             if (index >= 0) {
                 JamesDspLocalEngine.activeInstance?.setSlider(index, value.toDouble())
             }
@@ -113,7 +121,7 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
                         Timber.d("List item with value $newValue selected")
 
                         currentProp.value = (newValue as? String)?.toIntOrNull() ?: 0
-                        eelParser.manipulateProperty(currentProp)
+                        saveSlidersToPrefs()
 
                         if (index >= 0) {
                             JamesDspLocalEngine.activeInstance?.setSlider(index, currentProp.value.toDouble())
@@ -199,6 +207,14 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
             eelParser.refresh()
         }
 
+        val sliders = PreferenceCache.uncachedGet(
+            requireContext(),
+            Constants.PREF_LIVEPROG,
+            R.string.key_liveprog_sliders,
+            ""
+        )
+        eelParser.applySliders(sliders)
+
         activity?.title = eelParser.description
         if(eelParser.properties.isEmpty())
             activity?.finish()
@@ -212,8 +228,21 @@ class LiveprogParamsFragment : PreferenceFragmentCompat(), NonPersistentDatastor
 
     fun restoreDefaults() {
         eelParser.restoreDefaults()
+        saveSlidersToPrefs()
         reload()
         requireContext().sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_RELOAD_LIVEPROG))
+    }
+
+    private fun saveSlidersToPrefs() {
+        val sliders = eelParser.properties.joinToString(";") { prop ->
+            if (prop is EelNumberRangeProperty<*>) {
+                prop.value.toString()
+            } else "0"
+        }
+        requireContext().getSharedPreferences(Constants.PREF_LIVEPROG, Context.MODE_PRIVATE)
+            .edit()
+            .putString(getString(R.string.key_liveprog_sliders), sliders)
+            .apply()
     }
 
     companion object {

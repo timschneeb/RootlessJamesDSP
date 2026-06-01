@@ -190,7 +190,7 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
         JamesDspWrapper.freezeLiveprogExecution(handle, freeze)
     }
 
-    fun setSlider(index: Int, value: Double)
+    override fun setSlider(index: Int, value: Double)
     {
         JamesDspWrapper.setSlider(handle, index, value)
     }

@@ -71,11 +71,8 @@ class EelListProperty(
                 return null
             }
 
-            val current = findVariable(key, contents)
-            if (current == null) {
-                Timber.e("Failed to find current value of list option parameter (key=$key)")
-                return null
-            }
+            val defaultVal = def?.toIntOrNull() ?: 0
+            val current = findVariable(key, contents) ?: defaultVal
 
             try {
                 return EelListProperty(

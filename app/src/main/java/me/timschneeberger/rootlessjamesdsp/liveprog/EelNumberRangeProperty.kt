@@ -112,11 +112,8 @@ open class EelNumberRangeProperty<T:Number>(
                 return null
             }
 
-            val current = findVariable(key, contents)
-            if (current == null) {
-                Timber.e("Failed to find current value of number range parameter (key=$key)")
-                return null
-            }
+            val defaultVal = def?.toFloatOrNull() ?: 0.0f
+            val current = findVariable(key, contents) ?: defaultVal
 
             try {
                 return EelNumberRangeProperty(

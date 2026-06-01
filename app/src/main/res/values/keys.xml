@@ -136,4 +136,5 @@
     <string name="key_limiter_release" translatable="false">limiter_release</string>
     <string name="key_output_postgain" translatable="false">output_postgain</string>
     <string name="key_debug_dsp_chain" translatable="false">debug_dsp_chain</string>
+    <string name="key_liveprog_sliders" translatable="false">liveprog_sliders</string>
 </resources>

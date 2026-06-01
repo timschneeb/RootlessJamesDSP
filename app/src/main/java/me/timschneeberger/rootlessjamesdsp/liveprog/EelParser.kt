@@ -160,6 +160,21 @@ class EelParser {
         return true
     }
 
+    fun applySliders(sliders: String) {
+        val array = sliders.split(";")
+        for ((i, str) in array.withIndex()) {
+            if (i >= properties.size) break
+            val value = str.toFloatOrNull() ?: continue
+            val prop = properties[i]
+            if (prop is EelListProperty) {
+                prop.value = value.toInt()
+            } else if (prop is EelNumberRangeProperty<*>) {
+                @Suppress("UNCHECKED_CAST")
+                (prop as EelNumberRangeProperty<Float>).value = value
+            }
+        }
+    }
+
     fun manipulateProperty(prop: EelBaseProperty): Boolean {
         if(!isFileLoaded)
             return false

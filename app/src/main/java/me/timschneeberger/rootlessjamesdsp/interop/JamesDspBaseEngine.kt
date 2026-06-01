@@ -113,6 +113,7 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
             cache.select(Constants.PREF_LIVEPROG)
             val liveProgEnabled = cache.get(R.string.key_liveprog_enable, false)
             val liveprogFile = cache.get(R.string.key_liveprog_file, "")
+            val liveprogSliders = cache.get(R.string.key_liveprog_sliders, "")
 
             cache.select(Constants.PREF_CONVOLVER)
             val convolverEnabled = cache.get(R.string.key_convolver_enable, false)
@@ -136,7 +137,11 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
                     Constants.PREF_CROSSFEED -> setCrossfeed(crossfeedEnabled, crossfeedMode)
                     Constants.PREF_TUBE -> setVacuumTube(tubeEnabled, tubeDrive)
                     Constants.PREF_DDC -> setVdc(ddcEnabled, ddcFile)
-                    Constants.PREF_LIVEPROG -> setLiveprog(liveProgEnabled, liveprogFile)
+                    Constants.PREF_LIVEPROG -> {
+                        setLiveprog(liveProgEnabled, liveprogFile)
+                        setLiveprogSliders(liveprogSliders)
+                        true
+                    }
                     Constants.PREF_CONVOLVER -> setConvolver(convolverEnabled, convolverFile, convolverMode, convolverAdvImp)
                     else -> true
                 }
@@ -375,6 +380,16 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
             val name = File(fullPath).name
             setLiveprogInternal(enable, name, it.readText())
         } ?: false
+    }
+
+    fun setLiveprogSliders(sliders: String) {
+        if (sliders.isEmpty()) return
+        val array = sliders.split(";")
+        for ((i, str) in array.withIndex()) {
+            if (i >= 128) break
+            val value = str.toDoubleOrNull() ?: continue
+            setSlider(i, value)
+        }
     }
 
     private fun safeFileReader(path: String) =
