@@ -327,7 +327,10 @@ extern "C" JNIEXPORT jboolean JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setLimiter(JNIEnv *env, jobject obj, jlong self, jfloat threshold, jfloat release)
 {
     DECLARE_DSP_B
+    // Call legacy setter to update coefficients in jdsp struct
     JLimiterSetCoefficients(dsp, threshold, release);
+    // Sync snapshot to make it visible to audio thread
+    JamesDSPRefreshState(dsp);
     return true;
 }
 
@@ -336,6 +339,7 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setPostGain(JNI
 {
     DECLARE_DSP_B
     JamesDSPSetPostGain(dsp, gain);
+    // JamesDSPSetPostGain now handles snapshot update internally
     return true;
 }
 
@@ -371,6 +375,7 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setMultiEqualiz
     {
         MultimodalEqualizerDisable(dsp);
     }
+    JamesDSPRefreshState(dsp);
     return true;
 }
 
@@ -521,6 +526,7 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setGraphicEq(JN
     else
         ArbitraryResponseEqualizerDisable(dsp);
 
+    JamesDSPRefreshState(dsp);
     return true;
 }
 
@@ -576,6 +582,7 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setStereoEnhanc
     {
         StereoEnhancementEnable(dsp);
     }
+    JamesDSPRefreshState(dsp);
     return true;
 }
 
@@ -593,6 +600,7 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setVacuumTube(J
     {
         VacuumTubeDisable(dsp);
     }
+    JamesDSPRefreshState(dsp);
     return true;
 }
 
@@ -640,6 +648,8 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setLiveprog(JNI
         LiveProgEnable(dsp);
     else
         LiveProgDisable(dsp);
+
+    JamesDSPRefreshState(dsp);
     return true;
 }
 
