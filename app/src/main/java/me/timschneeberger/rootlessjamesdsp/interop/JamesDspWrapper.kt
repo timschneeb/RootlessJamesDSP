@@ -50,6 +50,7 @@ object JamesDspWrapper {
     external fun resetExecutionOrder(self: JamesDspHandle)
     external fun getExecutionOrder(self: JamesDspHandle): IntArray
     external fun setSlider(self: JamesDspHandle, index: Int, value: Double)
+    external fun setSystemVariables(self: JamesDspHandle, volume: Float, volumeDb: Float, muted: Int, headset: Int, bluetooth: Int, route: Int)
     external fun getModules(self: JamesDspHandle): ArrayList<DspModule>
     external fun debugTestExecutionOrder(self: JamesDspHandle)
     external fun eelErrorCodeToString(errorCode: Int): String

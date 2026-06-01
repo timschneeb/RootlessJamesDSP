@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
     <string name="action_settings">Postavke</string>
@@ -22,20 +22,20 @@
     <string name="notification_idle">Audio procesiranje miruje</string>
     <string name="notification_processing_title">Audio procesiranje u tijeku</string>
     <string name="notification_processing_disabled_title">Audio procesiranje onemogućeno</string>
-    <string name="notification_processing_legacy">Dodirni za otvaranje JamesDSP managera</string>
+    <string name="notification_processing_legacy">Dodirni za otvaranje ToneForge managera</string>
     <!-- Permission request notifications -->
-    <string name="notification_request_permission_title">Potrebna je radnja korisnika za pokretanje JamesDSP</string>
-    <string name="notification_request_permission">Dodirnite za dopuštenje dozvole za snimanje i omogućite JamesDSP audio procesiranje</string>
+    <string name="notification_request_permission_title">Potrebna je radnja korisnika za pokretanje ToneForge</string>
+    <string name="notification_request_permission">Dodirnite za dopuštenje dozvole za snimanje i omogućite ToneForge audio procesiranje</string>
     <!-- Session control loss notifications -->
-    <string name="session_control_loss_toast">JamesDSP je zaustavljen zbog gubitka audio sesije. Onemogućite druge aplikacije za audio efekte.</string>
-    <string name="session_control_loss_notification_title">Obrada zvuka je zaustavljena. Druga aplikacija ometa JamesDSP.</string>
-    <string name="session_control_loss_notification">Onemogućite sve ostale aplikacije koje pružaju globalne audio efekte prije ponovnog omogućavanja JamesDSP.</string>
+    <string name="session_control_loss_toast">ToneForge je zaustavljen zbog gubitka audio sesije. Onemogućite druge aplikacije za audio efekte.</string>
+    <string name="session_control_loss_notification_title">Obrada zvuka je zaustavljena. Druga aplikacija ometa ToneForge.</string>
+    <string name="session_control_loss_notification">Onemogućite sve ostale aplikacije koje pružaju globalne audio efekte prije ponovnog omogućavanja ToneForge.</string>
     <!-- App compatibility issue notifications -->
-    <string name="session_app_compat_toast">JamesDSP je zaustavljen zbog nepodržane media aplikacije. Provjerite obavijest za riješavanje ovog problema.</string>
-    <string name="session_app_compat_notification_title">Obrada zvuka je zaustavljena. Druga aplikacija ometa JamesDSP.</string>
+    <string name="session_app_compat_toast">ToneForge je zaustavljen zbog nepodržane media aplikacije. Provjerite obavijest za riješavanje ovog problema.</string>
+    <string name="session_app_compat_notification_title">Obrada zvuka je zaustavljena. Druga aplikacija ometa ToneForge.</string>
     <string name="session_app_compat_notification">Dodirnite ovu obavijest za riješavanje problema.</string>
     <!-- Capture permission revoked notifications -->
-    <string name="capture_permission_revoked_toast">JamesDSP je zaustavljen jer je dopuštenje za hvatanje audia opozvano.</string>
+    <string name="capture_permission_revoked_toast">ToneForge je zaustavljen jer je dopuštenje za hvatanje audia opozvano.</string>
     <!-- General purpose -->
     <string name="install">Instaliraj</string>
     <string name="update">Ažuriraj</string>
@@ -114,7 +114,7 @@
     <string name="backup_settings">Sigurnosno kopiranje i vraćanje podataka</string>
     <!-- Theme names -->
     <!-- File library preference -->
-    <!-- JamesDSP engine messages -->
+    <!-- ToneForge engine messages -->
     <!-- GraphicEQ editor -->
     <string name="gep_add_node">Dodaj</string>
     <!-- AutoEQ GraphicEQ selector -->
@@ -137,3 +137,4 @@
     <!-- Multi-device profiles -->
     <!-- Root version check -->
 </resources>
+

@@ -2,7 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
   <me.timschneeberger.rootlessjamesdsp.preference.SwitchPreferenceGroup
-      android:title="@string/output_control_header"
+      android:title="@string/output_safety_final_limiter_header"
       android:enabled="false"
       android:defaultValue="false"
       android:icon="@drawable/ic_twotone_volume_up_24dp"

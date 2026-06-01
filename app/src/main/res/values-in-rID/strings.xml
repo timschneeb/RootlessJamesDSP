@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
     <string name="action_settings">Pengaturan</string>
@@ -22,20 +22,20 @@
     <string name="notification_idle">Pemroses audio menganggur</string>
     <string name="notification_processing_title">Pemroses audio aktif</string>
     <string name="notification_processing_disabled_title">Pemroses audio nonaktif</string>
-    <string name="notification_processing_legacy">Tekan untuk membuka JamesDSP manager</string>
+    <string name="notification_processing_legacy">Tekan untuk membuka ToneForge manager</string>
     <!-- Permission request notifications -->
-    <string name="notification_request_permission_title">Diperlukan tindakan pengguna untuk menjalankan JamesDSP</string>
-    <string name="notification_request_permission">Tekan untuk memberi izin pengambilan dan mengaktifkan JamesDSP</string>
+    <string name="notification_request_permission_title">Diperlukan tindakan pengguna untuk menjalankan ToneForge</string>
+    <string name="notification_request_permission">Tekan untuk memberi izin pengambilan dan mengaktifkan ToneForge</string>
     <!-- Session control loss notifications -->
-    <string name="session_control_loss_toast">JamesDSP berhenti karena kendali sesi audio terputus. Harap Matikan audio effect lainnya.</string>
-    <string name="session_control_loss_notification_title">Pemroses audio dihentikan karena JamesDSP terganggu dengan aplikasi lain.</string>
-    <string name="session_control_loss_notification">Harap matikan semua aplikasi pemberi effect audio global sebelum mengaktifkan JamesDSP.</string>
+    <string name="session_control_loss_toast">ToneForge berhenti karena kendali sesi audio terputus. Harap Matikan audio effect lainnya.</string>
+    <string name="session_control_loss_notification_title">Pemroses audio dihentikan karena ToneForge terganggu dengan aplikasi lain.</string>
+    <string name="session_control_loss_notification">Harap matikan semua aplikasi pemberi effect audio global sebelum mengaktifkan ToneForge.</string>
     <!-- App compatibility issue notifications -->
-    <string name="session_app_compat_toast">JamesDSP berhenti karena tidak kompatible media app. Silahkan cek pemberitahuan untuk menyelesaikan masalah ini.</string>
-    <string name="session_app_compat_notification_title">Pemrosesan audio dihentikan karena JamesDSP terganggu dengan aplikasi lain.</string>
+    <string name="session_app_compat_toast">ToneForge berhenti karena tidak kompatible media app. Silahkan cek pemberitahuan untuk menyelesaikan masalah ini.</string>
+    <string name="session_app_compat_notification_title">Pemrosesan audio dihentikan karena ToneForge terganggu dengan aplikasi lain.</string>
     <string name="session_app_compat_notification">Tekan ini untuk menyelesaikan masalah ini.</string>
     <!-- Capture permission revoked notifications -->
-    <string name="capture_permission_revoked_toast">JamesDSP dihentikan karena izin pengambilan audio dicabut.</string>
+    <string name="capture_permission_revoked_toast">ToneForge dihentikan karena izin pengambilan audio dicabut.</string>
     <!-- General purpose -->
     <string name="install">Instal</string>
     <string name="update">Perbarui</string>
@@ -166,7 +166,7 @@
     <string name="onboarding_back">Kembali</string>
     <string name="onboarding_next">Lanjut</string>
     <string name="onboarding_finish">Selesai</string>
-    <string name="onboarding_greeting">Selamat datang di RootlessJamesDSP!</string>
+    <string name="onboarding_greeting">Selamat datang di ToneForge!</string>
     <string name="onboarding_caption">Asisten membantu anda menyetel aplikasi ini.</string>
     <string name="onboarding_warning">Saat ini, aplikasi masih dalam tahap pengembangan. Perlu diketahui aplikasi mungkin tidak berjalan dengan baik karena menggunakan API Android yang dirancang untuk tidak digunakan oleh pihak ketiga.</string>
     <string name="onboarding_fix_permissions_title">Tindakan pengguna diperlukan</string>
@@ -225,21 +225,21 @@
     <string name="onboarding_perm_microphone_title">Izin record audio</string>
     <string name="onboarding_perm_microphone_caption">Diperlukan untuk merekam audio internal. Mikrofon Hardware tidak aktif.</string>
     <string name="onboarding_perm_notification_title">Izin notifikasi</string>
-    <string name="onboarding_perm_notification_caption">Diperlukan untuk menerima status penting dan status pemrosesan JamesDSP.</string>
+    <string name="onboarding_perm_notification_caption">Diperlukan untuk menerima status penting dan status pemrosesan ToneForge.</string>
     <string name="onboarding_perm_cast_title">Izin Cast/merekam</string>
     <string name="onboarding_perm_cast_caption">Anda harus memberikan izin ini untuk merekam audio setiap kali dijalankan.</string>
     <string name="onboarding_perm_missing_title">Izin penyimpanan ditolak</string>
     <string name="onboarding_perm_missing">Beri izin penyimpanan untuk melanjutkan.\nJika anda menolaknya terus menerus, anda harus memberi izin manual di pengaturan perangkat.</string>
     <string name="onboarding_perm_diag">Izinkan mengirim laporan diagnosis</string>
     <string name="onboarding_perm_diag_caption">Aplikasi akan mengirim laporan crash dan data diagnosis lainnya, termasuk informasi mengenai aplikasi lain yang aktif. Ini bertujuan untuk menyelesaikan masalah dan bug lebih mudah.</string>
-    <string name="onboarding_finish_header">JamesDSP sudah diatur!</string>
+    <string name="onboarding_finish_header">ToneForge sudah diatur!</string>
     <string name="onboarding_finish_caption">Jika anda menemukan masalah, kunjungi opsi pemecahan masalah.</string>
     <string name="limit_session_control_conflict_title">Matikan audio effect lainnya</string>
     <string name="limit_session_control_conflict">Aplikasi audio effect menggunakan Pemrosesan Effect Dinamis bawaan Android bentrok dengan aplikasi ini.</string>
     <string name="limit_unsupported_apps_title">Aplikasi media tidak didukung</string>
     <string name="limit_unsupported_apps">Aplikasi memblokir penangkapan audio internal tidak diproses (cth: Spotify, Google Chrome).</string>
     <string name="limit_hw_accel_title">Masalah pemutar audio yang HW-accelerated</string>
-    <string name="limit_hw_accel">Audio playback dengan HW-accelerated (fast tracks) terkadang menyebabkan duplikasi suara atau menonaktifkan JamesDSP dalam beberapa kejadian. Tambahkan pemutar musik yang menjadi penyebab ke dalam daftar pengecualian untuk mencegahnya.</string>
+    <string name="limit_hw_accel">Audio playback dengan HW-accelerated (fast tracks) terkadang menyebabkan duplikasi suara atau menonaktifkan ToneForge dalam beberapa kejadian. Tambahkan pemutar musik yang menjadi penyebab ke dalam daftar pengecualian untuk mencegahnya.</string>
     <string name="limit_detect_delay_title">Deteksi sesi audio delay</string>
     <string name="limit_detect_delay"><![CDATA[Setelah aplikasi membuka sesi media baru ke pemutar audio, anda akan mendengar suara terduplikat atau terpotong menjadi pendek (sekitar <250ms).]]></string>
     <string name="limit_latency_title">Tingkatkan latensi</string>
@@ -275,7 +275,7 @@
     <string name="audio_format_enhanced_processing_off">Pemrosesan yang ditingkatkan nonaktif</string>
     <string name="audio_format_enhanced_processing_info_title">Apa itu Pemrosesan yang ditingkatkan?</string>
     <string name="audio_format_enhanced_processing_info">Tekan untuk melihat rincian</string>
-    <string name="audio_format_enhanced_processing_info_content">Saat Pemrosesan Ditingkatkan diaktifkan, anda bisa memilih aplikasi yang ingin dikecualikan dari JamesDSP. Gunakan 3-dot menu di pojok bawah dan pilih \'Aplikasi Dikecualikan\' untuk mengakses fitur ini.\n\nSaat Mode Legacy dinonaktifkan, JamesDSP bergantung pada aplikasi media yang mengirim System Broadcast saat mereka memulai pemutaran suara. Ini merupakan sebuah kelebihan dari Mode Legacy karena setiap aplikasi mendapat effect engine JamesDSP masing-masing untuk setiap aplikasi, yang memungkinkan kontrol lebih halus. Jika tidak, Mode Legacy akan diaktifkan dan semua aplikasi akan berbagi satu processing engine, yang sudah usang dan seharusnya tidak digunakan lagi menurut Android. \n\nSayangnya, tidak semua aplikasi media melakukannya dengan benar. Oleh karena itu, mode ini tidak bekerja dengan baik saat Mode Legacy dinonaktifkan. Untuk memperbaiki ini, anda bisa mengaktifkan Pemrosesan Ditingkatkan. Daripada bergantung pada system broadcast, JamesDSP akan memindai sesi media baru secara aktif dan memungkinkan dukungan pada aplikasi media yang tidak kooperatif.</string>
+    <string name="audio_format_enhanced_processing_info_content">Saat Pemrosesan Ditingkatkan diaktifkan, anda bisa memilih aplikasi yang ingin dikecualikan dari ToneForge. Gunakan 3-dot menu di pojok bawah dan pilih \'Aplikasi Dikecualikan\' untuk mengakses fitur ini.\n\nSaat Mode Legacy dinonaktifkan, ToneForge bergantung pada aplikasi media yang mengirim System Broadcast saat mereka memulai pemutaran suara. Ini merupakan sebuah kelebihan dari Mode Legacy karena setiap aplikasi mendapat effect engine ToneForge masing-masing untuk setiap aplikasi, yang memungkinkan kontrol lebih halus. Jika tidak, Mode Legacy akan diaktifkan dan semua aplikasi akan berbagi satu processing engine, yang sudah usang dan seharusnya tidak digunakan lagi menurut Android. \n\nSayangnya, tidak semua aplikasi media melakukannya dengan benar. Oleh karena itu, mode ini tidak bekerja dengan baik saat Mode Legacy dinonaktifkan. Untuk memperbaiki ini, anda bisa mengaktifkan Pemrosesan Ditingkatkan. Daripada bergantung pada system broadcast, ToneForge akan memindai sesi media baru secara aktif dan memungkinkan dukungan pada aplikasi media yang tidak kooperatif.</string>
     <string name="audio_format_media_apps_need_restart">Anda harus memuat ulang semua aplikasi media setelah mengubah pengaturan ini untuk melanjutkan.</string>
     <string name="audio_format_summary">Pengodean audio pilihan, ukuran buffer</string>
     <string name="audio_format_summary_root">Mode Legacy, pemrosesan yang ditingkatkan</string>
@@ -352,10 +352,10 @@
     <string name="credits">Kredit</string>
     <string name="translators">Penerjemah</string>
     <string name="credits_app">Aplikasi &amp; implementasi rootless dikembangkan oleh</string>
-    <string name="credits_dsp">Pustaka inti algoritma JamesDSP dikembangkan oleh</string>
+    <string name="credits_dsp">Pustaka inti algoritma ToneForge dikembangkan oleh</string>
     <string name="credits_project_page">Kunjungi situs project di GitHub</string>
     <string name="credits_project_page_summary">Laporkan masalah, pastikan anda terus update dan lihat source code</string>
-    <string name="credits_project_play_page">Kunjungi RootlessJamesDSP di Play Store</string>
+    <string name="credits_project_play_page">Kunjungi ToneForge di Play Store</string>
     <string name="credits_project_play_page_summary">Periksa pembaruan</string>
     <string name="credits_project_check_update">Periksa pembaruan…</string>
     <string name="credits_project_check_update_summary">Unduh dan pasang pembaruan jika tersedia</string>
@@ -429,7 +429,7 @@
     <string name="filelibrary_preset_loaded">Preset \'%1$s\' dimuat</string>
     <string name="filelibrary_preset_load_failed">File \'%1$s\' tidak kompetibel dengan aplikasi</string>
     <string name="filelibrary_no_presets">Tidak ada preset tersimpan. Tap \'\'Tambah\' untuk menambahkan.</string>
-    <!-- JamesDSP engine messages -->
+    <!-- ToneForge engine messages -->
     <string name="message_vdc_corrupt">VDC yang dipilih rusak, silahkan pilih yang lainnya.</string>
     <string name="message_irs_corrupt">Impulse yang dipilih rusak, silahkan pilih yang lainnya.</string>
     <string name="message_convolver_advimp_invalid">Convolver: Advanced waveform editing berisi nilai yang tidak valid.</string>
@@ -486,8 +486,8 @@
     <string name="editor_find_previous_match">Cari pencocokan sebelum</string>
     <string name="editor_search_keyword">Cari</string>
     <string name="editor_source_position">%1$d:%2$d</string>
-    <string name="editor_engine_down_title">JamesDSP tidak aktif</string>
-    <string name="editor_engine_down">Skrip tidak bisa dijalankan karena JamesDSP nonaktif, aktifkan JamesDSP terlebih dahulu.</string>
+    <string name="editor_engine_down_title">ToneForge tidak aktif</string>
+    <string name="editor_engine_down">Skrip tidak bisa dijalankan karena ToneForge nonaktif, aktifkan ToneForge terlebih dahulu.</string>
     <string name="editor_save_prompt_title">Simpan perubahan?</string>
     <string name="editor_save_prompt">Skrip saat ini mempunyai perubahan, apa anda ingin menyimpannya atau membuang perubahan?</string>
     <string name="editor_script_launched">Skrip dijalankan</string>
@@ -507,16 +507,16 @@
     <string name="app_compat_retry">Coba Lagi</string>
     <string name="app_compat_exclude">Kecualikan</string>
     <string name="app_compat_title">Pemrosesan audio dihentikan untuk mencegah duplikasi suara</string>
-    <string name="app_compat_explanation">Aplikasi berikut membuat RootlessJamesDSP kehilangan kontrol terhadap routing audio:</string>
-    <string name="app_compat_instruction">Periksa pengaturan aplikasi jika anda bisa menonaktifkan HW-acceleration atau pengaturan lainnya yang mungkin bentrok dengan RootlessJamesDSP, lalu tekan \'Ulangi\'.</string>
+    <string name="app_compat_explanation">Aplikasi berikut membuat ToneForge kehilangan kontrol terhadap routing audio:</string>
+    <string name="app_compat_instruction">Periksa pengaturan aplikasi jika anda bisa menonaktifkan HW-acceleration atau pengaturan lainnya yang mungkin bentrok dengan ToneForge, lalu tekan \'Ulangi\'.</string>
     <string name="app_compat_instruction_exclude">Untuk langkah alternatif, anda bisa memilih \'Kecualikan\' untuk mengecualikan aplikasi yang tidak didukung.</string>
     <string name="app_compat_unknown_pkg_name">Nama package tidak dikenal</string>
     <!-- Root: Library load failure -->
     <string name="load_fail_header">Modul magisk tidak terpasang</string>
     <string name="load_fail_card_title">Gagal memuat libjamesdsp.so</string>
-    <string name="load_fail_card">Pasang modul magisk JamesDSP dan mulai ulang perangkat Android anda untuk menggunakan aplikasi. Mungkin anda juga perlu memasang ulang aplikasi setelah memulai ulang.</string>
+    <string name="load_fail_card">Pasang modul magisk ToneForge dan mulai ulang perangkat Android anda untuk menggunakan aplikasi. Mungkin anda juga perlu memasang ulang aplikasi setelah memulai ulang.</string>
     <string name="load_fail_rootless_card_title">Mencari alternatif rootless?</string>
-    <string name="load_fail_rootless_card">Jenis JamesDSP ini dirancang untuk perangkat yang sudah di modifikasi atau di-root. Alternatif untuk perangkat non-root yang punya beberapa keterbatasan juga tersedia. Tekan untuk melihat detail.</string>
+    <string name="load_fail_rootless_card">Jenis ToneForge ini dirancang untuk perangkat yang sudah di modifikasi atau di-root. Alternatif untuk perangkat non-root yang punya beberapa keterbatasan juga tersedia. Tekan untuk melihat detail.</string>
     <string name="load_fail_arch_card_title">Modul sudah terpasang?</string>
     <string name="load_fail_arch_card">Jika anda sudah memasang modul magisk, sepertinya anda memilih pengaturan yang salah saat pemasangan. Ulangi pemasangan dan coba aktifkan kompatibilitas Huawei (Walaupun perangkat anda bukan Huawei).</string>
     <!-- Enhanced processing -->
@@ -536,7 +536,7 @@
     <string name="slider_dialog_step_error">Nilai harus kelipatan %1$d. Perubahan tidak diterapkan.</string>
     <!-- Revert confirmation -->
     <string name="revert_confirmation_title">Apakah Anda yakin?</string>
-    <string name="revert_confirmation">Anda ingin menyetel ulang preset JamesDSP saat ini ke nilai awal?</string>
+    <string name="revert_confirmation">Anda ingin menyetel ulang preset ToneForge saat ini ke nilai awal?</string>
     <!-- File intent handler -->
     <string name="intent_import_preset">Impor preset</string>
     <string name="intent_import_irs">Impor respon impulse</string>
@@ -598,7 +598,8 @@
     <string name="device_profile_manage_copy_select">Pilih profil untuk disalin</string>
     <string name="device_profile_manage_paste_select">Pilih profil untuk ditimpa</string>
     <!-- Root version check -->
-    <string name="version_mismatch_root">Paket magisk JamesDSP perlu diperbarui</string>
-    <string name="version_mismatch_root_description">Paket JamesDSP Magisk yang terinstal di perangkat Anda sudah usang dan tidak lagi didukung oleh aplikasi ini.\n\nMohon ambil paket ZIP JamesDSP Magisk terbaru dan pasang melalui Magisk.\nPerlu diingat bahwa paket Magisk ini mungkin akan menggantikan aplikasi ini dengan aplikasi resmi JamesDSP.\n\nApakah Anda ingin mengunjungi situs web unduhan untuk paket Magisk sekarang?</string>
-    <string name="version_mismatch_root_toast">Gagal memulai. Versi package magisk JamesDSP yang terpasang sudah terlalu lama dan tidak didukung oleh aplikasi ini lagi.</string>
+    <string name="version_mismatch_root">Paket magisk ToneForge perlu diperbarui</string>
+    <string name="version_mismatch_root_description">Paket ToneForge Magisk yang terinstal di perangkat Anda sudah usang dan tidak lagi didukung oleh aplikasi ini.\n\nMohon ambil paket ZIP ToneForge Magisk terbaru dan pasang melalui Magisk.\nPerlu diingat bahwa paket Magisk ini mungkin akan menggantikan aplikasi ini dengan aplikasi resmi ToneForge.\n\nApakah Anda ingin mengunjungi situs web unduhan untuk paket Magisk sekarang?</string>
+    <string name="version_mismatch_root_toast">Gagal memulai. Versi package magisk ToneForge yang terpasang sudah terlalu lama dan tidak didukung oleh aplikasi ini lagi.</string>
 </resources>
+

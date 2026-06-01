@@ -14,6 +14,7 @@ import me.timschneeberger.rootlessjamesdsp.databinding.ItemDspModuleBinding
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspLocalEngine
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspWrapper
 import me.timschneeberger.rootlessjamesdsp.interop.structure.DspModule
+import java.util.Collections
 
 class DspChainFragment : Fragment() {
 
@@ -33,6 +34,7 @@ class DspChainFragment : Fragment() {
 
         binding.btnReset.setOnClickListener {
             JamesDspLocalEngine.activeInstance?.let { engine ->
+                // Runtime-only: native reset restores the compiled default order until the DSP engine is recreated.
                 JamesDspWrapper.resetExecutionOrder(engine.handle)
                 loadData()
                 Toast.makeText(requireContext(), "Chain order reset", Toast.LENGTH_SHORT).show()
@@ -60,6 +62,10 @@ class DspChainFragment : Fragment() {
 
         allModules = JamesDspWrapper.getModules(engine.handle)
         currentOrder = JamesDspWrapper.getExecutionOrder(engine.handle).toMutableList()
+        if (!isValidOrder(currentOrder)) {
+            Toast.makeText(requireContext(), "Invalid DSP chain order reported by engine", Toast.LENGTH_LONG).show()
+            currentOrder = allModules.map { it.index }.toMutableList()
+        }
         updateList()
     }
 
@@ -73,19 +79,32 @@ class DspChainFragment : Fragment() {
     private fun moveModule(position: Int, direction: Int) {
         val newPosition = position + direction
         if (newPosition in 0 until currentOrder.size) {
-            val temp = currentOrder[position]
-            currentOrder[position] = currentOrder[newPosition]
-            currentOrder[newPosition] = temp
+            val previousOrder = currentOrder.toList()
+            Collections.swap(currentOrder, position, newPosition)
+            if (!isValidOrder(currentOrder)) {
+                currentOrder = previousOrder.toMutableList()
+                Toast.makeText(requireContext(), "Invalid DSP chain order", Toast.LENGTH_SHORT).show()
+                return
+            }
             
             JamesDspLocalEngine.activeInstance?.let { engine ->
                 if (JamesDspWrapper.setExecutionOrder(engine.handle, currentOrder.toIntArray())) {
-                    updateList()
+                    loadData()
                 } else {
+                    currentOrder = previousOrder.toMutableList()
+                    updateList()
                     Toast.makeText(requireContext(), "Failed to update execution order", Toast.LENGTH_SHORT).show()
-                    loadData() // Reload on failure
+                    loadData()
                 }
             }
         }
+    }
+
+    private fun isValidOrder(order: List<Int>): Boolean {
+        val validIndices = allModules.map { it.index }.toSet()
+        return order.size == validIndices.size &&
+            order.toSet().size == order.size &&
+            order.all { it in validIndices }
     }
 
     private class DspModuleAdapter(

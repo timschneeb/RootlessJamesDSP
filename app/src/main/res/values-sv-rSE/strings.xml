@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
     <string name="action_settings">Inställningar</string>
@@ -22,20 +22,20 @@
     <string name="notification_idle">Ljudprocessering inaktiv</string>
     <string name="notification_processing_title">Ljudprocessering aktiv</string>
     <string name="notification_processing_disabled_title">Ljudprocessering inaktiverad</string>
-    <string name="notification_processing_legacy">Tryck för att öppna JamesDSP Manager</string>
+    <string name="notification_processing_legacy">Tryck för att öppna ToneForge Manager</string>
     <!-- Permission request notifications -->
-    <string name="notification_request_permission_title">Användaråtgärd krävs för att starta JamesDSP</string>
-    <string name="notification_request_permission">Tryck för att bevilja inspelningstillstånd och aktivera JamesDSPs ljudprocessering</string>
+    <string name="notification_request_permission_title">Användaråtgärd krävs för att starta ToneForge</string>
+    <string name="notification_request_permission">Tryck för att bevilja inspelningstillstånd och aktivera ToneForges ljudprocessering</string>
     <!-- Session control loss notifications -->
-    <string name="session_control_loss_toast">JamesDSP stoppades på grund av kontrollförlust över ljudsessionen. Vänligen inaktivera andra ljudprocesseringsappar.</string>
-    <string name="session_control_loss_notification_title">Ljudprocessering stoppad. En annan app stör JamesDSP.</string>
-    <string name="session_control_loss_notification">Vänligen inaktivera alla andra appar som processerar ljud globalt innan du återaktiverar JamesDSP.</string>
+    <string name="session_control_loss_toast">ToneForge stoppades på grund av kontrollförlust över ljudsessionen. Vänligen inaktivera andra ljudprocesseringsappar.</string>
+    <string name="session_control_loss_notification_title">Ljudprocessering stoppad. En annan app stör ToneForge.</string>
+    <string name="session_control_loss_notification">Vänligen inaktivera alla andra appar som processerar ljud globalt innan du återaktiverar ToneForge.</string>
     <!-- App compatibility issue notifications -->
-    <string name="session_app_compat_toast">JamesDSP stoppades på grund av inkompatibel mediaapp. Kontrollera aviseringen för att lösa problemet.</string>
-    <string name="session_app_compat_notification_title">Ljudprocessering stoppad. En annan app stör JamesDSP.</string>
+    <string name="session_app_compat_toast">ToneForge stoppades på grund av inkompatibel mediaapp. Kontrollera aviseringen för att lösa problemet.</string>
+    <string name="session_app_compat_notification_title">Ljudprocessering stoppad. En annan app stör ToneForge.</string>
     <string name="session_app_compat_notification">Tryck på denna avisering för att lösa problemet.</string>
     <!-- Capture permission revoked notifications -->
-    <string name="capture_permission_revoked_toast">JamesDSP har stoppats eftersom tillståndet för ljudinspelning har återkallats.</string>
+    <string name="capture_permission_revoked_toast">ToneForge har stoppats eftersom tillståndet för ljudinspelning har återkallats.</string>
     <!-- General purpose -->
     <string name="install">Installera</string>
     <string name="update">Uppdatera</string>
@@ -166,7 +166,7 @@
     <string name="onboarding_back">Tillbaka</string>
     <string name="onboarding_next">Nästa</string>
     <string name="onboarding_finish">Slutför</string>
-    <string name="onboarding_greeting">Välkommen till RootlessJamesDSP!</string>
+    <string name="onboarding_greeting">Välkommen till ToneForge!</string>
     <string name="onboarding_caption">Denna assistent hjälper dig att konfigurera denna app.</string>
     <string name="onboarding_warning">För närvarande är denna applikation ofärdig och instabil. Observera att den kanske inte fungerar som förväntat på vissa enheter eftersom den använder Android-API:er inte avsedda för användning av tredje part.</string>
     <string name="onboarding_fix_permissions_title">Användaråtgärd krävs</string>
@@ -190,7 +190,7 @@
     <!-- Theme names -->
     <string name="theme_default">Förvald</string>
     <!-- File library preference -->
-    <!-- JamesDSP engine messages -->
+    <!-- ToneForge engine messages -->
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">Magnitudssvar</string>
     <string name="gep_add_node">Lägg till</string>
@@ -214,3 +214,4 @@
     <!-- Multi-device profiles -->
     <!-- Root version check -->
 </resources>
+

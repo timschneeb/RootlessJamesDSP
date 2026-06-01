@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
     <string name="action_settings">Beállítások</string>
@@ -22,20 +22,20 @@
     <string name="notification_idle">Hang feldolgozása inaktív</string>
     <string name="notification_processing_title">Hang feldolgozása aktív</string>
     <string name="notification_processing_disabled_title">Hang feldolgozása letiltva</string>
-    <string name="notification_processing_legacy">Koppintson a JamesDSP menedzser megnyitásához</string>
+    <string name="notification_processing_legacy">Koppintson a ToneForge menedzser megnyitásához</string>
     <!-- Permission request notifications -->
-    <string name="notification_request_permission_title">Felhasználó beavatkozása szügséges a JamesDSP indításához</string>
-    <string name="notification_request_permission">Koppintson a képernyőrögzítési jogosultság megadásához hogy engedélyezze a JamesDSP hang feldolgozását</string>
+    <string name="notification_request_permission_title">Felhasználó beavatkozása szügséges a ToneForge indításához</string>
+    <string name="notification_request_permission">Koppintson a képernyőrögzítési jogosultság megadásához hogy engedélyezze a ToneForge hang feldolgozását</string>
     <!-- Session control loss notifications -->
-    <string name="session_control_loss_toast">JamesDSP leállt mivel a hang munkamenete elvesztette az irányítást. Kérjük tiltson le más hangot befolyásoló appokat.</string>
-    <string name="session_control_loss_notification_title">Hang feldolgozása leállt. Egy másik app gátolja a JamesDSP működését.</string>
-    <string name="session_control_loss_notification">Kérjük tiltsa le az összes további appot ami globális hanghatásokat nyújt mielőtt újra engedélyezi a JamesDSP szolgáltatást.</string>
+    <string name="session_control_loss_toast">ToneForge leállt mivel a hang munkamenete elvesztette az irányítást. Kérjük tiltson le más hangot befolyásoló appokat.</string>
+    <string name="session_control_loss_notification_title">Hang feldolgozása leállt. Egy másik app gátolja a ToneForge működését.</string>
+    <string name="session_control_loss_notification">Kérjük tiltsa le az összes további appot ami globális hanghatásokat nyújt mielőtt újra engedélyezi a ToneForge szolgáltatást.</string>
     <!-- App compatibility issue notifications -->
-    <string name="session_app_compat_toast">JamesDSP leállt mivel a médiát lejátszó app nem kompatibilis. Kérjük ellenőrizze az értesítést a probléma megoldásához.</string>
-    <string name="session_app_compat_notification_title">Hang feldolgozása leállt. Egy másik app gátolja a JamesDSP működését.</string>
+    <string name="session_app_compat_toast">ToneForge leállt mivel a médiát lejátszó app nem kompatibilis. Kérjük ellenőrizze az értesítést a probléma megoldásához.</string>
+    <string name="session_app_compat_notification_title">Hang feldolgozása leállt. Egy másik app gátolja a ToneForge működését.</string>
     <string name="session_app_compat_notification">Koppintson erre az értesítésre a probléma megoldásához.</string>
     <!-- Capture permission revoked notifications -->
-    <string name="capture_permission_revoked_toast">A JamesDSP le lett állítva mivel a hangrögzítési jogosultság vissza lett vonva.</string>
+    <string name="capture_permission_revoked_toast">A ToneForge le lett állítva mivel a hangrögzítési jogosultság vissza lett vonva.</string>
     <!-- General purpose -->
     <string name="install">Telepítés</string>
     <string name="update">Frissítés</string>
@@ -145,7 +145,7 @@ Törlés</string>
     <string name="onboarding_back">Vissza</string>
     <string name="onboarding_next">Tovább</string>
     <string name="onboarding_finish">Kész</string>
-    <string name="onboarding_greeting">Üdv a RootlessJamesDSP-ben!</string>
+    <string name="onboarding_greeting">Üdv a ToneForge-ben!</string>
     <string name="onboarding_caption">Ez az asszisztens segít beállítani az appot.</string>
     <string name="onboarding_warning">Jelenleg ez az alkalmazás befejezettlen és instabil. Kérlek vedd figyelembe hogy néhány eszközön nem feltétlenül működik az elvártak alapján, mivel olyan Android API-kat használ, amiket nem harmadik felek általi használatra terveztek.</string>
     <string name="onboarding_fix_permissions_title">Felhasználói beavatkozás szükséges</string>
@@ -199,21 +199,21 @@ Törlés</string>
     <string name="onboarding_perm_microphone_title">Hang rögzítési engedély</string>
     <string name="onboarding_perm_microphone_caption">Szükséges a belső hang rögzítéséhez. A hardveres mikrofon nincs aktiválva.</string>
     <string name="onboarding_perm_notification_title">Értesítési engedély</string>
-    <string name="onboarding_perm_notification_caption">Fontos állapotfrissítések és a JamesDSP feldolgozási állapotával kapcsolatos információk fogadásához szükséges.</string>
+    <string name="onboarding_perm_notification_caption">Fontos állapotfrissítések és a ToneForge feldolgozási állapotával kapcsolatos információk fogadásához szükséges.</string>
     <string name="onboarding_perm_cast_title">Szereplési/felvételi engedély</string>
     <string name="onboarding_perm_cast_caption">Kifejezetten engedélyt kell adnia ennek az alkalmazásnak a hangtartalom rögzítésére minden indításkor.</string>
     <string name="onboarding_perm_missing_title">A futásidejű engedélyek nincsenek megadva</string>
     <string name="onboarding_perm_missing">A folytatáshoz adja meg az összes kért futásidejű engedélyt.\n Ha többször is megtagadta az engedélyeket, manuálisan kell megadnia azokat a rendszerbeállításokban.</string>
     <string name="onboarding_perm_diag">Diagnosztikai jelentések küldésének engedélyezése</string>
     <string name="onboarding_perm_diag_caption">Ez az alkalmazás összeomlási jelentéseket és egyéb diagnosztikai adatokat küld el, beleértve az egyéb aktív alkalmazásokra vonatkozó információkat is, hogy könnyebben észleljem és megoldjam a kompatibilitási problémákat és a hibákat.</string>
-    <string name="onboarding_finish_header">A JamesDSP be van állítva!</string>
+    <string name="onboarding_finish_header">A ToneForge be van állítva!</string>
     <string name="onboarding_finish_caption">Ha bármilyen problémába ütközik, kérjük, keresse fel a hibaelhárítási lehetőségeket.</string>
     <string name="limit_session_control_conflict_title">Más hangeffektus-alkalmazások letiltása</string>
     <string name="limit_session_control_conflict">Az Android beépített dinamikus feldolgozási effektusát használó hangeffektus-alkalmazások zavarják ezt az alkalmazást.</string>
     <string name="limit_unsupported_apps_title">Nem támogatott médiaalkalmazások</string>
     <string name="limit_unsupported_apps">A belső hangrögzítést blokkoló alkalmazások feldolgozatlanok maradnak (pl. Spotify, Google Chrome).</string>
     <string name="limit_hw_accel_title">HW-gyorsított hanglejátszási problémák</string>
-    <string name="limit_hw_accel">HW-gyorsított hanglejátszás (gyors sávok) néha duplikált hangot okozhat, vagy bizonyos körülmények között megölheti a JamesDSP-t. Adja hozzá az érintett zenelejátszót a kizárt alkalmazások listájához, nehogy a JamesDSP átirányítsa azt.</string>
+    <string name="limit_hw_accel">HW-gyorsított hanglejátszás (gyors sávok) néha duplikált hangot okozhat, vagy bizonyos körülmények között megölheti a ToneForge-t. Adja hozzá az érintett zenelejátszót a kizárt alkalmazások listájához, nehogy a ToneForge átirányítsa azt.</string>
     <string name="limit_detect_delay_title">Az audio munkamenet észlelésének késleltetése</string>
     <string name="limit_detect_delay"><![CDATA[Miután egy alkalmazás új médiamunkamenetet nyitott a hang lejátszásához, nagyon rövid ideig (körülbelül 250 ms-nál) duplikált vagy levágott hangot hallhat.]]></string>
     <string name="limit_latency_title">Megnövekedett késleltetés</string>
@@ -233,7 +233,7 @@ Törlés</string>
     <!-- Theme names -->
     <string name="theme_default">Alapértelmezett</string>
     <!-- File library preference -->
-    <!-- JamesDSP engine messages -->
+    <!-- ToneForge engine messages -->
     <!-- GraphicEQ editor -->
     <string name="title_activity_geq">Magnitúdó jelleggörbe</string>
     <string name="gep_add_node">Hozzáadás</string>
@@ -257,3 +257,4 @@ Törlés</string>
     <!-- Multi-device profiles -->
     <!-- Root version check -->
 </resources>
+

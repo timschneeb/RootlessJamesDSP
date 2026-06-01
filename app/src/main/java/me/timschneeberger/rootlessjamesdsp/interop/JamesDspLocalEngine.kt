@@ -194,4 +194,9 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
     {
         JamesDspWrapper.setSlider(handle, index, value)
     }
+
+    fun setSystemVariables(volume: Float, volumeDb: Float, muted: Boolean, headset: Boolean, bluetooth: Boolean, route: Int)
+    {
+        JamesDspWrapper.setSystemVariables(handle, volume, volumeDb, if(muted) 1 else 0, if(headset) 1 else 0, if(bluetooth) 1 else 0, route)
+    }
 }

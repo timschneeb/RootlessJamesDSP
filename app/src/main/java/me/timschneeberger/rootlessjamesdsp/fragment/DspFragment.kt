@@ -15,6 +15,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.databinding.FragmentDspBinding
+import me.timschneeberger.rootlessjamesdsp.interop.JamesDspLocalEngine
+import me.timschneeberger.rootlessjamesdsp.interop.JamesDspWrapper
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import org.koin.android.ext.android.inject
@@ -37,6 +39,13 @@ class DspFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListen
     override fun onDestroy() {
         prefsApp.unregisterOnSharedPreferenceChangeListener(this)
         super.onDestroy()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (::binding.isInitialized) {
+            applySignalFlowOrder()
+        }
     }
 
     override fun onCreateView(
@@ -114,6 +123,8 @@ class DspFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListen
             (it.parent as? View)?.isVisible = false
         }
 
+        applySignalFlowOrder()
+
         // Load initial preferences
         arrayOf(R.string.key_device_profiles_enable).forEach {
             onSharedPreferenceChanged(null, getString(it))
@@ -136,6 +147,46 @@ class DspFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListen
         // Set timer +1y
         prefsVar.set<Long>(R.string.key_snooze_translation_notice, (System.currentTimeMillis() / 1000L) + 31536000L)
     }
+
+    private fun applySignalFlowOrder() {
+        val orderedProcessingCards = getNativeProcessingOrder()
+            .flatMap { internalName -> moduleCardsForInternalName(internalName) }
+            .distinct()
+
+        val allRuntimeCards = (defaultProcessingCards() + outputSafetyCard()).distinct()
+        allRuntimeCards.forEach { binding.cardContainer.removeView(it) }
+
+        orderedProcessingCards.forEach { binding.cardContainer.addView(it) }
+        binding.cardContainer.addView(outputSafetyCard())
+    }
+
+    private fun getNativeProcessingOrder(): List<String> {
+        val engine = JamesDspLocalEngine.activeInstance ?: return defaultNativeOrder
+        val modules = JamesDspWrapper.getModules(engine.handle).associateBy { it.index }
+        val order = JamesDspWrapper.getExecutionOrder(engine.handle)
+        if (order.isEmpty() || order.size != modules.size || order.toSet().size != order.size) return defaultNativeOrder
+        if (order.any { it !in modules }) return defaultNativeOrder
+        return order.mapNotNull { modules[it]?.internalName }
+    }
+
+    private fun moduleCardsForInternalName(internalName: String): List<View> =
+        when (internalName) {
+            "tube" -> listOf(cardFor(binding.cardTube))
+            "m_eq" -> listOf(cardFor(binding.cardEq))
+            "arb_eq" -> listOf(cardFor(binding.cardPeq), cardFor(binding.cardGeq))
+            "liveprog" -> listOf(cardFor(binding.cardLiveprog))
+            "ster_enh" -> listOf(cardFor(binding.cardStereowide))
+            else -> emptyList()
+        }
+
+    private fun defaultProcessingCards(): List<View> =
+        defaultNativeOrder.flatMap { moduleCardsForInternalName(it) }
+
+    private fun outputSafetyCard(): View =
+        cardFor(binding.cardOutputControl)
+
+    private fun cardFor(container: View): View =
+        container.parent as View
 
     fun setUpdateCardVisible(visible: Boolean) {
         binding.updateNotice.isVisible = visible
@@ -168,6 +219,8 @@ class DspFragment : Fragment(), SharedPreferences.OnSharedPreferenceChangeListen
     }
 
     companion object {
+        private val defaultNativeOrder = listOf("tube", "m_eq", "arb_eq", "liveprog", "ster_enh")
+
         fun newInstance(): DspFragment {
             return DspFragment()
         }

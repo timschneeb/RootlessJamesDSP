@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
     <string name="action_settings">Setări</string>
@@ -22,20 +22,20 @@
     <string name="notification_idle">Procesare audio inactivă</string>
     <string name="notification_processing_title">Procesare audio activă</string>
     <string name="notification_processing_disabled_title">Procesare audio inactivă</string>
-    <string name="notification_processing_legacy">Atinge pentru a deschide managerul JamesDSP</string>
+    <string name="notification_processing_legacy">Atinge pentru a deschide managerul ToneForge</string>
     <!-- Permission request notifications -->
-    <string name="notification_request_permission_title">Acțiunea utilizatorului este necesară pentru a lansa JamesDSP</string>
-    <string name="notification_request_permission">Atingeți pentru a acorda permisiunea de capturare și pentru a activa procesarea audio a JamesDSP</string>
+    <string name="notification_request_permission_title">Acțiunea utilizatorului este necesară pentru a lansa ToneForge</string>
+    <string name="notification_request_permission">Atingeți pentru a acorda permisiunea de capturare și pentru a activa procesarea audio a ToneForge</string>
     <!-- Session control loss notifications -->
-    <string name="session_control_loss_toast">JamesDSP s-a oprit din cauza pierderii controlului sesiunii audio. Vă rugăm să dezactivați alte aplicații cu efect audio.</string>
-    <string name="session_control_loss_notification_title">Procesare audio oprită. O altă aplicație interferează cu JamesDSP.</string>
-    <string name="session_control_loss_notification">Dezactivați toate celelalte aplicații care furnizează efecte audio globale înainte de a reactiva JamesDSP.</string>
+    <string name="session_control_loss_toast">ToneForge s-a oprit din cauza pierderii controlului sesiunii audio. Vă rugăm să dezactivați alte aplicații cu efect audio.</string>
+    <string name="session_control_loss_notification_title">Procesare audio oprită. O altă aplicație interferează cu ToneForge.</string>
+    <string name="session_control_loss_notification">Dezactivați toate celelalte aplicații care furnizează efecte audio globale înainte de a reactiva ToneForge.</string>
     <!-- App compatibility issue notifications -->
-    <string name="session_app_compat_toast">JamesDSP s-a oprit din cauza unei aplicații media incompatibile. Vă rugăm să verificați notificarea pentru a rezolva această problemă.</string>
-    <string name="session_app_compat_notification_title">Procesare audio oprită. O altă aplicație interferează cu JamesDSP.</string>
+    <string name="session_app_compat_toast">ToneForge s-a oprit din cauza unei aplicații media incompatibile. Vă rugăm să verificați notificarea pentru a rezolva această problemă.</string>
+    <string name="session_app_compat_notification_title">Procesare audio oprită. O altă aplicație interferează cu ToneForge.</string>
     <string name="session_app_compat_notification">Atingeți această notificare pentru a rezolva problema.</string>
     <!-- Capture permission revoked notifications -->
-    <string name="capture_permission_revoked_toast">JamesDSP a fost oprit deoarece permisiunea de capturare audio a fost revocată.</string>
+    <string name="capture_permission_revoked_toast">ToneForge a fost oprit deoarece permisiunea de capturare audio a fost revocată.</string>
     <!-- General purpose -->
     <string name="install">Instalare</string>
     <string name="update">Actualizare</string>
@@ -70,7 +70,7 @@
     <string name="backup_settings">Backup și restaurare</string>
     <!-- Theme names -->
     <!-- File library preference -->
-    <!-- JamesDSP engine messages -->
+    <!-- ToneForge engine messages -->
     <!-- GraphicEQ editor -->
     <string name="gep_add_node">Adaugă</string>
     <!-- AutoEQ GraphicEQ selector -->
@@ -93,3 +93,4 @@
     <!-- Multi-device profiles -->
     <!-- Root version check -->
 </resources>
+

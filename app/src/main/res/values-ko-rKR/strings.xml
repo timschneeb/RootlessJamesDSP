@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Main menu bar -->
     <string name="action_settings">설정</string>
@@ -22,20 +22,20 @@
     <string name="notification_idle">오디오 처리 정지</string>
     <string name="notification_processing_title">오디오 처리 활성화</string>
     <string name="notification_processing_disabled_title">오디오 처리 비활성화됨</string>
-    <string name="notification_processing_legacy">탭 하여 JamesDSP 매니저를 엽니다.</string>
+    <string name="notification_processing_legacy">탭 하여 ToneForge 매니저를 엽니다.</string>
     <!-- Permission request notifications -->
-    <string name="notification_request_permission_title">JamesDSP를 실행하려면 사용자의 작업이 필요합니다</string>
-    <string name="notification_request_permission">탭 하여 캡처 권한을 부여하고 JamesDSP의 오디오 처리를 활성화하세요</string>
+    <string name="notification_request_permission_title">ToneForge를 실행하려면 사용자의 작업이 필요합니다</string>
+    <string name="notification_request_permission">탭 하여 캡처 권한을 부여하고 ToneForge의 오디오 처리를 활성화하세요</string>
     <!-- Session control loss notifications -->
-    <string name="session_control_loss_toast">오디오 세션 제어 손실로 인해 JamesDSP가 중지되었습니다. 다른 오디오 효과 앱을 비활성화해 주세요.</string>
-    <string name="session_control_loss_notification_title">오디오 처리가 중지되었습니다. 다른 앱이 JamesDSP를 방해하고 있습니다.</string>
-    <string name="session_control_loss_notification">JamesDSP를 다시 활성화하기 전에 전역 오디오 효과를 제공하는 다른 모든 앱을 비활성화해 주세요.</string>
+    <string name="session_control_loss_toast">오디오 세션 제어 손실로 인해 ToneForge가 중지되었습니다. 다른 오디오 효과 앱을 비활성화해 주세요.</string>
+    <string name="session_control_loss_notification_title">오디오 처리가 중지되었습니다. 다른 앱이 ToneForge를 방해하고 있습니다.</string>
+    <string name="session_control_loss_notification">ToneForge를 다시 활성화하기 전에 전역 오디오 효과를 제공하는 다른 모든 앱을 비활성화해 주세요.</string>
     <!-- App compatibility issue notifications -->
-    <string name="session_app_compat_toast">호환되지 않는 미디어 앱으로 인해 JamesDSP가 중지되었습니다. 이 문제를 해결하려면 알림을 확인해 주세요.</string>
-    <string name="session_app_compat_notification_title">오디오 처리가 중지되었습니다. 다른 앱이 JamesDSP를 방해하고 있습니다.</string>
+    <string name="session_app_compat_toast">호환되지 않는 미디어 앱으로 인해 ToneForge가 중지되었습니다. 이 문제를 해결하려면 알림을 확인해 주세요.</string>
+    <string name="session_app_compat_notification_title">오디오 처리가 중지되었습니다. 다른 앱이 ToneForge를 방해하고 있습니다.</string>
     <string name="session_app_compat_notification">이 알림을 탭 하여 문제를 해결하세요.</string>
     <!-- Capture permission revoked notifications -->
-    <string name="capture_permission_revoked_toast">오디오 캡처 권한이 취소되어 JamesDSP가 중지되었습니다.</string>
+    <string name="capture_permission_revoked_toast">오디오 캡처 권한이 취소되어 ToneForge가 중지되었습니다.</string>
     <!-- General purpose -->
     <string name="install">설치</string>
     <string name="update">업데이트</string>
@@ -166,7 +166,7 @@
     <string name="onboarding_back">이전</string>
     <string name="onboarding_next">다음</string>
     <string name="onboarding_finish">마침</string>
-    <string name="onboarding_greeting"> RootlessJamesDSP에 오신 것을 환영합니다!</string>
+    <string name="onboarding_greeting"> ToneForge에 오신 것을 환영합니다!</string>
     <string name="onboarding_caption">어시스턴트가 이 앱을 설정하는 것을 도와드립니다.</string>
     <string name="onboarding_warning">현재 이 어플리케이션은 아직 완성되지 않았으며 불안정한 상태입니다. 제3자의 사용을 고려하지 않은 Android API를 사용하므로, 일부 기기에서 예상대로 작동하지 않을 수 있음을 유의해주시기 바랍니다.</string>
     <string name="onboarding_fix_permissions_title">사용자 작업 필요</string>
@@ -225,21 +225,21 @@
     <string name="onboarding_perm_microphone_title">오디오 레코딩 권한</string>
     <string name="onboarding_perm_microphone_caption">내부 오디오를 레코딩하기 위해 필요합니다. 하드웨어 마이크가 활성화되어 있지 않습니다.</string>
     <string name="onboarding_perm_notification_title">알림 권한</string>
-    <string name="onboarding_perm_notification_caption">JamesDSP의 중요한 상태 업데이트 및 처리 상태에 대한 정보를 얻는 데 필요합니다.</string>
+    <string name="onboarding_perm_notification_caption">ToneForge의 중요한 상태 업데이트 및 처리 상태에 대한 정보를 얻는 데 필요합니다.</string>
     <string name="onboarding_perm_cast_title">캐스트/레코딩 권한</string>
     <string name="onboarding_perm_cast_caption">이 앱이 실행될 때마다 오디오 콘텐츠를 녹음할 권한을 명시적으로 부여해야 합니다.</string>
     <string name="onboarding_perm_missing_title">런타임 권한이 부여되지 않았습니다</string>
     <string name="onboarding_perm_missing">계속하려면 요청된 모든 런타임 권한을 부여해 주세요.\n권한을 반복적으로 거부한 경우 시스템 설정에서 수동으로 권한을 부여해야 합니다.</string>
     <string name="onboarding_perm_diag">진단 보고서 전송 허용</string>
     <string name="onboarding_perm_diag_caption">이 앱은 충돌 보고서와 기타 진단 데이터를 제출하며, 다른 활성화된 애플리케이션에 대한 정보도 포함되어 있어 호환성 문제와 버그를 더 쉽게 감지하고 해결할 수 있도록 돕습니다.</string>
-    <string name="onboarding_finish_header">JamesDSP 설정이 완료되었습니다!</string>
+    <string name="onboarding_finish_header">ToneForge 설정이 완료되었습니다!</string>
     <string name="onboarding_finish_caption">문제가 발생한 경우, 문제 해결을 참조해 주세요.</string>
     <string name="limit_session_control_conflict_title">다른 오디오 효과 앱 비활성화</string>
     <string name="limit_session_control_conflict">Android의 내장된 Dynamic Processing 효과를 사용하는 오디오 효과 앱은 이 앱과 간섭합니다.</string>
     <string name="limit_unsupported_apps_title">지원되지 않는 미디어 앱</string>
     <string name="limit_unsupported_apps">내부 오디오 캡처를 차단하는 앱은 처리되지 않습니다 (예: Spotify, Google Chrome).</string>
     <string name="limit_hw_accel_title">하드웨어 가속 오디오 재생 문제</string>
-    <string name="limit_hw_accel">하드웨어 가속 오디오 재생 (패스트 트랙) 은 때때로 오디오 중복을 유발하거나 JamesDSP의 작동을 멈추게 할 수 있습니다. JamesDSP의 재라우팅을 방지하려면 해당 음악 플레이어를 제외된 앱 목록에 추가해 주세요.</string>
+    <string name="limit_hw_accel">하드웨어 가속 오디오 재생 (패스트 트랙) 은 때때로 오디오 중복을 유발하거나 ToneForge의 작동을 멈추게 할 수 있습니다. ToneForge의 재라우팅을 방지하려면 해당 음악 플레이어를 제외된 앱 목록에 추가해 주세요.</string>
     <string name="limit_detect_delay_title">오디오 세션 감지 지연</string>
     <string name="limit_detect_delay"><![CDATA[앱이 오디오를 재생하기 위해 새로운 미디어 세션을 연 후에 매우 짧은 기간(약 250밀리초 미만) 동안 오디오가 중복되거나 끊길 수 있습니다.]]></string>
     <string name="limit_latency_title">증가된 레이턴시</string>
@@ -275,7 +275,7 @@
     <string name="audio_format_enhanced_processing_off">항샹된 처리 비활성화됨</string>
     <string name="audio_format_enhanced_processing_info_title">향상된 처리란?</string>
     <string name="audio_format_enhanced_processing_info">탭 하여 설명서를 표시</string>
-    <string name="audio_format_enhanced_processing_info_content">향상된 처리 기능이 활성화된 경우 JamesDSP에서 처리되는 특정 앱을 선택적으로 제외할 수 있습니다. 오른쪽 하단 모서리의 3점 메뉴를 사용하고 \'제외된 앱\'을 선택하여 이 기능에 접근하세요.\n\n레거시 모드가 비활성화 되어있는 동안 JamesDSP는 미디어 앱에 의존하여 재생을 시작할 때 시스템 브로드캐스트를 전송합니다. 이는 레거시 모드 대비 각 앱에 자체 JamesDSP 효과 엔진이 할당되어 보다 세밀한 제어가 가능하다는 장점이 있습니다. 이와 달리, 레거시 모드가 설정된 상태에서는 모든 앱이 단일 처리 엔진을 공유하게 되며, 이 엔진은 Android에서 사용하는 것을 권장하지 않으므로 더 이상 사용해서는 안 됩니다. \n\n아쉽게도 모든 미디어 앱이 이 기능을 올바르게 수행하는 것은 아니므로 레거시 모드가 비활성화해도 올바르게 작동하지 않을 수 있습니다. 이 문제를 해결하려면 향상된 처리를 활성화해야 합니다. JamesDSP는 새로운 미디어 세션에 대한 시스템 브로드캐스트에 의존하는 대신 자체적으로 미디어 세션을 사전에 검색하고 비협조적인 미디어 앱에 대한 적절한 지원을 허용할 것입니다.</string>
+    <string name="audio_format_enhanced_processing_info_content">향상된 처리 기능이 활성화된 경우 ToneForge에서 처리되는 특정 앱을 선택적으로 제외할 수 있습니다. 오른쪽 하단 모서리의 3점 메뉴를 사용하고 \'제외된 앱\'을 선택하여 이 기능에 접근하세요.\n\n레거시 모드가 비활성화 되어있는 동안 ToneForge는 미디어 앱에 의존하여 재생을 시작할 때 시스템 브로드캐스트를 전송합니다. 이는 레거시 모드 대비 각 앱에 자체 ToneForge 효과 엔진이 할당되어 보다 세밀한 제어가 가능하다는 장점이 있습니다. 이와 달리, 레거시 모드가 설정된 상태에서는 모든 앱이 단일 처리 엔진을 공유하게 되며, 이 엔진은 Android에서 사용하는 것을 권장하지 않으므로 더 이상 사용해서는 안 됩니다. \n\n아쉽게도 모든 미디어 앱이 이 기능을 올바르게 수행하는 것은 아니므로 레거시 모드가 비활성화해도 올바르게 작동하지 않을 수 있습니다. 이 문제를 해결하려면 향상된 처리를 활성화해야 합니다. ToneForge는 새로운 미디어 세션에 대한 시스템 브로드캐스트에 의존하는 대신 자체적으로 미디어 세션을 사전에 검색하고 비협조적인 미디어 앱에 대한 적절한 지원을 허용할 것입니다.</string>
     <string name="audio_format_media_apps_need_restart">오디오 처리를 재개하려면 이 설정을 변경한 후 모든 활성화된 미디어 앱을 다시 시작해야 합니다.</string>
     <string name="audio_format_summary">권장 오디오 인코딩, 버퍼 크기</string>
     <string name="audio_format_summary_root">레거시 모드, 향상된 처리</string>
@@ -352,10 +352,10 @@
     <string name="credits">크레딧</string>
     <string name="translators">번역가</string>
     <string name="credits_app">앱 &amp; 루트리스 구현 개발</string>
-    <string name="credits_dsp">JamesDSP 핵심 알고리즘 라이브러리 개발</string>
+    <string name="credits_dsp">ToneForge 핵심 알고리즘 라이브러리 개발</string>
     <string name="credits_project_page">Github에서 프로젝트 웹 사이트 방문</string>
     <string name="credits_project_page_summary">문제 보고, 최신 상태 유지, 소스 코드 읽기</string>
-    <string name="credits_project_play_page">Google Play에서 RootlessJamesDSP 방문</string>
+    <string name="credits_project_play_page">Google Play에서 ToneForge 방문</string>
     <string name="credits_project_play_page_summary">새 업데이트 검색</string>
     <string name="credits_project_check_update">새 업데이트 확인...</string>
     <string name="credits_project_check_update_summary">사용 가능한 경우 업데이트 다운로드 및 설치</string>
@@ -429,7 +429,7 @@
     <string name="filelibrary_preset_loaded">프리셋 \'%1$s\' 로드됨</string>
     <string name="filelibrary_preset_load_failed">파일 \'%1$s\' 은 이 앱과 호환되지 않습니다</string>
     <string name="filelibrary_no_presets">저장된 프리셋이 없습니다. 새 프리셋을 만드들려면 \'추가\'를 탭 하세요.</string>
-    <!-- JamesDSP engine messages -->
+    <!-- ToneForge engine messages -->
     <string name="message_vdc_corrupt">선택된 VDC 파일이 손상되었습니다. 다른 파일을 선택해 주세요.</string>
     <string name="message_irs_corrupt">선택된 임펄스 응답이 손상되었습니다. 다른 응답을 선택해 주세요.</string>
     <string name="message_convolver_advimp_invalid">컨볼버: 고급 파형 편집에 잘못된 값이 포함되어 있습니다.</string>
@@ -486,8 +486,8 @@
     <string name="editor_find_previous_match">이전 일치 항목 찾기</string>
     <string name="editor_search_keyword">검색</string>
     <string name="editor_source_position">%1$d:%2$d</string>
-    <string name="editor_engine_down_title">JamesDSP가 활성화되지 않음</string>
-    <string name="editor_engine_down">JamesDSP가 비활성화되어 있으므로 스크립트를 실행할 수 없습니다. 스크립트를 실행하려면 JamesDSP를 활성화해 주세요.</string>
+    <string name="editor_engine_down_title">ToneForge가 활성화되지 않음</string>
+    <string name="editor_engine_down">ToneForge가 비활성화되어 있으므로 스크립트를 실행할 수 없습니다. 스크립트를 실행하려면 ToneForge를 활성화해 주세요.</string>
     <string name="editor_save_prompt_title">변경 사항을 저장하시겠습니까?</string>
     <string name="editor_save_prompt">현재 스크립트에 저장되지 않은 변경 사항이 있습니다. 변경 사항을 저장 또는 삭제하시겠습니까?</string>
     <string name="editor_script_launched">스크립트 실행됨</string>
@@ -507,16 +507,16 @@
     <string name="app_compat_retry">재시도</string>
     <string name="app_compat_exclude">제외</string>
     <string name="app_compat_title">오디오가 중복되지 않도록 오디오 처리가 중단되었습니다.</string>
-    <string name="app_compat_explanation">다음 앱은 RootlessJamesDSP가 오디오 라우팅을 제어할 수 없기 때문에 지원되지 않습니다.</string>
-    <string name="app_compat_instruction">앱 설정에서 하드웨어 가속 또는 RootlessJamesDSP를 방해할 수 있는 다른 설정을 비활성화할 수 있는지 확인하고 \'재시도\'를 탭 해 주세요.</string>
+    <string name="app_compat_explanation">다음 앱은 ToneForge가 오디오 라우팅을 제어할 수 없기 때문에 지원되지 않습니다.</string>
+    <string name="app_compat_instruction">앱 설정에서 하드웨어 가속 또는 ToneForge를 방해할 수 있는 다른 설정을 비활성화할 수 있는지 확인하고 \'재시도\'를 탭 해 주세요.</string>
     <string name="app_compat_instruction_exclude">또는 오디오 처리에서 호환되지 않는 앱을 제외하여 이 문제를 우회하려면 \'제외\'를 선택합니다.</string>
     <string name="app_compat_unknown_pkg_name">알 수 없는 패키지 이름</string>
     <!-- Root: Library load failure -->
     <string name="load_fail_header">Magisk 모듈이 설치되지 않음</string>
     <string name="load_fail_card_title">libjamesdsp.so 로드 실패</string>
-    <string name="load_fail_card">이 어플리케이션을 사용하려면 JamesDSP magisk 모듈을 설치하고 Android 장치를 재부팅해 주세요. 재부팅 후 이 어플리케이션을 다시 설치해야 할 수도 있습니다.</string>
+    <string name="load_fail_card">이 어플리케이션을 사용하려면 ToneForge magisk 모듈을 설치하고 Android 장치를 재부팅해 주세요. 재부팅 후 이 어플리케이션을 다시 설치해야 할 수도 있습니다.</string>
     <string name="load_fail_rootless_card_title">루트를 사용하지 않는 대안을 찾고 계십니까?</string>
-    <string name="load_fail_rootless_card">이 JamesDSP의 정수는 루팅 또는 모딩된 장치와 함께 사용하도록 설계되었습니다. 몇 가지 제한 사항과 함께 루트를 사용하지 않는 대안도 이용할 수 있습니다. 자세한 내용을 보려면 여기를 탭 하세요.</string>
+    <string name="load_fail_rootless_card">이 ToneForge의 정수는 루팅 또는 모딩된 장치와 함께 사용하도록 설계되었습니다. 몇 가지 제한 사항과 함께 루트를 사용하지 않는 대안도 이용할 수 있습니다. 자세한 내용을 보려면 여기를 탭 하세요.</string>
     <string name="load_fail_arch_card_title">모듈이 이미 설치되었습니까?</string>
     <string name="load_fail_arch_card">Magisk 모듈을 이미 설치했다면 설치 과정에서 잘못된 설정을 선택했을 수 있습니다. 다시 설치하고 화웨이 호환성을 활성화해 보세요 (해당 제조업체의 기기가 아니더라도).</string>
     <!-- Enhanced processing -->
@@ -536,7 +536,7 @@
     <string name="slider_dialog_step_error">값은 %1$d의 배수여야 합니다. 변경 사항이 적용되지 않았습니다.</string>
     <!-- Revert confirmation -->
     <string name="revert_confirmation_title">확실합니까?</string>
-    <string name="revert_confirmation">현재 JamesDSP 프리셋을 기본값으로 초기화하시겠습니까?</string>
+    <string name="revert_confirmation">현재 ToneForge 프리셋을 기본값으로 초기화하시겠습니까?</string>
     <!-- File intent handler -->
     <string name="intent_import_preset">프리셋 가져오기</string>
     <string name="intent_import_irs">임펄스 음답 가져오기</string>
@@ -598,7 +598,8 @@
     <string name="device_profile_manage_copy_select">복사할 프로파일 선택</string>
     <string name="device_profile_manage_paste_select">덮어쓸 프로파일 선택</string>
     <!-- Root version check -->
-    <string name="version_mismatch_root">JamesDSP Magisk 패키지를 업데이트해야 합니다</string>
-    <string name="version_mismatch_root_description">기기에 설치된 JamesDSP Magisk 모듈은 더 이상 사용되지 않으며 이 앱에서 더 이상 지원되지 않습니다.\n\n 최신 JamesDSP Magisk 패키지 압축파일을 다운로드하여 Magisk로 설치해 주세요.\nMagisk 패키지는 이 앱을 공식 JamesDSP 앱으로 대체할 수 있습니다.\n\n지금 Magisk 패키지 다운로드 웹 사이트를 방문하시겠습니까?</string>
-    <string name="version_mismatch_root_toast">실행 실패. 설치된 JamesDSP Magisk 모듈이 너무 오래되어 이 앱에서 더 이상 지원되지 않습니다.</string>
+    <string name="version_mismatch_root">ToneForge Magisk 패키지를 업데이트해야 합니다</string>
+    <string name="version_mismatch_root_description">기기에 설치된 ToneForge Magisk 모듈은 더 이상 사용되지 않으며 이 앱에서 더 이상 지원되지 않습니다.\n\n 최신 ToneForge Magisk 패키지 압축파일을 다운로드하여 Magisk로 설치해 주세요.\nMagisk 패키지는 이 앱을 공식 ToneForge 앱으로 대체할 수 있습니다.\n\n지금 Magisk 패키지 다운로드 웹 사이트를 방문하시겠습니까?</string>
+    <string name="version_mismatch_root_toast">실행 실패. 설치된 ToneForge Magisk 모듈이 너무 오래되어 이 앱에서 더 이상 지원되지 않습니다.</string>
 </resources>
+
