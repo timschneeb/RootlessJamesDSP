@@ -749,7 +749,12 @@ extern "C" JNIEXPORT void JNICALL
 Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setSlider(JNIEnv *env, jobject obj, jlong self, jint index, jdouble value)
 {
     DECLARE_DSP_V
-    JamesDSPSetSlider(dsp, (int)index, (double)value);
+    int slot = (int)index;
+    if (slot >= 0 && slot < JDSP_EEL_SLIDER_COUNT)
+    {
+        slot = dsp->eel.sliderMapping[slot];
+    }
+    JamesDSPSetSlider(dsp, slot, (double)value);
 }
 
 extern "C" JNIEXPORT jboolean JNICALL
