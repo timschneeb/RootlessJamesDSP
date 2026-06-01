@@ -23,6 +23,7 @@
 <p align="center">
   <a href="#limitations">Limitations</a> •
   <a href="#spotify-support-patch">Spotify patch</a> •
+  <a href="#liveprog-runtime">LiveProg Runtime</a> •
   <a href="#downloads">Downloads</a> •
   <a href="#credits">Credits</a>
 </p>
@@ -123,6 +124,63 @@ This allows RootlessJamesDSP to apply its custom audio effects directly without 
 Unfortunately, these tricks are not 100% reliable and introduce some limitations.
 Apps such as Spotify block internal audio capture (they don't want people to record their songs), and because of that, RootlessJamesDSP cannot directly access the audio stream of that app.
 This is the reason why a special patch is required to disable this DRM restriction inside Spotify's app. Patches for other apps with these DRM restrictions do not exist, but are possible to do.
+
+## LiveProg Runtime
+
+RootlessJamesDSP features a modern, JSFX-compatible EEL2 programmable DSP runtime. This allows users to write and execute custom audio effects in real-time.
+
+### Script Lifecycle
+Scripts follow a deterministic lifecycle:
+- `@init`: Executes once when the script is loaded or edited. Use this for heavy one-time initialization.
+- `@block`: Executes once per audio buffer. Ideal for control-rate calculations and analysis-driven logic.
+- `@sample`: Executes for every individual audio sample. This is where the core DSP processing happens.
+
+### Built-in Variables
+The runtime provides standard host variables for deep integration:
+- `srate`: Current system sampling rate.
+- `spl0`, `spl1`: Input and output sample values (stereo).
+- `samplesblock`: Number of samples in the current processing block.
+- `num_ch`: Number of channels (fixed to 2 for stereo).
+- `slider1`..`slider128`: Host-controlled parameter aliases.
+
+### Native Analysis Helpers
+High-performance metrics are calculated per block and made available to scripts:
+- `block_rms_l`, `block_rms_r`: Root Mean Square power of the current block.
+- `block_peak_l`, `block_peak_r`: Peak absolute value in the current block.
+- `block_dc_l`, `block_dc_r`: Average DC offset of the current block.
+
+### Advanced Parameter System
+LiveProg supports JSFX-style parameter declarations with custom EEL variable names:
+```eel
+gain:1<0,2,0.01>Output Gain
+body_mode:1<0,2,1{Soft,Medium,Hard}>Punch Mode
+
+@block
+g = gain;
+
+@sample
+spl0 *= g;
+spl1 *= g;
+```
+- **Persistent State**: Parameters are saved automatically by variable name, ensuring your settings are preserved even if the script source is edited or renamed.
+- **128-Slider Support**: Up to 128 unique host-controlled parameters per script.
+- **Lock-free Updates**: Parameter changes are applied via atomic snapshots, ensuring glitch-free real-time interaction.
+
+### Architecture Notes
+- **Fixed Safety Stage**: A high-quality peak limiter is hardcoded as the final stage of the DSP pipeline, ensuring your device and hearing are always protected.
+- **Lock-Free Pipeline**: The engine utilizes a `DSPState` snapshot system for lock-free configuration updates in the audio thread.
+- **Dynamic Reordering**: (Debug only) Manual reordering of the entire native DSP chain for performance and quality diagnostics.
+
+### Limitations vs JSFX
+- No `@gfx` support (headless processing only).
+- No transport/DAW variables (no global tempo/beat clock).
+
+### Roadmap
+- **@slider** support for event-driven parameter logic.
+- **Sample-accurate** slider interpolation.
+- **Background hot-reloading** with crossfading.
+- **Shared memory** (`gmem`) between scripts.
+- **Optimized FFT** helper functions.
 
 ## Translations
 
@@ -276,7 +334,7 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
       <sub><b>2844 words</b></sub>
     </td>
     <td align="center" valign="top">
-      <a href="https://crowdin.com/profile/MajorCanel"><img alt="logo" style="width: 64px" src="https://crowdin-static.cf-downloads.crowdin.com/avatar/15507252/medium/4a02e1c8d12aae3330baa229e5f8fb5e.jpeg" />
+      <a href="https://crowdin.com/profile/MajorCanel"><img alt="logo" style="width: 64px" src="https://crowdin-static.cf-downloads.crowdin.com/avatar/16224190/medium/e0b34056ea348d30906f48054f716f3c_default.png" />
         <br />
         <sub><b>HasanDgn37 (MajorCanel)</b></sub></a>
       <br />
