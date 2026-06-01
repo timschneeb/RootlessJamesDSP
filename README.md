@@ -6,21 +6,6 @@
 </h1>
 <h4 align="center">System-wide programmable DSP runtime for non-rooted Android devices</h4>
 <p align="center">
-  <a href="https://play.google.com/store/apps/details?id=me.timschneeberger.rootlessjamesdsp&utm_source=github&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1">
-  	<img alt="Google play release" src="https://img.shields.io/github/v/release/ThePBone/RootlessJamesDSP?label=google%20play">
-  </a>
-  <a href="https://f-droid.org/packages/me.timschneeberger.rootlessjamesdsp/">
-  	<img alt="F-Droid release" src="https://img.shields.io/f-droid/v/me.timschneeberger.rootlessjamesdsp">
-  </a>
-  <a href="https://github.com/ThePBone/RootlessJamesDSP/blob/master/LICENSE">
-      <img alt="License" src="https://img.shields.io/github/license/ThePBone/RootlessJamesDSP">
-  </a>
-    <a href="https://github.com/ThePBone/RootlessJamesDSP/actions/workflows/build.yml">
-      <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/thepbone/rootlessjamesdsp/build.yml">
-  </a>
-
-</p>
-<p align="center">
   <a href="#limitations">Limitations</a> •
   <a href="#spotify-support-patch">Spotify patch</a> •
   <a href="#liveprog-runtime">LiveProg Runtime</a> •
