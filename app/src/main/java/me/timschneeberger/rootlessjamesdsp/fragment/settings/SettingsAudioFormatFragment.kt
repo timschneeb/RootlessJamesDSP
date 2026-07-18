@@ -28,6 +28,9 @@ import timber.log.Timber
 class SettingsAudioFormatFragment : SettingsBaseFragment() {
 
     private val encoding by lazy { findPreference<ListPreference>(getString(R.string.key_audioformat_encoding)) }
+    private val rootlessUsbRateMode by lazy {
+        findPreference<ListPreference>(getString(R.string.key_audioformat_rootless_usb_rate_mode))
+    }
     private val bufferSize by lazy { findPreference<MaterialSeekbarPreference>(getString(R.string.key_audioformat_buffersize)) }
     private val legacyMode by lazy { findPreference<MaterialSwitchPreference>(getString(R.string.key_audioformat_processing)) }
     private val enhancedMode by lazy { findPreference<MaterialSwitchPreference>(getString(R.string.key_audioformat_enhanced_processing)) }
@@ -115,6 +118,11 @@ class SettingsAudioFormatFragment : SettingsBaseFragment() {
             true
         }
         encoding?.setOnPreferenceChangeListener { _, _ ->
+            context?.sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_HARD_REBOOT_CORE))
+            true
+        }
+        rootlessUsbRateMode?.isVisible = isRootless()
+        rootlessUsbRateMode?.setOnPreferenceChangeListener { _, _ ->
             context?.sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_HARD_REBOOT_CORE))
             true
         }

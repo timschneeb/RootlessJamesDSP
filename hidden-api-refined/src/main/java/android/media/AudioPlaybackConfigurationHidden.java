@@ -28,4 +28,14 @@ public class AudioPlaybackConfigurationHidden {
     public int getSessionId() {
         throw new RuntimeException("Stub!");
     }
+
+    /** Return whether the corresponding player is actively playing. */
+    public boolean isActive() {
+        throw new RuntimeException("Stub!");
+    }
+
+    /** Return the sample rate in Hz of the content being played. */
+    public int getSampleRate() {
+        throw new RuntimeException("Stub!");
+    }
 }
