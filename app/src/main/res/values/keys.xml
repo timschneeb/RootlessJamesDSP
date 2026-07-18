@@ -118,6 +118,8 @@
 
     <string name="key_convolver_enable" translatable="false">convolver_enable</string>
     <string name="key_convolver_file" translatable="false">convolver_file</string>
+    <string name="key_convolver_sample_rate_files" translatable="false">convolver_sample_rate_files</string>
+    <string name="key_convolver_processing_rate" translatable="false">convolver_processing_rate</string>
     <string name="key_convolver_mode" translatable="false">convolver_mode</string>
     <string name="key_convolver_adv_imp" translatable="false">convolver_adv_imp</string>
 

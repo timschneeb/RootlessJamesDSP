@@ -15,6 +15,17 @@
             app:useSimpleSummaryProvider="false"
             app:type="Convolver"
             app:iconSpaceReserved="false"/>
+        <Preference
+            android:key="@string/key_convolver_sample_rate_files"
+            android:title="@string/convolver_sample_rate_files"
+            android:summary="@string/convolver_sample_rate_files_summary"
+            app:iconSpaceReserved="false" />
+        <Preference
+            android:key="@string/key_convolver_processing_rate"
+            android:title="@string/convolver_processing_rate"
+            android:summary="@string/convolver_sample_rate_processing_inactive"
+            android:selectable="false"
+            app:iconSpaceReserved="false" />
         <ListPreference
             android:defaultValue="0"
             android:dialogTitle="@string/convolver_convolution_mode"
