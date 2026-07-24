@@ -10,8 +10,13 @@ import android.content.IntentFilter
 import android.content.SharedPreferences
 import android.content.pm.ServiceInfo
 import android.media.AudioAttributes
+import android.media.AudioDeviceCallback
+import android.media.AudioDeviceInfo
 import android.media.AudioFormat
 import android.media.AudioManager
+import android.media.AudioMixerAttributes
+import android.media.AudioPlaybackConfiguration
+import android.media.AudioPlaybackConfigurationHidden
 import android.media.AudioPlaybackCaptureConfiguration
 import android.media.AudioRecord
 import android.media.AudioTrack
@@ -23,11 +28,13 @@ import android.os.Looper
 import android.os.Process
 import androidx.annotation.RequiresApi
 import androidx.core.content.getSystemService
-import androidx.core.math.MathUtils.clamp
 import androidx.lifecycle.Observer
 import androidx.lifecycle.asLiveData
+import dev.rikka.tools.refine.Refine
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.flavor.CrashlyticsImpl
@@ -44,6 +51,9 @@ import me.timschneeberger.rootlessjamesdsp.session.rootless.RootlessSessionDatab
 import me.timschneeberger.rootlessjamesdsp.session.rootless.RootlessSessionManager
 import me.timschneeberger.rootlessjamesdsp.session.rootless.SessionRecordingPolicyManager
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.ActivePlaybackSampleRateDetector
+import me.timschneeberger.rootlessjamesdsp.utils.AudioSampleRateDetector
+import me.timschneeberger.rootlessjamesdsp.utils.UsbHardwareSampleRateDetector
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_PREFERENCES_UPDATED
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SAMPLE_RATE_UPDATED
 import me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_HARD_REBOOT_CORE
@@ -62,6 +72,8 @@ import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 import java.io.IOException
+import java.nio.ByteBuffer
+import java.nio.ByteOrder
 
 
 @RequiresApi(Build.VERSION_CODES.Q)
@@ -71,6 +83,75 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
     private lateinit var notificationManager: NotificationManager
     private lateinit var audioManager: AudioManager
 
+    private val sampleRatePlaybackCallback = object : AudioManager.AudioPlaybackCallback() {
+        override fun onPlaybackConfigChanged(configs: MutableList<AudioPlaybackConfiguration>?) {
+            if (!isRunning) return
+
+            if (isUsbOutputConnected() && followUsbHardwareRate()) {
+                applicationScope.launch(Dispatchers.IO) {
+                    val sourceRate = ActivePlaybackSampleRateDetector.detect(
+                        this@RootlessAudioProcessorService,
+                        Process.myUid(),
+                    )
+                    mainHandler.post {
+                        if (sourceRate > 0 && sourceRate != lastUsbSourceSampleRate) {
+                            lastUsbSourceSampleRate = sourceRate
+                            scheduleUsbHardwareRateReconfiguration()
+                        }
+                    }
+                }
+                return
+            }
+
+            val generation = ++sampleRateDetectionGeneration
+            val callbackRate = detectActiveContentSampleRate(configs)
+            if (callbackRate > 0) {
+                applyActiveContentSampleRate(callbackRate)
+                return
+            }
+
+            applicationScope.launch(Dispatchers.IO) {
+                val dumpRate = ActivePlaybackSampleRateDetector.detect(
+                    this@RootlessAudioProcessorService,
+                    Process.myUid(),
+                )
+                mainHandler.post {
+                    if (generation == sampleRateDetectionGeneration && isRunning) {
+                        applyActiveContentSampleRate(dumpRate)
+                    }
+                }
+            }
+        }
+    }
+    private val usbRouteRestart = Runnable {
+        if (isRunning && !isProcessorDisposing && !isServiceDisposing) {
+            if (isUsbOutputConnected() && followUsbHardwareRate()) {
+                Timber.i("USB audio route changed; detecting physical hardware rate")
+                scheduleUsbHardwareRateReconfiguration()
+            } else {
+                Timber.i("USB audio route removed; rebuilding normal output")
+                restartRecording()
+            }
+        }
+    }
+    private val usbAudioDeviceCallback = object : AudioDeviceCallback() {
+        override fun onAudioDevicesAdded(addedDevices: Array<out AudioDeviceInfo>) {
+            if (addedDevices.none(::isUsbAudioDevice)) return
+            mainHandler.removeCallbacks(usbRouteRestart)
+            // USB profiles are populated asynchronously after the device-added callback.
+            mainHandler.postDelayed(usbRouteRestart, USB_ROUTE_SETTLE_DELAY_MS)
+        }
+
+        override fun onAudioDevicesRemoved(removedDevices: Array<out AudioDeviceInfo>) {
+            if (removedDevices.none(::isUsbAudioDevice)) return
+            activeUsbHardwareSampleRate = 0
+            mainHandler.removeCallbacks(usbRouteRestart)
+            mainHandler.post(usbRouteRestart)
+        }
+    }
+    private var preferredMixerAttributesListener:
+        AudioManager.OnPreferredMixerAttributesChangedListener? = null
+
     // Media projection token
     private var mediaProjection: MediaProjection? = null
     private var mediaProjectionStartIntent: Intent? = null
@@ -78,6 +159,14 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
     // Processing
     private var recreateRecorderRequested = false
     private var recorderThread: Thread? = null
+    private var activeContentSampleRate = 0
+    private var activeUsbHardwareSampleRate = 0
+    private var lastUsbSourceSampleRate = 0
+    private var usbHardwareRateReconfigurationPending = false
+    private var sampleRateDetectionGeneration = 0
+    private val mainHandler = Handler(Looper.getMainLooper())
+    private var preferredUsbMixerDevice: AudioDeviceInfo? = null
+    private var preferredUsbMixerAudioAttributes: AudioAttributes? = null
     private lateinit var engine: JamesDspLocalEngine
     private val isRunning: Boolean
         get() = recorderThread != null
@@ -132,6 +221,14 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         // Setup core engine
         engine = JamesDspLocalEngine(this, ProcessorMessageHandler())
         engine.syncWithPreferences()
+        audioManager.registerAudioPlaybackCallback(
+            sampleRatePlaybackCallback,
+            Handler(Looper.getMainLooper()),
+        )
+        audioManager.registerAudioDeviceCallback(usbAudioDeviceCallback, mainHandler)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            registerPreferredMixerAttributesListener()
+        }
 
         // Setup general-purpose broadcast receiver
         val filter = IntentFilter()
@@ -224,6 +321,9 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
 
         // Stop recording and release engine
         stopRecording()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            clearPreferredUsbMixer()
+        }
         engine.close()
 
         // Stop foreground service
@@ -234,6 +334,12 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
 
         // Unregister database observer
         blockedApps.removeObserver(blockedAppObserver)
+        audioManager.unregisterAudioPlaybackCallback(sampleRatePlaybackCallback)
+        audioManager.unregisterAudioDeviceCallback(usbAudioDeviceCallback)
+        mainHandler.removeCallbacks(usbRouteRestart)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            unregisterPreferredMixerAttributesListener()
+        }
 
         // Unregister receivers and release resources
         unregisterLocalReceiver(broadcastReceiver)
@@ -423,20 +529,26 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         }
 
         // Load preferences
-        val encoding = AudioEncoding.fromInt(
+        val requestedEncoding = AudioEncoding.fromInt(
             preferences.get<String>(R.string.key_audioformat_encoding).toIntOrNull() ?: 1
         )
+        val sampleRate = determineSamplingRate()
+        val requestedEncodingFormat = when (requestedEncoding) {
+            AudioEncoding.PcmShort -> AudioFormat.ENCODING_PCM_16BIT
+            else -> AudioFormat.ENCODING_PCM_FLOAT
+        }
+        val outputFormat = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            configurePreferredUsbMixer(sampleRate, requestedEncodingFormat)
+        } else {
+            null
+        } ?: buildOutputAudioFormat(requestedEncodingFormat, sampleRate)
+        val encodingFormat = requestedEncodingFormat
+        val encoding = requestedEncoding
         val bufferSize = preferences.get<Float>(R.string.key_audioformat_buffersize).toInt()
         val bufferSizeBytes = when (encoding) {
             AudioEncoding.PcmFloat -> bufferSize * Float.SIZE_BYTES
             else -> bufferSize * Short.SIZE_BYTES
         }
-        val encodingFormat = when (encoding) {
-            AudioEncoding.PcmShort -> AudioFormat.ENCODING_PCM_16BIT
-            else -> AudioFormat.ENCODING_PCM_FLOAT
-        }
-        val sampleRate = clamp(determineSamplingRate(), 44100, 48000)
-
         Timber.i("Sample rate: $sampleRate; Encoding: ${encoding.name}; " +
                 "Buffer size: $bufferSize; Buffer size (bytes): $bufferSizeBytes ; " +
                 "HAL buffer size (bytes): ${determineBufferSize()}")
@@ -446,7 +558,10 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         val track: AudioTrack
         try {
             recorder = buildAudioRecord(encodingFormat, sampleRate, bufferSizeBytes)
-            track = buildAudioTrack(encodingFormat, sampleRate, bufferSizeBytes)
+            track = buildAudioTrack(
+                outputFormat,
+                bufferSize * bytesPerSample(outputFormat.encoding),
+            )
         }
         catch(ex: Exception) {
             Timber.e("Failed to create initial audio record/track")
@@ -474,6 +589,9 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
                 val floatOutBuffer = FloatArray(bufferSize)
                 val shortBuffer = ShortArray(bufferSize)
                 val shortOutBuffer = ShortArray(bufferSize)
+                val packedOutputBuffer = ByteBuffer
+                    .allocateDirect(bufferSize * Int.SIZE_BYTES)
+                    .order(ByteOrder.nativeOrder())
                 while (!isProcessorDisposing) {
                     if(recreateRecorderRequested) {
                         recreateRecorderRequested = false
@@ -528,12 +646,24 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
                     if(encoding == AudioEncoding.PcmShort) {
                         recorder.read(shortBuffer, 0, shortBuffer.size, AudioRecord.READ_BLOCKING)
                         engine.processInt16(shortBuffer, shortOutBuffer)
-                        track.write(shortOutBuffer, 0, shortOutBuffer.size, AudioTrack.WRITE_BLOCKING)
+                        writeShortOutput(
+                            track,
+                            outputFormat.encoding,
+                            shortOutBuffer,
+                            floatOutBuffer,
+                            packedOutputBuffer,
+                        )
                     }
                     else {
                         recorder.read(floatBuffer, 0, floatBuffer.size, AudioRecord.READ_BLOCKING)
                         engine.processFloat(floatBuffer, floatOutBuffer)
-                        track.write(floatOutBuffer, 0, floatOutBuffer.size, AudioTrack.WRITE_BLOCKING)
+                        writeFloatOutput(
+                            track,
+                            outputFormat.encoding,
+                            floatOutBuffer,
+                            shortOutBuffer,
+                            packedOutputBuffer,
+                        )
                     }
                 }
             } catch (e: IOException) {
@@ -582,42 +712,291 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         startRecording()
     }
 
-    private fun buildAudioTrack(encoding: Int, sampleRate: Int, bufferSizeBytes: Int): AudioTrack {
-        val attributesBuilder = AudioAttributes.Builder()
-            .setUsage(AudioAttributes.USAGE_UNKNOWN)
-            .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
-            .setFlags(0)
+    private fun restartForSampleRateChange(sampleRate: Int) {
+        if (!isRunning || engine.sampleRate.toInt() == sampleRate) return
 
-        sdkAbove(Build.VERSION_CODES.Q) {
-            attributesBuilder.setAllowedCapturePolicy(AudioAttributes.ALLOW_CAPTURE_BY_NONE)
+        Timber.i(
+            "Output sample rate changed from ${engine.sampleRate.toInt()}Hz to ${sampleRate}Hz"
+        )
+        restartRecording()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
+    private fun registerPreferredMixerAttributesListener() {
+        preferredMixerAttributesListener =
+            AudioManager.OnPreferredMixerAttributesChangedListener {
+                    _: AudioAttributes,
+                    _: AudioDeviceInfo,
+                    _: AudioMixerAttributes? ->
+                restartForSampleRateChange(determineSamplingRate())
+            }
+        audioManager.addOnPreferredMixerAttributesChangedListener(
+            mainExecutor,
+            preferredMixerAttributesListener!!,
+        )
+    }
+
+    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
+    private fun unregisterPreferredMixerAttributesListener() {
+        preferredMixerAttributesListener?.let {
+            audioManager.removeOnPreferredMixerAttributesChangedListener(it)
         }
+        preferredMixerAttributesListener = null
+    }
 
-        val format = AudioFormat.Builder()
+    private fun buildMediaAudioAttributes(): AudioAttributes {
+        return AudioAttributes.Builder()
+            .setUsage(AudioAttributes.USAGE_MEDIA)
+            .build()
+    }
+
+    private fun isUsbAudioDevice(device: AudioDeviceInfo): Boolean {
+        return device.type == AudioDeviceInfo.TYPE_USB_DEVICE ||
+            device.type == AudioDeviceInfo.TYPE_USB_HEADSET ||
+            device.type == AudioDeviceInfo.TYPE_USB_ACCESSORY
+    }
+
+    private fun isUsbOutputConnected(): Boolean {
+        return audioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS).any(::isUsbAudioDevice)
+    }
+
+    private fun followUsbHardwareRate(): Boolean {
+        return preferences.get<String>(R.string.key_audioformat_rootless_usb_rate_mode) != "0"
+    }
+
+    private fun scheduleUsbHardwareRateReconfiguration() {
+        if (usbHardwareRateReconfigurationPending || !isRunning || !isUsbOutputConnected()) return
+        usbHardwareRateReconfigurationPending = true
+
+        // Release our own USB stream so AudioFlinger exposes the rate selected by the
+        // captured source application's remaining (silenced) hardware stream.
+        stopRecording()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            clearPreferredUsbMixer()
+        }
+        isProcessorDisposing = false
+
+        mainHandler.postDelayed({
+            applicationScope.launch(Dispatchers.IO) {
+                val hardwareRate = UsbHardwareSampleRateDetector.detect(
+                    this@RootlessAudioProcessorService
+                )
+                mainHandler.post {
+                    usbHardwareRateReconfigurationPending = false
+                    if (isServiceDisposing) return@post
+                    activeUsbHardwareSampleRate = hardwareRate
+                    startRecording()
+                }
+            }
+        }, USB_HARDWARE_RATE_SETTLE_DELAY_MS)
+    }
+
+    private fun buildOutputAudioFormat(encoding: Int, sampleRate: Int): AudioFormat {
+        return AudioFormat.Builder()
             .setChannelMask(AudioFormat.CHANNEL_OUT_STEREO)
             .setEncoding(encoding)
             .setSampleRate(sampleRate)
             .build()
+    }
 
-        val frameSizeInBytes: Int = if (encoding == AudioFormat.ENCODING_PCM_16BIT) {
-            2 /* channels */ * 2 /* bytes */
-        } else {
-            2 /* channels */ * 4 /* bytes */
+    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
+    private fun configurePreferredUsbMixer(
+        sampleRate: Int,
+        requestedEncoding: Int,
+    ): AudioFormat? {
+        clearPreferredUsbMixer()
+
+        val attributes = buildMediaAudioAttributes()
+        return try {
+            audioManager.getAudioDevicesForAttributes(attributes)
+                .filter(::isUsbAudioDevice)
+                .firstNotNullOfOrNull { device ->
+                    val mixer = audioManager.getSupportedMixerAttributes(device)
+                        .asSequence()
+                        .filter {
+                            it.format.sampleRate == sampleRate &&
+                                it.format.channelCount == 2 &&
+                                it.format.encoding in SUPPORTED_USB_OUTPUT_ENCODINGS
+                        }
+                        .sortedWith(
+                            compareByDescending<AudioMixerAttributes> {
+                                it.mixerBehavior ==
+                                    AudioMixerAttributes.MIXER_BEHAVIOR_BIT_PERFECT
+                            }.thenByDescending {
+                                it.format.encoding == requestedEncoding
+                            }.thenBy {
+                                usbEncodingPreference(it.format.encoding)
+                            }
+                        )
+                        .firstOrNull()
+                        ?: return@firstNotNullOfOrNull null
+
+                    if (!audioManager.setPreferredMixerAttributes(attributes, device, mixer)) {
+                        Timber.w("USB mixer rejected ${sampleRate}Hz")
+                        return@firstNotNullOfOrNull null
+                    }
+
+                    preferredUsbMixerDevice = device
+                    preferredUsbMixerAudioAttributes = attributes
+                    Timber.i(
+                        "Configured USB mixer at ${mixer.format.sampleRate}Hz, " +
+                            "encoding=${mixer.format.encoding}, " +
+                            "behavior=${mixer.mixerBehavior}"
+                    )
+                    mixer.format
+                }
+        } catch (exception: RuntimeException) {
+            Timber.w(exception, "Failed to configure preferred USB mixer")
+            null
         }
+    }
 
-        val bufferSize = if (((bufferSizeBytes % frameSizeInBytes) != 0 || bufferSizeBytes < 1)) {
+    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
+    private fun clearPreferredUsbMixer() {
+        val device = preferredUsbMixerDevice
+        val attributes = preferredUsbMixerAudioAttributes
+        preferredUsbMixerDevice = null
+        preferredUsbMixerAudioAttributes = null
+        if (device == null || attributes == null) return
+
+        try {
+            audioManager.clearPreferredMixerAttributes(attributes, device)
+        } catch (exception: RuntimeException) {
+            Timber.w(exception, "Failed to clear preferred USB mixer")
+        }
+    }
+
+    private fun buildAudioTrack(format: AudioFormat, bufferSizeBytes: Int): AudioTrack {
+        val encoding = format.encoding
+        val sampleRate = format.sampleRate
+        val frameSizeInBytes = format.channelCount * bytesPerSample(encoding)
+
+        val requestedBufferSize = if (((bufferSizeBytes % frameSizeInBytes) != 0 || bufferSizeBytes < 1)) {
             Timber.e("Invalid audio buffer size $bufferSizeBytes")
             128 * (bufferSizeBytes / 128)
         }
         else bufferSizeBytes
+        val minimumBufferSize = AudioTrack.getMinBufferSize(
+            sampleRate,
+            format.channelMask,
+            encoding,
+        ).coerceAtLeast(0)
+        val bufferSize = maxOf(requestedBufferSize, minimumBufferSize)
+            .let { size ->
+                val remainder = size % frameSizeInBytes
+                if (remainder == 0) size else size + frameSizeInBytes - remainder
+            }
 
         Timber.d("Using buffer size $bufferSize")
 
         return AudioTrack.Builder()
             .setAudioFormat(format)
             .setTransferMode(AudioTrack.MODE_STREAM)
-            .setAudioAttributes(attributesBuilder.build())
+            .setAudioAttributes(buildMediaAudioAttributes())
             .setBufferSizeInBytes(bufferSize)
             .build()
+    }
+
+    private fun writeFloatOutput(
+        track: AudioTrack,
+        outputEncoding: Int,
+        samples: FloatArray,
+        shortBuffer: ShortArray,
+        packedBuffer: ByteBuffer,
+    ) {
+        when (outputEncoding) {
+            AudioFormat.ENCODING_PCM_FLOAT ->
+                track.write(samples, 0, samples.size, AudioTrack.WRITE_BLOCKING)
+            AudioFormat.ENCODING_PCM_16BIT -> {
+                samples.indices.forEach { index ->
+                    shortBuffer[index] = floatToPcm16(samples[index])
+                }
+                track.write(shortBuffer, 0, shortBuffer.size, AudioTrack.WRITE_BLOCKING)
+            }
+            AudioFormat.ENCODING_PCM_24BIT_PACKED,
+            AudioFormat.ENCODING_PCM_32BIT -> {
+                packedBuffer.clear()
+                samples.forEach { sample -> putPcmSample(packedBuffer, outputEncoding, sample) }
+                packedBuffer.flip()
+                track.write(packedBuffer, packedBuffer.remaining(), AudioTrack.WRITE_BLOCKING)
+            }
+            else -> error("Unsupported USB output encoding $outputEncoding")
+        }
+    }
+
+    private fun writeShortOutput(
+        track: AudioTrack,
+        outputEncoding: Int,
+        samples: ShortArray,
+        floatBuffer: FloatArray,
+        packedBuffer: ByteBuffer,
+    ) {
+        when (outputEncoding) {
+            AudioFormat.ENCODING_PCM_16BIT ->
+                track.write(samples, 0, samples.size, AudioTrack.WRITE_BLOCKING)
+            AudioFormat.ENCODING_PCM_FLOAT -> {
+                samples.indices.forEach { index ->
+                    floatBuffer[index] = samples[index] / 32768f
+                }
+                track.write(floatBuffer, 0, floatBuffer.size, AudioTrack.WRITE_BLOCKING)
+            }
+            AudioFormat.ENCODING_PCM_24BIT_PACKED,
+            AudioFormat.ENCODING_PCM_32BIT -> {
+                packedBuffer.clear()
+                samples.forEach { sample ->
+                    putPcmSample(packedBuffer, outputEncoding, sample / 32768f)
+                }
+                packedBuffer.flip()
+                track.write(packedBuffer, packedBuffer.remaining(), AudioTrack.WRITE_BLOCKING)
+            }
+            else -> error("Unsupported USB output encoding $outputEncoding")
+        }
+    }
+
+    private fun putPcmSample(buffer: ByteBuffer, encoding: Int, value: Float) {
+        val normalized = value.coerceIn(-1f, 1f)
+        when (encoding) {
+            AudioFormat.ENCODING_PCM_32BIT -> {
+                val pcm = if (normalized <= -1f) Int.MIN_VALUE
+                else (normalized * Int.MAX_VALUE).toInt()
+                buffer.putInt(pcm)
+            }
+            AudioFormat.ENCODING_PCM_24BIT_PACKED -> {
+                val pcm = if (normalized <= -1f) -0x800000
+                else (normalized * 0x7fffff).toInt()
+                if (buffer.order() == ByteOrder.LITTLE_ENDIAN) {
+                    buffer.put(pcm.toByte())
+                    buffer.put((pcm shr 8).toByte())
+                    buffer.put((pcm shr 16).toByte())
+                } else {
+                    buffer.put((pcm shr 16).toByte())
+                    buffer.put((pcm shr 8).toByte())
+                    buffer.put(pcm.toByte())
+                }
+            }
+        }
+    }
+
+    private fun floatToPcm16(value: Float): Short {
+        val normalized = value.coerceIn(-1f, 1f)
+        return if (normalized <= -1f) Short.MIN_VALUE
+        else (normalized * Short.MAX_VALUE).toInt().toShort()
+    }
+
+    private fun bytesPerSample(encoding: Int): Int = when (encoding) {
+        AudioFormat.ENCODING_PCM_16BIT -> Short.SIZE_BYTES
+        AudioFormat.ENCODING_PCM_24BIT_PACKED -> 3
+        AudioFormat.ENCODING_PCM_FLOAT,
+        AudioFormat.ENCODING_PCM_32BIT -> Int.SIZE_BYTES
+        else -> error("Unsupported USB output encoding $encoding")
+    }
+
+    private fun usbEncodingPreference(encoding: Int): Int = when (encoding) {
+        AudioFormat.ENCODING_PCM_FLOAT -> 0
+        AudioFormat.ENCODING_PCM_32BIT -> 1
+        AudioFormat.ENCODING_PCM_24BIT_PACKED -> 2
+        AudioFormat.ENCODING_PCM_16BIT -> 3
+        else -> Int.MAX_VALUE
     }
 
     @SuppressLint("MissingPermission")
@@ -632,6 +1011,12 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
             .setSampleRate(sampleRate)
             .setChannelMask(AudioFormat.CHANNEL_IN_STEREO)
             .build()
+        val minimumBufferSize = AudioRecord.getMinBufferSize(
+            sampleRate,
+            AudioFormat.CHANNEL_IN_STEREO,
+            encoding,
+        ).coerceAtLeast(0)
+        val recordBufferSize = maxOf(bufferSizeBytes, minimumBufferSize)
 
         val configBuilder = AudioPlaybackCaptureConfiguration.Builder(mediaProjection!!)
             .addMatchingUsage(AudioAttributes.USAGE_MEDIA)
@@ -658,17 +1043,76 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
 
         return AudioRecord.Builder()
             .setAudioFormat(format)
-            .setBufferSizeInBytes(bufferSizeBytes)
+            .setBufferSizeInBytes(recordBufferSize)
             .setAudioPlaybackCaptureConfig(configBuilder.build())
             .build()
     }
 
     // Determine HAL sampling rate
     private fun determineSamplingRate(): Int {
-        val sampleRateStr: String? = audioManager.getProperty(AudioManager.PROPERTY_OUTPUT_SAMPLE_RATE)
-        val srate = sampleRateStr?.let { str -> Integer.parseInt(str).takeUnless { it == 0 } } ?: 48000
+        if (isUsbOutputConnected() && followUsbHardwareRate()) {
+            activeUsbHardwareSampleRate
+                .takeIf(AudioSampleRateDetector::isSupportedProcessingRate)
+                ?.let { hardwareRate ->
+                    Timber.i("Using physical USB sampling rate $hardwareRate")
+                    return hardwareRate
+                }
+
+            UsbHardwareSampleRateDetector.detect(this)
+                .takeIf(AudioSampleRateDetector::isSupportedProcessingRate)
+                ?.let { hardwareRate ->
+                    activeUsbHardwareSampleRate = hardwareRate
+                    Timber.i("Using detected physical USB sampling rate $hardwareRate")
+                    return hardwareRate
+                }
+        }
+
+        activeContentSampleRate
+            .takeIf(AudioSampleRateDetector::isSupportedProcessingRate)
+            ?.let { contentRate ->
+                Timber.i("Using active content sampling rate $contentRate")
+                return contentRate
+            }
+
+        val srate = AudioSampleRateDetector.getActiveOutputSampleRate(audioManager)
         Timber.i("Real HAL sampling rate is $srate")
         return srate
+    }
+
+    private fun detectActiveContentSampleRate(
+        configs: Collection<AudioPlaybackConfiguration>?,
+    ): Int {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.UPSIDE_DOWN_CAKE) return 0
+
+        return configs.orEmpty().mapNotNull { config ->
+            try {
+                val hidden = Refine.unsafeCast<AudioPlaybackConfigurationHidden>(config)
+                val usage = config.audioAttributes.usage
+                val capturedUsage = usage == AudioAttributes.USAGE_MEDIA ||
+                    usage == AudioAttributes.USAGE_GAME ||
+                    usage == AudioAttributes.USAGE_UNKNOWN
+                hidden.getSampleRate().takeIf { rate ->
+                    hidden.isActive() &&
+                        hidden.getClientUid() != Process.myUid() &&
+                        capturedUsage &&
+                        AudioSampleRateDetector.isSupportedProcessingRate(rate)
+                }
+            } catch (exception: Throwable) {
+                Timber.w(exception, "Failed to read active playback sample rate")
+                null
+            }
+        }.maxOrNull() ?: 0
+    }
+
+    private fun applyActiveContentSampleRate(detectedRate: Int) {
+        if (activeContentSampleRate != detectedRate) {
+            Timber.i(
+                "Active content sample rate changed from " +
+                    "${activeContentSampleRate}Hz to ${detectedRate}Hz"
+            )
+            activeContentSampleRate = detectedRate
+        }
+        restartForSampleRateChange(determineSamplingRate())
     }
 
     // Determine HAL buffer size
@@ -678,6 +1122,15 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
     }
 
     companion object {
+        private val SUPPORTED_USB_OUTPUT_ENCODINGS = setOf(
+            AudioFormat.ENCODING_PCM_FLOAT,
+            AudioFormat.ENCODING_PCM_32BIT,
+            AudioFormat.ENCODING_PCM_24BIT_PACKED,
+            AudioFormat.ENCODING_PCM_16BIT,
+        )
+        private const val USB_ROUTE_SETTLE_DELAY_MS = 750L
+        private const val USB_HARDWARE_RATE_SETTLE_DELAY_MS = 500L
+
         const val SESSION_LOSS_MAX_RETRIES = 1
 
         const val ACTION_START = BuildConfig.APPLICATION_ID + ".rootless.service.START"

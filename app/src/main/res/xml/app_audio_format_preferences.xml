@@ -10,6 +10,14 @@
             app:useSimpleSummaryProvider="true"
             app:defaultValue="@string/default_audioformat_encoding"
             app:iconSpaceReserved="false" />
+        <ListPreference
+            app:key="@string/key_audioformat_rootless_usb_rate_mode"
+            app:title="@string/audio_format_rootless_usb_rate_mode"
+            app:entries="@array/audio_format_rootless_usb_rate_modes"
+            app:entryValues="@array/audio_format_rootless_usb_rate_mode_values"
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="@string/default_audioformat_rootless_usb_rate_mode"
+            app:iconSpaceReserved="false" />
         <me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
             android:key="@string/key_audioformat_buffersize"
             android:title="@string/audio_format_buffer_size"

@@ -39,6 +39,7 @@
     <string name="key_powersave_suspend" translatable="false">powersave_suspend</string>
     <string name="key_audioformat_encoding" translatable="false">audioformat_encoding</string>
     <string name="key_audioformat_buffersize" translatable="false">audioformat_buffersize</string>
+    <string name="key_audioformat_rootless_usb_rate_mode" translatable="false">audioformat_rootless_usb_rate_mode</string>
     <string name="key_audioformat_processing" translatable="false">audioformat_processing</string>
     <string name="key_audioformat_enhanced_processing" translatable="false">audioformat_enhanced_processing</string>
     <string name="key_audioformat_optimization_benchmark" translatable="false">audioformat_optimization_benchmark</string>

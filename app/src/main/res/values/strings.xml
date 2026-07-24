@@ -366,6 +366,9 @@
     <string name="audio_format_encoding">Audio encoding</string>
     <string name="audio_format_encoding_int16">16-bit integer PCM</string>
     <string name="audio_format_encoding_float">32-bit float PCM</string>
+    <string name="audio_format_rootless_usb_rate_mode">Rootless USB processing rate</string>
+    <string name="audio_format_rootless_usb_rate_hardware">Follow USB hardware rate</string>
+    <string name="audio_format_rootless_usb_rate_source">Follow source rate (allow Android conversion)</string>
     <string name="audio_format_buffer_size">Buffer size</string>
     <string name="audio_format_buffer_size_unit">&#xa0;samples</string>
     <string name="audio_format_buffer_size_warning_low_value">Warning: Low buffer sizes may cause audio issues such as clipping!</string>
