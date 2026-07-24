@@ -6,8 +6,11 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.ServiceInfo
 import android.media.AudioManager
+import android.media.AudioPlaybackConfiguration
 import android.media.audiofx.AudioEffect
 import android.os.Build
+import android.os.Handler
+import android.os.Looper
 import androidx.core.content.getSystemService
 import androidx.lifecycle.Observer
 import androidx.lifecycle.asLiveData
@@ -21,6 +24,7 @@ import me.timschneeberger.rootlessjamesdsp.MainApplication
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspRemoteEngine
 import me.timschneeberger.rootlessjamesdsp.model.IEffectSession
+import me.timschneeberger.rootlessjamesdsp.model.root.RemoteEffectSession
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistDatabase
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistRepository
 import me.timschneeberger.rootlessjamesdsp.model.room.BlockedApp
@@ -42,6 +46,14 @@ class RootAudioProcessorService : BaseAudioProcessorService(), KoinComponent,
     // System services
     private lateinit var notificationManager: NotificationManager
     private lateinit var audioManager: AudioManager
+
+    private val audioPlaybackCallback = object : AudioManager.AudioPlaybackCallback() {
+        override fun onPlaybackConfigChanged(configs: MutableList<AudioPlaybackConfiguration>?) {
+            app.rootSessionDatabase.sessionList.values.forEach { session ->
+                (session as? RemoteEffectSession)?.effect?.reloadConvolverIfSampleRateChanged()
+            }
+        }
+    }
 
     // Termination flags
     private var isServiceDisposing = false
@@ -84,6 +96,10 @@ class RootAudioProcessorService : BaseAudioProcessorService(), KoinComponent,
         // Get reference to system services
         audioManager = getSystemService<AudioManager>()!!
         notificationManager = getSystemService<NotificationManager>()!!
+        audioManager.registerAudioPlaybackCallback(
+            audioPlaybackCallback,
+            Handler(Looper.getMainLooper()),
+        )
 
         // Setup database observer
         blockedApps.observeForever(blockedAppObserver)
@@ -173,6 +189,7 @@ class RootAudioProcessorService : BaseAudioProcessorService(), KoinComponent,
 
         // Unregister database observer
         blockedApps.removeObserver(blockedAppObserver)
+        audioManager.unregisterAudioPlaybackCallback(audioPlaybackCallback)
 
         // Notify app about service termination and unregister
         sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_STOPPED))

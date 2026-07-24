@@ -9,11 +9,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.XmlRes
+import androidx.appcompat.app.AlertDialog
 import androidx.preference.Preference
 import androidx.preference.Preference.SummaryProvider
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceScreen
 import androidx.recyclerview.widget.RecyclerView
+import me.timschneeberger.rootlessjamesdsp.MainApplication
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.activity.GraphicEqualizerActivity
 import me.timschneeberger.rootlessjamesdsp.activity.LiveprogEditorActivity
@@ -26,6 +28,8 @@ import me.timschneeberger.rootlessjamesdsp.preference.EqualizerPreference
 import me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
 import me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
 import me.timschneeberger.rootlessjamesdsp.preference.SwitchPreferenceGroup
+import me.timschneeberger.rootlessjamesdsp.utils.AudioSampleRateDetector
+import me.timschneeberger.rootlessjamesdsp.utils.ConvolverSampleRateFiles
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.registerLocalReceiver
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sendLocalBroadcast
@@ -34,6 +38,7 @@ import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import timber.log.Timber
+import java.io.File
 import kotlin.math.roundToInt
 
 
@@ -41,10 +46,13 @@ class PreferenceGroupFragment : PreferenceFragmentCompat(), KoinComponent {
     private val prefsApp: Preferences.App by inject()
     private val eelParser = EelParser()
     private var recyclerView: RecyclerView? = null
+    private var reportedProcessingSampleRate: Int? = null
+    private var convolverStatusUpdater: (() -> Unit)? = null
 
     private val listener =
         SharedPreferences.OnSharedPreferenceChangeListener { _, _ ->
             requireContext().sendLocalBroadcast(Intent(Constants.ACTION_PREFERENCES_UPDATED))
+            convolverStatusUpdater?.invoke()
         }
 
     private val listenerApp =
@@ -56,10 +64,18 @@ class PreferenceGroupFragment : PreferenceFragmentCompat(), KoinComponent {
 
     private val receiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
-            if(intent?.action == Constants.ACTION_PRESET_LOADED) {
-                val id = this@PreferenceGroupFragment.id
-                Timber.d("Reloading group fragment for ${this@PreferenceGroupFragment.preferenceManager.sharedPreferencesName}")
-                (requireParentFragment() as DspFragment).restartFragment(id, cloneInstance(this@PreferenceGroupFragment))
+            when(intent?.action) {
+                Constants.ACTION_PRESET_LOADED -> {
+                    val id = this@PreferenceGroupFragment.id
+                    Timber.d("Reloading group fragment for ${this@PreferenceGroupFragment.preferenceManager.sharedPreferencesName}")
+                    (requireParentFragment() as DspFragment).restartFragment(id, cloneInstance(this@PreferenceGroupFragment))
+                }
+                Constants.ACTION_REPORT_SAMPLE_RATE -> {
+                    reportedProcessingSampleRate = intent
+                        .getFloatExtra(Constants.EXTRA_SAMPLE_RATE, 0f)
+                        .roundToInt()
+                    convolverStatusUpdater?.invoke()
+                }
             }
         }
     }
@@ -78,9 +94,13 @@ class PreferenceGroupFragment : PreferenceFragmentCompat(), KoinComponent {
         preferenceManager.sharedPreferencesMode = Context.MODE_MULTI_PROCESS
         addPreferencesFromResource(args.getInt(BUNDLE_XML_RES))
 
-        requireContext().registerLocalReceiver(receiver, IntentFilter(Constants.ACTION_PRESET_LOADED))
+        requireContext().registerLocalReceiver(receiver, IntentFilter().apply {
+            addAction(Constants.ACTION_PRESET_LOADED)
+            addAction(Constants.ACTION_REPORT_SAMPLE_RATE)
+        })
 
         when(args.getInt(BUNDLE_XML_RES)) {
+            R.xml.dsp_convolver_preferences -> setupConvolverSampleRateFiles()
             R.xml.dsp_compander_preferences -> {
                 findPreference<MaterialSeekbarPreference>(getString(R.string.key_compander_granularity))?.valueLabelOverride =
                     fun(it: Float): String {
@@ -200,6 +220,128 @@ class PreferenceGroupFragment : PreferenceFragmentCompat(), KoinComponent {
         prefsApp.registerOnSharedPreferenceChangeListener(listenerApp)
     }
 
+    private fun setupConvolverSampleRateFiles() {
+        val assignmentPreference = findPreference<Preference>(
+            getString(R.string.key_convolver_sample_rate_files)
+        ) ?: return
+        val filePreference = findPreference<FileLibraryPreference>(
+            getString(R.string.key_convolver_file)
+        ) ?: return
+        val processingPreference = findPreference<Preference>(
+            getString(R.string.key_convolver_processing_rate)
+        ) ?: return
+        val sharedPreferences = preferenceManager.sharedPreferences ?: return
+        val assignmentKey = getString(R.string.key_convolver_sample_rate_files)
+
+        fun assignments() = ConvolverSampleRateFiles.decode(
+            sharedPreferences.getString(assignmentKey, "").orEmpty()
+        )
+
+        fun processingRate(): Int = reportedProcessingSampleRate
+            ?: (requireActivity().application as MainApplication).engineSampleRate.roundToInt()
+
+        fun selectedImpulseResponse(rate: Int): String {
+            if (!sharedPreferences.getBoolean(getString(R.string.key_convolver_enable), false)) {
+                return getString(R.string.convolver_sample_rate_disabled)
+            }
+
+            val fallbackFile = filePreference.value.orEmpty()
+            val mappedFile = ConvolverSampleRateFiles.resolve(
+                sharedPreferences.getString(assignmentKey, "").orEmpty(),
+                rate,
+                fallbackFile,
+            )
+            val selectedFile = mappedFile.takeIf {
+                File(FileLibraryPreference.createFullPathCompat(requireContext(), it)).isFile
+            } ?: fallbackFile
+            return selectedFile.takeIf(String::isNotBlank)
+                ?.let { File(it).nameWithoutExtension }
+                ?: getString(R.string.convolver_sample_rate_no_file)
+        }
+
+        fun updateSummary() {
+            val count = assignments().size
+            val rate = processingRate()
+            processingPreference.summary = if (rate > 0) {
+                getString(
+                    R.string.convolver_processing_rate_status,
+                    ConvolverSampleRateFiles.formatKilohertz(rate),
+                    selectedImpulseResponse(rate),
+                )
+            } else {
+                getString(R.string.convolver_sample_rate_processing_inactive)
+            }
+            val assignmentsSummary = if (count == 0)
+                getString(R.string.convolver_sample_rate_files_summary)
+            else
+                getString(R.string.convolver_sample_rate_files_count, count)
+            assignmentPreference.summary = assignmentsSummary
+        }
+
+        convolverStatusUpdater = ::updateSummary
+
+        assignmentPreference.setOnPreferenceClickListener {
+            filePreference.refresh()
+            val assignedFiles = assignments()
+            val detectedRates = AudioSampleRateDetector.getOutputSampleRates(
+                requireContext(),
+            )
+            val sampleRates = (detectedRates + assignedFiles.keys)
+                .filter(ConvolverSampleRateFiles::isSupportedSampleRate)
+                .distinct()
+                .sorted()
+            val rateLabels = sampleRates.map { rate ->
+                val fileName = assignedFiles[rate]
+                    ?.let { File(it).nameWithoutExtension }
+                    ?: getString(R.string.convolver_sample_rate_unassigned)
+                getString(
+                    R.string.convolver_sample_rate_label,
+                    ConvolverSampleRateFiles.formatKilohertz(rate),
+                    fileName,
+                )
+            }.toTypedArray()
+
+            AlertDialog.Builder(requireContext())
+                .setTitle(R.string.convolver_sample_rate_files)
+                .setItems(rateLabels) { _, rateIndex ->
+                    val rate = sampleRates[rateIndex]
+                    val choices = arrayOf(getString(R.string.convolver_sample_rate_use_default)) +
+                        filePreference.entries.map(CharSequence::toString)
+
+                    AlertDialog.Builder(requireContext())
+                        .setTitle(
+                            getString(
+                                R.string.convolver_sample_rate_select_file,
+                                ConvolverSampleRateFiles.formatKilohertz(rate),
+                            )
+                        )
+                        .setItems(choices) { _, fileIndex ->
+                            val updatedAssignments = assignments().toMutableMap()
+                            if (fileIndex == 0) {
+                                updatedAssignments.remove(rate)
+                            } else {
+                                updatedAssignments[rate] =
+                                    filePreference.entryValues[fileIndex - 1].toString()
+                            }
+                            sharedPreferences.edit()
+                                .putString(
+                                    assignmentKey,
+                                    ConvolverSampleRateFiles.encode(updatedAssignments),
+                                )
+                                .apply()
+                            updateSummary()
+                        }
+                        .setNegativeButton(android.R.string.cancel, null)
+                        .show()
+                }
+                .setNegativeButton(android.R.string.cancel, null)
+                .show()
+            true
+        }
+
+        updateSummary()
+    }
+
     override fun onCreateRecyclerView(
         inflater: LayoutInflater,
         parent: ViewGroup,
@@ -218,6 +360,7 @@ class PreferenceGroupFragment : PreferenceFragmentCompat(), KoinComponent {
     }
 
     override fun onDestroy() {
+        convolverStatusUpdater = null
         super.onDestroy()
         requireContext().unregisterLocalReceiver(receiver)
         prefsApp.unregisterOnSharedPreferenceChangeListener(listener)

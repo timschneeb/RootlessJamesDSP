@@ -149,7 +149,8 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
         impulseResponse: FloatArray,
         irChannels: Int,
         irFrames: Int,
-        irCrc: Int
+        irCrc: Int,
+        irSampleRate: Int,
     ): Boolean {
         return JamesDspWrapper.setConvolver(handle, enable, impulseResponse, irChannels, irFrames)
     }
