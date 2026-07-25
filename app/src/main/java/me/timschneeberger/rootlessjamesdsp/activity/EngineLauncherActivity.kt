@@ -52,6 +52,10 @@ class EngineLauncherActivity : BaseActivity() {
                     Timber.d("Using new projection token to start service")
 
                     RootlessAudioProcessorService.start(this, result.data)
+                } else {
+                    Timber.d("User cancelled media projection permission")
+                    // Notify widget that service won't start
+                    sendBroadcast(Intent(me.timschneeberger.rootlessjamesdsp.utils.Constants.ACTION_SERVICE_STOPPED))
                 }
                 finish()
             }

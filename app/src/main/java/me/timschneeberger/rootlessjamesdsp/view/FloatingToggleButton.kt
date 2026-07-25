@@ -3,6 +3,7 @@ package me.timschneeberger.rootlessjamesdsp.view
 import android.animation.AnimatorInflater
 import android.content.Context
 import android.util.AttributeSet
+import androidx.core.view.isVisible
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import me.timschneeberger.rootlessjamesdsp.R
 
@@ -15,18 +16,28 @@ class FloatingToggleButton @JvmOverloads constructor(
 
     var isToggled = false
         set(value) {
+            if(field == value && !isLoading) return
             field = value
             isSelected = value
             onToggledListener?.onToggled(value)
+        }
+
+    var isLoading = false
+        set(value) {
+            field = value
+            isEnabled = !value
+            alpha = if(value) 0.6f else 1.0f
         }
 
     var toggleOnClick = true
 
     init {
         setOnClickListener {
-            onClickListener?.onClick()
-            if(toggleOnClick) {
-                isToggled = !isToggled
+            if(!isLoading) {
+                onClickListener?.onClick()
+                if(toggleOnClick) {
+                    isToggled = !isToggled
+                }
             }
         }
 

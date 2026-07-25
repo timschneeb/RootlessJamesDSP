@@ -4,10 +4,8 @@ import android.Manifest
 import android.app.AppOpsManager
 import android.content.Context
 import android.content.pm.PackageManager
-import android.os.Build
 import androidx.core.content.getSystemService
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.CompatExtensions.getApplicationInfoCompat
-import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import timber.log.Timber
 
 object PermissionExtensions {
@@ -38,10 +36,7 @@ object PermissionExtensions {
     fun Context.hasPackageUsagePermission() = hasPermission(Manifest.permission.PACKAGE_USAGE_STATS) && hasPackageUsageAppOp()
 
     fun Context.hasNotificationPermission(): Boolean {
-        sdkAbove(Build.VERSION_CODES.TIRAMISU) {
-            return hasPermission(Manifest.permission.POST_NOTIFICATIONS)
-        }
-        return false
+        return hasPermission(Manifest.permission.POST_NOTIFICATIONS)
     }
     private fun Context.hasPermission(permission: String): Boolean {
         return checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED

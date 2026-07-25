@@ -31,14 +31,29 @@ object EngineUtils : KoinComponent {
             }
             preferences.set(R.string.key_powered_on, isOn)
             return
+
         }
 
-        sdkAbove(Build.VERSION_CODES.Q) {
-            // Rootless
-            if (!isOn)
-                RootlessAudioProcessorService.stop(this)
-            else
+        // Rootless
+        if (!isOn) {
+            RootlessAudioProcessorService.stop(this)
+            preferences.set(R.string.key_powered_on, false)
+        } else {
+            // Intentar iniciar con el token guardado
+            val mainApp = applicationContext as? me.timschneeberger.rootlessjamesdsp.MainApplication
+            val projectionIntent = mainApp?.mediaProjectionStartIntent
+
+            if (projectionIntent != null) {
+                // Tenemos token, iniciar directamente
+                RootlessAudioProcessorService.start(this, projectionIntent)
+                preferences.set(R.string.key_powered_on, true)
+            } else {
+                // No tenemos token, abrir la app para pedirlo
                 launchService(activityStarter)
+            }
         }
+    }
+    fun isEngineEnabled(context: Context): Boolean {
+        return preferences.get(R.string.key_powered_on, false, Boolean::class)
     }
 }

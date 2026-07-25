@@ -11,7 +11,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
-import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import me.timschneeberger.rootlessjamesdsp.view.ProgressDialog
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -49,9 +48,7 @@ object BenchmarkManager : KoinComponent {
     }
 
     fun runBenchmarks(context: Context, onFinished: (success: Boolean) -> Unit) {
-        sdkAbove(Build.VERSION_CODES.S) {
-            assert(context.isUiContext)
-        }
+        assert(context.isUiContext)
 
         var job: Job? = null
         val dialog = ProgressDialog(context) {

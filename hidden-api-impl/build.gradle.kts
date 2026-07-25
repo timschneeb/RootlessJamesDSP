@@ -1,11 +1,10 @@
 plugins {
     id("com.android.library")
-    id("dev.rikka.tools.refine") version AndroidConfig.rikkaRefineVersion
 }
 
 android {
-    compileSdk = AndroidConfig.compileSdk
 
+    compileSdk = 34
     defaultConfig {
         minSdk = AndroidConfig.minSdk
         lint.targetSdk = AndroidConfig.targetSdk
@@ -28,5 +27,9 @@ android {
 dependencies {
     implementation("dev.rikka.shizuku:api:${AndroidConfig.shizukuVersion}")
     compileOnly(project(":hidden-api-stubs"))
-    compileOnly(project(":hidden-api-refined"))
+}
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
 }

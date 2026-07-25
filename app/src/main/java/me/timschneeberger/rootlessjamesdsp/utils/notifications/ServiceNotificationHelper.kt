@@ -19,7 +19,6 @@ import me.timschneeberger.rootlessjamesdsp.activity.EngineLauncherActivity
 import me.timschneeberger.rootlessjamesdsp.activity.MainActivity
 import me.timschneeberger.rootlessjamesdsp.model.IEffectSession
 import me.timschneeberger.rootlessjamesdsp.service.RootlessAudioProcessorService
-import me.timschneeberger.rootlessjamesdsp.utils.SdkCheck
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getAppName
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.getAppNameFromUid
 import me.timschneeberger.rootlessjamesdsp.utils.isRootless
@@ -206,7 +205,7 @@ object ServiceNotificationHelper: KoinComponent {
             context,
             R.string.action_stop,
             R.drawable.ic_close_24dp,
-            if (SdkCheck.isQ && isRootless()) {
+            if (isRootless()) {
                 with(Intent(context, RootlessAudioProcessorService::class.java)) {
                     action = RootlessAudioProcessorService.ACTION_STOP
                     this
@@ -257,7 +256,7 @@ object ServiceNotificationHelper: KoinComponent {
 
 
     fun createStopIntent(ctx: Context) =
-        if (SdkCheck.isQ && isRootless()) {
+        if (isRootless()) {
             with(Intent(ctx, RootlessAudioProcessorService::class.java)) {
                 action = RootlessAudioProcessorService.ACTION_STOP
                 this
@@ -266,7 +265,7 @@ object ServiceNotificationHelper: KoinComponent {
         else throw IllegalStateException()
 
     fun createStartIntent(ctx: Context, mediaProjectionData: Intent? = null) =
-        if (SdkCheck.isQ && isRootless()) {
+        if (isRootless()) {
             with(Intent(ctx, RootlessAudioProcessorService::class.java)) {
                 action = RootlessAudioProcessorService.ACTION_START
                 putExtra(RootlessAudioProcessorService.EXTRA_MEDIA_PROJECTION_DATA, mediaProjectionData)

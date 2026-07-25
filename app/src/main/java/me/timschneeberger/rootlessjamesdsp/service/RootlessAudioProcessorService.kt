@@ -58,7 +58,6 @@ import me.timschneeberger.rootlessjamesdsp.utils.extensions.PermissionExtensions
 import me.timschneeberger.rootlessjamesdsp.utils.notifications.Notifications
 import me.timschneeberger.rootlessjamesdsp.utils.notifications.ServiceNotificationHelper
 import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
-import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 import java.io.IOException
@@ -159,7 +158,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         startForeground(
             Notifications.ID_SERVICE_STATUS,
             ServiceNotificationHelper.createServiceNotification(this, arrayOf()),
-            ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION
+            ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE or ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION
         )
     }
 
@@ -193,27 +192,43 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         // Setup media projection
         mediaProjectionStartIntent = intent.extras?.getParcelableAs(EXTRA_MEDIA_PROJECTION_DATA)
 
-        mediaProjection = try {
-            mediaProjectionManager.getMediaProjection(
-                Activity.RESULT_OK,
-                mediaProjectionStartIntent!!
-            )
-        }
-        catch (ex: Exception) {
-            Timber.e("Failed to acquire media projection")
-            sendLocalBroadcast(Intent(Constants.ACTION_DISCARD_AUTHORIZATION))
-            Timber.e(ex)
-            null
-        }
+        if (mediaProjectionStartIntent != null) { // Add null check here
+            mediaProjection = try {
+                mediaProjectionManager.getMediaProjection(
+                    Activity.RESULT_OK,
+                    mediaProjectionStartIntent!! // Safe to use !! here as it's been checked
+                )
+            } catch (ex: Exception) {
+                Timber.e("Failed to acquire media projection - token likely invalid")
+                preferences.set(R.string.key_powered_on, false)
+                sendLocalBroadcast(Intent(Constants.ACTION_DISCARD_AUTHORIZATION))
+                // Notify widget about failure
+                sendBroadcast(Intent(Constants.ACTION_SERVICE_STOPPED))
+                Timber.e(ex)
+                null
+            }
 
-        mediaProjection?.registerCallback(projectionCallback, Handler(Looper.getMainLooper()))
+            mediaProjection?.registerCallback(projectionCallback, Handler(Looper.getMainLooper()))
 
-        if (mediaProjection != null) {
-            startRecording()
-            sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_STARTED))
+            if (mediaProjection != null) {
+                startRecording()
+                sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_STARTED))
+                // Also send global broadcast for widget
+                sendBroadcast(Intent(Constants.ACTION_SERVICE_STARTED))
+            } else {
+                Timber.w("Failed to capture audio")
+                preferences.set(R.string.key_powered_on, false)
+                stopSelf()
+            }
         } else {
-            Timber.w("Failed to capture audio")
+            Timber.e("onStartCommand: mediaProjectionStartIntent is null")
+            // Handle the case where mediaProjectionStartIntent is null, e.g.:
+            // - Stop the service
+            // - Log an error
+            // - Notify the user
+            preferences.set(R.string.key_powered_on, false)
             stopSelf()
+            return START_NOT_STICKY
         }
 
         return START_REDELIVER_INTENT
@@ -229,8 +244,13 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         // Stop foreground service
         stopForeground(STOP_FOREGROUND_REMOVE)
 
+        // Update preference to reflect service stopped
+        preferences.set(R.string.key_powered_on, false)
+
         // Notify app about service termination
         sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_STOPPED))
+        // Also send global broadcast for widget
+        sendBroadcast(Intent(Constants.ACTION_SERVICE_STOPPED))
 
         // Unregister database observer
         blockedApps.removeObserver(blockedAppObserver)
@@ -254,7 +274,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
     // Preferences listener
     private val preferencesListener = SharedPreferences.OnSharedPreferenceChangeListener {
             _, key ->
-        loadFromPreferences(key)
+        key?.let { loadFromPreferences(it) }
     }
 
     // Projection termination callback
@@ -271,6 +291,9 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
             }
 
             Timber.w("Capture permission revoked. Stopping service.")
+
+            // Update preference to reflect service stopped
+            preferences.set(R.string.key_powered_on, false)
 
             sendLocalBroadcast(Intent(Constants.ACTION_DISCARD_AUTHORIZATION))
 
@@ -418,6 +441,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         // Sanity check
         if (!hasRecordPermission()) {
             Timber.e("Record audio permission missing. Can't record")
+            preferences.set(R.string.key_powered_on, false)
             stopSelf()
             return
         }
@@ -576,6 +600,12 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
             return
         }
 
+        // Check if engine should be enabled
+        if(!preferences.get(R.string.key_powered_on, false, Boolean::class)) {
+            Timber.w("restartRecording: engine is disabled, not restarting")
+            return
+        }
+
         stopRecording()
         isProcessorDisposing = false
         recreateRecorderRequested = false
@@ -587,10 +617,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
             .setUsage(AudioAttributes.USAGE_UNKNOWN)
             .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
             .setFlags(0)
-
-        sdkAbove(Build.VERSION_CODES.Q) {
-            attributesBuilder.setAllowedCapturePolicy(AudioAttributes.ALLOW_CAPTURE_BY_NONE)
-        }
+            .setAllowedCapturePolicy(AudioAttributes.ALLOW_CAPTURE_BY_NONE)
 
         val format = AudioFormat.Builder()
             .setChannelMask(AudioFormat.CHANNEL_OUT_STEREO)
@@ -704,4 +731,5 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
             }
         }
     }
+
 }

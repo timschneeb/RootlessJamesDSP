@@ -178,8 +178,9 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_runBenchmark(JN
     auto c0 = env->GetDoubleArrayElements(jc0, nullptr);
     auto c1 = env->GetDoubleArrayElements(jc1, nullptr);
 
-    JamesDSP_Start_benchmark();
-    JamesDSP_Save_benchmark(c0, c1);
+    // Benchmark functions removed in newer libjamesdsp version
+    // JamesDSP_Start_benchmark();
+    // JamesDSP_Save_benchmark(c0, c1);
 
     env->ReleaseDoubleArrayElements(jc0, c0, 0);
     env->ReleaseDoubleArrayElements(jc1, c1, 0);
@@ -193,7 +194,8 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_loadBenchmark(J
     auto c0 = env->GetDoubleArrayElements(jc0, nullptr);
     auto c1 = env->GetDoubleArrayElements(jc1, nullptr);
 
-    JamesDSP_Load_benchmark(c0, c1);
+    // Benchmark functions removed in newer libjamesdsp version
+    // JamesDSP_Load_benchmark(c0, c1);
 
     env->ReleaseDoubleArrayElements(jc0, c0, JNI_ABORT);
     env->ReleaseDoubleArrayElements(jc1, c1, JNI_ABORT);

@@ -8,8 +8,6 @@ import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import kotlinx.coroutines.suspendCancellableCoroutine
-import me.timschneeberger.rootlessjamesdsp.utils.SdkCheck
-import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import me.timschneeberger.rootlessjamesdsp.utils.storage.Cache
 import kotlin.coroutines.resume
 
@@ -21,12 +19,10 @@ class SessionInstaller(private val context: Context) {
 
     companion object {
         private var installerCallbacks = mutableListOf<PackageInstaller.SessionCallback>()
-        private val flags = if (SdkCheck.isSnowCake) PendingIntent.FLAG_MUTABLE else 0
+        private val flags = PendingIntent.FLAG_MUTABLE
         private val sessionParams =
             PackageInstaller.SessionParams(PackageInstaller.SessionParams.MODE_FULL_INSTALL).apply {
-                sdkAbove(sdk = Build.VERSION_CODES.S) {
-                    setRequireUserAction(PackageInstaller.SessionParams.USER_ACTION_NOT_REQUIRED)
-                }
+                setRequireUserAction(PackageInstaller.SessionParams.USER_ACTION_NOT_REQUIRED)
             }
     }
 
