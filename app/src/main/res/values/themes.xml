@@ -10,6 +10,7 @@
         <!-- Ripples -->
         <!--<item name="colorControlHighlight">?attr/colorSurfaceVariant</item>-->
 
+        <item name="sliderStyle">@style/Widget.Material3.Slider.Expressive</item>
         <item name="materialSwitchStyle">@style/Widget.Material3.CompoundButton.MaterialSwitch</item>
         <item name="alertDialogTheme">@style/AppTheme.AlertDialogTheme</item>
         <item name="materialCardViewStyle">@style/Theme.RootlessJamesDSP.CardView</item>
@@ -40,6 +41,7 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="windowNoTitle">true</item>
 
+        <item name="sliderStyle">@style/Widget.Material3.Slider.Expressive</item>
         <item name="materialSwitchStyle">@style/Widget.Material3.CompoundButton.MaterialSwitch</item>
         <item name="alertDialogTheme">@style/AppTheme.AlertDialogTheme</item>
         <item name="cardCornerRadius">@dimen/corner_radius</item>
@@ -54,6 +56,24 @@
     <style name="AppTheme.AlertDialogTheme" parent="@style/ThemeOverlay.Material3.MaterialAlertDialog">
         <item name="dialogCornerRadius">28dp</item>
         <item name="colorBackgroundFloating">?attr/colorSurface</item>
+    </style>
+
+    <style name="Widget.Material3.Slider.Expressive" parent="Widget.Material3.Slider">
+        <item name="trackHeight">16dp</item>
+        <item name="trackInsideCornerSize">2dp</item>
+        <item name="trackStopIndicatorSize">4dp</item>
+        <item name="thumbTrackGapSize">6dp</item>
+        <item name="thumbWidth">4dp</item>
+        <item name="thumbHeight">44dp</item>
+        <item name="thumbElevation">2dp</item>
+        <item name="trackColorActive">@color/m3_slider_track_active</item>
+        <item name="trackColorInactive">@color/m3_slider_track_inactive</item>
+        <item name="thumbColor">@color/m3_slider_thumb</item>
+        <item name="haloColor">@color/m3_slider_halo</item>
+        <item name="haloRadius">24dp</item>
+        <item name="tickColorActive">?attr/colorOnPrimary</item>
+        <item name="tickColorInactive">?attr/colorPrimary</item>
+        <item name="labelBehavior">floating</item>
     </style>
 
     <style name="Theme.RootlessJamesDSP.SearchButton" parent="Widget.AppCompat.ImageButton">
