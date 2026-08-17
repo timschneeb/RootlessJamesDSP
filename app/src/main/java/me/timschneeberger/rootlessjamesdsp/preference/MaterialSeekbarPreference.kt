@@ -3,6 +3,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
+import android.view.HapticFeedbackConstants
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -54,6 +55,9 @@ class MaterialSeekbarPreference : Preference {
      */
     private val mSeekBarChangeListener =
         Slider.OnChangeListener { slider, value, fromUser ->
+            if (fromUser) {
+                slider.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK)
+            }
             if (fromUser && mUpdatesContinuously || !mTrackingTouch) {
                 syncValueInternal(slider)
             } else {
@@ -64,10 +68,12 @@ class MaterialSeekbarPreference : Preference {
     private val mSeekBarTouchListener = object :  Slider.OnSliderTouchListener {
         override fun onStartTrackingTouch(seekBar: Slider) {
             mTrackingTouch = true
+            seekBar.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK)
         }
 
         override fun onStopTrackingTouch(seekBar: Slider) {
             mTrackingTouch = false
+            seekBar.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK)
             if (seekBar.value != mSeekBarValue) {
                 syncValueInternal(seekBar)
             }

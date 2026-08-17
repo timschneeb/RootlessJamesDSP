@@ -195,7 +195,7 @@ dependencies {
     implementation("androidx.mediarouter:mediarouter:1.7.0")
 
     // Material
-    implementation("com.google.android.material:material:1.9.0")
+    implementation("com.google.android.material:material:1.12.0")
 
     // Dependency injection
     implementation("io.insert-koin:koin-android:3.3.3")

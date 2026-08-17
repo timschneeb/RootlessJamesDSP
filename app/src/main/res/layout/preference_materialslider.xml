@@ -15,26 +15,33 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="8dp">
-        <TextView android:textAppearance="?android:attr/textAppearanceListItem"
+        <TextView
+            android:textAppearance="?attr/textAppearanceBodyLarge"
+            android:textColor="?attr/colorOnSurface"
             android:ellipsize="marquee"
             android:id="@android:id/title"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:singleLine="true"/>
         <LinearLayout
             android:gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="-5dp">
+            android:layout_marginStart="-5dp"
+            android:layout_marginTop="2dp">
             <com.google.android.material.slider.Slider
+                style="@style/Widget.Material3.Slider.Expressive"
                 android:id="@+id/seekbar"
                 android:paddingVertical="8dp"
+                android:minHeight="48dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:labelBehavior="floating"/>
-            <TextView android:textAppearance="?android:attr/textAppearanceListItem"
+            <TextView
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textColor="?attr/colorPrimary"
+                android:fontFeatureSettings="tnum"
                 android:ellipsize="marquee"
                 android:gravity="end"
                 android:id="@+id/seekbar_value"
