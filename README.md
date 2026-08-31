@@ -195,20 +195,20 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
       <sub><b>3518 words</b></sub>
     </td>
     <td align="center" valign="top">
-      <a href="https://crowdin.com/profile/eevan78"><img alt="logo" style="width: 64px" src="https://crowdin-static.cf-downloads.crowdin.com/avatar/12664235/medium/ee2d64bed2ea9a0a1a5ee31e59fa9d7c.jpg" />
+      <a href="https://crowdin.com/profile/Add000"><img alt="logo" style="width: 64px" src="https://crowdin-static.cf-downloads.crowdin.com/avatar/15913337/medium/5bb6874d577c3c856b729fdcd2f9137a.jpg" />
         <br />
-        <sub><b>Ivan Pesic (eevan78)</b></sub></a>
+        <sub><b>Add000</b></sub></a>
       <br />
       <sub><b>3471 words</b></sub>
     </td>
   </tr>
   <tr>
     <td align="center" valign="top">
-      <a href="https://crowdin.com/profile/Add000"><img alt="logo" style="width: 64px" src="https://crowdin-static.cf-downloads.crowdin.com/avatar/15913337/medium/5bb6874d577c3c856b729fdcd2f9137a.jpg" />
+      <a href="https://crowdin.com/profile/eevan78"><img alt="logo" style="width: 64px" src="https://crowdin-static.cf-downloads.crowdin.com/avatar/12664235/medium/ee2d64bed2ea9a0a1a5ee31e59fa9d7c.jpg" />
         <br />
-        <sub><b>Add000</b></sub></a>
+        <sub><b>Ivan Pesic (eevan78)</b></sub></a>
       <br />
-      <sub><b>3469 words</b></sub>
+      <sub><b>3471 words</b></sub>
     </td>
     <td align="center" valign="top">
       <a href="https://crowdin.com/profile/FlavioPonte"><img alt="logo" style="width: 64px" src="https://crowdin-static.cf-downloads.crowdin.com/avatar/15994613/medium/6ad9919ecb9cf61c034282b68e8bac17_default.png" />
@@ -387,11 +387,11 @@ All the limitations mentioned above are **not relevant** for the magisk/root ver
       <sub><b>819 words</b></sub>
     </td>
     <td align="center" valign="top">
-      <a href="https://crowdin.com/profile/roccovantechno"><img alt="logo" style="width: 64px" src="https://crowdin-static.cf-downloads.crowdin.com/avatar/15818971/medium/75663306f941c87c2d9088c923aa89ad.jpeg" />
+      <a href="https://crowdin.com/profile/balintionutciprian"><img alt="logo" style="width: 64px" src="https://crowdin-static.cf-downloads.crowdin.com/avatar/17857835/medium/d2d3920ee58a6530995d9c4cf4ed5692.png" />
         <br />
-        <sub><b>Gyuri Gergely (roccovantechno)</b></sub></a>
+        <sub><b>Ionuț Ciprian Balint (balintionutciprian)</b></sub></a>
       <br />
-      <sub><b>714 words</b></sub>
+      <sub><b>748 words</b></sub>
     </td>
   </tr>
 </table><a href="https://crowdin.com/project/rootlessjamesdsp" target="_blank">Translate in Crowdin 🚀</a>
