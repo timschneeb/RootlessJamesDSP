@@ -29,6 +29,7 @@ class SettingsAudioFormatFragment : SettingsBaseFragment() {
 
     private val encoding by lazy { findPreference<ListPreference>(getString(R.string.key_audioformat_encoding)) }
     private val bufferSize by lazy { findPreference<MaterialSeekbarPreference>(getString(R.string.key_audioformat_buffersize)) }
+    private val lowLatency by lazy { findPreference<MaterialSwitchPreference>(getString(R.string.key_audioformat_low_latency)) }
     private val legacyMode by lazy { findPreference<MaterialSwitchPreference>(getString(R.string.key_audioformat_processing)) }
     private val enhancedMode by lazy { findPreference<MaterialSwitchPreference>(getString(R.string.key_audioformat_enhanced_processing)) }
     private val enhancedModeInfo by lazy { findPreference<Preference>(getString(R.string.key_audioformat_enhanced_processing_info)) }
@@ -115,6 +116,10 @@ class SettingsAudioFormatFragment : SettingsBaseFragment() {
             true
         }
         encoding?.setOnPreferenceChangeListener { _, _ ->
+            context?.sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_HARD_REBOOT_CORE))
+            true
+        }
+        lowLatency?.setOnPreferenceChangeListener { _, _ ->
             context?.sendLocalBroadcast(Intent(Constants.ACTION_SERVICE_HARD_REBOOT_CORE))
             true
         }
