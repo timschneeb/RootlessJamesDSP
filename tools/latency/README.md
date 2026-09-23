@@ -55,6 +55,9 @@ python tools/latency/run_latency_test.py soak --minutes 10 --label drift --tune 
 python tools/latency/run_latency_test.py run --label spk-off --engine off --acoustic
 python tools/latency/run_latency_test.py run --label spk-on --acoustic
 
+# Android EQ mode (no capture loop): switch it on in the app, then time it acoustically
+python tools/latency/run_latency_test.py run --label eq --acoustic --engine keep
+
 python tools/latency/run_latency_test.py compare results/<runA>/summary.json results/<runB>/summary.json
 ```
 

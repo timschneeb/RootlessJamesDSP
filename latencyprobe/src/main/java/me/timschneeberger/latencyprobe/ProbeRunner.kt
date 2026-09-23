@@ -225,6 +225,11 @@ class ProbeRunner(
         var framesRead = 0L
         var silenceFrames = 0L
         var noiseFloor = 0.001f
+        // Onset event held back until its peak over the next MIC_PEAK_MS is known
+        var pending: JSONObject? = null
+        var pendingPeak = 0f
+        var pendingFrames = 0
+        val peakFrames = sampleRate * MIC_PEAK_MS / 1000
 
         emit(JSONObject().put("ev", "probe_mic_config").put("source", if(unprocessed) "UNPROCESSED" else "VOICE_RECOGNITION"))
         recorder.startRecording()
@@ -241,13 +246,22 @@ class ProbeRunner(
 
                 for(i in 0 until count) {
                     val level = abs(buffer[i])
+                    pending?.let {
+                        pendingPeak = max(pendingPeak, level)
+                        if(++pendingFrames >= peakFrames) {
+                            emit(it.put("peak", pendingPeak.toDouble()))
+                            pending = null
+                        }
+                    }
                     val threshold = max(MIC_MIN_LEVEL, noiseFloor * MIC_NOISE_RATIO)
                     if(level >= threshold && silenceFrames >= minSilenceFrames) {
                         val frame = framesRead + i
                         val captureNs = if(tsValid) ts.nanoTime + ((frame - ts.framePosition) * nsPerFrame).toLong() else -1L
-                        emit(JSONObject()
+                        pending = JSONObject()
                             .put("ev", "probe_mic").put("t_capture_ns", captureNs)
-                            .put("level", level.toDouble()).put("noise_floor", noiseFloor.toDouble()))
+                            .put("level", level.toDouble()).put("noise_floor", noiseFloor.toDouble())
+                        pendingPeak = level
+                        pendingFrames = 0
                     }
                     if(level < threshold) {
                         silenceFrames++
@@ -283,5 +297,6 @@ class ProbeRunner(
         private const val MIC_NOISE_RATIO = 10f
         private const val MIC_MIN_SILENCE_MS = 300
         private const val MIC_GRACE_MS = 1500L
+        private const val MIC_PEAK_MS = 10
     }
 }

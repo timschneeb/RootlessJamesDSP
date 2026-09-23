@@ -253,7 +253,8 @@ def engine_start(adb: Adb, pkg: str) -> None:
 def probe_start(adb: Adb, probe_pkg: str, run_id: str, args) -> None:
     extras = (f"--es run_id {run_id} --ei count {args.count} --ei interval_ms {args.interval_ms} "
               f"--ei lead_in_ms {args.lead_in_ms} --ez acoustic {str(args.acoustic).lower()} "
-              f"--ez low_latency {str(args.probe_low_latency).lower()} --ei buffer_ms {args.probe_buffer_ms}")
+              f"--ez low_latency {str(args.probe_low_latency).lower()} --ei buffer_ms {args.probe_buffer_ms} "
+              f"--ef amplitude {args.amplitude}")
     out = adb.shell(f"am start -S -n {probe_pkg}/{PROBE_ACTIVITY} {extras}", check=False)
     if "Error" in out or "Exception" in out:
         raise HarnessError(f"could not start probe (is it installed?):\n{out.strip()}")
@@ -365,6 +366,8 @@ def analyze(events: list[dict], engine_on: bool = True) -> dict:
 
     acoustic_pairs = match_in_window(probe, "t_present_ns", mic, "t_capture_ns", window_ns)
     acoustic = [(m["t_capture_ns"] - p["t_present_ns"]) / 1e6 for p, m in acoustic_pairs]
+    mic_levels = [m.get("peak", m.get("level", 0)) for _, m in acoustic_pairs]
+    mic_levels = [v for v in mic_levels if v > 0]
 
     def health_values(key):
         return [h[key] for h in health if key in h]
@@ -410,6 +413,7 @@ def analyze(events: list[dict], engine_on: bool = True) -> dict:
         "av_offset_drift_ms_per_min": slope_per_minute([p["t_present_ns"] for p, _ in pairs], offsets),
         "breakdown": breakdown,
         "acoustic_ms": stats(acoustic),
+        "mic_level_db": stats([20 * math.log10(v) for v in mic_levels]),
         "health": health_summary,
         "probe_queue_ms": done.get("probe_queue_ms_avg"),
         "warnings": warnings,
@@ -459,7 +463,8 @@ def print_summary(summary: dict) -> None:
               f"underruns {h['underruns']}")
     ac = summary["acoustic_ms"]
     if ac.get("n"):
-        print(f"   acoustic (mic - source present): median {fmt(ac['median'])} ms  p95 {fmt(ac['p95'])}  n={ac['n']}")
+        print(f"   acoustic (mic - source present): median {fmt(ac['median'])} ms  p95 {fmt(ac['p95'])}  n={ac['n']}"
+              f"  level {fmt(summary['mic_level_db'].get('median'))} dBFS")
     for w in summary["warnings"]:
         print(f"   WARNING: {w}")
 
@@ -517,10 +522,12 @@ def run_once(args, adb: Adb, label: str, engine_on: bool, tuning: dict) -> dict:
             "device": adb.device_info(), "tuning": full_tuning, "engine_on": engine_on,
             "args": {k: v for k, v in vars(args).items() if k not in ("func",)}}
 
-    print(f"\n-- {run_id}: engine {'on' if engine_on else 'off'}, tuning {json.dumps(tuning)}")
+    print(f"\n-- {run_id}: engine {'on' if engine_on else getattr(args, "engine", "off")}, tuning {json.dumps(tuning)}")
     stream = LogStream(adb, run_dir / "events.jsonl")
     try:
-        if not engine_on:
+        if getattr(args, "engine", "on") == "keep":
+            pass    # left as it is, e.g. Android EQ mode (no capture loop to trace)
+        elif not engine_on:
             engine_stop(adb, args.pkg)
             engine_tune(adb, args.pkg, full_tuning, reset=True)
         elif engine_running(adb, args.pkg) and not args.fresh:
@@ -746,6 +753,7 @@ def main() -> None:
         p.add_argument("--fresh", action="store_true",
                        help="cold-start the engine even if it runs (needs the consent dialog on Android 14+)")
         p.add_argument("--acoustic", action="store_true", help="also time pulses via the mic (speaker output)")
+        p.add_argument("--amplitude", type=float, default=0.8, help="probe pulse amplitude (0.05-1)")
         p.add_argument("--probe-low-latency", action="store_true")
         p.add_argument("--probe-buffer-ms", type=int, default=0, help="probe track buffer (0 = 2x min)")
 
@@ -759,7 +767,8 @@ def main() -> None:
 
     p = sub.add_parser("run")
     add_run_options(p)
-    p.add_argument("--engine", choices=("on", "off"), default="on")
+    p.add_argument("--engine", choices=("on", "off", "keep"), default="on",
+                       help="keep: leave the engine as it is (Android EQ mode), acoustic timing only")
     p.add_argument("--tune", nargs="*", default=[], help="key=value knobs for this run (others reset)")
     p.set_defaults(func=cmd_run)
 
@@ -773,7 +782,8 @@ def main() -> None:
     p = sub.add_parser("soak")
     add_run_options(p)
     p.add_argument("--minutes", type=float, default=10)
-    p.add_argument("--engine", choices=("on", "off"), default="on")
+    p.add_argument("--engine", choices=("on", "off", "keep"), default="on",
+                       help="keep: leave the engine as it is (Android EQ mode), acoustic timing only")
     p.add_argument("--tune", nargs="*", default=[])
     p.set_defaults(func=cmd_soak)
 
