@@ -2,11 +2,14 @@ package me.timschneeberger.rootlessjamesdsp.session.rootless
 
 import android.content.Context
 import android.content.Intent
+import android.media.audiofx.DynamicsProcessing
+import me.timschneeberger.rootlessjamesdsp.androideq.AndroidEq
 import me.timschneeberger.rootlessjamesdsp.model.AudioSessionDumpEntry
 import me.timschneeberger.rootlessjamesdsp.model.IEffectSession
 import me.timschneeberger.rootlessjamesdsp.model.rootless.MutedEffectSession
 import me.timschneeberger.rootlessjamesdsp.session.shared.BaseSessionDatabase
 import me.timschneeberger.rootlessjamesdsp.utils.MutedAudioEffectFactory
+import me.timschneeberger.rootlessjamesdsp.utils.SdkCheck
 import timber.log.Timber
 
 class RootlessSessionDatabase(context: Context) : BaseSessionDatabase(context) {
@@ -38,7 +41,10 @@ class RootlessSessionDatabase(context: Context) : BaseSessionDatabase(context) {
     override fun shouldAddSession(id: Int, uid: Int, packageName: String) = true
 
     override fun createSession(id: Int, uid: Int, packageName: String): MutedEffectSession? {
-        val muteEffect = factory.make(id, packageName)
+        val muteEffect = if (SdkCheck.isPie && AndroidEq.isEnabled)
+            AndroidEq.create(id)
+        else
+            factory.make(id, packageName)
         if(muteEffect == null)
         {
             // Something weird happened, request user to solve issue
@@ -51,6 +57,8 @@ class RootlessSessionDatabase(context: Context) : BaseSessionDatabase(context) {
     override fun onSessionRemoved(item: IEffectSession) {
         (item as MutedEffectSession).run {
             try {
+                if (SdkCheck.isPie)
+                    (audioMuteEffect as? DynamicsProcessing)?.let { AndroidEq.release(it) }
                 audioMuteEffect?.enabled = false
                 audioMuteEffect?.release()
             }

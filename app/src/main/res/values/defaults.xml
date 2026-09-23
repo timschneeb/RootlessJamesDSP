@@ -34,6 +34,9 @@
     <string name="default_audioformat_encoding" translatable="false">1</string>
     <integer name="default_audioformat_buffersize" translatable="false">8192</integer>
     <bool name="default_audioformat_low_latency" translatable="false">true</bool>
+    <bool name="default_android_eq_enable" translatable="false">false</bool>
+    <string name="default_android_eq_latency" translatable="false">1024</string>
+    <bool name="default_android_eq_limiter" translatable="false">true</bool>
     <bool name="default_audioformat_processing" translatable="false">true</bool>
     <bool name="default_audioformat_enhanced_processing" translatable="false">false</bool>
     <bool name="default_audioformat_optimization_benchmark" translatable="false">false</bool>

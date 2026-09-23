@@ -40,6 +40,9 @@
     <string name="key_audioformat_encoding" translatable="false">audioformat_encoding</string>
     <string name="key_audioformat_buffersize" translatable="false">audioformat_buffersize</string>
     <string name="key_audioformat_low_latency" translatable="false">audioformat_low_latency</string>
+    <string name="key_android_eq_enable" translatable="false">android_eq_enable</string>
+    <string name="key_android_eq_latency" translatable="false">android_eq_latency</string>
+    <string name="key_android_eq_limiter" translatable="false">android_eq_limiter</string>
     <string name="key_audioformat_processing" translatable="false">audioformat_processing</string>
     <string name="key_audioformat_enhanced_processing" translatable="false">audioformat_enhanced_processing</string>
     <string name="key_audioformat_optimization_benchmark" translatable="false">audioformat_optimization_benchmark</string>

@@ -14,6 +14,7 @@ import me.timschneeberger.rootlessjamesdsp.preference.MaterialSeekbarPreference
 import me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
 import me.timschneeberger.rootlessjamesdsp.service.RootAudioProcessorService
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.SdkCheck
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.requestIgnoreBatteryOptimizations
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sendLocalBroadcast
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.showAlert
@@ -30,6 +31,7 @@ class SettingsAudioFormatFragment : SettingsBaseFragment() {
     private val encoding by lazy { findPreference<ListPreference>(getString(R.string.key_audioformat_encoding)) }
     private val bufferSize by lazy { findPreference<MaterialSeekbarPreference>(getString(R.string.key_audioformat_buffersize)) }
     private val lowLatency by lazy { findPreference<MaterialSwitchPreference>(getString(R.string.key_audioformat_low_latency)) }
+    private val androidEq by lazy { findPreference<MaterialSwitchPreference>(getString(R.string.key_android_eq_enable)) }
     private val legacyMode by lazy { findPreference<MaterialSwitchPreference>(getString(R.string.key_audioformat_processing)) }
     private val enhancedMode by lazy { findPreference<MaterialSwitchPreference>(getString(R.string.key_audioformat_enhanced_processing)) }
     private val enhancedModeInfo by lazy { findPreference<Preference>(getString(R.string.key_audioformat_enhanced_processing_info)) }
@@ -44,6 +46,7 @@ class SettingsAudioFormatFragment : SettingsBaseFragment() {
 
         // Root: Hide audio format & benchmark category
         encoding?.parent?.isVisible = isRootless()
+        androidEq?.parent?.isVisible = isRootless() && SdkCheck.isPie
         benchmark?.parent?.isVisible = !isRoot()
 
         // Rootless: Hide audio processing category

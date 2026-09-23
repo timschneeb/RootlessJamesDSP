@@ -30,6 +30,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
+import me.timschneeberger.rootlessjamesdsp.androideq.AndroidEq
 import me.timschneeberger.rootlessjamesdsp.flavor.CrashlyticsImpl
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspLocalEngine
 import me.timschneeberger.rootlessjamesdsp.interop.ProcessorMessageHandler
@@ -130,6 +131,9 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         sessionManager.sessionDatabase.setOnAppProblemListener(onAppProblemListener)
         sessionManager.sessionDatabase.registerOnSessionChangeListener(onSessionChangeListener)
         sessionManager.sessionPolicyDatabase.registerOnRestrictedSessionChangeListener(onSessionPolicyChangeListener)
+
+        // Before the engine sync, which hands the EQ curve to Android EQ
+        AndroidEq.configure(androidEqSettings())
 
         // Setup core engine
         engine = JamesDspLocalEngine(this, ProcessorMessageHandler())
@@ -401,6 +405,16 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
 
                 requestAudioRecordRecreation()
             }
+            getString(R.string.key_android_eq_enable),
+            getString(R.string.key_android_eq_latency),
+            getString(R.string.key_android_eq_limiter) -> {
+                if (AndroidEq.configure(androidEqSettings())) {
+                    Timber.i("Android EQ changed; rebuilding sessions (${AndroidEq.settings})")
+                    sessionManager.sessionDatabase.clearSessions()
+                    restartRecording()
+                    sessionManager.pollOnce(false)
+                }
+            }
         }
     }
 
@@ -421,6 +435,15 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         if (!hasRecordPermission()) {
             Timber.e("Record audio permission missing. Can't record")
             stopSelf()
+            return
+        }
+
+        // Android EQ runs inside each app, there is nothing to capture
+        if (AndroidEq.isEnabled) {
+            Timber.i("Android EQ active; capture loop not started")
+            val excluded = (blockedApps.value?.map { it.uid } ?: emptyList()) + Process.myUid()
+            sessionManager.sessionDatabase.setExcludedUids(excluded.toTypedArray())
+            sessionManager.pollOnce(false)
             return
         }
 
@@ -702,6 +725,13 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
             .setAudioPlaybackCaptureConfig(configBuilder.build())
             .build()
     }
+
+    private fun androidEqSettings() = AndroidEq.Settings(
+        enabled = preferences.get<Boolean>(R.string.key_android_eq_enable),
+        blockSize = preferences.get<String>(R.string.key_android_eq_latency).toIntOrNull() ?: AndroidEq.DEFAULT_BLOCK_SIZE,
+        limiter = preferences.get<Boolean>(R.string.key_android_eq_limiter),
+        sampleRate = determineSamplingRate(),
+    )
 
     // Determine HAL sampling rate
     private fun determineSamplingRate(): Int {
