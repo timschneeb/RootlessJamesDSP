@@ -3,6 +3,7 @@ package me.timschneeberger.rootlessjamesdsp.androideq
 import android.media.audiofx.DynamicsProcessing
 import android.os.Build
 import androidx.annotation.RequiresApi
+import me.timschneeberger.rootlessjamesdsp.interop.JamesDspBaseEngine
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -37,13 +38,15 @@ object AndroidEq {
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
     private val mutex = Mutex()
 
-    private var curve: List<Pair<Double, Double>>? = null
+    // Left and right target curves; null means flat
+    private var curves: Pair<List<Pair<Double, Double>>?, List<Pair<Double, Double>>?> = null to null
     private var fitter: AndroidEqFitter? = null
     @Volatile
     private var fitted: Fitted? = null
 
-    // Band counts are fixed when an effect is created, so stages are only reused for the same layout
-    private class Fitted(val blockSize: Int, val sampleRate: Int, val stages: AndroidEqFitter.Stages)
+    // Band counts are fixed when an effect is created, so stages are only reused for the same layout.
+    // stages[0] is the left channel, stages[1] the right one.
+    private class Fitted(val blockSize: Int, val sampleRate: Int, val stages: List<AndroidEqFitter.Stages>)
 
     /** Returns true if existing effects must be recreated (block size or mode changed). */
     fun configure(newSettings: Settings): Boolean {
@@ -59,9 +62,18 @@ object AndroidEq {
         return recreate
     }
 
-    /** Receives the engine's combined GEQ/PEQ curve ("GraphicEQ: f g; ..."). */
+    /**
+     * Receives the engine's combined GEQ/PEQ curve ("GraphicEQ: f g; ..."), or a left and a right
+     * curve joined by [JamesDspBaseEngine.STEREO_GRAPHIC_EQ_SPLIT].
+     */
     fun setCurve(enabled: Boolean, graphicEq: String) {
-        curve = if (enabled) parseGraphicEq(graphicEq) else null
+        curves = if (!enabled) {
+            null to null
+        } else {
+            val parts = graphicEq.split(JamesDspBaseEngine.STEREO_GRAPHIC_EQ_SPLIT)
+            val left = parseGraphicEq(parts[0])
+            left to (parts.getOrNull(1)?.let { parseGraphicEq(it) } ?: left)
+        }
         refit()
     }
 
@@ -69,19 +81,21 @@ object AndroidEq {
         val s = settings
         val bands = currentStages(s) ?: flatStages(s)
         return try {
-            val config = DynamicsProcessing.Config.Builder(
+            val builder = DynamicsProcessing.Config.Builder(
                 DynamicsProcessing.VARIANT_FAVOR_FREQUENCY_RESOLUTION, 2,
-                true, bands.preEq.size,
-                true, bands.mbc.size,
-                true, bands.postEq.size,
+                true, bands[0].preEq.size,
+                true, bands[0].mbc.size,
+                true, bands[0].postEq.size,
                 true
             )
                 .setPreferredFrameDuration(frameDurationMs(s))
-                .setPreEqAllChannelsTo(eq(bands.preEq))
-                .setMbcAllChannelsTo(mbc(bands.mbc))
-                .setPostEqAllChannelsTo(eq(bands.postEq))
                 .setLimiterAllChannelsTo(limiter(s.limiter))
-                .build()
+            for (ch in 0..1) {
+                builder.setPreEqByChannelIndex(ch, eq(bands[ch].preEq))
+                    .setMbcByChannelIndex(ch, mbc(bands[ch].mbc))
+                    .setPostEqByChannelIndex(ch, eq(bands[ch].postEq))
+            }
+            val config = builder.build()
             DynamicsProcessing(Int.MAX_VALUE, sessionId, config).apply {
                 enabled = true
                 setEnableStatusListener { effect, enabled ->
@@ -111,24 +125,33 @@ object AndroidEq {
         val s = settings
         if (!s.enabled)
             return
-        val target = curve
+        val (left, right) = curves
         scope.launch {
             mutex.withLock {
                 val f = fitterFor(s)
                 val started = System.nanoTime()
-                val result = if (target == null) flatStages(s) else f.fit { freq -> interpolate(target, freq) }
-                Timber.i("Android EQ: fitted ${f.edges.size} segments in ${(System.nanoTime() - started) / 1_000_000} ms")
+                fun fit(target: List<Pair<Double, Double>>?) =
+                    if (target == null) f.toStages(DoubleArray(f.edges.size))
+                    else f.fit { freq -> interpolate(target, freq) }
+                val leftStages = fit(left)
+                val result = listOf(leftStages, if (right == left) leftStages else fit(right))
+                Timber.i("Android EQ: fitted ${f.edges.size} segments (${if (right == left) "both channels" else "per channel"}) " +
+                        "in ${(System.nanoTime() - started) / 1_000_000} ms")
                 fitted = Fitted(s.blockSize, s.sampleRate, result)
                 effects.forEach { applyStages(it, result) }
             }
         }
     }
 
-    private fun applyStages(effect: DynamicsProcessing, bands: AndroidEqFitter.Stages) {
+    private fun applyStages(effect: DynamicsProcessing, bands: List<AndroidEqFitter.Stages>) {
         try {
-            effect.setPreEqAllChannelsTo(eq(bands.preEq))
-            effect.setMbcAllChannelsTo(mbc(bands.mbc))
-            effect.setPostEqAllChannelsTo(eq(bands.postEq))
+            // Channels beyond the first two (multichannel outputs) follow the left curve
+            for (ch in 0 until effect.channelCount) {
+                val stages = bands[if (ch == 1) 1 else 0]
+                effect.setPreEqByChannelIndex(ch, eq(stages.preEq))
+                effect.setMbcByChannelIndex(ch, mbc(stages.mbc))
+                effect.setPostEqByChannelIndex(ch, eq(stages.postEq))
+            }
         } catch (ex: Exception) {
             Timber.w(ex, "Android EQ: failed to update effect")
         }
@@ -154,7 +177,9 @@ object AndroidEq {
         fitter?.takeIf { it.blockSize == s.blockSize && it.sampleRate == s.sampleRate }
             ?: AndroidEqFitter(s.sampleRate, s.blockSize).also { fitter = it }
 
-    private fun flatStages(s: Settings) = fitterFor(s).let { it.toStages(DoubleArray(it.edges.size)) }
+    private fun flatStages(s: Settings) = fitterFor(s).let { f ->
+        f.toStages(DoubleArray(f.edges.size)).let { listOf(it, it) }
+    }
 
     private fun eq(bands: List<AndroidEqFitter.Band>) =
         DynamicsProcessing.Eq(true, true, bands.size).apply {

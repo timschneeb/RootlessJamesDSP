@@ -485,7 +485,8 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
     }
 
     companion object {
-        private const val STEREO_GRAPHIC_EQ_SPLIT = "\n#CHANNEL_SPLIT#\n"
+        /** Separates the left and right curve when a GraphicEQ payload differs per channel. */
+        const val STEREO_GRAPHIC_EQ_SPLIT ="\n#CHANNEL_SPLIT#\n"
         private val dfMergeFreq = java.text.DecimalFormat("0.00", java.text.DecimalFormatSymbols.getInstance(java.util.Locale.ENGLISH))
         private val dfMergeGain = java.text.DecimalFormat("0.000000", java.text.DecimalFormatSymbols.getInstance(java.util.Locale.ENGLISH))
     }
