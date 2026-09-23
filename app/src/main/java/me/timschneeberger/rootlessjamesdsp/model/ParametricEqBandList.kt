@@ -76,23 +76,25 @@ class ParametricEqBandList : ObservableArrayList<ParametricEqBand>() {
     }
 
     /**
-     * Export to EqualizerAPO format.
+     * Export to EqualizerAPO format. Per-channel bands are preceded by a "Channel:" line, which
+     * applies to all following filters.
      * Example:
      *   Preamp: 0 dB
      *   Filter 1: ON PK Fc 1000 Hz Gain 3.0 dB Q 1.41
+     *   Channel: L
      *   Filter 2: ON LSC Fc 100 Hz Gain 5.0 dB Q 0.71
      */
     fun toApoString(preampDb: Double = 0.0): String {
         val sb = StringBuilder()
         sb.appendLine("Preamp: ${dfGain.format(preampDb)} dB")
+        var channel = ParametricEqChannel.LEFT_RIGHT
         for ((i, band) in this.withIndex()) {
-            val channelSuffix = if (band.channel == ParametricEqChannel.LEFT_RIGHT) {
-                ""
-            } else {
-                " Channel ${band.channel.apoLabel}"
+            if (band.channel != channel) {
+                channel = band.channel
+                sb.appendLine("Channel: ${if (channel == ParametricEqChannel.LEFT_RIGHT) "all" else channel.apoLabel}")
             }
             sb.appendLine(
-                "Filter ${i + 1}: ON ${band.filterType.apoLabel} Fc ${dfFreq.format(band.frequency)} Hz Gain ${dfGain.format(band.gain)} dB Q ${dfQ.format(band.q)}$channelSuffix"
+                "Filter ${i + 1}: ON ${band.filterType.apoLabel} Fc ${dfFreq.format(band.frequency)} Hz Gain ${dfGain.format(band.gain)} dB Q ${dfQ.format(band.q)}"
             )
         }
         return sb.toString()
@@ -104,13 +106,16 @@ class ParametricEqBandList : ObservableArrayList<ParametricEqBand>() {
      *   Preamp: -3 dB
      *   Filter 1: ON PK Fc 1000 Hz Gain 3.0 dB Q 1.41
      *   Filter 2: ON LSC Fc 100 Hz Gain 5.0 dB Q 0.71
-     * Parses Preamp value and filter bands.
+     * Parses Preamp value and filter bands. "Channel:" lines select the channels of the following
+     * filters; filters for channels other than L/R are skipped.
      * Returns [ApoImportResult] with the parsed preamp and number of skipped filters.
      */
     fun fromApoString(text: String): ApoImportResult {
         this.clear()
         var skipped = 0
         var preampDb = 0.0
+        // null: the current Channel selection contains neither L nor R
+        var channel: ParametricEqChannel? = ParametricEqChannel.LEFT_RIGHT
 
         val filterRegex = Regex(
             """Filter\s+\d+:\s+ON\s+(\S+)\s+Fc\s+([\d.]+)\s+Hz\s+Gain\s+([-\d.]+)\s+dB\s+Q\s+([\d.]+)(?:\s+Channel\s+([LR]))?""",
@@ -124,6 +129,11 @@ class ParametricEqBandList : ObservableArrayList<ParametricEqBand>() {
         for (line in text.lines()) {
             val trimmed = line.trim()
             if (trimmed.isBlank() || trimmed.startsWith("#")) {
+                continue
+            }
+
+            if (trimmed.startsWith("Channel:", ignoreCase = true)) {
+                channel = parseApoChannels(trimmed.substringAfter(":"))
                 continue
             }
 
@@ -159,10 +169,36 @@ class ParametricEqBandList : ObservableArrayList<ParametricEqBand>() {
                 continue
             }
 
-            this.add(ParametricEqBand(freq, gain, q, filterType, ParametricEqChannel.fromApoLabel(channelStr)))
+            // A " Channel L" suffix on the filter line comes from files exported by older versions
+            val bandChannel = if (!channelStr.isNullOrEmpty()) ParametricEqChannel.fromApoLabel(channelStr) else channel
+            if (bandChannel == null) {
+                Timber.d("fromApoString: filter for other channels, skipping: $trimmed")
+                skipped++
+                continue
+            }
+
+            this.add(ParametricEqBand(freq, gain, q, filterType, bandChannel))
         }
 
         return ApoImportResult(skippedFilters = skipped, preampDb = preampDb)
+    }
+
+    private fun parseApoChannels(list: String): ParametricEqChannel? {
+        var left = false
+        var right = false
+        for (token in list.trim().split(Regex("\\s+"))) {
+            when (token.uppercase()) {
+                "ALL" -> { left = true; right = true }
+                "L", "1" -> left = true
+                "R", "2" -> right = true
+            }
+        }
+        return when {
+            left && right -> ParametricEqChannel.LEFT_RIGHT
+            left -> ParametricEqChannel.LEFT
+            right -> ParametricEqChannel.RIGHT
+            else -> null
+        }
     }
 
     fun fromBundle(bundle: Bundle) {
