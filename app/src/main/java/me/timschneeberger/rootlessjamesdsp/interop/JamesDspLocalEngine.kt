@@ -2,8 +2,10 @@ package me.timschneeberger.rootlessjamesdsp.interop
 
 import android.content.Context
 import android.content.Intent
+import me.timschneeberger.rootlessjamesdsp.androideq.AndroidEq
 import me.timschneeberger.rootlessjamesdsp.interop.structure.EelVmVariable
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
+import me.timschneeberger.rootlessjamesdsp.utils.SdkCheck
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.sendLocalBroadcast
 import timber.log.Timber
 import java.util.Timer
@@ -156,6 +158,8 @@ class JamesDspLocalEngine(context: Context, callbacks: JamesDspWrapper.JamesDspC
     }
 
     override fun setGraphicEqInternal(enable: Boolean, bands: String): Boolean {
+        if (SdkCheck.isPie)
+            AndroidEq.setCurve(enable, bands)
         return JamesDspWrapper.setGraphicEq(handle, enable, bands)
     }
 

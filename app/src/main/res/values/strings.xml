@@ -353,6 +353,16 @@
     <string name="audio_format_low_latency">Low-latency mode</string>
     <string name="audio_format_low_latency_on">Small blocks on the fast output path; keeps video in sync</string>
     <string name="audio_format_low_latency_off">Large buffers (legacy); fewer dropouts on slow devices, but video lags</string>
+    <string name="android_eq_header">Android EQ</string>
+    <string name="android_eq">Android EQ</string>
+    <string name="android_eq_on">Your EQ runs inside each app with Android\'s built-in effect. Video stays in sync; other effects are off</string>
+    <string name="android_eq_off">Off: audio is captured and processed by JamesDSP</string>
+    <string name="android_eq_latency">Latency</string>
+    <string name="android_eq_latency_10">~10 ms (coarse bass)</string>
+    <string name="android_eq_latency_20">~20 ms (balanced)</string>
+    <string name="android_eq_latency_40">~40 ms (precise bass)</string>
+    <string name="android_eq_limiter">Limiter</string>
+    <string name="android_eq_limiter_summary">Prevents clipping from EQ boosts</string>
     <string name="audio_format_processing_legacy">Legacy mode</string>
     <string name="audio_format_processing_legacy_on">Attach globally to session 0 (deprecated)</string>
     <string name="audio_format_processing_legacy_off">Attach to each app individually</string>

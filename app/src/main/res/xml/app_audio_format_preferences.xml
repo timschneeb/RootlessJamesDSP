@@ -34,6 +34,34 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        app:title="@string/android_eq_header"
+        app:iconSpaceReserved="false">
+        <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
+            android:key="@string/key_android_eq_enable"
+            android:defaultValue="@bool/default_android_eq_enable"
+            android:title="@string/android_eq"
+            android:summaryOn="@string/android_eq_on"
+            android:summaryOff="@string/android_eq_off"
+            app:iconSpaceReserved="false" />
+        <ListPreference
+            app:key="@string/key_android_eq_latency"
+            app:title="@string/android_eq_latency"
+            app:entries="@array/android_eq_latencies"
+            app:entryValues="@array/android_eq_latencies_values"
+            app:defaultValue="@string/default_android_eq_latency"
+            app:dependency="@string/key_android_eq_enable"
+            app:useSimpleSummaryProvider="true"
+            app:iconSpaceReserved="false" />
+        <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
+            android:key="@string/key_android_eq_limiter"
+            android:defaultValue="@bool/default_android_eq_limiter"
+            android:title="@string/android_eq_limiter"
+            android:summary="@string/android_eq_limiter_summary"
+            android:dependency="@string/key_android_eq_enable"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
         app:title="@string/audio_format_processing_header"
         app:iconSpaceReserved="false">
         <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference

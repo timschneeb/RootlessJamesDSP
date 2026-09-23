@@ -65,6 +65,18 @@
         <item>1</item>
     </string-array>
 
+    <string-array name="android_eq_latencies" translatable="false">
+        <item>@string/android_eq_latency_10</item>
+        <item>@string/android_eq_latency_20</item>
+        <item>@string/android_eq_latency_40</item>
+    </string-array>
+
+    <string-array name="android_eq_latencies_values" translatable="false">
+        <item>512</item>
+        <item>1024</item>
+        <item>2048</item>
+    </string-array>
+
     <string-array name="reverb_presets" translatable="false">
         <item>@string/reverb_preset_default</item>
         <item>@string/reverb_preset_small_hall1</item>
