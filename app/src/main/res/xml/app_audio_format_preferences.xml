@@ -24,6 +24,13 @@
             app:updatesContinuously="false"
             app:showSeekBarValue="true"
             app:iconSpaceReserved="false"/>
+        <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
+            android:key="@string/key_audioformat_low_latency"
+            android:defaultValue="@bool/default_audioformat_low_latency"
+            android:title="@string/audio_format_low_latency"
+            android:summaryOn="@string/audio_format_low_latency_on"
+            android:summaryOff="@string/audio_format_low_latency_off"
+            app:iconSpaceReserved="false" />
     </PreferenceCategory>
 
     <PreferenceCategory

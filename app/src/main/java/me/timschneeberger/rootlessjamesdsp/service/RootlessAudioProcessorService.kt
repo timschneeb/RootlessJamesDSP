@@ -33,6 +33,8 @@ import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.flavor.CrashlyticsImpl
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspLocalEngine
 import me.timschneeberger.rootlessjamesdsp.interop.ProcessorMessageHandler
+import me.timschneeberger.rootlessjamesdsp.latency.LatencyTuning
+import me.timschneeberger.rootlessjamesdsp.latency.QueueController
 import me.timschneeberger.rootlessjamesdsp.model.IEffectSession
 import me.timschneeberger.rootlessjamesdsp.model.preference.AudioEncoding
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistDatabase
@@ -437,22 +439,38 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         }
         val sampleRate = clamp(determineSamplingRate(), 44100, 48000)
 
+        // Keep the read size constant per session, the engine re-plans its convolver when it changes
+        val tuning = LatencyTuning.forMode(preferences.get<Boolean>(R.string.key_audioformat_low_latency))
+        val readSamples = if(tuning.readFrames > 0)
+            (tuning.readFrames * 2).coerceAtMost(bufferSize)
+        else
+            bufferSize
+
         Timber.i("Sample rate: $sampleRate; Encoding: ${encoding.name}; " +
                 "Buffer size: $bufferSize; Buffer size (bytes): $bufferSizeBytes ; " +
-                "HAL buffer size (bytes): ${determineBufferSize()}")
+                "HAL buffer size (bytes): ${determineBufferSize()}; " +
+                "Read size: $readSamples; Latency tuning: $tuning")
 
         // Create recorder and track
         var recorder: AudioRecord
         val track: AudioTrack
         try {
             recorder = buildAudioRecord(encodingFormat, sampleRate, bufferSizeBytes)
-            track = buildAudioTrack(encodingFormat, sampleRate, bufferSizeBytes)
+            // Make sure the track can hold the requested queue size
+            val frameBytes = bufferSizeBytes / bufferSize * 2
+            val trackBytes = maxOf(bufferSizeBytes, tuning.trackBufferFrames * frameBytes)
+            track = buildAudioTrack(encodingFormat, sampleRate, trackBytes, tuning.lowLatencyTrack)
         }
         catch(ex: Exception) {
             Timber.e("Failed to create initial audio record/track")
             Timber.e(ex)
             stopSelf()
             return
+        }
+
+        if(tuning.trackBufferFrames > 0) {
+            val actualFrames = track.setBufferSizeInFrames(tuning.trackBufferFrames)
+            Timber.i("Track buffer size set to $actualFrames frames (requested ${tuning.trackBufferFrames})")
         }
 
         if(engine.sampleRate.toInt() != sampleRate) {
@@ -470,10 +488,11 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
                     notificationSessions,
                 )
 
-                val floatBuffer = FloatArray(bufferSize)
-                val floatOutBuffer = FloatArray(bufferSize)
-                val shortBuffer = ShortArray(bufferSize)
-                val shortOutBuffer = ShortArray(bufferSize)
+                val floatBuffer = FloatArray(readSamples)
+                val floatOutBuffer = FloatArray(readSamples)
+                val shortBuffer = ShortArray(readSamples)
+                val shortOutBuffer = ShortArray(readSamples)
+                val queueControl = QueueController(tuning.maxQueueFrames)
                 while (!isProcessorDisposing) {
                     if(recreateRecorderRequested) {
                         recreateRecorderRequested = false
@@ -522,18 +541,35 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
                     // Resume track if suspended
                     if(track.playState != AudioTrack.PLAYSTATE_PLAYING) {
                         track.play()
+                        queueControl.onTrackStarted()
                     }
 
                     // Choose encoding and process data
                     if(encoding == AudioEncoding.PcmShort) {
-                        recorder.read(shortBuffer, 0, shortBuffer.size, AudioRecord.READ_BLOCKING)
-                        engine.processInt16(shortBuffer, shortOutBuffer)
-                        track.write(shortOutBuffer, 0, shortOutBuffer.size, AudioTrack.WRITE_BLOCKING)
+                        // Whole stereo frames only; skip the block on errors
+                        val samples = recorder.read(shortBuffer, 0, shortBuffer.size, AudioRecord.READ_BLOCKING) and 1.inv()
+                        if(samples > 0) {
+                            engine.processInt16(shortBuffer, shortOutBuffer, offset = 0, length = samples)
+                            // A dropped block is processed but not written, see QueueController
+                            if(!queueControl.shouldDrop()) {
+                                queueControl.shape(track, shortOutBuffer, samples)
+                                val written = track.write(shortOutBuffer, 0, samples, AudioTrack.WRITE_BLOCKING)
+                                queueControl.onWritten(written)
+                            }
+                        }
                     }
                     else {
-                        recorder.read(floatBuffer, 0, floatBuffer.size, AudioRecord.READ_BLOCKING)
-                        engine.processFloat(floatBuffer, floatOutBuffer)
-                        track.write(floatOutBuffer, 0, floatOutBuffer.size, AudioTrack.WRITE_BLOCKING)
+                        // Whole stereo frames only; skip the block on errors
+                        val samples = recorder.read(floatBuffer, 0, floatBuffer.size, AudioRecord.READ_BLOCKING) and 1.inv()
+                        if(samples > 0) {
+                            engine.processFloat(floatBuffer, floatOutBuffer, offset = 0, length = samples)
+                            // A dropped block is processed but not written, see QueueController
+                            if(!queueControl.shouldDrop()) {
+                                queueControl.shape(track, floatOutBuffer, samples)
+                                val written = track.write(floatOutBuffer, 0, samples, AudioTrack.WRITE_BLOCKING)
+                                queueControl.onWritten(written)
+                            }
+                        }
                     }
                 }
             } catch (e: IOException) {
@@ -582,7 +618,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         startRecording()
     }
 
-    private fun buildAudioTrack(encoding: Int, sampleRate: Int, bufferSizeBytes: Int): AudioTrack {
+    private fun buildAudioTrack(encoding: Int, sampleRate: Int, bufferSizeBytes: Int, lowLatency: Boolean): AudioTrack {
         val attributesBuilder = AudioAttributes.Builder()
             .setUsage(AudioAttributes.USAGE_UNKNOWN)
             .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
@@ -617,6 +653,10 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
             .setTransferMode(AudioTrack.MODE_STREAM)
             .setAudioAttributes(attributesBuilder.build())
             .setBufferSizeInBytes(bufferSize)
+            .apply {
+                if(lowLatency)
+                    setPerformanceMode(AudioTrack.PERFORMANCE_MODE_LOW_LATENCY)
+            }
             .build()
     }
 

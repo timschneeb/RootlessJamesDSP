@@ -350,6 +350,9 @@
     <string name="audio_format_header">Audio processing</string>
     <string name="audio_format_section_header">Preferred audio format</string>
     <string name="audio_format_processing_header">Audio processing options</string>
+    <string name="audio_format_low_latency">Low-latency mode</string>
+    <string name="audio_format_low_latency_on">Small blocks on the fast output path; keeps video in sync</string>
+    <string name="audio_format_low_latency_off">Large buffers (legacy); fewer dropouts on slow devices, but video lags</string>
     <string name="audio_format_processing_legacy">Legacy mode</string>
     <string name="audio_format_processing_legacy_on">Attach globally to session 0 (deprecated)</string>
     <string name="audio_format_processing_legacy_off">Attach to each app individually</string>
