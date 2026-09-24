@@ -65,6 +65,86 @@
         <item>1</item>
     </string-array>
 
+    <string-array name="android_eq_latencies" translatable="false">
+        <item>@string/android_eq_latency_10</item>
+        <item>@string/android_eq_latency_20</item>
+        <item>@string/android_eq_latency_40</item>
+    </string-array>
+
+    <string-array name="android_eq_latencies_values" translatable="false">
+        <item>512</item>
+        <item>1024</item>
+        <item>2048</item>
+    </string-array>
+
+    <string-array name="tonality_reference_modes" translatable="false">
+        <item>@string/tonality_reference_iec</item>
+        <item>@string/tonality_reference_mnoise</item>
+        <item>@string/tonality_reference_pink</item>
+        <item>@string/tonality_reference_tilt</item>
+        <item>@string/tonality_reference_music_average</item>
+        <item>@string/tonality_reference_music_acoustic</item>
+        <item>@string/tonality_reference_music_percussive</item>
+        <item>@string/tonality_reference_library</item>
+        <item>@string/tonality_reference_custom</item>
+    </string-array>
+
+    <string-array name="tonality_reference_modes_values" translatable="false">
+        <item>iec</item>
+        <item>mnoise</item>
+        <item>pink</item>
+        <item>tilt</item>
+        <item>music_average</item>
+        <item>music_acoustic</item>
+        <item>music_percussive</item>
+        <item>library</item>
+        <item>custom</item>
+    </string-array>
+
+    <string-array name="tonality_tilt_entries" translatable="false">
+        <item>-3.0 dB/oct (pink)</item>
+        <item>-3.5 dB/oct</item>
+        <item>-4.0 dB/oct</item>
+        <item>-4.5 dB/oct</item>
+        <item>-5.0 dB/oct</item>
+        <item>-5.5 dB/oct</item>
+        <item>-6.0 dB/oct (brown)</item>
+    </string-array>
+
+    <string-array name="tonality_tilt_values" translatable="false">
+        <item>-3.0</item>
+        <item>-3.5</item>
+        <item>-4.0</item>
+        <item>-4.5</item>
+        <item>-5.0</item>
+        <item>-5.5</item>
+        <item>-6.0</item>
+    </string-array>
+
+    <string-array name="tonality_smoothing_entries" translatable="false">
+        <item>@string/tonality_smoothing_3</item>
+        <item>@string/tonality_smoothing_6</item>
+        <item>@string/tonality_smoothing_12</item>
+    </string-array>
+
+    <string-array name="tonality_smoothing_values" translatable="false">
+        <item>3</item>
+        <item>6</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="tonality_range_entries" translatable="false">
+        <item>At least ±6 dB</item>
+        <item>At least ±12 dB</item>
+        <item>At least ±24 dB</item>
+    </string-array>
+
+    <string-array name="tonality_range_values" translatable="false">
+        <item>6</item>
+        <item>12</item>
+        <item>24</item>
+    </string-array>
+
     <string-array name="reverb_presets" translatable="false">
         <item>@string/reverb_preset_default</item>
         <item>@string/reverb_preset_small_hall1</item>

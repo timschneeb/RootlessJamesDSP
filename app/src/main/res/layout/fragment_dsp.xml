@@ -47,6 +47,10 @@
             app:iconSrc="@drawable/ic_baseline_download_24dp"
             app:iconTint="?attr/colorOnSecondaryContainer" />
 
+        <include
+            android:id="@+id/song_tonality_card"
+            layout="@layout/card_song_tonality" />
+
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -28,11 +28,21 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.asLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import me.timschneeberger.rootlessjamesdsp.BuildConfig
 import me.timschneeberger.rootlessjamesdsp.R
+import me.timschneeberger.rootlessjamesdsp.androideq.AndroidEq
+import me.timschneeberger.rootlessjamesdsp.analysis.PreDspTonalityAnalyzer
+import me.timschneeberger.rootlessjamesdsp.analysis.TonalityFrame
+import me.timschneeberger.rootlessjamesdsp.analysis.TonalityReferenceFactory
+import me.timschneeberger.rootlessjamesdsp.analysis.TonalityReferenceStore
 import me.timschneeberger.rootlessjamesdsp.flavor.CrashlyticsImpl
 import me.timschneeberger.rootlessjamesdsp.interop.JamesDspLocalEngine
 import me.timschneeberger.rootlessjamesdsp.interop.ProcessorMessageHandler
+import me.timschneeberger.rootlessjamesdsp.latency.LatencyTuning
+import me.timschneeberger.rootlessjamesdsp.latency.QueueController
 import me.timschneeberger.rootlessjamesdsp.model.IEffectSession
 import me.timschneeberger.rootlessjamesdsp.model.preference.AudioEncoding
 import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistDatabase
@@ -40,6 +50,7 @@ import me.timschneeberger.rootlessjamesdsp.model.room.AppBlocklistRepository
 import me.timschneeberger.rootlessjamesdsp.model.room.BlockedApp
 import me.timschneeberger.rootlessjamesdsp.model.rootless.SessionRecordingPolicyEntry
 import me.timschneeberger.rootlessjamesdsp.session.rootless.OnRootlessSessionChangeListener
+import me.timschneeberger.rootlessjamesdsp.session.rootless.MediaSessionTrackObserver
 import me.timschneeberger.rootlessjamesdsp.session.rootless.RootlessSessionDatabase
 import me.timschneeberger.rootlessjamesdsp.session.rootless.RootlessSessionManager
 import me.timschneeberger.rootlessjamesdsp.session.rootless.SessionRecordingPolicyManager
@@ -61,6 +72,9 @@ import me.timschneeberger.rootlessjamesdsp.utils.preferences.Preferences
 import me.timschneeberger.rootlessjamesdsp.utils.sdkAbove
 import org.koin.android.ext.android.inject
 import timber.log.Timber
+import android.util.Log
+import me.timschneeberger.rootlessjamesdsp.analysis.TrackBoundaryEvent
+import me.timschneeberger.rootlessjamesdsp.analysis.TrackBoundaryReason
 import java.io.IOException
 
 
@@ -79,6 +93,13 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
     private var recreateRecorderRequested = false
     private var recorderThread: Thread? = null
     private lateinit var engine: JamesDspLocalEngine
+    private var tonalityAnalyzer: PreDspTonalityAnalyzer? = null
+    private var mediaSessionTrackObserver: MediaSessionTrackObserver? = null
+
+    @Volatile
+    private var tonalityEnabled = false
+    private val _tonalityFrames = MutableStateFlow<TonalityFrame?>(null)
+    val tonalityFrames: StateFlow<TonalityFrame?> = _tonalityFrames.asStateFlow()
     private val isRunning: Boolean
         get() = recorderThread != null
 
@@ -129,6 +150,9 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         sessionManager.sessionDatabase.registerOnSessionChangeListener(onSessionChangeListener)
         sessionManager.sessionPolicyDatabase.registerOnRestrictedSessionChangeListener(onSessionPolicyChangeListener)
 
+        // Before the engine sync, which hands the EQ curve to Android EQ
+        AndroidEq.configure(androidEqSettings())
+
         // Setup core engine
         engine = JamesDspLocalEngine(this, ProcessorMessageHandler())
         engine.syncWithPreferences()
@@ -146,6 +170,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         preferences.registerOnSharedPreferenceChangeListener(preferencesListener)
         loadFromPreferences(getString(R.string.key_powersave_suspend))
         loadFromPreferences(getString(R.string.key_session_exclude_restricted))
+        loadFromPreferences(getString(R.string.key_tonality_enabled))
 
         // Setup database observer
         blockedApps.observeForever(blockedAppObserver)
@@ -399,6 +424,40 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
 
                 requestAudioRecordRecreation()
             }
+            getString(R.string.key_android_eq_enable),
+            getString(R.string.key_android_eq_latency),
+            getString(R.string.key_android_eq_limiter) -> {
+                if (AndroidEq.configure(androidEqSettings())) {
+                    Timber.i("Android EQ changed; rebuilding sessions (${AndroidEq.settings})")
+                    sessionManager.sessionDatabase.clearSessions()
+                    restartRecording()
+                    sessionManager.pollOnce(false)
+                }
+            }
+            getString(R.string.key_tonality_enabled) -> {
+                val previousValue = tonalityEnabled
+                tonalityEnabled = preferences.get<Boolean>(R.string.key_tonality_enabled)
+                Timber.d("Tonality analyzer enabled set to $tonalityEnabled")
+
+                if(!tonalityEnabled) {
+                    mediaSessionTrackObserver?.stop()
+                    mediaSessionTrackObserver = null
+                    tonalityAnalyzer?.stop()
+                    tonalityAnalyzer = null
+                }
+
+                if(previousValue != tonalityEnabled && isRunning && !isProcessorDisposing && !isServiceDisposing) {
+                    restartRecording()
+                }
+            }
+            getString(R.string.key_tonality_reference_label),
+            getString(R.string.key_tonality_reference_mode),
+            getString(R.string.key_tonality_tilt) -> {
+                // The song average is kept; only the curve it is compared with changes
+                tonalityAnalyzer?.let { analyzer ->
+                    analyzer.setReference(loadTonalityReference(determineSamplingRate()))
+                }
+            }
         }
     }
 
@@ -422,6 +481,15 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
             return
         }
 
+        // Android EQ runs inside each app, there is nothing to capture
+        if (AndroidEq.isEnabled) {
+            Timber.i("Android EQ active; capture loop not started")
+            val excluded = (blockedApps.value?.map { it.uid } ?: emptyList()) + Process.myUid()
+            sessionManager.sessionDatabase.setExcludedUids(excluded.toTypedArray())
+            sessionManager.pollOnce(false)
+            return
+        }
+
         // Load preferences
         val encoding = AudioEncoding.fromInt(
             preferences.get<String>(R.string.key_audioformat_encoding).toIntOrNull() ?: 1
@@ -437,16 +505,27 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         }
         val sampleRate = clamp(determineSamplingRate(), 44100, 48000)
 
+        // Keep the read size constant per session, the engine re-plans its convolver when it changes
+        val tuning = LatencyTuning.forMode(preferences.get<Boolean>(R.string.key_audioformat_low_latency))
+        val readSamples = if(tuning.readFrames > 0)
+            (tuning.readFrames * 2).coerceAtMost(bufferSize)
+        else
+            bufferSize
+
         Timber.i("Sample rate: $sampleRate; Encoding: ${encoding.name}; " +
                 "Buffer size: $bufferSize; Buffer size (bytes): $bufferSizeBytes ; " +
-                "HAL buffer size (bytes): ${determineBufferSize()}")
+                "HAL buffer size (bytes): ${determineBufferSize()}; " +
+                "Read size: $readSamples; Latency tuning: $tuning")
 
         // Create recorder and track
         var recorder: AudioRecord
         val track: AudioTrack
         try {
             recorder = buildAudioRecord(encodingFormat, sampleRate, bufferSizeBytes)
-            track = buildAudioTrack(encodingFormat, sampleRate, bufferSizeBytes)
+            // Make sure the track can hold the requested queue size
+            val frameBytes = bufferSizeBytes / bufferSize * 2
+            val trackBytes = maxOf(bufferSizeBytes, tuning.trackBufferFrames * frameBytes)
+            track = buildAudioTrack(encodingFormat, sampleRate, trackBytes, tuning.lowLatencyTrack)
         }
         catch(ex: Exception) {
             Timber.e("Failed to create initial audio record/track")
@@ -455,9 +534,43 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
             return
         }
 
+        if(tuning.trackBufferFrames > 0) {
+            val actualFrames = track.setBufferSizeInFrames(tuning.trackBufferFrames)
+            Timber.i("Track buffer size set to $actualFrames frames (requested ${tuning.trackBufferFrames})")
+        }
+
         if(engine.sampleRate.toInt() != sampleRate) {
             Timber.d("Sampling rate changed to ${sampleRate}Hz")
             engine.sampleRate = sampleRate.toFloat()
+        }
+
+        val analyzer = if(tonalityEnabled) {
+            val reference = loadTonalityReference(sampleRate)
+            Timber.i("Tonality reference active: ${reference.displayLabel}; sampleRate=${reference.sampleRate}")
+            PreDspTonalityAnalyzer(
+                reference = reference,
+                onFrame = { frame -> _tonalityFrames.value = frame },
+                onTrackSummary = { json -> Log.i(TONALITY_LOG_TAG, json) },
+                onSongFinished = { song -> learnSong(song) }
+            ).also {
+                it.start(sampleRate, readSamples)
+                tonalityAnalyzer = it
+            }
+        }
+        else {
+            _tonalityFrames.value = null
+            tonalityAnalyzer = null
+            null
+        }
+        val trackObserver = analyzer?.let { activeAnalyzer ->
+            MediaSessionTrackObserver(
+                this,
+                onTrackBoundary = { event -> activeAnalyzer.requestReset(event) },
+                onTrackingChanged = { active -> activeAnalyzer.metadataTracking = active }
+            ).also {
+                it.startIfPermitted()
+                mediaSessionTrackObserver = it
+            }
         }
 
         // TODO Move all audio-related code to C++
@@ -470,10 +583,11 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
                     notificationSessions,
                 )
 
-                val floatBuffer = FloatArray(bufferSize)
-                val floatOutBuffer = FloatArray(bufferSize)
-                val shortBuffer = ShortArray(bufferSize)
-                val shortOutBuffer = ShortArray(bufferSize)
+                val floatBuffer = FloatArray(readSamples)
+                val floatOutBuffer = FloatArray(readSamples)
+                val shortBuffer = ShortArray(readSamples)
+                val shortOutBuffer = ShortArray(readSamples)
+                val queueControl = QueueController(tuning.maxQueueFrames)
                 while (!isProcessorDisposing) {
                     if(recreateRecorderRequested) {
                         recreateRecorderRequested = false
@@ -522,18 +636,37 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
                     // Resume track if suspended
                     if(track.playState != AudioTrack.PLAYSTATE_PLAYING) {
                         track.play()
+                        queueControl.onTrackStarted()
                     }
 
                     // Choose encoding and process data
                     if(encoding == AudioEncoding.PcmShort) {
-                        recorder.read(shortBuffer, 0, shortBuffer.size, AudioRecord.READ_BLOCKING)
-                        engine.processInt16(shortBuffer, shortOutBuffer)
-                        track.write(shortOutBuffer, 0, shortOutBuffer.size, AudioTrack.WRITE_BLOCKING)
+                        // Whole stereo frames only; skip the block on errors
+                        val samples = recorder.read(shortBuffer, 0, shortBuffer.size, AudioRecord.READ_BLOCKING) and 1.inv()
+                        if(samples > 0) {
+                            if(tonalityEnabled) analyzer?.offerPcm16(shortBuffer, samples)
+                            engine.processInt16(shortBuffer, shortOutBuffer, offset = 0, length = samples)
+                            // A dropped block is processed but not written, see QueueController
+                            if(!queueControl.shouldDrop()) {
+                                queueControl.shape(track, shortOutBuffer, samples)
+                                val written = track.write(shortOutBuffer, 0, samples, AudioTrack.WRITE_BLOCKING)
+                                queueControl.onWritten(written)
+                            }
+                        }
                     }
                     else {
-                        recorder.read(floatBuffer, 0, floatBuffer.size, AudioRecord.READ_BLOCKING)
-                        engine.processFloat(floatBuffer, floatOutBuffer)
-                        track.write(floatOutBuffer, 0, floatOutBuffer.size, AudioTrack.WRITE_BLOCKING)
+                        // Whole stereo frames only; skip the block on errors
+                        val samples = recorder.read(floatBuffer, 0, floatBuffer.size, AudioRecord.READ_BLOCKING) and 1.inv()
+                        if(samples > 0) {
+                            if(tonalityEnabled) analyzer?.offerFloat(floatBuffer, samples)
+                            engine.processFloat(floatBuffer, floatOutBuffer, offset = 0, length = samples)
+                            // A dropped block is processed but not written, see QueueController
+                            if(!queueControl.shouldDrop()) {
+                                queueControl.shape(track, floatOutBuffer, samples)
+                                val written = track.write(floatOutBuffer, 0, samples, AudioTrack.WRITE_BLOCKING)
+                                queueControl.onWritten(written)
+                            }
+                        }
                     }
                 }
             } catch (e: IOException) {
@@ -554,9 +687,48 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
 
                 recorder.release()
                 track.release()
+                trackObserver?.stop()
+                if(mediaSessionTrackObserver === trackObserver) {
+                    mediaSessionTrackObserver = null
+                }
+                analyzer?.stop()
+                if(tonalityAnalyzer === analyzer) {
+                    tonalityAnalyzer = null
+                }
             }
         }
         recorderThread!!.start()
+    }
+
+    private fun usableStereoSamples(samplesRead: Int): Int {
+        return when {
+            samplesRead <= 0 -> 0
+            samplesRead % 2 == 0 -> samplesRead
+            else -> {
+                Timber.w("AudioRecord returned odd sample count $samplesRead; dropping trailing sample")
+                samplesRead - 1
+            }
+        }
+    }
+
+    private fun handleAudioReadResult(code: Int) {
+        when (code) {
+            AudioRecord.ERROR_DEAD_OBJECT -> {
+                Timber.w("AudioRecord dead object; requesting recorder recreation")
+                recreateRecorderRequested = true
+            }
+            AudioRecord.ERROR_INVALID_OPERATION,
+            AudioRecord.ERROR_BAD_VALUE,
+            AudioRecord.ERROR -> {
+                Timber.w("AudioRecord read failed: $code")
+            }
+            0 -> {
+                // No data available. Ignore.
+            }
+            else -> {
+                Timber.w("Unknown AudioRecord read result: $code")
+            }
+        }
     }
 
     // Terminate recording thread
@@ -570,6 +742,32 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
     }
 
     // Hard restart recording thread
+    /** Starts a new song average in the tonality analyzer. */
+    fun resetTonality() {
+        tonalityAnalyzer?.requestReset(
+            TrackBoundaryEvent(System.nanoTime(), null, 1f, TrackBoundaryReason.ManualReset)
+        )
+    }
+
+    private fun loadTonalityReference(sampleRate: Int) =
+        TonalityReferenceStore(this).loadFor(
+            preferences.get<String>(R.string.key_tonality_reference_mode),
+            sampleRate,
+            preferences.get<String>(R.string.key_tonality_tilt).toFloatOrNull() ?: TonalityReferenceFactory.DEFAULT_TILT_DB_PER_OCTAVE
+        )
+
+    // Runs on the analyzer's worker thread
+    private fun learnSong(song: PreDspTonalityAnalyzer.FinishedSong) {
+        try {
+            TonalityReferenceStore(this).addLibrarySong(song.spectrumDb, song.validFromHz, song.validToHz)
+            if (TonalityReferenceStore.normalizeMode(preferences.get<String>(R.string.key_tonality_reference_mode)) == TonalityReferenceStore.MODE_LIBRARY)
+                tonalityAnalyzer?.setReference(loadTonalityReference(determineSamplingRate()))
+        }
+        catch (ex: Exception) {
+            Timber.w(ex, "Failed to add the song to the tonality library")
+        }
+    }
+
     fun restartRecording() {
         if(isProcessorDisposing || isServiceDisposing) {
             Timber.e("restartRecording: service or processor already disposing")
@@ -582,7 +780,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
         startRecording()
     }
 
-    private fun buildAudioTrack(encoding: Int, sampleRate: Int, bufferSizeBytes: Int): AudioTrack {
+    private fun buildAudioTrack(encoding: Int, sampleRate: Int, bufferSizeBytes: Int, lowLatency: Boolean): AudioTrack {
         val attributesBuilder = AudioAttributes.Builder()
             .setUsage(AudioAttributes.USAGE_UNKNOWN)
             .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
@@ -617,6 +815,10 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
             .setTransferMode(AudioTrack.MODE_STREAM)
             .setAudioAttributes(attributesBuilder.build())
             .setBufferSizeInBytes(bufferSize)
+            .apply {
+                if(lowLatency)
+                    setPerformanceMode(AudioTrack.PERFORMANCE_MODE_LOW_LATENCY)
+            }
             .build()
     }
 
@@ -663,6 +865,13 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
             .build()
     }
 
+    private fun androidEqSettings() = AndroidEq.Settings(
+        enabled = preferences.get<Boolean>(R.string.key_android_eq_enable),
+        blockSize = preferences.get<String>(R.string.key_android_eq_latency).toIntOrNull() ?: AndroidEq.DEFAULT_BLOCK_SIZE,
+        limiter = preferences.get<Boolean>(R.string.key_android_eq_limiter),
+        sampleRate = determineSamplingRate(),
+    )
+
     // Determine HAL sampling rate
     private fun determineSamplingRate(): Int {
         val sampleRateStr: String? = audioManager.getProperty(AudioManager.PROPERTY_OUTPUT_SAMPLE_RATE)
@@ -679,6 +888,7 @@ class RootlessAudioProcessorService : BaseAudioProcessorService() {
 
     companion object {
         const val SESSION_LOSS_MAX_RETRIES = 1
+        private const val TONALITY_LOG_TAG = "JdspTonality"
 
         const val ACTION_START = BuildConfig.APPLICATION_ID + ".rootless.service.START"
         const val ACTION_STOP = BuildConfig.APPLICATION_ID + ".rootless.service.STOP"

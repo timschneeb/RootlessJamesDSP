@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <me.timschneeberger.rootlessjamesdsp.preference.MaterialSwitchPreference
+        android:key="@string/key_tonality_enabled"
+        android:defaultValue="@bool/default_tonality_enabled"
+        android:title="@string/tonality_enabled"
+        android:summaryOff="@string/tonality_enabled_off"
+        android:summaryOn="@string/tonality_enabled_on"
+        app:iconSpaceReserved="false" />
+
+    <PreferenceCategory app:title="@string/tonality_reference_header"
+        app:iconSpaceReserved="false">
+        <ListPreference
+            app:key="@string/key_tonality_reference_mode"
+            app:title="@string/tonality_reference_mode"
+            app:entries="@array/tonality_reference_modes"
+            app:entryValues="@array/tonality_reference_modes_values"
+            app:defaultValue="@string/default_tonality_reference_mode"
+            app:iconSpaceReserved="false" />
+        <ListPreference
+            app:key="@string/key_tonality_tilt"
+            app:title="@string/tonality_tilt"
+            app:entries="@array/tonality_tilt_entries"
+            app:entryValues="@array/tonality_tilt_values"
+            app:defaultValue="@string/default_tonality_tilt"
+            app:useSimpleSummaryProvider="true"
+            app:iconSpaceReserved="false" />
+        <Preference
+            android:key="@string/key_tonality_reference_status"
+            android:title="@string/tonality_reference_custom"
+            android:selectable="false"
+            app:iconSpaceReserved="false" />
+        <Preference
+            android:key="@string/key_tonality_import_reference"
+            android:title="@string/tonality_import_reference"
+            android:summary="@string/tonality_import_reference_summary"
+            app:iconSpaceReserved="false" />
+        <Preference
+            android:key="@string/key_tonality_clear_reference"
+            android:title="@string/tonality_clear_reference"
+            android:summary="@string/tonality_clear_reference_summary"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/tonality_library_status"
+        app:iconSpaceReserved="false">
+        <Preference
+            android:key="@string/key_tonality_library_status"
+            android:title="@string/tonality_reference_library"
+            android:selectable="false"
+            app:iconSpaceReserved="false" />
+        <Preference
+            android:key="@string/key_tonality_library_clear"
+            android:title="@string/tonality_library_clear"
+            android:summary="@string/tonality_library_clear_summary"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/tonality_graph_header"
+        app:iconSpaceReserved="false">
+        <ListPreference
+            app:key="@string/key_tonality_smoothing"
+            app:title="@string/tonality_smoothing"
+            app:entries="@array/tonality_smoothing_entries"
+            app:entryValues="@array/tonality_smoothing_values"
+            app:defaultValue="@string/default_tonality_smoothing"
+            app:useSimpleSummaryProvider="true"
+            app:iconSpaceReserved="false" />
+        <ListPreference
+            app:key="@string/key_tonality_range"
+            app:title="@string/tonality_range_compensated"
+            app:entries="@array/tonality_range_entries"
+            app:entryValues="@array/tonality_range_values"
+            app:defaultValue="@string/default_tonality_range"
+            app:useSimpleSummaryProvider="true"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+</PreferenceScreen>

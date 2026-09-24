@@ -11,6 +11,7 @@ class SettingsFragment : SettingsBaseFragment() {
 
     private val processing by lazy { findPreference<Preference>(getString(R.string.key_audio_format)) }
     private val troubleshooting by lazy { findPreference<Preference>(getString(R.string.key_troubleshooting)) }
+    private val tonality by lazy { findPreference<Preference>(getString(R.string.key_tonality)) }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.app_preferences, rootKey)
@@ -23,6 +24,8 @@ class SettingsFragment : SettingsBaseFragment() {
             }
         )
         troubleshooting?.isVisible = isRootless()
+        // The analyzer taps the rootless capture loop
+        tonality?.isVisible = isRootless()
     }
 
     companion object {

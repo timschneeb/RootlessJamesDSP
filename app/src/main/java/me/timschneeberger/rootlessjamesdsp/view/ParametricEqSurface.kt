@@ -170,7 +170,7 @@ class ParametricEqSurface(context: Context?, attrs: AttributeSet?) : View(contex
             mCurveFreqs = DoubleArray(0)
             mCurveGains = DoubleArray(0)
         } else {
-            val response = BiquadUtils.computeCombinedResponse(
+            val response = BiquadUtils.computeAverageStereoResponse(
                 bands,
                 numPoints = nPts,
                 minFreq = MIN_FREQ,

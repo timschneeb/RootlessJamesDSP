@@ -1,6 +1,7 @@
 package me.timschneeberger.rootlessjamesdsp.utils
 
 import me.timschneeberger.rootlessjamesdsp.model.ParametricEqBand
+import me.timschneeberger.rootlessjamesdsp.model.ParametricEqChannel
 import me.timschneeberger.rootlessjamesdsp.model.ParametricEqFilterType
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
@@ -134,16 +135,27 @@ object BiquadUtils {
         numPoints: Int = 512,
         minFreq: Double = 20.0,
         maxFreq: Double = 20000.0,
-        sampleRate: Double = 48000.0
+        sampleRate: Double = 48000.0,
+        channel: ParametricEqChannel? = null
     ): List<Pair<Double, Double>> {
-        if (bands.isEmpty()) return emptyList()
+        val filteredBands = when (channel) {
+            null -> bands
+            ParametricEqChannel.LEFT ->
+                bands.filter { it.channel == ParametricEqChannel.LEFT_RIGHT || it.channel == ParametricEqChannel.LEFT }
+            ParametricEqChannel.RIGHT ->
+                bands.filter { it.channel == ParametricEqChannel.LEFT_RIGHT || it.channel == ParametricEqChannel.RIGHT }
+            ParametricEqChannel.LEFT_RIGHT ->
+                bands.filter { it.channel == ParametricEqChannel.LEFT_RIGHT }
+        }
+
+        if (filteredBands.isEmpty()) return emptyList()
 
         val logMin = ln(minFreq)
         val logMax = ln(maxFreq)
         val result = ArrayList<Pair<Double, Double>>(numPoints)
 
         // Precompute coefficients for all bands
-        val allCoeffs = bands.map { band ->
+        val allCoeffs = filteredBands.map { band ->
             computeCoefficients(band.frequency, band.gain, band.q, band.filterType, sampleRate)
         }
 
@@ -160,6 +172,40 @@ object BiquadUtils {
         }
 
         return result
+    }
+
+    fun computeAverageStereoResponse(
+        bands: List<ParametricEqBand>,
+        numPoints: Int = 512,
+        minFreq: Double = 20.0,
+        maxFreq: Double = 20000.0,
+        sampleRate: Double = 48000.0
+    ): List<Pair<Double, Double>> {
+        val left = computeCombinedResponse(
+            bands,
+            numPoints = numPoints,
+            minFreq = minFreq,
+            maxFreq = maxFreq,
+            sampleRate = sampleRate,
+            channel = ParametricEqChannel.LEFT
+        )
+        val right = computeCombinedResponse(
+            bands,
+            numPoints = numPoints,
+            minFreq = minFreq,
+            maxFreq = maxFreq,
+            sampleRate = sampleRate,
+            channel = ParametricEqChannel.RIGHT
+        )
+
+        if (left.isEmpty() && right.isEmpty()) return emptyList()
+
+        val normalizedLeft = if (left.isEmpty()) right.map { it.first to 0.0 } else left
+        val normalizedRight = if (right.isEmpty()) left.map { it.first to 0.0 } else right
+
+        return normalizedLeft.indices.map { index ->
+            normalizedLeft[index].first to ((normalizedLeft[index].second + normalizedRight[index].second) * 0.5)
+        }
     }
 
     private val dfFreq = DecimalFormat("0.00", DecimalFormatSymbols.getInstance(Locale.ENGLISH))

@@ -17,10 +17,12 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.activity.ParametricEqualizerActivity
+import me.timschneeberger.rootlessjamesdsp.fragment.LiveEqBottomSheet
 import me.timschneeberger.rootlessjamesdsp.adapter.ParametricEqBandAdapter
 import me.timschneeberger.rootlessjamesdsp.databinding.FragmentParametricEqBinding
 import me.timschneeberger.rootlessjamesdsp.model.ParametricEqBand
 import me.timschneeberger.rootlessjamesdsp.model.ParametricEqBandList
+import me.timschneeberger.rootlessjamesdsp.model.ParametricEqChannel
 import me.timschneeberger.rootlessjamesdsp.model.ParametricEqFilterType
 import me.timschneeberger.rootlessjamesdsp.utils.Constants
 import me.timschneeberger.rootlessjamesdsp.utils.extensions.ContextExtensions.registerLocalReceiver
@@ -48,6 +50,7 @@ class ParametricEqualizerFragment : Fragment() {
             binding.importFile.isEnabled = !value
             binding.exportFile.isEnabled = !value
             binding.editString.isEnabled = !value
+            binding.liveEq.isEnabled = !value && adapter.bands.isNotEmpty()
         }
 
     private val importFileLauncher =
@@ -174,6 +177,7 @@ class ParametricEqualizerFragment : Fragment() {
             binding.gainInput.value = 0f
             binding.qInput.value = 1.41f
             setFilterTypeSelection(ParametricEqFilterType.PEAKING)
+            setChannelSelection(ParametricEqChannel.LEFT_RIGHT)
             updateViewState()
         }
 
@@ -185,11 +189,29 @@ class ParametricEqualizerFragment : Fragment() {
             exportFileLauncher.launch("parametric_eq.txt")
         }
 
+        binding.liveEq.setOnClickListener {
+            LiveEqBottomSheet.newInstance(
+                bands = adapter.bands,
+                preampDb = binding.preampInput.value.toDouble(),
+                onLiveUpdate = { bands ->
+                    binding.equalizerSurface.setBands(bands, binding.preampInput.value.toDouble())
+                },
+                onCommit = {
+                    // Writing the bands back already saved them through the adapter callback
+                    if (isAdded && view != null)
+                        updateViewState()
+                }
+            ).show(parentFragmentManager, "live_eq")
+        }
+
         binding.freqInput.setOnValueChangedListener { editorApply() }
         binding.gainInput.setOnValueChangedListener { editorApply() }
         binding.qInput.setOnValueChangedListener { editorApply() }
 
         binding.filterTypeGroup.addOnButtonCheckedListener { _, _, isChecked ->
+            if (isChecked) editorApply()
+        }
+        binding.channelGroup.addOnButtonCheckedListener { _, _, isChecked ->
             if (isChecked) editorApply()
         }
 
@@ -203,6 +225,8 @@ class ParametricEqualizerFragment : Fragment() {
                 else -> 10f
             }
         }
+
+        binding.qInput.min = 0.1f
 
         binding.qInput.customStepScale = { value: Float, _: Boolean ->
             when (value) {
@@ -268,6 +292,7 @@ class ParametricEqualizerFragment : Fragment() {
                 binding.gainInput.value = band.gain.toFloat()
                 binding.qInput.value = band.q.toFloat()
                 setFilterTypeSelection(band.filterType)
+                setChannelSelection(band.channel)
                 updateViewState()
             }
         }
@@ -290,6 +315,23 @@ class ParametricEqualizerFragment : Fragment() {
         binding.filterTypeGroup.check(buttonId)
     }
 
+    private fun getSelectedChannel(): ParametricEqChannel {
+        return when (binding.channelGroup.checkedButtonId) {
+            R.id.channel_left -> ParametricEqChannel.LEFT
+            R.id.channel_right -> ParametricEqChannel.RIGHT
+            else -> ParametricEqChannel.LEFT_RIGHT
+        }
+    }
+
+    private fun setChannelSelection(channel: ParametricEqChannel) {
+        val buttonId = when (channel) {
+            ParametricEqChannel.LEFT_RIGHT -> R.id.channel_left_right
+            ParametricEqChannel.LEFT -> R.id.channel_left
+            ParametricEqChannel.RIGHT -> R.id.channel_right
+        }
+        binding.channelGroup.check(buttonId)
+    }
+
     private fun updateViewState() {
         val empty = adapter.bands.isEmpty()
         binding.emptyView.isVisible = empty && !editorActive
@@ -297,6 +339,7 @@ class ParametricEqualizerFragment : Fragment() {
         binding.bandEdit.isVisible = editorActive
         binding.bandDetailContextButtons.visibility = if (editorActive) View.VISIBLE else View.INVISIBLE
         binding.editCardTitle.text = getString(if (editorActive) R.string.peq_band_editor else R.string.peq_band_list)
+        binding.liveEq.isEnabled = !empty && !editorActive
     }
 
     override fun onStop() {
@@ -321,19 +364,20 @@ class ParametricEqualizerFragment : Fragment() {
             val gain = binding.gainInput.value.toDouble()
             val q = binding.qInput.value.toDouble()
             val filterType = getSelectedFilterType()
+            val channel = getSelectedChannel()
 
             if (uuid == null) {
-                val band = ParametricEqBand(freq, gain, q, filterType)
+                val band = ParametricEqBand(freq, gain, q, filterType, channel)
                 adapter.bands.add(band)
                 editorBandUuid = band.uuid
-                Timber.d("editorApply: tracking new band $editorBandUuid for $freq Hz $gain dB Q$q $filterType")
+                Timber.d("editorApply: tracking new band $editorBandUuid for $freq Hz $gain dB Q$q $filterType $channel")
             } else {
                 Timber.d("editorApply: modifying band $editorBandUuid")
                 val index = adapter.bands.indexOfFirst { it.uuid == uuid }
                 if (index < 0)
                     Timber.e("editorApply: failed to find matching band UUID")
                 else
-                    adapter.bands[index] = ParametricEqBand(freq, gain, q, filterType, uuid)
+                    adapter.bands[index] = ParametricEqBand(freq, gain, q, filterType, channel, uuid)
             }
         }
     }

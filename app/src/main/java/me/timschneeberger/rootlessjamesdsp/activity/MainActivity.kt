@@ -25,6 +25,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.content.getSystemService
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.preference.DialogPreference.TargetFragment
 import androidx.preference.Preference
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -32,6 +33,7 @@ import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -102,6 +104,7 @@ class MainActivity : BaseActivity() {
 
     private var processorService: BaseAudioProcessorService? = null
     private var processorServiceBound: Boolean = false
+    private var tonalityFrameJob: Job? = null
 
     private val processorServiceConnection by lazy {
         object : ServiceConnection {
@@ -113,6 +116,8 @@ class MainActivity : BaseActivity() {
 
                 if (isRootless())
                     binding.powerToggle.isToggled = true
+
+                observeTonalityFrames()
             }
 
             override fun onServiceDisconnected(arg0: ComponentName) {
@@ -120,6 +125,9 @@ class MainActivity : BaseActivity() {
 
                 processorService = null
                 processorServiceBound = false
+                tonalityFrameJob?.cancel()
+                tonalityFrameJob = null
+                dspFragment.updateTonalityFrame(null)
             }
         }
     }
@@ -606,11 +614,32 @@ class MainActivity : BaseActivity() {
 
     private fun unbindProcessorService() {
         try {
+            tonalityFrameJob?.cancel()
+            tonalityFrameJob = null
             unbindService(processorServiceConnection)
         }
         catch (ex: IllegalArgumentException) {
             Timber.d("Failed to unbind service connection. Not registered?")
             Timber.i(ex)
+        }
+    }
+
+    fun resetTonality() {
+        (processorService as? RootlessAudioProcessorService)?.resetTonality()
+    }
+
+    private fun observeTonalityFrames() {
+        tonalityFrameJob?.cancel()
+
+        val service = processorService as? RootlessAudioProcessorService ?: run {
+            dspFragment.updateTonalityFrame(null)
+            return
+        }
+
+        tonalityFrameJob = lifecycleScope.launch {
+            service.tonalityFrames.collect { frame ->
+                dspFragment.updateTonalityFrame(frame)
+            }
         }
     }
 
