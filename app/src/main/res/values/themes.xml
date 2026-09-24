@@ -64,6 +64,13 @@
 
     <style name="Theme.RootlessJamesDSP.CardView" parent="Widget.Material3.CardView.Elevated" />
 
+    <!-- Compact segmented button for the song tonality card -->
+    <style name="Widget.Tonality.ToggleButton" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:minWidth">0dp</item>
+        <item name="android:paddingLeft">14dp</item>
+        <item name="android:paddingRight">14dp</item>
+    </style>
+
     <!-- === Custom themes taken from Tachiyomi: https://github.com/tachiyomiorg/tachiyomi === -->
     <style name="Theme.RootlessJamesDSP.Monet" />
 

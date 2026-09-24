@@ -15,6 +15,13 @@
         app:fragment="me.timschneeberger.rootlessjamesdsp.fragment.settings.SettingsAudioFormatFragment" />
 
     <Preference
+        app:key="@string/key_tonality"
+        app:title="@string/tonality_settings_header"
+        app:summary="@string/tonality_settings_summary"
+        app:icon="@drawable/ic_baseline_waveform_24dp"
+        app:fragment="me.timschneeberger.rootlessjamesdsp.fragment.settings.SettingsTonalityFragment" />
+
+    <Preference
         app:key="@string/key_device_profiles"
         app:title="@string/profiles_section_header"
         app:summary="@string/profiles_summary"

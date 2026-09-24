@@ -40,6 +40,14 @@
     <bool name="default_audioformat_processing" translatable="false">true</bool>
     <bool name="default_audioformat_enhanced_processing" translatable="false">false</bool>
     <bool name="default_audioformat_optimization_benchmark" translatable="false">false</bool>
+    <bool name="default_tonality_enabled" translatable="false">false</bool>
+    <string name="default_tonality_reference_label" translatable="false">iec</string>
+    <string name="default_tonality_reference_mode" translatable="false">iec</string>
+    <string name="default_tonality_tilt" translatable="false">-4.5</string>
+    <string name="default_tonality_display" translatable="false">compensated</string>
+    <string name="default_tonality_smoothing" translatable="false">6</string>
+    <string name="default_tonality_range" translatable="false">12</string>
+    <string name="default_tonality_view" translatable="false">song</string>
 
     <!-- Device profiles -->
     <bool name="default_device_profiles_enable" translatable="false">false</bool>

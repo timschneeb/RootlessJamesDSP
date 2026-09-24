@@ -12,6 +12,7 @@ import me.timschneeberger.rootlessjamesdsp.databinding.ActivitySettingsBinding
 import me.timschneeberger.rootlessjamesdsp.fragment.settings.SettingsAboutFragment
 import me.timschneeberger.rootlessjamesdsp.fragment.settings.SettingsBackupFragment
 import me.timschneeberger.rootlessjamesdsp.fragment.settings.SettingsFragment
+import me.timschneeberger.rootlessjamesdsp.fragment.settings.SettingsTonalityFragment
 
 class SettingsActivity : BaseActivity(),
     PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
@@ -27,8 +28,14 @@ class SettingsActivity : BaseActivity(),
         setContentView(binding.root)
         setSupportActionBar(binding.settingsToolbar)
 
+        // Opened straight into one page, e.g. from the song tonality card
+        val directPage = intent.getStringExtra(EXTRA_PAGE)
+        val rootTitle = if (directPage == PAGE_TONALITY) getString(R.string.tonality_settings_header)
+            else getString(R.string.title_activity_settings)
+
         if (savedInstanceState == null) {
-            val fragment = SettingsFragment.newInstance()
+            val fragment = if (directPage == PAGE_TONALITY) SettingsTonalityFragment.newInstance()
+                else SettingsFragment.newInstance()
             @Suppress("DEPRECATION")
             fragment.setTargetFragment(null, 0)
 
@@ -36,6 +43,7 @@ class SettingsActivity : BaseActivity(),
                 .beginTransaction()
                 .replace(R.id.settings, fragment)
                 .commit()
+            supportActionBar?.title = rootTitle
         }
         else {
             supportActionBar?.title = savedInstanceState.getString(PERSIST_TITLE)
@@ -43,7 +51,7 @@ class SettingsActivity : BaseActivity(),
 
         supportFragmentManager.addOnBackStackChangedListener {
             if (supportFragmentManager.backStackEntryCount == 0) {
-                supportActionBar?.title = getString(R.string.title_activity_settings)
+                supportActionBar?.title = rootTitle
             }
             else {
                 supportActionBar?.title = supportFragmentManager.getBackStackEntryAt(supportFragmentManager.backStackEntryCount - 1).name
@@ -134,6 +142,8 @@ class SettingsActivity : BaseActivity(),
 
     companion object {
         private const val PERSIST_TITLE = "title"
+        const val EXTRA_PAGE = "page"
+        const val PAGE_TONALITY = "tonality"
     }
 }
 

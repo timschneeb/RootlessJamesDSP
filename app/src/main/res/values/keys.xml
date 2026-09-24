@@ -46,6 +46,20 @@
     <string name="key_audioformat_processing" translatable="false">audioformat_processing</string>
     <string name="key_audioformat_enhanced_processing" translatable="false">audioformat_enhanced_processing</string>
     <string name="key_audioformat_optimization_benchmark" translatable="false">audioformat_optimization_benchmark</string>
+    <string name="key_tonality_enabled" translatable="false">tonality_enabled</string>
+    <string name="key_tonality_import_reference" translatable="false">tonality_import_reference</string>
+    <string name="key_tonality_reference_status" translatable="false">tonality_reference_status</string>
+    <string name="key_tonality_reference_label" translatable="false">tonality_reference_label</string>
+    <string name="key_tonality_reference_mode" translatable="false">tonality_reference_mode</string>
+    <string name="key_tonality_clear_reference" translatable="false">tonality_clear_reference</string>
+    <string name="key_tonality_smoothing" translatable="false">tonality_smoothing</string>
+    <string name="key_tonality_range" translatable="false">tonality_range</string>
+    <string name="key_tonality_view" translatable="false">tonality_view</string>
+    <string name="key_tonality_display" translatable="false">tonality_display</string>
+    <string name="key_tonality_tilt" translatable="false">tonality_tilt</string>
+    <string name="key_tonality_library_status" translatable="false">tonality_library_status</string>
+    <string name="key_tonality_library_clear" translatable="false">tonality_library_clear</string>
+    <string name="key_tonality" translatable="false">tonality</string>
 
     <!-- Device profiles -->
     <string name="key_device_profiles_enable" translatable="false">device_profiles_enable</string>
