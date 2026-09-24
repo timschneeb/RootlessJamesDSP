@@ -246,7 +246,7 @@
                             android:id="@+id/filter_type_group"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="16dp"
+                            android:layout_marginBottom="12dp"
                             app:singleSelection="true"
                             app:selectionRequired="true">
 
@@ -273,6 +273,46 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="@string/peq_filter_type_high_shelf" />
+                        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:text="@string/peq_channel"
+                            android:textAppearance="?attr/textAppearanceLabelLarge" />
+
+                        <com.google.android.material.button.MaterialButtonToggleGroup
+                            android:id="@+id/channel_group"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            app:singleSelection="true"
+                            app:selectionRequired="true">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/channel_left_right"
+                                style="?attr/materialButtonOutlinedStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/peq_channel_left_right" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/channel_left"
+                                style="?attr/materialButtonOutlinedStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/peq_channel_left" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/channel_right"
+                                style="?attr/materialButtonOutlinedStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/peq_channel_right" />
                         </com.google.android.material.button.MaterialButtonToggleGroup>
                     </LinearLayout>
 

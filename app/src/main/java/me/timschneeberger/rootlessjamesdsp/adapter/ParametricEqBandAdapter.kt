@@ -84,6 +84,7 @@ class ParametricEqBandAdapter(var bands: ParametricEqBandList) :
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val filterType: TextView = view.findViewById(R.id.filter_type)
+        val channel: TextView = view.findViewById(R.id.channel)
         val freq: TextView = view.findViewById(R.id.freq)
         val gain: TextView = view.findViewById(R.id.gain)
         val qFactor: TextView = view.findViewById(R.id.q_factor)
@@ -112,6 +113,7 @@ class ParametricEqBandAdapter(var bands: ParametricEqBandList) :
 
         val band = bands[position]
         viewHolder.filterType.text = band.filterType.displayLabel
+        viewHolder.channel.text = band.channel.displayLabel
         viewHolder.freq.text = "${dfFreq.format(band.frequency)}Hz"
         viewHolder.gain.text = "${dfGain.format(band.gain)}dB"
         viewHolder.qFactor.text = "Q${dfQ.format(band.q)}"

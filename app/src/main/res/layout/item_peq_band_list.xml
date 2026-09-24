@@ -24,6 +24,13 @@
             android:textAppearance="?attr/textAppearanceLabelMedium"
             android:textColor="?attr/colorPrimary"/>
         <TextView
+            android:id="@+id/channel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:textAppearance="?attr/textAppearanceLabelMedium"
+            android:textColor="?android:attr/textColorSecondary"/>
+        <TextView
             android:id="@+id/freq"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

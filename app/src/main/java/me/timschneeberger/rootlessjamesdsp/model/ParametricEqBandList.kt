@@ -31,12 +31,13 @@ class ParametricEqBandList : ObservableArrayList<ParametricEqBand>() {
 
     /**
      * Internal serialization format for SharedPreferences.
-     * Format: "PEQ: freq gain q type; freq gain q type; ..."
+     * Format: "PEQ: freq gain q type channel; freq gain q type channel; ..."
+     * Channel is optional for backward compatibility and defaults to LEFT_RIGHT.
      */
     fun serialize(): String {
         val sb = StringBuilder("PEQ: ")
         for (band in this) {
-            sb.append("${dfFreq.format(band.frequency)} ${dfGain.format(band.gain)} ${dfQ.format(band.q)} ${band.filterType.code}; ")
+            sb.append("${dfFreq.format(band.frequency)} ${dfGain.format(band.gain)} ${dfQ.format(band.q)} ${band.filterType.code} ${band.channel.code}; ")
         }
         return sb.toString()
     }
@@ -58,9 +59,18 @@ class ParametricEqBandList : ObservableArrayList<ParametricEqBand>() {
                 val gain = parts.getOrNull(1)?.toDoubleOrNull()
                 val q = parts.getOrNull(2)?.toDoubleOrNull()
                 val type = parts.getOrNull(3)?.toIntOrNull()
+                val channel = parts.getOrNull(4)?.toIntOrNull()
 
                 if (freq != null && gain != null && q != null && type != null) {
-                    this.add(ParametricEqBand(freq, gain, q, ParametricEqFilterType.fromCode(type)))
+                    this.add(
+                        ParametricEqBand(
+                            freq,
+                            gain,
+                            q,
+                            ParametricEqFilterType.fromCode(type),
+                            ParametricEqChannel.fromCode(channel ?: ParametricEqChannel.LEFT_RIGHT.code)
+                        )
+                    )
                 }
             }
     }
@@ -76,8 +86,13 @@ class ParametricEqBandList : ObservableArrayList<ParametricEqBand>() {
         val sb = StringBuilder()
         sb.appendLine("Preamp: ${dfGain.format(preampDb)} dB")
         for ((i, band) in this.withIndex()) {
+            val channelSuffix = if (band.channel == ParametricEqChannel.LEFT_RIGHT) {
+                ""
+            } else {
+                " Channel ${band.channel.apoLabel}"
+            }
             sb.appendLine(
-                "Filter ${i + 1}: ON ${band.filterType.apoLabel} Fc ${dfFreq.format(band.frequency)} Hz Gain ${dfGain.format(band.gain)} dB Q ${dfQ.format(band.q)}"
+                "Filter ${i + 1}: ON ${band.filterType.apoLabel} Fc ${dfFreq.format(band.frequency)} Hz Gain ${dfGain.format(band.gain)} dB Q ${dfQ.format(band.q)}$channelSuffix"
             )
         }
         return sb.toString()
@@ -98,7 +113,7 @@ class ParametricEqBandList : ObservableArrayList<ParametricEqBand>() {
         var preampDb = 0.0
 
         val filterRegex = Regex(
-            """Filter\s+\d+:\s+ON\s+(\S+)\s+Fc\s+([\d.]+)\s+Hz\s+Gain\s+([-\d.]+)\s+dB\s+Q\s+([\d.]+)""",
+            """Filter\s+\d+:\s+ON\s+(\S+)\s+Fc\s+([\d.]+)\s+Hz\s+Gain\s+([-\d.]+)\s+dB\s+Q\s+([\d.]+)(?:\s+Channel\s+([LR]))?""",
             RegexOption.IGNORE_CASE
         )
         val preampRegex = Regex(
@@ -135,6 +150,7 @@ class ParametricEqBandList : ObservableArrayList<ParametricEqBand>() {
             val freq = match.groupValues[2].toDoubleOrNull() ?: continue
             val gain = match.groupValues[3].toDoubleOrNull() ?: continue
             val q = match.groupValues[4].toDoubleOrNull() ?: continue
+            val channelStr = match.groupValues.getOrNull(5)
 
             val filterType = ParametricEqFilterType.fromApoLabel(typeStr)
             if (filterType == null) {
@@ -143,7 +159,7 @@ class ParametricEqBandList : ObservableArrayList<ParametricEqBand>() {
                 continue
             }
 
-            this.add(ParametricEqBand(freq, gain, q, filterType))
+            this.add(ParametricEqBand(freq, gain, q, filterType, ParametricEqChannel.fromApoLabel(channelStr)))
         }
 
         return ApoImportResult(skippedFilters = skipped, preampDb = preampDb)
@@ -156,6 +172,7 @@ class ParametricEqBandList : ObservableArrayList<ParametricEqBand>() {
         val gain = bundle.getDoubleArray(STATE_GAIN) ?: return
         val q = bundle.getDoubleArray(STATE_Q) ?: return
         val types = bundle.getIntArray(STATE_TYPE) ?: return
+        val channels = bundle.getIntArray(STATE_CHANNEL)
         val uuids = bundle.getSerializableAs<Array<UUID>>(STATE_UUID)
 
         val count = minOf(freq.size, gain.size, q.size, types.size)
@@ -164,6 +181,7 @@ class ParametricEqBandList : ObservableArrayList<ParametricEqBand>() {
                 ParametricEqBand(
                     freq[i], gain[i], q[i],
                     ParametricEqFilterType.fromCode(types[i]),
+                    ParametricEqChannel.fromCode(channels?.getOrNull(i) ?: ParametricEqChannel.LEFT_RIGHT.code),
                     uuids?.getOrNull(i) ?: UUID.randomUUID()
                 )
             )
@@ -176,6 +194,7 @@ class ParametricEqBandList : ObservableArrayList<ParametricEqBand>() {
         val gainArr = DoubleArray(this.size)
         val qArr = DoubleArray(this.size)
         val typeArr = IntArray(this.size)
+        val channelArr = IntArray(this.size)
         val uuidArr = arrayListOf<UUID>()
 
         for ((i, band) in this.withIndex()) {
@@ -183,6 +202,7 @@ class ParametricEqBandList : ObservableArrayList<ParametricEqBand>() {
             gainArr[i] = band.gain
             qArr[i] = band.q
             typeArr[i] = band.filterType.code
+            channelArr[i] = band.channel.code
             uuidArr.add(band.uuid)
         }
 
@@ -190,6 +210,7 @@ class ParametricEqBandList : ObservableArrayList<ParametricEqBand>() {
         bundle.putDoubleArray(STATE_GAIN, gainArr)
         bundle.putDoubleArray(STATE_Q, qArr)
         bundle.putIntArray(STATE_TYPE, typeArr)
+        bundle.putIntArray(STATE_CHANNEL, channelArr)
         bundle.putSerializable(STATE_UUID, uuidArr.toTypedArray())
         return bundle
     }
@@ -199,6 +220,7 @@ class ParametricEqBandList : ObservableArrayList<ParametricEqBand>() {
         private const val STATE_GAIN = "peq_gain"
         private const val STATE_Q = "peq_q"
         private const val STATE_TYPE = "peq_type"
+        private const val STATE_CHANNEL = "peq_channel"
         private const val STATE_UUID = "peq_uuid"
     }
 }

@@ -11,6 +11,7 @@ import kotlinx.coroutines.sync.withLock
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.interop.structure.EelVmVariable
 import me.timschneeberger.rootlessjamesdsp.model.ParametricEqBandList
+import me.timschneeberger.rootlessjamesdsp.model.ParametricEqChannel
 import me.timschneeberger.rootlessjamesdsp.model.ProcessorMessage
 import me.timschneeberger.rootlessjamesdsp.preference.FileLibraryPreference
 import me.timschneeberger.rootlessjamesdsp.utils.BiquadUtils
@@ -294,44 +295,77 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
         peqEnabled: Boolean, peqBandsStr: String,
         peqPreamp: Float = 0f
     ): Boolean {
-        // Parse PEQ bands and compute biquad magnitude response at 512 points
         val peqBands = ParametricEqBandList()
         peqBands.deserialize(peqBandsStr)
         val hasPeqBands = peqEnabled && peqBands.isNotEmpty()
-        val peqResponse = if (hasPeqBands) {
-            BiquadUtils.computeCombinedResponse(peqBands, numPoints = 512)
-        } else null
+        val leftPeqResponse = if (hasPeqBands) {
+            BiquadUtils.computeCombinedResponse(peqBands, numPoints = 512, channel = ParametricEqChannel.LEFT)
+        } else {
+            emptyList()
+        }
+        val rightPeqResponse = if (hasPeqBands) {
+            BiquadUtils.computeCombinedResponse(peqBands, numPoints = 512, channel = ParametricEqChannel.RIGHT)
+        } else {
+            emptyList()
+        }
 
-        val anyEnabled = geqEnabled || hasPeqBands
+        val hasGeq = geqEnabled && geqBands.contains("GraphicEQ:", true)
+        val anyEnabled = hasGeq || leftPeqResponse.isNotEmpty() || rightPeqResponse.isNotEmpty()
         if (!anyEnabled) {
             return setGraphicEqInternal(false, "")
         }
 
-        // Apply preamp offset to PEQ response
         val preampOffset = if (hasPeqBands) peqPreamp.toDouble() else 0.0
+        val geqNodes = if (hasGeq) parseGeqNodes(geqBands) else emptyList()
 
-        if (peqResponse != null && geqEnabled && geqBands.contains("GraphicEQ:", true)) {
-            // Both PEQ and GEQ enabled: merge magnitudes
-            val combined = mergeGeqWithPeq(geqBands, peqResponse, preampOffset)
-            return setGraphicEqInternal(true, combined)
-        } else if (peqResponse != null) {
-            // Only PEQ enabled
-            val peqString = BiquadUtils.toGraphicEqString(peqResponse, preampOffset)
-            return setGraphicEqInternal(true, peqString)
-        } else if (geqEnabled) {
-            // Only GEQ enabled
-            return setGraphicEq(geqEnabled, geqBands)
+        val leftString = buildChannelGraphicEqString(
+            peqResponse = leftPeqResponse,
+            otherPeqResponse = rightPeqResponse,
+            geqBands = geqBands,
+            geqNodes = geqNodes,
+            hasGeq = hasGeq,
+            preampOffset = preampOffset
+        )
+        val rightString = buildChannelGraphicEqString(
+            peqResponse = rightPeqResponse,
+            otherPeqResponse = leftPeqResponse,
+            geqBands = geqBands,
+            geqNodes = geqNodes,
+            hasGeq = hasGeq,
+            preampOffset = preampOffset
+        )
+
+        val graphicEqPayload = when {
+            leftString == null && rightString == null -> ""
+            leftString != null && rightString != null && leftString != rightString ->
+                buildStereoGraphicEqPayload(leftString, rightString)
+            else -> leftString ?: rightString ?: ""
         }
 
-        return setGraphicEqInternal(false, "")
+        return setGraphicEqInternal(graphicEqPayload.isNotBlank(), graphicEqPayload)
     }
 
-    private fun mergeGeqWithPeq(
-        geqBands: String,
+    private fun buildChannelGraphicEqString(
         peqResponse: List<Pair<Double, Double>>,
-        preampOffset: Double = 0.0
-    ): String {
-        // Parse GEQ nodes from "GraphicEQ: f1 g1; f2 g2; ..." string
+        otherPeqResponse: List<Pair<Double, Double>>,
+        geqBands: String,
+        geqNodes: List<Pair<Double, Double>>,
+        hasGeq: Boolean,
+        preampOffset: Double
+    ): String? {
+        // A channel without its own PEQ bands still gets the preamp, so both sides stay level-matched
+        val flatPeq = otherPeqResponse.map { it.first to 0.0 }
+        return when {
+            peqResponse.isNotEmpty() && hasGeq -> mergeGeqWithPeq(geqNodes, peqResponse, preampOffset)
+            peqResponse.isNotEmpty() -> BiquadUtils.toGraphicEqString(peqResponse, preampOffset)
+            flatPeq.isNotEmpty() && hasGeq -> mergeGeqWithPeq(geqNodes, flatPeq, preampOffset)
+            hasGeq -> geqBands
+            flatPeq.isNotEmpty() -> BiquadUtils.toGraphicEqString(flatPeq, preampOffset)
+            else -> null
+        }
+    }
+
+    private fun parseGeqNodes(geqBands: String): List<Pair<Double, Double>> {
         val geqNodes = mutableListOf<Pair<Double, Double>>()
         val content = geqBands.replace("GraphicEQ:", "").trim()
         content.split(";").map { it.trim() }.filter { it.isNotBlank() }.forEach { s ->
@@ -343,8 +377,14 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
             }
         }
         geqNodes.sortBy { it.first }
+        return geqNodes
+    }
 
-        // For each PEQ sample point, interpolate GEQ gain (log-linear) and sum
+    private fun mergeGeqWithPeq(
+        geqNodes: List<Pair<Double, Double>>,
+        peqResponse: List<Pair<Double, Double>>,
+        preampOffset: Double = 0.0
+    ): String {
         val sb = StringBuilder("GraphicEQ: ")
         for ((peqFreq, peqGain) in peqResponse) {
             val geqGain = interpolateGeq(geqNodes, peqFreq)
@@ -352,6 +392,10 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
         }
 
         return sb.toString()
+    }
+
+    private fun buildStereoGraphicEqPayload(leftBands: String, rightBands: String): String {
+        return leftBands.trim() + STEREO_GRAPHIC_EQ_SPLIT + rightBands.trim()
     }
 
     private fun interpolateGeq(nodes: List<Pair<Double, Double>>, freq: Double): Double {
@@ -441,6 +485,7 @@ abstract class JamesDspBaseEngine(val context: Context, val callbacks: JamesDspW
     }
 
     companion object {
+        private const val STEREO_GRAPHIC_EQ_SPLIT = "\n#CHANNEL_SPLIT#\n"
         private val dfMergeFreq = java.text.DecimalFormat("0.00", java.text.DecimalFormatSymbols.getInstance(java.util.Locale.ENGLISH))
         private val dfMergeGain = java.text.DecimalFormat("0.000000", java.text.DecimalFormatSymbols.getInstance(java.util.Locale.ENGLISH))
     }

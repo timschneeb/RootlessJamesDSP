@@ -150,6 +150,10 @@
     <string name="peq_filter_type_peaking">Peaking</string>
     <string name="peq_filter_type_low_shelf">Low shelf</string>
     <string name="peq_filter_type_high_shelf">High shelf</string>
+    <string name="peq_channel">Channel</string>
+    <string name="peq_channel_left_right">L+R</string>
+    <string name="peq_channel_left">L</string>
+    <string name="peq_channel_right">R</string>
     <string name="peq_preview">Preview</string>
     <string name="peq_preview_collapsed">Preview (tap to expand)</string>
     <string name="peq_import_success">Successfully imported %d bands</string>

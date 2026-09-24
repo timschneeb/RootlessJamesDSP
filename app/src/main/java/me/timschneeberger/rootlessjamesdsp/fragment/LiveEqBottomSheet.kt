@@ -108,7 +108,7 @@ class LiveEqBottomSheet : BottomSheetDialogFragment() {
             val band = bands[selectedIndex]
             val newFreq = sliderToFreq(value)
             Timber.d("LiveEQ freqSlider: pos=$value → ${newFreq.roundToInt()} Hz")
-            bands[selectedIndex] = ParametricEqBand(newFreq, band.gain, band.q, band.filterType, band.uuid)
+            bands[selectedIndex] = ParametricEqBand(newFreq, band.gain, band.q, band.filterType, band.channel, band.uuid)
             refreshChipLabel(selectedIndex)
             onLiveUpdate?.invoke(bands)
             binding.liveEqSurface.setBands(bands, preampDb)
@@ -117,7 +117,7 @@ class LiveEqBottomSheet : BottomSheetDialogFragment() {
             if (!fromUser || isUpdatingSliders || selectedIndex < 0) return@OnChangeListener
             val band = bands[selectedIndex]
             Timber.d("LiveEQ gainSlider: ${value} dB")
-            bands[selectedIndex] = ParametricEqBand(band.frequency, value.toDouble(), band.q, band.filterType, band.uuid)
+            bands[selectedIndex] = ParametricEqBand(band.frequency, value.toDouble(), band.q, band.filterType, band.channel, band.uuid)
             onLiveUpdate?.invoke(bands)
             binding.liveEqSurface.setBands(bands, preampDb)
         }
@@ -126,7 +126,7 @@ class LiveEqBottomSheet : BottomSheetDialogFragment() {
             val band = bands[selectedIndex]
             val newQ = sliderToQ(value).coerceAtLeast(0.1)
             Timber.d("LiveEQ qSlider: pos=$value → Q=$newQ")
-            bands[selectedIndex] = ParametricEqBand(band.frequency, band.gain, newQ, band.filterType, band.uuid)
+            bands[selectedIndex] = ParametricEqBand(band.frequency, band.gain, newQ, band.filterType, band.channel, band.uuid)
             onLiveUpdate?.invoke(bands)
             binding.liveEqSurface.setBands(bands, preampDb)
         }

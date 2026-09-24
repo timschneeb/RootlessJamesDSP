@@ -19,6 +19,21 @@ enum class ParametricEqFilterType(val code: Int, val apoLabel: String, val displ
     }
 }
 
+enum class ParametricEqChannel(val code: Int, val apoLabel: String, val displayLabel: String) {
+    LEFT_RIGHT(0, "", "L+R"),
+    LEFT(1, "L", "L"),
+    RIGHT(2, "R", "R");
+
+    companion object {
+        fun fromCode(code: Int) = entries.firstOrNull { it.code == code } ?: LEFT_RIGHT
+        fun fromApoLabel(label: String?) = when (label?.uppercase()) {
+            "L" -> LEFT
+            "R" -> RIGHT
+            else -> LEFT_RIGHT
+        }
+    }
+}
+
 /**
  * A parametric EQ band definition.
  *
@@ -30,6 +45,7 @@ class ParametricEqBand(
     val gain: Double,
     val q: Double,
     val filterType: ParametricEqFilterType = ParametricEqFilterType.PEAKING,
+    val channel: ParametricEqChannel = ParametricEqChannel.LEFT_RIGHT,
     val uuid: UUID = UUID.randomUUID()
 ) : Serializable {
 
@@ -39,7 +55,8 @@ class ParametricEqBand(
         return frequency == other.frequency &&
                 gain == other.gain &&
                 q == other.q &&
-                filterType == other.filterType
+                filterType == other.filterType &&
+                channel == other.channel
     }
 
     override fun hashCode(): Int {
@@ -47,9 +64,10 @@ class ParametricEqBand(
         result = 31 * result + gain.hashCode()
         result = 31 * result + q.hashCode()
         result = 31 * result + filterType.hashCode()
+        result = 31 * result + channel.hashCode()
         return result
     }
 
     override fun toString(): String =
-        "ParametricEqBand(frequency=$frequency, gain=$gain, q=$q, filterType=$filterType, uuid=$uuid)"
+        "ParametricEqBand(frequency=$frequency, gain=$gain, q=$q, filterType=$filterType, channel=$channel, uuid=$uuid)"
 }
