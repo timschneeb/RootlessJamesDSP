@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import me.timschneeberger.rootlessjamesdsp.R
 import me.timschneeberger.rootlessjamesdsp.activity.ParametricEqualizerActivity
+import me.timschneeberger.rootlessjamesdsp.fragment.LiveEqBottomSheet
 import me.timschneeberger.rootlessjamesdsp.adapter.ParametricEqBandAdapter
 import me.timschneeberger.rootlessjamesdsp.databinding.FragmentParametricEqBinding
 import me.timschneeberger.rootlessjamesdsp.model.ParametricEqBand
@@ -48,6 +49,7 @@ class ParametricEqualizerFragment : Fragment() {
             binding.importFile.isEnabled = !value
             binding.exportFile.isEnabled = !value
             binding.editString.isEnabled = !value
+            binding.liveEq.isEnabled = !value && adapter.bands.isNotEmpty()
         }
 
     private val importFileLauncher =
@@ -185,6 +187,21 @@ class ParametricEqualizerFragment : Fragment() {
             exportFileLauncher.launch("parametric_eq.txt")
         }
 
+        binding.liveEq.setOnClickListener {
+            LiveEqBottomSheet.newInstance(
+                bands = adapter.bands,
+                preampDb = binding.preampInput.value.toDouble(),
+                onLiveUpdate = { bands ->
+                    binding.equalizerSurface.setBands(bands, binding.preampInput.value.toDouble())
+                },
+                onCommit = {
+                    // Writing the bands back already saved them through the adapter callback
+                    if (isAdded && view != null)
+                        updateViewState()
+                }
+            ).show(parentFragmentManager, "live_eq")
+        }
+
         binding.freqInput.setOnValueChangedListener { editorApply() }
         binding.gainInput.setOnValueChangedListener { editorApply() }
         binding.qInput.setOnValueChangedListener { editorApply() }
@@ -203,6 +220,8 @@ class ParametricEqualizerFragment : Fragment() {
                 else -> 10f
             }
         }
+
+        binding.qInput.min = 0.1f
 
         binding.qInput.customStepScale = { value: Float, _: Boolean ->
             when (value) {
@@ -297,6 +316,7 @@ class ParametricEqualizerFragment : Fragment() {
         binding.bandEdit.isVisible = editorActive
         binding.bandDetailContextButtons.visibility = if (editorActive) View.VISIBLE else View.INVISIBLE
         binding.editCardTitle.text = getString(if (editorActive) R.string.peq_band_editor else R.string.peq_band_list)
+        binding.liveEq.isEnabled = !empty && !editorActive
     }
 
     override fun onStop() {

@@ -85,12 +85,10 @@ class NumberInputBox @JvmOverloads constructor(
         override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
         override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
         override fun afterTextChanged(s: Editable) {
-            if (s.toString().isNotEmpty()) {
-                val input = s.toString().toFloatOrNull() ?: 0f
-                val validated = validateNumber(input)
-                if(validated != null)
-                    value = validated
-
+            // Do NOT clamp here — clamping during typing overwrites the user's input mid-keystroke.
+            // Clamping happens on focus loss (see onFocusChangeListener below).
+            val text = s.toString()
+            if (text.isNotEmpty() && text.toFloatOrNull() != null) {
                 onValueChangedListener?.invoke(value)
             }
         }
@@ -145,6 +143,13 @@ class NumberInputBox @JvmOverloads constructor(
             val newValue = (value - finalStep)
 
             value = validateNumber(newValue) ?: newValue
+        }
+
+        // Clamp to valid range when the user finishes typing and leaves the field
+        binding.input.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                validateValue()
+            }
         }
     }
 

@@ -122,6 +122,8 @@
     <string name="peq_bands">Parametric EQ bands</string>
     <string name="title_activity_peq">Parametric equalizer</string>
     <string name="peq_add_band">Add</string>
+    <string name="peq_live_eq">Live EQ</string>
+    <string name="peq_live_eq_hint">Tap a band above to adjust its parameters</string>
     <string name="peq_import">Import</string>
     <string name="peq_export">Export</string>
     <string name="peq_edit_as_string">Edit as string</string>
