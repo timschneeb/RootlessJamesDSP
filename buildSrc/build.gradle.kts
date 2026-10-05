@@ -2,11 +2,7 @@ plugins {
     `kotlin-dsl`
 }
 
-dependencies {
-    compileOnly("org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.0")
-
-    implementation(gradleApi())
-}
+// kotlin-dsl already provides the Gradle API; the old compileOnly KGP 2.1.0 dependency was unused.
 
 repositories {
     mavenCentral()

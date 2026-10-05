@@ -2,24 +2,25 @@
 buildscript {
     repositories {
         google()
-        mavenCentral()  // Google's Maven repository
-        gradlePluginPortal()
-        maven("https://jitpack.io")
+        mavenCentral()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:8.7.3")
-        classpath("com.google.gms:google-services:4.4.2")
-        classpath("com.google.firebase:firebase-crashlytics-gradle:3.0.2")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.0")
+        // AGP 9 has built-in Kotlin and brings its own (older) KGP/KSP.
+        // Putting newer versions on the root buildscript classpath is the documented way to upgrade them.
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${AndroidConfig.kotlinVersion}")
+        classpath("com.google.devtools.ksp:symbol-processing-gradle-plugin:${AndroidConfig.kspVersion}")
     }
 }
 
 plugins {
-    id("com.android.application") version "8.7.3" apply false
-    id("com.android.library") version "8.7.3" apply false
-    id("org.jetbrains.kotlin.android") version "2.1.0" apply false
+    id("com.android.application") version AndroidConfig.agpVersion apply false
+    id("com.android.library") version AndroidConfig.agpVersion apply false
+    id("org.jetbrains.kotlin.plugin.serialization") version AndroidConfig.kotlinVersion apply false
+    id("com.google.gms.google-services") version "4.5.0" apply false
+    id("com.google.firebase.crashlytics") version "3.0.8" apply false
+    id("dev.rikka.tools.refine") version AndroidConfig.rikkaRefineVersion apply false
 }
 
 tasks.register<Delete>("clean") {
-    delete(rootProject.buildDir)
+    delete(rootProject.layout.buildDirectory)
 }

@@ -422,7 +422,7 @@ class FileLibraryDialogFragment : ListPreferenceDialogFragmentCompat(), TargetFr
         return ListItemAdapter(
             requireContext(),
             if (fileLibPreference.isPreset()) R.layout.item_preset_list
-            else com.google.android.material.R.layout.select_dialog_singlechoice_material,
+            else androidx.appcompat.R.layout.select_dialog_singlechoice_material,
             android.R.id.text1,
             fileLibPreference.entries.zip(fileLibPreference.entryValues){
                     a, b -> Entry(a, b)

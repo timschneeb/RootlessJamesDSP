@@ -1,6 +1,6 @@
 plugins {
     id("com.android.library")
-    id("dev.rikka.tools.refine") version AndroidConfig.rikkaRefineVersion
+    id("dev.rikka.tools.refine")
 }
 
 android {
@@ -13,9 +13,9 @@ android {
 
     buildTypes {
         release {
-            isShrinkResources = false
             isMinifyEnabled = false
-            proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
+            // AGP 9 fails on keep files that don't exist - this used to point at a non-existent local file
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
     compileOptions {

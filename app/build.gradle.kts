@@ -2,20 +2,32 @@ import com.google.firebase.crashlytics.buildtools.gradle.CrashlyticsExtension
 
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
+    // AGP 9: Kotlin is built in, so org.jetbrains.kotlin.android is no longer applied.
+    // kotlin-kapt was removed: it had no kapt() dependencies here and is incompatible with built-in Kotlin.
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
-    id("com.google.devtools.ksp") version AndroidConfig.kspVersion
-    id("dev.rikka.tools.refine") version AndroidConfig.rikkaRefineVersion
-    id("org.jetbrains.kotlin.plugin.serialization") version "2.1.0"
+    id("com.google.devtools.ksp")
+    id("dev.rikka.tools.refine")
+    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 android {
 
     val SUPPORTED_ABIS = setOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
     compileSdk = AndroidConfig.compileSdk
-    project.setProperty("archivesBaseName", "RootlessJamesDSP-v${AndroidConfig.versionName}")
+    // Gradle 9 removed the "archivesBaseName" convention property -> base extension
+    project.base.archivesName.set("RootlessJamesDSP-v${AndroidConfig.versionName}")
+
+    signingConfigs {
+        // Only used by the "fyt" flavor (standard Android platform key, password "android").
+        // All other variants keep the original behavior (default debug keystore).
+        create("fyt") {
+            storeFile = file("src/fyt/androidkeystore.jks")
+            storePassword = "android"
+            keyAlias = "android"
+            keyPassword = "android"
+        }
+    }
 
     defaultConfig {
         targetSdk = AndroidConfig.targetSdk
@@ -57,9 +69,9 @@ android {
                 mappingFileUploadEnabled = false
             }
 
-            //proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
             isMinifyEnabled = false
             isShrinkResources = false
+
             signingConfig = signingConfigs.getByName("debug")
         }
         create("preview") {
@@ -77,6 +89,8 @@ android {
     productFlavors {
         create("fdroid") {
             dimension = "dependencies"
+            // Keep the IDE's default build variant as in the original repo (pluginFdroidDebug)
+            isDefault = true
             buildConfigField("boolean", "FOSS_ONLY", "true")
             android.defaultConfig.externalNativeBuild.cmake.arguments += "-DNO_CRASHLYTICS=1"
         }
@@ -99,15 +113,29 @@ android {
             dimension = "version"
 
             manifestPlaceholders["label"] = "JamesDSP"
-            project.setProperty("archivesBaseName", "JamesDSP-v${AndroidConfig.versionName}-${AndroidConfig.versionCode}")
+            project.base.archivesName.set("JamesDSP-v${AndroidConfig.versionName}-${AndroidConfig.versionCode}")
             applicationId = "james.dsp"
             AndroidConfig.minSdk = 26
             minSdk = AndroidConfig.minSdk
             buildConfigField("boolean", "ROOTLESS", "false")
             buildConfigField("boolean", "PLUGIN", "false")
         }
+        create("fyt") {
+            dimension = "version"
+
+            // Root build signed with the system key (sharedUserId=android.uid.system, see src/fyt)
+            manifestPlaceholders["label"] = "JamesDSP"
+            project.base.archivesName.set("JamesDSP-v${AndroidConfig.versionName}-${AndroidConfig.versionCode}")
+            applicationId = "james.dsp"
+            AndroidConfig.minSdk = 26
+            minSdk = AndroidConfig.minSdk
+            buildConfigField("boolean", "ROOTLESS", "false")
+            buildConfigField("boolean", "PLUGIN", "false")
+            signingConfig = signingConfigs.getByName("fyt")
+        }
         create("plugin") {
             dimension = "version"
+            isDefault = true
 
             AndroidConfig.minSdk = 26
             minSdk = AndroidConfig.minSdk
@@ -116,10 +144,13 @@ android {
         }
     }
 
-    sourceSets {
-        // Use different app icon for non-release builds
-        getByName("debug").res.srcDirs("src/debug/res")
+    // The fyt flavor is a root build: reuse the root flavor sources
+    sourceSets.getByName("fyt") {
+        kotlin.directories.add("src/root/java")
     }
+
+    // The old sourceSets block only re-added src/debug/res, which is already the default
+    // resource directory of the "debug" source set, so it was removed.
 
     // Export multiple CPU architecture split apks
     splits {
@@ -142,12 +173,13 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = "17"
-    }
+    // kotlinOptions {} is an error with built-in Kotlin; Kotlin's jvmTarget now
+    // defaults to compileOptions.targetCompatibility (17), so nothing else is needed.
 
     buildFeatures {
         viewBinding = true
+        // Replaces android.defaults.buildfeatures.buildconfig=true (removed in AGP 9)
+        buildConfig = true
         // Disable unused features
         aidl = false
         renderScript = false
@@ -174,56 +206,67 @@ afterEvaluate {
     getTasksByName("assembleRootFullPreview", false).firstOrNull()?.finalizedBy("uploadCrashlyticsSymbolFileRootFullRelease")
 }
 
+// The buildType-level signingConfig overrides the flavor one, so force the system key for every fyt variant
+androidComponents {
+    onVariants(selector().all()) { variant ->
+        if (variant.productFlavors.any { it.second == "fyt" }) {
+            variant.signingConfig.setConfig(android.signingConfigs.getByName("fyt"))
+        }
+    }
+}
+
 dependencies {
     // Kotlin extensions
-    implementation("org.jetbrains.kotlin:kotlin-reflect:2.0.20")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:${AndroidConfig.kotlinVersion}")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.11.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0")
 
     // AndroidX
-    implementation("androidx.core:core-ktx:1.15.0")
-    implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")
-    implementation("androidx.constraintlayout:constraintlayout:2.2.0")
-    implementation("androidx.recyclerview:recyclerview:1.3.2")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.8.4")
-    implementation("androidx.navigation:navigation-ui-ktx:2.8.4")
+    implementation("androidx.core:core-ktx:1.19.1")
+    implementation("androidx.appcompat:appcompat:1.8.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.11.0")
+    implementation("androidx.localbroadcastmanager:localbroadcastmanager:1.1.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.2.2")
+    implementation("androidx.recyclerview:recyclerview:1.4.0")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.10.2")
+    implementation("androidx.navigation:navigation-ui-ktx:2.10.2")
     implementation("androidx.preference:preference-ktx:1.2.1")
-    implementation("androidx.databinding:databinding-runtime:8.7.3")
-    implementation("androidx.work:work-runtime-ktx:2.10.0")
-    implementation("androidx.mediarouter:mediarouter:1.7.0")
+    implementation("androidx.databinding:databinding-runtime:${AndroidConfig.agpVersion}")
+    implementation("androidx.work:work-runtime-ktx:2.12.0")
+    implementation("androidx.mediarouter:mediarouter:1.8.1")
 
     // Material
-    implementation("com.google.android.material:material:1.9.0")
+    implementation("com.google.android.material:material:1.14.0")
 
     // Dependency injection
-    implementation("io.insert-koin:koin-android:3.3.3")
-    implementation("androidx.core:core-ktx:1.15.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
+    implementation("io.insert-koin:koin-android:4.2.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.11.0")
 
-    // Firebase
-    "fullImplementation"(platform("com.google.firebase:firebase-bom:33.7.0"))
-    "fullImplementation"("com.google.firebase:firebase-analytics-ktx")
-    "fullImplementation"("com.google.firebase:firebase-crashlytics-ktx")
+    // Firebase - BoM 34+ has no -ktx modules anymore, the Kotlin APIs live in the main artifacts
+    "fullImplementation"(platform("com.google.firebase:firebase-bom:34.19.0"))
+    "fullImplementation"("com.google.firebase:firebase-analytics")
+    "fullImplementation"("com.google.firebase:firebase-crashlytics")
     "fullImplementation"("com.google.firebase:firebase-crashlytics-ndk")
 
     // Web API client
-    implementation("com.google.code.gson:gson:2.11.0")
-    implementation("com.squareup.retrofit2:retrofit:2.11.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
-    implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
+    implementation("com.google.code.gson:gson:2.14.0")
+    // 2.12.0 is the newest Retrofit on OkHttp 3 (Retrofit 3.x moves to OkHttp 4)
+    implementation("com.squareup.retrofit2:retrofit:2.12.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.12.0")
+    implementation("com.squareup.retrofit2:converter-scalars:2.12.0")
 
     // Logging
     implementation("com.jakewharton.timber:timber:5.0.1")
+    // Kept at 1.0.0: 1.1.x renamed the package fr.bipi.tressence -> fr.bipi.treessence
     implementation("com.github.bastienpaulfr:Treessence:1.0.0")
 
     // IO
     implementation("org.kamranzafar:jtar:2.3")
-    implementation("com.squareup.okio:okio:3.6.0")
+    implementation("com.squareup.okio:okio:3.16.2")
 
     // Room databases
-    val roomVersion = "2.6.1"
+    val roomVersion = "2.8.5"
     implementation("androidx.room:room-runtime:$roomVersion")
     ksp("androidx.room:room-compiler:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
@@ -239,16 +282,18 @@ dependencies {
     implementation("com.github.tachiyomiorg:unifile:17bec43")
 
     // Root APIs
-    "rootImplementation"("com.github.topjohnwu.libsu:core:5.0.4")
+    "rootImplementation"("com.github.topjohnwu.libsu:core:6.0.0")
+    "fytImplementation"("com.github.topjohnwu.libsu:core:6.0.0")
 
     // Hidden APIs
     implementation("dev.rikka.tools.refine:runtime:${AndroidConfig.rikkaRefineVersion}")
-    implementation("org.lsposed.hiddenapibypass:hiddenapibypass:4.3")
+    implementation("org.lsposed.hiddenapibypass:hiddenapibypass:6.1")
     compileOnly(project(":hidden-api-refined"))
     implementation(project(":hidden-api-impl"))
 
     // Debug utilities
-    debugImplementation("com.squareup.leakcanary:leakcanary-android:2.10")
+    debugImplementation("com.squareup.leakcanary:leakcanary-android:2.14")
+    // Pluto kept at 2.0.9: newer releases reorganised the network-interceptor artifacts
     debugImplementation("com.plutolib:pluto:2.0.9")
     "previewImplementation"("com.plutolib:pluto-no-op:2.0.9")
     releaseImplementation("com.plutolib:pluto-no-op:2.0.9")
@@ -258,6 +303,6 @@ dependencies {
 
     // Unit tests
     testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.2.1")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+    androidTestImplementation("androidx.test.ext:junit:1.3.0")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.7.0")
 }

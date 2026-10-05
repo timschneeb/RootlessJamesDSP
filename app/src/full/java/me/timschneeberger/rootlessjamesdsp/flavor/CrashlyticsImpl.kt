@@ -1,7 +1,7 @@
 package me.timschneeberger.rootlessjamesdsp.flavor
 
-import com.google.firebase.crashlytics.ktx.crashlytics
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.Firebase
+import com.google.firebase.crashlytics.crashlytics
 
 object CrashlyticsImpl {
     fun setCollectionEnabled(on: Boolean) = Firebase.crashlytics.setCrashlyticsCollectionEnabled(on)

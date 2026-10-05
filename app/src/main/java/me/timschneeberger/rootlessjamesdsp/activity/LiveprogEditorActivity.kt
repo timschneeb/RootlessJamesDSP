@@ -189,7 +189,7 @@ class LiveprogEditorActivity : BaseActivity() {
                             setTextMaxLines(5)
                             setBackgroundTint(resolveColorAttribute(com.google.android.material.R.attr.colorErrorContainer))
                             setTextColor(resolveColorAttribute(com.google.android.material.R.attr.colorOnErrorContainer))
-                            setActionTextColor(resolveColorAttribute(com.google.android.material.R.attr.colorError))
+                            setActionTextColor(resolveColorAttribute(androidx.appcompat.R.attr.colorError))
                             show()
                         }
                 }

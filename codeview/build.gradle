@@ -1,14 +1,15 @@
-apply plugin: 'com.android.library'
-apply plugin: 'org.jetbrains.kotlin.android'
+plugins {
+    id 'com.android.library'
+    // AGP 9: built-in Kotlin compiles the .kt sources, org.jetbrains.kotlin.android is no longer applied
+}
 
 android {
-    compileSdk 33
+    namespace = 'com.amrdeveloper.codeview'
+    compileSdk = AndroidConfig.compileSdk
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 33
-
-        consumerProguardFiles "consumer-rules.pro"
+        minSdk = 15
+        consumerProguardFiles 'consumer-rules.pro'
     }
 
     compileOptions {
@@ -16,19 +17,14 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = "17"
-    }
-
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled = false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    namespace 'com.amrdeveloper.codeview'
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.8.0'
 }

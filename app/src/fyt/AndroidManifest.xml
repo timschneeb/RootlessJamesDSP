@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:sharedUserId="android.uid.system">
+
+    <!-- Same as src/root/AndroidManifest.xml: the fyt flavor is a root build -->
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.UPDATE_PACKAGES_WITHOUT_USER_ACTION" />
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" tools:ignore="QueryAllPackagesPermission" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" tools:targetApi="upside_down_cake" />
+
+    <application
+        tools:node="merge">
+        <service
+            android:name="me.timschneeberger.rootlessjamesdsp.flavor.updates.SessionInstallerService"
+            android:exported="false" />
+
+        <!-- Starts the service without UI for head units that never get BOOT_COMPLETED -->
+        <receiver
+            android:name=".receiver.AutostartReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="james.dsp.action.AUTOSTART" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

@@ -1,7 +1,6 @@
 plugins {
     id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("dev.rikka.tools.refine") version AndroidConfig.rikkaRefineVersion
+    id("dev.rikka.tools.refine")
 }
 
 android {
@@ -15,7 +14,7 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles("proguard-android-optimize.txt", "proguard-rules.pro")
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
     compileOptions {
@@ -26,9 +25,8 @@ android {
 }
 
 dependencies {
-    // Kotlin
-    implementation("androidx.core:core-ktx:1.15.0")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${AndroidConfig.kotlinVersion}")
+    // Kotlin (stdlib is added automatically by built-in Kotlin; kotlin-stdlib-jdk7 is obsolete)
+    implementation("androidx.core:core-ktx:1.19.1")
 
     // Refine
     annotationProcessor("dev.rikka.tools.refine:annotation-processor:${AndroidConfig.rikkaRefineVersion}")

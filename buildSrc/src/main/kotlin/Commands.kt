@@ -1,8 +1,7 @@
 import org.gradle.api.Project
-import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
-import java.util.TimeZone
 import java.util.Date
+import java.util.TimeZone
 
 // Git is needed in your system PATH for these commands to work.
 // If it's not installed, you can return a random value as a workaround
@@ -22,11 +21,10 @@ fun Project.getBuildTime(): String {
     return df.format(Date())
 }
 
+// Project.exec {} was removed in Gradle 9 - providers.exec is the supported way
+// to run a process at configuration time (also configuration-cache compatible).
 fun Project.runCommand(command: String): String {
-    val byteOut = ByteArrayOutputStream()
-    project.exec {
-        commandLine = command.split(" ")
-        standardOutput = byteOut
-    }
-    return String(byteOut.toByteArray()).trim()
+    return providers.exec {
+        commandLine(command.split(" "))
+    }.standardOutput.asText.get().trim()
 }
